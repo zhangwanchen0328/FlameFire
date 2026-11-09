@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DustExtractionValue" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_Trigger7">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger8">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bDustGasValveOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustGasValveClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="M">
+        <type>
+          <derived name="CNC_MCONTROL"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*抽尘阀(hmi)  打开*)
+R_Trigger7(CLK := g_bDustGasValveOpenM OR g_bDustGasValveOpen OR bDustGasValveOpen);
+IF R_Trigger7.Q THEN
+  g_boDustGasValve := TRUE;
+  g_bDustGasValveState := TRUE;
+  g_bDustGasValveOpenM := FALSE;
+  g_bDustGasValveOpen := FALSE;
+  bDustGasValveOpen := FALSE;
+  M.ENABLE[227] := 0;
+END_IF;
+
+(*抽尘阀(hmi)  关闭*)
+R_Trigger8(CLK := g_bDustGasValveCloseM OR g_bDustGasValveClose OR bDustGasValveClose);
+IF R_Trigger8.Q THEN
+  g_boDustGasValve := FALSE;
+  g_bDustGasValveState := FALSE;
+  g_bDustGasValveCloseM := FALSE;
+  g_bDustGasValveClose := FALSE;
+  bDustGasValveClose := FALSE;
+   M.ENABLE[227] := 0;
+END_IF;
+
+IF g_bPlcResetBuffer THEN
+  g_bDustGasValveCloseM := FALSE;
+  g_bDustGasValveOpenM := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[抽尘阀控制]]></xhtml:p>
+  </documentation>
+</pou>

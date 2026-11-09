@@ -1,0 +1,1661 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_UserDefinedAlarm" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_biUserDefineAlarm1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警1引脚实际值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警1信号是否触发  0：不触发 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUserDefineAlarm1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警1信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biUserDefineAlarm2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警2引脚实际值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警2信号是否触发  0：不触发 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUserDefineAlarm2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警2信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biUserDefineAlarm3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警3引脚实际值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警3信号是否触发  0：不触发 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUserDefineAlarm3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警3信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biUserDefineAlarm4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警4引脚实际值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警4信号是否触发  0：不触发 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUserDefineAlarm4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警4信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biUserDefineAlarm5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警5引脚实际值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警5信号是否触发  0：不触发 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUserDefineAlarm5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警5信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biUserDefineAlarm6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警6引脚实际值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警6信号是否触发  0：不触发 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUserDefineAlarm6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警6信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biUserDefineAlarm7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警7引脚实际值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警7信号是否触发  0：不触发 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUserDefineAlarm7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警7信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biUserDefineAlarm8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警8引脚实际值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警8信号是否触发  0：不触发 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUserDefineAlarm8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警8信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biUserDefineAlarm9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警9引脚实际值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警9信号是否触发  0：不触发 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUserDefineAlarm9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警9信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biUserDefineAlarm10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警10引脚实际值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警10信号是否触发  0：不触发 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUserDefineAlarm10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警10信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biUserDefineAlarm11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警11引脚实际值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警11信号是否触发  0：不触发 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUserDefineAlarm11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警11信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biUserDefineAlarm12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警12引脚实际值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警12信号是否触发  0：不触发 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUserDefineAlarm12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警12信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biUserDefineAlarm13">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警13引脚实际值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm13">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警13信号是否触发  0：不触发 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUserDefineAlarm13">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警13信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biUserDefineAlarm14">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警14引脚实际值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm14">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警14信号是否触发  0：不触发 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUserDefineAlarm14">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警14信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biUserDefineAlarm15">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警15引脚实际值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm15">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警15信号是否触发  0：不触发 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUserDefineAlarm15">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警15信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biUserDefineAlarm16">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16引脚实际值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm16">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号是否触发  0：不触发 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUserDefineAlarm16">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineAlarm17">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineAlarm18">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineAlarm19">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineAlarm20">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineAlarm21">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineAlarm22">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineAlarm23">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineAlarm24">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineAlarm25">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineAlarm26">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineAlarm27">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineAlarm28">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineAlarm29">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineAlarm30">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineAlarm31">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineAlarm32">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警16信号逻辑：     0： 常开 1：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="btemp1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp9">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp10">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp11">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp12">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp13">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp14">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp15">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp16">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp17">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp18">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp19">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp20">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp21">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp22">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp23">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp24">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp25">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp26">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp27">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp28">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp29">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp30">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp31">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="btemp32">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nfiltertime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="filterfirst">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst0">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst6">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst7">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst8">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst9">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst10">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst11">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst12">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst13">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst14">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst17">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst18">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst19">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst20">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst21">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst22">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst23">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst24">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst25">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst26">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst27">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst28">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst29">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst30">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst31">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="filterfirst32">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nfiltertime1">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警1滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime2">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警2滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime3">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警3滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime4">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警4滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime5">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警5滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime6">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警6滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime7">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警7滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime8">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警8滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime9">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警9滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime10">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警10滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime11">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警11滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime12">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警12滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime13">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警13滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime14">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警14滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime15">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警15滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime16">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警16滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime17">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警17滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime18">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警18滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime19">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警19滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime20">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警20滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime21">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警21滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime22">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警22滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime23">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警23滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime24">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警24滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime25">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警25滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime26">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警26滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime27">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警27滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime28">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警28滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime29">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警29滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime30">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警30滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime31">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警31滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nfiltertime32">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警32滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*用户自定义报警1*)
+btemp1:= FUN_SingalLogic(g_biUserDefineAlarm1 OR g_bUserDefineAlarmFromModbus1,bUserDefineAlarm1);
+IF btemp1 THEN
+  filterfirst(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime1)));
+  IF filterfirst.Q THEN
+    filterfirst(IN := FALSE);
+    IF btemp1 THEN
+      g_bUserDefineAlarm1 := btemp1;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst(IN := FALSE);
+  g_bUserDefineAlarm1 := btemp1;
+END_IF;
+(*用户自定义报警2*)
+btemp2:= FUN_SingalLogic(g_biUserDefineAlarm2 OR g_bUserDefineAlarmFromModbus2,bUserDefineAlarm2);
+IF btemp2 THEN
+  filterfirst0(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime2)));
+  IF filterfirst0.Q THEN
+    filterfirst0(IN := FALSE);
+    IF btemp2 THEN
+      g_bUserDefineAlarm2 := btemp2;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst0(IN := FALSE);
+  g_bUserDefineAlarm2 := btemp2;
+END_IF;
+(*用户自定义报警3*)
+btemp3:= FUN_SingalLogic(g_biUserDefineAlarm3 OR g_bUserDefineAlarmFromModbus3,bUserDefineAlarm3);
+IF btemp3 THEN
+  filterfirst1(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime3)));
+  IF filterfirst1.Q THEN
+    filterfirst1(IN := FALSE);
+    IF btemp3 THEN
+      g_bUserDefineAlarm3 := btemp3;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst1(IN := FALSE);
+  g_bUserDefineAlarm3 := btemp3;
+END_IF;
+(*用户自定义报警4*)
+btemp4:= FUN_SingalLogic(g_biUserDefineAlarm4 OR g_bUserDefineAlarmFromModbus4,bUserDefineAlarm4);
+IF btemp4 THEN
+  filterfirst2(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime4)));
+  IF filterfirst2.Q THEN
+    filterfirst2(IN := FALSE);
+    IF btemp4 THEN
+      g_bUserDefineAlarm4 := btemp4;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst2(IN := FALSE);
+  g_bUserDefineAlarm4 := btemp4;
+END_IF;
+(*用户自定义报警5*)
+btemp5:= FUN_SingalLogic(g_biUserDefineAlarm5 OR g_bUserDefineAlarmFromModbus5,bUserDefineAlarm5);
+IF btemp5 THEN
+  filterfirst3(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime5)));
+  IF filterfirst3.Q THEN
+    filterfirst3(IN := FALSE);
+    IF btemp5 THEN
+      g_bUserDefineAlarm5 := btemp5;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst3(IN := FALSE);
+  g_bUserDefineAlarm5 := btemp5;
+END_IF;
+(*用户自定义报警6*)
+btemp6:= FUN_SingalLogic(g_biUserDefineAlarm6 OR g_bUserDefineAlarmFromModbus6,bUserDefineAlarm6);
+IF btemp6 THEN
+  filterfirst4(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime6)));
+  IF filterfirst4.Q THEN
+    filterfirst4(IN := FALSE);
+    IF btemp6 THEN
+      g_bUserDefineAlarm6 := btemp6;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst4(IN := FALSE);
+  g_bUserDefineAlarm6 := btemp6;
+END_IF;
+(*用户自定义报警7*)
+btemp7:= FUN_SingalLogic(g_biUserDefineAlarm7 OR g_bUserDefineAlarmFromModbus7,bUserDefineAlarm7);
+IF btemp7 THEN
+  filterfirst5(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime7)));
+  IF filterfirst5.Q THEN
+    filterfirst5(IN := FALSE);
+    IF btemp7 THEN
+      g_bUserDefineAlarm7 := btemp7;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst5(IN := FALSE);
+  g_bUserDefineAlarm7 := btemp7;
+END_IF;
+(*用户自定义报警8*)
+btemp8:= FUN_SingalLogic(g_biUserDefineAlarm8 OR g_bUserDefineAlarmFromModbus8,bUserDefineAlarm8);
+IF btemp8 THEN
+  filterfirst6(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime8)));
+  IF filterfirst6.Q THEN
+    filterfirst6(IN := FALSE);
+    IF btemp8 THEN
+      g_bUserDefineAlarm8 := btemp8;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst6(IN := FALSE);
+  g_bUserDefineAlarm8 := btemp8;
+END_IF;
+(*用户自定义报警9*)
+btemp9:= FUN_SingalLogic(g_biUserDefineAlarm9 OR g_bUserDefineAlarmFromModbus9,bUserDefineAlarm9);
+IF btemp9 THEN
+  filterfirst7(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime9)));
+  IF filterfirst7.Q THEN
+    filterfirst7(IN := FALSE);
+    IF btemp9 THEN
+      g_bUserDefineAlarm9 := btemp9;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst7(IN := FALSE);
+  g_bUserDefineAlarm9 := btemp9;
+END_IF;
+(*用户自定义报警10*)
+btemp10:= FUN_SingalLogic(g_biUserDefineAlarm10 OR g_bUserDefineAlarmFromModbus10,bUserDefineAlarm10);
+IF btemp10 THEN
+  filterfirst8(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime10)));
+  IF filterfirst8.Q THEN
+    filterfirst8(IN := FALSE);
+    IF btemp10 THEN
+      g_bUserDefineAlarm10 := btemp10;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst8(IN := FALSE);
+  g_bUserDefineAlarm10 := btemp10;
+END_IF;
+(*用户自定义报警11*)
+btemp11:= FUN_SingalLogic(g_biUserDefineAlarm11 OR g_bUserDefineAlarmFromModbus11,bUserDefineAlarm11);
+IF btemp11 THEN
+  filterfirst9(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime11)));
+  IF filterfirst9.Q THEN
+    filterfirst9(IN := FALSE);
+    IF btemp11 THEN
+      g_bUserDefineAlarm11 := btemp11;
+    END_IF;
+  END_IF;
+ELSE
+ filterfirst9(IN := FALSE);
+ g_bUserDefineAlarm11 := btemp11;
+END_IF;
+(*用户自定义报警12*)
+btemp12:= FUN_SingalLogic(g_biUserDefineAlarm12 OR g_bUserDefineAlarmFromModbus12,bUserDefineAlarm12);
+IF btemp12 THEN
+  filterfirst10(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime12)));
+  IF filterfirst10.Q THEN
+    filterfirst10(IN := FALSE);
+    IF btemp12 THEN
+      g_bUserDefineAlarm12 := btemp12;
+    END_IF;
+  END_IF;
+ELSE
+ filterfirst10(IN := FALSE);
+ g_bUserDefineAlarm12 := btemp12;
+END_IF;
+(*用户自定义报警13*)
+btemp13:= FUN_SingalLogic(g_biUserDefineAlarm13 OR g_bUserDefineAlarmFromModbus13,bUserDefineAlarm13);
+IF btemp13 THEN
+  filterfirst11(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime13)));
+  IF filterfirst11.Q THEN
+    filterfirst11(IN := FALSE);
+    IF btemp13 THEN
+      g_bUserDefineAlarm13 := btemp13;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst11(IN := FALSE);
+  g_bUserDefineAlarm13 := btemp13;
+END_IF;
+(*用户自定义报警14*)
+btemp14:= FUN_SingalLogic(g_biUserDefineAlarm14 OR g_bUserDefineAlarmFromModbus14,bUserDefineAlarm14);
+IF btemp14 THEN
+  filterfirst12(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime14)));
+  IF filterfirst12.Q THEN
+    filterfirst12(IN := FALSE);
+    IF btemp14 THEN
+      g_bUserDefineAlarm14 := btemp14;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst12(IN := FALSE);
+  g_bUserDefineAlarm14 := btemp14;
+END_IF;
+(*用户自定义报警15*)
+btemp15:= FUN_SingalLogic(g_biUserDefineAlarm15 OR g_bUserDefineAlarmFromModbus15,bUserDefineAlarm15);
+IF btemp15 THEN
+  filterfirst13(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime15)));
+  IF filterfirst13.Q THEN
+    filterfirst13(IN := FALSE);
+    IF btemp15 THEN
+      g_bUserDefineAlarm15 := btemp15;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst13(IN := FALSE);
+  g_bUserDefineAlarm15 := btemp15;
+END_IF;
+(*用户自定义报警16*)
+btemp16:= FUN_SingalLogic(g_biUserDefineAlarm16 OR g_bUserDefineAlarmFromModbus16,bUserDefineAlarm16);
+IF btemp16 THEN
+  filterfirst14(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime16)));
+  IF filterfirst14.Q THEN
+    filterfirst14(IN := FALSE);
+    IF btemp16 THEN
+      g_bUserDefineAlarm16 := btemp16;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst14(IN := FALSE);
+  g_bUserDefineAlarm16 := btemp16;
+END_IF;
+
+
+
+(*用户自定义报警17*)
+btemp17:= FUN_SingalLogic(g_biUserDefineAlarm17 OR g_bUserDefineAlarmFromModbus17,bUserDefineAlarm17);
+IF btemp17 THEN
+  filterfirst17(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime17)));
+  IF filterfirst17.Q THEN
+    filterfirst17(IN := FALSE);
+    IF btemp17 THEN
+      g_bUserDefineAlarm17 := btemp17;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst17(IN := FALSE);
+  g_bUserDefineAlarm17 := btemp17;
+END_IF;
+
+
+(*用户自定义报警18*)
+btemp18:= FUN_SingalLogic(g_biUserDefineAlarm18 OR g_bUserDefineAlarmFromModbus18,bUserDefineAlarm18);
+IF btemp18 THEN
+  filterfirst18(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime18)));
+  IF filterfirst18.Q THEN
+    filterfirst18(IN := FALSE);
+    IF btemp18 THEN
+      g_bUserDefineAlarm18 := btemp18;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst18(IN := FALSE);
+  g_bUserDefineAlarm18 := btemp18;
+END_IF;
+
+
+
+(*用户自定义报警19*)
+btemp19:= FUN_SingalLogic(g_biUserDefineAlarm19 OR g_bUserDefineAlarmFromModbus19,bUserDefineAlarm19);
+IF btemp19 THEN
+  filterfirst19(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime19)));
+  IF filterfirst19.Q THEN
+    filterfirst19(IN := FALSE);
+    IF btemp19 THEN
+      g_bUserDefineAlarm19 := btemp19;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst19(IN := FALSE);
+  g_bUserDefineAlarm19 := btemp19;
+END_IF;
+
+
+
+(*用户自定义报警20*)
+btemp20:= FUN_SingalLogic(g_biUserDefineAlarm20 OR g_bUserDefineAlarmFromModbus20,bUserDefineAlarm20);
+IF btemp20 THEN
+  filterfirst20(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime20)));
+  IF filterfirst20.Q THEN
+    filterfirst20(IN := FALSE);
+    IF btemp20 THEN
+      g_bUserDefineAlarm20 := btemp20;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst20(IN := FALSE);
+  g_bUserDefineAlarm20 := btemp20;
+END_IF;
+
+
+
+(*用户自定义报警21*)
+btemp21:= FUN_SingalLogic(g_biUserDefineAlarm21 OR g_bUserDefineAlarmFromModbus21,bUserDefineAlarm21);
+IF btemp21 THEN
+  filterfirst21(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime21)));
+  IF filterfirst21.Q THEN
+    filterfirst21(IN := FALSE);
+    IF btemp21 THEN
+      g_bUserDefineAlarm21 := btemp21;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst21(IN := FALSE);
+  g_bUserDefineAlarm21 := btemp21;
+END_IF;
+
+
+
+(*用户自定义报警22*)
+btemp22:= FUN_SingalLogic(g_biUserDefineAlarm22 OR g_bUserDefineAlarmFromModbus22,bUserDefineAlarm22);
+IF btemp22 THEN
+  filterfirst22(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime22)));
+  IF filterfirst22.Q THEN
+    filterfirst22(IN := FALSE);
+    IF btemp22 THEN
+      g_bUserDefineAlarm22 := btemp22;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst22(IN := FALSE);
+  g_bUserDefineAlarm22 := btemp22;
+END_IF;
+
+
+
+(*用户自定义报警23*)
+btemp23:= FUN_SingalLogic(g_biUserDefineAlarm23 OR g_bUserDefineAlarmFromModbus23,bUserDefineAlarm23);
+IF btemp23 THEN
+  filterfirst23(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime23)));
+  IF filterfirst23.Q THEN
+    filterfirst23(IN := FALSE);
+    IF btemp23 THEN
+      g_bUserDefineAlarm23 := btemp23;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst23(IN := FALSE);
+  g_bUserDefineAlarm23 := btemp23;
+END_IF;
+
+
+(*用户自定义报警24*)
+btemp24 := FUN_SingalLogic(g_biUserDefineAlarm24 OR g_bUserDefineAlarmFromModbus24,bUserDefineAlarm24);
+IF btemp24 THEN
+  filterfirst24(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime24)));
+  IF filterfirst24.Q THEN
+    filterfirst24(IN := FALSE);
+    IF btemp24 THEN
+      g_bUserDefineAlarm24 := btemp24;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst24(IN := FALSE);
+  g_bUserDefineAlarm24 := btemp24;
+END_IF;
+
+
+
+(*用户自定义报警25*)
+btemp25:= FUN_SingalLogic(g_biUserDefineAlarm25 OR g_bUserDefineAlarmFromModbus25,bUserDefineAlarm25);
+IF btemp25 THEN
+  filterfirst25(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime25)));
+  IF filterfirst25.Q THEN
+    filterfirst25(IN := FALSE);
+    IF btemp25 THEN
+      g_bUserDefineAlarm25 := btemp25;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst25(IN := FALSE);
+  g_bUserDefineAlarm25 := btemp25;
+END_IF;
+
+
+(*用户自定义报警26*)
+btemp26:= FUN_SingalLogic(g_biUserDefineAlarm26 OR g_bUserDefineAlarmFromModbus26,bUserDefineAlarm26);
+IF btemp26 THEN
+  filterfirst26(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime26)));
+  IF filterfirst26.Q THEN
+    filterfirst26(IN := FALSE);
+    IF btemp26 THEN
+      g_bUserDefineAlarm26 := btemp26;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst26(IN := FALSE);
+  g_bUserDefineAlarm26 := btemp26;
+END_IF;
+
+
+(*用户自定义报警27*)
+btemp27:= FUN_SingalLogic(g_biUserDefineAlarm27 OR g_bUserDefineAlarmFromModbus27,bUserDefineAlarm27);
+IF btemp27 THEN
+  filterfirst27(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime27)));
+  IF filterfirst27.Q THEN
+    filterfirst27(IN := FALSE);
+    IF btemp27 THEN
+      g_bUserDefineAlarm27 := btemp27;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst27(IN := FALSE);
+  g_bUserDefineAlarm27 := btemp27;
+END_IF;
+
+
+(*用户自定义报警28*)
+btemp28:= FUN_SingalLogic(g_biUserDefineAlarm28 OR g_bUserDefineAlarmFromModbus28,bUserDefineAlarm28);
+IF btemp28 THEN
+  filterfirst28(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime28)));
+  IF filterfirst28.Q THEN
+    filterfirst28(IN := FALSE);
+    IF btemp28 THEN
+      g_bUserDefineAlarm28 := btemp28;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst28(IN := FALSE);
+  g_bUserDefineAlarm28 := btemp28;
+END_IF;
+
+
+(*用户自定义报警29*)
+btemp29:= FUN_SingalLogic(g_biUserDefineAlarm29 OR g_bUserDefineAlarmFromModbus29,bUserDefineAlarm29);
+IF btemp29 THEN
+  filterfirst29(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime29)));
+  IF filterfirst29.Q THEN
+    filterfirst29(IN := FALSE);
+    IF btemp29 THEN
+      g_bUserDefineAlarm29 := btemp29;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst29(IN := FALSE);
+  g_bUserDefineAlarm29 := btemp29;
+END_IF;
+
+
+(*用户自定义报警30*)
+btemp30:= FUN_SingalLogic(g_biUserDefineAlarm30 OR g_bUserDefineAlarmFromModbus30,bUserDefineAlarm30);
+IF btemp30 THEN
+  filterfirst30(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime30)));
+  IF filterfirst30.Q THEN
+    filterfirst30(IN := FALSE);
+    IF btemp30 THEN
+      g_bUserDefineAlarm30 := btemp30;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst30(IN := FALSE);
+  g_bUserDefineAlarm30 := btemp30;
+END_IF;
+
+
+(*用户自定义报警31*)
+btemp31:= FUN_SingalLogic(g_biUserDefineAlarm31 OR g_bUserDefineAlarmFromModbus31,bUserDefineAlarm31);
+IF btemp31 THEN
+  filterfirst31(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime31)));
+  IF filterfirst31.Q THEN
+    filterfirst31(IN := FALSE);
+    IF btemp31 THEN
+      g_bUserDefineAlarm31 := btemp31;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst31(IN := FALSE);
+  g_bUserDefineAlarm31 := btemp31;
+END_IF;
+
+
+(*用户自定义报警32*)
+btemp32:= FUN_SingalLogic(g_biUserDefineAlarm32 OR g_bUserDefineAlarmFromModbus32,bUserDefineAlarm32);
+IF btemp32 THEN
+  filterfirst32(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nfiltertime32)));
+  IF filterfirst32.Q THEN
+    filterfirst32(IN := FALSE);
+    IF btemp32 THEN
+      g_bUserDefineAlarm32 := btemp32;
+    END_IF;
+  END_IF;
+ELSE
+  filterfirst32(IN := FALSE);
+  g_bUserDefineAlarm32 := btemp32;
+END_IF;
+
+
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[用来判断是否触发用户自定义的报警]]></xhtml:p>
+  </documentation>
+</pou>

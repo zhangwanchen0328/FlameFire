@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AutoModeControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="DualStation1ExterSignal">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="DualStation2ExterSignal">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Filter_1">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_2">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="FilterTime">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="10.0"/>
+        </initialValue>
+      </variable>
+      <variable name="bDualStation1ExternalSignalLogic">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDualStation2ExternalSignalLogic">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFilterDualStation1ExternalSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFilterDualStation2ExternalSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFilterDualStation1ExternalSignalTriggered">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFilterDualStation2ExternalSignalTriggered">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Filter_1(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(FilterTime))),bDualStation1ExternalSignalLogic,g_biDualStation1TriggerStartSignal,bFilterDualStation1ExternalSignal);
+bFilterDualStation1ExternalSignalTriggered := FUN_SingalLogic(bFilterDualStation1ExternalSignal,bDualStation1ExternalSignalLogic);
+
+Filter_2(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(FilterTime))),bDualStation2ExternalSignalLogic,g_biDualStation2TriggerStartSignal,bFilterDualStation2ExternalSignal);
+bFilterDualStation2ExternalSignalTriggered := FUN_SingalLogic(bFilterDualStation2ExternalSignal,bDualStation2ExternalSignalLogic);
+
+DualStation1ExterSignal(CLK := g_biDualStation1TriggerStartSignal);
+DualStation2ExterSignal(CLK := g_biDualStation2TriggerStartSignal);
+
+
+
+IF DualStation1ExterSignal.Q  THEN
+  IF NOT g_bDualStation1IsCuttingStatus THEN
+	g_bDualStation1ExternalSignalTriggered := TRUE;
+  END_IF;
+END_IF;
+IF DualStation2ExterSignal.Q  THEN
+   IF NOT g_bDualStation2IsCuttingStatus THEN
+		g_bDualStation2ExternalSignalTriggered := TRUE;
+	END_IF;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

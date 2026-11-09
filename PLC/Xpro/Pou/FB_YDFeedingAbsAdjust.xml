@@ -1,0 +1,260 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_YDFeedingAbsAdjust" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_General2_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Override">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+      </variable>
+      <variable name="g_General2_ABS">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral2ABSOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral2ABSClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fGeneral2ABSPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fGeneral2ABSVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral2ABSDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biYDFeeingAbsOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biYDFeeingAbsClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boYDFeeingAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biYDFeeingAbsType">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger0">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nSwitchState">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dYDHeadLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dYDPartLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dYDTailLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFeedingLimitSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFeedingLimitSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bNotMaterialAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dAbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Ton_Delay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="dTargetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSlowDownDis">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[减速绝对位置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dGeneral2Override">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0.1"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[进给倍率]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger0(CLK := g_biYDFeeingAbsOpen);
+R_Trigger1(CLK := g_biYDFeeingAbsClose);
+
+IF R_Trigger0.Q THEN
+  g_boYDFeeingAbsDone := FALSE;
+  nSwitchState := 1;
+END_IF;
+
+IF R_Trigger1.Q THEN
+  g_boYDFeeingAbsDone := FALSE;
+  g_bGeneral2ABSClose := TRUE;
+  nSwitchState := 3;
+END_IF;
+
+g_General2_Override.Enable := TRUE;
+
+CASE nSwitchState OF
+  0:
+  nSwitchState := 0;
+  1:
+  g_bGeneral2ABSDone:=FALSE;
+  IF LREAL_TO_INT(g_biYDFeeingAbsType) = 0 THEN
+    g_fGeneral2ABSPos := g_General2_Axis.NCTOPLC.SETPOS + g_dYDHeadLength;
+    g_fGeneral2ABSVel := dAbsVelocity;
+    nSwitchState := 5;
+  ELSIF LREAL_TO_INT(g_biYDFeeingAbsType) = 1 THEN
+    g_fGeneral2ABSPos := g_dYDPartLength;
+    dTargetPos := dSlowDownDis;
+    g_fGeneral2ABSVel := dAbsVelocity;
+    nSwitchState := 2;
+  ELSIF LREAL_TO_INT(g_biYDFeeingAbsType) = 2 THEN
+    g_fGeneral2ABSPos := g_General2_Axis.NCTOPLC.SETPOS + g_dYDTailLength;
+    g_fGeneral2ABSVel := dAbsVelocity;
+    nSwitchState := 5;
+  ELSIF LREAL_TO_INT(g_biYDFeeingAbsType) = 3 THEN
+    g_fGeneral2ABSPos := 0.0;
+    g_fGeneral2ABSVel := dAbsVelocity;
+    nSwitchState := 5;
+  END_IF;
+  2:
+  g_bGeneral2ABSOpen := TRUE;
+  
+  IF g_bGeneral2ABSDone THEN
+    g_General2_Override.VelFactor := 1.0;
+    g_bGeneral2ABSOpen := FALSE;
+    g_boYDFeeingAbsDone := TRUE;
+    nSwitchState := 0;
+  END_IF;
+  3:
+  Ton_Delay(IN := TRUE,PT := T#10ms);
+  IF Ton_Delay.Q THEN
+    Ton_Delay(IN := FALSE);
+    g_bGeneral2ABSClose := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  5:
+  g_bGeneral2ABSOpen := TRUE;
+  IF g_General2_Axis.NCTOPLC.ACTPOS <= dTargetPos THEN
+    g_General2_Override.VelFactor := dGeneral2Override;
+  END_IF;
+  
+  IF g_bGeneral2ABSDone THEN
+    g_General2_Override.VelFactor := 1.0;
+    g_bGeneral2ABSOpen := FALSE;
+    g_boYDFeeingAbsDone := TRUE;
+    nSwitchState := 0;
+  END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  Ton_Delay(IN := FALSE);
+  g_bGeneral2ABSOpen := FALSE;
+  g_bGeneral2ABSClose := FALSE;
+  g_General2_Override.VelFactor := 1.0;
+  nSwitchState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[送料轴]]></xhtml:p>
+  </documentation>
+</pou>

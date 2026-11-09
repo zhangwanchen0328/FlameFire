@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FUN_SingalLogic" pouType="function">
+  <interface>
+    <returnType>
+      <BOOL/>
+    </returnType>
+    <inputVars>
+      <variable name="bActual">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚实际状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bExternalSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[外部信号逻辑 1：常开 0：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+(*用来判断信号是否触发*)
+IF bExternalSignal THEN
+  IF bActual THEN
+    FUN_SingalLogic := TRUE;
+  ELSE
+    FUN_SingalLogic := FALSE;
+  END_IF;
+ELSE 
+  IF bActual THEN
+    FUN_SingalLogic := FALSE;
+  ELSE
+    FUN_SingalLogic := TRUE;     
+  END_IF;    
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[用来判断信号是否触发]]></xhtml:p>
+  </documentation>
+</pou>

@@ -1,0 +1,660 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AutoParalle" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bAutoParalleEnableM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入引脚：自动对边（探边）开启使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAutoParalleCloseM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入引脚：自动对边（探边）关闭使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fAutoParalleDirectionM">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入引脚：自动对边（探边）轴类型 0和1Y 2X 3U]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fZAxisHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴根据标定列表计算出来的当前高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boFindEage">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：寻边，寻到边置为true]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZFollowClose">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关随动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZFollowOutDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关随动到位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="rTrigMove1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[移动到Y轴的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMoveState">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[自动对边的状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCloseParalleState">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[自动对边关闭的状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fParalleZFollowHeightM">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入引脚：自动对边（探边）随动高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fParalleBorderHeightM">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入引脚：自动对边（探边）阶跃高度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="rTrigMove2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="rTrigMove3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="rTrigMove4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="rTrigMove5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="rTrigMove6">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[电容检测异常报警检测开始,提示重新标定]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="rTrigMove7">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[电容检测异常报警检测结束]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="rTrigMovePause">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fTrigMove4">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fYOverShootPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：Y轴过冲前的坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fCurrentCoordYBuffer">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前Y轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_diXMachineCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前X轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="delay_ton">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Alarm">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[电容异常报警]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nMachineType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_foKuXunNoSuitable">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[1为超出，0为未超出]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bKunXunNoTailingFun">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开启无尾料]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fBackOffBeforeStateDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开始前回退距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fMinFindDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最小寻边距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fMaxFindDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最大寻边距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fYStartePos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开始前坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fYCuttingPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[理论上的切割点位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dHGTechDDAxisPosInY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dHGTechRearChuckSafeDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bHGTechStopParalleWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nPlcPauseState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bCurState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAutoParalleDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dAutoParalleNumber">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAutoParalleXmachineCoordinate1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAutoParalleXmachineCoordinate2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nZSensorValue1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nZSensorValue2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bPauseZAxisState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dPauseZAxisCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bOpenEdgCapacitanceAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[是否开启了探边前电容值异常]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCapacitorCheckState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[电容检测状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCapacitorCheckState_Pause">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录暂停下电容检测状态机 防止暂停时还继续检测]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dAlarmTime">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="20"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*自动对边*)
+rTrigMove1( CLK := (g_bAutoParalleEnableM));
+rTrigMove2( CLK := (g_bAutoParalleCloseM));
+rTrigMove3( CLK := (g_biIntPut_FindEage));
+rTrigMove4( CLK := (g_bFindEageM));
+rTrigMove5( CLK := (g_bCapacitanceDetection));
+rTrigMove6( CLK := (g_bCapacitorCheckStart));
+rTrigMove7( CLK := (g_bCapacitorCheckEnd));
+fTrigMove4( CLK := (g_biIntPut_FindEage));
+
+rTrigMovePause( CLK := (g_bPlcPauseBuffer));
+
+
+
+(*m代码控制g_boFindEage输出*)
+IF rTrigMove3.Q THEN
+  g_boFindEage := TRUE;
+END_IF;
+
+IF fTrigMove4.Q OR rTrigMove4.Q THEN
+  g_bFindEageM := FALSE;
+  g_boFindEage := FALSE;
+END_IF;
+
+IF rTrigMove1.Q THEN
+  nMoveState := 9;
+  (*初始化*)
+  g_boFindEage := FALSE;
+  fYStartePos:=g_fCurrentCoordYBuffer;
+  g_foKuXunNoSuitable:=0.0;
+  g_bAutoParalleEnableM := FALSE;
+  bAutoParalleDone := FALSE;
+END_IF;
+
+IF rTrigMove2.Q THEN
+  g_bAutoParalleCloseM := FALSE;
+  IF M.PARAMETER_P[163]=0.0 THEN
+    bAutoParalleDone := TRUE;
+    nCloseParalleState := 10;
+  ELSIF M.PARAMETER_P[163] =1.0 THEN
+    dAutoParalleXmachineCoordinate1 := g_fYOverShootPosition;
+    nZSensorValue1 :=UDINT_TO_LREAL(g_niZSensorValue);
+    M.ENABLE[163] := 0;
+  ELSIF M.PARAMETER_P[163] =2.0 THEN
+    dAutoParalleXmachineCoordinate2 := g_fYOverShootPosition;
+    nZSensorValue2 := UDINT_TO_LREAL(g_niZSensorValue);
+    M.ENABLE[163] := 0;
+  ELSIF M.PARAMETER_P[163] = 3.0 THEN
+    dAutoParalleNumber := dAutoParalleNumber + 1.0;
+    M.ENABLE[163] := 0;
+  ELSIF M.PARAMETER_P[163] = 4.0 THEN
+    dAutoParalleNumber := 0.0;
+    M.ENABLE[163] := 0;
+  END_IF; 
+END_IF;
+
+IF rTrigMove5.Q THEN
+  g_bCapacitanceDetection := FALSE;
+  IF bOpenEdgCapacitanceAlarm = FALSE THEN
+    g_bEdgCapacitanceAlarm := FALSE;
+  ELSIF (g_nAutoParalleType=0 AND g_fZAxisHeight > (g_fParalleBorderHeightM+g_fParalleZFollowHeightM) ) OR (g_nAutoParalleType=1 AND g_bAutoParalleInfraedSensor=FALSE) THEN
+    g_bEdgCapacitanceAlarm := TRUE;
+  ELSE
+    g_bEdgCapacitanceAlarm := FALSE;
+  END_IF;
+  M.ENABLE[324] := 0;
+END_IF;
+
+IF rTrigMove6.Q THEN
+  g_bCapacitorCheckStart := FALSE;
+  IF bOpenEdgCapacitanceAlarm AND g_nAutoParalleType=0 THEN
+    Ton_Alarm(IN := FALSE);
+    nCapacitorCheckState := 10;
+  ELSE
+    nCapacitorCheckState := 0;  
+  END_IF;
+  M.ENABLE[324] := 0;
+END_IF;
+
+IF rTrigMove7.Q THEN
+  g_bCapacitorCheckEnd := FALSE;
+  nCapacitorCheckState := 0;  
+  M.ENABLE[324] := 0; 
+END_IF;
+
+
+CASE nMoveState OF
+  0:(*空闲*)
+    nMoveState := 0;
+  9:
+  delay_ton(IN := TRUE,PT := T#50ms);
+  IF delay_ton.Q THEN
+    nMoveState := 10;
+    delay_ton(IN := FALSE);
+    IF g_bOpenFollowDownLimitVel THEN
+      g_ZFollowIn.DISABLENEGATIVE := TRUE;
+    END_IF;
+  END_IF;
+  10:(*探边*)
+    IF g_nPlcState = 1 THEN
+      (*g_nAutoParalleType=0 当前高度大于阶跃高度+随动设置高度（寻到边）*)
+      (*g_nAutoParalleType=1 红外传感器拿到低电平就寻到边，取下降沿可能有风险，容易检测不到，先不加滤波*)
+      IF (g_nAutoParalleType=0 AND g_fZAxisHeight > (g_fParalleBorderHeightM+g_fParalleZFollowHeightM) ) OR (g_nAutoParalleType=1 AND g_bAutoParalleInfraedSensor=FALSE) THEN
+        g_boFindEage := true;(*给引脚赋true，让cnc收到寻边完成信号停止移动*)
+        IF g_fAutoParalleDirectionM=0.0 THEN
+          g_fYOverShootPosition := g_fCurrentCoordYBuffer;(*探到边纪录下当前Y轴坐标*)
+        ELSIF g_fAutoParalleDirectionM=1.0 THEN
+          g_fYOverShootPosition := g_fCurrentCoordYBuffer;(*探到边纪录下当前Y轴坐标*)
+        ELSIF g_fAutoParalleDirectionM=2.0 THEN
+          g_fYOverShootPosition := g_diXMachineCoordinate;(*探到边纪录下当前X轴坐标*)
+        END_IF;
+        g_bZFollowClose := TRUE;
+        g_boCNCMoveDisable := TRUE;
+        nMoveState :=15;
+      END_IF;
+    END_IF;
+    
+  15: (*等待随动关闭完成*)
+    g_nFollowState :=101; 
+    IF g_bZFollowOutDone THEN
+      nMoveState := 0;
+      g_bZFollowClose := FALSE;
+      g_boCNCMoveDisable := FALSE;
+      IF g_bOpenFollowDownLimitVel THEN
+		g_ZFollowIn.DISABLENEGATIVE := FALSE;
+      END_IF;
+    END_IF;
+    
+END_CASE;
+
+(*暂停情况下，并且当前CNC是运行的G38.2探针，PLC是运行探边*)
+IF rTrigMovePause.Q AND (g_niMotionType = 5 OR  g_niMotionType = 2) AND (nMoveState =10 OR nPlcPauseState >= 40) THEN
+  nPlcPauseState:=10;
+  nMoveState :=0;
+  bPauseZAxisState := FALSE;
+  IF Axis_Z.NCTOPLC.AXISSTATE = 9 THEN
+    bPauseZAxisState := TRUE;
+  ELSE
+    dPauseZAxisCoordinate := Axis_Z.NCTOPLC.ACTPOS;
+    g_bZAbsExecute := FALSE;
+  END_IF;
+END_IF;
+CASE nPlcPauseState OF
+  0:
+    nPlcPauseState := 0;
+  10:(*关闭CNC运动使能，随动*)
+    g_boCNCMoveDisable := TRUE;
+    g_bZLiftExecute := FALSE;
+    g_bZFollowExecute := FALSE;
+    g_bZLiftingDone := FALSE;
+    IF g_bOpenFollowDownLimitVel THEN
+      g_ZFollowIn.DISABLENEGATIVE := FALSE;
+    END_IF;
+    IF Axis_Z.NCTOPLC.AXISSTATE = 2 THEN
+      nPlcPauseState:= 20;
+    END_IF;
+  20:(*上抬*)(*该状态暂停，在上抬状态机中忽略暂停信号，会继续上抬直到完成*)
+    g_bZLiftExecute := TRUE;
+    IF g_bZLiftingDone THEN
+      g_bZLiftExecute := FALSE;
+      nPlcPauseState := 30;
+    END_IF; 
+  30:(*PLC开始，开随动*)(*该状态暂停，随动关闭，Z轴不上抬*)
+    IF bCurState THEN
+      IF bPauseZAxisState THEN
+        g_bZFollowDone := FALSE;
+        g_fZFollowHeight := g_fParalleZFollowHeightM;
+		g_bZFollowExecute := TRUE;  
+        nPlcPauseState := 40;
+        IF g_bOpenFollowDownLimitVel THEN
+			g_ZFollowIn.DISABLENEGATIVE := TRUE;
+		END_IF;
+      ELSE
+        g_bZAbsDone := FALSE;
+        g_fZAbsPosition := dPauseZAxisCoordinate;
+        g_bZAbsExecute := TRUE;
+        nPlcPauseState := 45;
+      END_IF;
+       g_boFindEage := FALSE;
+    END_IF;
+  40:(*等待随动到位*)
+     (*用于监控随动报警卡在哪个状态机*)
+    g_nFollowState :=1; 
+    IF g_bZFollowDone THEN
+      g_bZFollowExecute := FALSE;
+      nPlcPauseState := 50;
+      nMoveState :=10;
+    END_IF;
+  45:(*等待定高到位*)
+    IF g_bZAbsDone THEN
+     g_bZFollowExecute := FALSE;
+      nPlcPauseState := 50;
+      nMoveState :=10;
+    END_IF;
+  50:(*开启CNC运动使能*)
+    g_boCNCMoveDisable := FALSE;
+    nPlcPauseState := 0; 
+END_CASE;
+
+CASE nCloseParalleState OF
+  0:
+    nCloseParalleState := 0;
+  10:
+    IF nMoveState=0 THEN(*等待关随动完成*)
+      g_boFindEage := FALSE;
+      M.ENABLE[163] := 0;
+      nCloseParalleState := 0;
+    END_IF;
+END_CASE;
+
+CASE nCapacitorCheckState OF
+  0:
+    nCapacitorCheckState := 0;
+  10:
+    IF g_nAutoParalleType=0 AND g_fZAxisHeight < (g_fParalleBorderHeightM+g_fParalleZFollowHeightM) AND nMoveState <> 9 AND nMoveState <> 10
+    AND g_fCurrentCoordYBuffer < g_fYOverShootPosition AND g_boFindEage THEN
+      Ton_Alarm(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dAlarmTime)));
+      IF Ton_Alarm.Q THEN 
+        g_bEdgCapacitanceAlarm := TRUE;
+        Ton_Alarm(IN := FALSE);
+        nCapacitorCheckState := 0;
+      END_IF;  
+    END_IF; 
+END_CASE;
+
+
+IF g_bPlcResetBuffer THEN
+  nMoveState := 0;
+  nCloseParalleState := 0;
+  nPlcPauseState := 0;
+  nCapacitorCheckState := 0;
+  nCapacitorCheckState_Pause := 0;
+  g_bZFollowClose := FALSE;
+  g_boFindEage := FALSE;
+  Ton_Alarm(IN := FALSE);
+  IF g_bOpenFollowDownLimitVel THEN
+    g_ZFollowIn.DISABLENEGATIVE := FALSE;
+  END_IF;
+END_IF;
+
+g_noPlcPauseState_AutoParalle := nPlcPauseState;
+
+(*plc开始暂停状态*)
+IF g_bPlcStartBuffer THEN
+  bCurState := TRUE;
+  nCapacitorCheckState := nCapacitorCheckState_Pause;
+END_IF;
+IF g_bPlcPauseBuffer THEN
+  bCurState := FALSE;
+  nCapacitorCheckState_Pause := nCapacitorCheckState;
+  nCapacitorCheckState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[自动对边]]></xhtml:p>
+  </documentation>
+</pou>

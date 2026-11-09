@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_QRTailCylinderControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_biTailCylinderLevel">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biTailCylinderSlope">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boTailCylinderSlope">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boTailCylinderDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biTailCylinderClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="LevelTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="SlopeTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nTailState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="DelayInPlace">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nCylinderDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[LevelTrigger(CLK := g_biTailCylinderLevel);
+SlopeTrigger(CLK := g_biTailCylinderSlope);
+R_Trigger(CLK := g_biTailCylinderClose);
+
+IF LevelTrigger.Q THEN
+  g_boTailCylinderSlope := FALSE;
+  g_boTailCylinderDone := FALSE;
+  nTailState := 1;
+END_IF;
+IF SlopeTrigger.Q THEN
+  g_boTailCylinderSlope := TRUE;
+  g_boTailCylinderDone := FALSE;
+  nTailState := 1;
+END_IF;
+IF R_Trigger.Q THEN
+  g_boTailCylinderDone := FALSE;
+END_IF;
+
+CASE nTailState OF
+  0:
+    nTailState := 0;
+  1:
+    DelayInPlace(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nCylinderDelay)));
+    IF DelayInPlace.Q THEN
+      g_boTailCylinderDone := TRUE;
+      DelayInPlace(IN := FALSE);
+      nTailState := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  g_boTailCylinderSlope := FALSE;
+  nTailState := 0;
+  DelayInPlace(IN := FALSE);
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

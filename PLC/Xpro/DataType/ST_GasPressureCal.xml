@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ST_GasPressureCal">
+  <baseType>
+    <array>
+      <dimension lower="0" upper="9"/>
+      <baseType>
+        <derived name="ST_AoPressure"/>
+      </baseType>
+    </array>
+  </baseType>
+</dataType>

@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_PlanProcess" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_boProcessEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPartCountM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nPlanPartNum">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nProcessedPart">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TriggerStart">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TriggerPlanClean">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlanEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bTimerStart">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bPlanClean">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dProcessTimers">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dTotalProcessTimers">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bProcessEndStopFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_triggerWholeTube">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bSideCenterAndAvoidPlanTimeContinue">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI分中和避让加工计时继续]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger(CLK := g_bPartCountM);
+R_TriggerStart(CLK := g_bStartCountTime);
+R_TriggerPlanClean(CLK := bPlanClean);
+
+R_triggerWholeTube(g_bWholeTubeCountM);
+
+
+IF R_Trigger.Q THEN(*不开启加工计划加工计数照常+1，开了加工计划则清除之前的加工计数重新开始计数*)
+  IF g_bPlanEnable AND NOT g_bDryRunEnable AND NOT g_bDebugMode AND NOT g_bCropStatusFb THEN  
+    g_nProcessedPart := g_nProcessedPart + 1;
+  END_IF; 
+    M.ENABLE[216] := 0;
+    g_bPartCountM := FALSE;
+  IF NOT g_bDryRunEnable AND NOT g_bDebugMode THEN 
+    g_nProcessCutPartsCount := g_nProcessCutPartsCount + 1;
+  END_IF; 
+END_IF;
+
+IF R_triggerWholeTube.Q THEN
+  IF g_bPlanEnable AND NOT g_bDryRunEnable AND NOT g_bDebugMode AND NOT g_bCropStatusFb THEN 
+    g_nQuantityProcessedCount := g_nQuantityProcessedCount + 1;
+  END_IF; 
+    g_bWholeTubeCountM := FALSE;
+  IF NOT g_bDryRunEnable AND NOT g_bDebugMode THEN 
+    g_nProcessCutWholeTubeCounts := g_nProcessCutWholeTubeCounts + 1;
+  END_IF; 
+END_IF;
+
+IF R_TriggerPlanClean.Q THEN
+  IF g_nProcessedPart=0 THEN
+    bTimerStart := TRUE;
+  END_IF;
+  bPlanClean := FALSE;
+  g_bProcessEndStopFlag := FALSE;
+END_IF;
+
+IF bTimerStart AND (g_nPlcState = 1 OR bSideCenterAndAvoidPlanTimeContinue) THEN
+  g_dProcessTimers := g_dProcessTimers + 1.0;
+  g_dTotalProcessTimers := g_dTotalProcessTimers + 1.0;
+END_IF;
+(*2：自动 3：手动 4：MDI 5:回零*)
+IF g_bPlanEnable AND g_nMotionMode=2 THEN
+  IF g_nPlanPartNum <= g_nProcessedPart AND g_nPlanPartNum > 0 AND g_nPlanProcessCount = 0 THEN
+    g_boProcessEnable := FALSE;    
+    IF g_nProcessEndType=2 AND NOT g_bProcessEndStopFlag AND g_nPlcState<>0 THEN
+      (*此处用于处理满件报警时，上面报警暂停发送较慢，下面还在动*)
+      (*非空闲状态下，满件报警，cncMove只置一次，g_bProcessEndStopFlag是用于处理cncmve只置一次的，复位或者计件清零才会将g_bProcessEndStopFlag置false*)
+      g_boCNCMoveDisable := TRUE;
+      g_bProcessEndStopFlag := TRUE;
+    END_IF;
+  ELSE
+    g_boProcessEnable := TRUE;
+  END_IF;
+  IF g_nPlanProcessCount <= g_nQuantityProcessedCount AND g_nPlanProcessCount > 0 AND g_nPlanPartNum = 0 THEN
+    g_boProcessEnable := FALSE;
+    IF g_nProcessEndType=2 AND NOT g_bProcessEndStopFlag AND g_nPlcState<>0 AND g_bProcessCutDoneForWorkPlan THEN
+      (*此处用于处理满件报警时，上面报警暂停发送较慢，下面还在动*)
+      (*非空闲状态下，满件报警，cncMove只置一次，g_bProcessEndStopFlag是用于处理cncmve只置一次的，复位或者计件清零才会将g_bProcessEndStopFlag置false*)
+      g_boCNCMoveDisable := TRUE;
+      g_bProcessEndStopFlag := TRUE;
+    END_IF;
+  ELSE
+    g_boProcessEnable := TRUE;
+  END_IF;
+  IF g_nPlanProcessCount > 0 AND g_nPlanPartNum > 0 THEN
+    g_boProcessEnable := FALSE;     
+    IF g_nProcessEndType=2 AND NOT g_bProcessEndStopFlag AND g_nPlcState<>0 THEN
+      IF g_nPlanPartNum <= g_nProcessedPart THEN
+        (*此处用于处理满件报警时，上面报警暂停发送较慢，下面还在动*)
+        (*非空闲状态下，满件报警，cncMove只置一次，g_bProcessEndStopFlag是用于处理cncmve只置一次的，复位或者计件清零才会将g_bProcessEndStopFlag置false*)
+        g_boCNCMoveDisable := TRUE;
+        g_bProcessEndStopFlag := TRUE;
+      ELSIF g_nPlanProcessCount <= g_nQuantityProcessedCount AND g_bProcessCutDoneForWorkPlan THEN
+        (*此处用于处理满件报警时，上面报警暂停发送较慢，下面还在动*)
+        (*非空闲状态下，满件报警，cncMove只置一次，g_bProcessEndStopFlag是用于处理cncmve只置一次的，复位或者计件清零才会将g_bProcessEndStopFlag置false*)
+        g_boCNCMoveDisable := TRUE;
+        g_bProcessEndStopFlag := TRUE;
+      END_IF;
+    END_IF;
+  ELSE
+    g_boProcessEnable := TRUE;
+  END_IF;
+ELSE
+  g_boProcessEnable := TRUE;
+END_IF;
+
+IF R_TriggerStart.Q THEN (*程序开始运行之前先给时间置零*)
+   g_dProcessTimers := 0.0;
+   g_bStartCountTime := FALSE;
+   bTimerStart := TRUE;(*开始计时*)
+   bSideCenterAndAvoidPlanTimeContinue := FALSE;
+END_IF; 
+
+IF g_bPlcResetBuffer THEN 
+  bTimerStart := FALSE;(*停止计时*)
+  g_bProcessEndStopFlag := FALSE;
+  bSideCenterAndAvoidPlanTimeContinue := FALSE;
+END_IF;  
+
+
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

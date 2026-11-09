@@ -1,0 +1,913 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_GasControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="dmaster_pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主阀气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dair_pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[空气气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="doxygen_pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氧气气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dnitrogen_pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氮气气压]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dGasPressurefeed">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气体倍率]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dauto_pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自动保护气压力]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dmax_preesure_set">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="10.0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[标准电压值宏定义（默认为10）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bairnormallyopen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[空气常开常闭报警触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="boxygennormallyopen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氧气常开常闭报警触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bnirogennormallyopen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氮气常开常闭报警触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dgasalarmflag">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气体报警总反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dgasrettemp">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中间temp]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dgasretbooltemp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中间booltemp]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boMasterValve">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主阀输出使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAirValve">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[空气阀输出使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boOxygenValve">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氧气阀输出使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boNirtogenValve">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氮气阀输出使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_uoMasterPressureOut">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主阀输出气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_uoAirPressureOut">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[空气阀输出气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_uoOxygenPressureOut">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氧气阀输出气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_uoNirtogenPressureOut">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氮气阀输出气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_uoSharePressureOut">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共用比例阀输出气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAirValveAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[空气压力报警电平信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biOxygenValveAlam">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氧气压力报警电平信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biNirtogenValveAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氮气压力报警电平信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_uiAirFeedPressure">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[空气阀电压反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_uiOxygenFeedPressure">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氧气阀电压反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_uiNirtogenFeedPressure">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氮气阀电压反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ugas_type">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气体类型 0: 空气， 1: 氧气， 2: 氮气]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bgas_enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开气使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dmax_pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最大气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dmaster_pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主阀气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dair_pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[空气阀气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_doxygen_pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氧气阀气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dnitogen_pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氮气阀气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dair_maxvalue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[空气阀最大气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_doxygen_maxvalue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氧气阀最大气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dnitogen_maxvalue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氮气阀最大气压]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dair_maxpressurevalue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[空气阀最大电压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="doxygen_maxpressurevalue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氧气阀最大电压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dnitogen_maxpressurevalue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氮气阀最大电压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dair_maxfeedpercentance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[空气比例阀最大反馈阈值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="doxygen_maxfeedpercentance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氧气比例阀最大反馈阈值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dnitogen_maxfeedpercentance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氮气比例阀最大反馈阈值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bauto_safeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[是否开启保护气]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_niMasterPressureFB">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入引脚：主阀反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niSharePressureFB">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入引脚：共享比例阀反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dAirPressureFB">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[空气气压反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dNirPressureFB">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氮气气压反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="g_dOxyPressureFB">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氧气气压反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMasterPressureFB">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主阀气压反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSharePressureFB">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共用比例阀反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bAirPressureAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bOxygenPressureAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bNirtogenPressureAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAirMaxPressureAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bOxygenMaxPressureAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bNirtogenMaxPressureAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nMotionMode">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模式]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAutoSafeState">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[开启保护气状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bManualOPenGas">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[手动开气HMI下发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dOpenGasZCoord">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[手动开气时记录的Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nZPreSensorValue">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[手动开气时记录的电容值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nZCurSensorValue">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[电容差值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RtringManualOPenGas">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[手动开气]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSafeState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保护气状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TonCloseSafe">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[保护气状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TonAirAlarmDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="TonAirAlarmDelay1">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="TonOxygenAlarmDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="TonOxygenAlarmDelay1">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="TonNirtogenAlarmDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="TonNirtogenAlarmDelay1">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="dAirMaxFbFromHMI">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传感器反馈的最大电压值界面设置下发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dOxyMaxFbFromHMI">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传感器反馈的最大电压值界面设置下发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dNitorMaxFbFromHMI">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传感器反馈的最大电压值界面设置下发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDelayTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数量气压报警延时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAirMaxPressureAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bOxygenMaxPressureAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bNirtogenMaxPressureAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF g_bDAOutputVolEnable THEN
+  RETURN;
+END_IF;
+
+dmaster_pressure := g_dmaster_pressure * g_dGasPressurefeed;
+dair_pressure := g_dair_pressure * g_dGasPressurefeed;
+doxygen_pressure := g_doxygen_pressure * g_dGasPressurefeed;
+dnitrogen_pressure := g_dnitogen_pressure * g_dGasPressurefeed;
+
+
+
+IF g_bgas_enable = TRUE THEN
+  bAutoSafeState := FALSE;
+  nSafeState := 5;  
+END_IF;
+
+CASE nSafeState OF
+  0:
+    nSafeState := 0;  
+  5:
+    (*判断是否开启了保护气功能，然后处理*)
+    IF g_bgas_enable = FALSE THEN
+      IF bauto_safeEnable = TRUE AND g_nPlcState = 1 THEN
+        IF g_ugas_type < 0 THEN
+          g_ugas_type := 0;
+        END_IF;
+        bAutoSafeState := TRUE;
+        dmaster_pressure := dauto_pressure * g_dGasPressurefeed;
+        dair_pressure := dauto_pressure * g_dGasPressurefeed;
+        doxygen_pressure := dauto_pressure * g_dGasPressurefeed;
+        dnitrogen_pressure := dauto_pressure * g_dGasPressurefeed;
+      ELSIF bAutoSafeState = TRUE AND g_nPlcState = 2 THEN
+         IF g_ugas_type < 0 THEN
+            g_ugas_type := 0;
+         END_IF;
+          bAutoSafeState := TRUE;
+          dmaster_pressure := dauto_pressure * g_dGasPressurefeed;
+          dair_pressure := dauto_pressure * g_dGasPressurefeed;
+          doxygen_pressure := dauto_pressure * g_dGasPressurefeed;
+          dnitrogen_pressure := dauto_pressure * g_dGasPressurefeed;
+        TonCloseSafe(IN := FALSE);
+        nSafeState := 10; 
+      ELSIF g_nPlcState = 0 THEN
+        bAutoSafeState := FALSE;
+        nSafeState := 0;  
+      END_IF;
+    END_IF;
+  10:
+     IF g_ugas_type < 0 THEN
+      g_ugas_type := 0;
+    END_IF;
+    bAutoSafeState := TRUE;
+          dmaster_pressure := dauto_pressure * g_dGasPressurefeed;
+          dair_pressure := dauto_pressure * g_dGasPressurefeed;
+          doxygen_pressure := dauto_pressure * g_dGasPressurefeed;
+          dnitrogen_pressure := dauto_pressure * g_dGasPressurefeed;  
+    TonCloseSafe(IN := TRUE, PT := T#5s);
+    IF TonCloseSafe.Q THEN
+      bAutoSafeState := FALSE;
+      nSafeState := 9;
+    END_IF;
+END_CASE;
+
+
+IF g_bgas_enable = TRUE OR bAutoSafeState = TRUE THEN
+  g_bControlGasM := FALSE;
+  g_boOutPutSignalDuringCutting := TRUE;
+  CASE g_ugas_type OF
+    0:
+      g_boMasterValve := TRUE;
+      g_boAirValve := TRUE;
+      g_boOxygenValve := FALSE;
+      g_boNirtogenValve := FALSE;
+      g_uoOxygenPressureOut := 0;
+      g_uoNirtogenPressureOut := 0;
+
+      IF g_bCheckAirDA THEN(*开启气体校准*)
+        g_uoMasterPressureOut := FUN_Cailbration(g_DAAirOutputArr,g_DaAirGroupNum,dair_pressure);
+        g_uoAirPressureOut := FUN_Cailbration(g_DAAirOutputArr,g_DaAirGroupNum,dair_pressure);
+        g_uoSharePressureOut := FUN_Cailbration(g_DAAirOutputArr,g_DaAirGroupNum,dair_pressure);       
+      ELSE
+        g_uoMasterPressureOut := FUN_pressureCovertAO(dair_pressure,g_dair_maxvalue,dmax_preesure_set);
+        g_uoAirPressureOut := FUN_pressureCovertAO(dair_pressure,g_dair_maxvalue,dmax_preesure_set);
+        g_uoSharePressureOut := FUN_pressureCovertAO(dair_pressure,g_dair_maxvalue,dmax_preesure_set);
+      END_IF;     
+       g_nAheadCutGasPressureSet := g_dair_pressure;   
+      g_dAheadCutGasPressureSetCur :=   dair_pressure;   
+    1:
+      g_boMasterValve := TRUE;
+      g_boAirValve := FALSE;
+      g_boOxygenValve := TRUE;
+      g_boNirtogenValve := FALSE;
+      g_uoAirPressureOut := 0;
+      g_uoNirtogenPressureOut := 0;
+      IF g_bCheckOxgenDA THEN(*开启气体校准*)
+        g_uoMasterPressureOut := FUN_Cailbration(g_DAOxgenOutputArr,g_DaOxgenGroupNum,doxygen_pressure);  
+        g_uoOxygenPressureOut := FUN_Cailbration(g_DAOxgenOutputArr,g_DaOxgenGroupNum,doxygen_pressure);
+        g_uoSharePressureOut := FUN_Cailbration(g_DAOxgenOutputArr,g_DaOxgenGroupNum,doxygen_pressure);
+      ELSE
+        g_uoMasterPressureOut := FUN_pressureCovertAO(doxygen_pressure,g_doxygen_maxvalue,dmax_preesure_set);
+        g_uoOxygenPressureOut := FUN_pressureCovertAO(doxygen_pressure,g_doxygen_maxvalue,dmax_preesure_set);
+        g_uoSharePressureOut := FUN_pressureCovertAO(doxygen_pressure,g_doxygen_maxvalue,dmax_preesure_set);
+      END_IF;
+      g_nAheadCutGasPressureSet := g_doxygen_pressure;
+      g_dAheadCutGasPressureSetCur :=   doxygen_pressure; 
+    2:
+      g_boMasterValve := TRUE;
+      g_boAirValve := FALSE;
+      g_boOxygenValve := FALSE;
+      g_boNirtogenValve := TRUE;
+      g_uoAirPressureOut := 0;
+      g_uoOxygenPressureOut := 0;
+      IF g_bCheckNirDA THEN(*开启气体校准*)
+        g_uoMasterPressureOut := FUN_Cailbration(g_DANirOutputArr,g_DaNirGroupNum,dnitrogen_pressure);  (**改成氮气最大气压**)
+        g_uoNirtogenPressureOut := FUN_Cailbration(g_DANirOutputArr,g_DaNirGroupNum,dnitrogen_pressure); 
+        g_uoSharePressureOut := FUN_Cailbration(g_DANirOutputArr,g_DaNirGroupNum,dnitrogen_pressure);(**改成氮气最大气压**)
+      ELSE
+        g_uoMasterPressureOut := FUN_pressureCovertAO(dnitrogen_pressure,g_dnitogen_maxvalue,dmax_preesure_set);
+        g_uoNirtogenPressureOut := FUN_pressureCovertAO(dnitrogen_pressure,g_dnitogen_maxvalue,dmax_preesure_set);
+        g_uoSharePressureOut := FUN_pressureCovertAO(dnitrogen_pressure,g_dnitogen_maxvalue,dmax_preesure_set);
+      END_IF;
+      
+      g_nAheadCutGasPressureSet := g_dnitogen_pressure;
+      g_dAheadCutGasPressureSetCur :=   dnitrogen_pressure; 
+    END_CASE;
+ELSE
+    IF NOT g_bControlGasM THEN
+      g_boMasterValve := FALSE;
+      g_boAirValve := FALSE;
+      g_boOxygenValve := FALSE;
+      g_boNirtogenValve := FALSE;
+    END_IF;
+    bManualOPenGas := FALSE;
+    g_uoMasterPressureOut := 0;
+    g_uoAirPressureOut := 0;
+    g_uoOxygenPressureOut := 0;
+    g_uoNirtogenPressureOut := 0;
+    g_uoSharePressureOut := 0;
+    g_boOutPutSignalDuringCutting := FALSE;
+    g_nAheadCutGasPressureSet := 0.0;
+    g_dAheadCutGasPressureSetCur := 0.0; 
+END_IF;
+(* gas  Alarm  DINT  dgasalarmflag:1:*)
+dgasalarmflag := 0;
+dgasretbooltemp := FUN_SingalLogic(g_biAirValveAlarm,bairnormallyopen) AND g_boAirValve;
+TonAirAlarmDelay(IN :=dgasretbooltemp,PT := LREAL_TO_TIME(dDelayTime/1000.0));
+IF TonAirAlarmDelay.Q THEN
+   g_bAirPressureAlarm := TRUE;
+END_IF;
+IF dgasretbooltemp = FALSE THEN
+  g_bAirPressureAlarm := FALSE;
+END_IF;
+
+dgasretbooltemp := FUN_SingalLogic(g_biOxygenValveAlam,boxygennormallyopen) AND g_boOxygenValve;
+TonOxygenAlarmDelay(IN :=dgasretbooltemp,PT := LREAL_TO_TIME(dDelayTime/1000.0));
+
+IF TonOxygenAlarmDelay.Q THEN
+  g_bOxygenPressureAlarm := TRUE;
+END_IF;
+IF dgasretbooltemp = FALSE THEN
+  g_bOxygenPressureAlarm := false;
+  (*dgasalarmflag :=OR(dgasalarmflag,2);*)
+END_IF;
+
+dgasretbooltemp := FUN_SingalLogic(g_biNirtogenValveAlarm,bnirogennormallyopen) AND g_boNirtogenValve;
+TonNirtogenAlarmDelay(IN :=dgasretbooltemp,PT := LREAL_TO_TIME(dDelayTime/1000.0));
+
+IF TonNirtogenAlarmDelay.Q THEN
+  g_bNirtogenPressureAlarm := true;
+  
+END_IF;
+IF dgasretbooltemp = FALSE THEN
+  g_bNirtogenPressureAlarm := false;
+END_IF;
+(* 气压AI反馈报警*)
+IF g_bgas_enable = TRUE THEN
+  CASE g_ugas_type OF
+    0:
+    dgasrettemp := FUN_AICovertpressure(g_uiAirFeedPressure,dAirMaxFbFromHMI,dair_maxpressurevalue);
+    IF dgasrettemp <(g_dair_pressure*dair_maxfeedpercentance/100.0) THEN
+      bAirMaxPressureAlarm := TRUE;
+    ELSE
+      bAirMaxPressureAlarm := FALSE;
+    END_IF;
+    TonAirAlarmDelay1(IN :=bAirMaxPressureAlarm,PT := LREAL_TO_TIME(dDelayTime/1000.0));
+    IF TonAirAlarmDelay1.Q THEN
+      g_bAirMaxPressureAlarm := true;
+    END_IF;
+    IF bAirMaxPressureAlarm = FALSE THEN
+       g_bAirMaxPressureAlarm := false;
+    END_IF;
+    1:
+    dgasrettemp := FUN_AICovertpressure(g_uiOxygenFeedPressure,dOxyMaxFbFromHMI,doxygen_maxpressurevalue);
+    IF dgasrettemp <(g_doxygen_pressure*doxygen_maxfeedpercentance/100.0) THEN
+      bOxygenMaxPressureAlarm := true;
+    ELSE
+      bOxygenMaxPressureAlarm := false;
+    END_IF;
+    TonOxygenAlarmDelay1(IN := bOxygenMaxPressureAlarm,PT := LREAL_TO_TIME(dDelayTime/1000.0));
+    IF TonOxygenAlarmDelay1.Q THEN
+      g_bOxygenMaxPressureAlarm := true;
+    END_IF;
+    IF bOxygenMaxPressureAlarm = FALSE THEN
+      g_bOxygenMaxPressureAlarm := false;
+    END_IF;
+    2:
+    dgasrettemp := FUN_AICovertpressure(g_uiNirtogenFeedPressure,dNitorMaxFbFromHMI,dnitogen_maxpressurevalue);
+    IF dgasrettemp <(g_dnitogen_pressure*dnitogen_maxfeedpercentance/100.0) THEN
+      bNirtogenMaxPressureAlarm := true;
+    ELSE
+      bNirtogenMaxPressureAlarm := false;
+    END_IF;
+     TonNirtogenAlarmDelay1(IN := bNirtogenMaxPressureAlarm,PT := LREAL_TO_TIME(dDelayTime/1000.0));
+    IF TonNirtogenAlarmDelay1.Q THEN
+       g_bNirtogenMaxPressureAlarm := true;
+    END_IF;
+    IF bNirtogenMaxPressureAlarm = FALSE THEN
+       g_bNirtogenMaxPressureAlarm := false;
+    END_IF;
+  END_CASE;
+END_IF;
+
+(*气压反馈部分*)
+g_dAirPressureFB:=UINT_TO_LREAL(g_uiAirFeedPressure)*10.0*g_dair_maxvalue/(32767.0*dmax_preesure_set);
+g_dNirPressureFB:=UINT_TO_LREAL(g_uiNirtogenFeedPressure)*10.0*g_dnitogen_maxvalue/(32767.0*dmax_preesure_set);
+g_dOxyPressureFB:=UINT_TO_LREAL(g_uiOxygenFeedPressure)*10.0*g_doxygen_maxvalue/(32767.0*dmax_preesure_set);
+CASE g_ugas_type OF(*空气\氧气\氮气*)
+  0:
+    dMasterPressureFB := UINT_TO_LREAL(g_niMasterPressureFB)*10.0*g_dair_maxvalue/(32767.0*dmax_preesure_set);
+    dSharePressureFB := UINT_TO_LREAL(g_niSharePressureFB)*10.0*g_dair_maxvalue/(32767.0*dmax_preesure_set);
+  1:
+    dMasterPressureFB := UINT_TO_LREAL(g_niMasterPressureFB)*10.0*g_doxygen_maxvalue/(32767.0*dmax_preesure_set);
+    dSharePressureFB := UINT_TO_LREAL(g_niSharePressureFB)*10.0*g_doxygen_maxvalue/(32767.0*dmax_preesure_set);
+  2:
+    dMasterPressureFB := UINT_TO_LREAL(g_niMasterPressureFB)*10.0*g_dnitogen_maxvalue/(32767.0*dmax_preesure_set);
+    dSharePressureFB := UINT_TO_LREAL(g_niSharePressureFB)*10.0*g_dnitogen_maxvalue/(32767.0*dmax_preesure_set);
+END_CASE;
+
+
+(*手动吹气检测电容值变化超过2000加提示*)
+RtringManualOPenGas(CLK := bManualOPenGas);
+IF RtringManualOPenGas.Q THEN
+  dOpenGasZCoord := Axis_Z.NCTOPLC.ACTPOS;
+  nZPreSensorValue := g_niZSensorValue;
+END_IF;
+IF bManualOPenGas AND (dOpenGasZCoord - 0.5 <Axis_Z.NCTOPLC.ACTPOS AND Axis_Z.NCTOPLC.ACTPOS < dOpenGasZCoord + 0.5) THEN
+    nZCurSensorValue := UDINT_TO_DINT(g_niZSensorValue) - UDINT_TO_DINT(nZPreSensorValue);
+    IF ABS(nZCurSensorValue) > 2000 THEN
+      g_bTraManualOpenGasErrorAlarm := TRUE;
+    END_IF;
+ELSIF bManualOPenGas AND (Axis_Z.NCTOPLC.ACTPOS < dOpenGasZCoord - 0.5 AND Axis_Z.NCTOPLC.ACTPOS > dOpenGasZCoord + 0.5) THEN
+      bManualOPenGas := FALSE;
+END_IF;
+
+
+
+
+
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

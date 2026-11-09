@@ -1,0 +1,2757 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_NCAlarmHandle" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Axis_U">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Z">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_U3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Y3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Y2">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Y1">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="DDAxis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Load">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sensor">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_FAxis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain1">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain2">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain4">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain5">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain6">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain7">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain8">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain9">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="D_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="FixedLen_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Feeding_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Dust_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_General1_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="AntiRejection1">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="AntiRejection2">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="AntiRejection3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="AntiRejection4">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="AntiRejection5">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="AntiRejection6">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_nAntiRejectionFun">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nAntiRejectionAxisNum">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_NcAlarm">
+        <type>
+          <derived name="DT_ALARM"/>
+        </type>
+      </variable>
+      <variable name="g_bFAxisEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nFAxisControlType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bU2AxisEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U2轴是否开启]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCommunicationCheck">
+        <type>
+          <derived name="ST_CommunicationCheck"/>
+        </type>
+      </variable>
+      <variable name="g_bControlPanelEmergencyStop">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[急停]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bSustainEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFrontSustainEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClylinderIsPosition">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClylinderDownIsPosition">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZAxisTorqueWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nClylinderCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nSusutainCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_biAxIsYisHome">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bNoPipeWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadAbsWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZFollowWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSensorError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bQREnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDDGoOnNoInPlaceError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nMachineType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bFixedLenNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFeedingNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bManualLoadTip">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bNoFindWeld">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bQRCyl1Warn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bQRCyl2Warn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bQRCyl3Warn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGearInError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bU3GearInError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGearOutError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bU3GearOutError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nFrontSusutainCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bKuXunExceed">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bKuXunUnder">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw2Check">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nNewNew">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_UMoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UMoveRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UMoveVel">
+        <type>
+          <derived name="MC_MOVEVELOCITY"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[匀速运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UHome">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UMoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UPower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UMoveJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UOverride">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[进给倍率模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UGearIn">
+        <type>
+          <derived name="MC_GEARIN"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴电子齿轮耦合模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UGearOut">
+        <type>
+          <derived name="MC_GEAROUT"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴电子齿轮解耦模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_CReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[C轴复位运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZMoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZMoveRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZMoveVel">
+        <type>
+          <derived name="MC_MOVEVELOCITY"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[匀速运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZHome">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZMoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZPower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZMoveJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZOverride">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[进给倍率模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZFollowIn">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN2"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开随动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZFollowOut">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关随动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_FHome">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_FJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_FAbsolute">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_FPause">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_FReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_FRelative">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="g_FPower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain1Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain2Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain3Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain1Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain2Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain3Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain1Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain2Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain3Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain1Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain2Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain3Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain1Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain2Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain3Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowOut1">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowIn1">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowIn2">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowOut2">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowIn3">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowOut3">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain1Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain2Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain3Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_LoadPower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_SensorPower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_LoadJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_SensorJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_LoadAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_SensorAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_LoadStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_SensorStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_LoadReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_SensorReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_LoadHome">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+      </variable>
+      <variable name="g_SensorHome">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+      </variable>
+      <variable name="DustPower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="DustHome">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="DustAbsolute">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="DustAxisRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="DustAxisJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="DustAxis_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="DustAxis_Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="Feeding_Home">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+      </variable>
+      <variable name="Feeding_Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="Feeding_Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="FeedingAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="Feeding_Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="Feeding_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="FixedLen_Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="FixedLen_Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="FixedLen_Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="FixedLenAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="FixedLenHome">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+      </variable>
+      <variable name="FixedLen_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="Dust_Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="Dust_Home">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+      </variable>
+      <variable name="Dust_Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="Dust_Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="Dust_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="DustAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="Feeding_Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="FixedLen_Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="Dust_Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="FeedingOverride">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+      </variable>
+      <variable name="Dust_Override">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+      </variable>
+      <variable name="g_U3MoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3MoveRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3MoveVel">
+        <type>
+          <derived name="MC_MOVEVELOCITY"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[匀速运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3Home">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3MoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3MoveJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3GearIn">
+        <type>
+          <derived name="MC_GEARIN"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴电子齿轮耦合模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3GearOut">
+        <type>
+          <derived name="MC_GEAROUT"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴电子齿轮解耦模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3MoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3MoveRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3MoveVel">
+        <type>
+          <derived name="MC_MOVEVELOCITY"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[匀速运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3Home">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3MoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3MoveJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3GearIn">
+        <type>
+          <derived name="MC_GEARIN"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3GearOut">
+        <type>
+          <derived name="MC_GEAROUT"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y2MoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_Y2MoveRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="g_Y2Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Y2MoveVel">
+        <type>
+          <derived name="MC_MOVEVELOCITY"/>
+        </type>
+      </variable>
+      <variable name="g_Y2Home">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+      </variable>
+      <variable name="g_Y2MoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_Y2Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_Y2MoveJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_Y2GearIn">
+        <type>
+          <derived name="MC_GEARIN"/>
+        </type>
+      </variable>
+      <variable name="g_Y2GearOut">
+        <type>
+          <derived name="MC_GEAROUT"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain4Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain5Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain6Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain4Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain5Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain6Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain4Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain5Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain6Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain4Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain5Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain6Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain4Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain5Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain6Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowOut4">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowIn4">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowIn5">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowOut5">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowIn6">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowOut6">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain4Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain5Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain6Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_DDAxisPower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_DDAxisHome">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_DDAxisJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_DDAxisRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="g_DDAxisStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_DDAxisReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_DDAxisAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_nGeneralAxisCount">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nGeneralAxisEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_General1_Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_General1_Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_General1_Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_General1_Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="g_General1_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_General1_Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_General1_ABS">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_General2_ABS">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain7Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain8Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain9Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain7Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain8Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain9Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain7Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain8Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain9Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain7Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain8Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain9Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain7Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain8Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain9Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowOut7">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowOut8">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowOut9">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowIn7">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowIn8">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN"/>
+        </type>
+      </variable>
+      <variable name="g_SustainFollowIn9">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain7Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain8Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain9Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_Y1MoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_Y1MoveRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="g_Y1Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Y1MoveVel">
+        <type>
+          <derived name="MC_MOVEVELOCITY"/>
+        </type>
+      </variable>
+      <variable name="g_Y1Home">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+      </variable>
+      <variable name="g_Y1MoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_Y1Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_Y1MoveJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_Y1GearIn">
+        <type>
+          <derived name="MC_GEARIN"/>
+        </type>
+      </variable>
+      <variable name="g_Y1GearOut">
+        <type>
+          <derived name="MC_GEAROUT"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection1Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection2Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection3Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection4Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection5Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection6Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection1Home">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection2Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection3Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection4Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection5Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection6Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection1Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection2Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection3Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection4Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection5Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection6Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection1Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection2Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection3Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection4Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection5Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection6Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection1Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection2Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection3Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection4Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection5Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection6Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection1Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection2Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection3Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection4Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection5Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection6Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection1Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection2Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection3Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection4Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection5Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection6Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*0-49接口报错，50-99接口或内核错误，100-199内核错误*)
+(*--------------------------------------------Axis_U报警*)
+IF g_bU2AxisEnable THEN(*同一时刻多个报警*)
+  (*800*)
+  IF g_UMoveAbs.ERRORID<>0 AND g_UMoveAbs.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[0] := 10000+USINT_TO_INT(g_UMoveAbs.ERRORID);
+  END_IF;
+  IF g_UMoveRel.ERRORID<>0 AND g_UMoveRel.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[1] := 10000+USINT_TO_INT(g_UMoveRel.ERRORID);
+  END_IF;
+  IF g_UMoveVel.ERRORID<>0 AND g_UMoveVel.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[2] := 10000+USINT_TO_INT(g_UMoveVel.ERRORID);
+  END_IF;
+  IF g_UHome.ERRORID<>0 AND g_UHome.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[3] := 10000+USINT_TO_INT(g_UHome.ERRORID);
+  END_IF;
+  IF g_UMoveStop.ERRORID<>0 AND g_UMoveStop.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[4] := 10000+USINT_TO_INT(g_UMoveStop.ERRORID);
+  END_IF;
+  IF g_UPower.ERRORID<>0 AND g_UPower.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[5] := 10000+USINT_TO_INT(g_UPower.ERRORID);
+  END_IF;
+  IF g_UReset.ERRORID<>0 AND g_UReset.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[6] := 10000+USINT_TO_INT(g_UReset.ERRORID);
+  END_IF;
+  IF g_UMoveJog.ERRORID<>0 AND g_UMoveJog.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[7] := 10000+USINT_TO_INT(g_UMoveJog.ERRORID);
+  END_IF;
+  IF g_UOverride.ERRORID<>0 AND g_UOverride.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[8] := 10000+USINT_TO_INT(g_UOverride.ERRORID);
+  END_IF;
+  IF g_UGearIn.ERRORID<>0 AND g_UGearIn.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[9] := 10000+USINT_TO_INT(g_UGearIn.ERRORID);
+  END_IF;
+  IF g_UGearOut.ERRORID<>0 AND g_UGearOut.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[10] := 10000+USINT_TO_INT(g_UGearOut.ERRORID);
+  END_IF;
+  
+   IF Axis_U.NCTOPLC.ERRORCODE>1 AND Axis_U.NCTOPLC.ERRORCODE<>51  AND Axis_U.NCTOPLC.ERRORCODE<>50 THEN
+    g_NcAlarm.alarmArray[12] := 10000+Axis_U.NCTOPLC.ERRORCODE;
+  END_IF;
+END_IF;
+
+(*----------------------------------Z轴报警*)(*820*)(*同一时刻1个报警*)
+IF g_ZMoveAbs.ERRORID<>0 AND g_ZMoveAbs.ERRORID<>51 AND g_ZMoveAbs.ERRORID<>100 AND g_ZMoveAbs.ERRORID<>101 THEN
+g_NcAlarm.alarmArray[13] := 10200+USINT_TO_INT(g_ZMoveAbs.ERRORID);
+ELSIF g_ZMoveRel.ERRORID<>0 AND g_ZMoveRel.ERRORID<>51 AND g_ZMoveRel.ERRORID<>100 AND g_ZMoveRel.ERRORID<>101 THEN
+g_NcAlarm.alarmArray[14] := 10200+USINT_TO_INT(g_ZMoveRel.ERRORID);
+ELSIF g_ZMoveVel.ERRORID<>0 AND g_ZMoveVel.ERRORID<>51 AND g_ZMoveVel.ERRORID<>100 AND g_ZMoveVel.ERRORID<>101 THEN
+g_NcAlarm.alarmArray[15] := 10200+USINT_TO_INT(g_ZMoveVel.ERRORID);
+ELSIF g_ZHome.ERRORID<>0 AND g_ZHome.ERRORID<>51 AND g_ZHome.ERRORID<>100 AND g_ZHome.ERRORID<>101 THEN
+g_NcAlarm.alarmArray[16] := 10200+USINT_TO_INT(g_ZHome.ERRORID);
+ELSIF g_ZMoveStop.ERRORID<>0 AND g_ZMoveStop.ERRORID<>51 AND g_ZMoveStop.ERRORID<>100 AND g_ZMoveStop.ERRORID<>101 THEN
+g_NcAlarm.alarmArray[17] := 10200+USINT_TO_INT(g_ZMoveStop.ERRORID);
+ELSIF g_ZPower.ERRORID<>0 AND g_ZPower.ERRORID<>51 AND g_ZPower.ERRORID<>100 AND g_ZPower.ERRORID<>101 THEN
+g_NcAlarm.alarmArray[18] := 10200+USINT_TO_INT(g_ZPower.ERRORID);
+ELSIF g_ZReset.ERRORID<>0 AND g_ZReset.ERRORID<>51 AND g_ZReset.ERRORID<>100 AND g_ZReset.ERRORID<>101 THEN
+g_NcAlarm.alarmArray[19] := 10200+USINT_TO_INT(g_ZReset.ERRORID);
+ELSIF g_ZMoveJog.ERRORID<>0 AND g_ZMoveJog.ERRORID<>51 AND g_ZMoveJog.ERRORID<>100 AND g_ZMoveJog.ERRORID<>101 THEN
+g_NcAlarm.alarmArray[20] := 10200+USINT_TO_INT(g_ZMoveJog.ERRORID);
+ELSIF g_ZOverride.ERRORID<>0 AND g_ZOverride.ERRORID<>51 AND g_ZOverride.ERRORID<>100 AND g_ZOverride.ERRORID<>101 THEN
+g_NcAlarm.alarmArray[21] := 10200+USINT_TO_INT(g_ZOverride.ERRORID);
+ELSIF g_ZFollowIn.ERRORID<>0 AND g_ZFollowIn.ERRORID<>51 AND g_ZFollowIn.ERRORID<>100 AND g_ZFollowIn.ERRORID<>101 THEN
+g_NcAlarm.alarmArray[22] := 10200+USINT_TO_INT(g_ZFollowIn.ERRORID);
+ELSIF g_ZFollowOut.ERRORID<>0 AND g_ZFollowOut.ERRORID<>51 AND g_ZFollowOut.ERRORID<>100 AND g_ZFollowOut.ERRORID<>101 THEN
+g_NcAlarm.alarmArray[23] := 10200+USINT_TO_INT(g_ZFollowOut.ERRORID);
+ELSIF g_ZAxisNCCal.ERRORID<>0 AND g_ZAxisNCCal.ERRORID<>51 AND g_ZAxisNCCal.ERRORID<>100 AND g_ZAxisNCCal.ERRORID<>101 THEN
+g_NcAlarm.alarmArray[216] := 10200+USINT_TO_INT(g_ZAxisNCCal.ERRORID);
+ELSIF g_ZAxisMoveSelfTuning.ERRORID<>0 AND g_ZAxisMoveSelfTuning.ERRORID<>51 AND g_ZAxisMoveSelfTuning.ERRORID<>100 AND g_ZAxisMoveSelfTuning.ERRORID<>101 THEN
+g_NcAlarm.alarmArray[217] := 10200+USINT_TO_INT(g_ZAxisMoveSelfTuning.ERRORID);
+ELSIF g_ZAxisRealTimeCalibrate.ERRORID<>0 AND g_ZAxisRealTimeCalibrate.ERRORID<>51 AND g_ZAxisRealTimeCalibrate.ERRORID<>100 AND g_ZAxisRealTimeCalibrate.ERRORID<>101 THEN
+g_NcAlarm.alarmArray[218] := 10200+USINT_TO_INT(g_ZAxisRealTimeCalibrate.ERRORID);
+ELSIF g_ZCNCAxisVelAdd.ERRORID<>0 AND g_ZCNCAxisVelAdd.ERRORID<>51 AND g_ZCNCAxisVelAdd.ERRORID<>100 AND g_ZCNCAxisVelAdd.ERRORID<>101 THEN
+g_NcAlarm.alarmArray[219] := 10200+USINT_TO_INT(g_ZCNCAxisVelAdd.ERRORID);
+END_IF;
+
+IF Axis_Z.NCTOPLC.ERRORCODE>1 AND Axis_Z.NCTOPLC.ERRORCODE<>51 AND Axis_Z.NCTOPLC.ERRORCODE<>100 AND Axis_Z.NCTOPLC.ERRORCODE<>101 THEN
+  g_NcAlarm.alarmArray[24] := 10200+Axis_Z.NCTOPLC.ERRORCODE;
+END_IF;
+
+(*-------------------------------------F轴报警*)(*840*)
+IF g_nFAxisControl=2 THEN
+  IF g_FHome.ERRORID<>0 AND g_FHome.ERRORID<>51 AND g_FHome.ERRORID<>100 AND g_FHome.ERRORID<>101 THEN
+    g_NcAlarm.alarmArray[25] := 10400+USINT_TO_INT(g_FHome.ERRORID);
+  ELSIF g_FJog.ERRORID<>0 AND g_FJog.ERRORID<>51 AND g_FJog.ERRORID<>100 AND g_FJog.ERRORID<>101 THEN
+    g_NcAlarm.alarmArray[26] := 10400+USINT_TO_INT(g_FJog.ERRORID);
+  ELSIF g_FAbsolute.ERRORID<>0 AND g_FAbsolute.ERRORID<>51 AND g_FAbsolute.ERRORID<>100 AND g_FAbsolute.ERRORID<>101 THEN
+    g_NcAlarm.alarmArray[27] := 10400+USINT_TO_INT(g_FAbsolute.ERRORID);
+  ELSIF g_FPause.ERRORID<>0 AND g_FPause.ERRORID<>51 AND g_FPause.ERRORID<>100 AND g_FPause.ERRORID<>101 THEN
+    g_NcAlarm.alarmArray[28] := 10400+USINT_TO_INT(g_FPause.ERRORID);
+  ELSIF g_FReset.ERRORID<>0 AND g_FReset.ERRORID<>51 AND g_FReset.ERRORID<>100 AND g_FReset.ERRORID<>101 THEN
+    g_NcAlarm.alarmArray[29] := 10400+USINT_TO_INT(g_FReset.ERRORID);
+  ELSIF g_FRelative.ERRORID<>0 AND g_FRelative.ERRORID<>51 AND g_FRelative.ERRORID<>100 AND g_FRelative.ERRORID<>101 THEN
+    g_NcAlarm.alarmArray[30] := 10400+USINT_TO_INT(g_FRelative.ERRORID);
+  ELSIF g_FPower.ERRORID<>0 AND g_FPower.ERRORID<>51 AND g_FPower.ERRORID<>100 AND g_FPower.ERRORID<>101 THEN
+    g_NcAlarm.alarmArray[31] := 10400+USINT_TO_INT(g_FPower.ERRORID);
+  END_IF;
+  
+  IF g_FAxis.NCTOPLC.ERRORCODE>1 AND g_FAxis.NCTOPLC.ERRORCODE<>51 AND g_FAxis.NCTOPLC.ERRORCODE<>100 AND g_FAxis.NCTOPLC.ERRORCODE<>101 THEN
+    g_NcAlarm.alarmArray[32] := 10400+g_FAxis.NCTOPLC.ERRORCODE;
+  END_IF;
+END_IF;
+
+(*-------------------------------------------支撑轴报警*)
+IF g_bSustainEnable = TRUE THEN
+  IF g_nSusutainCount >= 1 THEN(*860*)
+    (*支撑轴1*)
+    IF g_Sustain1Power.ERRORID<>0 AND g_Sustain1Power.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[33] := 10600+USINT_TO_INT(g_Sustain1Power.ERRORID);
+    ELSIF g_Sustain1Jog.ERRORID<>0 AND g_Sustain1Jog.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[34] := 10600+USINT_TO_INT(g_Sustain1Jog.ERRORID);
+    ELSIF g_Sustain1Abs.ERRORID<>0 AND g_Sustain1Abs.ERRORID<>51 THEN  
+      g_NcAlarm.alarmArray[35] := 10600+USINT_TO_INT(g_Sustain1Abs.ERRORID);
+    ELSIF g_Sustain1Stop.ERRORID<>0 AND g_Sustain1Stop.ERRORID<>51 THEN   
+      g_NcAlarm.alarmArray[36] := 10600+USINT_TO_INT(g_Sustain1Stop.ERRORID);
+    ELSIF g_Sustain1Reset.ERRORID<>0 AND g_Sustain1Reset.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[37] := 10600+USINT_TO_INT(g_Sustain1Reset.ERRORID); 
+    ELSIF g_SustainFollowOut1.ERRORID<>0 AND g_SustainFollowOut1.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[38] := 10600+USINT_TO_INT(g_SustainFollowOut1.ERRORID); 
+    ELSIF g_SustainFollowIn1.ERRORID<>0 AND g_SustainFollowIn1.ERRORID<>51 THEN  
+      g_NcAlarm.alarmArray[39] := 10600+USINT_TO_INT(g_SustainFollowIn1.ERRORID);
+    ELSIF g_Sustain1Home.ERRORID<>0 AND g_Sustain1Home.ERRORID<>51 THEN 
+      g_NcAlarm.alarmArray[40] := 10600+USINT_TO_INT(g_Sustain1Home.ERRORID);
+    END_IF;
+    IF Axis_Sustain1.NCTOPLC.ERRORCODE>1 AND Axis_Sustain1.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[41] := 10600+Axis_Sustain1.NCTOPLC.ERRORCODE;
+    END_IF;
+  END_IF;
+  IF g_nSusutainCount >= 2 THEN(*880*)
+    (*支撑轴2*)
+    IF g_Sustain2Power.ERRORID<>0 AND g_Sustain2Power.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[42] := 10800+USINT_TO_INT(g_Sustain2Power.ERRORID);
+    ELSIF g_Sustain2Jog.ERRORID<>0 AND g_Sustain2Jog.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[43] := 10800+USINT_TO_INT(g_Sustain2Jog.ERRORID);
+    ELSIF g_Sustain2Abs.ERRORID<>0 AND g_Sustain2Abs.ERRORID<>51 THEN  
+      g_NcAlarm.alarmArray[44] := 10800+USINT_TO_INT(g_Sustain2Abs.ERRORID);
+    ELSIF g_Sustain2Stop.ERRORID<>0 AND g_Sustain2Stop.ERRORID<>51 THEN   
+      g_NcAlarm.alarmArray[45] := 10800+USINT_TO_INT(g_Sustain2Stop.ERRORID);
+    ELSIF g_Sustain2Reset.ERRORID<>0 AND g_Sustain2Reset.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[46] := 10800+USINT_TO_INT(g_Sustain2Reset.ERRORID); 
+    ELSIF g_SustainFollowOut2.ERRORID<>0 AND g_SustainFollowOut2.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[47] := 10800+USINT_TO_INT(g_SustainFollowOut2.ERRORID); 
+    ELSIF g_SustainFollowIn2.ERRORID<>0 AND g_SustainFollowIn2.ERRORID<>51 THEN  
+      g_NcAlarm.alarmArray[48] := 10800+USINT_TO_INT(g_SustainFollowIn2.ERRORID);
+    ELSIF g_Sustain2Home.ERRORID<>0 AND g_Sustain2Home.ERRORID<>51 THEN 
+      g_NcAlarm.alarmArray[49] := 10800+USINT_TO_INT(g_Sustain2Home.ERRORID);
+    END_IF;
+    IF Axis_Sustain2.NCTOPLC.ERRORCODE>1 AND Axis_Sustain2.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[50] := 10800+Axis_Sustain2.NCTOPLC.ERRORCODE;
+    END_IF;
+  END_IF;
+  IF g_nSusutainCount >= 3 THEN(*900*)
+    (*支撑轴3*)
+    IF g_Sustain3Power.ERRORID<>0 AND g_Sustain3Power.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[51] := 11000+USINT_TO_INT(g_Sustain3Power.ERRORID);
+    ELSIF g_Sustain3Jog.ERRORID<>0 AND g_Sustain3Jog.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[52] := 11000+USINT_TO_INT(g_Sustain3Jog.ERRORID);
+    ELSIF g_Sustain3Abs.ERRORID<>0 AND g_Sustain3Abs.ERRORID<>51 THEN  
+      g_NcAlarm.alarmArray[53] := 11000+USINT_TO_INT(g_Sustain3Abs.ERRORID);
+    ELSIF g_Sustain3Stop.ERRORID<>0 AND g_Sustain3Stop.ERRORID<>51 THEN   
+      g_NcAlarm.alarmArray[54] := 11000+USINT_TO_INT(g_Sustain3Stop.ERRORID);
+    ELSIF g_Sustain3Reset.ERRORID<>0 AND g_Sustain3Reset.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[55] := 11000+USINT_TO_INT(g_Sustain3Reset.ERRORID); 
+    ELSIF g_SustainFollowOut3.ERRORID<>0 AND g_SustainFollowOut3.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[56] := 11000+USINT_TO_INT(g_SustainFollowOut3.ERRORID); 
+    ELSIF g_SustainFollowIn3.ERRORID<>0 AND g_SustainFollowIn3.ERRORID<>51 THEN  
+      g_NcAlarm.alarmArray[57] := 11000+USINT_TO_INT(g_SustainFollowIn3.ERRORID);
+    ELSIF g_Sustain3Home.ERRORID<>0 AND g_Sustain3Home.ERRORID<>51 THEN 
+      g_NcAlarm.alarmArray[58] := 11000+USINT_TO_INT(g_Sustain3Home.ERRORID);
+    END_IF;
+    IF  Axis_Sustain3.NCTOPLC.ERRORCODE>1 AND Axis_Sustain3.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[59] := 11000+Axis_Sustain3.NCTOPLC.ERRORCODE;
+    END_IF;
+  END_IF;
+  
+  IF g_nSusutainCount >= 4 THEN
+    (*支撑轴7*)
+    IF g_Sustain7Power.ERRORID<>0 AND g_Sustain7Power.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[60] := 14200+USINT_TO_INT(g_Sustain7Power.ERRORID);
+    ELSIF g_Sustain7Jog.ERRORID<>0 AND g_Sustain7Jog.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[61] := 14200+USINT_TO_INT(g_Sustain7Jog.ERRORID);
+    ELSIF g_Sustain7Abs.ERRORID<>0 AND g_Sustain7Abs.ERRORID<>51 THEN  
+      g_NcAlarm.alarmArray[62] := 14200+USINT_TO_INT(g_Sustain7Abs.ERRORID);
+    ELSIF g_Sustain7Stop.ERRORID<>0 AND g_Sustain7Stop.ERRORID<>51 THEN   
+      g_NcAlarm.alarmArray[63] := 14200+USINT_TO_INT(g_Sustain7Stop.ERRORID);
+    ELSIF g_Sustain7Reset.ERRORID<>0 AND g_Sustain7Reset.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[64] := 14200+USINT_TO_INT(g_Sustain7Reset.ERRORID); 
+    ELSIF g_SustainFollowOut7.ERRORID<>0 AND g_SustainFollowOut7.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[65] := 14200+USINT_TO_INT(g_SustainFollowOut7.ERRORID); 
+    ELSIF g_SustainFollowIn7.ERRORID<>0 AND g_SustainFollowIn7.ERRORID<>51 THEN  
+      g_NcAlarm.alarmArray[66] := 14200+USINT_TO_INT(g_SustainFollowIn7.ERRORID);
+    ELSIF g_Sustain7Home.ERRORID<>0 AND g_Sustain7Home.ERRORID<>51 THEN 
+      g_NcAlarm.alarmArray[67] := 14200+USINT_TO_INT(g_Sustain7Home.ERRORID);
+    END_IF;
+    IF  Axis_Sustain7.NCTOPLC.ERRORCODE>1 AND Axis_Sustain7.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[68] := 14200+Axis_Sustain7.NCTOPLC.ERRORCODE;
+      END_IF;
+  END_IF;
+  
+  IF g_nSusutainCount >= 5 THEN
+    (*支撑轴8*)
+    IF g_Sustain8Power.ERRORID<>0 AND g_Sustain8Power.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[69] := 14400+USINT_TO_INT(g_Sustain8Power.ERRORID);
+    ELSIF g_Sustain8Jog.ERRORID<>0 AND g_Sustain8Jog.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[70] := 14400+USINT_TO_INT(g_Sustain8Jog.ERRORID);
+    ELSIF g_Sustain8Abs.ERRORID<>0 AND g_Sustain8Abs.ERRORID<>51 THEN  
+      g_NcAlarm.alarmArray[71] := 14400+USINT_TO_INT(g_Sustain8Abs.ERRORID);
+    ELSIF g_Sustain8Stop.ERRORID<>0 AND g_Sustain8Stop.ERRORID<>51 THEN   
+      g_NcAlarm.alarmArray[72] := 14400+USINT_TO_INT(g_Sustain8Stop.ERRORID);
+    ELSIF g_Sustain8Reset.ERRORID<>0 AND g_Sustain8Reset.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[73] := 14400+USINT_TO_INT(g_Sustain8Reset.ERRORID); 
+    ELSIF g_SustainFollowOut8.ERRORID<>0 AND g_SustainFollowOut8.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[74] := 14400+USINT_TO_INT(g_SustainFollowOut8.ERRORID); 
+    ELSIF g_SustainFollowIn8.ERRORID<>0 AND g_SustainFollowIn8.ERRORID<>51 THEN  
+      g_NcAlarm.alarmArray[75] := 14400+USINT_TO_INT(g_SustainFollowIn8.ERRORID);
+    ELSIF g_Sustain8Home.ERRORID<>0 AND g_Sustain8Home.ERRORID<>51 THEN 
+      g_NcAlarm.alarmArray[76] := 14400+USINT_TO_INT(g_Sustain8Home.ERRORID);
+      END_IF;
+    IF Axis_Sustain8.NCTOPLC.ERRORCODE>1 AND Axis_Sustain8.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[77] := 14400+Axis_Sustain8.NCTOPLC.ERRORCODE;
+    END_IF;
+  END_IF;
+  
+  IF g_nSusutainCount >= 6 THEN
+    (*支撑轴9*)
+    IF g_Sustain9Power.ERRORID<>0 AND g_Sustain9Power.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[78] := 14600+USINT_TO_INT(g_Sustain9Power.ERRORID);
+    ELSIF g_Sustain9Jog.ERRORID<>0 AND g_Sustain9Jog.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[79] := 14600+USINT_TO_INT(g_Sustain9Jog.ERRORID);
+    ELSIF g_Sustain9Abs.ERRORID<>0 AND g_Sustain9Abs.ERRORID<>51 THEN  
+      g_NcAlarm.alarmArray[80] := 14600+USINT_TO_INT(g_Sustain9Abs.ERRORID);
+    ELSIF g_Sustain9Stop.ERRORID<>0 AND g_Sustain9Stop.ERRORID<>51 THEN   
+      g_NcAlarm.alarmArray[81] := 14600+USINT_TO_INT(g_Sustain9Stop.ERRORID);
+    ELSIF g_Sustain9Reset.ERRORID<>0 AND g_Sustain9Reset.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[82] := 14600+USINT_TO_INT(g_Sustain9Reset.ERRORID); 
+    ELSIF g_SustainFollowOut9.ERRORID<>0 AND g_SustainFollowOut9.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[83] := 14600+USINT_TO_INT(g_SustainFollowOut9.ERRORID); 
+    ELSIF g_SustainFollowIn9.ERRORID<>0 AND g_SustainFollowIn9.ERRORID<>51 THEN  
+      g_NcAlarm.alarmArray[84] := 14600+USINT_TO_INT(g_SustainFollowIn9.ERRORID);
+    ELSIF g_Sustain9Home.ERRORID<>0 AND g_Sustain9Home.ERRORID<>51 THEN 
+      g_NcAlarm.alarmArray[85] := 14600+USINT_TO_INT(g_Sustain9Home.ERRORID);
+    END_IF;
+    IF  Axis_Sustain9.NCTOPLC.ERRORCODE>1 AND Axis_Sustain9.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[86] := 14600+Axis_Sustain9.NCTOPLC.ERRORCODE;
+    END_IF;
+  END_IF;
+  
+  IF g_nSusutainCount >= 7 THEN
+    (*支撑轴7*)
+    IF g_NCMoveData.NCAXISDATA[4].ErrorID[0]<>0 AND g_NCMoveData.NCAXISDATA[4].ErrorID[0]<>51 THEN
+      g_NcAlarm.alarmArray[335] := 17000+USINT_TO_INT(g_NCMoveData.NCAXISDATA[4].ErrorID[0]); 
+    ELSIF g_NCMoveData.NCAXISDATA[4].ErrorID[1]<>0 AND g_NCMoveData.NCAXISDATA[4].ErrorID[1]<>51 THEN
+      g_NcAlarm.alarmArray[336] := 17000+USINT_TO_INT(g_NCMoveData.NCAXISDATA[4].ErrorID[1]);
+    ELSIF g_NCMoveData.NCAXISDATA[4].ErrorID[2]<>0 AND g_NCMoveData.NCAXISDATA[4].ErrorID[2]<>51 THEN
+      g_NcAlarm.alarmArray[337] := 17000+USINT_TO_INT(g_NCMoveData.NCAXISDATA[4].ErrorID[2]);
+    ELSIF g_NCMoveData.NCAXISDATA[4].ErrorID[6]<>0 AND g_NCMoveData.NCAXISDATA[4].ErrorID[6]<>51 THEN
+      g_NcAlarm.alarmArray[338] := 17000+USINT_TO_INT(g_NCMoveData.NCAXISDATA[4].ErrorID[6]);
+    ELSIF g_NCMoveData.NCAXISDATA[4].ErrorID[4]<>0 AND g_NCMoveData.NCAXISDATA[4].ErrorID[4]<>51 THEN
+      g_NcAlarm.alarmArray[339] := 17000+USINT_TO_INT(g_NCMoveData.NCAXISDATA[4].ErrorID[4]);
+    ELSIF g_NCMoveData.NCAXISDATA[4].ErrorID[3]<>0 AND g_NCMoveData.NCAXISDATA[4].ErrorID[3]<>51 THEN
+      g_NcAlarm.alarmArray[340] := 17000+USINT_TO_INT(g_NCMoveData.NCAXISDATA[4].ErrorID[3]);
+    ELSIF g_NCMoveData.NCAXISDATA[4].ErrorID[5]<>0 AND g_NCMoveData.NCAXISDATA[4].ErrorID[5]<>51 THEN
+      g_NcAlarm.alarmArray[341] := 17000+USINT_TO_INT(g_NCMoveData.NCAXISDATA[4].ErrorID[5]);
+    END_IF;
+    IF Axis_S7.NCTOPLC.ERRORCODE>1 AND Axis_S7.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[342] := 17000+Axis_S7.NCTOPLC.ERRORCODE;
+    END_IF; 
+  END_IF;
+  
+   IF g_nSusutainCount >= 8 THEN
+    (*支撑轴8*)
+    IF g_NCMoveData.NCAXISDATA[5].ErrorID[0]<>0 AND g_NCMoveData.NCAXISDATA[5].ErrorID[0]<>51 THEN
+      g_NcAlarm.alarmArray[343] := 17200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[5].ErrorID[0]); 
+    ELSIF g_NCMoveData.NCAXISDATA[5].ErrorID[1]<>0 AND g_NCMoveData.NCAXISDATA[5].ErrorID[1]<>51 THEN
+      g_NcAlarm.alarmArray[344] := 17200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[5].ErrorID[1]);
+    ELSIF g_NCMoveData.NCAXISDATA[5].ErrorID[2]<>0 AND g_NCMoveData.NCAXISDATA[5].ErrorID[2]<>51 THEN
+      g_NcAlarm.alarmArray[345] := 17200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[5].ErrorID[2]);
+    ELSIF g_NCMoveData.NCAXISDATA[5].ErrorID[6]<>0 AND g_NCMoveData.NCAXISDATA[5].ErrorID[6]<>51 THEN
+      g_NcAlarm.alarmArray[346] := 17200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[5].ErrorID[6]);
+    ELSIF g_NCMoveData.NCAXISDATA[5].ErrorID[4]<>0 AND g_NCMoveData.NCAXISDATA[5].ErrorID[4]<>51 THEN
+      g_NcAlarm.alarmArray[347] := 17200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[5].ErrorID[4]);
+    ELSIF g_NCMoveData.NCAXISDATA[5].ErrorID[3]<>0 AND g_NCMoveData.NCAXISDATA[5].ErrorID[3]<>51 THEN
+      g_NcAlarm.alarmArray[348] := 17200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[5].ErrorID[3]);
+    ELSIF g_NCMoveData.NCAXISDATA[5].ErrorID[5]<>0 AND g_NCMoveData.NCAXISDATA[5].ErrorID[5]<>51 THEN
+      g_NcAlarm.alarmArray[349] := 17200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[5].ErrorID[5]);
+    END_IF;
+    IF Axis_S8.NCTOPLC.ERRORCODE>1 AND Axis_S8.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[350] := 17200+Axis_S8.NCTOPLC.ERRORCODE;
+    END_IF; 
+  END_IF;
+  
+   IF g_nSusutainCount >= 9 THEN
+    (*支撑轴9*)
+    IF g_NCMoveData.NCAXISDATA[6].ErrorID[0]<>0 AND g_NCMoveData.NCAXISDATA[6].ErrorID[0]<>51 THEN
+      g_NcAlarm.alarmArray[351] := 17400+USINT_TO_INT(g_NCMoveData.NCAXISDATA[6].ErrorID[0]); 
+    ELSIF g_NCMoveData.NCAXISDATA[6].ErrorID[1]<>0 AND g_NCMoveData.NCAXISDATA[6].ErrorID[1]<>51 THEN
+      g_NcAlarm.alarmArray[352] := 17400+USINT_TO_INT(g_NCMoveData.NCAXISDATA[6].ErrorID[1]);
+    ELSIF g_NCMoveData.NCAXISDATA[6].ErrorID[2]<>0 AND g_NCMoveData.NCAXISDATA[6].ErrorID[2]<>51 THEN
+      g_NcAlarm.alarmArray[353] := 17400+USINT_TO_INT(g_NCMoveData.NCAXISDATA[6].ErrorID[2]);
+    ELSIF g_NCMoveData.NCAXISDATA[6].ErrorID[6]<>0 AND g_NCMoveData.NCAXISDATA[6].ErrorID[6]<>51 THEN
+      g_NcAlarm.alarmArray[354] := 17400+USINT_TO_INT(g_NCMoveData.NCAXISDATA[6].ErrorID[6]);
+    ELSIF g_NCMoveData.NCAXISDATA[6].ErrorID[4]<>0 AND g_NCMoveData.NCAXISDATA[6].ErrorID[4]<>51 THEN
+      g_NcAlarm.alarmArray[355] := 17400+USINT_TO_INT(g_NCMoveData.NCAXISDATA[6].ErrorID[4]);
+    ELSIF g_NCMoveData.NCAXISDATA[6].ErrorID[3]<>0 AND g_NCMoveData.NCAXISDATA[6].ErrorID[3]<>51 THEN
+      g_NcAlarm.alarmArray[356] := 17400+USINT_TO_INT(g_NCMoveData.NCAXISDATA[6].ErrorID[3]);
+    ELSIF g_NCMoveData.NCAXISDATA[6].ErrorID[5]<>0 AND g_NCMoveData.NCAXISDATA[6].ErrorID[5]<>51 THEN
+      g_NcAlarm.alarmArray[357] := 17400+USINT_TO_INT(g_NCMoveData.NCAXISDATA[6].ErrorID[5]);
+    END_IF;
+    IF Axis_S9.NCTOPLC.ERRORCODE>1 AND Axis_S9.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[358] := 17400+Axis_S9.NCTOPLC.ERRORCODE;
+    END_IF; 
+  END_IF;
+  
+   IF g_nSusutainCount >= 10 THEN
+    (*支撑轴10*)
+    IF g_NCMoveData.NCAXISDATA[7].ErrorID[0]<>0 AND g_NCMoveData.NCAXISDATA[7].ErrorID[0]<>51 THEN
+      g_NcAlarm.alarmArray[359] := 17600+USINT_TO_INT(g_NCMoveData.NCAXISDATA[7].ErrorID[0]); 
+    ELSIF g_NCMoveData.NCAXISDATA[7].ErrorID[1]<>0 AND g_NCMoveData.NCAXISDATA[7].ErrorID[1]<>51 THEN
+      g_NcAlarm.alarmArray[360] := 17600+USINT_TO_INT(g_NCMoveData.NCAXISDATA[7].ErrorID[1]);
+    ELSIF g_NCMoveData.NCAXISDATA[7].ErrorID[2]<>0 AND g_NCMoveData.NCAXISDATA[7].ErrorID[2]<>51 THEN
+      g_NcAlarm.alarmArray[361] := 17600+USINT_TO_INT(g_NCMoveData.NCAXISDATA[7].ErrorID[2]);
+    ELSIF g_NCMoveData.NCAXISDATA[7].ErrorID[6]<>0 AND g_NCMoveData.NCAXISDATA[7].ErrorID[6]<>51 THEN
+      g_NcAlarm.alarmArray[362] := 17600+USINT_TO_INT(g_NCMoveData.NCAXISDATA[7].ErrorID[6]);
+    ELSIF g_NCMoveData.NCAXISDATA[7].ErrorID[4]<>0 AND g_NCMoveData.NCAXISDATA[7].ErrorID[4]<>51 THEN
+      g_NcAlarm.alarmArray[363] := 17600+USINT_TO_INT(g_NCMoveData.NCAXISDATA[7].ErrorID[4]);
+    ELSIF g_NCMoveData.NCAXISDATA[7].ErrorID[3]<>0 AND g_NCMoveData.NCAXISDATA[7].ErrorID[3]<>51 THEN
+      g_NcAlarm.alarmArray[364] := 17600+USINT_TO_INT(g_NCMoveData.NCAXISDATA[7].ErrorID[3]);
+    ELSIF g_NCMoveData.NCAXISDATA[7].ErrorID[5]<>0 AND g_NCMoveData.NCAXISDATA[7].ErrorID[5]<>51 THEN
+      g_NcAlarm.alarmArray[365] := 17600+USINT_TO_INT(g_NCMoveData.NCAXISDATA[7].ErrorID[5]);
+    END_IF;
+    IF Axis_S10.NCTOPLC.ERRORCODE>1 AND Axis_S10.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[366] := 17600+Axis_S10.NCTOPLC.ERRORCODE;
+    END_IF; 
+  END_IF;
+  
+   IF g_nSusutainCount >= 11 THEN
+    (*支撑轴7*)
+    IF g_NCMoveData.NCAXISDATA[8].ErrorID[0]<>0 AND g_NCMoveData.NCAXISDATA[8].ErrorID[0]<>51 THEN
+      g_NcAlarm.alarmArray[367] := 17800+USINT_TO_INT(g_NCMoveData.NCAXISDATA[8].ErrorID[0]); 
+    ELSIF g_NCMoveData.NCAXISDATA[8].ErrorID[1]<>0 AND g_NCMoveData.NCAXISDATA[8].ErrorID[1]<>51 THEN
+      g_NcAlarm.alarmArray[368] := 17800+USINT_TO_INT(g_NCMoveData.NCAXISDATA[8].ErrorID[1]);
+    ELSIF g_NCMoveData.NCAXISDATA[8].ErrorID[2]<>0 AND g_NCMoveData.NCAXISDATA[8].ErrorID[2]<>51 THEN
+      g_NcAlarm.alarmArray[369] := 17800+USINT_TO_INT(g_NCMoveData.NCAXISDATA[8].ErrorID[2]);
+    ELSIF g_NCMoveData.NCAXISDATA[8].ErrorID[6]<>0 AND g_NCMoveData.NCAXISDATA[8].ErrorID[6]<>51 THEN
+      g_NcAlarm.alarmArray[370] := 17800+USINT_TO_INT(g_NCMoveData.NCAXISDATA[8].ErrorID[6]);
+    ELSIF g_NCMoveData.NCAXISDATA[8].ErrorID[4]<>0 AND g_NCMoveData.NCAXISDATA[8].ErrorID[4]<>51 THEN
+      g_NcAlarm.alarmArray[371] := 17800+USINT_TO_INT(g_NCMoveData.NCAXISDATA[8].ErrorID[4]);
+    ELSIF g_NCMoveData.NCAXISDATA[8].ErrorID[3]<>0 AND g_NCMoveData.NCAXISDATA[8].ErrorID[3]<>51 THEN
+      g_NcAlarm.alarmArray[372] := 17800+USINT_TO_INT(g_NCMoveData.NCAXISDATA[8].ErrorID[3]);
+    ELSIF g_NCMoveData.NCAXISDATA[8].ErrorID[5]<>0 AND g_NCMoveData.NCAXISDATA[8].ErrorID[5]<>51 THEN
+      g_NcAlarm.alarmArray[373] := 17800+USINT_TO_INT(g_NCMoveData.NCAXISDATA[8].ErrorID[5]);
+    END_IF;
+    IF Axis_S11.NCTOPLC.ERRORCODE>1 AND Axis_S11.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[374] := 17800+Axis_S11.NCTOPLC.ERRORCODE;
+    END_IF; 
+  END_IF;
+  
+   IF g_nSusutainCount >= 12 THEN
+    (*支撑轴7*)
+    IF g_NCMoveData.NCAXISDATA[9].ErrorID[0]<>0 AND g_NCMoveData.NCAXISDATA[9].ErrorID[0]<>51 THEN
+      g_NcAlarm.alarmArray[375] := 19200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[9].ErrorID[0]); 
+    ELSIF g_NCMoveData.NCAXISDATA[9].ErrorID[1]<>0 AND g_NCMoveData.NCAXISDATA[9].ErrorID[1]<>51 THEN
+      g_NcAlarm.alarmArray[376] := 19200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[9].ErrorID[1]);
+    ELSIF g_NCMoveData.NCAXISDATA[9].ErrorID[2]<>0 AND g_NCMoveData.NCAXISDATA[9].ErrorID[2]<>51 THEN
+      g_NcAlarm.alarmArray[377] := 19200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[9].ErrorID[2]);
+    ELSIF g_NCMoveData.NCAXISDATA[9].ErrorID[6]<>0 AND g_NCMoveData.NCAXISDATA[9].ErrorID[6]<>51 THEN
+      g_NcAlarm.alarmArray[378] := 19200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[9].ErrorID[6]);
+    ELSIF g_NCMoveData.NCAXISDATA[9].ErrorID[4]<>0 AND g_NCMoveData.NCAXISDATA[9].ErrorID[4]<>51 THEN
+      g_NcAlarm.alarmArray[379] := 19200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[9].ErrorID[4]);
+    ELSIF g_NCMoveData.NCAXISDATA[9].ErrorID[3]<>0 AND g_NCMoveData.NCAXISDATA[9].ErrorID[3]<>51 THEN
+      g_NcAlarm.alarmArray[380] := 19200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[9].ErrorID[3]);
+    ELSIF g_NCMoveData.NCAXISDATA[9].ErrorID[5]<>0 AND g_NCMoveData.NCAXISDATA[9].ErrorID[5]<>51 THEN
+      g_NcAlarm.alarmArray[381] := 19200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[9].ErrorID[5]);
+    END_IF;
+    IF Axis_S12.NCTOPLC.ERRORCODE>1 AND Axis_S12.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[382] := 19200+Axis_S12.NCTOPLC.ERRORCODE;
+    END_IF; 
+  END_IF;
+END_IF;
+
+(*-------------------------------------------------------全瑞*)
+IF g_LoadPower.ERRORID<>0 AND g_LoadPower.ERRORID<>51 THEN(*3200  11200*)
+  g_NcAlarm.alarmArray[87] := 11200+USINT_TO_INT(g_LoadPower.ERRORID);
+ELSIF g_LoadJog.ERRORID<>0 AND g_LoadJog.ERRORID<>51 THEN
+  g_NcAlarm.alarmArray[88] := 11200+USINT_TO_INT(g_LoadJog.ERRORID);
+ELSIF g_LoadAbs.ERRORID<>0 AND g_LoadAbs.ERRORID<>51 THEN
+  g_NcAlarm.alarmArray[89] := 11200+USINT_TO_INT(g_LoadAbs.ERRORID);
+ELSIF g_LoadStop.ERRORID<>0 AND g_LoadStop.ERRORID<>51 THEN
+  g_NcAlarm.alarmArray[90] := 11200+USINT_TO_INT(g_LoadStop.ERRORID);
+ELSIF g_LoadReset.ERRORID<>0 AND g_LoadReset.ERRORID<>51 THEN
+  g_NcAlarm.alarmArray[91] := 11200+USINT_TO_INT(g_LoadReset.ERRORID);
+ELSIF g_LoadHome.ERRORID<>0 AND g_LoadHome.ERRORID<>51 THEN
+  g_NcAlarm.alarmArray[92] := 11200+USINT_TO_INT(g_LoadHome.ERRORID);
+END_IF;
+
+IF Axis_Load.NCTOPLC.ERRORCODE>1 AND Axis_Load.NCTOPLC.ERRORCODE<>51 THEN
+  g_NcAlarm.alarmArray[93] := 11200+Axis_Load.NCTOPLC.ERRORCODE;
+END_IF;
+(*3400  11400*)
+IF g_SensorPower.ERRORID<>0 AND g_SensorPower.ERRORID<>51 THEN
+  g_NcAlarm.alarmArray[94] := 11400+USINT_TO_INT(g_SensorPower.ERRORID);
+ELSIF g_SensorJog.ERRORID<>0 AND g_SensorJog.ERRORID<>51 THEN
+  g_NcAlarm.alarmArray[95] := 11400+USINT_TO_INT(g_SensorJog.ERRORID);
+ELSIF g_SensorAbs.ERRORID<>0 AND g_SensorAbs.ERRORID<>51 THEN
+  g_NcAlarm.alarmArray[96] := 11400+USINT_TO_INT(g_SensorAbs.ERRORID);
+ELSIF g_SensorStop.ERRORID<>0 AND g_SensorStop.ERRORID<>51 THEN
+  g_NcAlarm.alarmArray[97] := 11400+USINT_TO_INT(g_SensorStop.ERRORID);
+ELSIF g_SensorReset.ERRORID<>0 AND g_SensorReset.ERRORID<>51 THEN
+  g_NcAlarm.alarmArray[98] := 11400+USINT_TO_INT(g_SensorReset.ERRORID);
+ELSIF g_SensorHome.ERRORID<>0 AND g_SensorHome.ERRORID<>51 THEN
+  g_NcAlarm.alarmArray[99] := 11400+USINT_TO_INT(g_SensorHome.ERRORID);
+END_IF;
+IF Axis_Sensor.NCTOPLC.ERRORCODE>1 AND Axis_Sensor.NCTOPLC.ERRORCODE<>51 THEN
+  g_NcAlarm.alarmArray[100] := 11400+Axis_Sensor.NCTOPLC.ERRORCODE;
+END_IF;
+
+
+IF g_bDustEnable THEN(*3600  11600*)
+  (*-----------------------------------------------抽尘轴*)
+  IF DustPower.ERRORID<>0 AND DustPower.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[101] := 11600+USINT_TO_INT(DustPower.ERRORID);
+  ELSIF DustHome.ERRORID<>0 AND DustHome.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[102] := 11600+USINT_TO_INT(DustHome.ERRORID);
+  ELSIF DustAbsolute.ERRORID<>0 AND DustAbsolute.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[103] := 11600+USINT_TO_INT(DustAbsolute.ERRORID);
+  ELSIF DustAxisRel.ERRORID<>0 AND DustAxisRel.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[104] := 11600+USINT_TO_INT(DustAxisRel.ERRORID);
+  ELSIF DustAxisJog.ERRORID<>0 AND DustAxisJog.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[105] := 11600+USINT_TO_INT(DustAxisJog.ERRORID);
+  ELSIF DustAxis_Stop.ERRORID<>0 AND DustAxis_Stop.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[106] := 11600+USINT_TO_INT(DustAxis_Stop.ERRORID);
+  ELSIF DustAxis_Reset.ERRORID<>0 AND DustAxis_Reset.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[107] := 11600+USINT_TO_INT(DustAxis_Reset.ERRORID);
+  ELSIF DustAxis_GearIn.ERRORID<>0 AND DustAxis_GearIn.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[265] := 11600+USINT_TO_INT(DustAxis_GearIn.ERRORID);
+  ELSIF DustAxis_GearOut.ERRORID<>0 AND DustAxis_GearOut.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[266] := 11600+USINT_TO_INT(DustAxis_GearOut.ERRORID);  
+  END_IF;
+      
+  IF D_Axis.NCTOPLC.ERRORCODE>1 AND D_Axis.NCTOPLC.ERRORCODE<>51 THEN
+    g_NcAlarm.alarmArray[108] := 11600+D_Axis.NCTOPLC.ERRORCODE;
+  END_IF;
+END_IF;
+
+(*--------------------------------------------------标克*)
+IF g_nMachineType = 1 OR g_nMachineType = 7 THEN
+  (*定长轴*)(*3800  11800*)
+  IF FixedLen_Power.ERRORID<>0 AND FixedLen_Power.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[109] := 11800+USINT_TO_INT(FixedLen_Power.ERRORID);
+  ELSIF FixedLen_Jog.ERRORID<>0 AND FixedLen_Jog.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[110] := 11800+USINT_TO_INT(FixedLen_Jog.ERRORID);
+  ELSIF FixedLen_Rel.ERRORID<>0 AND FixedLen_Rel.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[111] := 11800+USINT_TO_INT(FixedLen_Rel.ERRORID);
+  ELSIF FixedLenAbs.ERRORID<>0 AND FixedLenAbs.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[112] := 11800+USINT_TO_INT(FixedLenAbs.ERRORID);
+  ELSIF FixedLenHome.ERRORID<>0 AND FixedLenHome.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[113] := 11800+USINT_TO_INT(FixedLenHome.ERRORID);
+  ELSIF FixedLen_Stop.ERRORID<>0 AND FixedLen_Stop.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[114] := 11800+USINT_TO_INT(FixedLen_Stop.ERRORID);
+  ELSIF FixedLen_Reset.ERRORID<>0 AND FixedLen_Reset.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[115] := 11800+USINT_TO_INT(FixedLen_Reset.ERRORID);
+  END_IF;
+  IF FixedLen_Axis.NCTOPLC.ERRORCODE>1 AND FixedLen_Axis.NCTOPLC.ERRORCODE<>51 THEN
+    g_NcAlarm.alarmArray[116] := 11800+FixedLen_Axis.NCTOPLC.ERRORCODE;
+  END_IF;
+
+
+  (*送料轴*)(*4000  12000*)
+  IF Feeding_Home.ERRORID<>0 AND Feeding_Home.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[117] := 12000+USINT_TO_INT(Feeding_Home.ERRORID);
+  ELSIF Feeding_Power.ERRORID<>0 AND Feeding_Power.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[118] := 12000+USINT_TO_INT(Feeding_Power.ERRORID);
+  ELSIF Feeding_Jog.ERRORID<>0 AND Feeding_Jog.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[119] := 12000+USINT_TO_INT(Feeding_Jog.ERRORID);
+  ELSIF FeedingAbs.ERRORID<>0 AND FeedingAbs.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[120] := 12000+USINT_TO_INT(FeedingAbs.ERRORID);
+  ELSIF Feeding_Rel.ERRORID<>0 AND Feeding_Rel.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[121] := 12000+USINT_TO_INT(Feeding_Rel.ERRORID);
+  ELSIF Feeding_Stop.ERRORID<>0 AND Feeding_Stop.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[122] := 12000+USINT_TO_INT(Feeding_Stop.ERRORID);
+  ELSIF Feeding_Reset.ERRORID<>0 AND Feeding_Reset.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[123] := 12000+USINT_TO_INT(Feeding_Reset.ERRORID);
+  ELSIF FeedingOverride.ERRORID<>0 AND FeedingOverride.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[124] := 12000+USINT_TO_INT(FeedingOverride.ERRORID);
+  END_IF;
+  IF Feeding_Axis.NCTOPLC.ERRORCODE>1 AND Feeding_Axis.NCTOPLC.ERRORCODE<>51 THEN
+    g_NcAlarm.alarmArray[125] := 12000+Feeding_Axis.NCTOPLC.ERRORCODE;
+  END_IF;
+  
+  (*抽尘轴*)(*4200  12200*)
+  IF Dust_Power.ERRORID<>0 AND Dust_Power.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[126] := 12200+USINT_TO_INT(Dust_Power.ERRORID);
+  ELSIF Dust_Home.ERRORID<>0 AND Dust_Home.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[127] := 12200+USINT_TO_INT(Dust_Home.ERRORID);
+  ELSIF Dust_Jog.ERRORID<>0 AND Dust_Jog.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[128] := 12200+USINT_TO_INT(Dust_Jog.ERRORID);
+  ELSIF Dust_Rel.ERRORID<>0 AND Dust_Rel.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[129] := 12200+USINT_TO_INT(Dust_Rel.ERRORID);
+  ELSIF Dust_Stop.ERRORID<>0 AND Dust_Stop.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[130] := 12200+USINT_TO_INT(Dust_Stop.ERRORID);
+  ELSIF Dust_Reset.ERRORID<>0 AND Dust_Reset.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[131] := 12200+USINT_TO_INT(Dust_Reset.ERRORID);
+  ELSIF Dust_Override.ERRORID<>0 AND Dust_Override.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[132] := 12200+USINT_TO_INT(Dust_Override.ERRORID);
+  END_IF;
+  IF Dust_Axis.NCTOPLC.ERRORCODE>1 AND Dust_Axis.NCTOPLC.ERRORCODE<>51 THEN
+    g_NcAlarm.alarmArray[133] := 12200+Dust_Axis.NCTOPLC.ERRORCODE;
+  END_IF;
+END_IF;
+
+
+IF g_nMachineType=6 THEN(*3卡盘*)
+  (*##################################U3*)(*4400  12400*)
+  IF g_U3MoveAbs.ERRORID<>0 AND g_U3MoveAbs.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[134] := 12400+USINT_TO_INT(g_U3MoveAbs.ERRORID);
+  ELSIF g_U3MoveRel.ERRORID<>0 AND g_U3MoveRel.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[135] := 12400+USINT_TO_INT(g_U3MoveRel.ERRORID);
+  ELSIF g_U3MoveVel.ERRORID<>0 AND g_U3MoveVel.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[136] := 12400+USINT_TO_INT(g_U3MoveVel.ERRORID);
+  ELSIF g_U3Home.ERRORID<>0 AND g_U3Home.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[137] := 12400+USINT_TO_INT(g_U3Home.ERRORID);
+  ELSIF g_U3MoveStop.ERRORID<>0 AND g_U3MoveStop.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[138] := 12400+USINT_TO_INT(g_U3MoveStop.ERRORID);
+  ELSIF g_U3Power.ERRORID<>0 AND g_U3Power.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[139] := 12400+USINT_TO_INT(g_U3Power.ERRORID);
+  ELSIF g_U3Reset.ERRORID<>0 AND g_U3Reset.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[140] := 12400+USINT_TO_INT(g_U3Reset.ERRORID);
+  ELSIF g_U3MoveJog.ERRORID<>0 AND g_U3MoveJog.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[141] := 12400+USINT_TO_INT(g_U3MoveJog.ERRORID);
+  ELSIF g_U3GearIn.ERRORID<>0 AND g_U3GearIn.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[142] := 12400+USINT_TO_INT(g_U3GearIn.ERRORID);
+  ELSIF g_U3GearOut.ERRORID<>0 AND g_U3GearOut.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[143] := 12400+USINT_TO_INT(g_U3GearOut.ERRORID);
+  END_IF;
+  IF  Axis_U3.NCTOPLC.ERRORCODE>1 AND Axis_U3.NCTOPLC.ERRORCODE<>51 THEN
+    g_NcAlarm.alarmArray[144] := 12400+Axis_U3.NCTOPLC.ERRORCODE;
+  END_IF;
+  (*##################################Y3*)(*4600  12600*)
+  IF g_Y3MoveAbs.ERRORID<>0 AND g_Y3MoveAbs.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[145] := 12600+USINT_TO_INT(g_Y3MoveAbs.ERRORID);
+  ELSIF g_Y3MoveRel.ERRORID<>0 AND g_Y3MoveRel.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[146] := 12600+USINT_TO_INT(g_Y3MoveRel.ERRORID);
+  ELSIF g_Y3MoveVel.ERRORID<>0 AND g_Y3MoveVel.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[147] := 12600+USINT_TO_INT(g_Y3MoveVel.ERRORID);
+  ELSIF g_Y3Home.ERRORID<>0 AND g_Y3Home.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[148] := 12600+USINT_TO_INT(g_Y3Home.ERRORID);
+  ELSIF g_Y3MoveStop.ERRORID<>0 AND g_Y3MoveStop.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[149] := 12600+USINT_TO_INT(g_Y3MoveStop.ERRORID);
+  ELSIF g_Y3Power.ERRORID<>0 AND g_Y3Power.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[150] := 12600+USINT_TO_INT(g_Y3Power.ERRORID);
+  ELSIF g_Y3Reset.ERRORID<>0 AND g_Y3Reset.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[151] := 12600+USINT_TO_INT(g_Y3Reset.ERRORID);
+  ELSIF g_Y3MoveJog.ERRORID<>0 AND g_Y3MoveJog.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[152] := 12600+USINT_TO_INT(g_Y3MoveJog.ERRORID);
+  ELSIF g_Y3GearIn.ERRORID<>0 AND g_Y3GearIn.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[228] := 12600+USINT_TO_INT(g_Y3GearIn.ERRORID);
+  ELSIF g_Y3GearOut.ERRORID<>0 AND g_Y3GearOut.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[229] := 12600+USINT_TO_INT(g_Y3GearOut.ERRORID);
+  END_IF;
+  
+  IF Axis_Y3.NCTOPLC.ERRORCODE>1  AND Axis_Y3.NCTOPLC.ERRORCODE<>51 THEN
+    g_NcAlarm.alarmArray[153] := 12600+Axis_Y3.NCTOPLC.ERRORCODE;
+  END_IF;
+  (*##################################Y2*)(*4800  12800*)
+  IF g_Y2MoveAbs.ERRORID<>0 AND g_Y2MoveAbs.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[154] := 12800+USINT_TO_INT(g_Y2MoveAbs.ERRORID);
+  ELSIF g_Y2MoveRel.ERRORID<>0 AND g_Y2MoveRel.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[155] := 12800+USINT_TO_INT(g_Y2MoveRel.ERRORID);
+  ELSIF g_Y2Power.ERRORID<>0 AND g_Y2Power.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[156] := 12800+USINT_TO_INT(g_Y2Power.ERRORID);
+  ELSIF g_Y2MoveVel.ERRORID<>0 AND g_Y2MoveVel.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[157] := 12800+USINT_TO_INT(g_Y2MoveVel.ERRORID);
+  ELSIF g_Y2Home.ERRORID<>0 AND g_Y2Home.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[158] := 12800+USINT_TO_INT(g_Y2Home.ERRORID);
+  ELSIF g_Y2MoveStop.ERRORID<>0 AND g_Y2MoveStop.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[159] := 12800+USINT_TO_INT(g_Y2MoveStop.ERRORID);
+  ELSIF g_Y2Reset.ERRORID<>0 AND g_Y2Reset.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[160] := 12800+USINT_TO_INT(g_Y2Reset.ERRORID);
+  ELSIF g_Y2MoveJog.ERRORID<>0 AND g_Y2MoveJog.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[161] := 12800+USINT_TO_INT(g_Y2MoveJog.ERRORID);
+  ELSIF g_Y2GearIn.ERRORID<>0 AND g_Y2GearIn.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[162] := 12800+USINT_TO_INT(g_Y2GearIn.ERRORID);
+  ELSIF g_Y2GearOut.ERRORID<>0 AND g_Y2GearOut.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[163] := 12800+USINT_TO_INT(g_Y2GearOut.ERRORID);
+  END_IF;
+  
+  IF Axis_Y2.NCTOPLC.ERRORCODE>1 AND Axis_Y2.NCTOPLC.ERRORCODE<>51 THEN
+    g_NcAlarm.alarmArray[164] := 12800+Axis_Y2.NCTOPLC.ERRORCODE;
+  END_IF;
+  
+  IF Axis_Y2.NCTOPLC.ERRORCODE>1 AND Axis_Y2.NCTOPLC.ERRORCODE<>51 THEN
+    g_NcAlarm.alarmArray[164] := 12800+Axis_Y2.NCTOPLC.ERRORCODE;
+  END_IF;
+END_IF;
+
+(*3卡盘Y1轴*)
+IF g_nMachineType = 11 THEN
+  (*##################################Y1*)(*4800  14800*)
+  IF g_Y1MoveAbs.ERRORID<>0 AND g_Y1MoveAbs.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[216] := 14800+USINT_TO_INT(g_Y1MoveAbs.ERRORID);
+  ELSIF g_Y1MoveRel.ERRORID<>0 AND g_Y1MoveRel.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[217] := 14800+USINT_TO_INT(g_Y1MoveRel.ERRORID);
+  ELSIF g_Y1Power.ERRORID<>0 AND g_Y1Power.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[218] := 14800+USINT_TO_INT(g_Y1Power.ERRORID);
+  ELSIF g_Y1MoveVel.ERRORID<>0 AND g_Y1MoveVel.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[219] := 14800+USINT_TO_INT(g_Y1MoveVel.ERRORID);
+  ELSIF g_Y1Home.ERRORID<>0 AND g_Y1Home.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[220] := 14800+USINT_TO_INT(g_Y1Home.ERRORID);
+  ELSIF g_Y1MoveStop.ERRORID<>0 AND g_Y1MoveStop.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[221] := 14800+USINT_TO_INT(g_Y1MoveStop.ERRORID);
+  ELSIF g_Y1Reset.ERRORID<>0 AND g_Y1Reset.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[222] := 14800+USINT_TO_INT(g_Y1Reset.ERRORID);
+  ELSIF g_Y1MoveJog.ERRORID<>0 AND g_Y1MoveJog.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[223] := 14800+USINT_TO_INT(g_Y1MoveJog.ERRORID);
+  ELSIF g_Y1GearIn.ERRORID<>0 AND g_Y1GearIn.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[224] := 14800+USINT_TO_INT(g_Y1GearIn.ERRORID);
+  ELSIF g_Y1GearOut.ERRORID<>0 AND g_Y1GearOut.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[225] := 14800+USINT_TO_INT(g_Y1GearOut.ERRORID);
+  END_IF;
+  
+  IF Axis_Y1.NCTOPLC.ERRORCODE>1 AND Axis_Y1.NCTOPLC.ERRORCODE<>51 THEN
+    g_NcAlarm.alarmArray[226] := 14800+Axis_Y1.NCTOPLC.ERRORCODE;
+  END_IF;
+  
+  IF Axis_Y1.NCTOPLC.ERRORCODE>1 AND Axis_Y1.NCTOPLC.ERRORCODE<>51 THEN
+    g_NcAlarm.alarmArray[227] := 14800+Axis_Y1.NCTOPLC.ERRORCODE;
+  END_IF;
+END_IF;
+
+(*前浮动支撑轴*)
+IF g_bFrontSustainEnable THEN
+  IF g_nFrontSusutainCount >= 1 THEN(*5000  13000*)
+    (*前浮动支撑轴1*)
+    IF g_Sustain4Power.ERRORID<>0 AND g_Sustain4Power.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[165] := 13000+USINT_TO_INT(g_Sustain4Power.ERRORID);
+    ELSIF g_Sustain4Jog.ERRORID<>0 AND g_Sustain4Jog.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[166] := 13000+USINT_TO_INT(g_Sustain4Jog.ERRORID);
+    ELSIF g_Sustain4Abs.ERRORID<>0 AND g_Sustain4Abs.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[167] := 13000+USINT_TO_INT(g_Sustain4Abs.ERRORID);   
+    ELSIF g_Sustain4Stop.ERRORID<>0 AND g_Sustain4Stop.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[168] := 13000+USINT_TO_INT(g_Sustain4Stop.ERRORID);  
+    ELSIF g_Sustain4Reset.ERRORID<>0 AND g_Sustain4Reset.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[169] := 13000+USINT_TO_INT(g_Sustain4Reset.ERRORID); 
+    ELSIF g_SustainFollowOut4.ERRORID<>0 AND g_SustainFollowOut4.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[170] := 13000+USINT_TO_INT(g_SustainFollowOut4.ERRORID); 
+    ELSIF g_SustainFollowIn4.ERRORID<>0 AND g_SustainFollowIn4.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[171] := 13000+USINT_TO_INT(g_SustainFollowIn4.ERRORID); 
+    ELSIF g_Sustain4Home.ERRORID<>0 AND g_Sustain4Home.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[172] := 13000+USINT_TO_INT(g_Sustain4Home.ERRORID); 
+    END_IF;
+    IF  Axis_Sustain4.NCTOPLC.ERRORCODE>1 AND Axis_Sustain4.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[173] := 13000+Axis_Sustain4.NCTOPLC.ERRORCODE;
+    END_IF;
+  END_IF;
+  IF g_nFrontSusutainCount >= 2 THEN(*5200  13200*)
+    (*前浮动支撑轴2*)
+    IF g_Sustain5Power.ERRORID<>0 AND g_Sustain5Power.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[174] := 13200+USINT_TO_INT(g_Sustain5Power.ERRORID);
+    ELSIF g_Sustain5Jog.ERRORID<>0 AND g_Sustain5Jog.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[175] := 13200+USINT_TO_INT(g_Sustain5Jog.ERRORID);
+    ELSIF g_Sustain5Abs.ERRORID<>0 AND g_Sustain5Abs.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[176] := 13200+USINT_TO_INT(g_Sustain5Abs.ERRORID);   
+    ELSIF g_Sustain5Stop.ERRORID<>0 AND g_Sustain5Stop.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[177] := 13200+USINT_TO_INT(g_Sustain5Stop.ERRORID);  
+    ELSIF g_Sustain5Reset.ERRORID<>0 AND g_Sustain5Reset.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[178] := 13200+USINT_TO_INT(g_Sustain5Reset.ERRORID); 
+    ELSIF g_SustainFollowOut5.ERRORID<>0 AND g_SustainFollowOut5.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[179] := 13200+USINT_TO_INT(g_SustainFollowOut5.ERRORID); 
+    ELSIF g_SustainFollowIn5.ERRORID<>0 AND g_SustainFollowIn5.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[180] := 13200+USINT_TO_INT(g_SustainFollowIn5.ERRORID); 
+    ELSIF g_Sustain5Home.ERRORID<>0 AND g_Sustain5Home.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[181] := 13200+USINT_TO_INT(g_Sustain5Home.ERRORID); 
+    END_IF;
+    IF Axis_Sustain5.NCTOPLC.ERRORCODE>1 AND Axis_Sustain5.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[182] := 13200+Axis_Sustain5.NCTOPLC.ERRORCODE;
+    END_IF;
+  END_IF;
+  IF g_nFrontSusutainCount >= 3 THEN
+    (*前浮动支撑轴3*)(*5200  13400*)
+    IF g_Sustain6Power.ERRORID<>0 AND g_Sustain6Power.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[183] := 13400+USINT_TO_INT(g_Sustain6Power.ERRORID);
+    ELSIF g_Sustain6Jog.ERRORID<>0 AND g_Sustain6Jog.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[184] := 13400+USINT_TO_INT(g_Sustain6Jog.ERRORID);
+    ELSIF g_Sustain6Abs.ERRORID<>0 AND g_Sustain6Abs.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[185] := 13400+USINT_TO_INT(g_Sustain6Abs.ERRORID);   
+    ELSIF g_Sustain6Stop.ERRORID<>0 AND g_Sustain6Stop.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[186] := 13400+USINT_TO_INT(g_Sustain6Stop.ERRORID);  
+    ELSIF g_Sustain6Reset.ERRORID<>0 AND g_Sustain6Reset.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[187] := 13400+USINT_TO_INT(g_Sustain6Reset.ERRORID); 
+    ELSIF g_SustainFollowOut6.ERRORID<>0 AND g_SustainFollowOut6.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[188] := 13400+USINT_TO_INT(g_SustainFollowOut6.ERRORID); 
+    ELSIF g_SustainFollowIn6.ERRORID<>0 AND g_SustainFollowIn6.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[189] := 13400+USINT_TO_INT(g_SustainFollowIn6.ERRORID); 
+    ELSIF g_Sustain6Home.ERRORID<>0 AND g_Sustain6Home.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[190] := 13400+USINT_TO_INT(g_Sustain6Home.ERRORID); 
+    END_IF;
+    IF Axis_Sustain6.NCTOPLC.ERRORCODE>1 AND Axis_Sustain6.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[191] := 13400+Axis_Sustain6.NCTOPLC.ERRORCODE;
+    END_IF;
+  END_IF;
+  IF g_nFrontSusutainCount >=4 THEN
+    IF g_AntiRejection2Power.ERRORID<>0 AND g_AntiRejection2Power.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[238] := 15200+USINT_TO_INT(g_AntiRejection2Power.ERRORID); 
+    ELSIF g_AntiRejection2Home.ERRORID<>0 AND g_AntiRejection2Home.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[239] := 15200+USINT_TO_INT(g_AntiRejection2Home.ERRORID);
+    ELSIF g_AntiRejection2Jog.ERRORID<>0 AND g_AntiRejection2Jog.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[240] := 15200+USINT_TO_INT(g_AntiRejection2Jog.ERRORID);
+    ELSIF g_AntiRejection2Rel.ERRORID<>0 AND g_AntiRejection2Rel.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[241] := 15200+USINT_TO_INT(g_AntiRejection2Rel.ERRORID);
+    ELSIF g_AntiRejection2Stop.ERRORID<>0 AND g_AntiRejection2Stop.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[242] := 15200+USINT_TO_INT(g_AntiRejection2Stop.ERRORID);
+    ELSIF g_AntiRejection2Reset.ERRORID<>0 AND g_AntiRejection2Reset.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[243] := 15200+USINT_TO_INT(g_AntiRejection2Reset.ERRORID);
+    ELSIF g_AntiRejection2Abs.ERRORID<>0 AND g_AntiRejection2Abs.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[244] := 15200+USINT_TO_INT(g_AntiRejection2Abs.ERRORID);
+    END_IF;
+    IF AntiRejection2.NCTOPLC.ERRORCODE>1 AND AntiRejection2.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[245] := 15200+AntiRejection2.NCTOPLC.ERRORCODE;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF g_nMachineType = 4 OR g_nMachineType = 9 THEN(*13600*)
+  IF g_DDAxisPower.ERRORID<>0 AND g_DDAxisPower.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[192] := 13600+USINT_TO_INT(g_DDAxisPower.ERRORID); 
+  ELSIF g_DDAxisHome.ERRORID<>0 AND g_DDAxisHome.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[193] := 13600+USINT_TO_INT(g_DDAxisHome.ERRORID);
+  ELSIF g_DDAxisJog.ERRORID<>0 AND g_DDAxisJog.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[194] := 13600+USINT_TO_INT(g_DDAxisJog.ERRORID);
+  ELSIF g_DDAxisRel.ERRORID<>0 AND g_DDAxisRel.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[195] := 13600+USINT_TO_INT(g_DDAxisRel.ERRORID);
+  ELSIF g_DDAxisStop.ERRORID<>0 AND g_DDAxisStop.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[196] := 13600+USINT_TO_INT(g_DDAxisStop.ERRORID);
+  ELSIF g_DDAxisReset.ERRORID<>0 AND g_DDAxisReset.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[197] := 13600+USINT_TO_INT(g_DDAxisReset.ERRORID);
+  ELSIF g_DDAxisAbs.ERRORID<>0 AND g_DDAxisAbs.ERRORID<>51 THEN
+    g_NcAlarm.alarmArray[198] := 13600+USINT_TO_INT(g_DDAxisAbs.ERRORID);
+  END_IF;
+  IF DDAxis.NCTOPLC.ERRORCODE>1 AND DDAxis.NCTOPLC.ERRORCODE<>51 THEN
+    g_NcAlarm.alarmArray[199] := 13600+DDAxis.NCTOPLC.ERRORCODE;
+  END_IF;
+END_IF;
+
+(*通用轴*)
+  IF g_bUseCommonAxis1 THEN
+    IF g_General1_Power.ERRORID<>0 AND g_General1_Power.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[200] := 13800+USINT_TO_INT(g_General1_Power.ERRORID); 
+    ELSIF g_General1_Home.ERRORID<>0 AND g_General1_Home.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[201] := 13800+USINT_TO_INT(g_General1_Home.ERRORID);
+    ELSIF g_General1_Jog.ERRORID<>0 AND g_General1_Jog.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[202] := 13800+USINT_TO_INT(g_General1_Jog.ERRORID);
+    ELSIF g_General1_Rel.ERRORID<>0 AND g_General1_Rel.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[203] := 13800+USINT_TO_INT(g_General1_Rel.ERRORID);
+    ELSIF g_General1_Stop.ERRORID<>0 AND g_General1_Stop.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[204] := 13800+USINT_TO_INT(g_General1_Stop.ERRORID);
+    ELSIF g_General1_Reset.ERRORID<>0 AND g_General1_Reset.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[205] := 13800+USINT_TO_INT(g_General1_Reset.ERRORID);
+    ELSIF g_General1_ABS.ERRORID<>0 AND g_General1_ABS.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[206] := 13800+USINT_TO_INT(g_General1_ABS.ERRORID);
+    END_IF;
+    IF g_General1_Axis.NCTOPLC.ERRORCODE>1 AND g_General1_Axis.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[207] := 13800+g_General1_Axis.NCTOPLC.ERRORCODE;
+    END_IF;
+  END_IF;
+  
+  IF g_bUseCommonAxis2 THEN
+    IF g_General2_Power.ERRORID<>0 AND g_General2_Power.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[208] := 14000+USINT_TO_INT(g_General2_Power.ERRORID); 
+    ELSIF g_General2_Home.ERRORID<>0 AND g_General2_Home.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[209] := 14000+USINT_TO_INT(g_General2_Home.ERRORID);
+    ELSIF g_General2_Jog.ERRORID<>0 AND g_General2_Jog.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[210] := 14000+USINT_TO_INT(g_General2_Jog.ERRORID);
+    ELSIF g_General2_Rel.ERRORID<>0 AND g_General2_Rel.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[211] := 14000+USINT_TO_INT(g_General2_Rel.ERRORID);
+    ELSIF g_General2_Stop.ERRORID<>0 AND g_General2_Stop.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[212] := 14000+USINT_TO_INT(g_General2_Stop.ERRORID);
+    ELSIF g_General2_Reset.ERRORID<>0 AND g_General2_Reset.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[213] := 14000+USINT_TO_INT(g_General2_Reset.ERRORID);
+    ELSIF g_General2_ABS.ERRORID<>0 AND g_General2_ABS.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[214] := 14000+USINT_TO_INT(g_General2_ABS.ERRORID);
+    END_IF;
+    IF g_General2_Axis.NCTOPLC.ERRORCODE>1 AND g_General2_Axis.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[215] := 14000+g_General2_Axis.NCTOPLC.ERRORCODE;
+    END_IF;
+  END_IF;
+  
+  IF g_bUseCommonAxis3 THEN
+    IF g_DDAxisPower.ERRORID<>0 AND g_DDAxisPower.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[192] := 13600+USINT_TO_INT(g_DDAxisPower.ERRORID); 
+    ELSIF g_DDAxisHome.ERRORID<>0 AND g_DDAxisHome.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[193] := 13600+USINT_TO_INT(g_DDAxisHome.ERRORID);
+    ELSIF g_DDAxisJog.ERRORID<>0 AND g_DDAxisJog.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[194] := 13600+USINT_TO_INT(g_DDAxisJog.ERRORID);
+    ELSIF g_DDAxisRel.ERRORID<>0 AND g_DDAxisRel.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[195] := 13600+USINT_TO_INT(g_DDAxisRel.ERRORID);
+    ELSIF g_DDAxisStop.ERRORID<>0 AND g_DDAxisStop.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[196] := 13600+USINT_TO_INT(g_DDAxisStop.ERRORID);
+    ELSIF g_DDAxisReset.ERRORID<>0 AND g_DDAxisReset.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[197] := 13600+USINT_TO_INT(g_DDAxisReset.ERRORID);
+    ELSIF g_DDAxisAbs.ERRORID<>0 AND g_DDAxisAbs.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[198] := 13600+USINT_TO_INT(g_DDAxisAbs.ERRORID);
+    END_IF;
+    IF DDAxis.NCTOPLC.ERRORCODE>1 AND DDAxis.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[199] := 13600+DDAxis.NCTOPLC.ERRORCODE;
+    END_IF;
+  END_IF;
+IF g_nAntiRejectionFun=2 THEN
+  IF g_nAntiRejectionAxisNum >=1 THEN
+    IF g_AntiRejection1Power.ERRORID<>0 AND g_AntiRejection1Power.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[230] := 15000+USINT_TO_INT(g_AntiRejection1Power.ERRORID); 
+    ELSIF g_AntiRejection1Home.ERRORID<>0 AND g_AntiRejection1Home.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[231] := 15000+USINT_TO_INT(g_AntiRejection1Home.ERRORID);
+    ELSIF g_AntiRejection1Jog.ERRORID<>0 AND g_AntiRejection1Jog.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[232] := 15000+USINT_TO_INT(g_AntiRejection1Jog.ERRORID);
+    ELSIF g_AntiRejection1Rel.ERRORID<>0 AND g_AntiRejection1Rel.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[233] := 15000+USINT_TO_INT(g_AntiRejection1Rel.ERRORID);
+    ELSIF g_AntiRejection1Stop.ERRORID<>0 AND g_AntiRejection1Stop.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[234] := 15000+USINT_TO_INT(g_AntiRejection1Stop.ERRORID);
+    ELSIF g_AntiRejection1Reset.ERRORID<>0 AND g_AntiRejection1Reset.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[235] := 15000+USINT_TO_INT(g_AntiRejection1Reset.ERRORID);
+    ELSIF g_AntiRejection1Abs.ERRORID<>0 AND g_AntiRejection1Abs.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[236] := 15000+USINT_TO_INT(g_AntiRejection1Abs.ERRORID);
+    END_IF;
+    IF AntiRejection1.NCTOPLC.ERRORCODE>1 AND AntiRejection1.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[237] := 15000+AntiRejection1.NCTOPLC.ERRORCODE;
+    END_IF;
+  END_IF;
+  
+END_IF;
+IF g_bIsConfigDustAxis2 THEN
+  IF g_AntiRejection3Power.ERRORID<>0 AND g_AntiRejection3Power.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[246] := 15400+USINT_TO_INT(g_AntiRejection3Power.ERRORID); 
+    ELSIF g_AntiRejection3Home.ERRORID<>0 AND g_AntiRejection3Home.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[247] := 15400+USINT_TO_INT(g_AntiRejection3Home.ERRORID);
+    ELSIF g_AntiRejection3Jog.ERRORID<>0 AND g_AntiRejection3Jog.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[248] := 15400+USINT_TO_INT(g_AntiRejection3Jog.ERRORID);
+    ELSIF g_AntiRejection3Rel.ERRORID<>0 AND g_AntiRejection3Rel.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[249] := 15400+USINT_TO_INT(g_AntiRejection3Rel.ERRORID);
+    ELSIF g_AntiRejection3Stop.ERRORID<>0 AND g_AntiRejection3Stop.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[250] := 15400+USINT_TO_INT(g_AntiRejection3Stop.ERRORID);
+    ELSIF g_AntiRejection3Reset.ERRORID<>0 AND g_AntiRejection3Reset.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[251] := 15400+USINT_TO_INT(g_AntiRejection3Reset.ERRORID);
+    ELSIF g_AntiRejection3Abs.ERRORID<>0 AND g_AntiRejection3Abs.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[252] := 15400+USINT_TO_INT(g_AntiRejection3Abs.ERRORID);
+    END_IF;
+    IF AntiRejection3.NCTOPLC.ERRORCODE>1 AND AntiRejection3.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[253] := 15400+AntiRejection3.NCTOPLC.ERRORCODE;
+    END_IF;
+END_IF;
+IF g_bIsConfigMiddleAvoidAxis1 THEN
+	IF g_AntiRejection4Power.ERRORID<>0 AND g_AntiRejection4Power.ERRORID<>51 THEN
+	  g_NcAlarm.alarmArray[254] := 15600+USINT_TO_INT(g_AntiRejection4Power.ERRORID); 
+	ELSIF g_AntiRejection4Home.ERRORID<>0 AND g_AntiRejection4Home.ERRORID<>51 THEN
+	  g_NcAlarm.alarmArray[255] := 15600+USINT_TO_INT(g_AntiRejection4Home.ERRORID);
+	ELSIF g_AntiRejection4Jog.ERRORID<>0 AND g_AntiRejection4Jog.ERRORID<>51 THEN
+	  g_NcAlarm.alarmArray[256] := 15600+USINT_TO_INT(g_AntiRejection4Jog.ERRORID);
+	ELSIF g_AntiRejection4Rel.ERRORID<>0 AND g_AntiRejection4Rel.ERRORID<>51 THEN
+	  g_NcAlarm.alarmArray[257] := 15600+USINT_TO_INT(g_AntiRejection4Rel.ERRORID);
+	ELSIF g_AntiRejection4Stop.ERRORID<>0 AND g_AntiRejection4Stop.ERRORID<>51 THEN
+	  g_NcAlarm.alarmArray[258] := 15600+USINT_TO_INT(g_AntiRejection4Stop.ERRORID);
+	ELSIF g_AntiRejection4Reset.ERRORID<>0 AND g_AntiRejection4Reset.ERRORID<>51 THEN
+	  g_NcAlarm.alarmArray[259] := 15600+USINT_TO_INT(g_AntiRejection4Reset.ERRORID);
+	ELSIF g_AntiRejection4Abs.ERRORID<>0 AND g_AntiRejection4Abs.ERRORID<>51 THEN
+	  g_NcAlarm.alarmArray[260] := 15600+USINT_TO_INT(g_AntiRejection4Abs.ERRORID);
+	END_IF;
+	IF AntiRejection4.NCTOPLC.ERRORCODE>1 AND AntiRejection4.NCTOPLC.ERRORCODE<>51 THEN
+	  g_NcAlarm.alarmArray[261] := 15600+AntiRejection4.NCTOPLC.ERRORCODE;
+	END_IF;
+END_IF;
+IF g_bIsConfigMiddleAvoidAxis2 THEN
+	IF g_AntiRejection5Power.ERRORID<>0 AND g_AntiRejection5Power.ERRORID<>51 THEN
+	  g_NcAlarm.alarmArray[262] := 15800+USINT_TO_INT(g_AntiRejection5Power.ERRORID); 
+	ELSIF g_AntiRejection5Home.ERRORID<>0 AND g_AntiRejection5Home.ERRORID<>51 THEN
+	  g_NcAlarm.alarmArray[263] := 15800+USINT_TO_INT(g_AntiRejection5Home.ERRORID);
+	ELSIF g_AntiRejection5Jog.ERRORID<>0 AND g_AntiRejection5Jog.ERRORID<>51 THEN
+	  g_NcAlarm.alarmArray[264] := 15800+USINT_TO_INT(g_AntiRejection5Jog.ERRORID);
+	ELSIF g_AntiRejection5Rel.ERRORID<>0 AND g_AntiRejection5Rel.ERRORID<>51 THEN
+	  g_NcAlarm.alarmArray[265] := 15800+USINT_TO_INT(g_AntiRejection5Rel.ERRORID);
+	ELSIF g_AntiRejection5Stop.ERRORID<>0 AND g_AntiRejection5Stop.ERRORID<>51 THEN
+	  g_NcAlarm.alarmArray[266] := 15800+USINT_TO_INT(g_AntiRejection5Stop.ERRORID);
+	ELSIF g_AntiRejection5Reset.ERRORID<>0 AND g_AntiRejection5Reset.ERRORID<>51 THEN
+	  g_NcAlarm.alarmArray[267] := 15800+USINT_TO_INT(g_AntiRejection5Reset.ERRORID);
+	ELSIF g_AntiRejection5Abs.ERRORID<>0 AND g_AntiRejection5Abs.ERRORID<>51 THEN
+	  g_NcAlarm.alarmArray[268] := 15800+USINT_TO_INT(g_AntiRejection5Abs.ERRORID);
+	END_IF;
+	IF AntiRejection5.NCTOPLC.ERRORCODE>1 AND AntiRejection5.NCTOPLC.ERRORCODE<>51 THEN
+	  g_NcAlarm.alarmArray[269] := 15800+AntiRejection5.NCTOPLC.ERRORCODE;
+	END_IF;
+END_IF;
+
+IF g_bIsConfigAvoidAxis THEN
+	IF g_AntiRejection6Power.ERRORID<>0 AND g_AntiRejection6Power.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[270] := 16000+USINT_TO_INT(g_AntiRejection6Power.ERRORID); 
+    ELSIF g_AntiRejection6Home.ERRORID<>0 AND g_AntiRejection6Home.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[271] := 16000+USINT_TO_INT(g_AntiRejection6Home.ERRORID);
+    ELSIF g_AntiRejection6Jog.ERRORID<>0 AND g_AntiRejection6Jog.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[272] := 16000+USINT_TO_INT(g_AntiRejection6Jog.ERRORID);
+    ELSIF g_AntiRejection6Rel.ERRORID<>0 AND g_AntiRejection6Rel.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[273] := 16000+USINT_TO_INT(g_AntiRejection6Rel.ERRORID);
+    ELSIF g_AntiRejection6Stop.ERRORID<>0 AND g_AntiRejection6Stop.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[274] := 16000+USINT_TO_INT(g_AntiRejection6Stop.ERRORID);
+    ELSIF g_AntiRejection6Reset.ERRORID<>0 AND g_AntiRejection6Reset.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[275] := 16000+USINT_TO_INT(g_AntiRejection6Reset.ERRORID);
+    ELSIF g_AntiRejection6Abs.ERRORID<>0 AND g_AntiRejection6Abs.ERRORID<>51 THEN
+      g_NcAlarm.alarmArray[276] := 16000+USINT_TO_INT(g_AntiRejection6Abs.ERRORID);
+    END_IF;
+    IF AntiRejection6.NCTOPLC.ERRORCODE>1 AND AntiRejection6.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[277] := 16000+AntiRejection6.NCTOPLC.ERRORCODE;
+    END_IF;
+END_IF;
+
+IF g_bDualAxis1Config THEN
+  IF g_NCMoveData.NCAXISDATA[0].ErrorID[0]<>0 AND g_NCMoveData.NCAXISDATA[0].ErrorID[0]<>51 THEN
+      g_NcAlarm.alarmArray[299] := 16200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[0].ErrorID[0]); 
+    ELSIF g_NCMoveData.NCAXISDATA[0].ErrorID[1]<>0 AND g_NCMoveData.NCAXISDATA[0].ErrorID[1]<>51 THEN
+      g_NcAlarm.alarmArray[300] := 16200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[0].ErrorID[1]);
+    ELSIF g_NCMoveData.NCAXISDATA[0].ErrorID[2]<>0 AND g_NCMoveData.NCAXISDATA[0].ErrorID[2]<>51 THEN
+      g_NcAlarm.alarmArray[301] := 16200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[0].ErrorID[2]);
+    ELSIF g_NCMoveData.NCAXISDATA[0].ErrorID[6]<>0 AND g_NCMoveData.NCAXISDATA[0].ErrorID[6]<>51 THEN
+      g_NcAlarm.alarmArray[302] := 16200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[0].ErrorID[6]);
+    ELSIF g_NCMoveData.NCAXISDATA[0].ErrorID[4]<>0 AND g_NCMoveData.NCAXISDATA[0].ErrorID[4]<>51 THEN
+      g_NcAlarm.alarmArray[303] := 16200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[0].ErrorID[4]);
+    ELSIF g_NCMoveData.NCAXISDATA[0].ErrorID[3]<>0 AND g_NCMoveData.NCAXISDATA[0].ErrorID[3]<>51 THEN
+      g_NcAlarm.alarmArray[304] := 16200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[0].ErrorID[3]);
+    ELSIF g_NCMoveData.NCAXISDATA[0].ErrorID[5]<>0 AND g_NCMoveData.NCAXISDATA[0].ErrorID[5]<>51 THEN
+      g_NcAlarm.alarmArray[305] := 16200+USINT_TO_INT(g_NCMoveData.NCAXISDATA[0].ErrorID[5]);
+    END_IF;
+    IF DualAxis1.NCTOPLC.ERRORCODE>1 AND DualAxis1.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[306] := 16200+DualAxis1.NCTOPLC.ERRORCODE;
+    END_IF; 
+END_IF;
+
+IF g_bDualAxis2Config THEN
+  IF g_NCMoveData.NCAXISDATA[1].ErrorID[0]<>0 AND g_NCMoveData.NCAXISDATA[1].ErrorID[0]<>51 THEN
+      g_NcAlarm.alarmArray[307] := 16400+USINT_TO_INT(g_NCMoveData.NCAXISDATA[1].ErrorID[0]); 
+    ELSIF g_NCMoveData.NCAXISDATA[1].ErrorID[1]<>0 AND g_NCMoveData.NCAXISDATA[1].ErrorID[1]<>51 THEN
+      g_NcAlarm.alarmArray[308] := 16400+USINT_TO_INT(g_NCMoveData.NCAXISDATA[1].ErrorID[1]);
+    ELSIF g_NCMoveData.NCAXISDATA[1].ErrorID[2]<>0 AND g_NCMoveData.NCAXISDATA[1].ErrorID[2]<>51 THEN
+      g_NcAlarm.alarmArray[309] := 16400+USINT_TO_INT(g_NCMoveData.NCAXISDATA[1].ErrorID[2]);
+    ELSIF g_NCMoveData.NCAXISDATA[1].ErrorID[6]<>0 AND g_NCMoveData.NCAXISDATA[1].ErrorID[6]<>51 THEN
+      g_NcAlarm.alarmArray[310] := 16400+USINT_TO_INT(g_NCMoveData.NCAXISDATA[1].ErrorID[6]);
+    ELSIF g_NCMoveData.NCAXISDATA[1].ErrorID[4]<>0 AND g_NCMoveData.NCAXISDATA[1].ErrorID[4]<>51 THEN
+      g_NcAlarm.alarmArray[311] := 16400+USINT_TO_INT(g_NCMoveData.NCAXISDATA[1].ErrorID[4]);
+    ELSIF g_NCMoveData.NCAXISDATA[1].ErrorID[3]<>0 AND g_NCMoveData.NCAXISDATA[1].ErrorID[3]<>51 THEN
+      g_NcAlarm.alarmArray[312] := 16400+USINT_TO_INT(g_NCMoveData.NCAXISDATA[1].ErrorID[3]);
+    ELSIF g_NCMoveData.NCAXISDATA[1].ErrorID[5]<>0 AND g_NCMoveData.NCAXISDATA[1].ErrorID[5]<>51 THEN
+      g_NcAlarm.alarmArray[313] := 16400+USINT_TO_INT(g_NCMoveData.NCAXISDATA[1].ErrorID[5]);
+    END_IF;
+    IF DualAxis2.NCTOPLC.ERRORCODE>1 AND DualAxis2.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[314] := 16400+DualAxis2.NCTOPLC.ERRORCODE;
+    END_IF; 
+END_IF;
+
+IF g_bDualAxis3Config THEN
+  IF g_NCMoveData.NCAXISDATA[2].ErrorID[0]<>0 AND g_NCMoveData.NCAXISDATA[2].ErrorID[0]<>51 THEN
+      g_NcAlarm.alarmArray[315] := 16600+USINT_TO_INT(g_NCMoveData.NCAXISDATA[2].ErrorID[0]); 
+    ELSIF g_NCMoveData.NCAXISDATA[2].ErrorID[1]<>0 AND g_NCMoveData.NCAXISDATA[2].ErrorID[1]<>51 THEN
+      g_NcAlarm.alarmArray[316] := 16600+USINT_TO_INT(g_NCMoveData.NCAXISDATA[2].ErrorID[1]);
+    ELSIF g_NCMoveData.NCAXISDATA[2].ErrorID[2]<>0 AND g_NCMoveData.NCAXISDATA[2].ErrorID[2]<>51 THEN
+      g_NcAlarm.alarmArray[317] := 16600+USINT_TO_INT(g_NCMoveData.NCAXISDATA[2].ErrorID[2]);
+    ELSIF g_NCMoveData.NCAXISDATA[2].ErrorID[6]<>0 AND g_NCMoveData.NCAXISDATA[2].ErrorID[6]<>51 THEN
+      g_NcAlarm.alarmArray[318] := 16600+USINT_TO_INT(g_NCMoveData.NCAXISDATA[2].ErrorID[6]);
+    ELSIF g_NCMoveData.NCAXISDATA[2].ErrorID[4]<>0 AND g_NCMoveData.NCAXISDATA[2].ErrorID[4]<>51 THEN
+      g_NcAlarm.alarmArray[319] := 16600+USINT_TO_INT(g_NCMoveData.NCAXISDATA[2].ErrorID[4]);
+    ELSIF g_NCMoveData.NCAXISDATA[2].ErrorID[3]<>0 AND g_NCMoveData.NCAXISDATA[2].ErrorID[3]<>51 THEN
+      g_NcAlarm.alarmArray[320] := 16600+USINT_TO_INT(g_NCMoveData.NCAXISDATA[2].ErrorID[3]);
+    ELSIF g_NCMoveData.NCAXISDATA[2].ErrorID[5]<>0 AND g_NCMoveData.NCAXISDATA[2].ErrorID[5]<>51 THEN
+      g_NcAlarm.alarmArray[321] := 16600+USINT_TO_INT(g_NCMoveData.NCAXISDATA[2].ErrorID[5]);
+    END_IF;
+    IF DualAxis3.NCTOPLC.ERRORCODE>1 AND DualAxis3.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[322] := 16600+DualAxis3.NCTOPLC.ERRORCODE;
+    END_IF; 
+END_IF;
+
+IF g_bDualAxis4Config THEN
+  IF g_NCMoveData.NCAXISDATA[3].ErrorID[0]<>0 AND g_NCMoveData.NCAXISDATA[3].ErrorID[0]<>51 THEN
+      g_NcAlarm.alarmArray[323] := 16800+USINT_TO_INT(g_NCMoveData.NCAXISDATA[3].ErrorID[0]); 
+    ELSIF g_NCMoveData.NCAXISDATA[3].ErrorID[1]<>0 AND g_NCMoveData.NCAXISDATA[3].ErrorID[1]<>51 THEN
+      g_NcAlarm.alarmArray[324] := 16800+USINT_TO_INT(g_NCMoveData.NCAXISDATA[3].ErrorID[1]);
+    ELSIF g_NCMoveData.NCAXISDATA[3].ErrorID[2]<>0 AND g_NCMoveData.NCAXISDATA[3].ErrorID[2]<>51 THEN
+      g_NcAlarm.alarmArray[325] := 16800+USINT_TO_INT(g_NCMoveData.NCAXISDATA[3].ErrorID[2]);
+    ELSIF g_NCMoveData.NCAXISDATA[3].ErrorID[6]<>0 AND g_NCMoveData.NCAXISDATA[3].ErrorID[6]<>51 THEN
+      g_NcAlarm.alarmArray[326] := 16800+USINT_TO_INT(g_NCMoveData.NCAXISDATA[3].ErrorID[6]);
+    ELSIF g_NCMoveData.NCAXISDATA[3].ErrorID[4]<>0 AND g_NCMoveData.NCAXISDATA[3].ErrorID[4]<>51 THEN
+      g_NcAlarm.alarmArray[327] := 16800+USINT_TO_INT(g_NCMoveData.NCAXISDATA[3].ErrorID[4]);
+    ELSIF g_NCMoveData.NCAXISDATA[3].ErrorID[3]<>0 AND g_NCMoveData.NCAXISDATA[3].ErrorID[3]<>51 THEN
+      g_NcAlarm.alarmArray[328] := 16800+USINT_TO_INT(g_NCMoveData.NCAXISDATA[3].ErrorID[3]);
+    ELSIF g_NCMoveData.NCAXISDATA[3].ErrorID[5]<>0 AND g_NCMoveData.NCAXISDATA[3].ErrorID[5]<>51 THEN
+      g_NcAlarm.alarmArray[329] := 16800+USINT_TO_INT(g_NCMoveData.NCAXISDATA[3].ErrorID[5]);
+    END_IF;
+    IF DualAxis4.NCTOPLC.ERRORCODE>1 AND DualAxis4.NCTOPLC.ERRORCODE<>51 THEN
+      g_NcAlarm.alarmArray[330] := 16800+DualAxis4.NCTOPLC.ERRORCODE;
+    END_IF; 
+END_IF;
+(*NC轴未使能报警18000-19000报警号被用*)
+
+
+(*下一个报警下标为 389 报警号位19400*)
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[NC详细报警处理模块]]></xhtml:p>
+  </documentation>
+</pou>

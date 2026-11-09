@@ -1,0 +1,852 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FrontSustainHome" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC暂停全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC复位全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Sustain4Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Sustain5Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Sustain6Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Sustain4Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Sustain5Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Sustain6Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Sustain4Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Sustain5Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Sustain6Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bSusTain4HomeCal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSusTain5HomeCal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSusTain6HomeCal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bSustain4Home">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始，一般被HMI控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSustain5Home">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始，一般被HMI控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSustain6Home">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始，一般被HMI控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSustain7Home">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始，一般被HMI控制]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bSustain4HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bSustain5HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bSustain6HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bSustain1HomeError">
+        <type>
+          <USINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零错误]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustain4HomeState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零状态机变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustain5HomeState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零状态机变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustain6HomeState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零状态机变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustain7HomeState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零状态机变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustain4HomeMode">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustain5HomeMode">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustain6HomeMode">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustain7HomeMode">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSustain4HomePosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后坐标偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSustain5HomePosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后坐标偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSustain6HomePosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后坐标偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSustain7HomePosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后坐标偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSustain4HomeOffset">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后实际位置偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSustain5HomeOffset">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后实际位置偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSustain6HomeOffset">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后实际位置偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSustain7HomeOffset">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后实际位置偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSustain4HomeVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后实际位置偏置的运行速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSustain5HomeVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后实际位置偏置的运行速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSustain6HomeVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后实际位置偏置的运行速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSustain7HomeVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后实际位置偏置的运行速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bChangeHomeMode">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nChangeHomeModeState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nChangeModeAxis">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bCleanZ4Homed">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Rtring_Z1Recover">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_Z2Recover">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_Z3Recover">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_Z4Recover">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nRecoverZ1DatumMarkState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nRecoverZ2DatumMarkState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nRecoverZ3DatumMarkState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nRecoverZ4DatumMarkState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger1(CLK := bSustain4Home);
+RTrigger2(CLK := bSustain5Home);
+RTrigger3(CLK := bSustain6Home);
+RTrigger4(CLK := bSustain7Home);
+
+IF RTrigger1.Q THEN
+    nSustain4HomeState := 1;
+    g_bSustain4HomeDone := FALSE;
+    bSustain4Home := FALSE;
+END_IF;
+IF RTrigger2.Q THEN
+    nSustain5HomeState := 1;
+    g_bSustain5HomeDone := FALSE;
+    bSustain5Home := FALSE;
+END_IF;
+IF RTrigger3.Q THEN
+    nSustain6HomeState := 1;
+    g_bSustain6HomeDone := FALSE;
+    bSustain6Home := FALSE;
+END_IF;
+IF RTrigger4.Q THEN
+    nSustain7HomeState := 1;
+    g_boAntiRejection2HomeDone := FALSE;
+    bSustain7Home := FALSE;
+END_IF;
+
+CASE nSustain4HomeState OF
+  0:
+    nSustain4HomeState := 0;
+  1:
+    g_Sustain4Home.Execute := TRUE;
+    g_Sustain4Home.Position := dSustain4HomePosition;
+    g_Sustain4Home.bCalibrationCam := g_bSusTain4HomeCal;
+    g_Sustain4Home.DISTANCE := dSustain4HomeOffset;
+    IF nSustain4HomeMode = 0 THEN
+      g_Sustain4Home.HomingMode := 0;
+    ELSIF nSustain4HomeMode = 1 THEN
+      g_Sustain4Home.HomingMode := 5;
+    ELSIF nSustain4HomeMode = 3 THEN
+      g_Sustain4Home.HomingMode := 1;
+    END_IF;
+    
+    IF g_Sustain4Home.Done THEN
+      g_Sustain4Home.Execute := FALSE;
+      g_bSustain4HomeDone := TRUE;
+      nSustain4HomeState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nSustain4HomeState := 20;
+    END_IF;
+    IF g_Sustain4Home.CommandAborted OR g_Sustain4Home.Error THEN
+      g_Sustain4Home.Execute := FALSE;
+      nSustain4HomeState := 0;
+    END_IF;
+  20:
+    g_Sustain4Home.Execute := FALSE;
+    g_Sustain4Stop.Execute := TRUE;
+    IF g_Sustain4Stop.Done AND g_bPlcStartBuffer THEN
+      g_Sustain4Stop.Execute := FALSE;
+      nSustain4HomeState := 1;
+    END_IF;
+    IF g_Sustain4Stop.CommandAborted OR g_Sustain4Stop.Error THEN
+      g_Sustain4Stop.Execute := FALSE;
+      nSustain4HomeState := 0;
+    END_IF;
+END_CASE;
+
+CASE nSustain5HomeState OF
+  0:
+    nSustain5HomeState := 0;
+  1:
+    g_Sustain5Home.Execute := TRUE;
+    g_Sustain5Home.Position := dSustain5HomePosition;
+    g_Sustain5Home.bCalibrationCam := g_bSusTain5HomeCal;
+    g_Sustain5Home.DISTANCE := dSustain5HomeOffset;
+    IF nSustain5HomeMode = 0 THEN
+      g_Sustain5Home.HomingMode := 0;
+    ELSIF nSustain5HomeMode = 1 THEN
+      g_Sustain5Home.HomingMode := 5;
+     ELSIF nSustain5HomeMode = 3 THEN
+      g_Sustain5Home.HomingMode := 1;  
+    END_IF;
+    IF g_Sustain5Home.Done THEN
+      g_Sustain5Home.Execute := FALSE;
+      g_bSustain5HomeDone := TRUE;
+      nSustain5HomeState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nSustain5HomeState := 20;
+    END_IF;
+    IF g_Sustain5Home.CommandAborted OR g_Sustain5Home.Error THEN
+      g_Sustain5Home.Execute := FALSE;
+      nSustain5HomeState := 0;
+    END_IF;
+  20:
+    g_Sustain5Home.Execute := FALSE;
+    g_Sustain5Stop.Execute := TRUE;
+    IF g_Sustain5Stop.Done AND g_bPlcStartBuffer THEN
+      g_Sustain5Stop.Execute := FALSE;
+      nSustain5HomeState := 1;
+    END_IF;
+    IF g_Sustain5Stop.CommandAborted OR g_Sustain5Stop.Error THEN
+      g_Sustain5Stop.Execute := FALSE;
+      nSustain5HomeState := 0;
+    END_IF;
+END_CASE;
+
+CASE nSustain6HomeState OF
+  0:
+    nSustain6HomeState := 0;
+  1:
+    g_Sustain6Home.Execute := TRUE;
+    g_Sustain6Home.Position := dSustain6HomePosition;
+    g_Sustain6Home.bCalibrationCam := g_bSusTain6HomeCal;
+    g_Sustain6Home.DISTANCE := dSustain6HomeOffset;
+    IF nSustain6HomeMode = 0 THEN
+      g_Sustain6Home.HomingMode := 0;
+    ELSIF nSustain6HomeMode = 1 THEN
+      g_Sustain6Home.HomingMode := 5;
+    ELSIF nSustain6HomeMode = 3 THEN
+      g_Sustain6Home.HomingMode := 1;
+    END_IF;
+    IF g_Sustain6Home.Done THEN
+      g_Sustain6Home.Execute := FALSE;
+		g_bSustain6HomeDone := TRUE;
+      nSustain6HomeState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nSustain6HomeState := 20;
+    END_IF;
+    IF g_Sustain6Home.CommandAborted OR g_Sustain6Home.Error THEN
+      g_Sustain6Home.Execute := FALSE;
+      nSustain6HomeState := 0;
+    END_IF;
+  20:
+    g_Sustain6Home.Execute := FALSE;
+    g_Sustain6Stop.Execute := TRUE;
+    IF g_Sustain6Stop.Done AND g_bPlcStartBuffer THEN
+      g_Sustain6Stop.Execute := FALSE;
+      nSustain6HomeState := 1;
+    END_IF;
+    IF g_Sustain6Stop.CommandAborted OR g_Sustain6Stop.Error THEN
+      g_Sustain6Stop.Execute := FALSE;
+      nSustain6HomeState := 0;
+    END_IF;
+END_CASE;
+
+CASE nSustain7HomeState OF
+  0:
+    nSustain7HomeState := 0;
+  1:
+    g_AntiRejection2Home.Execute := TRUE;
+    g_AntiRejection2Home.Position := dSustain7HomePosition;
+    g_AntiRejection2Home.bCalibrationCam := g_bAntiRejection2HomeSignal;
+    g_AntiRejection2Home.DISTANCE := dSustain7HomeOffset;
+    IF nSustain7HomeMode = 0 THEN
+      g_AntiRejection2Home.HomingMode := 0;
+    ELSIF nSustain7HomeMode = 1 THEN
+      g_AntiRejection2Home.HomingMode := 5;
+    ELSIF nSustain7HomeMode = 3 THEN
+      g_AntiRejection2Home.HomingMode := 1;
+    END_IF;
+    IF g_AntiRejection2Home.Done THEN
+      g_AntiRejection2Home.Execute := FALSE;
+		g_boAntiRejection2HomeDone := TRUE;
+      nSustain7HomeState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nSustain7HomeState := 20;
+    END_IF;
+    IF g_AntiRejection2Home.CommandAborted OR g_AntiRejection2Home.Error THEN
+      g_AntiRejection2Home.Execute := FALSE;
+      nSustain7HomeState := 0;
+    END_IF;
+  20:
+    g_AntiRejection2Home.Execute := FALSE;
+    g_AntiRejection2Stop.Execute := TRUE;
+    IF g_AntiRejection2Stop.Done AND g_bPlcStartBuffer THEN
+      g_AntiRejection2Stop.Execute := FALSE;
+      nSustain7HomeState := 1;
+    END_IF;
+    IF g_AntiRejection2Stop.CommandAborted OR g_AntiRejection2Stop.Error THEN
+      g_AntiRejection2Stop.Execute := FALSE;
+      nSustain7HomeState := 0;
+    END_IF;
+END_CASE;
+
+IF bChangeHomeMode THEN
+  bChangeHomeMode := FALSE;
+  nChangeHomeModeState := nChangeModeAxis;
+END_IF;
+
+CASE nChangeHomeModeState OF
+  0:
+    nChangeHomeModeState := 0;
+  1:
+    g_Sustain4Home.Execute := TRUE;
+    IF nSustain4HomeMode = 0 THEN
+      g_Sustain4Home.HomingMode := 0;
+    ELSIF nSustain4HomeMode = 1 THEN
+      g_Sustain4Home.HomingMode := 5;
+    ELSIF nSustain4HomeMode = 2 THEN
+      g_Sustain4Home.HomingMode := 4;
+    END_IF;
+    g_Sustain4Home.Position := 0.0;
+    g_Sustain4Home.DISTANCE := 0.0;
+    IF g_Sustain4Home.Done THEN
+      g_Sustain4Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+    IF g_Sustain4Home.CommandAborted OR g_Sustain4Home.Error THEN
+      g_Sustain4Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+   2:
+    g_Sustain5Home.Execute := TRUE;
+    IF nSustain5HomeMode = 0 THEN
+      g_Sustain5Home.HomingMode := 0;
+    ELSIF nSustain5HomeMode = 1 THEN
+      g_Sustain5Home.HomingMode := 5;
+    ELSIF nSustain5HomeMode = 2 THEN
+      g_Sustain5Home.HomingMode := 4;
+    END_IF;
+    g_Sustain5Home.Position := 0.0;
+    g_Sustain5Home.DISTANCE := 0.0;
+    IF g_Sustain5Home.Done THEN
+      g_Sustain5Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+    IF g_Sustain5Home.CommandAborted OR g_Sustain5Home.Error THEN
+      g_Sustain5Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+  3:
+    g_Sustain6Home.Execute := TRUE;
+    IF nSustain6HomeMode = 0 THEN
+      g_Sustain6Home.HomingMode := 0;
+    ELSIF nSustain6HomeMode = 1 THEN
+      g_Sustain6Home.HomingMode := 5;
+    ELSIF nSustain6HomeMode = 2 THEN
+      g_Sustain6Home.HomingMode := 4;
+    END_IF;
+    g_Sustain6Home.Position := 0.0;
+    g_Sustain6Home.DISTANCE := 0.0;
+    IF g_Sustain6Home.Done THEN
+      g_Sustain6Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+    IF g_Sustain6Home.CommandAborted OR g_Sustain6Home.Error THEN
+      g_Sustain6Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+  4:
+	g_AntiRejection2Home.Execute := TRUE;
+    IF nSustain7HomeMode = 0 THEN
+      g_AntiRejection2Home.HomingMode := 0;
+    ELSIF nSustain7HomeMode = 1 THEN
+      g_AntiRejection2Home.HomingMode := 5;
+    ELSIF nSustain7HomeMode = 2 THEN
+      g_AntiRejection2Home.HomingMode := 4;
+    END_IF;
+    
+    g_AntiRejection2Home.Position := 0.0;
+    g_AntiRejection2Home.DISTANCE := 0.0;
+    IF g_AntiRejection2Home.Done THEN
+      g_AntiRejection2Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+    IF g_AntiRejection2Home.CommandAborted OR g_AntiRejection2Home.Error THEN
+      g_AntiRejection2Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+
+END_CASE;
+(***界面上下发了去掉Z1轴回零标志***)
+IF g_bCleanZ1Homed THEN
+   g_Sustain4Home.HomingMode := 1;
+   g_Sustain4Home.Execute := TRUE; 
+   g_bSustain4HomeDone := FALSE; 
+   IF g_Sustain4Home.DONE OR g_Sustain4Home.ERROR THEN 
+    g_Sustain4Home.Execute := FALSE; 
+    g_bCleanZ1Homed := FALSE; 
+   END_IF;
+END_IF;
+
+(***界面上下发了去掉Z2轴回零标志***)
+IF g_bCleanZ2Homed THEN
+   g_Sustain5Home.HomingMode := 1;
+   g_Sustain5Home.Execute := TRUE; 
+   g_bSustain5HomeDone := FALSE; 
+   IF g_Sustain5Home.DONE OR g_Sustain5Home.ERROR THEN 
+    g_Sustain5Home.Execute := FALSE; 
+    g_bCleanZ2Homed := FALSE; 
+   END_IF;
+END_IF;
+
+(***界面上下发了去掉Z3轴回零标志***)
+IF g_bCleanZ3Homed THEN
+   g_Sustain6Home.HomingMode := 1;
+   g_Sustain6Home.Execute := TRUE; 
+   g_bSustain6HomeDone := FALSE; 
+   IF g_Sustain6Home.DONE OR g_Sustain6Home.ERROR THEN 
+    g_Sustain6Home.Execute := FALSE; 
+    g_bCleanZ3Homed := FALSE; 
+   END_IF;
+END_IF;
+(***界面上下发了去掉Z4轴回零标志***)
+IF bCleanZ4Homed THEN
+   g_AntiRejection2Home.HomingMode := 1;
+   g_AntiRejection2Home.Execute := TRUE; 
+   g_boAntiRejection2HomeDone := FALSE; 
+   IF g_AntiRejection2Home.DONE OR g_AntiRejection2Home.ERROR THEN 
+    g_AntiRejection2Home.Execute := FALSE; 
+    bCleanZ4Homed := FALSE; 
+   END_IF;
+END_IF;
+
+
+
+(*伺服断电恢复基准点*)
+Rtring_Z1Recover(CLK := g_bRecoverZ1DatumMark);
+IF Rtring_Z1Recover.Q THEN
+  g_bRecoverZ1DatumMark := FALSE;
+  nRecoverZ1DatumMarkState := 1;
+END_IF;
+CASE nRecoverZ1DatumMarkState OF
+  1:
+   g_Sustain4Home.HomingMode := 4;
+   g_Sustain4Home.Position :=g_dZ1DatumMark; (*恢复基准点坐标差值*)
+   g_Sustain4Home.Execute := TRUE;  
+   IF  g_Sustain4Home.DONE OR g_Sustain4Home.ERROR THEN 
+		g_bSustain4HomeDone := TRUE;
+		g_Sustain4Home.Execute := FALSE; 
+		nRecoverZ1DatumMarkState := 0; 
+   END_IF;
+END_CASE;
+
+Rtring_Z2Recover(CLK := g_bRecoverZ2DatumMark);
+IF Rtring_Z2Recover.Q THEN
+  g_bRecoverZ2DatumMark := FALSE;
+  nRecoverZ2DatumMarkState := 1;
+END_IF;
+CASE nRecoverZ2DatumMarkState OF
+  1:
+   g_Sustain5Home.HomingMode := 4;
+   g_Sustain5Home.Position :=g_dZ2DatumMark; (*恢复基准点坐标差值*)
+   g_Sustain5Home.Execute := TRUE;  
+   IF  g_Sustain5Home.DONE OR g_Sustain5Home.ERROR THEN 
+		g_bSustain5HomeDone := TRUE;
+		g_Sustain5Home.Execute := FALSE; 
+		nRecoverZ2DatumMarkState := 0; 
+   END_IF;
+END_CASE;
+
+Rtring_Z3Recover(CLK := g_bRecoverZ3DatumMark);
+IF Rtring_Z3Recover.Q THEN
+  g_bRecoverZ3DatumMark := FALSE;
+  nRecoverZ3DatumMarkState := 1;
+END_IF;
+CASE nRecoverZ3DatumMarkState OF
+  1:
+   g_Sustain6Home.HomingMode := 4;
+   g_Sustain6Home.Position :=g_dZ3DatumMark; (*恢复基准点坐标差值*)
+   g_Sustain6Home.Execute := TRUE;  
+   IF  g_Sustain6Home.DONE OR g_Sustain6Home.ERROR THEN 
+		g_bSustain6HomeDone := TRUE;
+		g_Sustain6Home.Execute := FALSE; 
+		nRecoverZ3DatumMarkState := 0; 
+   END_IF;
+END_CASE;
+
+Rtring_Z4Recover(CLK := g_bRecoverZ4DatumMark);
+IF Rtring_Z4Recover.Q THEN
+  g_bRecoverZ4DatumMark := FALSE;
+  nRecoverZ4DatumMarkState := 1;
+END_IF;
+CASE nRecoverZ4DatumMarkState OF
+  1:
+   g_AntiRejection2Home.HomingMode := 4;
+   g_AntiRejection2Home.Position :=g_dU2DatumMark; (*恢复基准点坐标差值*)
+   g_AntiRejection2Home.Execute := TRUE;  
+   IF  g_AntiRejection2Home.DONE OR g_AntiRejection2Home.ERROR THEN 
+		g_boAntiRejection2HomeDone := TRUE;
+		g_AntiRejection2Home.Execute := FALSE; 
+		nRecoverZ4DatumMarkState := 0; 
+   END_IF;
+END_CASE;
+
+
+
+IF g_bPlcResetBuffer THEN
+  nSustain4HomeState := 0;
+  nSustain5HomeState := 0;
+  nSustain6HomeState := 0;
+   nSustain7HomeState := 0;
+  nChangeHomeModeState := 0;
+  g_Sustain4Stop.Execute := FALSE;
+  g_Sustain4Home.Execute := FALSE;
+  g_Sustain5Stop.Execute := FALSE;
+  g_Sustain5Home.Execute := FALSE;
+  g_Sustain6Stop.Execute := FALSE;
+  g_Sustain6Home.Execute := FALSE;
+  g_AntiRejection2Home.EXECUTE := FALSE;
+  g_AntiRejection2Stop.Execute := FALSE;
+  g_bSustain4HomeDone := TRUE;
+  g_bSustain5HomeDone := TRUE;
+  g_bSustain6HomeDone := TRUE;
+  g_boAntiRejection2HomeDone := TRUE;
+  g_bRecoverZ4DatumMark := FALSE;
+  g_bRecoverZ3DatumMark := FALSE;
+  g_bRecoverZ2DatumMark := FALSE;
+  g_bRecoverZ1DatumMark := FALSE;
+END_IF;
+g_nZ1HomeMode := nSustain4HomeMode;
+g_nZ2HomeMode := nSustain5HomeMode;
+g_nZ3HomeMode := nSustain6HomeMode;
+g_nZ4HomeMode := nSustain7HomeMode;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

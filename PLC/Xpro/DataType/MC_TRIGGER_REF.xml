@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MC_TRIGGER_REF">
+  <baseType>
+    <struct>
+      <variable name="ABORT">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="PROBE">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="TRIGGERTYPE">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_YDTopMaterialAdjust" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_General1_ABS">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_General1_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_General1_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral1ABSOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral1ABSClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral1ABSDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fGeneral1ABSPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fGeneral1ABSVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_biYDTopMaterialAbsOpen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚输入，顶料轴顶料开启]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biYDTopMaterialAbsClose">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚输入，顶料轴顶料关闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiYDTopMaterialAbsType">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚输入，顶料轴切割运动类型]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boYDTopMaterialAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚输出，运动完成状态输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nSwitchState">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="R_Trigger0">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dYDHeadLength">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[头料长度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dYDPartLength">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[零件长度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dBackDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回退长度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dAbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[运动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dTopMaterialTotalLen">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[顶料总长]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_Delay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger0(CLK := g_biYDTopMaterialAbsOpen);
+R_Trigger1(CLK := g_biYDTopMaterialAbsClose);
+
+IF R_Trigger0.Q THEN
+  nSwitchState := 1;
+  g_boYDTopMaterialAbsDone := FALSE;
+END_IF;
+
+IF R_Trigger1.Q THEN
+  g_boYDTopMaterialAbsDone := FALSE;
+  g_bGeneral1ABSClose := TRUE;
+  nSwitchState := 3;
+END_IF;
+
+CASE nSwitchState OF
+  0:
+  nSwitchState := 0;
+  1:
+  IF LREAL_TO_INT(g_fiYDTopMaterialAbsType) = 0 THEN
+    g_fGeneral1ABSPos := dTopMaterialTotalLen - g_dYDHeadLength;
+    g_fGeneral1ABSVel := dAbsVelocity;
+  ELSIF LREAL_TO_INT(g_fiYDTopMaterialAbsType) = 1 THEN
+    g_fGeneral1ABSPos := dTopMaterialTotalLen - g_dYDPartLength;
+    g_fGeneral1ABSVel := dAbsVelocity;
+  ELSIF LREAL_TO_INT(g_fiYDTopMaterialAbsType) = 2 THEN
+    g_fGeneral1ABSPos := g_General1_Axis.NCTOPLC.SETPOS - dBackDistance;
+    g_fGeneral1ABSVel := dAbsVelocity;
+  END_IF;
+  g_bGeneral1ABSDone:=FALSE;
+  nSwitchState := 2;
+  2:
+  g_bGeneral1ABSOpen := TRUE;
+  
+  IF g_bGeneral1ABSDone THEN
+    g_bGeneral1ABSOpen := FALSE;
+    g_boYDTopMaterialAbsDone := TRUE;
+    nSwitchState := 0;
+  END_IF;
+  3:
+  Ton_Delay(IN := TRUE,PT := T#10ms);
+  
+  IF Ton_Delay.Q THEN
+    g_bGeneral1ABSClose := FALSE;
+    Ton_Delay(IN := FALSE);
+    nSwitchState := 0;
+  END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  Ton_Delay(IN := FALSE);
+  g_bGeneral1ABSOpen := FALSE;
+  g_bGeneral1ABSClose := FALSE;
+  nSwitchState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[顶料轴]]></xhtml:p>
+  </documentation>
+</pou>

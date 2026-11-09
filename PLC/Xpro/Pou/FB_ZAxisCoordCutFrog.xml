@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ZAxisCoordCutFrog" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Rtring_Enable">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nFrogState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring_Enable(CLK := g_bZCoorCutLeapFrogEnable);
+IF Rtring_Enable.Q THEN
+  nFrogState := 10;
+   g_ZCoordCutLeapFrog.LEAPHEIGHT := g_dZCoorCutLeapHeight;
+   g_ZCoordCutLeapFrog.LIFTHEIGHT := g_dZCoorCutLeapLiftHeight;
+  g_bZCoorCutLeapFrogEnable := FALSE;
+  g_bZCoorCutLeapDone := FALSE;
+  g_bZCoorCutLeapFrogDone := FALSE;
+END_IF;
+g_ZCoordCutLeapFrog.REMAINTIME := g_fZLeapTime_rem;
+g_ZCoordCutLeapFrog.REMAINDISTANCE := g_diMotionDistance; 
+
+
+CASE nFrogState OF
+  0:
+	nFrogState := 0;
+  10:
+	g_ZCoordCutLeapFrog.EXECUTE := TRUE;
+    g_ZCoordCutLeapFrog.CURHEIGHT :=g_dZCoorCutLeapSetCurHeight;
+    g_ZCoordCutLeapFrog.SETHEIGHT := g_dZCoorCutLeapSetHeight;
+    nFrogState := 20;
+  20:
+    IF g_ZCoordCutLeapFrog.LEAPDONE THEN
+      g_bZCoorCutLeapDone := TRUE;
+    END_IF;
+    IF g_ZCoordCutLeapFrog.DONE THEN
+      g_bZCoorCutLeapFrogDone := TRUE;
+      nFrogState := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nFrogState := 0;
+  g_ZCoordCutLeapFrog.Execute := FALSE;
+  g_bZCoorCutLeapFrogEnable := FALSE;
+  g_bZCoorCutLeapDone := FALSE;
+  g_bZCoorCutLeapFrogDone := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

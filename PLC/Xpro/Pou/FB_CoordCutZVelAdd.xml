@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CoordCutZVelAdd" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="bVelAddDownEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bVelAddUpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dTempValue">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTemp">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTempMiddleValue">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTempLast">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCornerHighCompen">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCalcTemp">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCalcCornerNeedHighCompen">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*叠加CNC的Z轴速度到NC的Z轴*)
+(*如果CNC轴向上走到了设置的安全位置就停止CNC的速度合成*)
+IF g_bDryRunEnable OR g_bDebugMode OR g_bFallBackStatusFb OR g_bAutoExecuteFallBack THEN
+  RETURN;
+END_IF;
+bVelAddDownEnable := (g_fiZFollowCoord -  g_fLastCoord)<0.0 AND g_nLayerStart = 500 AND ABS(g_diCurrentSpeedU)>0.2;
+bVelAddUpEnable := ((g_fiZFollowCoord -  g_fLastCoord)>0.0 AND  Axis_Z.NCTOPLC.ACTPOS < g_fLiftCoord - 0.5) AND g_nLayerStart = 500 AND ABS(g_diCurrentSpeedU)>0.2;
+
+
+g_ZCNCAxisVelAdd.ENABLE := bVelAddUpEnable OR bVelAddDownEnable;
+g_ZCNCAxisVelAdd.VELADDITIVEMODE := 1;
+
+dTempValue := (g_fiZFollowCoord -  g_fLastCoord);
+
+dCornerHighCompen := g_TechData.multilTechData[g_nToolNum-1].CornerCompen.dHighCompen;
+dCalcTemp := ABS(FUN_FMOD(g_fUWorkCoordinate,TRUE));
+dCalcCornerNeedHighCompen := 1.0 - EXPT(dCalcTemp-45.0,2) / EXPT(45.0,2);
+
+
+dTemp := dCornerHighCompen * dCalcCornerNeedHighCompen;
+dTempMiddleValue := dTemp- dTempLast;
+
+
+
+IF g_bLaserOnCorner THEN
+	dTempValue := dTempValue + dTempMiddleValue;
+END_IF;
+g_ZCNCAxisVelAdd.DISTANCE := dTempValue;
+
+
+
+
+
+
+
+g_doNewVelAddDicstance := g_ZCNCAxisVelAdd.DISTANCE;
+dTempLast := dTemp;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

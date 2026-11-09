@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_QRLoadAxisZero" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Axis_Load">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_biLoadZeroOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biLoadZeroClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadZeroDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_LoadAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_LoadStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_LoadHome">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nLoadState">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dLoadZeroVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bLoadHome">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="R_Trigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger1(CLK := g_biLoadZeroOpen);
+R_Trigger2(CLK := g_biLoadZeroClose);
+R_Trigger3(CLK := bLoadHome);
+
+IF R_Trigger1.Q THEN
+  nLoadState := 1;
+  g_boLoadZeroDone := FALSE;
+END_IF;
+IF R_Trigger2.Q THEN
+  g_boLoadZeroDone := FALSE;
+END_IF;
+IF R_Trigger3.Q THEN
+  nLoadState := 3;
+END_IF;
+
+CASE nLoadState OF
+  0:
+    nLoadState := 0;
+  1:
+    g_LoadAbs.Execute := TRUE;
+    g_LoadAbs.Velocity := dLoadZeroVel;
+    g_LoadAbs.Position := 0.0;
+    IF g_LoadAbs.Done THEN
+      g_LoadAbs.Execute := FALSE;
+      g_boLoadZeroDone := TRUE;
+      nLoadState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nLoadState := 20;
+    END_IF;
+    IF g_LoadAbs.CommandAborted OR g_LoadAbs.Error THEN
+      g_LoadAbs.Execute := FALSE;
+      g_boLoadZeroDone := FALSE;
+      nLoadState := 0;
+    END_IF;
+  3:
+    g_LoadHome.Execute := TRUE;
+    g_LoadHome.HomingMode := 5;
+    IF g_LoadHome.Done THEN
+      g_LoadHome.Execute := FALSE;
+      nLoadState := 0;
+    END_IF;
+  20:
+    g_LoadAbs.Execute := FALSE;
+    g_LoadStop.Execute := TRUE;
+    IF g_LoadStop.Done AND g_bPlcStartBuffer THEN
+      g_LoadStop.Execute := FALSE;
+      nLoadState := 1;
+    END_IF;
+    IF g_LoadStop.CommandAborted OR g_LoadStop.Error THEN
+      g_LoadStop.Execute := FALSE;
+      nLoadState := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nLoadState := 0;
+  g_LoadAbs.Execute := FALSE;
+  g_LoadStop.Execute := FALSE;
+  g_LoadHome.Execute := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

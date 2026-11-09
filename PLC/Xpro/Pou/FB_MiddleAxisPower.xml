@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_MiddleAxisPower" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_AntiRejection4Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴4使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_AntiRejection5Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴5使能]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAntiRejection4Enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴4使能局部变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejection5Enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴5使能局部变量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bAntiRejection4PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴4正限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejection5PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴5正限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejection4NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴4负限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejection5NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴5负限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_AntiRejection4SetOverRide">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴4进给]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_AntiRejection5SetOverRide">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴5进给]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="F_PowerOff">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake1">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[F_PowerOff(CLK := g_bDriveEnable);
+IF F_PowerOff.Q THEN
+  bAntiRejection4Enable := FALSE;
+  bAntiRejection5Enable := FALSE;
+END_IF;
+(*防甩轴4*)
+IF g_AntiRejection4Power.error THEN
+  bAntiRejection4Enable := FALSE;
+END_IF;
+
+AxisPowerBrake(
+	bPower := bAntiRejection4Enable,
+    AxisRef := REF(AntiRejection4),
+    HomeSignal := g_AntiRejection4HomeSignal,
+    HomeMode := g_nZeroTailBackAxisHomeMode,
+    AxisPosLimit := NOT g_bAntiRejection4PosLimit,
+    AxisNegLimit := NOT g_bAntiRejection4NegLimit,
+    AxisPower := REF(g_AntiRejection4Power),
+    OutBrake => g_boMCFeedAxisHoldBrake);
+
+g_AntiRejection4SetOverRide.Enable := TRUE;
+g_AntiRejection4SetOverRide.VelFactor := g_dCurOverride;
+(*防甩轴5*)
+
+IF g_AntiRejection5Power.error THEN
+  bAntiRejection5Enable := FALSE;
+END_IF;
+
+AxisPowerBrake1(
+	bPower := bAntiRejection5Enable,
+    AxisRef := REF(AntiRejection5),
+    HomeSignal := g_AntiRejection5HomeSignal,
+    HomeMode := g_nMiddleCardMoveAxisHomeMode,
+    AxisPosLimit := NOT g_bAntiRejection5PosLimit,
+    AxisNegLimit := NOT g_bAntiRejection5NegLimit,
+    AxisPower := REF(g_AntiRejection5Power),
+    OutBrake => g_boMiddleAvoidMoveAxisHoldBrake);
+
+g_AntiRejection5SetOverRide.Enable := TRUE;
+g_AntiRejection5SetOverRide.VelFactor := g_dCurOverride;
+
+
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

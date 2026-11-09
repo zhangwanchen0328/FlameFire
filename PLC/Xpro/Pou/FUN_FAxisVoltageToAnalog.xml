@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FUN_FAxisVoltageToAnalog" pouType="function">
+  <interface>
+    <returnType>
+      <UDINT/>
+    </returnType>
+    <inputVars>
+      <variable name="dVoltage">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="nVoltageAnalog">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="nVoltageAnalog0">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[nVoltageAnalog0 := 32767 / 10;
+nVoltageAnalog := LREAL_TO_UDINT(UDINT_TO_LREAL(nVoltageAnalog0) * dVoltage);
+
+FUN_FAxisVoltageToAnalog := nVoltageAnalog;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

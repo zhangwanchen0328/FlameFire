@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Y1AxisJog" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_Y1MoveJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bY1JogForwardEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动前进]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bY1JogBackwardEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点后退]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bY1JogFast">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF bY1JogFast THEN
+  g_Y1MoveJog.Mode := 1;
+ELSE
+  g_Y1MoveJog.Mode := 0;
+END_IF;
+
+g_Y1MoveJog.JogForward := bY1JogForwardEnable;
+g_Y1MoveJog.JogBackwards := bY1JogBackwardEnable;
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[Y2Y3轴寸动模块]]></xhtml:p>
+  </documentation>
+</pou>

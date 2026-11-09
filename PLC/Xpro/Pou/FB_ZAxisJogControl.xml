@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ZAxisJogControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bZJogEnableM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZJogCloseM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fZJogVelocityM">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZMoveJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fZAxisVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Axis_Z">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_ZMoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bJogForwardEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动前进]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogBackwardEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点后退]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogFast">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bJogBackward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dTargetVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTRigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nJogState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="RTrigger_Forward">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger_Backward">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger1(CLK := g_bZJogEnableM);
+RTRigger2(CLK := g_bZJogCloseM);
+RTrigger_Forward(CLK := bJogForwardEnable);
+RTrigger_Backward(CLK := bJogBackwardEnable);
+
+IF RTrigger_Forward.Q OR RTrigger_Backward.Q THEN
+  nJogState := 2;
+END_IF;
+
+IF g_bZAxisTorqueWarn THEN
+  bJogForwardEnable := FALSE;
+  bJogBackwardEnable := FALSE;
+END_IF;  
+
+IF RTrigger1.Q THEN
+  g_bZJogEnableM := FALSE;
+  IF g_fZJogVelocityM >= 0.0 THEN
+    bJogForward := TRUE;
+    bJogBackward := FALSE;
+    IF g_fZJogVelocityM <> 0.0 THEN
+      dTargetVel := g_fZJogVelocityM;
+    ELSE
+      dTargetVel := g_fZAxisVel;
+    END_IF;
+  ELSE
+    bJogForward := FALSE;
+    bJogBackward := TRUE;
+    dTargetVel := -g_fZJogVelocityM;
+  END_IF;
+  nJogState := 1;
+END_IF;
+
+IF RTRigger2.Q THEN
+  nJogState := 0;
+  g_bZJogCloseM := FALSE;
+END_IF;
+
+IF bJogFast THEN
+  g_ZMoveJog.Mode := 1;
+ELSE
+  g_ZMoveJog.Mode := 0;
+END_IF;
+
+CASE nJogState OF
+  0:
+    dTargetVel := 0.0;
+    bJogForward := bJogForwardEnable;
+    bJogBackward := bJogBackwardEnable;
+  1:
+    nJogState := 1;
+  2:
+    IF Axis_Z.NCTOPLC.AxisState = 9 THEN
+      g_bZFollowOutDone:=FALSE;
+      nJogState := 3;
+    ELSE
+      nJogState := 0;
+    END_IF;
+  3:
+    g_bZFollowClose := TRUE;
+    g_nFollowState :=150; 
+    IF g_bZFollowOutDone THEN
+      g_bZFollowClose := FALSE;
+      nJogState := 0;
+    END_IF;
+END_CASE;
+
+IF g_ZMoveJog.Error OR g_ZMoveJog.Commandaborted THEN
+  dTargetVel := 0.0;
+  bJogForward := FALSE;
+  bJogBackward := FALSE;
+  bJogForwardEnable := FALSE;
+  bJogBackwardEnable := FALSE;
+  nJogState := 0;
+END_IF;
+
+g_ZMoveJog.JogForward := bJogForward;
+g_ZMoveJog.JogBackwards := bJogBackward;
+g_ZMoveJog.Velocity := dTargetVel;
+
+
+IF g_bPlcResetBuffer THEN
+  bJogForward := FALSE;
+  bJogBackward := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

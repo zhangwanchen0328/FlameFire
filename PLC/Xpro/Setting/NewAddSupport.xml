@@ -1,0 +1,610 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <globalVars>
+    <variable name="Axis_S7">
+      <type>
+        <derived name="AXIS_REF"/>
+      </type>
+    </variable>
+    <variable name="Axis_S8">
+      <type>
+        <derived name="AXIS_REF"/>
+      </type>
+    </variable>
+    <variable name="Axis_S9">
+      <type>
+        <derived name="AXIS_REF"/>
+      </type>
+    </variable>
+    <variable name="Axis_S10">
+      <type>
+        <derived name="AXIS_REF"/>
+      </type>
+    </variable>
+    <variable name="Axis_S11">
+      <type>
+        <derived name="AXIS_REF"/>
+      </type>
+    </variable>
+    <variable name="Axis_S12">
+      <type>
+        <derived name="AXIS_REF"/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis1Config">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis2Config">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis3Config">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis4Config">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis5Config">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis6Config">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis7Config">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis8Config">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis9Config">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis10Config">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis11Config">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis12Config">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_AxisS7VelAdd">
+      <type>
+        <derived name="MC_EXTERNALADDITIVE"/>
+      </type>
+    </variable>
+    <variable name="g_AxisS8VelAdd">
+      <type>
+        <derived name="MC_EXTERNALADDITIVE"/>
+      </type>
+    </variable>
+    <variable name="g_AxisS9VelAdd">
+      <type>
+        <derived name="MC_EXTERNALADDITIVE"/>
+      </type>
+    </variable>
+    <variable name="g_AxisS10VelAdd">
+      <type>
+        <derived name="MC_EXTERNALADDITIVE"/>
+      </type>
+    </variable>
+    <variable name="g_AxisS11VelAdd">
+      <type>
+        <derived name="MC_EXTERNALADDITIVE"/>
+      </type>
+    </variable>
+    <variable name="g_AxisS12VelAdd">
+      <type>
+        <derived name="MC_EXTERNALADDITIVE"/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxis7VelAddEnable">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxis8VelAddEnable">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxis9VelAddEnable">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxis10VelAddEnable">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxis11VelAddEnable">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxis12VelAddEnable">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bS7AxisPosErrorAlarm">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bS8AxisPosErrorAlarm">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bS9AxisPosErrorAlarm">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bS10AxisPosErrorAlarm">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bS11AxisPosErrorAlarm">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bS12AxisPosErrorAlarm">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_fS7AxisMaxPosError">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fS8AxisMaxPosError">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fS9AxisMaxPosError">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fS10AxisMaxPosError">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fS11AxisMaxPosError">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fS12AxisMaxPosError">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxisS7UpFeedSafe">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxisS8UpFeedSafe">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxisS9UpFeedSafe">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxisS10UpFeedSafe">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxisS11UpFeedSafe">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxisS12UpFeedSafe">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_fSustainS7ToChuckDist">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSustainS8ToChuckDist">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSustainS9ToChuckDist">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSustainS10ToChuckDist">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSustainS11ToChuckDist">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSustainS12ToChuckDist">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis7ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis8ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis9ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis10ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis11ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSupportAxis12ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisCoordY7">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisCoordY8">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisCoordY9">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisCoordY10">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisCoordY11">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisCoordY12">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisDownDis7">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisDownDis8">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisDownDis9">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisDownDis10">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisDownDis11">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisDownDis12">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisSafeDis7">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisSafeDis8">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisSafeDis9">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisSafeDis10">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisSafeDis11">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fSupAxisSafeDis12">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_dSupportAxis7ActPos">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_dSupportAxis8ActPos">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_dSupportAxis9ActPos">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_dSupportAxis10ActPos">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_dSupportAxis11ActPos">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_dSupportAxis12ActPos">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_bRecoverS7DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bRecoverS8DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bRecoverS9DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bRecoverS10DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bRecoverS11DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bRecoverS12DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_dS7DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_dS8DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_dS9DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_dS10DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_dS11DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_dS12DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxis7MoveDoneM320">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxis8MoveDoneM320">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxis9MoveDoneM320">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxis10MoveDoneM320">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxis11MoveDoneM320">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxis12MoveDoneM320">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSustainAxisMControlTrigged">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSusTainS7HomeCal" address="%IX17.092">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSustainS7PosLimit" address="%IX17.093">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSustainS7NegLimit" address="%IX17.094">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSusTainS8HomeCal" address="%IX17.095">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSustainS8PosLimit" address="%IX17.096">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSustainS8NegLimit" address="%IX17.097">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSusTainS9HomeCal" address="%IX17.098">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSustainS9PosLimit" address="%IX17.099">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSustainS9NegLimit" address="%IX17.100">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSusTainS10HomeCal" address="%IX17.101">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSustainS10PosLimit" address="%IX17.102">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSustainS10NegLimit" address="%IX17.103">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSusTainS11HomeCal" address="%IX17.104">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSustainS11PosLimit" address="%IX17.105">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSustainS11NegLimit" address="%IX17.106">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSusTainS12HomeCal" address="%IX17.107">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSustainS12PosLimit" address="%IX17.108">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biSustainS12NegLimit" address="%IX17.109">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+  </globalVars>
+</root>

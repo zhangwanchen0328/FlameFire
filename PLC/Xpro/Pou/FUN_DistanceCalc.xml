@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FUN_DistanceCalc" pouType="function">
+  <interface>
+    <returnType>
+      <LREAL/>
+    </returnType>
+    <inputVars>
+      <variable name="ve">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[终止速度一般为0]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="v0">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="am">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="timeOffset">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[扫描周期补偿]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="dv">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[速度差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="acc">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[速度差]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[dv := ve - v0;
+
+IF dv >= 0.0 THEN
+  acc := am;
+  FUN_DistanceCalc := (ve * ve - v0*v0)/(2.0*acc)+V0*timeOffset/1000.0;
+ELSE
+  acc := am * (-1.0);
+  FUN_DistanceCalc := (ve * ve - v0*v0)/(2.0*acc)+V0*timeOffset/1000.0;
+  
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

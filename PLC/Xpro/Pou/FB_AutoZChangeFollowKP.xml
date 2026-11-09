@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AutoZChangeFollowKP" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="RTriggerFollowRespone">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerFollowKP">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="dFollowRespone">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFollowKP">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nFollowResponeState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nFollowKPState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*修改随动响应度*)
+RTriggerFollowRespone(CLK := g_bZFollowResponeChaneExecute OR g_bZFollowResponeChaneExecuteM);
+(*触发修改Z轴上抬响应度*)
+RTriggerFollowKP(CLK := g_bZFollowKPChaneExecute OR g_bZFollowKPChaneExecuteM);
+
+
+IF RTriggerFollowRespone.Q THEN
+  dFollowRespone := g_dZaxisFollowRespone;(*原（界面上）随动响应度*)
+  IF g_bZFollowResponeChaneExecuteM THEN
+    IF g_bZFollowResponeChangeM THEN
+      dFollowRespone := g_dZaxisFollowRespone_FindEageAdd;(*探边的随动响应度*)
+    END_IF;
+    nFollowResponeState:=10;
+  END_IF;
+  g_bZFollowResponeChaneExecuteM := FALSE;
+  g_bZFollowResponeChaneExecute := FALSE;
+END_IF;
+IF RTriggerFollowKP.Q THEN
+  dFollowKP := g_dZaxisFollowLiftRespone;(*原（界面上）上抬响应度*)
+  IF g_bZFollowKPChaneExecuteM THEN
+    IF g_bZFollowKPChangeM THEN
+      dFollowKP := g_dZaxisFollowLiftRespone_FindEageAdd;(*探边上抬响应度*)
+    END_IF;
+    nFollowKPState:=10;
+  END_IF;
+  g_bZFollowKPChaneExecuteM := FALSE;
+  g_bZFollowKPChaneExecute := FALSE;
+END_IF;
+
+
+CASE nFollowResponeState OF 
+  0:
+  nFollowResponeState := 0;
+  10:
+  g_ZWriteFollowRespone.PARAMETERNUMBER:=23;(**23表示随动响应度**)
+  g_ZWriteFollowRespone.VALUE := dFollowRespone;
+  g_ZWriteFollowRespone.EXECUTE:=TRUE;
+  nFollowResponeState := 20;
+  20:
+  IF g_ZWriteFollowRespone.DONE THEN
+    g_ZWriteFollowRespone.EXECUTE:=FALSE;
+    nFollowResponeState := 0;
+    M.ENABLE[254] := 0;
+  END_IF;
+  
+END_CASE;
+    
+CASE nFollowKPState OF 
+  0:
+  nFollowKPState := 0;
+  10:
+  g_ZWriteFollowKP.PARAMETERNUMBER:=24;(**24表示上抬响应度**)
+  g_ZWriteFollowKP.VALUE := dFollowKP;
+  g_ZWriteFollowKP.EXECUTE:=TRUE;
+  nFollowKPState := 20;
+  20:
+  IF g_ZWriteFollowKP.DONE THEN
+    g_ZWriteFollowKP.EXECUTE:=FALSE;
+    nFollowKPState := 0;
+    M.ENABLE[255] := 0;
+  END_IF;
+  
+END_CASE;
+
+
+(*复位恢复随动响应度*)
+g_ZRevertFollowRespone.PARAMETERNUMBER:=23;(**23表示随动响应度**)
+g_ZRevertFollowRespone.VALUE:=g_dZaxisFollowRespone;
+g_ZRevertFollowRespone.EXECUTE:=g_bPlcResetBuffer;
+(*复位恢复上抬响应度*)
+g_ZRevertFollowKP.PARAMETERNUMBER:=24;(**24表示上抬响应度**)
+g_ZRevertFollowKP.VALUE:=g_dZaxisFollowLiftRespone;
+g_ZRevertFollowKP.EXECUTE:=g_bPlcResetBuffer;
+
+IF g_bPlcResetBuffer THEN
+    g_ZWriteFollowRespone.EXECUTE:=FALSE;
+    g_ZWriteFollowKP.EXECUTE:=FALSE;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[根据条件自动修改响应度（随动，上抬响应度）]]></xhtml:p>
+  </documentation>
+</pou>

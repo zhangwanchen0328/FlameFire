@@ -1,0 +1,795 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FrontSustainDown" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bFrontSustainUpDownM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fFrontSustainMoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bFrontSustainUpDownDoneM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFrontSustainUpDownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFrontSustainUpDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFrontSustainUpDownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nFrontSustainMoveType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trriger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bDownSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bBlankingStateDown1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingStateDown2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingStateDown3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingStateDown4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingStateDown5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingStateUp1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingStateUp2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingStateUp3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingStateUp4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingStateUp5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder1Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder2Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder3Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder4Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder5Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder1Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder2Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder3Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder4Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder5Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal0">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal0">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain4ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain5ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain6ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_nPipeType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_dCircleRadius">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dSquareLenght">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dSquareWidth">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain4">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain5">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain6">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_bSustain4Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain5Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain6Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain4AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain5AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain6AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain4AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain5AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain6AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_nFrontSusutainCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bFrontSustainEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankCylinderEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nBlankClylinderCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_Alarm">
+        <type>
+          <derived name="DT_ALARM"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay0">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay2">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay3">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay4">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay0">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay2">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay3">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay4">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3CylForbid">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Ton_CylDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nSwitchState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bCheckFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nMoveType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dPipeMaxHeight">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dFrontSustainAxis4DownPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dFrontSustainAxis5DownPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dFrontSustainAxis6DownPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trriger1(CLK := g_bFrontSustainUpDownM OR g_bFrontSustainUpDown);
+R_Trriger2(CLK := g_bFrontSustainUpDownDoneM);
+
+IF R_Trriger1.Q THEN
+  g_boFrontSustainUpDownDone := FALSE;
+  g_bFrontSustainUpDownDone := FALSE;
+  Ton_CylDelay(IN := FALSE);
+  nSwitchState := 1;
+  IF g_bFrontSustainUpDownM THEN
+    nMoveType := LREAL_TO_INT(g_fFrontSustainMoveTypeM);
+    g_bFrontSustainUpDownM := FALSE;
+  ELSIF g_bFrontSustainUpDown THEN
+    nMoveType := g_nFrontSustainMoveType;
+  END_IF;
+  g_bFrontSustainUpDown := FALSE;
+END_IF;
+
+IF R_Trriger2.Q THEN
+  g_boFrontSustainUpDownDone := FALSE;
+  g_bFrontSustainUpDownDone := FALSE;
+  g_bFrontSustainUpDownDoneM := FALSE;
+  nSwitchState := 0;
+END_IF;
+
+IF g_bClaw3CylForbid THEN
+  g_boFrontSustainUpDownDone := TRUE;
+  g_bFrontSustainUpDownDone := TRUE;
+  nSwitchState := 0;
+  M.ENABLE[223] := 0;
+  g_bExecuteFinishedM223 := FALSE;
+ELSIF g_bBlankCylinderEnable THEN
+  CASE nSwitchState OF
+    0: 
+      nSwitchState := 0;
+    1:
+      (*0:气缸下落  1:气缸上抬  2:气缸动态上抬*)
+      IF nMoveType = 0 THEN
+        nSwitchState := 10;
+      ELSIF nMoveType = 1 THEN
+        nSwitchState := 20;
+      ELSIF nMoveType = 2 THEN
+        nSwitchState := 100;
+      END_IF;
+      IF g_nBlankClylinderCount = 0 THEN
+        nSwitchState := 0;
+        g_boFrontSustainUpDownDone := TRUE;
+        g_bFrontSustainUpDownDone := TRUE;
+        M.ENABLE[223] := 0;
+        g_bExecuteFinishedM223 := FALSE;
+      END_IF;
+    10:
+      IF g_nBlankClylinderCount >= 1 THEN
+        g_bCylinder1Close := TRUE;
+      END_IF;
+      IF g_nBlankClylinderCount >= 2 THEN
+        g_bCylinder2Close := TRUE;
+      END_IF;
+      IF g_nBlankClylinderCount >= 3 THEN
+        g_bCylinder3Close := TRUE;
+      END_IF;
+      IF g_nBlankClylinderCount >= 4 THEN
+        g_bCylinder4Close := TRUE;
+      END_IF;
+      IF g_nBlankClylinderCount >= 5 THEN
+        g_bCylinder5Close := TRUE;
+      END_IF;
+      nSwitchState := 11;
+    11:
+      bCheckFlag := TRUE;
+      IF g_nBlankClylinderCount >= 1 AND (NOT g_bBlankingStateDown1) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nBlankClylinderCount >= 2 AND (NOT g_bBlankingStateDown2) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nBlankClylinderCount >= 3 AND (NOT g_bBlankingStateDown3) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nBlankClylinderCount >= 4 AND (NOT g_bBlankingStateDown4) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nBlankClylinderCount >= 5 AND (NOT g_bBlankingStateDown5) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF bCheckFlag THEN
+        nSwitchState := 40;
+      END_IF;
+    20:
+      IF g_nBlankClylinderCount >= 1 THEN
+        g_bCylinder1Open := TRUE;
+      END_IF;
+      IF g_nBlankClylinderCount >= 2 THEN
+        g_bCylinder2Open := TRUE;
+      END_IF;
+      IF g_nBlankClylinderCount >= 3 THEN
+        g_bCylinder3Open := TRUE;
+      END_IF;
+      IF g_nBlankClylinderCount >= 4 THEN
+        g_bCylinder4Open := TRUE;
+      END_IF;
+      IF g_nBlankClylinderCount >= 5 THEN
+        g_bCylinder5Open := TRUE;
+      END_IF;
+      nSwitchState := 21;
+    21:
+      bCheckFlag := TRUE;
+      IF g_nBlankClylinderCount >= 1 AND (NOT g_bBlankingStateUp1) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nBlankClylinderCount >= 2 AND (NOT g_bBlankingStateUp2) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nBlankClylinderCount >= 3 AND (NOT g_bBlankingStateUp3) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nBlankClylinderCount >= 4 AND (NOT g_bBlankingStateUp4) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nBlankClylinderCount >= 5 AND (NOT g_bBlankingStateUp5) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF bCheckFlag THEN
+        nSwitchState := 40;
+      END_IF;
+    30:
+      IF nMoveType = 0 THEN
+        Ton_CylDelay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingDownInPlaceDelay)));
+        IF Ton_CylDelay.Q THEN
+          nSwitchState := 40;
+        END_IF;
+      ELSIF nMoveType = 1 THEN
+        Ton_CylDelay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingUpInPlaceDelay)));
+        IF Ton_CylDelay.Q THEN
+          nSwitchState := 40;
+        END_IF;
+      END_IF;
+    40:
+      g_bCylinder1Open := FALSE;
+      g_bCylinder2Open := FALSE;
+      g_bCylinder3Open := FALSE;
+      g_bCylinder4Open := FALSE;
+      g_bCylinder5Open := FALSE;
+      g_bCylinder1Close := FALSE;
+      g_bCylinder2Close := FALSE;
+      g_bCylinder3Close := FALSE;
+      g_bCylinder4Close := FALSE;
+      g_bCylinder5Close := FALSE;
+      g_boFrontSustainUpDownDone := TRUE;
+      g_bFrontSustainUpDownDone := TRUE;
+      nSwitchState := 0;
+      M.ENABLE[223] := 0;
+      g_bExecuteFinishedM223 := FALSE;
+    100:
+      g_boFrontSustainUpDownDone := TRUE;
+      g_bFrontSustainUpDownDone := TRUE;
+      M.ENABLE[223] := 0;
+      g_bExecuteFinishedM223 := FALSE;
+      IF g_nBlankClylinderCount >= 1 THEN
+        nSwitchState := 110;
+      ELSE
+        nSwitchState := 0;
+      END_IF;
+    110:
+      IF g_nMotionMode = 2 THEN
+        IF g_nMachineType = 20 THEN(*拉料模式，拉料开始记录坐标1 ，拉料结束记坐标2*)
+          IF g_diPullerPipLength >= g_dDynamicFollowCyl1Dis THEN
+            g_bCylinder1Open := TRUE;
+            g_bCylinder1Close := FALSE;
+          ELSE
+            g_bCylinder1Open := FALSE;
+            g_bCylinder1Close := TRUE;
+          END_IF;
+          IF g_diPullerPipLength >= g_dDynamicFollowCyl2Dis THEN
+            g_bCylinder2Open := TRUE;
+            g_bCylinder2Close := FALSE;
+          ELSE
+            g_bCylinder2Open := FALSE;
+            g_bCylinder2Close := TRUE;
+          END_IF;
+          IF g_diPullerPipLength >= g_dDynamicFollowCyl3Dis THEN
+            g_bCylinder3Open := TRUE;
+            g_bCylinder3Close := FALSE;
+          ELSE
+            g_bCylinder3Open := FALSE;
+            g_bCylinder3Close := TRUE;
+          END_IF;
+          IF g_diPullerPipLength >= g_dDynamicFollowCyl4Dis THEN
+            g_bCylinder4Open := TRUE;
+            g_bCylinder4Close := FALSE;
+          ELSE
+            g_bCylinder4Open := FALSE;
+            g_bCylinder4Close := TRUE;
+          END_IF;
+          IF g_diPullerPipLength >= g_dDynamicFollowCyl5Dis THEN
+            g_bCylinder5Open := TRUE;
+            g_bCylinder5Close := FALSE;
+          ELSE
+            g_bCylinder5Open := FALSE;
+            g_bCylinder5Close := TRUE;
+          END_IF;  
+        ELSE
+          IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowCyl1Dis THEN
+            g_bCylinder1Open := TRUE;
+            g_bCylinder1Close := FALSE;
+          END_IF;
+          IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowCyl2Dis THEN
+            g_bCylinder2Open := TRUE;
+            g_bCylinder2Close := FALSE;
+          END_IF;
+          IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowCyl3Dis THEN
+            g_bCylinder3Open := TRUE;
+            g_bCylinder3Close := FALSE;
+          END_IF;
+          IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowCyl4Dis THEN
+            g_bCylinder4Open := TRUE;
+            g_bCylinder4Close := FALSE;
+          END_IF;
+          IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowCyl5Dis THEN
+            g_bCylinder5Open := TRUE;
+            g_bCylinder5Close := FALSE;
+          END_IF;
+        END_IF;
+      END_IF;
+  END_CASE;
+ELSIF g_bFrontSustainEnable THEN
+  CASE nSwitchState OF
+    0:
+      nSwitchState := 0;
+    1:
+      IF nMoveType = 0 THEN
+        nSwitchState := 10;
+      ELSIF nMoveType = 1 THEN
+        nSwitchState := 20;
+        IF g_nPipeType = 1 THEN
+          dPipeMaxHeight := g_dCircleRadius;
+        ELSIF g_nPipeType = 2 OR g_nPipeType = 10 OR g_nPipeType = 11 THEN
+          dPipeMaxHeight := SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+        END_IF;
+      END_IF;
+      IF g_nFrontSusutainCount = 0 THEN
+        g_boFrontSustainUpDownDone := TRUE;
+        g_bFrontSustainUpDownDone := TRUE;
+        nSwitchState := 0;
+        M.ENABLE[223] := 0;
+        g_bExecuteFinishedM223 := FALSE;
+      END_IF;
+    10:
+      IF g_nFrontSusutainCount >= 1 THEN
+        g_bSustain4Abs := TRUE;
+        IF Axis_Sustain4.NCTOPLC.SETPOS <= 0.0 THEN
+          g_bSustain4AbsPosition := Axis_Sustain4.NCTOPLC.SETPOS;
+        ELSE
+          g_bSustain4AbsPosition := g_dFrontSustainAxis4DownPos;
+        END_IF;
+      END_IF;
+      IF g_nFrontSusutainCount >= 2 THEN
+        g_bSustain5Abs := TRUE;
+        IF Axis_Sustain5.NCTOPLC.SETPOS <= 0.0 THEN
+          g_bSustain5AbsPosition := Axis_Sustain5.NCTOPLC.SETPOS;
+        ELSE
+          g_bSustain5AbsPosition := g_dFrontSustainAxis5DownPos;
+        END_IF;
+      END_IF;
+      IF g_nFrontSusutainCount >= 3 THEN
+        g_bSustain6Abs := TRUE;
+        IF Axis_Sustain6.NCTOPLC.SETPOS <= 0.0 THEN
+          g_bSustain6AbsPosition := Axis_Sustain6.NCTOPLC.SETPOS;
+        ELSE
+          g_bSustain6AbsPosition := g_dFrontSustainAxis6DownPos;
+        END_IF;
+      END_IF;
+      nSwitchState := 30;
+    20:
+      IF g_nFrontSusutainCount >= 1 THEN
+        g_bSustain4Abs := TRUE;
+        g_bSustain4AbsPosition := g_fSustain4ToChuckDist - dPipeMaxHeight;
+      END_IF;
+      IF g_nFrontSusutainCount >= 2 THEN
+        g_bSustain5Abs := TRUE;
+        g_bSustain5AbsPosition := g_fSustain5ToChuckDist - dPipeMaxHeight;
+      END_IF;
+      IF g_nFrontSusutainCount >= 3 THEN
+        g_bSustain6Abs := TRUE;
+        g_bSustain6AbsPosition := g_fSustain6ToChuckDist - dPipeMaxHeight;
+      END_IF;
+      nSwitchState := 30;
+    30:
+      bCheckFlag := TRUE;
+      IF g_nFrontSusutainCount >= 1 AND NOT(g_bSustain4AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nFrontSusutainCount >= 2 AND NOT(g_bSustain5AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nFrontSusutainCount >= 3 AND NOT(g_bSustain5AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF bCheckFlag THEN
+        g_boFrontSustainUpDownDone := TRUE;
+        g_bFrontSustainUpDownDone := TRUE;
+        nSwitchState := 0;
+        M.ENABLE[223] := 0;
+        g_bExecuteFinishedM223 := FALSE;
+      END_IF;
+  END_CASE;
+ELSE
+  g_boFrontSustainUpDownDone := TRUE;
+  g_bFrontSustainUpDownDone := TRUE;
+  g_boFrontSustainFollowDone := TRUE;
+  M.ENABLE[223] := 0;
+  g_bExecuteFinishedM223 := FALSE;
+  nSwitchState := 0;
+END_IF;
+
+IF g_bPlcResetBuffer OR g_bPlcEndM THEN
+  g_bFrontSustainUpDown := FALSE;
+  g_bSustain4Abs := FALSE;
+  g_bSustain5Abs := FALSE;
+  g_bSustain6Abs := FALSE;
+  Ton_CylDelay(IN := FALSE);
+  nSwitchState := 0;
+  g_bCylinder1Close := FALSE;
+  g_bCylinder1Open := FALSE;
+  g_bCylinder2Close := FALSE;
+  g_bCylinder2Open := FALSE;
+  g_bCylinder3Close := FALSE;
+  g_bCylinder3Open := FALSE;
+  g_bCylinder4Close := FALSE;
+  g_bCylinder4Open := FALSE;
+  g_bCylinder5Close := FALSE;
+  g_bCylinder5Open := FALSE;
+  g_bExecuteFinishedM223 := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[回中回上料点支撑轴和气缸下降]]></xhtml:p>
+  </documentation>
+</pou>

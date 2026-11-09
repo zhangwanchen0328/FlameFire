@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Support2Control" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FB_CenterCyl">
+        <type>
+          <derived name="FB_CenterCylControl"/>
+        </type>
+      </variable>
+      <variable name="FB_SupportCyl">
+        <type>
+          <derived name="FB_SupportCylControl"/>
+        </type>
+      </variable>
+      <variable name="FB_OneKeySupportCyl">
+        <type>
+          <derived name="FB_OneKeySupCyl"/>
+        </type>
+      </variable>
+      <variable name="FB_OneKeyCentringCyl">
+        <type>
+          <derived name="FB_OneKeyCenterCyl"/>
+        </type>
+      </variable>
+      <variable name="FB_SupCylAndCentringAndYAvoid">
+        <type>
+          <derived name="FB_SupCylAndCentringCylAndAvoid"/>
+        </type>
+      </variable>
+      <variable name="FB_SenFengOneKeySup0">
+        <type>
+          <derived name="FB_SenFengOneKeySup"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FB_CenterCyl();(*夹中气缸*)
+FB_SupportCyl();(*支撑气缸*)
+FB_OneKeySupportCyl();(*一键支撑*)
+FB_OneKeyCentringCyl();(*一键夹中*)
+
+
+
+(*1、余云安-森峰需求*)
+FB_SupCylAndCentringAndYAvoid();
+FB_SenFengOneKeySup0();]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

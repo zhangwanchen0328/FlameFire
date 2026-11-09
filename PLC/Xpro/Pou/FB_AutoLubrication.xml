@@ -1,0 +1,346 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AutoLubrication" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bStartLubriEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[获取润滑使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dStartLubriTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[获取润滑时间(单位：s)]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boLubri_Output">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[润滑输出引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLubr_iOverPressure">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[获取润滑泵过压逻辑]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLubri_LowOil">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[获取润滑泵油位低逻辑]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biLubri_OveOilSingnal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[润滑过压报警信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biLubri_LowOilSingnal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[获取润滑油位低信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLubri_LowOilWarning">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[润滑油位低报警 传递给hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLubri_OverOilWarning">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[润滑油过压低报警 传递给hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开始润滑触发器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Timer">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[润滑定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="tLubricateTime">
+        <type>
+          <TIME/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[润滑时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R_Trriger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger0">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biLubriOpen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开启润滑]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biLubriClose">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关闭润滑]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nMachineType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bDustAbsZeroDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标克下料机抽尘回零完成状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nBKPipeType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标克下料机薄管细管，粗管长管类型]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bLubriOutput">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bGreaseOutput">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[油脂输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="tGreaseOutPutTime">
+        <type>
+          <TIME/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[油脂输出时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dGreaseOutPutTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[油脂输出时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_Grease">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[油脂输出时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Timer_Grease_OutPut">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[油脂输出时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGreaseOverPressure">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="True"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[0:常闭1：常开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGreaseLowPressure">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="True"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[0:常闭1：常开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLubricateAfterStart1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开机打油的标志1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLubricateAfterStart2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开机打油的标志2]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLubricateTime1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开机打油的时间1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLubricateTime2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开机打油的时间2]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLubricateAfterStartSwitch1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开机打油的开关1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLubricateAfterStartSwitch2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开机打油的开关2]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Trigger(CLK := g_bStartLubriEnable OR g_biLubriOpen);
+R_Trriger0(CLK := g_bDustAbsZeroDone);
+R_Trriger(CLK := g_biLubriClose);
+
+
+(*标克下料机粗管长管时的喷油方式*)
+IF g_nMachineType=1 AND g_nBKPipeType=1 THEN
+  IF R_Trriger0.Q THEN
+    g_boLubri_Output := TRUE;
+  END_IF;
+  
+ELSE
+  IF Trigger.Q THEN
+    g_boLubri_Output := TRUE;
+    g_bStartLubriEnable := FALSE;
+  END_IF;
+
+  IF R_Trriger.Q THEN
+    g_boLubri_Output := FALSE;
+  END_IF;
+END_IF;
+
+(*打油时间*)
+IF NOT bLubricateAfterStart1 AND bLubricateAfterStartSwitch1 THEN
+  tLubricateTime := LREAL_TO_TIME(bLubricateTime1);
+ELSE  
+  tLubricateTime := LREAL_TO_TIME(g_dStartLubriTime);
+END_IF;
+IF g_boLubri_Output THEN
+  Timer(IN := TRUE,PT := tLubricateTime);
+  IF Timer.Q THEN
+    g_boLubri_Output := FALSE;
+    bLubricateAfterStart1:=TRUE;
+    Timer(IN := FALSE);
+  END_IF;
+END_IF;
+
+
+
+
+(*检测是否过压报警*)
+g_bLubri_OverOilWarning :=FUN_SingalLogic(g_biLubri_OveOilSingnal,g_bLubr_iOverPressure);
+
+(*检测是否低压报警*)
+g_bLubri_LowOilWarning :=FUN_SingalLogic(g_biLubri_LowOilSingnal,g_bLubri_LowOil);
+    
+    
+(*加一个油脂输出*)
+Rtring_Grease(CLK := bGreaseOutput);
+IF Rtring_Grease.Q THEN
+  g_boGrease_OutPut := TRUE;
+  bGreaseOutput := FALSE;  
+END_IF;
+
+
+IF  NOT bLubricateAfterStart2 AND bLubricateAfterStartSwitch2 THEN
+  tGreaseOutPutTime := LREAL_TO_TIME(bLubricateTime2);
+ELSE  
+  tGreaseOutPutTime := LREAL_TO_TIME(dGreaseOutPutTime);
+END_IF;
+IF g_boGrease_OutPut THEN
+  Timer_Grease_OutPut(IN := TRUE,PT := tGreaseOutPutTime);
+  IF Timer_Grease_OutPut.Q THEN
+    g_boGrease_OutPut := FALSE;
+    bLubricateAfterStart2:=TRUE;
+    Timer_Grease_OutPut(IN := FALSE);
+  END_IF;
+END_IF;
+
+g_bGrease_OverOilWarning := FUN_SINGALLOGIC(g_biGrease_OveOilSingnal,bGreaseOverPressure);
+g_bGrease_LowOilWarning := FUN_SINGALLOGIC(g_biGrease_LowOilSingnal,bGreaseLowPressure);]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

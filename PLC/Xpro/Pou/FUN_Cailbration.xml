@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FUN_Cailbration" pouType="function">
+  <interface>
+    <returnType>
+      <UINT/>
+    </returnType>
+    <inputVars>
+      <variable name="DAIntput">
+        <type>
+          <derived name="ST_DAArray"/>
+        </type>
+      </variable>
+      <variable name="nGroupNum">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最大数组数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dInputValue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户输入值]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="nDet">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nNum">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入所在区间段数组号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="V1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="V2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="B1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="B2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*求取输入气压值-输出电压曲线*)
+IF dInputValue <0.0 THEN
+  dInputValue:= 0.0;
+END_IF;
+
+IF dInputValue < DAIntput.ActualPressure[1] THEN(*其他情况下。就是输入的气压值比较正的最小值还小的情况直接输出最小值对应的电压*)
+   FUN_Cailbration := LREAL_TO_UINT((DAIntput.DAOutputVol[1]/10.0*32767.0));  
+ELSIF dInputValue >= DAIntput.ActualPressure[1] AND dInputValue <= DAIntput.ActualPressure[nGroupNum] THEN
+  FOR nDet:=0 TO nGroupNum BY 1 DO
+    IF dInputValue>DAIntput.ActualPressure[nDet] AND dInputValue<=DAIntput.ActualPressure[nDet+1] THEN
+      nNum := nDet;
+    EXIT;
+    END_IF;
+  END_FOR;
+  V1:=DAIntput.DAOutputVol[nNum];
+  V2:=DAIntput.DAOutputVol[nNum+1];
+  B1:=DAIntput.ActualPressure[nNum];
+  B2:=DAIntput.ActualPressure[nNum+1];
+  FUN_Cailbration := LREAL_TO_UINT(((dInputValue-B1)*(V1-V2)/(B1-B2)+V1)/10.0*32767.0);
+ELSE(*其他情况下。就是输入的气压值比较正的最大值还大的情况直接输出最大值对应的电压*)
+  FUN_Cailbration := LREAL_TO_UINT((DAIntput.DAOutputVol[nGroupNum]/10.0*32767.0));    
+END_IF;
+  ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

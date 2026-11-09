@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AllAxisStopOperate" pouType="functionBlock">
+  <interface>
+    <inputVars>
+      <variable name="nAxisIndex">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴编号1:Z轴2：通用轴1 3：通用轴2 4：通用轴3 5：支撑轴1 6：支撑轴2 7：支撑轴3 8：支撑轴4 9：支撑轴5 10：支撑轴6 11：零件托举轴1 12：零件托举轴2 13：零件托举轴3 14：中卡避让轴 15：零件托举轴4]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <outputVars>
+      <variable name="bOutPut">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </outputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[CASE nAxisIndex OF
+    1:(*Z轴*)
+		bOutPut := TRUE;
+    2:(*通用轴1*)
+		IF g_bUseCommonAxis1 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF;
+    3:(*通用轴2*)
+        IF g_bUseCommonAxis2 THEN
+			bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF;
+    4:(*通用轴3*)
+        IF  g_bUseCommonAxis3 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF; 
+    5:(*支撑轴1*)
+       IF g_nSusutainCount >= 1 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF;  
+    6:(*支撑轴2*)
+       IF g_nSusutainCount >= 2 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF; 
+    7:(*支撑轴3*)
+       IF g_nSusutainCount >= 3 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF; 
+    8:(*支撑轴4*)
+       IF g_nSusutainCount >= 4 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF; 
+    9:(*支撑轴5*)
+       IF g_nSusutainCount >= 5 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF; 
+    10:(*支撑轴6*)
+       IF g_nSusutainCount >= 6 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF;
+    11:(*零件托举轴1*)
+       IF g_nFrontSusutainCount >= 1 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF;
+    12:(*零件托举轴2*)
+       IF g_nFrontSusutainCount >= 2 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF;
+    13:(*零件托举轴3*)
+       IF g_nFrontSusutainCount >= 3 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF;
+    14:(*中卡避让轴*)
+       IF g_bIsConfigMiddleAvoidAxis2  THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF;
+    15:(*零件托举轴4*)
+       IF g_nFrontSusutainCount >= 4 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF;
+    16:(*支撑轴7*)
+       IF g_nSusutainCount >= 7 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF;
+    17:(*支撑轴8*)
+       IF g_nSusutainCount >= 8 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF;
+    18:(*支撑轴9*)
+       IF g_nSusutainCount >= 9 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF;
+    19:(*支撑轴10*)
+       IF g_nSusutainCount >= 10 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF;
+    20:(*支撑轴11*)
+       IF g_nSusutainCount >= 11 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF;
+    21:(*支撑轴12*)
+       IF g_nSusutainCount >= 12 THEN
+          bOutPut := TRUE;
+        ELSE
+          bOutPut := FALSE;
+        END_IF;
+END_CASE;
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[NC轴的停止]]></xhtml:p>
+  </documentation>
+</pou>

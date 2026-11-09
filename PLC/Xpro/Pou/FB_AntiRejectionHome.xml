@@ -1,0 +1,268 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AntiRejectionHome" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Rtring1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biAntiRejection1HomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴1回零开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAntiRejection1HomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴1回零开始]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bAntiRejection1HomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴1回零开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nHomingState1">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴1回零状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boAntiRejection1HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴1回零完成输出引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAntiRejection1HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴1回零完成]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_AntiRejection1Home">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴1回零模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_AntiRejection1Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴1绝对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_AntiRejection1Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴1运动停止模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_AntiRejection1Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴1相对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC暂停]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC复位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nHomingMode1">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dHomePosition1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零后位置]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bAntiRejection1Zero">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零信号]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dHomeOffset1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dHomeVel1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零速度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*防甩轴1*)
+Rtring1(CLK := g_biAntiRejection1HomeEnable OR bAntiRejection1HomeEnable OR g_bAntiRejection1HomeEnable);
+
+IF Rtring1.Q THEN
+  nHomingState1 :=1;
+  g_boAntiRejection1HomeDone := FALSE;
+  bAntiRejection1HomeDone := FALSE;
+END_IF;
+
+CASE nHomingState1 OF 
+  0:
+  nHomingState1 := 0;
+  1:
+  g_AntiRejection1Home.Execute := TRUE;
+  g_AntiRejection1Home.Position := dHomePosition1;
+  g_AntiRejection1Home.bCalibrationCam := g_bAntiRejection1Zero;
+  IF nHomingMode1 =0 THEN
+    g_AntiRejection1Home.HomingMode := 0;
+  ELSIF nHomingMode1 = 1 THEN
+    g_AntiRejection1Home.HomingMode := 5;
+  ELSIF nHomingMode1 = 3 THEN
+    g_AntiRejection1Home.HomingMode := 1;
+  END_IF;
+  
+  IF g_AntiRejection1Home.Done THEN
+    g_AntiRejection1Home.Execute := FALSE;
+    g_boAntiRejection1HomeDone := TRUE;
+    
+    IF nHomingMode1 = 3 THEN
+      nHomingState1 := 0;
+    ELSE
+      nHomingState1 := 2;
+    END_IF;
+
+  END_IF;
+  IF g_bPlcPauseBuffer THEN
+    nHomingState1 := 10;
+  END_IF;
+  IF g_AntiRejection1Home.CommandAborted OR g_AntiRejection1Home.error THEN
+    nHomingState1 := 0;
+    g_AntiRejection1Home.Execute := FALSE;
+    g_boAntiRejection1HomeDone := FALSE;
+  END_IF;
+  2:
+  g_AntiRejection1Abs.Execute := TRUE;
+  g_AntiRejection1Abs.Position := dHomeOffset1;
+  g_AntiRejection1Abs.Velocity := dHomeVel1;
+  IF g_AntiRejection1Abs.Done THEN
+    g_AntiRejection1Abs.Execute := FALSE;
+    bAntiRejection1HomeDone := TRUE;
+    g_boAntiRejection1HomeDone := TRUE;
+    nHomingState1 := 0;
+  END_IF;
+  IF g_bPlcPauseBuffer THEN
+    nHomingState1 := 11;
+  END_IF;
+  10:
+  g_AntiRejection1Home.Execute := FALSE;
+  g_AntiRejection1Stop.Execute := TRUE;
+  IF g_AntiRejection1Stop.Done AND g_bPlcStartBuffer THEN
+    g_AntiRejection1Stop.Execute := FALSE;
+    nHomingState1 := 1;
+  END_IF;
+  IF g_AntiRejection1Stop.CommandAborted OR g_AntiRejection1Stop.error THEN
+    g_AntiRejection1Stop.Execute := FALSE;
+    nHomingState1 :=0;
+  END_IF;
+ 11:
+  g_AntiRejection1Home.Execute := FALSE;
+  g_AntiRejection1Stop.Execute := TRUE;
+  IF g_AntiRejection1Stop.Done AND g_bPlcStartBuffer THEN
+    g_AntiRejection1Stop.Execute := FALSE;
+    nHomingState1 := 2;
+  END_IF;
+  IF g_AntiRejection1Stop.CommandAborted OR g_AntiRejection1Stop.error THEN
+    g_AntiRejection1Stop.Execute := FALSE;
+    nHomingState1 :=0;
+  END_IF;
+END_CASE;
+IF g_bPlcResetBuffer THEN
+  g_AntiRejection1Home.Execute := FALSE;
+  nHomingState1 :=0;
+  g_AntiRejection1Rel.Execute := FALSE;
+  g_AntiRejection1Stop.Execute := FALSE;
+  bAntiRejection1HomeDone := TRUE;
+END_IF; 
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

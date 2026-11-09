@@ -1,0 +1,6025 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AntiRejectionCyl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="bCylAntiRejectionOpen1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionOpen2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionOpen3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionOpen4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionOpen5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionOpen6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionOpen7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionOpen8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionOpen9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionOpen10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionOpen11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionOpen12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionClose1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionClose2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionClose3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionClose4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionClose5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionClose6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionClose7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionClose8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionClose9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionClose10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionClose11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylAntiRejectionClose12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   HMI控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bCylAntiRejectionOpen1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   PLC内部控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionOpen1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionOpen2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionOpen3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionOpen4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionOpen5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionOpen6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionOpen7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionOpen8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionOpen9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionClose1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionClose2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionClose3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionClose4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionClose5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionClose6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionClose7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionClose8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biCylAntiRejectionClose9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   引脚控制 关]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nCylSwitch1">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylSwitch2">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylSwitch3">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylSwitch4">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylSwitch5">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylSwitch6">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylSwitch7">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylSwitch8">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylSwitch9">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylSwitch10">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylSwitch11">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylSwitch12">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_noAntiRejectionCylSwitch1">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noAntiRejectionCylSwitch2">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noAntiRejectionCylSwitch3">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noAntiRejectionCylSwitch4">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noAntiRejectionCylSwitch5">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noAntiRejectionCylSwitch6">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noAntiRejectionCylSwitch7">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noAntiRejectionCylSwitch8">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noAntiRejectionCylSwitch9">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩气缸   状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylKeepPressure">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩保压开关 0 关 1开启保压]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAntiRejectionCyl1IsUseUpPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl2IsUseUpPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl3IsUseUpPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl4IsUseUpPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl5IsUseUpPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl6IsUseUpPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl7IsUseUpPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl8IsUseUpPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl9IsUseUpPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl10IsUseUpPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl11IsUseUpPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl12IsUseUpPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl1IsUseDownPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl2IsUseDownPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl3IsUseDownPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl4IsUseDownPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl5IsUseDownPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl6IsUseDownPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl7IsUseDownPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl8IsUseDownPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl9IsUseDownPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl10IsUseDownPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl11IsUseDownPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCyl12IsUseDownPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩是否使用到位信号 0不使用 1使用]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boAntiRejectionCylSingleCmd1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionCylSingleCmd2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionCylSingleCmd3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionCylSingleCmd4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionCylSingleCmd5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionCylSingleCmd6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionCylSingleCmd7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionCylSingleCmd8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionCylSingleCmd9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylSingleFB1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylSingleFB2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylSingleFB3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylSingleFB4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylSingleFB5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylSingleFB6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylSingleFB7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylSingleFB8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylSingleFB9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：单控控制引脚或双控控制第一引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylSingleFB1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylSingleFB2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylSingleFB3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylSingleFB4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylSingleFB5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylSingleFB6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylSingleFB7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylSingleFB8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylSingleFB9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAntiRejectionCylSingleNONC1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚的常开常闭类型（hmi）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylSingleNONC2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚的常开常闭类型（hmi）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylSingleNONC3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚的常开常闭类型（hmi）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylSingleNONC4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚的常开常闭类型（hmi）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylSingleNONC5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚的常开常闭类型（hmi）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylSingleNONC6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚的常开常闭类型（hmi）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylSingleNONC7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚的常开常闭类型（hmi）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylSingleNONC8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚的常开常闭类型（hmi）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylSingleNONC9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚的常开常闭类型（hmi）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylSingleNONC10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚的常开常闭类型（hmi）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylSingleNONC11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚的常开常闭类型（hmi）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylSingleNONC12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单控控制引脚或双控控制第一引脚的常开常闭类型（hmi）]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boAntiRejectionCylDoubleCmd1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionCylDoubleCmd2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionCylDoubleCmd3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionCylDoubleCmd4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionCylDoubleCmd5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionCylDoubleCmd6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionCylDoubleCmd7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionCylDoubleCmd8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionCylDoubleCmd9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylDoubleFB1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylDoubleFB2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylDoubleFB3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylDoubleFB4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylDoubleFB5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylDoubleFB6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylDoubleFB7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylDoubleFB8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejectionCylDoubleFB9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入反馈引脚：双控控制第二引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylDoubleFB1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylDoubleFB2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylDoubleFB3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylDoubleFB4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylDoubleFB5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylDoubleFB6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylDoubleFB7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylDoubleFB8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylDoubleFB9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAntiRejectionCylDoubleNONC1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚常开常闭类型（hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylDoubleNONC2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚常开常闭类型（hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylDoubleNONC3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚常开常闭类型（hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylDoubleNONC4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚常开常闭类型（hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylDoubleNONC5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚常开常闭类型（hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylDoubleNONC6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚常开常闭类型（hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylDoubleNONC7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚常开常闭类型（hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylDoubleNONC8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚常开常闭类型（hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylDoubleNONC9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚常开常闭类型（hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylDoubleNONC10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚常开常闭类型（hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylDoubleNONC11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚常开常闭类型（hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejectionCylDoubleNONC12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[双控控制第二引脚常开常闭类型（hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bAntiRejectionCylClampDone1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[夹紧状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylClampDone2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[夹紧状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylClampDone3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[夹紧状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylClampDone4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[夹紧状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylClampDone5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[夹紧状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylClampDone6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[夹紧状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylClampDone7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[夹紧状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylClampDone8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[夹紧状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylClampDone9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[夹紧状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[松开状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[松开状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[松开状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[松开状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[松开状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[松开状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[松开状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[松开状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[松开状态完成]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="RtrigCyl1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl6">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl7">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl8">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl9">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl10">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl11">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl12">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl0ff1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl0ff2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl0ff3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl0ff4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl0ff5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl0ff6">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl0ff7">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl0ff8">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl0ff9">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl0ff10">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl0ff11">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigCyl0ff12">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nTonKeep1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nTonKeep2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nTonKeep3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nTonKeep4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nTonKeep5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nTonKeep6">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nTonKeep7">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nTonKeep8">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nTonKeep9">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nTonKeep10">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nTonKeep11">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nTonKeep12">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nInPlaceTon1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nInPlaceTon2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nInPlaceTon3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nInPlaceTon4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nInPlaceTon5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nInPlaceTon6">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nInPlaceTon7">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nInPlaceTon8">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nInPlaceTon9">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nInPlaceTon10">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nInPlaceTon11">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nInPlaceTon12">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nAntiRejectionCylHMI1">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面反馈状态 0为都false 1为夹紧 2为松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nAntiRejectionCylHMI2">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面反馈状态 0为都false 1为夹紧 2为松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nAntiRejectionCylHMI3">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面反馈状态 0为都false 1为夹紧 2为松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nAntiRejectionCylHMI4">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面反馈状态 0为都false 1为夹紧 2为松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nAntiRejectionCylHMI5">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面反馈状态 0为都false 1为夹紧 2为松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nAntiRejectionCylHMI6">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面反馈状态 0为都false 1为夹紧 2为松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nAntiRejectionCylHMI7">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面反馈状态 0为都false 1为夹紧 2为松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nAntiRejectionCylHMI8">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面反馈状态 0为都false 1为夹紧 2为松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nAntiRejectionCylHMI9">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面反馈状态 0为都false 1为夹紧 2为松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nAntiRejectionCylHMI10">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面反馈状态 0为都false 1为夹紧 2为松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nAntiRejectionCylHMI11">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面反馈状态 0为都false 1为夹紧 2为松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nAntiRejectionCylHMI12">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面反馈状态 0为都false 1为夹紧 2为松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nKeepPressureTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保压时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylUpInPlaceDelay1">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylUpInPlaceDelay2">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylUpInPlaceDelay3">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylUpInPlaceDelay4">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylUpInPlaceDelay5">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylUpInPlaceDelay6">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylUpInPlaceDelay7">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylUpInPlaceDelay8">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylUpInPlaceDelay9">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylUpInPlaceDelay10">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylUpInPlaceDelay11">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylUpInPlaceDelay12">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylDownInPlaceDelay1">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylDownInPlaceDelay2">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylDownInPlaceDelay3">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylDownInPlaceDelay4">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylDownInPlaceDelay5">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylDownInPlaceDelay6">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylDownInPlaceDelay7">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylDownInPlaceDelay8">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylDownInPlaceDelay9">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylDownInPlaceDelay10">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylDownInPlaceDelay11">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCylDownInPlaceDelay12">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[不使用到位信号时的到位延时，使用到位信号时无效]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bAnitRejectionCylKeepPressuring1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保压状态，1为保压中]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAnitRejectionCylKeepPressuring2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保压状态，1为保压中]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAnitRejectionCylKeepPressuring3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保压状态，1为保压中]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAnitRejectionCylKeepPressuring4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保压状态，1为保压中]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAnitRejectionCylKeepPressuring5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保压状态，1为保压中]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAnitRejectionCylKeepPressuring6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保压状态，1为保压中]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAnitRejectionCylKeepPressuring7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保压状态，1为保压中]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAnitRejectionCylKeepPressuring8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保压状态，1为保压中]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAnitRejectionCylKeepPressuring9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保压状态，1为保压中]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Filter_AntiCyl1UpInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl2UpInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl3UpInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl4UpInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl5UpInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl6UpInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl7UpInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl8UpInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl9UpInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl10UpInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl11UpInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl12UpInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl1DownInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl2DownInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl3DownInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl4DownInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl5DownInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl6DownInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl7DownInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl8DownInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl9DownInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl10DownInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl11DownInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_AntiCyl12DownInPlace">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="dSupportCenterCyl1FilterUpDownTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSupportCenterCyl2FilterUpDownTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSupportCenterCyl3FilterUpDownTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSupportCenterCyl4FilterUpDownTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSupportCenterCyl5FilterUpDownTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSupportCenterCyl6FilterUpDownTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSupportCenterCyl7FilterUpDownTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSupportCenterCyl8FilterUpDownTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSupportCenterCyl9FilterUpDownTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSupportCenterCyl10FilterUpDownTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSupportCenterCyl11FilterUpDownTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSupportCenterCyl12FilterUpDownTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpFilterInPlace1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpFilterInPlace2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpFilterInPlace3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpFilterInPlace4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpFilterInPlace5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpFilterInPlace6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpFilterInPlace7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpFilterInPlace8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpFilterInPlace9">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpFilterInPlace10">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpFilterInPlace11">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpFilterInPlace12">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownFilterInPlace1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownFilterInPlace2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownFilterInPlace3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownFilterInPlace4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownFilterInPlace5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownFilterInPlace6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownFilterInPlace7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownFilterInPlace8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownFilterInPlace9">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownFilterInPlace10">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownFilterInPlace11">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownFilterInPlace12">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpNotFilterInPlace1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpNotFilterInPlace2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpNotFilterInPlace3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpNotFilterInPlace4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpNotFilterInPlace5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpNotFilterInPlace6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpNotFilterInPlace7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpNotFilterInPlace8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpNotFilterInPlace9">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpNotFilterInPlace10">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpNotFilterInPlace11">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderUpNotFilterInPlace12">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownNotFilterInPlace1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownNotFilterInPlace2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownNotFilterInPlace3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownNotFilterInPlace4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownNotFilterInPlace5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownNotFilterInPlace6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownNotFilterInPlace7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownNotFilterInPlace8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownNotFilterInPlace9">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownNotFilterInPlace10">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownNotFilterInPlace11">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinderDownNotFilterInPlace12">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinder1UpDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSupportCentercyLinder2UpDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinder3UpDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinder4UpDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinder5UpDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinder6UpDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinder7UpDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinder8UpDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinder9UpDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinder10UpDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinder11UpDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinder12UpDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCentercyLinder1DownDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSupportCentercyLinder2DownDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSupportCentercyLinder3DownDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSupportCentercyLinder4DownDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSupportCentercyLinder5DownDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSupportCentercyLinder6DownDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSupportCentercyLinder7DownDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSupportCentercyLinder8DownDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSupportCentercyLinder9DownDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSupportCentercyLinder10DownDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSupportCentercyLinder11DownDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSupportCentercyLinder12DownDoneTimeOutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bKeepCenter1UpState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持上升状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter2UpState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持上升状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter3UpState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持上升状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter4UpState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持上升状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter5UpState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持上升状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter6UpState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持上升状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter7UpState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持上升状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter8UpState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持上升状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter9UpState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持上升状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter1DownState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持下降状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter2DownState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持下降状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter3DownState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持下降状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter4DownState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持下降状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter5DownState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持下降状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter6DownState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持下降状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter7DownState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持下降状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter8DownState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持下降状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bKeepCenter9DownState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保持下降状态]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bCenter1IsAvoidFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸1是否避让]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCenter2IsAvoidFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸2是否避让]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCenter3IsAvoidFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸3是否避让]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCenter4IsAvoidFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸4是否避让]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCenter5IsAvoidFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸5是否避让]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCenter6IsAvoidFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸6是否避让]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCenter7IsAvoidFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸7是否避让]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCenter8IsAvoidFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸8是否避让]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCenter9IsAvoidFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸9是否避让]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCenter10IsAvoidFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸10是否避让]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCenter11IsAvoidFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸11是否避让]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCenter12IsAvoidFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸12是否避让]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*默认双控，单控时请只连接single*)
+(*目前不支持部分开保压部分不开和部分用到位信号部分不用的情况*)
+RtrigCyl1(CLK := ( bCylAntiRejectionOpen1 OR g_bCylAntiRejectionOpen1 OR g_biCylAntiRejectionOpen1 OR g_bCylAntiRejectionOpen1M));
+RtrigCyl0ff1(CLK := (bCylAntiRejectionClose1 OR g_bCylAntiRejectionClose1 OR g_biCylAntiRejectionClose1  OR g_bCylAntiRejectionClose1M ));
+IF RtrigCyl1.Q THEN
+  IF (g_fCenterClylinder1CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder1DownDistance) THEN
+    IF M.PARAMETER_P[185]=1.0 THEN
+		M.ENABLE[185] :=0;
+    END_IF;
+    g_bCylAntiRejectionOpen1M := FALSE;
+    g_bCylAntiRejectionOpen1:=FALSE;
+    bCylAntiRejectionOpen1:=FALSE;
+    g_bFinishedM185_1:=FALSE;
+    g_bAntiRejectionCylClampDone1:=TRUE;
+    g_bAntiRejectionCylLoosenDone1:=FALSE;
+	bCenter1IsAvoidFlag := TRUE;
+  ELSE
+	  nTonKeep1(IN :=FALSE);
+	  nInPlaceTon1(IN :=FALSE);
+	  g_bAntiRejectionCylClampDone1:=FALSE;
+	  g_bAntiRejectionCylLoosenDone1:=FALSE;
+	  g_bAnitRejectionCylKeepPressuring1:=FALSE;
+	  bCylAntiRejectionOpen1:=FALSE;
+	  g_bCylAntiRejectionOpen1:=FALSE;
+	  bCylAntiRejectionClose1:=FALSE;
+	  g_bCylAntiRejectionClose1:=FALSE;
+	  bSupportCentercyLinder1DownDoneTimeOutAlarm := FALSE;
+	  g_bKeepCenter1DownState := FALSE;
+	  g_bCylAntiRejectionOpen1M := FALSE;
+      bCenter1IsAvoidFlag := FALSE;
+	  IF g_nAntiRejectionCylNum >= 1 THEN
+			nCylSwitch1:=10;
+	  ELSE
+			M.ENABLE[185] :=0;
+			g_bFinishedM185_1 := FALSE;
+	  END_IF;
+  END_IF;
+END_IF;
+
+IF RtrigCyl0ff1.Q OR (g_fCenterClylinder1CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder1DownDistance AND g_boAntiRejectionCylSingleCmd1) THEN
+  
+  nTonKeep1(IN :=FALSE);
+  nInPlaceTon1(IN :=FALSE);
+  g_bAntiRejectionCylClampDone1:=FALSE;
+  g_bAntiRejectionCylLoosenDone1:=FALSE;
+  g_bAnitRejectionCylKeepPressuring1:=FALSE;
+  bCylAntiRejectionOpen1:=FALSE;
+  g_bCylAntiRejectionOpen1:=FALSE;
+  bCylAntiRejectionClose1:=FALSE;
+  g_bCylAntiRejectionClose1:=FALSE;
+  bSupportCentercyLinder1UpDoneTimeOutAlarm := FALSE;
+  g_bKeepCenter1UpState := FALSE;
+  g_bCylAntiRejectionClose1M := FALSE;
+  IF g_nAntiRejectionCylNum >= 1 THEN
+		nCylSwitch1:=50;
+  ELSE
+		M.ENABLE[185] :=0;
+        g_bFinishedM185_1 := FALSE;
+  END_IF;
+END_IF;
+
+CASE nCylSwitch1 OF
+  0:
+    nCylSwitch1:=0;
+  10:(*夹紧*)
+    g_boAntiRejectionCylSingleCmd1:=TRUE;
+    g_boAntiRejectionCylDoubleCmd1:=FALSE; 
+    nCylSwitch1:=15;
+  15:(*是否使用到位信号*)
+    IF bAntiRejectionCyl1IsUseUpPosition THEN(*使用到位信号*)
+      nCylSwitch1:=20;
+    ELSE
+      nCylSwitch1:=30;
+    END_IF;
+  20:(*使用到位信号，先夹紧到位再判断是否使用保压*)
+    IF g_bAntiRejectionCylSingleFB1 THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch1:=25;
+      ELSE
+        nCylSwitch1:=0;
+        g_bAntiRejectionCylClampDone1:=TRUE;
+        bSupportCentercyLinder1UpDoneTimeOutAlarm := FALSE;
+        g_bKeepCenter1UpState := TRUE;
+        M.ENABLE[185] :=0;
+        g_bFinishedM185_1 := FALSE;
+        (*夹紧完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylSingleFB1 THEN
+      (*夹紧到位超时报警*)
+		nInPlaceTon1(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay1)));
+		IF nInPlaceTon1.Q THEN
+		  nInPlaceTon1(IN :=FALSE);
+		  
+		  bSupportCentercyLinder1UpDoneTimeOutAlarm := TRUE;
+		END_IF;
+    END_IF;
+    
+    
+    
+  25:(*保压*)
+    nTonKeep1(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring1:=TRUE;(***)
+    IF nTonKeep1.Q THEN
+      g_bAnitRejectionCylKeepPressuring1:=FALSE;
+      g_boAntiRejectionCylSingleCmd1:=FALSE;
+      g_boAntiRejectionCylDoubleCmd1:=FALSE; 
+      nTonKeep1(IN :=FALSE);
+      nCylSwitch1:=0;
+      g_bAntiRejectionCylClampDone1:=TRUE;
+      (*夹紧完成*)
+    END_IF;
+  30:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch1:=25;
+    ELSE
+      nCylSwitch1:=35;
+    END_IF;
+  35:
+    nInPlaceTon1(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay1)));
+    IF nInPlaceTon1.Q THEN
+      nInPlaceTon1(IN :=FALSE);
+      nCylSwitch1:=0;
+      g_bAntiRejectionCylClampDone1:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_1 := FALSE;
+        g_bKeepCenter1UpState := TRUE;
+      (*夹紧完成*)
+    END_IF;
+  
+  50:(*松开*)
+    g_boAntiRejectionCylSingleCmd1:=FALSE;
+    g_boAntiRejectionCylDoubleCmd1:=TRUE;
+    nCylSwitch1:=55;
+  55:(*是否使用到位信号*)
+    IF bAntiRejectionCyl1IsUseDownPosition THEN(*使用到位信号*)
+      nCylSwitch1:=60;
+    ELSE
+      nCylSwitch1:=70;
+    END_IF;
+  60:
+    IF  g_bAntiRejectionCylDoubleFB1 THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch1:=65;
+      ELSE
+        nCylSwitch1:=0;
+        g_bAntiRejectionCylLoosenDone1:=TRUE;
+        bSupportCentercyLinder1DownDoneTimeOutAlarm := FALSE;
+        g_bKeepCenter1DownState := TRUE;
+        M.ENABLE[185] :=0;
+        g_bFinishedM185_1 := FALSE;
+        (*松开完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylDoubleFB1 THEN
+       nInPlaceTon1(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay1)));
+		IF nInPlaceTon1.Q THEN
+		  nInPlaceTon1(IN :=FALSE);
+		 
+		  bSupportCentercyLinder1DownDoneTimeOutAlarm:=TRUE;
+		  (*松开完成*)
+		END_IF;
+    END_IF;
+  65:
+    nTonKeep1(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring1:=TRUE;(***)
+    IF nTonKeep1.Q THEN
+      g_bAnitRejectionCylKeepPressuring1:=FALSE;
+      
+      g_boAntiRejectionCylSingleCmd1:=FALSE;
+      g_boAntiRejectionCylDoubleCmd1:=FALSE; 
+      
+      nTonKeep1(IN :=FALSE);
+      nCylSwitch1:=0;
+      g_bAntiRejectionCylLoosenDone1:=TRUE;
+      (*松开完成*)
+    END_IF;
+  70:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch1:=65;
+    ELSE
+      nCylSwitch1:=75;
+    END_IF;
+  75:
+    nInPlaceTon1(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay1)));
+    IF nInPlaceTon1.Q THEN
+      nInPlaceTon1(IN :=FALSE);
+      nCylSwitch1:=0;
+      g_bAntiRejectionCylLoosenDone1:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_1 := FALSE;
+        g_bKeepCenter1DownState := TRUE;
+      (*松开完成*)
+    END_IF;
+END_CASE;
+
+(*hmi状态灯显示*)
+IF bAntiRejectionCyl1IsUseUpPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylSingleFB1 AND g_bKeepCenter1UpState THEN
+    nAntiRejectionCylHMI1:=1;
+  END_IF;
+  IF NOT bSupportCentercyLinderUpNotFilterInPlace1 AND nAntiRejectionCylHMI1 = 1 AND g_bKeepCenter1UpState THEN
+    bSupportCentercyLinder1UpDoneTimeOutAlarm:=TRUE;
+  ELSIF bSupportCentercyLinderUpNotFilterInPlace1 AND nAntiRejectionCylHMI1 = 1 THEN
+    bSupportCentercyLinder1UpDoneTimeOutAlarm:= FALSE;
+  END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+    IF g_bAntiRejectionCylClampDone1 AND NOT g_bAntiRejectionCylLoosenDone1 AND NOT bCenter1IsAvoidFlag THEN
+      nAntiRejectionCylHMI1:=1;
+    END_IF;
+    bSupportCentercyLinder1UpDoneTimeOutAlarm := FALSE;
+END_IF;
+
+
+(*hmi状态灯显示*)
+IF bAntiRejectionCyl1IsUseDownPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+	IF g_bAntiRejectionCylDoubleFB1 AND g_bKeepCenter1DownState THEN
+		nAntiRejectionCylHMI1:=2;
+	END_IF;
+     IF NOT bSupportCentercyLinderDownNotFilterInPlace1 AND nAntiRejectionCylHMI1 = 2 AND g_bKeepCenter1DownState THEN
+		bSupportCentercyLinder1DownDoneTimeOutAlarm:=TRUE;
+	  ELSIF bSupportCentercyLinderDownNotFilterInPlace1 AND nAntiRejectionCylHMI1 = 2 THEN
+		bSupportCentercyLinder1DownDoneTimeOutAlarm:= FALSE;
+	  END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+	IF (g_bAntiRejectionCylLoosenDone1 AND NOT g_bAntiRejectionCylClampDone1) OR bCenter1IsAvoidFlag THEN
+		nAntiRejectionCylHMI1:=2;
+    END_IF;
+    bSupportCentercyLinder1DownDoneTimeOutAlarm := FALSE;
+END_IF;
+
+
+
+(*222222222*)
+RtrigCyl2(CLK := ( bCylAntiRejectionOpen2 OR g_bCylAntiRejectionOpen2 OR g_biCylAntiRejectionOpen2 OR g_bCylAntiRejectionOpen2M ));
+RtrigCyl0ff2(CLK := ( bCylAntiRejectionClose2 OR g_bCylAntiRejectionClose2 OR g_biCylAntiRejectionClose2  OR g_bCylAntiRejectionClose2M ));
+IF RtrigCyl2.Q THEN
+  IF (g_fCenterClylinder2CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder2DownDistance) THEN
+    IF M.PARAMETER_P[185]=2.0 THEN
+		M.ENABLE[185] :=0;
+    END_IF;
+    g_bCylAntiRejectionOpen2M := FALSE;
+    g_bCylAntiRejectionOpen2:=FALSE;
+    bCylAntiRejectionOpen2:=FALSE;
+    g_bFinishedM185_2:=FALSE;
+	  g_bAntiRejectionCylClampDone2:=TRUE;
+	  g_bAntiRejectionCylLoosenDone2:=FALSE;
+	bCenter2IsAvoidFlag := TRUE;
+  ELSE
+	  nTonKeep2(IN :=FALSE);
+	  nInPlaceTon2(IN :=FALSE);
+	  g_bAntiRejectionCylClampDone2:=FALSE;
+	  g_bAntiRejectionCylLoosenDone2:=FALSE;
+	  g_bAnitRejectionCylKeepPressuring2:=FALSE;
+	  bCylAntiRejectionClose2:=FALSE;
+	  g_bCylAntiRejectionClose2:=FALSE;
+	  bCylAntiRejectionOpen2:=FALSE;
+	  g_bCylAntiRejectionOpen2:=FALSE;
+	  bSupportCentercyLinder2DownDoneTimeOutAlarm := FALSE;
+	  g_bKeepCenter2DownState := FALSE;
+	  g_bCylAntiRejectionOpen2M := FALSE;
+	  bCenter2IsAvoidFlag := FALSE;
+	  IF g_nAntiRejectionCylNum >= 2 THEN
+		nCylSwitch2:=10;
+	  ELSE
+		M.ENABLE[185] :=0;
+		g_bFinishedM185_2 := FALSE;
+	  END_IF;
+    
+  END_IF;
+END_IF;
+
+IF RtrigCyl0ff2.Q OR (g_fCenterClylinder2CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder2DownDistance AND g_boAntiRejectionCylSingleCmd2)  THEN
+  nTonKeep2(IN :=FALSE);
+  nInPlaceTon2(IN :=FALSE);
+  g_bAntiRejectionCylClampDone2:=FALSE;
+  g_bAntiRejectionCylLoosenDone2:=FALSE;
+  g_bAnitRejectionCylKeepPressuring2:=FALSE;
+  bCylAntiRejectionOpen2:=FALSE;
+  g_bCylAntiRejectionOpen2:=FALSE;
+  bCylAntiRejectionClose2:=FALSE;
+  g_bCylAntiRejectionClose2:=FALSE;
+  bSupportCentercyLinder2UpDoneTimeOutAlarm := FALSE;
+  g_bKeepCenter2UpState := FALSE;
+  g_bCylAntiRejectionClose2M := FALSE;
+  IF g_nAntiRejectionCylNum >= 2 THEN
+	nCylSwitch2:=50;
+  ELSE
+	M.ENABLE[185] :=0;
+	g_bFinishedM185_2 := FALSE;
+  END_IF;
+END_IF;
+
+CASE nCylSwitch2 OF
+  0:
+    nCylSwitch2:=0;
+  10:(*夹紧*)
+    g_boAntiRejectionCylSingleCmd2:=TRUE;
+    g_boAntiRejectionCylDoubleCmd2:=FALSE; 
+    nCylSwitch2:=15;
+  15:(*是否使用到位信号*)
+    IF bAntiRejectionCyl2IsUseUpPosition THEN(*使用到位信号*)
+      nCylSwitch2:=20;
+    ELSE
+      nCylSwitch2:=30;
+    END_IF;
+  20:(*使用到位信号，先夹紧到位再判断是否使用保压*)
+    IF g_bAntiRejectionCylSingleFB2 THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch2:=25;
+      ELSE
+        nCylSwitch2:=0;
+        g_bAntiRejectionCylClampDone2:=TRUE;
+        bSupportCentercyLinder2UpDoneTimeOutAlarm := FALSE;
+        g_bKeepCenter2UpState := TRUE;
+        M.ENABLE[185] :=0;
+        g_bFinishedM185_2 := FALSE;
+        (*夹紧完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylSingleFB2 THEN
+      (*夹紧到位超时报警*)
+		nInPlaceTon2(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay2)));
+		IF nInPlaceTon2.Q THEN
+		  nInPlaceTon2(IN :=FALSE);
+		 
+		  bSupportCentercyLinder2UpDoneTimeOutAlarm := TRUE;
+		END_IF;
+    END_IF;
+  25:(*保压*)
+    nTonKeep2(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring2:=TRUE;(***)
+    IF nTonKeep2.Q THEN
+      g_bAnitRejectionCylKeepPressuring2:=FALSE;
+      g_boAntiRejectionCylSingleCmd2:=FALSE;
+      g_boAntiRejectionCylDoubleCmd2:=FALSE; 
+      nTonKeep2(IN :=FALSE);
+      nCylSwitch2:=0;
+      g_bAntiRejectionCylClampDone2:=TRUE;
+      (*夹紧完成*)
+    END_IF;
+  30:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch2:=25;
+    ELSE
+      nCylSwitch2:=35;
+    END_IF;
+  35:
+    nInPlaceTon2(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay2)));
+    IF nInPlaceTon2.Q THEN
+      nInPlaceTon2(IN :=FALSE);
+      nCylSwitch2:=0;
+      g_bAntiRejectionCylClampDone2:=TRUE;
+      bSupportCentercyLinder2UpDoneTimeOutAlarm := FALSE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_2 := FALSE;
+      (*夹紧完成*)
+    END_IF;
+  
+  50:(*松开*)
+    g_boAntiRejectionCylSingleCmd2:=FALSE;
+    g_boAntiRejectionCylDoubleCmd2:=TRUE;
+    nCylSwitch2:=55;
+  55:(*是否使用到位信号*)
+    IF bAntiRejectionCyl2IsUseDownPosition THEN(*使用到位信号*)
+      nCylSwitch2:=60;
+    ELSE
+      nCylSwitch2:=70;
+    END_IF;
+  60:
+    IF  g_bAntiRejectionCylDoubleFB2 THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch2:=65;
+      ELSE
+        nCylSwitch2:=0;
+        g_bAntiRejectionCylLoosenDone2:=TRUE;
+        bSupportCentercyLinder2DownDoneTimeOutAlarm:=FALSE;
+        g_bKeepCenter2DownState := TRUE;
+        M.ENABLE[185] :=0;
+        g_bFinishedM185_2 := FALSE;
+        (*松开完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylDoubleFB2 THEN
+       nInPlaceTon2(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay2)));
+		IF nInPlaceTon2.Q THEN
+		  nInPlaceTon2(IN :=FALSE);
+		 
+		  bSupportCentercyLinder2DownDoneTimeOutAlarm:=TRUE;
+		  (*松开完成*)
+		END_IF;
+    END_IF;
+  65:
+    nTonKeep2(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring2:=TRUE;(***)
+    IF nTonKeep2.Q THEN
+      g_bAnitRejectionCylKeepPressuring2:=FALSE;
+      
+      g_boAntiRejectionCylSingleCmd2:=FALSE;
+      g_boAntiRejectionCylDoubleCmd2:=FALSE; 
+      
+      nTonKeep2(IN :=FALSE);
+      nCylSwitch2:=0;
+      g_bAntiRejectionCylLoosenDone2:=TRUE;
+      (*松开完成*)
+    END_IF;
+  70:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch2:=65;
+    ELSE
+      nCylSwitch2:=75;
+    END_IF;
+  75:
+    nInPlaceTon2(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay2)));
+    IF nInPlaceTon2.Q THEN
+      nInPlaceTon2(IN :=FALSE);
+      nCylSwitch2:=0;
+      g_bAntiRejectionCylLoosenDone2:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_2 := FALSE;
+      (*松开完成*)
+    END_IF;
+END_CASE;
+
+(*hmi状态灯显示*)
+IF bAntiRejectionCyl2IsUseUpPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylSingleFB2 AND g_bKeepCenter2UpState  THEN
+    nAntiRejectionCylHMI2:=1;
+  END_IF;
+  IF NOT bSupportCentercyLinderUpNotFilterInPlace2 AND nAntiRejectionCylHMI2 = 1 AND g_bKeepCenter2UpState THEN
+    bSupportCentercyLinder2UpDoneTimeOutAlarm:=TRUE;
+  ELSIF bSupportCentercyLinderUpNotFilterInPlace2 AND nAntiRejectionCylHMI2 = 1 THEN
+    bSupportCentercyLinder2UpDoneTimeOutAlarm:= FALSE;
+  END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+    IF g_bAntiRejectionCylClampDone2 AND NOT g_bAntiRejectionCylLoosenDone2 AND NOT bCenter2IsAvoidFlag THEN
+      nAntiRejectionCylHMI2:=1;
+    END_IF;
+    bSupportCentercyLinder2UpDoneTimeOutAlarm:=FALSE;
+END_IF;
+
+
+IF bAntiRejectionCyl2IsUseDownPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+	IF g_bAntiRejectionCylDoubleFB2 AND g_bKeepCenter2DownState  THEN
+		nAntiRejectionCylHMI2:=2;
+	END_IF;
+	IF NOT bSupportCentercyLinderDownNotFilterInPlace2 AND nAntiRejectionCylHMI2 = 2 AND g_bKeepCenter2DownState THEN
+		bSupportCentercyLinder2DownDoneTimeOutAlarm:=TRUE;
+	ELSIF bSupportCentercyLinderDownNotFilterInPlace2 AND nAntiRejectionCylHMI2 = 2 THEN
+		bSupportCentercyLinder2DownDoneTimeOutAlarm:= FALSE;
+	END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+	IF (g_bAntiRejectionCylLoosenDone2 AND NOT g_bAntiRejectionCylClampDone2) OR bCenter2IsAvoidFlag THEN
+      nAntiRejectionCylHMI2:=2;
+    END_IF;
+    bSupportCentercyLinder2DownDoneTimeOutAlarm:=FALSE;
+END_IF;
+(*3333*)
+RtrigCyl3(CLK := ( bCylAntiRejectionOpen3 OR g_bCylAntiRejectionOpen3 OR g_biCylAntiRejectionOpen3 OR g_bCylAntiRejectionOpen3M ));
+RtrigCyl0ff3(CLK := ( bCylAntiRejectionClose3 OR g_bCylAntiRejectionClose3 OR g_biCylAntiRejectionClose3  OR g_bCylAntiRejectionClose3M ));
+IF RtrigCyl3.Q THEN
+  IF (g_fCenterClylinder3CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder3DownDistance) THEN
+    IF M.PARAMETER_P[185]=3.0 THEN
+		M.ENABLE[185] :=0;
+    END_IF;
+    g_bCylAntiRejectionOpen3M := FALSE;
+    g_bCylAntiRejectionOpen3:=FALSE;
+    bCylAntiRejectionOpen3:=FALSE;
+    g_bFinishedM185_3:=FALSE;
+	  g_bAntiRejectionCylClampDone3:=TRUE;
+	  g_bAntiRejectionCylLoosenDone3:=FALSE;
+	  bCenter3IsAvoidFlag := TRUE;
+  ELSE
+	  nTonKeep3(IN :=FALSE);
+	  nInPlaceTon3(IN :=FALSE);
+	  g_bAntiRejectionCylClampDone3:=FALSE;
+	  g_bAntiRejectionCylLoosenDone3:=FALSE;
+	  g_bAnitRejectionCylKeepPressuring3:=FALSE;
+	  bCylAntiRejectionOpen3:=FALSE;
+	  g_bCylAntiRejectionOpen3:=FALSE;
+	  bCylAntiRejectionClose3:=FALSE;
+	  g_bCylAntiRejectionClose3:=FALSE;
+	  bSupportCentercyLinder3DownDoneTimeOutAlarm:= FALSE;
+	  g_bKeepCenter3DownState := FALSE;
+	  g_bCylAntiRejectionOpen3M := FALSE;
+	  bCenter3IsAvoidFlag := FALSE;
+	  IF g_nAntiRejectionCylNum >= 3 THEN
+		nCylSwitch3:=10;
+	  ELSE
+		M.ENABLE[185] :=0;
+		g_bFinishedM185_3 := FALSE;
+	  END_IF;
+    
+  END_IF;
+END_IF;
+
+IF RtrigCyl0ff3.Q OR (g_fCenterClylinder3CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder3DownDistance  AND g_boAntiRejectionCylSingleCmd3) THEN
+  nTonKeep3(IN :=FALSE);
+  nInPlaceTon3(IN :=FALSE);
+  g_bAntiRejectionCylClampDone3:=FALSE;
+  g_bAntiRejectionCylLoosenDone3:=FALSE;
+  g_bAnitRejectionCylKeepPressuring3:=FALSE;
+  bCylAntiRejectionOpen3:=FALSE;
+  g_bCylAntiRejectionOpen3:=FALSE;
+  bCylAntiRejectionClose3:=FALSE;
+  g_bCylAntiRejectionClose3:=FALSE;
+  bSupportCentercyLinder3UpDoneTimeOutAlarm:= FALSE;
+  g_bKeepCenter3UpState := FALSE;
+  g_bCylAntiRejectionClose3M := FALSE;
+  IF g_nAntiRejectionCylNum >= 3 THEN
+	nCylSwitch3:=50;
+  ELSE
+	M.ENABLE[185] :=0;
+	g_bFinishedM185_3 := FALSE;
+  END_IF;
+END_IF;
+
+CASE nCylSwitch3 OF
+  0:
+    nCylSwitch3:=0;
+  10:(*夹紧*)
+    g_boAntiRejectionCylSingleCmd3:=TRUE;
+    g_boAntiRejectionCylDoubleCmd3:=FALSE; 
+    nCylSwitch3:=15;
+  15:(*是否使用到位信号*)
+    IF bAntiRejectionCyl3IsUseUpPosition THEN(*使用到位信号*)
+      nCylSwitch3:=20;
+    ELSE
+      nCylSwitch3:=30;
+    END_IF;
+  20:(*使用到位信号，先夹紧到位再判断是否使用保压*)
+    IF g_bAntiRejectionCylSingleFB3  THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch3:=25;
+      ELSE
+        nCylSwitch3:=0;
+        g_bAntiRejectionCylClampDone3:=TRUE;
+        bSupportCentercyLinder3UpDoneTimeOutAlarm:= FALSE;
+        g_bKeepCenter3UpState := TRUE;
+        M.ENABLE[185] :=0;
+        g_bFinishedM185_3 := FALSE;
+        (*夹紧完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylSingleFB3 THEN
+       nInPlaceTon3(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay3)));
+		IF nInPlaceTon3.Q THEN
+		  nInPlaceTon3(IN :=FALSE);
+		  
+          bSupportCentercyLinder3UpDoneTimeOutAlarm:= TRUE;
+		END_IF;
+    END_IF;
+  25:(*保压*)
+    nTonKeep3(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring3:=TRUE;(***)
+    IF nTonKeep3.Q THEN
+      g_bAnitRejectionCylKeepPressuring3:=FALSE;
+      g_boAntiRejectionCylSingleCmd3:=FALSE;
+      g_boAntiRejectionCylDoubleCmd3:=FALSE; 
+      nTonKeep3(IN :=FALSE);
+      nCylSwitch3:=0;
+      g_bAntiRejectionCylClampDone3:=TRUE;
+      (*夹紧完成*)
+    END_IF;
+  30:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch3:=25;
+    ELSE
+      nCylSwitch3:=35;
+    END_IF;
+  35:
+    nInPlaceTon3(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay3)));
+    IF nInPlaceTon3.Q THEN
+      nInPlaceTon3(IN :=FALSE);
+      nCylSwitch3:=0;
+      g_bAntiRejectionCylClampDone3:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_3 := FALSE;
+      (*夹紧完成*)
+    END_IF;
+  
+  50:(*松开*)
+    g_boAntiRejectionCylSingleCmd3:=FALSE;
+    g_boAntiRejectionCylDoubleCmd3:=TRUE;
+    nCylSwitch3:=55;
+  55:(*是否使用到位信号*)
+    IF bAntiRejectionCyl3IsUseDownPosition THEN(*使用到位信号*)
+      nCylSwitch3:=60;
+    ELSE
+      nCylSwitch3:=70;
+    END_IF;
+  60:
+    IF  g_bAntiRejectionCylDoubleFB3 THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch3:=65;
+      ELSE
+        nCylSwitch3:=0;
+        g_bAntiRejectionCylLoosenDone3:=TRUE;
+         bSupportCentercyLinder3DownDoneTimeOutAlarm:= FALSE;
+         g_bKeepCenter3DownState := TRUE;
+         M.ENABLE[185] :=0;
+        g_bFinishedM185_3 := FALSE;
+        (*松开完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylDoubleFB3 THEN
+       nInPlaceTon3(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay3)));
+		IF nInPlaceTon3.Q THEN
+		  nInPlaceTon3(IN :=FALSE);
+		  
+          bSupportCentercyLinder3DownDoneTimeOutAlarm:= TRUE;
+		END_IF;
+    END_IF;
+  65:
+    nTonKeep3(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring3:=TRUE;(***)
+    IF nTonKeep3.Q THEN
+      g_bAnitRejectionCylKeepPressuring3:=FALSE;
+      
+      g_boAntiRejectionCylSingleCmd3:=FALSE;
+      g_boAntiRejectionCylDoubleCmd3:=FALSE; 
+      
+      nTonKeep3(IN :=FALSE);
+      nCylSwitch3:=0;
+      g_bAntiRejectionCylLoosenDone3:=TRUE;
+      (*松开完成*)
+    END_IF;
+  70:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch3:=65;
+    ELSE
+      nCylSwitch3:=75;
+    END_IF;
+  75:
+    nInPlaceTon3(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay3)));
+    IF nInPlaceTon3.Q THEN
+      nInPlaceTon3(IN :=FALSE);
+      nCylSwitch3:=0;
+      g_bAntiRejectionCylLoosenDone3:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_3 := FALSE;
+      (*松开完成*)
+    END_IF;
+END_CASE;
+
+(*hmi状态灯显示*)
+IF bAntiRejectionCyl3IsUseUpPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylSingleFB3 AND g_bKeepCenter3UpState  THEN
+    nAntiRejectionCylHMI3:=1;
+  END_IF;
+  IF NOT bSupportCentercyLinderUpNotFilterInPlace3 AND nAntiRejectionCylHMI3 = 1 AND g_bKeepCenter3UpState THEN
+    bSupportCentercyLinder3UpDoneTimeOutAlarm:=TRUE;
+  ELSIF bSupportCentercyLinderUpNotFilterInPlace2 AND nAntiRejectionCylHMI3 = 1 THEN
+    bSupportCentercyLinder3UpDoneTimeOutAlarm:= FALSE;
+  END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+    IF g_bAntiRejectionCylClampDone3 AND NOT g_bAntiRejectionCylLoosenDone3 AND NOT  bCenter3IsAvoidFlag THEN
+      nAntiRejectionCylHMI3:=1;
+    END_IF;
+     bSupportCentercyLinder3UpDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+
+IF bAntiRejectionCyl3IsUseDownPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+	IF g_bAntiRejectionCylDoubleFB3 AND g_bKeepCenter3DownState  THEN
+		nAntiRejectionCylHMI3:=2;
+	END_IF;
+	IF NOT bSupportCentercyLinderDownNotFilterInPlace3 AND nAntiRejectionCylHMI3 = 2 AND g_bKeepCenter3DownState THEN
+		bSupportCentercyLinder3DownDoneTimeOutAlarm:=TRUE;
+	ELSIF bSupportCentercyLinderDownNotFilterInPlace3 AND nAntiRejectionCylHMI3 = 2 THEN
+		bSupportCentercyLinder3DownDoneTimeOutAlarm:= FALSE;
+	END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+	IF (g_bAntiRejectionCylLoosenDone3 AND NOT g_bAntiRejectionCylClampDone3) THEN
+      nAntiRejectionCylHMI3:=2;
+    END_IF;
+    bSupportCentercyLinder3DownDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+(*44444444*)
+RtrigCyl4(CLK := ( bCylAntiRejectionOpen4 OR g_bCylAntiRejectionOpen4 OR g_biCylAntiRejectionOpen4 OR g_bCylAntiRejectionOpen4M ));
+RtrigCyl0ff4(CLK := ( bCylAntiRejectionClose4 OR g_bCylAntiRejectionClose4 OR g_biCylAntiRejectionClose4  OR g_bCylAntiRejectionClose4M ));
+IF RtrigCyl4.Q THEN
+  IF (g_fCenterClylinder4CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder4DownDistance) THEN
+    IF M.PARAMETER_P[185]=4.0 THEN
+		M.ENABLE[185] :=0;
+    END_IF;
+    g_bCylAntiRejectionOpen4M := FALSE;
+    g_bCylAntiRejectionOpen4:=FALSE;
+    bCylAntiRejectionOpen4:=FALSE;
+    g_bFinishedM185_4:=FALSE;
+	  g_bAntiRejectionCylClampDone4:=TRUE;
+	  g_bAntiRejectionCylLoosenDone4:=FALSE;
+	  bCenter4IsAvoidFlag := TRUE;
+  ELSE
+	  nTonKeep4(IN :=FALSE);
+	  nInPlaceTon4(IN :=FALSE);
+	  g_bAntiRejectionCylClampDone4:=FALSE;
+	  g_bAntiRejectionCylLoosenDone4:=FALSE;
+	  g_bAnitRejectionCylKeepPressuring4:=FALSE;
+	  bCylAntiRejectionOpen4:=FALSE;
+	  g_bCylAntiRejectionOpen4:=FALSE;
+	  bCylAntiRejectionClose4:=FALSE;
+	  g_bCylAntiRejectionClose4:=FALSE;
+	  bSupportCentercyLinder4DownDoneTimeOutAlarm:= FALSE;
+	  g_bKeepCenter4DownState := FALSE;
+	  g_bCylAntiRejectionOpen4M := FALSE;
+	  bCenter4IsAvoidFlag := FALSE;
+	  IF g_nAntiRejectionCylNum >= 4 THEN
+		nCylSwitch4:=10;
+	  ELSE
+		M.ENABLE[185] :=0;
+		g_bFinishedM185_4 := FALSE;
+	  END_IF; 
+  END_IF;
+END_IF;
+
+IF RtrigCyl0ff4.Q OR (g_fCenterClylinder4CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder4DownDistance AND g_boAntiRejectionCylSingleCmd4)  THEN
+  nTonKeep4(IN :=FALSE);
+  nInPlaceTon4(IN :=FALSE);
+  g_bAntiRejectionCylClampDone4:=FALSE;
+  g_bAntiRejectionCylLoosenDone4:=FALSE;
+  g_bAnitRejectionCylKeepPressuring4:=FALSE;
+  bCylAntiRejectionOpen4:=FALSE;
+  g_bCylAntiRejectionOpen4:=FALSE;
+  bCylAntiRejectionClose4:=FALSE;
+  g_bCylAntiRejectionClose4:=FALSE;
+  bSupportCentercyLinder4UpDoneTimeOutAlarm:= FALSE;
+  g_bKeepCenter4UpState := FALSE;
+  g_bCylAntiRejectionClose4M := FALSE;
+  IF g_nAntiRejectionCylNum >= 4 THEN
+	nCylSwitch4:=50;
+  ELSE
+	M.ENABLE[185] :=0;
+	g_bFinishedM185_4 := FALSE;
+  END_IF;
+END_IF;
+
+CASE nCylSwitch4 OF
+  0:
+    nCylSwitch4:=0;
+  10:(*夹紧*)
+    g_boAntiRejectionCylSingleCmd4:=TRUE;
+    g_boAntiRejectionCylDoubleCmd4:=FALSE; 
+    nCylSwitch4:=15;
+  15:(*是否使用到位信号*)
+    IF bAntiRejectionCyl4IsUseUpPosition THEN(*使用到位信号*)
+      nCylSwitch4:=20;
+    ELSE
+      nCylSwitch4:=30;
+    END_IF;
+  20:(*使用到位信号，先夹紧到位再判断是否使用保压*)
+    IF g_bAntiRejectionCylSingleFB4 THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch4:=25;
+      ELSE
+        nCylSwitch4:=0;
+        g_bAntiRejectionCylClampDone4:=TRUE;
+        bSupportCentercyLinder4UpDoneTimeOutAlarm:= FALSE;
+        g_bKeepCenter4UpState := TRUE;
+        M.ENABLE[185] :=0;
+        g_bFinishedM185_4 := FALSE;
+        (*夹紧完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylSingleFB4 THEN
+       nInPlaceTon4(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay4)));
+		IF nInPlaceTon4.Q THEN
+		  nInPlaceTon4(IN :=FALSE);
+		  
+          bSupportCentercyLinder4UpDoneTimeOutAlarm:= TRUE;
+		END_IF;
+    END_IF;
+  25:(*保压*)
+    nTonKeep4(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring4:=TRUE;(***)
+    IF nTonKeep4.Q THEN
+      g_bAnitRejectionCylKeepPressuring4:=FALSE;
+      g_boAntiRejectionCylSingleCmd4:=FALSE;
+      g_boAntiRejectionCylDoubleCmd4:=FALSE; 
+      nTonKeep4(IN :=FALSE);
+      nCylSwitch4:=0;
+      g_bAntiRejectionCylClampDone4:=TRUE;
+      (*夹紧完成*)
+    END_IF;
+  30:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch4:=25;
+    ELSE
+      nCylSwitch4:=35;
+    END_IF;
+  35:
+    nInPlaceTon4(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay4)));
+    IF nInPlaceTon4.Q THEN
+      nInPlaceTon4(IN :=FALSE);
+      nCylSwitch4:=0;
+      g_bAntiRejectionCylClampDone4:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_4 := FALSE;
+      (*夹紧完成*)
+    END_IF;
+  
+  50:(*松开*)
+    g_boAntiRejectionCylSingleCmd4:=FALSE;
+    g_boAntiRejectionCylDoubleCmd4:=TRUE;
+    nCylSwitch4:=55;
+  55:(*是否使用到位信号*)
+    IF bAntiRejectionCyl4IsUseDownPosition THEN(*使用到位信号*)
+      nCylSwitch4:=60;
+    ELSE
+      nCylSwitch4:=70;
+    END_IF;
+  60:
+    IF g_bAntiRejectionCylDoubleFB4 THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch4:=65;
+      ELSE
+        nCylSwitch4:=0;
+        g_bAntiRejectionCylLoosenDone4:=TRUE;
+         bSupportCentercyLinder4DownDoneTimeOutAlarm:= FALSE;
+         g_bKeepCenter4DownState := TRUE;
+         M.ENABLE[185] :=0;
+        g_bFinishedM185_3 := FALSE;
+        (*松开完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylDoubleFB4 THEN
+       nInPlaceTon4(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay4)));
+		IF nInPlaceTon4.Q THEN
+		  nInPlaceTon4(IN :=FALSE);
+		 
+		  bSupportCentercyLinder4DownDoneTimeOutAlarm:= TRUE;
+		END_IF;
+    END_IF;
+  65:
+    nTonKeep4(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring4:=TRUE;(***)
+    IF nTonKeep4.Q THEN
+      g_bAnitRejectionCylKeepPressuring4:=FALSE;
+      
+      g_boAntiRejectionCylSingleCmd4:=FALSE;
+      g_boAntiRejectionCylDoubleCmd4:=FALSE; 
+      
+      nTonKeep4(IN :=FALSE);
+      nCylSwitch4:=0;
+      g_bAntiRejectionCylLoosenDone4:=TRUE;
+      (*松开完成*)
+    END_IF;
+  70:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch4:=65;
+    ELSE
+      nCylSwitch4:=75;
+    END_IF;
+  75:
+    nInPlaceTon4(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay4)));
+    IF nInPlaceTon4.Q THEN
+      nInPlaceTon4(IN :=FALSE);
+      nCylSwitch4:=0;
+      g_bAntiRejectionCylLoosenDone4:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_4 := FALSE;
+      (*松开完成*)
+    END_IF;
+END_CASE;
+
+(*hmi状态灯显示*)
+IF bAntiRejectionCyl4IsUseUpPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylSingleFB4 AND g_bKeepCenter4UpState  THEN
+    nAntiRejectionCylHMI4:=1;
+  END_IF;
+  IF NOT bSupportCentercyLinderUpNotFilterInPlace4 AND nAntiRejectionCylHMI4 = 1 AND g_bKeepCenter4UpState THEN
+    bSupportCentercyLinder4UpDoneTimeOutAlarm:=TRUE;
+  ELSIF bSupportCentercyLinderUpNotFilterInPlace4 AND nAntiRejectionCylHMI4 = 1 THEN
+    bSupportCentercyLinder4UpDoneTimeOutAlarm:= FALSE;
+  END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+    IF g_bAntiRejectionCylClampDone4 AND NOT g_bAntiRejectionCylLoosenDone4 AND NOT bCenter4IsAvoidFlag THEN
+      nAntiRejectionCylHMI4:=1;
+    END_IF;
+     bSupportCentercyLinder4UpDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+IF bAntiRejectionCyl4IsUseDownPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+	IF g_bAntiRejectionCylDoubleFB4 AND g_bKeepCenter4DownState  THEN
+		nAntiRejectionCylHMI4:=2;
+	END_IF;
+	IF NOT bSupportCentercyLinderDownNotFilterInPlace4 AND nAntiRejectionCylHMI4 = 2 AND g_bKeepCenter4DownState THEN
+		bSupportCentercyLinder4DownDoneTimeOutAlarm:=TRUE;
+	ELSIF bSupportCentercyLinderDownNotFilterInPlace4 AND nAntiRejectionCylHMI4 = 2 THEN
+		bSupportCentercyLinder4DownDoneTimeOutAlarm:= FALSE;
+	END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+    IF (g_bAntiRejectionCylLoosenDone4 AND NOT g_bAntiRejectionCylClampDone4) OR bCenter4IsAvoidFlag THEN
+      nAntiRejectionCylHMI4:=2;
+    END_IF;
+    bSupportCentercyLinder4DownDoneTimeOutAlarm:= FALSE;
+END_IF;
+(*5555*)
+RtrigCyl5(CLK := ( bCylAntiRejectionOpen5 OR g_bCylAntiRejectionOpen5 OR g_biCylAntiRejectionOpen5 OR g_bCylAntiRejectionOpen5M ));
+RtrigCyl0ff5(CLK := ( bCylAntiRejectionClose5 OR g_bCylAntiRejectionClose5 OR g_biCylAntiRejectionClose5  OR g_bCylAntiRejectionClose5M ));
+IF RtrigCyl5.Q THEN
+  IF (g_fCenterClylinder5CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder5DownDistance) THEN
+    IF M.PARAMETER_P[185]=5.0 THEN
+		M.ENABLE[185] :=0;
+    END_IF;
+    g_bCylAntiRejectionOpen5M := FALSE;
+    g_bCylAntiRejectionOpen5:=FALSE;
+    bCylAntiRejectionOpen5:=FALSE;
+    g_bFinishedM185_5:=FALSE;
+	  g_bAntiRejectionCylClampDone5:=TRUE;
+	  g_bAntiRejectionCylLoosenDone5:=FALSE;
+	  bCenter5IsAvoidFlag := TRUE;
+  ELSE
+	  nTonKeep5(IN :=FALSE);
+	  nInPlaceTon5(IN :=FALSE);
+	  g_bAntiRejectionCylClampDone5:=FALSE;
+	  g_bAntiRejectionCylLoosenDone5:=FALSE;
+	  g_bAnitRejectionCylKeepPressuring5:=FALSE;
+	  bCylAntiRejectionOpen5:=FALSE;
+	  g_bCylAntiRejectionOpen5:=FALSE;
+	  bSupportCentercyLinder5DownDoneTimeOutAlarm:= FALSE;
+	  g_bKeepCenter5DownState := FALSE;
+	  g_bCylAntiRejectionOpen5M := FALSE;
+	  bCenter5IsAvoidFlag := FALSE;
+	  IF g_nAntiRejectionCylNum >= 5 THEN
+		nCylSwitch5:=10;
+	  ELSE
+		M.ENABLE[185] :=0;
+		g_bFinishedM185_5 := FALSE;
+	  END_IF;  
+  END_IF;
+END_IF;
+
+IF RtrigCyl0ff5.Q OR (g_fCenterClylinder5CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder5DownDistance AND g_boAntiRejectionCylSingleCmd5)  THEN
+  nTonKeep5(IN :=FALSE);
+  nInPlaceTon5(IN :=FALSE);
+  g_bAntiRejectionCylClampDone5:=FALSE;
+  g_bAntiRejectionCylLoosenDone5:=FALSE;
+  g_bAnitRejectionCylKeepPressuring5:=FALSE;
+  bCylAntiRejectionClose5:=FALSE;
+  g_bCylAntiRejectionClose5:=FALSE;
+  bSupportCentercyLinder5UpDoneTimeOutAlarm:= FALSE;
+  g_bKeepCenter5UpState := FALSE;
+  g_bCylAntiRejectionClose5M := FALSE;
+  IF g_nAntiRejectionCylNum >= 5 THEN
+	nCylSwitch5:=50;
+  ELSE
+	M.ENABLE[185] :=0;
+	g_bFinishedM185_5 := FALSE;
+  END_IF;
+END_IF;
+
+CASE nCylSwitch5 OF
+  0:
+    nCylSwitch5:=0;
+  10:(*夹紧*)
+    g_boAntiRejectionCylSingleCmd5:=TRUE;
+    g_boAntiRejectionCylDoubleCmd5:=FALSE; 
+    nCylSwitch5:=15;
+  15:(*是否使用到位信号*)
+    IF bAntiRejectionCyl5IsUseUpPosition THEN(*使用到位信号*)
+      nCylSwitch5:=20;
+    ELSE
+      nCylSwitch5:=30;
+    END_IF;
+  20:(*使用到位信号，先夹紧到位再判断是否使用保压*)
+    IF g_bAntiRejectionCylSingleFB5 THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch5:=25;
+      ELSE
+        nCylSwitch5:=0;
+        g_bAntiRejectionCylClampDone5:=TRUE;
+        bSupportCentercyLinder5UpDoneTimeOutAlarm := FALSE;
+        g_bKeepCenter5UpState := TRUE;
+        M.ENABLE[185] :=0;
+        g_bFinishedM185_5 := FALSE;
+        (*夹紧完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylSingleFB5 THEN
+       nInPlaceTon5(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay5)));
+		IF nInPlaceTon5.Q THEN
+		  nInPlaceTon5(IN :=FALSE);
+		 
+		  bSupportCentercyLinder5UpDoneTimeOutAlarm:=TRUE;
+		END_IF;
+    END_IF;
+  25:(*保压*)
+    nTonKeep5(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring5:=TRUE;(***)
+    IF nTonKeep5.Q THEN
+      g_bAnitRejectionCylKeepPressuring5:=FALSE;
+      g_boAntiRejectionCylSingleCmd5:=FALSE;
+      g_boAntiRejectionCylDoubleCmd5:=FALSE; 
+      nTonKeep5(IN :=FALSE);
+      nCylSwitch5:=0;
+      g_bAntiRejectionCylClampDone5:=TRUE;
+      (*夹紧完成*)
+    END_IF;
+  30:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch5:=25;
+    ELSE
+      nCylSwitch5:=35;
+    END_IF;
+  35:
+    nInPlaceTon5(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay5)));
+    IF nInPlaceTon5.Q THEN
+      nInPlaceTon5(IN :=FALSE);
+      nCylSwitch5:=0;
+      g_bAntiRejectionCylClampDone5:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_5 := FALSE;
+      (*夹紧完成*)
+    END_IF;
+  
+  50:(*松开*)
+    g_boAntiRejectionCylSingleCmd5:=FALSE;
+    g_boAntiRejectionCylDoubleCmd5:=TRUE;
+    nCylSwitch5:=55;
+  55:(*是否使用到位信号*)
+    IF bAntiRejectionCyl5IsUseDownPosition THEN(*使用到位信号*)
+      nCylSwitch5:=60;
+    ELSE
+      nCylSwitch5:=70;
+    END_IF;
+  60:
+    IF g_bAntiRejectionCylDoubleFB5 THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch5:=65;
+      ELSE
+        nCylSwitch5:=0;
+        g_bAntiRejectionCylLoosenDone5:=TRUE;
+         bSupportCentercyLinder5DownDoneTimeOutAlarm:=FALSE;
+         g_bKeepCenter5DownState := TRUE;
+         M.ENABLE[185] :=0;
+        g_bFinishedM185_5 := FALSE;
+        (*松开完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylDoubleFB5 THEN
+      nInPlaceTon5(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay5)));
+		IF nInPlaceTon5.Q THEN
+		  nInPlaceTon5(IN :=FALSE);
+		 
+		  bSupportCentercyLinder5DownDoneTimeOutAlarm:=TRUE;
+		  (*松开完成*)
+		END_IF;
+    END_IF;
+  65:
+    nTonKeep5(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring5:=TRUE;(***)
+    IF nTonKeep5.Q THEN
+      g_bAnitRejectionCylKeepPressuring5:=FALSE;
+      
+      g_boAntiRejectionCylSingleCmd5:=FALSE;
+      g_boAntiRejectionCylDoubleCmd5:=FALSE; 
+      
+      nTonKeep5(IN :=FALSE);
+      nCylSwitch5:=0;
+      g_bAntiRejectionCylLoosenDone5:=TRUE;
+      (*松开完成*)
+    END_IF;
+  70:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch5:=65;
+    ELSE
+      nCylSwitch5:=75;
+    END_IF;
+  75:
+    nInPlaceTon5(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay5)));
+    IF nInPlaceTon5.Q THEN
+      nInPlaceTon5(IN :=FALSE);
+      nCylSwitch5:=0;
+      g_bAntiRejectionCylLoosenDone5:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_5 := FALSE;
+      (*松开完成*)
+    END_IF;
+END_CASE;
+
+(*hmi状态灯显示*)
+IF bAntiRejectionCyl5IsUseUpPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylSingleFB5 AND g_bKeepCenter5UpState THEN
+    nAntiRejectionCylHMI5:=1;
+  END_IF;
+  IF NOT bSupportCentercyLinderUpNotFilterInPlace5 AND nAntiRejectionCylHMI5 = 1 AND g_bKeepCenter5UpState THEN
+    bSupportCentercyLinder5UpDoneTimeOutAlarm:=TRUE;
+  ELSIF bSupportCentercyLinderUpNotFilterInPlace5 AND nAntiRejectionCylHMI5 = 1 THEN
+    bSupportCentercyLinder5UpDoneTimeOutAlarm:= FALSE;
+  END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+    IF g_bAntiRejectionCylClampDone5 AND NOT g_bAntiRejectionCylLoosenDone5 AND NOT bCenter5IsAvoidFlag THEN
+      nAntiRejectionCylHMI5:=1;
+    END_IF;
+    bSupportCentercyLinder5UpDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+IF bAntiRejectionCyl5IsUseDownPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylDoubleFB5 AND g_bKeepCenter5DownState THEN
+    nAntiRejectionCylHMI5:=2;
+  END_IF;
+  IF NOT bSupportCentercyLinderDownNotFilterInPlace5 AND nAntiRejectionCylHMI5 = 2 AND g_bKeepCenter5DownState THEN
+		bSupportCentercyLinder5DownDoneTimeOutAlarm:=TRUE;
+	ELSIF bSupportCentercyLinderDownNotFilterInPlace5 AND nAntiRejectionCylHMI5 = 2 THEN
+		bSupportCentercyLinder5DownDoneTimeOutAlarm:= FALSE;
+	END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+ 
+    IF (g_bAntiRejectionCylLoosenDone5 AND NOT g_bAntiRejectionCylClampDone5) OR bCenter5IsAvoidFlag THEN
+      nAntiRejectionCylHMI5:=2;
+    END_IF;
+    bSupportCentercyLinder5DownDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+
+(*666*)
+RtrigCyl6(CLK := ( bCylAntiRejectionOpen6 OR g_bCylAntiRejectionOpen6 OR g_biCylAntiRejectionOpen6 OR g_bCylAntiRejectionOpen6M ));
+RtrigCyl0ff6(CLK := ( bCylAntiRejectionClose6 OR g_bCylAntiRejectionClose6 OR g_biCylAntiRejectionClose6  OR g_bCylAntiRejectionClose6M ));
+IF RtrigCyl6.Q THEN
+  IF (g_fCenterClylinder6CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder6DownDistance) THEN
+    IF M.PARAMETER_P[185]=6.0 THEN
+		M.ENABLE[185] :=0;
+    END_IF;
+    g_bCylAntiRejectionOpen6M := FALSE;
+    g_bCylAntiRejectionOpen6:=FALSE;
+    bCylAntiRejectionOpen6:=FALSE;
+    g_bFinishedM185_6:=FALSE;
+	  g_bAntiRejectionCylClampDone6:=TRUE;
+	  g_bAntiRejectionCylLoosenDone6:=FALSE;
+	  bCenter6IsAvoidFlag := TRUE;
+  ELSE
+      nTonKeep6(IN :=FALSE);
+	  nInPlaceTon6(IN :=FALSE);
+	  g_bAntiRejectionCylClampDone6:=FALSE;
+	  g_bAntiRejectionCylLoosenDone6:=FALSE;
+	  g_bAnitRejectionCylKeepPressuring6:=FALSE;
+	  bCylAntiRejectionOpen6:=FALSE;
+	  g_bCylAntiRejectionOpen6:=FALSE;
+	  bSupportCentercyLinder6DownDoneTimeOutAlarm:= FALSE;
+	  g_bKeepCenter6DownState := FALSE;
+	  g_bCylAntiRejectionOpen6M := FALSE;
+	  bCenter6IsAvoidFlag := FALSE;
+	  IF g_nAntiRejectionCylNum >= 6 THEN
+		nCylSwitch6:=10;
+	  ELSE
+		M.ENABLE[185] :=0;
+		g_bFinishedM185_6 := FALSE;
+	  END_IF;
+  END_IF;
+END_IF;
+
+IF RtrigCyl0ff6.Q OR (g_fCenterClylinder6CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder6DownDistance AND g_boAntiRejectionCylSingleCmd6)  THEN
+  nTonKeep6(IN :=FALSE);
+  nInPlaceTon6(IN :=FALSE);
+  g_bAntiRejectionCylClampDone6:=FALSE;
+  g_bAntiRejectionCylLoosenDone6:=FALSE;
+  g_bAnitRejectionCylKeepPressuring6:=FALSE;
+  bCylAntiRejectionClose6:=FALSE;
+  g_bCylAntiRejectionClose6:=FALSE;
+  bSupportCentercyLinder6UpDoneTimeOutAlarm:= FALSE;
+  g_bKeepCenter6UpState := FALSE;
+  g_bCylAntiRejectionClose6M := FALSE;
+  IF g_nAntiRejectionCylNum >= 6 THEN
+	nCylSwitch6:=50;
+  ELSE
+	M.ENABLE[185] :=0;
+	g_bFinishedM185_6 := FALSE;
+  END_IF;
+END_IF;
+
+CASE nCylSwitch6 OF
+  0:
+    nCylSwitch6:=0;
+  10:(*夹紧*)
+    g_boAntiRejectionCylSingleCmd6:=TRUE;
+    g_boAntiRejectionCylDoubleCmd6:=FALSE; 
+    nCylSwitch6:=15;
+  15:(*是否使用到位信号*)
+    IF bAntiRejectionCyl6IsUseUpPosition THEN(*使用到位信号*)
+      nCylSwitch6:=20;
+    ELSE
+      nCylSwitch6:=30;
+    END_IF;
+  20:(*使用到位信号，先夹紧到位再判断是否使用保压*)
+    IF g_bAntiRejectionCylSingleFB6  THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch6:=25;
+      ELSE
+        nCylSwitch6:=0;
+        g_bAntiRejectionCylClampDone6:=TRUE;
+        bSupportCentercyLinder6UpDoneTimeOutAlarm := FALSE;
+        g_bKeepCenter6UpState := TRUE;
+        M.ENABLE[185] :=0;
+        g_bFinishedM185_6 := FALSE;
+        (*夹紧完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylSingleFB6 THEN
+      nInPlaceTon6(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay6)));
+		IF nInPlaceTon6.Q THEN
+		  nInPlaceTon6(IN :=FALSE);
+		 
+		  bSupportCentercyLinder6UpDoneTimeOutAlarm:=TRUE;
+		END_IF;
+    END_IF;
+  25:(*保压*)
+    nTonKeep6(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring6:=TRUE;(***)
+    IF nTonKeep6.Q THEN
+      g_bAnitRejectionCylKeepPressuring6:=FALSE;
+      g_boAntiRejectionCylSingleCmd6:=FALSE;
+      g_boAntiRejectionCylDoubleCmd6:=FALSE; 
+      nTonKeep6(IN :=FALSE);
+      nCylSwitch6:=0;
+      g_bAntiRejectionCylClampDone6:=TRUE;
+      (*夹紧完成*)
+    END_IF;
+  30:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch6:=25;
+    ELSE
+      nCylSwitch6:=35;
+    END_IF;
+  35:
+    nInPlaceTon6(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay6)));
+    IF nInPlaceTon6.Q THEN
+      nInPlaceTon6(IN :=FALSE);
+      nCylSwitch6:=0;
+      g_bAntiRejectionCylClampDone6:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_6 := FALSE;
+      (*夹紧完成*)
+    END_IF;
+  
+  50:(*松开*)
+    g_boAntiRejectionCylSingleCmd6:=FALSE;
+    g_boAntiRejectionCylDoubleCmd6:=TRUE;
+    nCylSwitch6:=55;
+  55:(*是否使用到位信号*)
+    IF bAntiRejectionCyl6IsUseDownPosition THEN(*使用到位信号*)
+      nCylSwitch6:=60;
+    ELSE
+      nCylSwitch6:=70;
+    END_IF;
+  60:
+    IF  g_bAntiRejectionCylDoubleFB6 THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch6:=65;
+      ELSE
+        nCylSwitch6:=0;
+        g_bAntiRejectionCylLoosenDone6:=TRUE;
+        bSupportCentercyLinder6DownDoneTimeOutAlarm := FALSE;
+        g_bKeepCenter6DownState := TRUE;
+        M.ENABLE[185] :=0;
+        g_bFinishedM185_6 := FALSE;
+        (*松开完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylDoubleFB6 THEN
+      nInPlaceTon6(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay6)));
+		IF nInPlaceTon6.Q THEN
+		  nInPlaceTon6(IN :=FALSE);
+		  
+		  bSupportCentercyLinder6DownDoneTimeOutAlarm:=TRUE;
+		  (*松开完成*)
+		END_IF;
+    END_IF;
+  65:
+    nTonKeep6(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring6:=TRUE;(***)
+    IF nTonKeep6.Q THEN
+      g_bAnitRejectionCylKeepPressuring6:=FALSE;
+      
+      g_boAntiRejectionCylSingleCmd6:=FALSE;
+      g_boAntiRejectionCylDoubleCmd6:=FALSE; 
+      
+      nTonKeep6(IN :=FALSE);
+      nCylSwitch6:=0;
+      g_bAntiRejectionCylLoosenDone6:=TRUE;
+      (*松开完成*)
+    END_IF;
+  70:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch6:=65;
+    ELSE
+      nCylSwitch6:=75;
+    END_IF;
+  75:
+    nInPlaceTon6(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay6)));
+    IF nInPlaceTon6.Q THEN
+      nInPlaceTon6(IN :=FALSE);
+      nCylSwitch6:=0;
+      g_bAntiRejectionCylLoosenDone6:=TRUE;
+      M.ENABLE[185] :=0;
+      g_bFinishedM185_6 := FALSE;
+      (*松开完成*)
+    END_IF;
+END_CASE;
+
+(*hmi状态灯显示*)
+IF bAntiRejectionCyl6IsUseUpPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylSingleFB6 AND g_bKeepCenter6UpState THEN
+    nAntiRejectionCylHMI6:=1;
+  END_IF;
+  IF NOT bSupportCentercyLinderUpNotFilterInPlace6 AND nAntiRejectionCylHMI6 = 1 AND g_bKeepCenter6UpState THEN
+    bSupportCentercyLinder6UpDoneTimeOutAlarm:=TRUE;
+  ELSIF bSupportCentercyLinderUpNotFilterInPlace6 AND nAntiRejectionCylHMI6 = 1 THEN
+    bSupportCentercyLinder6UpDoneTimeOutAlarm:= FALSE;
+  END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+  
+    IF g_bAntiRejectionCylClampDone6 AND NOT g_bAntiRejectionCylLoosenDone6 AND NOT bCenter6IsAvoidFlag THEN
+      nAntiRejectionCylHMI6:=1;
+    END_IF;
+    bSupportCentercyLinder6UpDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+IF bAntiRejectionCyl6IsUseDownPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylDoubleFB6 AND g_bKeepCenter6DownState THEN
+    nAntiRejectionCylHMI6:=2;
+  END_IF;
+  IF NOT bSupportCentercyLinderDownNotFilterInPlace6 AND nAntiRejectionCylHMI6 = 2 AND g_bKeepCenter6DownState  THEN
+		bSupportCentercyLinder6DownDoneTimeOutAlarm:=TRUE;
+	ELSIF bSupportCentercyLinderDownNotFilterInPlace6 AND nAntiRejectionCylHMI6 = 2 THEN
+		bSupportCentercyLinder6DownDoneTimeOutAlarm:= FALSE;
+	END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+  
+    IF (g_bAntiRejectionCylLoosenDone6 AND NOT g_bAntiRejectionCylClampDone6) OR bCenter6IsAvoidFlag THEN
+      nAntiRejectionCylHMI6:=2;
+    END_IF;
+    bSupportCentercyLinder6DownDoneTimeOutAlarm:= FALSE;
+END_IF;
+(*777*)
+RtrigCyl7(CLK := ( bCylAntiRejectionOpen7 OR g_bCylAntiRejectionOpen7 OR g_biCylAntiRejectionOpen7 OR g_bCylAntiRejectionOpen7M ));
+RtrigCyl0ff7(CLK := ( bCylAntiRejectionClose7 OR g_bCylAntiRejectionClose7 OR g_biCylAntiRejectionClose7  OR g_bCylAntiRejectionClose7M ));
+IF RtrigCyl7.Q THEN
+  IF (g_fCenterClylinder7CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder7DownDistance) THEN
+	IF M.PARAMETER_P[185]=7.0 THEN
+		M.ENABLE[185] :=0;
+    END_IF;
+    g_bCylAntiRejectionOpen7M := FALSE;
+    g_bCylAntiRejectionOpen7:=FALSE;
+    bCylAntiRejectionOpen7:=FALSE;
+    g_bFinishedM185_7:=FALSE;
+	  g_bAntiRejectionCylClampDone7:=TRUE;
+	  g_bAntiRejectionCylLoosenDone7:=FALSE;
+      bCenter7IsAvoidFlag := TRUE;
+  ELSE
+      nTonKeep7(IN :=FALSE);
+	  nInPlaceTon7(IN :=FALSE);
+	  g_bAntiRejectionCylClampDone7:=FALSE;
+	  g_bAntiRejectionCylLoosenDone7:=FALSE;
+	  g_bAnitRejectionCylKeepPressuring7:=FALSE;
+	  bCylAntiRejectionOpen7:=FALSE;
+	  g_bCylAntiRejectionOpen7:=FALSE;
+	  bSupportCentercyLinder7DownDoneTimeOutAlarm:= FALSE;
+	  g_bKeepCenter7DownState := FALSE;
+	  g_bCylAntiRejectionOpen7M := FALSE;
+      bCenter7IsAvoidFlag := FALSE;
+	  IF g_nAntiRejectionCylNum >= 7 THEN
+		nCylSwitch7:=10;
+	  ELSE
+		M.ENABLE[185] :=0;
+		g_bFinishedM185_7 := FALSE;
+	  END_IF;
+  END_IF;
+  
+END_IF;
+
+IF RtrigCyl0ff7.Q OR (g_fCenterClylinder7CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder7DownDistance AND g_boAntiRejectionCylSingleCmd7)  THEN
+  nTonKeep7(IN :=FALSE);
+  nInPlaceTon7(IN :=FALSE);
+  g_bAntiRejectionCylClampDone7:=FALSE;
+  g_bAntiRejectionCylLoosenDone7:=FALSE;
+  g_bAnitRejectionCylKeepPressuring7:=FALSE;
+  bCylAntiRejectionClose7:=FALSE;
+  g_bCylAntiRejectionClose7:=FALSE;
+  bSupportCentercyLinder7UpDoneTimeOutAlarm:= FALSE;
+  g_bKeepCenter7UpState := FALSE;
+  g_bCylAntiRejectionClose7M := FALSE;
+  IF g_nAntiRejectionCylNum >= 7 THEN
+	nCylSwitch7:=50;
+  ELSE
+	M.ENABLE[185] :=0;
+	g_bFinishedM185_7 := FALSE;
+  END_IF;
+END_IF;
+
+CASE nCylSwitch7 OF
+  0:
+    nCylSwitch7:=0;
+  10:(*夹紧*)
+    g_boAntiRejectionCylSingleCmd7:=TRUE;
+    g_boAntiRejectionCylDoubleCmd7:=FALSE; 
+    nCylSwitch7:=15;
+  15:(*是否使用到位信号*)
+    IF bAntiRejectionCyl7IsUseUpPosition THEN(*使用到位信号*)
+      nCylSwitch7:=20;
+    ELSE
+      nCylSwitch7:=30;
+    END_IF;
+  20:(*使用到位信号，先夹紧到位再判断是否使用保压*)
+    IF g_bAntiRejectionCylSingleFB7  THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch7:=25;
+      ELSE
+        nCylSwitch7:=0;
+        g_bAntiRejectionCylClampDone7:=TRUE;
+        bSupportCentercyLinder7UpDoneTimeOutAlarm := FALSE;
+        g_bKeepCenter7UpState := TRUE;
+        M.ENABLE[185] :=0;
+        g_bFinishedM185_7 := FALSE;
+        (*夹紧完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylSingleFB7 THEN
+      nInPlaceTon7(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay7)));
+		IF nInPlaceTon7.Q THEN
+		  nInPlaceTon7(IN :=FALSE);
+		 
+		  bSupportCentercyLinder7UpDoneTimeOutAlarm:=TRUE;
+		  (*夹紧完成*)
+		END_IF;
+    END_IF;
+  25:(*保压*)
+    nTonKeep7(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring7:=TRUE;(***)
+    IF nTonKeep7.Q THEN
+      g_bAnitRejectionCylKeepPressuring7:=FALSE;
+      g_boAntiRejectionCylSingleCmd7:=FALSE;
+      g_boAntiRejectionCylDoubleCmd7:=FALSE; 
+      nTonKeep7(IN :=FALSE);
+      nCylSwitch7:=0;
+      g_bAntiRejectionCylClampDone7:=TRUE;
+      (*夹紧完成*)
+    END_IF;
+  30:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch7:=25;
+    ELSE
+      nCylSwitch7:=35;
+    END_IF;
+  35:
+    nInPlaceTon7(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay7)));
+    IF nInPlaceTon7.Q THEN
+      nInPlaceTon7(IN :=FALSE);
+      nCylSwitch7:=0;
+      g_bAntiRejectionCylClampDone7:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_7 := FALSE;
+      (*夹紧完成*)
+    END_IF;
+  
+  50:(*松开*)
+    g_boAntiRejectionCylSingleCmd7:=FALSE;
+    g_boAntiRejectionCylDoubleCmd7:=TRUE;
+    nCylSwitch7:=55;
+  55:(*是否使用到位信号*)
+    IF bAntiRejectionCyl7IsUseDownPosition THEN(*使用到位信号*)
+      nCylSwitch7:=60;
+    ELSE
+      nCylSwitch7:=70;
+    END_IF;
+  60:
+    IF g_bAntiRejectionCylDoubleFB7 THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch7:=65;
+      ELSE
+        nCylSwitch7:=0;
+        g_bAntiRejectionCylLoosenDone7:=TRUE;
+        bSupportCentercyLinder7DownDoneTimeOutAlarm := FALSE;
+        g_bKeepCenter7DownState := TRUE;
+        M.ENABLE[185] :=0;
+        g_bFinishedM185_7 := FALSE;
+        (*松开完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylDoubleFB7 THEN
+       nInPlaceTon7(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay7)));
+		IF nInPlaceTon7.Q THEN
+		  nInPlaceTon7(IN :=FALSE);
+		 
+		  bSupportCentercyLinder7DownDoneTimeOutAlarm:=TRUE;
+		END_IF;
+    END_IF;
+  65:
+    nTonKeep7(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring7:=TRUE;(***)
+    IF nTonKeep7.Q THEN
+      g_bAnitRejectionCylKeepPressuring7:=FALSE;
+      
+      g_boAntiRejectionCylSingleCmd7:=FALSE;
+      g_boAntiRejectionCylDoubleCmd7:=FALSE; 
+      
+      nTonKeep7(IN :=FALSE);
+      nCylSwitch7:=0;
+      g_bAntiRejectionCylLoosenDone7:=TRUE;
+      (*松开完成*)
+    END_IF;
+  70:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch7:=65;
+    ELSE
+      nCylSwitch7:=75;
+    END_IF;
+  75:
+    nInPlaceTon7(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay7)));
+    IF nInPlaceTon7.Q THEN
+      nInPlaceTon7(IN :=FALSE);
+      nCylSwitch7:=0;
+      g_bAntiRejectionCylLoosenDone7:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_7 := FALSE;
+      (*松开完成*)
+    END_IF;
+END_CASE;
+
+(*hmi状态灯显示*)
+IF bAntiRejectionCyl7IsUseUpPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylSingleFB7 AND g_bKeepCenter7UpState THEN
+    nAntiRejectionCylHMI7:=1;
+  END_IF;
+  IF NOT bSupportCentercyLinderUpNotFilterInPlace7 AND nAntiRejectionCylHMI7 = 1 AND g_bKeepCenter7UpState THEN
+    bSupportCentercyLinder7UpDoneTimeOutAlarm:=TRUE;
+  ELSIF bSupportCentercyLinderUpNotFilterInPlace7 AND nAntiRejectionCylHMI7 = 1 THEN
+    bSupportCentercyLinder7UpDoneTimeOutAlarm:= FALSE;
+  END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+  
+    IF g_bAntiRejectionCylClampDone7 AND NOT g_bAntiRejectionCylLoosenDone7 AND NOT bCenter7IsAvoidFlag THEN
+      nAntiRejectionCylHMI7:=1;
+    END_IF;
+     bSupportCentercyLinder7UpDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+IF bAntiRejectionCyl7IsUseDownPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylDoubleFB7 AND g_bKeepCenter7DownState THEN
+    nAntiRejectionCylHMI7:=2;
+  END_IF;
+  IF NOT bSupportCentercyLinderDownNotFilterInPlace7 AND nAntiRejectionCylHMI7 = 2 AND  g_bKeepCenter7DownState THEN
+		bSupportCentercyLinder7DownDoneTimeOutAlarm:=TRUE;
+	ELSIF bSupportCentercyLinderDownNotFilterInPlace7 AND nAntiRejectionCylHMI7 = 2 THEN
+		bSupportCentercyLinder7DownDoneTimeOutAlarm:= FALSE;
+	END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+  
+    IF (g_bAntiRejectionCylLoosenDone7 AND NOT g_bAntiRejectionCylClampDone7) OR bCenter7IsAvoidFlag THEN
+      nAntiRejectionCylHMI7:=2;
+    END_IF;
+    bSupportCentercyLinder7DownDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+(*888*)
+RtrigCyl8(CLK := ( bCylAntiRejectionOpen8 OR g_bCylAntiRejectionOpen8 OR g_biCylAntiRejectionOpen8 OR g_bCylAntiRejectionOpen8M ));
+RtrigCyl0ff8(CLK := ( bCylAntiRejectionClose8 OR g_bCylAntiRejectionClose8 OR g_biCylAntiRejectionClose8  OR g_bCylAntiRejectionClose8M ));
+IF RtrigCyl8.Q THEN
+  IF (g_fCenterClylinder8CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder8DownDistance) THEN
+    IF M.PARAMETER_P[185]=8.0 THEN
+		M.ENABLE[185] :=0;
+    END_IF;
+    g_bCylAntiRejectionOpen8M := FALSE;
+    g_bCylAntiRejectionOpen8:=FALSE;
+    bCylAntiRejectionOpen8:=FALSE;
+    g_bFinishedM185_8:=FALSE;
+	  g_bAntiRejectionCylClampDone8:=TRUE;
+	  g_bAntiRejectionCylLoosenDone8:=FALSE;
+      
+      bCenter8IsAvoidFlag := TRUE;
+  ELSE
+    nTonKeep8(IN :=FALSE);
+	  nInPlaceTon8(IN :=FALSE);
+	  g_bAntiRejectionCylClampDone8:=FALSE;
+	  g_bAntiRejectionCylLoosenDone8:=FALSE;
+	  g_bAnitRejectionCylKeepPressuring8:=FALSE;
+	  bCylAntiRejectionOpen8:=FALSE;
+	  g_bCylAntiRejectionOpen8:=FALSE;
+	  bSupportCentercyLinder8DownDoneTimeOutAlarm:= FALSE;
+	  g_bKeepCenter8DownState := FALSE;
+	  g_bCylAntiRejectionOpen8M := FALSE;
+      bCenter8IsAvoidFlag := FALSE;
+	  IF g_nAntiRejectionCylNum >= 8 THEN
+		nCylSwitch8:=10;
+	  ELSE
+		M.ENABLE[185] :=0;
+		g_bFinishedM185_8 := FALSE;
+	  END_IF;
+  END_IF;
+  
+END_IF;
+
+IF RtrigCyl0ff8.Q OR (g_fCenterClylinder8CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder8DownDistance  AND g_boAntiRejectionCylSingleCmd8) THEN
+  nTonKeep8(IN :=FALSE);
+  nInPlaceTon8(IN :=FALSE);
+  g_bAntiRejectionCylClampDone8:=FALSE;
+  g_bAntiRejectionCylLoosenDone8:=FALSE;
+  g_bAnitRejectionCylKeepPressuring8:=FALSE;
+  bCylAntiRejectionClose8:=FALSE;
+  g_bCylAntiRejectionClose8:=FALSE;
+  bSupportCentercyLinder8UpDoneTimeOutAlarm:= FALSE;
+  g_bKeepCenter8UpState := FALSE;
+  g_bCylAntiRejectionClose8M := FALSE;
+  IF g_nAntiRejectionCylNum >= 8 THEN
+	nCylSwitch8:=50;
+  ELSE
+	M.ENABLE[185] :=0;
+	g_bFinishedM185_8 := FALSE;
+  END_IF;
+END_IF;
+
+CASE nCylSwitch8 OF
+  0:
+    nCylSwitch8:=0;
+  10:(*夹紧*)
+    g_boAntiRejectionCylSingleCmd8:=TRUE;
+    g_boAntiRejectionCylDoubleCmd8:=FALSE; 
+    nCylSwitch8:=15;
+  15:(*是否使用到位信号*)
+    IF bAntiRejectionCyl8IsUseUpPosition THEN(*使用到位信号*)
+      nCylSwitch8:=20;
+    ELSE
+      nCylSwitch8:=30;
+    END_IF;
+  20:(*使用到位信号，先夹紧到位再判断是否使用保压*)
+    IF g_bAntiRejectionCylSingleFB8  THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch8:=25;
+      ELSE
+        nCylSwitch8:=0;
+        g_bAntiRejectionCylClampDone8:=TRUE;
+		bSupportCentercyLinder8UpDoneTimeOutAlarm:= FALSE;
+        g_bKeepCenter8UpState := TRUE;
+        M.ENABLE[185] :=0;
+        g_bFinishedM185_8 := FALSE;
+        (*夹紧完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylSingleFB8 THEN
+      nInPlaceTon8(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay8)));
+		IF nInPlaceTon8.Q THEN
+		  nInPlaceTon8(IN :=FALSE);
+		  
+		  bSupportCentercyLinder8UpDoneTimeOutAlarm:=TRUE;
+		END_IF;
+    END_IF;
+  25:(*保压*)
+    nTonKeep8(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring8:=TRUE;(***)
+    IF nTonKeep8.Q THEN
+      g_bAnitRejectionCylKeepPressuring8:=FALSE;
+      g_boAntiRejectionCylSingleCmd8:=FALSE;
+      g_boAntiRejectionCylDoubleCmd8:=FALSE; 
+      nTonKeep8(IN :=FALSE);
+      nCylSwitch8:=0;
+      g_bAntiRejectionCylClampDone8:=TRUE;
+      (*夹紧完成*)
+    END_IF;
+  30:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch8:=25;
+    ELSE
+      nCylSwitch8:=35;
+    END_IF;
+  35:
+    nInPlaceTon8(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay8)));
+    IF nInPlaceTon8.Q THEN
+      nInPlaceTon8(IN :=FALSE);
+      nCylSwitch8:=0;
+      g_bAntiRejectionCylClampDone8:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_8 := FALSE;
+      (*夹紧完成*)
+    END_IF;
+  
+  50:(*松开*)
+    g_boAntiRejectionCylSingleCmd8:=FALSE;
+    g_boAntiRejectionCylDoubleCmd8:=TRUE;
+    nCylSwitch8:=55;
+  55:(*是否使用到位信号*)
+    IF bAntiRejectionCyl8IsUseDownPosition THEN(*使用到位信号*)
+      nCylSwitch8:=60;
+    ELSE
+      nCylSwitch8:=70;
+    END_IF;
+  60:
+    IF  g_bAntiRejectionCylDoubleFB8 THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch8:=65;
+      ELSE
+        nCylSwitch8:=0;
+        g_bAntiRejectionCylLoosenDone8:=TRUE;
+		  bSupportCentercyLinder8DownDoneTimeOutAlarm:=FALSE;
+          g_bKeepCenter8DownState := TRUE;
+          M.ENABLE[185] :=0;
+        g_bFinishedM185_8 := FALSE;
+        (*松开完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylDoubleFB8 THEN
+      nInPlaceTon8(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay8)));
+		IF nInPlaceTon8.Q THEN
+		  nInPlaceTon8(IN :=FALSE);
+		 
+		  bSupportCentercyLinder8DownDoneTimeOutAlarm:=TRUE;
+		  (*松开完成*)
+		END_IF;
+    END_IF;
+  65:
+    nTonKeep8(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring8:=TRUE;(***)
+    IF nTonKeep8.Q THEN
+      g_bAnitRejectionCylKeepPressuring8:=FALSE;
+      
+      g_boAntiRejectionCylSingleCmd8:=FALSE;
+      g_boAntiRejectionCylDoubleCmd8:=FALSE; 
+      
+      nTonKeep8(IN :=FALSE);
+      nCylSwitch8:=0;
+      g_bAntiRejectionCylLoosenDone8:=TRUE;
+      (*松开完成*)
+    END_IF;
+  70:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch8:=65;
+    ELSE
+      nCylSwitch8:=75;
+    END_IF;
+  75:
+    nInPlaceTon8(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay8)));
+    IF nInPlaceTon8.Q THEN
+      nInPlaceTon8(IN :=FALSE);
+      nCylSwitch8:=0;
+      g_bAntiRejectionCylLoosenDone8:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_8 := FALSE;
+      (*松开完成*)
+    END_IF;
+END_CASE;
+
+(*hmi状态灯显示*)
+IF bAntiRejectionCyl8IsUseUpPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylSingleFB8 AND g_bKeepCenter8UpState THEN
+    nAntiRejectionCylHMI8:=1;
+  END_IF;
+  IF NOT bSupportCentercyLinderUpNotFilterInPlace8 AND nAntiRejectionCylHMI8 = 1 AND g_bKeepCenter8UpState THEN
+    bSupportCentercyLinder8UpDoneTimeOutAlarm:=TRUE;
+  ELSIF bSupportCentercyLinderUpNotFilterInPlace8 AND nAntiRejectionCylHMI8 = 1 THEN
+    bSupportCentercyLinder8UpDoneTimeOutAlarm:= FALSE;
+  END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+    IF g_bAntiRejectionCylClampDone8 AND NOT g_bAntiRejectionCylLoosenDone8 AND NOT bCenter8IsAvoidFlag THEN
+      nAntiRejectionCylHMI8:=1;
+    END_IF;
+    bSupportCentercyLinder8UpDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+
+IF bAntiRejectionCyl8IsUseDownPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylDoubleFB8 AND g_bKeepCenter8DownState THEN
+    nAntiRejectionCylHMI8:=2;
+  END_IF;
+  IF NOT bSupportCentercyLinderDownNotFilterInPlace8 AND nAntiRejectionCylHMI8 = 2 AND g_bKeepCenter8DownState THEN
+		bSupportCentercyLinder8DownDoneTimeOutAlarm:=TRUE;
+	ELSIF bSupportCentercyLinderDownNotFilterInPlace8 AND nAntiRejectionCylHMI8 = 2 THEN
+		bSupportCentercyLinder8DownDoneTimeOutAlarm:= FALSE;
+	END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+    IF (g_bAntiRejectionCylLoosenDone8 AND NOT g_bAntiRejectionCylClampDone8) OR bCenter8IsAvoidFlag THEN
+      nAntiRejectionCylHMI8:=2;
+    END_IF;
+    bSupportCentercyLinder8DownDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+(*9*)
+RtrigCyl9(CLK := ( bCylAntiRejectionOpen9 OR g_bCylAntiRejectionOpen9 OR g_biCylAntiRejectionOpen9 OR g_bCylAntiRejectionOpen9M ));
+RtrigCyl0ff9(CLK := ( bCylAntiRejectionClose9 OR g_bCylAntiRejectionClose9 OR g_biCylAntiRejectionClose9  OR g_bCylAntiRejectionClose9M ));
+IF RtrigCyl9.Q THEN
+  IF (g_fCenterClylinder9CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder9DownDistance) THEN
+    IF M.PARAMETER_P[185]=9.0 THEN
+		M.ENABLE[185] :=0;
+    END_IF;
+    g_bCylAntiRejectionOpen9M := FALSE;
+    g_bCylAntiRejectionOpen9:=FALSE;
+    bCylAntiRejectionOpen9:=FALSE;
+    g_bFinishedM185_9:=FALSE;
+	  g_bAntiRejectionCylClampDone9:=TRUE;
+	  g_bAntiRejectionCylLoosenDone9:=FALSE;
+      bCenter9IsAvoidFlag := TRUE;
+  ELSE
+		nTonKeep9(IN :=FALSE);
+	  nInPlaceTon9(IN :=FALSE);
+	  g_bAntiRejectionCylClampDone9:=FALSE;
+	  g_bAntiRejectionCylLoosenDone9:=FALSE;
+	  g_bAnitRejectionCylKeepPressuring9:=FALSE;
+	  bCylAntiRejectionOpen9:=FALSE;
+	  g_bCylAntiRejectionOpen9:=FALSE;
+	  bSupportCentercyLinder9DownDoneTimeOutAlarm:= FALSE;
+	  g_bKeepCenter9DownState := FALSE;
+	  g_bCylAntiRejectionOpen9M := FALSE;
+      bCenter9IsAvoidFlag := FALSE;
+	  IF g_nAntiRejectionCylNum >= 9 THEN
+		nCylSwitch9:=10;
+	  ELSE
+		M.ENABLE[185] :=0;
+		g_bFinishedM185_9 := FALSE;
+	  END_IF;
+  END_IF;
+  
+END_IF;
+
+IF RtrigCyl0ff9.Q OR (g_fCenterClylinder9CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder9DownDistance AND g_boAntiRejectionCylSingleCmd9)  THEN
+  nTonKeep9(IN :=FALSE);
+  nInPlaceTon9(IN :=FALSE);
+  g_bAntiRejectionCylClampDone9:=FALSE;
+  g_bAntiRejectionCylLoosenDone9:=FALSE;
+  g_bAnitRejectionCylKeepPressuring9:=FALSE;
+  bCylAntiRejectionClose9:=FALSE;
+  g_bCylAntiRejectionClose9:=FALSE;
+  bSupportCentercyLinder9UpDoneTimeOutAlarm:= FALSE;
+  g_bKeepCenter9UpState := FALSE;
+  g_bCylAntiRejectionClose9M := FALSE;
+  IF g_nAntiRejectionCylNum >= 9 THEN
+	nCylSwitch9:=50;
+  ELSE
+	M.ENABLE[185] :=0;
+	g_bFinishedM185_9 := FALSE;
+  END_IF;
+END_IF;
+
+CASE nCylSwitch9 OF
+  0:
+    nCylSwitch9:=0;
+  10:(*夹紧*)
+    g_boAntiRejectionCylSingleCmd9:=TRUE;
+    g_boAntiRejectionCylDoubleCmd9:=FALSE; 
+    nCylSwitch9:=15;
+  15:(*是否使用到位信号*)
+    IF bAntiRejectionCyl9IsUseUpPosition THEN(*使用到位信号*)
+      nCylSwitch9:=20;
+    ELSE
+      nCylSwitch9:=30;
+    END_IF;
+  20:(*使用到位信号，先夹紧到位再判断是否使用保压*)
+    IF g_bAntiRejectionCylSingleFB9  THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch9:=25;
+      ELSE
+        nCylSwitch9:=0;
+        g_bAntiRejectionCylClampDone9:=TRUE;
+		bSupportCentercyLinder9UpDoneTimeOutAlarm:= FALSE;
+        g_bKeepCenter9UpState := TRUE;
+        M.ENABLE[185] :=0;
+        g_bFinishedM185_9 := FALSE;
+        (*夹紧完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylSingleFB9 THEN
+      nInPlaceTon9(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay9)));
+		IF nInPlaceTon9.Q THEN
+		  nInPlaceTon9(IN :=FALSE);
+		  
+		  bSupportCentercyLinder9UpDoneTimeOutAlarm:=TRUE;
+		END_IF;
+    END_IF;
+  25:(*保压*)
+    nTonKeep9(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring9:=TRUE;(***)
+    IF nTonKeep9.Q THEN
+      g_bAnitRejectionCylKeepPressuring9:=FALSE;
+      g_boAntiRejectionCylSingleCmd9:=FALSE;
+      g_boAntiRejectionCylDoubleCmd9:=FALSE; 
+      nTonKeep9(IN :=FALSE);
+      nCylSwitch9:=0;
+      g_bAntiRejectionCylClampDone9:=TRUE;
+      (*夹紧完成*)
+    END_IF;
+  30:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch9:=25;
+    ELSE
+      nCylSwitch9:=35;
+    END_IF;
+  35:
+    nInPlaceTon9(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay9)));
+    IF nInPlaceTon9.Q THEN
+      nInPlaceTon9(IN :=FALSE);
+      nCylSwitch9:=0;
+      g_bAntiRejectionCylClampDone9:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_9 := FALSE;
+      (*夹紧完成*)
+    END_IF;
+  
+  50:(*松开*)
+    g_boAntiRejectionCylSingleCmd9:=FALSE;
+    g_boAntiRejectionCylDoubleCmd9:=TRUE;
+    nCylSwitch9:=55;
+  55:(*是否使用到位信号*)
+    IF bAntiRejectionCyl9IsUseDownPosition THEN(*使用到位信号*)
+      nCylSwitch9:=60;
+    ELSE
+      nCylSwitch9:=70;
+    END_IF;
+  60:
+    IF  g_bAntiRejectionCylDoubleFB9 THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch9:=65;
+      ELSE
+        nCylSwitch9:=0;
+        g_bAntiRejectionCylLoosenDone9:=TRUE;
+		  bSupportCentercyLinder9DownDoneTimeOutAlarm:=FALSE;
+          g_bKeepCenter9DownState := TRUE;
+          M.ENABLE[185] :=0;
+        g_bFinishedM185_9 := FALSE;
+        (*松开完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylDoubleFB9 THEN
+      nInPlaceTon9(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay9)));
+		IF nInPlaceTon9.Q THEN
+		  nInPlaceTon9(IN :=FALSE);
+		 
+		  bSupportCentercyLinder9DownDoneTimeOutAlarm:=TRUE;
+		  (*松开完成*)
+		END_IF;
+    END_IF;
+  65:
+    nTonKeep9(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring9:=TRUE;(***)
+    IF nTonKeep9.Q THEN
+      g_bAnitRejectionCylKeepPressuring9:=FALSE;
+      
+      g_boAntiRejectionCylSingleCmd9:=FALSE;
+      g_boAntiRejectionCylDoubleCmd9:=FALSE; 
+      
+      nTonKeep9(IN :=FALSE);
+      nCylSwitch9:=0;
+      g_bAntiRejectionCylLoosenDone9:=TRUE;
+      (*松开完成*)
+    END_IF;
+  70:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch9:=65;
+    ELSE
+      nCylSwitch9:=75;
+    END_IF;
+  75:
+    nInPlaceTon9(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay9)));
+    IF nInPlaceTon9.Q THEN
+      nInPlaceTon9(IN :=FALSE);
+      nCylSwitch9:=0;
+      g_bAntiRejectionCylLoosenDone9:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_9 := FALSE;
+      (*松开完成*)
+    END_IF;
+END_CASE;
+
+(*hmi状态灯显示*)
+IF bAntiRejectionCyl9IsUseUpPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylSingleFB9 AND g_bKeepCenter9UpState THEN
+    nAntiRejectionCylHMI9:=1;
+  END_IF;
+  IF NOT bSupportCentercyLinderUpNotFilterInPlace9 AND nAntiRejectionCylHMI9 = 1 AND g_bKeepCenter9UpState THEN
+    bSupportCentercyLinder9UpDoneTimeOutAlarm:=TRUE;
+  ELSIF bSupportCentercyLinderUpNotFilterInPlace9 AND nAntiRejectionCylHMI9 = 1 THEN
+    bSupportCentercyLinder9UpDoneTimeOutAlarm:= FALSE;
+  END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+    IF g_bAntiRejectionCylClampDone9 AND NOT g_bAntiRejectionCylLoosenDone9 AND NOT bCenter9IsAvoidFlag THEN
+      nAntiRejectionCylHMI9:=1;
+    END_IF;
+    bSupportCentercyLinder9UpDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+
+IF bAntiRejectionCyl9IsUseDownPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylDoubleFB9 AND g_bKeepCenter9DownState THEN
+    nAntiRejectionCylHMI9:=2;
+  END_IF;
+  IF NOT bSupportCentercyLinderDownNotFilterInPlace9 AND nAntiRejectionCylHMI9 = 2 AND g_bKeepCenter9DownState THEN
+		bSupportCentercyLinder9DownDoneTimeOutAlarm:=TRUE;
+	ELSIF bSupportCentercyLinderDownNotFilterInPlace9 AND nAntiRejectionCylHMI9 = 2 THEN
+		bSupportCentercyLinder9DownDoneTimeOutAlarm:= FALSE;
+	END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+    IF (g_bAntiRejectionCylLoosenDone9 AND NOT g_bAntiRejectionCylClampDone9) OR bCenter9IsAvoidFlag THEN
+      nAntiRejectionCylHMI9:=2;
+    END_IF;
+    bSupportCentercyLinder9DownDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+
+
+(*10*)
+RtrigCyl10(CLK := ( bCylAntiRejectionOpen10 OR g_bCylAntiRejectionOpen10  OR g_bCylAntiRejectionOpen10M ));
+RtrigCyl0ff10(CLK := ( bCylAntiRejectionClose10 OR g_bCylAntiRejectionClose10  OR g_bCylAntiRejectionClose10M ));
+IF RtrigCyl10.Q THEN
+  IF (g_fCenterClylinder10CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder10DownDistance) THEN
+    IF M.PARAMETER_P[185]=10.0 THEN
+		M.ENABLE[185] :=0;
+    END_IF;
+    g_bCylAntiRejectionOpen10M := FALSE;
+    g_bCylAntiRejectionOpen10:=FALSE;
+    bCylAntiRejectionOpen10:=FALSE;
+    g_bFinishedM185_10:=FALSE;
+	  g_bAntiRejectionCylClampDone10:=TRUE;
+	  g_bAntiRejectionCylLoosenDone10:=FALSE;
+      bCenter10IsAvoidFlag := TRUE;
+  ELSE
+    nTonKeep10(IN :=FALSE);
+	  nInPlaceTon10(IN :=FALSE);
+	  g_bAntiRejectionCylClampDone10:=FALSE;
+	  g_bAntiRejectionCylLoosenDone10:=FALSE;
+	  g_bAnitRejectionCylKeepPressuring10:=FALSE;
+	  bCylAntiRejectionOpen10:=FALSE;
+	  g_bCylAntiRejectionOpen10:=FALSE;
+	  bSupportCentercyLinder10DownDoneTimeOutAlarm:= FALSE;
+	  g_bKeepCenter10DownState := FALSE;
+	  g_bCylAntiRejectionOpen10M := FALSE;
+      bCenter10IsAvoidFlag := FALSE;
+	  IF g_nAntiRejectionCylNum >= 10 THEN
+		nCylSwitch10:=10;
+	  ELSE
+		M.ENABLE[185] :=0;
+		g_bFinishedM185_10 := FALSE;
+	  END_IF; 
+  END_IF;
+  
+END_IF;
+
+IF RtrigCyl0ff10.Q OR (g_fCenterClylinder10CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder10DownDistance  AND g_boAntiRejectionCylSingleCmd10) THEN
+  nTonKeep10(IN :=FALSE);
+  nInPlaceTon10(IN :=FALSE);
+  g_bAntiRejectionCylClampDone10:=FALSE;
+  g_bAntiRejectionCylLoosenDone10:=FALSE;
+  g_bAnitRejectionCylKeepPressuring10:=FALSE;
+  bCylAntiRejectionClose10:=FALSE;
+  g_bCylAntiRejectionClose10:=FALSE;
+  bSupportCentercyLinder10UpDoneTimeOutAlarm:= FALSE;
+  g_bKeepCenter10UpState := FALSE;
+  g_bCylAntiRejectionClose10M := FALSE;
+  IF g_nAntiRejectionCylNum >= 10 THEN
+	nCylSwitch10:=50;
+  ELSE
+	M.ENABLE[185] :=0;
+	g_bFinishedM185_10 := FALSE;
+  END_IF;
+END_IF;
+
+CASE nCylSwitch10 OF
+  0:
+    nCylSwitch10:=0;
+  10:(*夹紧*)
+    g_boAntiRejectionCylSingleCmd10:=TRUE;
+    g_boAntiRejectionCylDoubleCmd10:=FALSE; 
+    nCylSwitch10:=15;
+  15:(*是否使用到位信号*)
+    IF bAntiRejectionCyl10IsUseUpPosition THEN(*使用到位信号*)
+      nCylSwitch10:=20;
+    ELSE
+      nCylSwitch10:=30;
+    END_IF;
+  20:(*使用到位信号，先夹紧到位再判断是否使用保压*)
+    IF g_bAntiRejectionCylSingleFB10  THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch10:=25;
+      ELSE
+        nCylSwitch10:=0;
+        g_bAntiRejectionCylClampDone10:=TRUE;
+		bSupportCentercyLinder10UpDoneTimeOutAlarm:= FALSE;
+        g_bKeepCenter10UpState := TRUE;
+        M.ENABLE[185] :=0;
+        g_bFinishedM185_10 := FALSE;
+        (*夹紧完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylSingleFB10 THEN
+      nInPlaceTon10(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay10)));
+		IF nInPlaceTon10.Q THEN
+		  nInPlaceTon10(IN :=FALSE);
+		  
+		  bSupportCentercyLinder10UpDoneTimeOutAlarm:=TRUE;
+		END_IF;
+    END_IF;
+  25:(*保压*)
+    nTonKeep10(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring10:=TRUE;(***)
+    IF nTonKeep10.Q THEN
+      g_bAnitRejectionCylKeepPressuring10:=FALSE;
+      g_boAntiRejectionCylSingleCmd10:=FALSE;
+      g_boAntiRejectionCylDoubleCmd10:=FALSE; 
+      nTonKeep10(IN :=FALSE);
+      nCylSwitch10:=0;
+      g_bAntiRejectionCylClampDone10:=TRUE;
+      (*夹紧完成*)
+    END_IF;
+  30:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch10:=25;
+    ELSE
+      nCylSwitch10:=35;
+    END_IF;
+  35:
+    nInPlaceTon10(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay10)));
+    IF nInPlaceTon10.Q THEN
+      nInPlaceTon10(IN :=FALSE);
+      nCylSwitch10:=0;
+      g_bAntiRejectionCylClampDone10:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_10 := FALSE;
+      (*夹紧完成*)
+    END_IF;
+  
+  50:(*松开*)
+    g_boAntiRejectionCylSingleCmd10 :=FALSE;
+    g_boAntiRejectionCylDoubleCmd10:=TRUE;
+    nCylSwitch10:=55;
+  55:(*是否使用到位信号*)
+    IF bAntiRejectionCyl10IsUseDownPosition THEN(*使用到位信号*)
+      nCylSwitch10:=60;
+    ELSE
+      nCylSwitch10:=70;
+    END_IF;
+  60:
+    IF  g_bAntiRejectionCylDoubleFB10 THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch10:=65;
+      ELSE
+        nCylSwitch10:=0;
+        g_bAntiRejectionCylLoosenDone10:=TRUE;
+		  bSupportCentercyLinder10DownDoneTimeOutAlarm:=FALSE;
+          g_bKeepCenter10DownState := TRUE;
+          M.ENABLE[185] :=0;
+        g_bFinishedM185_10 := FALSE;
+        (*松开完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylDoubleFB10 THEN
+      nInPlaceTon10(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay10)));
+		IF nInPlaceTon10.Q THEN
+		  nInPlaceTon10(IN :=FALSE);
+		 
+		  bSupportCentercyLinder10DownDoneTimeOutAlarm:=TRUE;
+		  (*松开完成*)
+		END_IF;
+    END_IF;
+  65:
+    nTonKeep10(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring10:=TRUE;(***)
+    IF nTonKeep10.Q THEN
+      g_bAnitRejectionCylKeepPressuring10:=FALSE;
+      
+      g_boAntiRejectionCylSingleCmd10:=FALSE;
+      g_boAntiRejectionCylDoubleCmd10:=FALSE; 
+      
+      nTonKeep10(IN :=FALSE);
+      nCylSwitch10:=0;
+      g_bAntiRejectionCylLoosenDone10:=TRUE;
+      (*松开完成*)
+    END_IF;
+  70:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch10:=65;
+    ELSE
+      nCylSwitch10:=75;
+    END_IF;
+  75:
+    nInPlaceTon10(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay10)));
+    IF nInPlaceTon10.Q THEN
+      nInPlaceTon10(IN :=FALSE);
+      nCylSwitch10:=0;
+      g_bAntiRejectionCylLoosenDone10:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_10 := FALSE;
+      (*松开完成*)
+    END_IF;
+END_CASE;
+
+(*hmi状态灯显示*)
+IF bAntiRejectionCyl10IsUseUpPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylSingleFB10 AND g_bKeepCenter10UpState THEN
+    nAntiRejectionCylHMI10:=1;
+  END_IF;
+  IF NOT bSupportCentercyLinderUpNotFilterInPlace10 AND nAntiRejectionCylHMI10 = 1 AND g_bKeepCenter10UpState THEN
+    bSupportCentercyLinder10UpDoneTimeOutAlarm:=TRUE;
+  ELSIF bSupportCentercyLinderUpNotFilterInPlace10 AND nAntiRejectionCylHMI10 = 1 THEN
+    bSupportCentercyLinder10UpDoneTimeOutAlarm:= FALSE;
+  END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+    IF g_bAntiRejectionCylClampDone10 AND NOT g_bAntiRejectionCylLoosenDone10 AND NOT bCenter10IsAvoidFlag THEN
+      nAntiRejectionCylHMI10:=1;
+    END_IF;
+    bSupportCentercyLinder10UpDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+
+IF bAntiRejectionCyl10IsUseDownPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylDoubleFB10 AND g_bKeepCenter10DownState THEN
+    nAntiRejectionCylHMI10:=2;
+  END_IF;
+  IF NOT bSupportCentercyLinderDownNotFilterInPlace10 AND nAntiRejectionCylHMI10 = 2 AND g_bKeepCenter10DownState THEN
+		bSupportCentercyLinder10DownDoneTimeOutAlarm:=TRUE;
+	ELSIF bSupportCentercyLinderDownNotFilterInPlace10 AND nAntiRejectionCylHMI10 = 2 THEN
+		bSupportCentercyLinder10DownDoneTimeOutAlarm:= FALSE;
+	END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+    IF (g_bAntiRejectionCylLoosenDone10 AND NOT g_bAntiRejectionCylClampDone10) OR bCenter10IsAvoidFlag THEN
+      nAntiRejectionCylHMI10:=2;
+    END_IF;
+    bSupportCentercyLinder10DownDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+(*11*)
+RtrigCyl11(CLK := ( bCylAntiRejectionOpen11 OR g_bCylAntiRejectionOpen11  OR g_bCylAntiRejectionOpen11M ));
+RtrigCyl0ff11(CLK := ( bCylAntiRejectionClose11 OR g_bCylAntiRejectionClose11  OR g_bCylAntiRejectionClose11M ));
+IF RtrigCyl11.Q THEN
+  IF (g_fCenterClylinder11CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder11DownDistance) THEN
+    IF M.PARAMETER_P[185]=11.0 THEN
+		M.ENABLE[185] :=0;
+    END_IF;
+    g_bCylAntiRejectionOpen11M := FALSE;
+    g_bCylAntiRejectionOpen11:=FALSE;
+    bCylAntiRejectionOpen11:=FALSE;
+    g_bFinishedM185_11:=FALSE;
+	  g_bAntiRejectionCylClampDone11:=TRUE;
+	  g_bAntiRejectionCylLoosenDone11:=FALSE;
+      bCenter11IsAvoidFlag := TRUE;
+  ELSE
+		nTonKeep11(IN :=FALSE);
+	  nInPlaceTon11(IN :=FALSE);
+	  g_bAntiRejectionCylClampDone11:=FALSE;
+	  g_bAntiRejectionCylLoosenDone11:=FALSE;
+	  g_bAnitRejectionCylKeepPressuring11:=FALSE;
+	  bCylAntiRejectionOpen11:=FALSE;
+	  g_bCylAntiRejectionOpen11:=FALSE;
+	  bSupportCentercyLinder11DownDoneTimeOutAlarm:= FALSE;
+	  g_bKeepCenter11DownState := FALSE;
+	  g_bCylAntiRejectionOpen11M := FALSE;
+      bCenter11IsAvoidFlag := FALSE;
+	  IF g_nAntiRejectionCylNum >= 11 THEN
+		nCylSwitch11:=10;
+	  ELSE
+		M.ENABLE[185] :=0;
+		g_bFinishedM185_11 := FALSE;
+	  END_IF;
+  END_IF;
+  
+END_IF;
+
+IF RtrigCyl0ff11.Q OR (g_fCenterClylinder11CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder11DownDistance AND g_boAntiRejectionCylSingleCmd11)  THEN
+  nTonKeep11(IN :=FALSE);
+  nInPlaceTon11(IN :=FALSE);
+  g_bAntiRejectionCylClampDone11:=FALSE;
+  g_bAntiRejectionCylLoosenDone11:=FALSE;
+  g_bAnitRejectionCylKeepPressuring11:=FALSE;
+  bCylAntiRejectionClose11:=FALSE;
+  g_bCylAntiRejectionClose11:=FALSE;
+  bSupportCentercyLinder11UpDoneTimeOutAlarm:= FALSE;
+  g_bKeepCenter11UpState := FALSE;
+  g_bCylAntiRejectionClose11M := FALSE;
+  IF g_nAntiRejectionCylNum >= 11 THEN
+	nCylSwitch11:=50;
+  ELSE
+	M.ENABLE[185] :=0;
+	g_bFinishedM185_11 := FALSE;
+  END_IF;
+END_IF;
+
+CASE nCylSwitch11 OF
+  0:
+    nCylSwitch11:=0;
+  10:(*夹紧*)
+    g_boAntiRejectionCylSingleCmd11:=TRUE;
+    g_boAntiRejectionCylDoubleCmd11:=FALSE; 
+    nCylSwitch11:=15;
+  15:(*是否使用到位信号*)
+    IF bAntiRejectionCyl11IsUseUpPosition THEN(*使用到位信号*)
+      nCylSwitch11:=20;
+    ELSE
+      nCylSwitch11:=30;
+    END_IF;
+  20:(*使用到位信号，先夹紧到位再判断是否使用保压*)
+    IF g_bAntiRejectionCylSingleFB11  THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch11:=25;
+      ELSE
+        nCylSwitch11:=0;
+        g_bAntiRejectionCylClampDone11:=TRUE;
+		bSupportCentercyLinder11UpDoneTimeOutAlarm:= FALSE;
+        g_bKeepCenter11UpState := TRUE;
+        M.ENABLE[185] :=0;
+        g_bFinishedM185_11 := FALSE;
+        (*夹紧完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylSingleFB11 THEN
+      nInPlaceTon11(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay11)));
+		IF nInPlaceTon11.Q THEN
+		  nInPlaceTon11(IN :=FALSE);
+		  
+		  bSupportCentercyLinder11UpDoneTimeOutAlarm:=TRUE;
+		END_IF;
+    END_IF;
+  25:(*保压*)
+    nTonKeep11(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring11:=TRUE;(***)
+    IF nTonKeep11.Q THEN
+      g_bAnitRejectionCylKeepPressuring11:=FALSE;
+      g_boAntiRejectionCylSingleCmd11:=FALSE;
+      g_boAntiRejectionCylDoubleCmd11:=FALSE; 
+      nTonKeep11(IN :=FALSE);
+      nCylSwitch11:=0;
+      g_bAntiRejectionCylClampDone11:=TRUE;
+      (*夹紧完成*)
+    END_IF;
+  30:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch11:=25;
+    ELSE
+      nCylSwitch11:=35;
+    END_IF;
+  35:
+    nInPlaceTon11(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay11)));
+    IF nInPlaceTon11.Q THEN
+      nInPlaceTon11(IN :=FALSE);
+      nCylSwitch11:=0;
+      g_bAntiRejectionCylClampDone11:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_11 := FALSE;
+      (*夹紧完成*)
+    END_IF;
+  
+  50:(*松开*)
+    g_boAntiRejectionCylSingleCmd11 :=FALSE;
+    g_boAntiRejectionCylDoubleCmd11 :=TRUE;
+    nCylSwitch11 :=55;
+  55:(*是否使用到位信号*)
+    IF bAntiRejectionCyl11IsUseDownPosition THEN(*使用到位信号*)
+      nCylSwitch11:=60;
+    ELSE
+      nCylSwitch11:=70;
+    END_IF;
+  60:
+    IF  g_bAntiRejectionCylDoubleFB11 THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch11:=65;
+      ELSE
+        nCylSwitch11:=0;
+        g_bAntiRejectionCylLoosenDone11:=TRUE;
+		  bSupportCentercyLinder11DownDoneTimeOutAlarm:=FALSE;
+          g_bKeepCenter11DownState := TRUE;
+          M.ENABLE[185] :=0;
+        g_bFinishedM185_11 := FALSE;
+        (*松开完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylDoubleFB11 THEN
+      nInPlaceTon11(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay11)));
+		IF nInPlaceTon11.Q THEN
+		  nInPlaceTon11(IN :=FALSE);
+		 
+		  bSupportCentercyLinder11DownDoneTimeOutAlarm:=TRUE;
+		  (*松开完成*)
+		END_IF;
+    END_IF;
+  65:
+    nTonKeep11(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring11:=TRUE;(***)
+    IF nTonKeep11.Q THEN
+      g_bAnitRejectionCylKeepPressuring11:=FALSE;
+      
+      g_boAntiRejectionCylSingleCmd11:=FALSE;
+      g_boAntiRejectionCylDoubleCmd11:=FALSE; 
+      
+      nTonKeep11(IN :=FALSE);
+      nCylSwitch11:=0;
+      g_bAntiRejectionCylLoosenDone11:=TRUE;
+      (*松开完成*)
+    END_IF;
+  70:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch11:=65;
+    ELSE
+      nCylSwitch11:=75;
+    END_IF;
+  75:
+    nInPlaceTon11(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay11)));
+    IF nInPlaceTon11.Q THEN
+      nInPlaceTon11(IN :=FALSE);
+      nCylSwitch11:=0;
+      g_bAntiRejectionCylLoosenDone11:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_11 := FALSE;
+      (*松开完成*)
+    END_IF;
+END_CASE;
+
+(*hmi状态灯显示*)
+IF bAntiRejectionCyl11IsUseUpPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylSingleFB11 AND g_bKeepCenter11UpState THEN
+    nAntiRejectionCylHMI11:=1;
+  END_IF;
+  IF NOT bSupportCentercyLinderUpNotFilterInPlace11 AND nAntiRejectionCylHMI11 = 1 AND g_bKeepCenter11UpState THEN
+    bSupportCentercyLinder11UpDoneTimeOutAlarm:=TRUE;
+  ELSIF bSupportCentercyLinderUpNotFilterInPlace11 AND nAntiRejectionCylHMI11 = 1 THEN
+    bSupportCentercyLinder11UpDoneTimeOutAlarm:= FALSE;
+  END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+    IF g_bAntiRejectionCylClampDone11 AND NOT g_bAntiRejectionCylLoosenDone11 AND NOT bCenter11IsAvoidFlag THEN
+      nAntiRejectionCylHMI11:=1;
+    END_IF;
+    bSupportCentercyLinder11UpDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+
+IF bAntiRejectionCyl11IsUseDownPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylDoubleFB11 AND g_bKeepCenter11DownState THEN
+    nAntiRejectionCylHMI11:=2;
+  END_IF;
+  IF NOT bSupportCentercyLinderDownNotFilterInPlace11 AND nAntiRejectionCylHMI11 = 2 AND g_bKeepCenter11DownState THEN
+		bSupportCentercyLinder11DownDoneTimeOutAlarm:=TRUE;
+	ELSIF bSupportCentercyLinderDownNotFilterInPlace11 AND nAntiRejectionCylHMI11 = 2 THEN
+		bSupportCentercyLinder11DownDoneTimeOutAlarm:= FALSE;
+	END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+    IF (g_bAntiRejectionCylLoosenDone11 AND NOT g_bAntiRejectionCylClampDone11) OR bCenter11IsAvoidFlag THEN
+      nAntiRejectionCylHMI11:=2;
+    END_IF;
+    bSupportCentercyLinder11DownDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+(*12*)
+RtrigCyl12(CLK := ( bCylAntiRejectionOpen12 OR g_bCylAntiRejectionOpen12  OR g_bCylAntiRejectionOpen12M ));
+RtrigCyl0ff12(CLK := ( bCylAntiRejectionClose12 OR g_bCylAntiRejectionClose12 OR g_bCylAntiRejectionClose12M ));
+IF RtrigCyl12.Q THEN
+  IF (g_fCenterClylinder12CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder12DownDistance) THEN
+	IF M.PARAMETER_P[185]=12.0 THEN
+		M.ENABLE[185] :=0;
+    END_IF;
+    g_bCylAntiRejectionOpen12M := FALSE;
+    g_bCylAntiRejectionOpen12:=FALSE;
+    bCylAntiRejectionOpen12:=FALSE;
+    g_bFinishedM185_12:=FALSE;
+	  g_bAntiRejectionCylClampDone12:=TRUE;
+	  g_bAntiRejectionCylLoosenDone12:=FALSE;
+      bCenter12IsAvoidFlag := TRUE;
+  ELSE
+    nTonKeep12(IN :=FALSE);
+	  nInPlaceTon12(IN :=FALSE);
+	  g_bAntiRejectionCylClampDone12:=FALSE;
+	  g_bAntiRejectionCylLoosenDone12:=FALSE;
+	  g_bAnitRejectionCylKeepPressuring12:=FALSE;
+	  bCylAntiRejectionOpen12:=FALSE;
+	  g_bCylAntiRejectionOpen12:=FALSE;
+	  bSupportCentercyLinder12DownDoneTimeOutAlarm:= FALSE;
+	  g_bKeepCenter12DownState := FALSE;
+	  g_bCylAntiRejectionOpen12M := FALSE;
+      bCenter12IsAvoidFlag := FALSE;
+	  IF g_nAntiRejectionCylNum >= 12 THEN
+		nCylSwitch12:=10;
+	  ELSE
+		M.ENABLE[185] :=0;
+		g_bFinishedM185_12 := FALSE;
+	  END_IF;
+  END_IF;
+  
+END_IF;
+
+IF RtrigCyl0ff12.Q OR (g_fCenterClylinder12CoordY-g_fCurrentCoordYBuffer < g_fCenterClylinder12DownDistance AND g_boAntiRejectionCylSingleCmd12)  THEN
+  nTonKeep12(IN :=FALSE);
+  nInPlaceTon12(IN :=FALSE);
+  g_bAntiRejectionCylClampDone12:=FALSE;
+  g_bAntiRejectionCylLoosenDone12:=FALSE;
+  g_bAnitRejectionCylKeepPressuring12:=FALSE;
+  bCylAntiRejectionClose12:=FALSE;
+  g_bCylAntiRejectionClose12:=FALSE;
+  bSupportCentercyLinder12UpDoneTimeOutAlarm:= FALSE;
+  g_bKeepCenter12UpState := FALSE;
+  g_bCylAntiRejectionClose12M := FALSE;
+  IF g_nAntiRejectionCylNum >= 12 THEN
+	nCylSwitch12:=50;
+  ELSE
+	M.ENABLE[185] :=0;
+	g_bFinishedM185_12 := FALSE;
+  END_IF;
+END_IF;
+
+CASE nCylSwitch12 OF
+  0:
+    nCylSwitch12:=0;
+  10:(*夹紧*)
+    g_boAntiRejectionCylSingleCmd12:=TRUE;
+    g_boAntiRejectionCylDoubleCmd12:=FALSE; 
+    nCylSwitch12:=15;
+  15:(*是否使用到位信号*)
+    IF bAntiRejectionCyl12IsUseUpPosition THEN(*使用到位信号*)
+      nCylSwitch12:=20;
+    ELSE
+      nCylSwitch12:=30;
+    END_IF;
+  20:(*使用到位信号，先夹紧到位再判断是否使用保压*)
+    IF g_bAntiRejectionCylSingleFB12  THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch12:=25;
+      ELSE
+        nCylSwitch12:=0;
+        g_bAntiRejectionCylClampDone12:=TRUE;
+		bSupportCentercyLinder12UpDoneTimeOutAlarm:= FALSE;
+        g_bKeepCenter12UpState := TRUE;
+        M.ENABLE[185] :=0;
+        g_bFinishedM185_12 := FALSE;
+        (*夹紧完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylSingleFB12 THEN
+      nInPlaceTon12(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay12)));
+		IF nInPlaceTon12.Q THEN
+		  nInPlaceTon12(IN :=FALSE);
+		  
+		  bSupportCentercyLinder12UpDoneTimeOutAlarm:=TRUE;
+		END_IF;
+    END_IF;
+  25:(*保压*)
+    nTonKeep12(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring12:=TRUE;(***)
+    IF nTonKeep12.Q THEN
+      g_bAnitRejectionCylKeepPressuring12:=FALSE;
+      g_boAntiRejectionCylSingleCmd12:=FALSE;
+      g_boAntiRejectionCylDoubleCmd12:=FALSE; 
+      nTonKeep12(IN :=FALSE);
+      nCylSwitch12:=0;
+      g_bAntiRejectionCylClampDone12:=TRUE;
+      (*夹紧完成*)
+    END_IF;
+  30:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch12:=25;
+    ELSE
+      nCylSwitch12:=35;
+    END_IF;
+  35:
+    nInPlaceTon12(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylUpInPlaceDelay12)));
+    IF nInPlaceTon12.Q THEN
+      nInPlaceTon12(IN :=FALSE);
+      nCylSwitch12:=0;
+      g_bAntiRejectionCylClampDone12:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_12 := FALSE;
+      (*夹紧完成*)
+    END_IF;
+  
+  50:(*松开*)
+    g_boAntiRejectionCylSingleCmd12:=FALSE;
+    g_boAntiRejectionCylDoubleCmd12:=TRUE;
+    nCylSwitch12:=55;
+  55:(*是否使用到位信号*)
+    IF bAntiRejectionCyl12IsUseDownPosition THEN(*使用到位信号*)
+      nCylSwitch12:=60;
+    ELSE
+      nCylSwitch12:=70;
+    END_IF;
+  60:
+    IF  g_bAntiRejectionCylDoubleFB12 THEN
+      IF g_bAntiRejectionCylKeepPressure THEN
+        nCylSwitch12:=65;
+      ELSE
+        nCylSwitch12:=0;
+        g_bAntiRejectionCylLoosenDone12:=TRUE;
+		  bSupportCentercyLinder12DownDoneTimeOutAlarm:=FALSE;
+          g_bKeepCenter12DownState := TRUE;
+          M.ENABLE[185] :=0;
+        g_bFinishedM185_12 := FALSE;
+        (*松开完成*)
+      END_IF;
+    ELSIF NOT g_bAntiRejectionCylDoubleFB12 THEN
+      nInPlaceTon12(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay12)));
+		IF nInPlaceTon12.Q THEN
+		  nInPlaceTon12(IN :=FALSE);
+		 
+		  bSupportCentercyLinder12DownDoneTimeOutAlarm:=TRUE;
+		  (*松开完成*)
+		END_IF;
+    END_IF;
+  65:
+    nTonKeep12(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(nKeepPressureTime)));
+    g_bAnitRejectionCylKeepPressuring12:=TRUE;(***)
+    IF nTonKeep12.Q THEN
+      g_bAnitRejectionCylKeepPressuring12:=FALSE;
+      
+      g_boAntiRejectionCylSingleCmd12:=FALSE;
+      g_boAntiRejectionCylDoubleCmd12:=FALSE; 
+      
+      nTonKeep12(IN :=FALSE);
+      nCylSwitch12:=0;
+      g_bAntiRejectionCylLoosenDone12:=TRUE;
+      (*松开完成*)
+    END_IF;
+  70:(*不使用到位信号*)
+    IF g_bAntiRejectionCylKeepPressure THEN
+      nCylSwitch12:=65;
+    ELSE
+      nCylSwitch12:=75;
+    END_IF;
+  75:
+    nInPlaceTon12(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MSTOS(nCylDownInPlaceDelay12)));
+    IF nInPlaceTon12.Q THEN
+      nInPlaceTon12(IN :=FALSE);
+      nCylSwitch12:=0;
+      g_bAntiRejectionCylLoosenDone12:=TRUE;
+      M.ENABLE[185] :=0;
+        g_bFinishedM185_12 := FALSE;
+      (*松开完成*)
+    END_IF;
+END_CASE;
+
+(*hmi状态灯显示*)
+IF bAntiRejectionCyl12IsUseUpPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylSingleFB12 AND g_bKeepCenter12UpState THEN
+    nAntiRejectionCylHMI12:=1;
+  END_IF;
+  IF NOT bSupportCentercyLinderUpNotFilterInPlace12 AND nAntiRejectionCylHMI12 = 1 AND g_bKeepCenter12UpState THEN
+    bSupportCentercyLinder12UpDoneTimeOutAlarm:=TRUE;
+  ELSIF bSupportCentercyLinderUpNotFilterInPlace12 AND nAntiRejectionCylHMI12 = 1 THEN
+    bSupportCentercyLinder12UpDoneTimeOutAlarm:= FALSE;
+  END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+    IF g_bAntiRejectionCylClampDone12 AND NOT g_bAntiRejectionCylLoosenDone12 AND NOT bCenter12IsAvoidFlag THEN
+      nAntiRejectionCylHMI12:=1;
+    END_IF;
+    bSupportCentercyLinder12UpDoneTimeOutAlarm:= FALSE;
+END_IF;
+
+
+IF bAntiRejectionCyl12IsUseDownPosition THEN(*使用到位信号时，实时拿实际引脚状态反馈*)
+  IF g_bAntiRejectionCylDoubleFB12 AND g_bKeepCenter12DownState THEN
+    nAntiRejectionCylHMI12:=2;
+  END_IF;
+  IF NOT bSupportCentercyLinderDownNotFilterInPlace12 AND nAntiRejectionCylHMI12 = 2 AND g_bKeepCenter12DownState THEN
+		bSupportCentercyLinder12DownDoneTimeOutAlarm:=TRUE;
+	ELSIF bSupportCentercyLinderDownNotFilterInPlace12 AND nAntiRejectionCylHMI12 = 2 THEN
+		bSupportCentercyLinder12DownDoneTimeOutAlarm:= FALSE;
+	END_IF;
+ELSE(*不使用到位信号时，那以输出完成状态反馈*)
+    IF (g_bAntiRejectionCylLoosenDone12 AND NOT g_bAntiRejectionCylClampDone12) OR bCenter12IsAvoidFlag THEN
+      nAntiRejectionCylHMI12:=2;
+    END_IF;
+    bSupportCentercyLinder12DownDoneTimeOutAlarm:= FALSE;
+END_IF;
+(*硬件信号常开常闭处理*)
+Filter_AntiCyl1UpInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl1FilterUpDownTime))),bAntiRejectionCylSingleNONC1,g_biAntiRejectionCylSingleFB1,bSupportCentercyLinderUpFilterInPlace1);
+g_bAntiRejectionCylSingleFB1 := FUN_SingalLogic(bSupportCentercyLinderUpFilterInPlace1,bAntiRejectionCylSingleNONC1);
+bSupportCentercyLinderUpNotFilterInPlace1 := FUN_SingalLogic(g_biAntiRejectionCylSingleFB1,bAntiRejectionCylSingleNONC1);
+
+Filter_AntiCyl2UpInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl2FilterUpDownTime))),bAntiRejectionCylSingleNONC2,g_biAntiRejectionCylSingleFB2,bSupportCentercyLinderUpFilterInPlace2);
+g_bAntiRejectionCylSingleFB2 := FUN_SingalLogic(bSupportCentercyLinderUpFilterInPlace2,bAntiRejectionCylSingleNONC2);
+bSupportCentercyLinderUpNotFilterInPlace2 := FUN_SingalLogic(g_biAntiRejectionCylSingleFB2,bAntiRejectionCylSingleNONC2);
+
+Filter_AntiCyl3UpInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl3FilterUpDownTime))),bAntiRejectionCylSingleNONC3,g_biAntiRejectionCylSingleFB3,bSupportCentercyLinderUpFilterInPlace3);
+g_bAntiRejectionCylSingleFB3 := FUN_SingalLogic(bSupportCentercyLinderUpFilterInPlace3,bAntiRejectionCylSingleNONC3);
+bSupportCentercyLinderUpNotFilterInPlace3 := FUN_SingalLogic(g_biAntiRejectionCylSingleFB3,bAntiRejectionCylSingleNONC3);
+
+Filter_AntiCyl4UpInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl4FilterUpDownTime))),bAntiRejectionCylSingleNONC4,g_biAntiRejectionCylSingleFB4,bSupportCentercyLinderUpFilterInPlace4);
+g_bAntiRejectionCylSingleFB4 := FUN_SingalLogic(bSupportCentercyLinderUpFilterInPlace4,bAntiRejectionCylSingleNONC4);
+bSupportCentercyLinderUpNotFilterInPlace4 := FUN_SingalLogic(g_biAntiRejectionCylSingleFB4,bAntiRejectionCylSingleNONC4);
+
+Filter_AntiCyl5UpInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl5FilterUpDownTime))),bAntiRejectionCylSingleNONC5,g_biAntiRejectionCylSingleFB5,bSupportCentercyLinderUpFilterInPlace5);
+g_bAntiRejectionCylSingleFB5 := FUN_SingalLogic(bSupportCentercyLinderUpFilterInPlace5,bAntiRejectionCylSingleNONC5);
+bSupportCentercyLinderUpNotFilterInPlace5 := FUN_SingalLogic(g_biAntiRejectionCylSingleFB5,bAntiRejectionCylSingleNONC5);
+
+Filter_AntiCyl6UpInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl6FilterUpDownTime))),bAntiRejectionCylSingleNONC6,g_biAntiRejectionCylSingleFB6,bSupportCentercyLinderUpFilterInPlace6);
+g_bAntiRejectionCylSingleFB6 := FUN_SingalLogic(bSupportCentercyLinderUpFilterInPlace6,bAntiRejectionCylSingleNONC6);
+bSupportCentercyLinderUpNotFilterInPlace6 := FUN_SingalLogic(g_biAntiRejectionCylSingleFB6,bAntiRejectionCylSingleNONC6);
+
+Filter_AntiCyl7UpInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl7FilterUpDownTime))),bAntiRejectionCylSingleNONC7,g_biAntiRejectionCylSingleFB7,bSupportCentercyLinderUpFilterInPlace7);
+g_bAntiRejectionCylSingleFB7 := FUN_SingalLogic(bSupportCentercyLinderUpFilterInPlace7,bAntiRejectionCylSingleNONC7);
+bSupportCentercyLinderUpNotFilterInPlace7 := FUN_SingalLogic(g_biAntiRejectionCylSingleFB7,bAntiRejectionCylSingleNONC7);
+
+Filter_AntiCyl8UpInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl8FilterUpDownTime))),bAntiRejectionCylSingleNONC8,g_biAntiRejectionCylSingleFB8,bSupportCentercyLinderUpFilterInPlace8);
+g_bAntiRejectionCylSingleFB8 := FUN_SingalLogic(bSupportCentercyLinderUpFilterInPlace8,bAntiRejectionCylSingleNONC8);
+bSupportCentercyLinderUpNotFilterInPlace8 := FUN_SingalLogic(g_biAntiRejectionCylSingleFB8,bAntiRejectionCylSingleNONC8);
+
+Filter_AntiCyl9UpInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl9FilterUpDownTime))),bAntiRejectionCylSingleNONC9,g_biAntiRejectionCylSingleFB9,bSupportCentercyLinderUpFilterInPlace9);
+g_bAntiRejectionCylSingleFB9 := FUN_SingalLogic(bSupportCentercyLinderUpFilterInPlace9,bAntiRejectionCylSingleNONC9);
+bSupportCentercyLinderUpNotFilterInPlace9 := FUN_SingalLogic(g_biAntiRejectionCylSingleFB9,bAntiRejectionCylSingleNONC9);
+
+Filter_AntiCyl10UpInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl10FilterUpDownTime))),bAntiRejectionCylSingleNONC10,g_biAntiRejectionCylSingleFB10,bSupportCentercyLinderUpFilterInPlace10);
+g_bAntiRejectionCylSingleFB10 := FUN_SingalLogic(bSupportCentercyLinderUpFilterInPlace10,bAntiRejectionCylSingleNONC10);
+bSupportCentercyLinderUpNotFilterInPlace10 := FUN_SingalLogic(g_biAntiRejectionCylSingleFB10,bAntiRejectionCylSingleNONC10);
+
+Filter_AntiCyl11UpInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl11FilterUpDownTime))),bAntiRejectionCylSingleNONC11,g_biAntiRejectionCylSingleFB11,bSupportCentercyLinderUpFilterInPlace11);
+g_bAntiRejectionCylSingleFB11 := FUN_SingalLogic(bSupportCentercyLinderUpFilterInPlace11,bAntiRejectionCylSingleNONC11);
+bSupportCentercyLinderUpNotFilterInPlace11 := FUN_SingalLogic(g_biAntiRejectionCylSingleFB11,bAntiRejectionCylSingleNONC11);
+
+Filter_AntiCyl12UpInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl12FilterUpDownTime))),bAntiRejectionCylSingleNONC12,g_biAntiRejectionCylSingleFB12,bSupportCentercyLinderUpFilterInPlace12);
+g_bAntiRejectionCylSingleFB12 := FUN_SingalLogic(bSupportCentercyLinderUpFilterInPlace12,bAntiRejectionCylSingleNONC12);
+bSupportCentercyLinderUpNotFilterInPlace12 := FUN_SingalLogic(g_biAntiRejectionCylSingleFB12,bAntiRejectionCylSingleNONC12);
+
+
+
+
+
+
+Filter_AntiCyl1DownInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl1FilterUpDownTime))),bAntiRejectionCylDoubleNONC1,g_biAntiRejectionCylDoubleFB1,bSupportCentercyLinderDownFilterInPlace1);
+g_bAntiRejectionCylDoubleFB1 := FUN_SingalLogic(bSupportCentercyLinderDownFilterInPlace1,bAntiRejectionCylDoubleNONC1);
+bSupportCentercyLinderDownNotFilterInPlace1 := FUN_SingalLogic(g_biAntiRejectionCylDoubleFB1,bAntiRejectionCylDoubleNONC1);
+
+Filter_AntiCyl2DownInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl2FilterUpDownTime))),bAntiRejectionCylDoubleNONC2,g_biAntiRejectionCylDoubleFB2,bSupportCentercyLinderDownFilterInPlace2);
+g_bAntiRejectionCylDoubleFB2 := FUN_SingalLogic(bSupportCentercyLinderDownFilterInPlace2,bAntiRejectionCylDoubleNONC2);
+bSupportCentercyLinderDownNotFilterInPlace2 := FUN_SingalLogic(g_biAntiRejectionCylDoubleFB2,bAntiRejectionCylDoubleNONC2);
+
+Filter_AntiCyl3DownInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl3FilterUpDownTime))),bAntiRejectionCylDoubleNONC3,g_biAntiRejectionCylDoubleFB3,bSupportCentercyLinderDownFilterInPlace3);
+g_bAntiRejectionCylDoubleFB3 := FUN_SingalLogic(bSupportCentercyLinderDownFilterInPlace3,bAntiRejectionCylDoubleNONC3);
+bSupportCentercyLinderDownNotFilterInPlace3 := FUN_SingalLogic(g_biAntiRejectionCylDoubleFB3,bAntiRejectionCylDoubleNONC3);
+
+Filter_AntiCyl4DownInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl4FilterUpDownTime))),bAntiRejectionCylDoubleNONC4,g_biAntiRejectionCylDoubleFB4,bSupportCentercyLinderDownFilterInPlace4);
+g_bAntiRejectionCylDoubleFB4 := FUN_SingalLogic(bSupportCentercyLinderDownFilterInPlace4,bAntiRejectionCylDoubleNONC4);
+bSupportCentercyLinderDownNotFilterInPlace4 := FUN_SingalLogic(g_biAntiRejectionCylDoubleFB4,bAntiRejectionCylDoubleNONC4);
+
+Filter_AntiCyl5DownInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl5FilterUpDownTime))),bAntiRejectionCylDoubleNONC5,g_biAntiRejectionCylDoubleFB5,bSupportCentercyLinderDownFilterInPlace5);
+g_bAntiRejectionCylDoubleFB5 := FUN_SingalLogic(bSupportCentercyLinderDownFilterInPlace5,bAntiRejectionCylDoubleNONC5);
+bSupportCentercyLinderDownNotFilterInPlace5 := FUN_SingalLogic(g_biAntiRejectionCylDoubleFB5,bAntiRejectionCylDoubleNONC5);
+
+Filter_AntiCyl6DownInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl6FilterUpDownTime))),bAntiRejectionCylDoubleNONC6,g_biAntiRejectionCylDoubleFB6,bSupportCentercyLinderDownFilterInPlace6);
+g_bAntiRejectionCylDoubleFB6 := FUN_SingalLogic(bSupportCentercyLinderDownFilterInPlace6,bAntiRejectionCylDoubleNONC6);
+bSupportCentercyLinderDownNotFilterInPlace6 := FUN_SingalLogic(g_biAntiRejectionCylDoubleFB6,bAntiRejectionCylDoubleNONC6);
+
+Filter_AntiCyl7DownInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl7FilterUpDownTime))),bAntiRejectionCylDoubleNONC7,g_biAntiRejectionCylDoubleFB7,bSupportCentercyLinderDownFilterInPlace7);
+g_bAntiRejectionCylDoubleFB7 := FUN_SingalLogic(bSupportCentercyLinderDownFilterInPlace7,bAntiRejectionCylDoubleNONC7);
+bSupportCentercyLinderDownNotFilterInPlace7 := FUN_SingalLogic(g_biAntiRejectionCylDoubleFB7,bAntiRejectionCylDoubleNONC7);
+
+Filter_AntiCyl8DownInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl8FilterUpDownTime))),bAntiRejectionCylDoubleNONC8,g_biAntiRejectionCylDoubleFB8,bSupportCentercyLinderDownFilterInPlace8);
+g_bAntiRejectionCylDoubleFB8 := FUN_SingalLogic(bSupportCentercyLinderDownFilterInPlace8,bAntiRejectionCylDoubleNONC8);
+bSupportCentercyLinderDownNotFilterInPlace8 := FUN_SingalLogic(g_biAntiRejectionCylDoubleFB8,bAntiRejectionCylDoubleNONC8);
+
+
+Filter_AntiCyl9DownInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl9FilterUpDownTime))),bAntiRejectionCylDoubleNONC9,g_biAntiRejectionCylDoubleFB9,bSupportCentercyLinderDownFilterInPlace9);
+g_bAntiRejectionCylDoubleFB9 := FUN_SingalLogic(bSupportCentercyLinderDownFilterInPlace9,bAntiRejectionCylDoubleNONC9);
+bSupportCentercyLinderDownNotFilterInPlace9 := FUN_SingalLogic(g_biAntiRejectionCylDoubleFB9,bAntiRejectionCylDoubleNONC9);
+
+
+Filter_AntiCyl10DownInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl10FilterUpDownTime))),bAntiRejectionCylDoubleNONC10,g_biAntiRejectionCylDoubleFB10,bSupportCentercyLinderDownFilterInPlace10);
+g_bAntiRejectionCylDoubleFB10 := FUN_SingalLogic(bSupportCentercyLinderDownFilterInPlace10,bAntiRejectionCylDoubleNONC10);
+bSupportCentercyLinderDownNotFilterInPlace10 := FUN_SingalLogic(g_biAntiRejectionCylDoubleFB10,bAntiRejectionCylDoubleNONC10);
+
+
+
+Filter_AntiCyl11DownInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl11FilterUpDownTime))),bAntiRejectionCylDoubleNONC11,g_biAntiRejectionCylDoubleFB11,bSupportCentercyLinderDownFilterInPlace11);
+g_bAntiRejectionCylDoubleFB11 := FUN_SingalLogic(bSupportCentercyLinderDownFilterInPlace11,bAntiRejectionCylDoubleNONC11);
+bSupportCentercyLinderDownNotFilterInPlace11 := FUN_SingalLogic(g_biAntiRejectionCylDoubleFB11,bAntiRejectionCylDoubleNONC11);
+
+
+
+Filter_AntiCyl12DownInPlace(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dSupportCenterCyl12FilterUpDownTime))),bAntiRejectionCylDoubleNONC12,g_biAntiRejectionCylDoubleFB12,bSupportCentercyLinderDownFilterInPlace12);
+g_bAntiRejectionCylDoubleFB12 := FUN_SingalLogic(bSupportCentercyLinderDownFilterInPlace12,bAntiRejectionCylDoubleNONC12);
+bSupportCentercyLinderDownNotFilterInPlace12 := FUN_SingalLogic(g_biAntiRejectionCylDoubleFB12,bAntiRejectionCylDoubleNONC12);
+
+
+
+IF bSupportCentercyLinder1UpDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 1 AND ListenBoardInputConfig[461] THEN
+	g_Alarm.alarmArray[621] := 1315;
+ELSE
+  g_Alarm.alarmArray[621] := 0;
+END_IF;
+IF bSupportCentercyLinder2UpDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 2 AND ListenBoardInputConfig[462] THEN
+	g_Alarm.alarmArray[622] := 1316;
+ELSE
+  g_Alarm.alarmArray[622] := 0;
+END_IF;
+IF bSupportCentercyLinder3UpDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 3 AND ListenBoardInputConfig[463] THEN
+	g_Alarm.alarmArray[623] := 1317;
+ELSE
+  g_Alarm.alarmArray[623] := 0;
+END_IF;
+IF bSupportCentercyLinder4UpDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 4 AND ListenBoardInputConfig[464] THEN
+	g_Alarm.alarmArray[624] := 1318;
+ELSE
+  g_Alarm.alarmArray[624] := 0;
+END_IF;
+IF bSupportCentercyLinder5UpDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 5 AND ListenBoardInputConfig[465] THEN
+	g_Alarm.alarmArray[625] := 1319;
+ELSE
+  g_Alarm.alarmArray[625] := 0;
+END_IF;
+IF bSupportCentercyLinder6UpDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 6 AND ListenBoardInputConfig[466] THEN
+	g_Alarm.alarmArray[626] := 1320;
+ELSE
+  g_Alarm.alarmArray[626] := 0;
+END_IF;
+IF bSupportCentercyLinder7UpDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 7 AND ListenBoardInputConfig[467] THEN
+	g_Alarm.alarmArray[627] := 1321;
+ELSE
+  g_Alarm.alarmArray[627] := 0;
+END_IF;
+IF bSupportCentercyLinder8UpDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 8 AND ListenBoardInputConfig[468] THEN
+	g_Alarm.alarmArray[628] := 1322;
+ELSE
+  g_Alarm.alarmArray[628] := 0;
+END_IF;
+
+IF bSupportCentercyLinder9UpDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 9 AND ListenBoardInputConfig[503] THEN
+	g_Alarm.alarmArray[643] := 1338;
+ELSE
+  g_Alarm.alarmArray[643] := 0;
+END_IF;
+
+IF bSupportCentercyLinder10UpDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 10 AND ListenBoardInputConfig[516] THEN
+	g_Alarm.alarmArray[648] := 1343;
+ELSE
+  g_Alarm.alarmArray[648] := 0;
+END_IF;
+
+IF bSupportCentercyLinder11UpDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 10 AND ListenBoardInputConfig[517] THEN
+	g_Alarm.alarmArray[650] := 1345;
+ELSE
+  g_Alarm.alarmArray[650] := 0;
+END_IF;
+
+IF bSupportCentercyLinder10UpDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 10 AND ListenBoardInputConfig[518] THEN
+	g_Alarm.alarmArray[652] := 1347;
+ELSE
+  g_Alarm.alarmArray[652] := 0;
+END_IF;
+
+
+
+
+IF bSupportCentercyLinder1DownDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 1 AND ListenBoardInputConfig[469] THEN
+	g_Alarm.alarmArray[629] := 1323;
+ELSE
+  g_Alarm.alarmArray[629] := 0;
+END_IF;
+IF bSupportCentercyLinder2DownDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 2 AND ListenBoardInputConfig[470] THEN
+	g_Alarm.alarmArray[630] := 1324;
+ELSE
+  g_Alarm.alarmArray[630] := 0;
+END_IF;
+IF bSupportCentercyLinder3DownDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 3 AND ListenBoardInputConfig[471] THEN
+	g_Alarm.alarmArray[631] := 1325;
+ELSE
+  g_Alarm.alarmArray[631] := 0;
+END_IF;
+IF bSupportCentercyLinder4DownDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 4 AND ListenBoardInputConfig[472] THEN
+	g_Alarm.alarmArray[632] := 1326;
+ELSE
+  g_Alarm.alarmArray[632] := 0;
+END_IF;
+IF bSupportCentercyLinder5DownDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 5 AND ListenBoardInputConfig[473] THEN
+	g_Alarm.alarmArray[633] := 1327;
+ELSE
+  g_Alarm.alarmArray[633] := 0;
+END_IF;
+IF bSupportCentercyLinder6DownDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 6 AND ListenBoardInputConfig[474] THEN
+	g_Alarm.alarmArray[634] := 1328;
+ELSE
+  g_Alarm.alarmArray[634] := 0;
+END_IF;
+IF bSupportCentercyLinder7DownDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 7 AND ListenBoardInputConfig[475] THEN
+	g_Alarm.alarmArray[635] := 1329;
+ELSE
+  g_Alarm.alarmArray[635] := 0;
+END_IF;
+IF bSupportCentercyLinder8DownDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 8 AND ListenBoardInputConfig[476] THEN
+	g_Alarm.alarmArray[636] := 1330;
+ELSE
+	g_Alarm.alarmArray[636] := 0;
+END_IF;
+
+IF bSupportCentercyLinder9DownDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 9 AND ListenBoardInputConfig[504] THEN
+	g_Alarm.alarmArray[644] := 1339;
+ELSE
+	g_Alarm.alarmArray[644] := 0;
+END_IF;
+IF bSupportCentercyLinder10DownDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 10 AND ListenBoardInputConfig[519] THEN
+	g_Alarm.alarmArray[649] := 1344;
+ELSE
+	g_Alarm.alarmArray[649] := 0;
+END_IF;
+IF bSupportCentercyLinder11DownDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 11 AND ListenBoardInputConfig[520] THEN
+	g_Alarm.alarmArray[651] := 1346;
+ELSE
+	g_Alarm.alarmArray[651] := 0;
+END_IF;
+IF bSupportCentercyLinder12DownDoneTimeOutAlarm AND g_nAntiRejectionCylNum >= 12 AND ListenBoardInputConfig[521] THEN
+	g_Alarm.alarmArray[653] := 1347;
+ELSE
+	g_Alarm.alarmArray[653] := 0;
+END_IF;
+
+g_noAntiRejectionCylSwitch1:=nCylSwitch1;
+g_noAntiRejectionCylSwitch2:=nCylSwitch2;
+g_noAntiRejectionCylSwitch3:=nCylSwitch3;
+g_noAntiRejectionCylSwitch4:=nCylSwitch4;
+g_noAntiRejectionCylSwitch5:=nCylSwitch5;
+g_noAntiRejectionCylSwitch6:=nCylSwitch6;
+g_noAntiRejectionCylSwitch7:=nCylSwitch7;
+g_noAntiRejectionCylSwitch8:=nCylSwitch8;
+g_noAntiRejectionCylSwitch9:=nCylSwitch9;
+(*将反馈状态给到全局变量用于上传*)
+g_nAntiRejectionCylHMI1 := nAntiRejectionCylHMI1;
+g_nAntiRejectionCylHMI2 := nAntiRejectionCylHMI2;
+g_nAntiRejectionCylHMI3 := nAntiRejectionCylHMI3;
+g_nAntiRejectionCylHMI4 := nAntiRejectionCylHMI4;
+g_nAntiRejectionCylHMI5 := nAntiRejectionCylHMI5;
+g_nAntiRejectionCylHMI6 := nAntiRejectionCylHMI6;
+g_nAntiRejectionCylHMI7 := nAntiRejectionCylHMI7;
+g_nAntiRejectionCylHMI8 := nAntiRejectionCylHMI8;
+g_nAntiRejectionCylHMI9 := nAntiRejectionCylHMI9;
+g_nAntiRejectionCylHMI10 := nAntiRejectionCylHMI10;
+g_nAntiRejectionCylHMI11 := nAntiRejectionCylHMI11;
+g_nAntiRejectionCylHMI12 := nAntiRejectionCylHMI12;
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[左右夹紧防甩气缸控制]]></xhtml:p>
+  </documentation>
+</pou>

@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DDAxisJog" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bBoendeAvoidOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bHGTECHAvoidOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBoendeAvoidDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bHGTECHAvoidDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nMachineType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="DDAxis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[鼎点轴结构体]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_DDAxisJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bDDAxisForward">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[前进]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDDAxisBackward">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[后退]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bfast">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[快速移动标志]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="FTrigger">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nJogState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger(CLK := bDDAxisForward OR bDDAxisBackward);
+FTrigger(CLK := bDDAxisForward OR bDDAxisBackward);
+
+IF bfast THEN
+  g_DDAxisJog.Mode := 1;
+ELSE
+  g_DDAxisJog.Mode := 0;
+END_IF;
+
+IF g_nMachineType = 9 THEN
+  IF RTrigger.Q THEN
+    nJogState := 10;
+  END_IF;
+  IF FTrigger.Q THEN
+    nJogState := 0;
+  END_IF;
+
+  CASE nJogState OF
+    0:
+      g_DDAxisJog.JogForward := FALSE;
+      g_DDAxisJog.JogBackwards := FALSE;
+    10:
+      g_bBoendeAvoidOpen := TRUE;
+      nJogState := 20;
+    20:
+      IF g_bBoendeAvoidDone THEN
+        g_bBoendeAvoidOpen := FALSE;
+        nJogState := 30;
+      END_IF;
+    30:
+      g_DDAxisJog.JogForward := bDDAxisForward;
+      g_DDAxisJog.JogBackwards := bDDAxisBackward;
+  END_CASE;
+ELSE
+  g_DDAxisJog.JogForward := bDDAxisForward;
+  g_DDAxisJog.JogBackwards := bDDAxisBackward;
+END_IF;
+    
+    
+IF g_bPlcResetBuffer THEN
+  bDDAxisForward := FALSE;
+  bDDAxisBackward := FALSE;
+END_IF; ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

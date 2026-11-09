@@ -1,0 +1,412 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CLaw3ClyAvoid" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Axis_Y2">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_dY2CoorInY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder1CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder2CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder3CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder4CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder5CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder6CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder7CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder8CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder1DownDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder2DownDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder3DownDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder4DownDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder5DownDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder6DownDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder7DownDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder8DownDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder1SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder2SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder3SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder4SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder5SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder6SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder7SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder8SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3Cyl1Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3Cyl2Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3Cyl3Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3Cyl4Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3Cyl5Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3Cyl6Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3Cyl7Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3Cyl8Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportcyLinder1UpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportcyLinder2UpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportcyLinder3UpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportcyLinder4UpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportcyLinder5UpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportcyLinder6UpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportcyLinder7UpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportcyLinder8UpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClylinderDownIsPosition">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nClylinderCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_Alarm">
+        <type>
+          <derived name="DT_ALARM"/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF Axis_Y2.NCTOPLC.HOMINGSTATE THEN
+  IF g_dY2CoorInY - g_fClylinder1CoordY <= g_fClylinder1DownDistance AND g_nClylinderCount >= 1 THEN
+    g_bClaw3Cyl1Down := TRUE;
+  ELSE
+    g_bClaw3Cyl1Down := FALSE;
+  END_IF;
+  IF g_dY2CoorInY - g_fClylinder2CoordY <= g_fClylinder2DownDistance AND g_nClylinderCount >= 2 THEN
+    g_bClaw3Cyl2Down := TRUE;
+  ELSE
+    g_bClaw3Cyl2Down := FALSE;
+  END_IF;
+  IF g_dY2CoorInY - g_fClylinder3CoordY <= g_fClylinder3DownDistance AND g_nClylinderCount >= 3 THEN
+    g_bClaw3Cyl3Down := TRUE;
+  ELSE
+    g_bClaw3Cyl3Down := FALSE;
+  END_IF;
+  IF g_dY2CoorInY - g_fClylinder4CoordY <= g_fClylinder4DownDistance AND g_nClylinderCount >= 4 THEN
+    g_bClaw3Cyl4Down := TRUE;
+  ELSE
+    g_bClaw3Cyl4Down := FALSE;
+  END_IF;
+  IF g_dY2CoorInY - g_fClylinder5CoordY <= g_fClylinder5DownDistance AND g_nClylinderCount >= 5 THEN
+    g_bClaw3Cyl5Down := TRUE;
+  ELSE
+    g_bClaw3Cyl5Down := FALSE;
+  END_IF;
+  IF g_dY2CoorInY - g_fClylinder6CoordY <= g_fClylinder6DownDistance AND g_nClylinderCount >= 6 THEN
+    g_bClaw3Cyl6Down := TRUE;
+  ELSE
+    g_bClaw3Cyl6Down := FALSE;
+  END_IF;
+  IF g_dY2CoorInY - g_fClylinder7CoordY <= g_fClylinder7DownDistance AND g_nClylinderCount >= 7 THEN
+    g_bClaw3Cyl7Down := TRUE;
+  ELSE
+    g_bClaw3Cyl7Down := FALSE;
+  END_IF;
+  IF g_dY2CoorInY - g_fClylinder8CoordY <= g_fClylinder8DownDistance AND g_nClylinderCount >= 8 THEN
+    g_bClaw3Cyl8Down := TRUE;
+  ELSE
+    g_bClaw3Cyl8Down := FALSE;
+  END_IF;
+  
+  IF g_bClylinderDownIsPosition1 THEN
+    IF (g_dY2CoorInY - g_fClylinder1CoordY) <= g_fClylinder1SafeDistance AND NOT g_CylAllStateUpDate.BoolArr[65]  AND g_nClylinderCount > 0 THEN
+      g_Alarm.alarmArray[101] := 801;
+    END_IF;
+  ELSE
+    IF (g_dY2CoorInY - g_fClylinder1CoordY) <= g_fClylinder1SafeDistance AND g_boSupportcyLinder1UpEnable AND g_nClylinderCount > 0 THEN
+      g_Alarm.alarmArray[101] := 801;
+    END_IF;
+  END_IF;
+  
+  IF g_bClylinderDownIsPosition2 THEN
+    IF (g_dY2CoorInY - g_fClylinder2CoordY) <= g_fClylinder2SafeDistance AND NOT g_CylAllStateUpDate.BoolArr[67]  AND g_nClylinderCount > 1 THEN
+      g_Alarm.alarmArray[102] := 802;
+    END_IF;
+  ELSE
+    IF (g_dY2CoorInY - g_fClylinder2CoordY) <= g_fClylinder2SafeDistance AND g_boSupportcyLinder2UpEnable AND g_nClylinderCount > 1 THEN
+      g_Alarm.alarmArray[102] := 802;
+    END_IF;
+  END_IF;
+   
+  IF g_bClylinderDownIsPosition3 THEN
+    IF (g_dY2CoorInY - g_fClylinder3CoordY) <= g_fClylinder3SafeDistance AND NOT g_CylAllStateUpDate.BoolArr[69]  AND g_nClylinderCount > 2 THEN
+      g_Alarm.alarmArray[103] := 803;
+    END_IF;
+  ELSE
+    IF (g_dY2CoorInY - g_fClylinder3CoordY) <= g_fClylinder3SafeDistance AND g_boSupportcyLinder3UpEnable AND g_nClylinderCount > 2 THEN
+      g_Alarm.alarmArray[103] := 803;
+    END_IF;
+  END_IF; 
+  
+  IF g_bClylinderDownIsPosition4 THEN
+    IF (g_dY2CoorInY - g_fClylinder4CoordY) <= g_fClylinder4SafeDistance AND NOT g_CylAllStateUpDate.BoolArr[71]  AND g_nClylinderCount > 3 THEN
+      g_Alarm.alarmArray[104] := 804;
+    END_IF;
+  ELSE
+    IF (g_dY2CoorInY - g_fClylinder4CoordY) <= g_fClylinder4SafeDistance AND g_boSupportcyLinder4UpEnable AND g_nClylinderCount > 3 THEN
+      g_Alarm.alarmArray[104] := 804;
+    END_IF;
+  END_IF;
+  
+  IF g_bClylinderDownIsPosition5 THEN
+    IF (g_dY2CoorInY - g_fClylinder5CoordY) <= g_fClylinder5SafeDistance AND NOT g_CylAllStateUpDate.BoolArr[73] AND g_nClylinderCount > 4 THEN
+      g_Alarm.alarmArray[105] := 805;
+    END_IF;
+  ELSE
+    IF (g_dY2CoorInY - g_fClylinder5CoordY) <= g_fClylinder5SafeDistance AND g_boSupportcyLinder5UpEnable AND g_nClylinderCount > 4 THEN
+      g_Alarm.alarmArray[105] := 805;
+    END_IF;
+  END_IF;
+  
+  IF g_bClylinderDownIsPosition6 THEN
+    IF (g_dY2CoorInY - g_fClylinder6CoordY) <= g_fClylinder6SafeDistance AND NOT g_CylAllStateUpDate.BoolArr[75] AND g_nClylinderCount > 5 THEN
+      g_Alarm.alarmArray[106] := 806;
+    END_IF;
+  ELSE
+    IF (g_dY2CoorInY - g_fClylinder6CoordY) <= g_fClylinder6SafeDistance AND g_boSupportcyLinder6UpEnable AND g_nClylinderCount > 5 THEN
+      g_Alarm.alarmArray[106] := 806;
+    END_IF;
+  END_IF;
+  
+  IF g_bClylinderDownIsPosition7 THEN
+    IF (g_dY2CoorInY - g_fClylinder7CoordY) <= g_fClylinder7SafeDistance AND NOT g_CylAllStateUpDate.BoolArr[77] AND g_nClylinderCount > 6 THEN
+      g_Alarm.alarmArray[107] := 807;
+    END_IF;
+  ELSE
+    IF (g_dY2CoorInY - g_fClylinder7CoordY) <= g_fClylinder7SafeDistance AND g_boSupportcyLinder7UpEnable AND g_nClylinderCount > 6 THEN
+      g_Alarm.alarmArray[107] := 807;
+    END_IF;
+  END_IF;
+  
+  IF g_bClylinderDownIsPosition8 THEN
+    IF (g_dY2CoorInY - g_fClylinder8CoordY) <= g_fClylinder8SafeDistance AND NOT g_CylAllStateUpDate.BoolArr[79] AND g_nClylinderCount > 7 THEN
+      g_Alarm.alarmArray[108] := 808;
+    END_IF;
+  ELSE
+    IF (g_dY2CoorInY - g_fClylinder8CoordY) <= g_fClylinder8SafeDistance AND g_boSupportcyLinder8UpEnable AND g_nClylinderCount > 7 THEN
+      g_Alarm.alarmArray[108] := 808;
+    END_IF;
+  END_IF;
+ELSE 
+  g_bClaw3Cyl1Down := FALSE;
+  g_bClaw3Cyl2Down := FALSE;
+  g_bClaw3Cyl3Down := FALSE;
+  g_bClaw3Cyl4Down := FALSE;
+  g_bClaw3Cyl5Down := FALSE;
+  g_bClaw3Cyl6Down := FALSE;
+  g_bClaw3Cyl7Down := FALSE;
+  g_bClaw3Cyl8Down := FALSE;
+END_IF;
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[三卡帕 中卡和支撑避让fb]]></xhtml:p>
+  </documentation>
+</pou>

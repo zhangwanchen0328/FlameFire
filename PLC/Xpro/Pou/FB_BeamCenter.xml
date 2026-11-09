@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BeamCenter" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bBeamCenterM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚输入，校横梁中心]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger0">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dBeamCenterPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[横梁中心点位置]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dZAxisCurPos1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[横梁中心点位置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dZAxisCurPos2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[横梁中心点位置]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fBeamCenterXM">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚输入，校横梁中心点位置]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bBeamCenterDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[校横梁中心完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nBeamSwitchOn">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBeamSwitchChuckCenter">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger(CLK := g_bBeamCenterM);
+R_Trigger0(CLK := g_bBeamCenterFlatNumEnableM);
+(*校横梁中心完成，获取横梁中心位置*)
+IF R_Trigger.Q THEN
+  nBeamSwitchOn := 1;
+  bBeamCenterDone := FALSE;
+  g_bBeamCenterM := FALSE;
+END_IF;
+
+CASE nBeamSwitchOn OF
+  0:
+  nBeamSwitchOn := 0;
+  1:
+  g_dBeamCenterPos := g_fBeamCenterXM;
+  bBeamCenterDone := TRUE;
+  nBeamSwitchOn := 0;
+END_CASE;
+(*获取卡盘中心在Z轴上的坐标，后续改*)
+CASE nBeamSwitchChuckCenter OF
+  0:
+    IF R_Trigger0.Q THEN
+      g_bBeamCenterFlatNumEnableM:=FALSE;
+      IF LREAL_TO_INT(g_fAngleIronFlatNumM) = 1 THEN
+        dZAxisCurPos1 := g_fZCoordinate;
+      ELSIF LREAL_TO_INT(g_fAngleIronFlatNumM) = 2 THEN
+        dZAxisCurPos2 := g_fZCoordinate;
+        nBeamSwitchChuckCenter := 5;
+      END_IF;
+    END_IF;
+  5:(*卡盘中心坐标 = 当前Z轴坐标 - 随动高度 - 方管高面的1/2*)
+    g_dChuckCenterInZpos:= (dZAxisCurPos1+dZAxisCurPos2)/2.0-g_fAngleIronFollowHeightM-(g_fLevelAndCenterHight/2.0);
+    nBeamSwitchChuckCenter := 0;
+END_CASE;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[获取横梁中心]]></xhtml:p>
+  </documentation>
+</pou>

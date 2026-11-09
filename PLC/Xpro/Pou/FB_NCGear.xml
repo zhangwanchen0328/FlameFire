@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_NCGear" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="GearIn">
+        <type>
+          <derived name="MC_GEARIN"/>
+        </type>
+      </variable>
+      <variable name="GearOut">
+        <type>
+          <derived name="MC_GEAROUT"/>
+        </type>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="NCAxisName">
+        <type>
+          <derived name="REF_TO AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="GearInEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GearOutEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="IndexNum">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nGearState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <outputVars>
+      <variable name="GearDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GearErrorID">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+    </outputVars>
+    <localVars>
+      <variable name="AxisStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[GearIn(
+     EXECUTE := GearInEnable(*BOOL*),
+     RATIONUMERATOR := 1.0(*LREAL*),
+     RATIODENOMINATOR := 1(*USINT*),
+     MASTER := Axis_C(*AXIS_REF*),
+     SLAVE := NCAxisName^);
+     
+     
+     
+     GearOut(
+     EXECUTE := GearOutEnable(*BOOL*),
+     SLAVE :=NCAxisName^ (*AXIS_REF*));
+     
+     AxisStop(
+     AXIS := NCAxisName^(*AXIS_REF*),
+     OUTAXIS =>NCAxisName^ (*AXIS_REF*));
+     
+     
+     
+RTrigger1(CLK :=  GearInEnable);
+RTrigger2(CLK := GearOutEnable);
+
+IF RTrigger1.Q THEN
+  IF NCAxisName^.NCTOPLC.AxisState <> 8 THEN
+    nGearState := 1;
+    GearDone := FALSE;
+  END_IF;
+ g_NCMoveData.NCAXISCMD[IndexNum].NCAxisGearIn := FALSE;
+END_IF;
+
+IF RTrigger2.Q THEN
+  IF NCAxisName^.NCTOPLC.AxisState = 8 THEN
+    nGearState := 2;
+    GearDone := FALSE;
+  END_IF;
+ g_NCMoveData.NCAXISCMD[IndexNum].NCAxisGearOut := FALSE;
+END_IF;
+
+CASE nGearState OF
+  0:
+    nGearState := 0;
+  1:
+    GearIn.Execute := TRUE;
+    GearIn.RatioNumerator := 1.0;
+    GearIn.RatioDenominator := 1;
+    IF GearIn.InGear THEN
+      GearDone := TRUE;
+      nGearState := 0;
+    END_IF;
+    IF GearIn.Error OR GearIn.CommandAborted THEN
+      GearIn.Execute := FALSE;
+      GearErrorID := GearIn.ErrorID;
+      nGearState := 0;
+    END_IF;
+  2:
+    GearOut.Execute := TRUE;
+    GearOut.Execute := FALSE;
+    IF GearOut.Done THEN
+      GearOut.Execute := FALSE;
+      IF NCAxisName^.NCTOPLC.AxisState = 2 OR NCAxisName^.NCTOPLC.AxisState = 1 THEN
+        nGearState := 0;
+      ELSE
+        nGearState := 3;
+      END_IF;
+    END_IF;
+    IF GearOut.Error THEN
+      GearErrorID := GearOut.ErrorID;
+      nGearState := 0;
+    END_IF;
+  3:
+    AxisStop.Execute := TRUE;
+    IF AxisStop.Done THEN
+      AxisStop.Execute := FALSE;
+      nGearState := 0;
+    END_IF;
+    IF AxisStop.Commandaborted OR AxisStop.Error THEN
+      AxisStop.Execute := FALSE;
+      nGearState := 0;
+    END_IF;
+END_CASE;
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

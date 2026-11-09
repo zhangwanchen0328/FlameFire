@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ZAxisPresterCal" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_nPresterZAxisClibrtaState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_boPresterRequest">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定请求]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boPresterCal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定请求]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biPresterCalState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定请求]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biPresterPanelSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定请求]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nVelState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dTemp1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTemp2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nPersterCrashHeight">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[普雷斯特头碰板时的模拟量反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dPersterCalHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[普雷斯特头标定高度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+(*普雷切割头标定控制*)
+CASE g_nPresterZAxisClibrtaState OF
+  0:(*空闲状态*)
+    g_boPresterRequest:=FALSE;
+    g_boPresterCal:=FALSE;
+    
+  10:(*自动标定请求*)
+    g_boPresterRequest :=TRUE;
+    g_nPresterZAxisClibrtaState:=100;
+    
+  20:(*发送标定信号*)
+    g_boPresterCal := TRUE;
+    g_nPresterZAxisClibrtaState:=100;
+  30:(*接收标定完成信号*)
+    IF g_biPresterCalState THEN
+      g_boPresterCal :=FALSE;
+      g_nPresterZAxisClibrtaState:=100;
+    END_IF;
+  40:(*标定完成*)
+    g_boPresterRequest :=FALSE;
+    g_bPresterCalStatus :=FALSE;
+    g_nPresterZAxisClibrtaState :=0;
+    M.ENABLE[239] :=0;
+  100:(*自动标定等待*)
+      M.ENABLE[239] :=0;
+      g_nPresterZAxisClibrtaState:=110;
+      (*g_bPresterCalStatus :=FALSE;*)
+      (*g_nPresterZAxisClibrtaState :=0;*)
+  110:
+      g_nPresterZAxisClibrtaState:=110;
+END_CASE;
+
+(*Z轴缓慢向下运动，直到碰板停止*) 
+RTrigger1(CLK := g_bZAxisPresterVelMoveM);
+IF RTrigger1.Q THEN
+  g_bZAxisPresterVelMoveM := FALSE;
+  nVelState := 10;
+END_IF;
+
+CASE nVelState OF
+  0:
+    nVelState := 0;
+  10:
+    g_ZMoveVel.Execute := FALSE;
+    nVelState :=20;
+  20:
+    g_ZMoveVel.Execute := TRUE;
+    g_ZMoveVel.Direction := 3;
+    g_ZMoveVel.Velocity := g_dZAxisPresterVelMoveVelM;
+    g_ZMoveVel.BufferMode := 0;
+    
+    IF g_biPresterPanelSignal THEN
+      nVelState := 30;
+      g_ZMoveStop.Execute :=FALSE;
+    END_IF;
+    
+    IF g_bPlcPauseBuffer THEN
+      nVelState := 40; 
+    END_IF;
+    
+    IF g_ZMoveVel.CommandAborted OR g_ZMoveVel.Error THEN
+      M.ENABLE[120]:=0;
+      g_ZMoveVel.Execute := FALSE;
+      nVelState := 0;
+    END_IF;
+  30:
+    g_ZMoveVel.Execute := FALSE;
+    g_ZMoveStop.Execute := TRUE;
+    IF g_ZMoveStop.Done THEN
+      g_ZMoveStop.Execute := FALSE;
+      nVelState := 0;
+      M.ENABLE[120]:=0;
+    END_IF;
+    
+    IF g_ZMoveStop.CommandAborted OR g_ZMoveStop.Error THEN
+      g_ZMoveStop.Execute := FALSE;
+      M.ENABLE[120]:=0;
+      nVelState := 0;
+    END_IF;
+  40:
+    g_ZMoveVel.Execute := FALSE;
+    g_ZMoveStop.Execute := TRUE;
+    IF g_ZMoveStop.Done THEN
+      nVelState := 50;
+      g_ZMoveStop.Execute := FALSE;
+    END_IF;
+    IF g_ZMoveStop.CommandAborted OR g_ZMoveStop.Error THEN
+      g_ZMoveStop.Execute := FALSE;
+      nVelState := 0; 
+    END_IF;
+  50:  
+    IF g_bPlcStartBuffer THEN
+      nVelState := 10;    
+    END_IF;   
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  M.ENABLE[120]:=0;
+  g_nPresterZAxisClibrtaState :=0;
+  g_bZAxisPresterVelMoveM := FALSE;
+  nVelState := 0;
+  g_ZMoveVel.Execute := FALSE;
+  g_ZMoveStop.Execute := FALSE;
+  g_ZMoveVel.Velocity := 0.0;
+END_IF;
+
+IF g_niPersterHeightInt  < g_nPersterCrashHeight THEN
+    g_fZAxisHeight :=0.0;
+ELSE
+   dTemp1 := INT_TO_LREAL(g_niPersterHeightInt - g_nPersterCrashHeight)*dPersterCalHeight;
+   (*dTemp2 := INT_TO_LREAL(65535.0 - g_nPersterCrashHeight);*)
+   dTemp2 := 32767.0 - INT_TO_LREAL(g_nPersterCrashHeight);
+   g_fZAxisHeight :=dTemp1/dTemp2;
+END_IF;
+
+IF NOT g_bPresterCalStatus THEN
+  g_bTouchPanel :=  g_biPresterPanelSignal;  
+END_IF;
+
+(*g_boPresterZCrashAlarm := g_biPresterPanelSignal;*)
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

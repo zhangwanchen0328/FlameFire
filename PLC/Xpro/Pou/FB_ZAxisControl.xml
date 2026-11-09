@@ -1,0 +1,315 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ZAxisControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBZAixsAbs">
+        <type>
+          <derived name="FB_ZAxisAbsControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisCal">
+        <type>
+          <derived name="FB_ZAxisCalControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisActMotion">
+        <type>
+          <derived name="FB_ZActMove_Motion"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisHome">
+        <type>
+          <derived name="FB_ZAxisHomeControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisJog">
+        <type>
+          <derived name="FB_ZAxisJogControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisRel">
+        <type>
+          <derived name="FB_ZAxisRelControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisPower">
+        <type>
+          <derived name="FB_ZAxisPowerControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisOverride">
+        <type>
+          <derived name="FB_ZAxisOverride"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[进给倍率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisFollow">
+        <type>
+          <derived name="FB_ZAxisFollowControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisLift">
+        <type>
+          <derived name="FB_ZAxisLiftSetCoord"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上抬]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisTouchPanel">
+        <type>
+          <derived name="FB_ZAxisTouchPanel"/>
+        </type>
+      </variable>
+      <variable name="FBZAxisTorqueMonitor">
+        <type>
+          <derived name="FB_ZAxisTorqueMonitor"/>
+        </type>
+      </variable>
+      <variable name="FBZAxisPresterCal">
+        <type>
+          <derived name="FB_ZAxisPresterCal"/>
+        </type>
+      </variable>
+      <variable name="FBCycleZRelMove">
+        <type>
+          <derived name="FB_CycleZRelMove"/>
+        </type>
+      </variable>
+      <variable name="AutoZChangeFollowKP">
+        <type>
+          <derived name="FB_AutoZChangeFollowKP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴自动调整上抬响应度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigge">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="ZPosfbToSave">
+        <type>
+          <derived name="SSA"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保存位置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="CNCZAxisVelAdd">
+        <type>
+          <derived name="FB_CNCZAxisVelAdd"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[CNCZ轴位置叠加模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisNCCalControl">
+        <type>
+          <derived name="FB_ZAxisNcCalControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[NC内部标定]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisSelfTuning">
+        <type>
+          <derived name="FB_ZMoveSelfTuning"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[NC内部自整定]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisRealTimeCalibrate">
+        <type>
+          <derived name="FB_RealTimeCalibrate"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[NC内部自整定]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisFollowSmooth">
+        <type>
+          <derived name="FB_ZAxisFollowSmooth"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[无感穿孔]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisLeapFrog">
+        <type>
+          <derived name="FB_ZAxisLeapFrog"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[无感穿孔]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[无感穿孔]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nClearState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[无感穿孔]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisCoordCutFrog">
+        <type>
+          <derived name="FB_ZAxisCoordCutFrog"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[定高蛙跳]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBZAxisTouchPanel();
+FBZAixsAbs();
+(*IF g_nFAxisControlType=3 THENFBZAxisPresterCal();*)
+IF g_nCalibrationType = 0 THEN(*电容标定*)
+  FBZAxisCal();
+  g_ZAxisRealTimeCalibrate.ENABLE := FALSE;
+ELSIF g_nCalibrationType = 1 THEN (*NC标定*)
+  FBZAxisNCCalControl();
+  FBZAxisSelfTuning();
+  FBZAxisRealTimeCalibrate();
+END_IF;
+IF g_nCalibrationType = 0 THEN
+  g_ZAxisRealTimeCalibrate.ENABLE := FALSE;
+END_IF;
+FBZAxisActMotion();
+FBZAxisHome();
+FBZAxisJog();
+FBZAxisRel();
+FBZAxisPower();
+FBZAxisOverride();
+FBZAxisLeapFrog();
+FBZAxisFollow();
+FBZAxisLift();
+FBZAxisTorqueMonitor();
+FBCycleZRelMove();
+AutoZChangeFollowKP();
+FBZAxisFollowSmooth();
+FBZAxisCoordCutFrog();
+(*标定碰板时或HMI获取Z轴当前坐标，用于坐标切割模式坐标计算*)
+RTrigge(CLK := g_bReadZAxisPosfbDown);
+IF RTrigge.Q THEN
+  g_fZAxisPosfbDown := Axis_Z.NCTOPLC.ACTPOS;  (*Z轴定位坐标*)
+  ZPosfbToSave(ENABLE := TRUE); (*Z轴碰板坐标保存*)
+  g_bReadZAxisPosfbDown := FALSE;
+END_IF;
+
+(*IF g_bManualRTCPUseCompen AND g_bABAxisIsConfig THEN
+  CNCZAxisVelAdd();
+END_IF;*)
+
+IF g_bABAxisIsConfig THEN
+  IF g_bManualRTCPUseCompen THEN (*手动模式下*)
+    CNCZAxisVelAdd();
+  ELSIF g_nMotionMode = 2 AND  g_bUseNewVelAddModule  THEN(*自动模式下*)
+    CNCZAxisVelAdd();
+  END_IF; 
+ELSE
+  IF g_bUseNewVelAddModule THEN(*自动模式下*)
+    CNCZAxisVelAdd();
+  END_IF; 
+END_IF;
+g_fLastCoord := g_fiZFollowCoord;
+
+
+R_Trigger(CLK := g_bplcHardwareResetBuffer OR (g_bClearAlarmButtonClickedBuffer AND g_dCurPlcState <> 1.0 AND  Axis_Z.NCTOPLC.AXISSTATE = 3 ));
+
+IF R_Trigger.Q THEN
+  g_ZReset.Execute := FALSE;
+  nClearState := 3;
+END_IF;
+
+CASE nClearState OF
+  0:
+    nClearState := 0;
+  3: 
+    IF Axis_Z.NCTOPLC.AXISSTATE = 3 THEN  (*Z轴错误状态直接复位*)
+      nClearState := 15;
+    ELSE
+      nClearState := 5;  (*Z轴非错误状态，先暂停后复位*)
+    END_IF;   
+  5:  
+    IF Axis_Z.NCTOPLC.AxisState = 9 THEN
+      nClearState := 7;
+    ELSE
+      nClearState := 10;
+    END_IF;
+  7:
+    g_bZFollowClose := TRUE;
+    nClearState := 8;
+  8:
+    g_nFollowState :=170;
+    IF g_bZFollowOutDone THEN      
+      nClearState := 10;
+    END_IF;  
+  10:
+    IF Axis_Z.NCTOPLC.AXISSTATE <> 1 THEN (*未上使能*)
+      g_ZMoveStop.Execute := TRUE;
+      IF g_ZMoveStop.Done THEN
+        g_ZMoveStop.Execute := FALSE;
+        IF g_nFollowMode = 0 THEN (*Z轴随动模式：0速度模式 1位置模式,解决EDS2000会有跟随误差，复位轴会移动*)
+          nClearState := 15;
+        ELSE
+          nClearState := 0;
+        END_IF;
+      END_IF;
+      IF g_ZMoveStop.CommandAborted OR g_ZMoveStop.Error THEN
+        g_ZMoveStop.Execute := FALSE;
+        nClearState := 0;
+      END_IF; 
+    ELSE
+      nClearState := 15; 
+    END_IF; 
+  15:
+    g_ZReset.Execute := TRUE;
+    IF g_ZReset.DONE OR g_ZReset.ERROR THEN
+      g_ZReset.Execute := FALSE;
+      nClearState := 0;
+    END_IF;
+  
+END_CASE;
+    ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,493 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_GuanLiControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Rtring_CheckTube">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检测管材报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_ForwardStart">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[正转开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ftring_ForwardStop">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[正转开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_BackwardStart">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[反转开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ftring_BackwardStop">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[反转开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_UpStart">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[反转开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bForward">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[手动控制正转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bBackward">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[手动控制反转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管力状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPreState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管力状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dBackwardTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[反转时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dForwardTime">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="10000"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[正转时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bClickTubeExit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点击了上料完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_Btime">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[反转时间定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_Ftime">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[正转时间定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="M">
+        <type>
+          <derived name="CNC_MCONTROL"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="RTrigger_AvoidStart">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nAvoidType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dCoordTemp">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fAvoidCoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nAvoidCoordType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[0：提前避让；1:到位置避让]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring_ForwardStart(CLK := g_bForwardAngleM OR bForward);
+Rtring_BackwardStart(CLK := bBackward);
+Ftring_ForwardStop(CLK := bForward);
+Ftring_BackwardStop(CLK := bBackward);
+R_Trigger(CLK := g_bGuanliAvoidM);
+IF Rtring_ForwardStart.Q THEN
+  IF g_bForwardAngleM THEN
+   g_bForwardAngleM := FALSE;
+   nState := 10;
+  ELSE
+   g_boForward :=TRUE;
+   nState :=40;
+  END_IF;
+END_IF;
+IF Rtring_BackwardStart.Q THEN
+  g_boForward := FALSE;
+  g_boBackward := TRUE;
+  nState := 20;
+END_IF;
+IF Ftring_ForwardStop.Q THEN
+  g_boForward := FALSE;  
+END_IF;
+IF Ftring_BackwardStop.Q THEN
+  Ton_Btime(IN := FALSE);
+  g_boBackward := FALSE;
+END_IF;
+IF R_Trigger.Q THEN
+  g_bGuanliAvoidM := FALSE;
+  IF nAvoidType = 3 THEN
+    nState := 200;
+    g_bo2ClawAvoidCheckDone := FALSE;
+  ELSE
+    nState := 0;
+    g_bo2ClawAvoidCheckDone := TRUE;
+    M.ENABLE[502] := 0;
+  END_IF;
+END_IF;
+    CASE nState OF
+        0:
+          nState := 0;
+        10:
+          nPreState := 10;
+          IF g_biForwardAngleDone THEN(*管子到位，控制上料气缸升起*)
+            IF g_dLoadNum >= 0.0 THEN
+              g_bLoadCyl0DownOpenM := TRUE;
+              g_fLoadCyl0MoveTypeM := 1.0;
+            END_IF;
+            IF g_dLoadNum >= 1.0 THEN
+              g_bLoadCyl1DownOpenM := TRUE;
+              g_fLoadCyl1MoveTypeM := 1.0;
+            END_IF;
+            IF g_dLoadNum >= 2.0 THEN
+              g_bLoadCyl2DownOpenM := TRUE;
+              g_fLoadCyl2MoveTypeM := 1.0;
+             END_IF; 
+            IF g_dLoadNum >= 3.0 THEN
+              g_bLoadCyl3DownOpenM := TRUE;
+              g_fLoadCyl3MoveTypeM := 1.0;  
+            END_IF;
+            IF g_dLoadNum >= 4.0 THEN
+              g_bLoadCyl4DownOpenM := TRUE;
+              g_fLoadCyl4MoveTypeM := 1.0;
+            END_IF;
+            IF g_dLoadNum >= 5.0 THEN
+              g_bLoadCyl5DownOpenM := TRUE;
+              g_fLoadCyl5MoveTypeM := 1.0;
+            END_IF;
+            IF g_dLoadNum >= 6.0 THEN 
+              g_bLoadCyl6DownOpenM := TRUE;
+              g_fLoadCyl6MoveTypeM := 1.0;
+            END_IF;
+            IF g_dLoadNum >= 7.0 THEN 
+              g_bLoadCyl7DownOpenM := TRUE;
+              g_fLoadCyl7MoveTypeM := 1.0;
+            END_IF;
+            IF g_dLoadNum >= 8.0 THEN 
+              g_bLoadCyl8DownOpenM := TRUE;
+              g_fLoadCyl8MoveTypeM := 1.0;
+            END_IF;
+            IF g_dLoadNum >= 9.0 THEN 
+              g_bLoadCyl9DownOpenM := TRUE;
+              g_fLoadCyl9MoveTypeM := 1.0;
+            END_IF; 
+            M.ENABLE[500] := 0;
+            nState :=0;
+          ELSE(*管子没到位，控制上料气缸下降，准备上料*)
+            IF g_dLoadNum >= 0.0 THEN
+              g_bLoadCyl0DownOpenM := TRUE;
+              g_fLoadCyl0MoveTypeM := 0.0;
+            END_IF;
+            IF g_dLoadNum >= 1.0 THEN
+              g_bLoadCyl1DownOpenM := TRUE;
+              g_fLoadCyl1MoveTypeM := 0.0;
+            END_IF;
+            IF g_dLoadNum >= 2.0 THEN
+              g_bLoadCyl2DownOpenM := TRUE;
+              g_fLoadCyl2MoveTypeM := 0.0;
+            END_IF;
+            IF g_dLoadNum >= 3.0 THEN
+              g_bLoadCyl3DownOpenM := TRUE;
+              g_fLoadCyl3MoveTypeM := 0.0;  
+            END_IF; 
+            IF g_dLoadNum >= 4.0 THEN
+              g_bLoadCyl4DownOpenM := TRUE;
+              g_fLoadCyl4MoveTypeM := 0.0;
+            END_IF; 
+            IF g_dLoadNum >= 5.0 THEN
+              g_bLoadCyl5DownOpenM := TRUE;
+              g_fLoadCyl5MoveTypeM := 0.0;
+            END_IF;
+            IF g_dLoadNum >= 6.0 THEN 
+              g_bLoadCyl6DownOpenM := TRUE;
+              g_fLoadCyl6MoveTypeM := 0.0;
+            END_IF;
+            IF g_dLoadNum >= 7.0 THEN 
+              g_bLoadCyl7DownOpenM := TRUE;
+              g_fLoadCyl7MoveTypeM := 0.0;
+            END_IF;
+            IF g_dLoadNum >= 8.0 THEN 
+              g_bLoadCyl8DownOpenM := TRUE;
+              g_fLoadCyl8MoveTypeM := 0.0;
+            END_IF;
+            IF g_dLoadNum >= 9.0 THEN 
+              g_bLoadCyl9DownOpenM := TRUE;
+              g_fLoadCyl9MoveTypeM := 0.0;
+            END_IF; 
+            nState :=30;
+         END_IF;            
+        20:
+          Ton_Btime(IN := TRUE,PT := LREAL_TO_TIME(FUN_MSTOS(dBackwardTime)));
+          IF Ton_Btime.Q THEN
+            g_boBackward := FALSE;
+            Ton_Btime(IN := FALSE);
+            nState := 0;
+          END_IF;
+        30:(*自动上料，上料架开始正转*)
+         nPreState := 30;
+         g_boForward :=TRUE;
+         nState :=60;
+        40:
+          IF g_biForwardAngleDone THEN(*正转碰到接近开关，正转停止*)
+            g_boForward := FALSE;
+            nState :=0;
+          END_IF;
+        60:(*自动上料正转*)
+        nPreState := 30;
+         Ton_Ftime(IN := TRUE,PT := LREAL_TO_TIME(FUN_MSTOS(dForwardTime)));
+           IF g_biForwardAngleDone THEN(*正转碰到接近开关，正转停止，反转开始*)
+            Ton_Ftime(IN := FALSE);
+            g_boForward := FALSE;
+            M.ENABLE[500] := 0;
+            g_boBackward := TRUE;
+            nState := 20;
+          ELSIF Ton_Ftime.Q THEN(*正转到时间，仍未有管子到位，正转停止，报警提醒*)
+            Ton_Ftime(IN := FALSE);
+            g_boForward :=FALSE;
+            g_bNoPipeWarn:= TRUE;
+            nState :=0;
+           END_IF;
+        200:(*需要将卡盘移动到避让位置再松开*)
+            (*等待检测信号，如果不避让，直接置Done为true，否则进入避让状态机*)
+            nPreState := 200;
+              IF nAvoidCoordType = 0 THEN (*提前避让*)
+                 dCoordTemp := g_fNextFasterPointM - g_diYWorkCoordinate + g_diYMachineCoordinate;(*下一个轮廓的机械坐标*)
+                IF dCoordTemp >= fAvoidCoordY THEN
+                  g_bZLiftExecute := TRUE;
+                  nState := 205;
+                ELSE
+                  g_bo2ClawAvoidCheckDone := TRUE;
+                  M.ENABLE[502] := 0;
+                END_IF;
+              ELSE(*到了避让位置避让*)
+                g_bZLiftExecute := TRUE;
+                  nState := 205;
+              END_IF;
+        205:(*上料气缸单独控制，这里主要用于控制前卡移动*)
+        nPreState := 200;
+          IF g_bLiftDone THEN 
+            g_bM502Flag :=FALSE;
+            g_bZLiftExecute := FALSE;
+            IF g_dGuanliNum = 0.0 THEN(*控制气缸0,即第一组气缸*)
+              g_bLoadCyl0DownOpenM := TRUE;
+              g_fLoadCyl0MoveTypeM := g_dGuanliForward;
+            ELSIF g_dGuanliNum = 1.0 THEN
+              g_bLoadCyl1DownOpenM := TRUE;
+              g_fLoadCyl1MoveTypeM := g_dGuanliForward;
+            ELSIF g_dGuanliNum = 2.0 THEN
+              g_bLoadCyl2DownOpenM := TRUE;
+              g_fLoadCyl2MoveTypeM := g_dGuanliForward;
+            ELSIF g_dGuanliNum = 3.0 THEN
+              g_bLoadCyl3DownOpenM := TRUE;
+              g_fLoadCyl3MoveTypeM := g_dGuanliForward;    
+            ELSIF g_dGuanliNum = 4.0 THEN
+              g_bLoadCyl4DownOpenM := TRUE;
+              g_fLoadCyl4MoveTypeM := g_dGuanliForward;
+            ELSIF g_dGuanliNum = 5.0 THEN
+              g_bLoadCyl5DownOpenM := TRUE;
+              g_fLoadCyl5MoveTypeM := g_dGuanliForward;
+            ELSIF g_dGuanliNum = 6.0 THEN 
+              g_bLoadCyl6DownOpenM := TRUE;
+              g_fLoadCyl6MoveTypeM := g_dGuanliForward;
+            ELSIF g_dGuanliNum = 7.0 THEN 
+              g_bLoadCyl7DownOpenM := TRUE;
+              g_fLoadCyl7MoveTypeM := g_dGuanliForward;
+            ELSIF g_dGuanliNum = 8.0 THEN 
+              g_bLoadCyl8DownOpenM := TRUE;
+              g_fLoadCyl8MoveTypeM := g_dGuanliForward;
+            ELSIF g_dGuanliNum = 9.0 THEN 
+              g_bLoadCyl9DownOpenM := TRUE;
+              g_fLoadCyl9MoveTypeM := g_dGuanliForward;
+            ELSIF g_dGuanliNum = 10.0 THEN
+              g_bLoadCyl10DownOpenM := TRUE;
+              g_fLoadCyl10MoveTypeM := g_dGuanliForward;
+            END_IF;
+             nState := 210;
+            END_IF; 
+        210:(*判断前卡移动是否到位*)
+          nPreState := 200;
+              IF g_dGuanliNum = 0.0 THEN
+                  IF g_boLoadCyl0DownDone THEN
+                    g_bo2ClawAvoidCheckDone := TRUE;
+                    M.ENABLE[502] := 0;
+                    nState := 0;
+                  END_IF;
+              ELSIF g_dGuanliNum = 1.0 THEN
+                IF g_boLoadCyl1DownDone THEN
+                  g_bo2ClawAvoidCheckDone := TRUE;
+                     M.ENABLE[502] := 0;
+                     nState := 0;
+                  END_IF;
+              ELSIF g_dGuanliNum = 2.0 THEN
+                IF g_boLoadCyl2DownDone THEN
+                  g_bo2ClawAvoidCheckDone := TRUE;
+                     M.ENABLE[502] := 0;
+                     nState := 0;
+                  END_IF;
+              ELSIF g_dGuanliNum = 3.0 THEN
+                IF g_boLoadCyl3DownDone THEN
+                  g_bo2ClawAvoidCheckDone := TRUE;
+                     M.ENABLE[502] := 0;
+                      nState := 0;
+                  END_IF; 
+              ELSIF g_dGuanliNum = 4.0 THEN
+                IF g_boLoadCyl4DownDone THEN
+                  g_bo2ClawAvoidCheckDone := TRUE;
+                     M.ENABLE[502] := 0;
+                     nState := 0;
+                  END_IF;
+              ELSIF g_dGuanliNum = 5.0 THEN
+               IF g_boLoadCyl5DownDone THEN
+                g_bo2ClawAvoidCheckDone := TRUE;
+                     M.ENABLE[502] := 0;
+                     nState := 0;
+                  END_IF;
+              ELSIF g_dGuanliNum = 6.0 THEN 
+                IF g_boLoadCyl6DownDone THEN
+                  g_bo2ClawAvoidCheckDone := TRUE;
+                     M.ENABLE[502] := 0;
+                     nState := 0;
+                  END_IF;
+              ELSIF g_dGuanliNum = 7.0 THEN 
+                IF g_boLoadCyl7DownDone THEN
+                  g_bo2ClawAvoidCheckDone := TRUE;
+                     M.ENABLE[502] := 0;
+                     nState := 0;
+                  END_IF;
+              ELSIF g_dGuanliNum = 8.0 THEN 
+               IF g_boLoadCyl8DownDone THEN
+                g_bo2ClawAvoidCheckDone := TRUE;
+                     M.ENABLE[502] := 0;
+                     nState := 0;
+                  END_IF;
+              ELSIF g_dGuanliNum = 9.0 THEN 
+                IF g_boLoadCyl9DownDone THEN
+                  g_bo2ClawAvoidCheckDone := TRUE;
+                     M.ENABLE[502] := 0;
+                     nState := 0;
+                  END_IF;
+              ELSIF g_dGuanliNum = 10.0 THEN
+                  IF g_boLoadCyl10DownDone THEN
+                  g_bo2ClawAvoidCheckDone := TRUE;
+                  M.ENABLE[502] := 0;
+                  nState := 0;
+                  END_IF;
+              END_IF; 
+        END_CASE;
+(*复位*)
+IF g_bPlcResetBuffer THEN
+  nState := 0;
+  g_bZLiftExecute := FALSE;
+  g_boForward := FALSE;
+  g_boBackward := FALSE;
+  Ton_Btime(IN := FALSE);
+  Ton_Ftime(IN := FALSE);
+  g_bForwardAngleM := FALSE; 
+  g_bChunkAvoidStartM :=FALSE;
+  g_bGuanliAvoidM :=FALSE;
+END_IF;
+(*暂停*)
+IF g_bPlcPauseBuffer THEN
+ g_boForward := FALSE;
+ g_boBackward := FALSE;
+ nState := 0;
+ Ton_Btime(IN := FALSE);
+ Ton_Ftime(IN := FALSE);
+END_IF;
+(*暂停后开始*)
+IF g_bPlcStartBuffer THEN
+  IF nState =30 THEN
+    g_boForward := FALSE;
+  END_IF;
+   nState := nPreState;
+END_IF;
+
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

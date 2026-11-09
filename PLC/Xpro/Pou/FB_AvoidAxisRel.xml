@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AvoidAxisRel" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="RelRtring">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bRelEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nRelState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dTargetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTargetVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dRelDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAxisSlowVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAxisFastVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAutoVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*防甩轴6*)
+RelRtring(CLK :=g_bAnRejection6RelEnable OR bRelEnable);
+IF RelRtring.Q THEN
+  nRelState :=1;
+  g_bAnRejection6RelDone := FALSE;
+  g_boAnRejection6RelDone := FALSE;
+  IF g_bAnRejection1RelEnable THEN
+    dTargetPos := AntiRejection6.NCTOPLC.ActPos + g_fARRelDis6;
+    dTargetVel := g_fARRelVel6;
+    g_bAnRejection6RelEnable := FALSE;
+  ELSE
+      dTargetPos := AntiRejection6.NCTOPLC.ActPos + dRelDis;
+      IF g_bFastInch=0 THEN
+        dTargetVel := dAxisSlowVel;
+      ELSE
+        dTargetVel := dAxisFastVel;
+      END_IF;
+      bRelEnable := FALSE; 
+  END_IF;
+  IF dTargetVel = 0.0 THEN
+    dTargetVel := dAutoVelocity;
+  END_IF;
+END_IF;
+
+CASE nRelState OF
+  0:
+  nRelState := 0;
+  1:
+  g_AntiRejection6Rel.Execute := TRUE;
+  g_AntiRejection6Rel.Velocity := dTargetVel;
+  g_AntiRejection6Rel.Distance := dTargetPos - AntiRejection6.NCTOPLC.ACTPOS;
+  IF g_AntiRejection6Rel.Done THEN
+    g_AntiRejection6Rel.Execute := FALSE;
+   
+    g_bAnRejection6RelDone :=TRUE;
+    g_boAnRejection6RelDone := TRUE;
+    nRelState := 0;
+  END_IF;
+  IF g_bPlcPauseBuffer THEN
+    nRelState := 20;
+  END_IF;
+  IF g_AntiRejection6Rel.CommandAborted OR g_AntiRejection6Rel.Error THEN
+    g_AntiRejection6Rel.Execute := FALSE;
+    nRelState := 0;
+  END_IF;
+  20:
+  g_AntiRejection6Rel.Execute := FALSE;
+  g_AntiRejection6Stop.Execute := TRUE;
+  IF g_AntiRejection6Stop.Done AND g_bPlcStartBuffer THEN
+    g_AntiRejection6Stop.Execute := FALSE;
+    nRelState := 1;
+  END_IF;
+  IF g_AntiRejection6Stop.CommandAborted OR g_AntiRejection6Stop.Error THEN 
+    g_AntiRejection6Stop.Execute := FALSE;
+    nRelState := 0;
+  END_IF;
+END_CASE;
+IF g_bPlcResetBuffer THEN
+  nRelState := 0;
+  g_AntiRejection6Rel.Execute := FALSE;
+  g_AntiRejection6Stop.Execute := FALSE;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,304 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BKFeedingCylinder" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Feeding_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_biFeedingCylinderOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFeedingCylinderClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFeedingCylinderDone1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFeedingCylinderDone2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boCylinderY2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boCylinderY3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFeedTroughSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biDischargeRack1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biDischargeRack2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biDischargeRack3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boMaterialCylinder">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biProCylinderUp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_Alarm">
+        <type>
+          <derived name="DT_ALARM"/>
+        </type>
+      </variable>
+      <variable name="FeedingAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="R_Trriger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nSwitchState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="Ton_Delay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="FeedingCylinder_Delay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="dCylinderDownTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFeedingCylinderTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSafeDistance1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSafeDistance2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCylinderPos1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCylinderPos2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFeedingLength">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[送料机长度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dPipeLength">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管材总长度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dVoidLength">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[减去管材后的空隙长度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dVoidFeedingVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[空隙长度送料速度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Ton_FeedCylinderDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="FeedCylinderDelay">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Ton_Trigger3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="bTrigger3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTroughSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dTroughSignalTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nBKFeedingState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bPressurePipeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFeedingSensorLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trriger1(CLK := g_biFeedingCylinderOpen);
+R_Trriger2(CLK := g_biFeedingCylinderClose);
+
+IF R_Trriger1.Q THEN
+  g_boFeedingCylinderDone1 := FALSE;
+  g_boFeedingCylinderDone2 := FALSE;
+  nSwitchState := 1;
+END_IF;
+
+IF R_Trriger2.Q THEN
+  g_boFeedingCylinderDone1 := FALSE;
+  g_boFeedingCylinderDone2 := FALSE;
+END_IF;
+
+(*IF g_biFeedTroughSignal THEN
+  Ton_Trigger3(IN := TRUE,PT := LREAL_TO_TIME(dTroughSignalTime/1000.0));
+  IF Ton_Trigger3.Q THEN
+    bTrigger3 := FALSE;
+    bTroughSignal := TRUE;
+    Ton_Trigger3(IN := FALSE);
+  END_IF;
+ELSE 
+  Ton_Trigger3(IN := FALSE);
+  bTroughSignal := FALSE;
+END_IF;*)
+
+IF Feeding_Axis.NCTOPLC.ACTPOS >= dCylinderPos1 - dSafeDistance1 THEN
+  g_boCylinderY2 := FALSE;
+END_IF;
+IF Feeding_Axis.NCTOPLC.ACTPOS >= dCylinderPos2 - dSafeDistance2 THEN
+  g_boCylinderY3 := FALSE;
+END_IF;
+
+CASE nSwitchState OF
+  0:
+  nSwitchState := 0;
+  1:
+  IF g_bPressurePipeSignal THEN
+    IF Feeding_Axis.NCTOPLC.ACTPOS <= dCylinderPos1 - dSafeDistance1 THEN
+      g_boCylinderY2 := TRUE;
+    END_IF;
+    IF Feeding_Axis.NCTOPLC.ACTPOS <= dCylinderPos2 - dSafeDistance2 THEN
+      g_boCylinderY3 := TRUE;
+    END_IF;
+    Ton_Delay(IN := TRUE,PT := LREAL_TO_TIME(dCylinderDownTime/1000.0));
+    IF Ton_Delay.Q THEN
+      Ton_Delay(IN := FALSE);
+      nSwitchState := 2;
+    END_IF;
+  END_IF;
+  2:
+  g_boFeedingCylinderDone1 := TRUE;
+  g_boFeedingSensorLimit := FALSE;
+  g_nBKFeedingState := 5;
+  nSwitchState := 0;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  g_boCylinderY2 := FALSE;
+  g_boCylinderY3 := FALSE;
+  (*bTroughSignal := FALSE;*)
+  nSwitchState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

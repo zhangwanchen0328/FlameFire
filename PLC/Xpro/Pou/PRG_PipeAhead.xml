@@ -1,0 +1,1074 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PRG_PipeAhead" pouType="program">
+  <interface>
+    <externalVars>
+      <variable name="g_bCoordCutEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBinit">
+        <type>
+          <derived name="FB_Init"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[初始化模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBinputControl">
+        <type>
+          <derived name="FB_InputControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入控制模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBoutputControl">
+        <type>
+          <derived name="FB_OutputControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出控制模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBalarmHandle">
+        <type>
+          <derived name="FB_AlarmHandle"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警处理模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBprocessControl">
+        <type>
+          <derived name="FB_ProcessFollowCut2"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工艺控制模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBuserDefinedAlarm">
+        <type>
+          <derived name="FB_UserDefinedAlarm"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义报警模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBhardSignalHandle">
+        <type>
+          <derived name="FB_HardSingalHandle"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[硬件信号常开常闭处理模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBautoLubrication">
+        <type>
+          <derived name="FB_AutoLubrication"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自动润滑控制模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBuserDefinedIOOutput">
+        <type>
+          <derived name="FB_UserDefinedIOOutput"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用户自定义IO输出模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBtricolorLight">
+        <type>
+          <derived name="FB_TricolorLight"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[三色灯输出模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBservoMonitor">
+        <type>
+          <derived name="FB_ServoMonitor"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[伺服监控模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBFAxisMotionControl">
+        <type>
+          <derived name="FB_FAxisListen"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[F轴控制模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBservoControl">
+        <type>
+          <derived name="FB_ServoControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[伺服控制模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBlaserControl">
+        <type>
+          <derived name="FB_LaserControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光控制模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBIOMonitor">
+        <type>
+          <derived name="FB_IOMonitor"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[IO监控模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBZAxisControl">
+        <type>
+          <derived name="FB_ZAxisControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴运动控制模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBUAxisControl">
+        <type>
+          <derived name="FB_UAxisControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U1轴运动控制模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBauxiliaryControl">
+        <type>
+          <derived name="FB_AuxiliaryManage"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡爪支撑轴气缸控制模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBstatusUpdate">
+        <type>
+          <derived name="FB_StatusUpdate"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC状态更新模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBautoParalle">
+        <type>
+          <derived name="FB_AutoParalle"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自动对边功能模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBcalibrateLevel">
+        <type>
+          <derived name="FB_CalibrateLevel"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[校水平模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBconcentricity">
+        <type>
+          <derived name="FB_Concentricity"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[四面分中模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBhomeSignalCheck">
+        <type>
+          <derived name="FB_HomeSignalCheck"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零信号选择功能模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBcommunicationCheck">
+        <type>
+          <derived name="FB_CommunicationCheck"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[通讯检测]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBemergencyStop">
+        <type>
+          <derived name="FB_EmergencyStop"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[急停模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBclearNCAlarm">
+        <type>
+          <derived name="FB_ClearNCAlarm"/>
+        </type>
+      </variable>
+      <variable name="FBbeamCenter">
+        <type>
+          <derived name="FB_BeamCenter"/>
+        </type>
+      </variable>
+      <variable name="FBactual_Xposition">
+        <type>
+          <derived name="FB_Actual_XPosition"/>
+        </type>
+      </variable>
+      <variable name="FBSustainControl">
+        <type>
+          <derived name="FB_SustainControl"/>
+        </type>
+      </variable>
+      <variable name="FBCornerLaserExportCtrl">
+        <type>
+          <derived name="FB_CornerLaserExportCtrl"/>
+        </type>
+      </variable>
+      <variable name="FBDiscernHighLowSurface">
+        <type>
+          <derived name="FB_DiscernHighLowSurface"/>
+        </type>
+      </variable>
+      <variable name="FBFourSideUpLiftHeight">
+        <type>
+          <derived name="FB_FourSideUpLiftHetght"/>
+        </type>
+      </variable>
+      <variable name="FBLoadControl">
+        <type>
+          <derived name="FB_LoadControl"/>
+        </type>
+      </variable>
+      <variable name="FBLoadCylinderControl">
+        <type>
+          <derived name="FB_LoadCylinderControl"/>
+        </type>
+      </variable>
+      <variable name="FBWeldCheck">
+        <type>
+          <derived name="FB_WeldCheck"/>
+        </type>
+      </variable>
+      <variable name="FBLoadSensor">
+        <type>
+          <derived name="FB_QRLoadSensor"/>
+        </type>
+      </variable>
+      <variable name="FBProcessCoordCut">
+        <type>
+          <derived name="FB_ProcessCoordCut2"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bQREnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBHandlePlaneAxis">
+        <type>
+          <derived name="FB_HandlePlaneAxis"/>
+        </type>
+      </variable>
+      <variable name="FBDustAxisControl">
+        <type>
+          <derived name="FB_DustAxisControl"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bDustEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBChuckAvoidance">
+        <type>
+          <derived name="FB_ChuckAvoidance"/>
+        </type>
+      </variable>
+      <variable name="FBPlanProcess">
+        <type>
+          <derived name="FB_PlanProcess"/>
+        </type>
+      </variable>
+      <variable name="FBBlankingControl">
+        <type>
+          <derived name="FB_BlankingControl"/>
+        </type>
+      </variable>
+      <variable name="FBBlankingCylinderControl">
+        <type>
+          <derived name="FB_BlankingCylinderControl"/>
+        </type>
+      </variable>
+      <variable name="FBDingDianManage">
+        <type>
+          <derived name="FB_DingDianManage"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nMachineType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBBKFeedingMachineCtrl">
+        <type>
+          <derived name="FB_BKFeedingMachineCtrl"/>
+        </type>
+      </variable>
+      <variable name="FBAxisEnableJudge">
+        <type>
+          <derived name="FB_AxisEnableJudge"/>
+        </type>
+      </variable>
+      <variable name="FBDustCylinder">
+        <type>
+          <derived name="FB_DustCylinder"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bDustCylinderEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBU3AxisControl">
+        <type>
+          <derived name="FB_U3AxisControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[3卡盘模式-U3轴]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBY2Y3AxisControl">
+        <type>
+          <derived name="FB_Y2Y3AxisControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[3卡盘模式-Y2Y3轴]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBCloseLaserControl">
+        <type>
+          <derived name="FB_CloseLaserControl"/>
+        </type>
+      </variable>
+      <variable name="FBKuXunLoadControl">
+        <type>
+          <derived name="FB_KuXunLoadControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[库讯]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bFrontSustainEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankCylinderEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClylinderEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBFrontSustainControl">
+        <type>
+          <derived name="FB_FrontSustainControl"/>
+        </type>
+      </variable>
+      <variable name="FBDDAxisControl">
+        <type>
+          <derived name="FB_DDAxisControl"/>
+        </type>
+      </variable>
+      <variable name="FBCalSustainPos">
+        <type>
+          <derived name="FB_CalSustainPos"/>
+        </type>
+      </variable>
+      <variable name="FBNcAlarmHandle">
+        <type>
+          <derived name="FB_NCAlarmHandle"/>
+        </type>
+      </variable>
+      <variable name="FBTurnCylinderControl">
+        <type>
+          <derived name="FB_TurnCylinderControl"/>
+        </type>
+      </variable>
+      <variable name="FBTurnUpDown">
+        <type>
+          <derived name="FB_TurnUpDown"/>
+        </type>
+      </variable>
+      <variable name="FBTurnUpDownNew">
+        <type>
+          <derived name="FB_TurnUpDownNew"/>
+        </type>
+      </variable>
+      <variable name="FBGeneralAxisControl">
+        <type>
+          <derived name="FB_GeneralAxisControl"/>
+        </type>
+      </variable>
+      <variable name="FBProfileControl">
+        <type>
+          <derived name="FB_ProfileControl"/>
+        </type>
+      </variable>
+      <variable name="FBBoendeAvoid">
+        <type>
+          <derived name="FB_BoendeAvoid"/>
+        </type>
+      </variable>
+      <variable name="FBBoendeAvoidCheck">
+        <type>
+          <derived name="FB_BoendeAvoidCheck"/>
+        </type>
+      </variable>
+      <variable name="FBBKFlatAbsAdjust">
+        <type>
+          <derived name="FB_BKFlatAbsAdjust"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nAntiRejectionFun">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBAntiRejectionControl">
+        <type>
+          <derived name="FB_AntiRejectionControl"/>
+        </type>
+      </variable>
+      <variable name="FBY1AxisControl">
+        <type>
+          <derived name="FB_Y1AxisControl"/>
+        </type>
+      </variable>
+      <variable name="FBAntiRejectionManage">
+        <type>
+          <derived name="FB_AntiRejectionManage"/>
+        </type>
+      </variable>
+      <variable name="FBXSControl">
+        <type>
+          <derived name="XSMoveControl"/>
+        </type>
+      </variable>
+      <variable name="FBHGTECHAvoid">
+        <type>
+          <derived name="FB_HGTECHAvoid"/>
+        </type>
+      </variable>
+      <variable name="FBHGTECHAvoidCheck">
+        <type>
+          <derived name="FB_HGTECHAvoidCheck"/>
+        </type>
+      </variable>
+      <variable name="FBHGTECHAvoidBlankingControl">
+        <type>
+          <derived name="FB_HGTECHBlankingControl"/>
+        </type>
+      </variable>
+      <variable name="FBHGTECHPipeDiameterCheck">
+        <type>
+          <derived name="FB_HGTECHPipeDiameterCheck"/>
+        </type>
+      </variable>
+      <variable name="FBTwoSideCenterAngleIron">
+        <type>
+          <derived name="FB_TwoSideCenterAngleIron"/>
+        </type>
+      </variable>
+      <variable name="FBWeiTuoManage">
+        <type>
+          <derived name="WeiTuoManage"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[维拓非标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Update">
+        <type>
+          <string/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[************新框架下的FB*****************]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBUpLoadStatusToHmi">
+        <type>
+          <derived name="FB_UpLoadPlcStatusToHmi"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态和数据刷新]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBCncMControl">
+        <type>
+          <derived name="FB_CncMControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态和数据刷新]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FB_DownloadTechDataFromHMI">
+        <type>
+          <derived name="FB_DownLoadTechDataToPlc"/>
+        </type>
+      </variable>
+      <variable name="FBLinearActuator">
+        <type>
+          <derived name="FB_LinearActuator"/>
+        </type>
+      </variable>
+      <variable name="FBStartPauseResetShunt">
+        <type>
+          <derived name="FB_StartStopResetShunt"/>
+        </type>
+      </variable>
+      <variable name="FBYDControl">
+        <type>
+          <derived name="FB_YDControl"/>
+        </type>
+      </variable>
+      <variable name="FBGlobalValueOutPut">
+        <type>
+          <derived name="FB_GlobalValueOutPut"/>
+        </type>
+      </variable>
+      <variable name="FBSingleSideCenter">
+        <type>
+          <derived name="FB_SingleSideCenter"/>
+        </type>
+      </variable>
+      <variable name="FBFourSidesCenter">
+        <type>
+          <derived name="FB_FourSidesCenter"/>
+        </type>
+      </variable>
+      <variable name="FBTwoSidesCenter">
+        <type>
+          <derived name="FB_TwoSidesCenter"/>
+        </type>
+      </variable>
+      <variable name="FBEdgeProtect">
+        <type>
+          <derived name="FB_EdgeProtect"/>
+        </type>
+      </variable>
+      <variable name="FBCenterNear">
+        <type>
+          <derived name="FB_CenterNearBy"/>
+        </type>
+      </variable>
+      <variable name="FBLevelAndSideCenter">
+        <type>
+          <derived name="FB_LevelAndSideCenter"/>
+        </type>
+      </variable>
+      <variable name="FBrealTimeOverrid">
+        <type>
+          <derived name="FB_RealTimeOverrid"/>
+        </type>
+      </variable>
+      <variable name="HanleF050Home">
+        <type>
+          <derived name="FB_HandleF050Home"/>
+        </type>
+      </variable>
+      <variable name="FBProcessHalCloseLaser">
+        <type>
+          <derived name="FB_ProcessHalCloseLaser"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚关切割时的光]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBProcessHalCloseFollow">
+        <type>
+          <derived name="FB_ProcessHalCloseFollow"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚关切割时的随动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBLoadInteractiveSignal">
+        <type>
+          <derived name="FB_LoadInteractiveSignal"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚关切割时的随动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBSplitValue">
+        <type>
+          <derived name="FB_SplitCompensationListen"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[分中补偿值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBCircleCenter">
+        <type>
+          <derived name="FB_CircleCenter"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[分中补偿值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBGuanLi">
+        <type>
+          <derived name="FB_GuanLiControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[分中补偿值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBSupport2">
+        <type>
+          <derived name="FB_Support2Control"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[分中补偿值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBUnloadSupportCly">
+        <type>
+          <derived name="FB_UnloadSupportCylControl"/>
+        </type>
+      </variable>
+      <variable name="FBCheckCutRange">
+        <type>
+          <derived name="FB_CheckCutRange"/>
+        </type>
+      </variable>
+      <variable name="FBDustExtractionValue">
+        <type>
+          <derived name="FB_DustExtractionValue"/>
+        </type>
+      </variable>
+      <variable name="FBYSpeed">
+        <type>
+          <derived name="FBLimitYSpeed"/>
+        </type>
+      </variable>
+      <variable name="FBGasListen">
+        <type>
+          <derived name="FB_GasListen"/>
+        </type>
+      </variable>
+      <variable name="FBUserDefineListen">
+        <type>
+          <derived name="FB_UserDefineListen"/>
+        </type>
+      </variable>
+      <variable name="FBBracketAutoRise">
+        <type>
+          <derived name="FB_BracketAutoRise"/>
+        </type>
+      </variable>
+      <variable name="FBAvoidCylAndAxisListen">
+        <type>
+          <derived name="FB_AvoidCylAndAxisListen"/>
+        </type>
+      </variable>
+      <variable name="FBHMICompensationCalc">
+        <type>
+          <derived name="FB_HMICompensationValueCalc"/>
+        </type>
+      </variable>
+      <variable name="FBZCoordCutVelAdd">
+        <type>
+          <derived name="FB_CoordCutZVelAdd"/>
+        </type>
+      </variable>
+      <variable name="FBMiddleAvoidAxisListen">
+        <type>
+          <derived name="FB_MiddleAvoidAxisControl"/>
+        </type>
+      </variable>
+      <variable name="FBThreeSidesCenter">
+        <type>
+          <derived name="FB_ThreeSidesCenter"/>
+        </type>
+      </variable>
+      <variable name="FBSafeSignalCheck">
+        <type>
+          <derived name="FB_SafeSignalCheck"/>
+        </type>
+      </variable>
+      <variable name="FBPipeDimensionsCheck">
+        <type>
+          <derived name="FB_CheckPipeDimensions"/>
+        </type>
+      </variable>
+      <variable name="FBDualConfigMode">
+        <type>
+          <derived name="FB_DualStationConfig"/>
+        </type>
+      </variable>
+      <variable name="FBParalleGetZMaxPos">
+        <type>
+          <derived name="FB_ParalleGetZMaxPos"/>
+        </type>
+      </variable>
+      <variable name="FBNCAxisDataSet">
+        <type>
+          <derived name="FB_NCAxisDataSet"/>
+        </type>
+      </variable>
+      <variable name="FBFlameGasListen">
+        <type>
+          <derived name="FB_FlameGasListen"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF g_bPlcPause THEN
+  g_bPlcPauseBuffer := TRUE;
+END_IF;
+IF g_bPlcStart THEN
+  g_bPlcStartBuffer := TRUE;
+END_IF;
+IF g_bPlcReset  THEN
+  g_bPlcResetBuffer := TRUE;
+  g_bChangeSecondFlyAndPowerCutCommunicationCycle := FALSE;
+END_IF;
+IF g_bplcHardwareReset THEN   (*plc伺服复位*)
+  g_bplcHardwareResetBuffer := TRUE;
+  g_bChangeSecondFlyAndPowerCutCommunicationCycle := FALSE;
+END_IF;
+IF g_bClearAlarmButtonClicked THEN
+  g_bClearAlarmButtonClickedBuffer := TRUE;
+END_IF;
+(*如果配置了配置了中卡避让进给轴就默认把Y轴坐标判断和中卡避让进给轴绑定*)
+IF g_bIsConfigMiddleAvoidAxis1 THEN
+  g_fCurrentCoordYBuffer := AntiRejection4.NCTOPLC.ACTPOS;
+ELSE
+  g_fCurrentCoordYBuffer := g_fiCurrentCoordY;
+END_IF;
+g_bIsSetSlowCutEnableFlag := FALSE;
+g_noMachineType :=g_nMachineType;
+FBinit();
+FBNCAxisDataSet();
+(*FBinputControl();
+FBoutputControl();*)
+FBhomeSignalCheck();      (*回零信号判断*)
+FBhardSignalHandle();     (*各种硬件信号常开常闭判断*)
+FBcommunicationCheck();   (*从站OP状态判断*)
+FBemergencyStop();        (*急停信号触发安全操作*)
+FBalarmHandle();          (*各种报警，写到数组里面*)  
+FBstatusUpdate();         (*根据M代码和全局变量更新PLC状态*)
+FBservoControl();         (*CNC轴使能控制*)
+FBautoParalle();          (*自动对边*)
+FBcalibrateLevel();       (*校水平*)
+FBconcentricity();        (*四面分中*)
+FBProcessHalCloseLaser(); (*切割关光*)
+FBProcessHalCloseFollow();(*切割关随动*)
+FBprocessControl();     (*随动切割*)
+ FBProcessCoordCut();    (*坐标切割*)
+IF g_fCuttingType=1 THEN
+	FBZCoordCutVelAdd();
+END_IF;
+
+FBZAxisControl();         (*Z轴控制*)
+IF g_bU2AxisEnable THEN
+  FBUAxisControl();         (*U2轴控制*)
+END_IF;
+FBFAxisMotionControl(); (*F轴控制*)
+IF g_nFAxisControlType = 3 THEN (*如果是普雷的切割头。则将普雷调焦的使能变量给外部唯一的调焦使能引脚*)
+  g_boVoltageEnable := g_boPresterFoucsEnable;
+END_IF;
+FBauxiliaryControl();     (*支撑气缸、卡爪逻辑控制*)
+FBGasListen();
+FBFlameGasListen();
+FBlaserControl();         (*激光出光控制，包括打点、红光、上电等*)
+FBuserDefinedAlarm();     (*自定义报警*)
+FBautoLubrication();      (*自动润滑*)
+FBtricolorLight();        (*三个灯输出控制*)
+FBuserDefinedIOOutput();  (*自定义IO*)
+FBIOMonitor();            (*IO监控*)
+FBservoMonitor();         (*驱动器状态监控*)
+FBclearNCAlarm();         (*清除报警*)
+FBCircleCenter();         (*圆管校横梁中心*)
+FBbeamCenter();           (*方管校横梁中心*)
+FBHMICompensationCalc();   (*HMI执行分中补偿值计算*)
+
+
+
+
+FBactual_Xposition();     (*计算拐角电容模型X位置*)
+FBCornerLaserExportCtrl();(*进出拐角关光延时*)
+FBDiscernHighLowSurface();(*区分矩形管的高低面*)
+FBFourSideUpLiftHeight(); (*四面分中Z轴上抬*)
+FBTwoSideCenterAngleIron();(*角钢两面分中*)
+FBSingleSideCenter(); (*单面分中*)
+FBFourSidesCenter();(*四面寻中*)
+FBTwoSidesCenter();(*两面寻中*)
+FBThreeSidesCenter();(*三面寻中*)
+(********新框架FB start**************)
+(*轴、工艺数据下发及上传，M代码控制*)
+FBUpLoadStatusToHmi();(*Plc数据上传到Hmi*)
+FB_DownloadTechDataFromHMI();(*把工艺参数传给HMI*)
+
+FBCncMControl();(*M代码*)
+FBGlobalValueOutPut();(*全局变量输出*)
+FBCenterNear();(*就近回中*)
+FBLevelAndSideCenter();(*校平+分中*)
+FBrealTimeOverrid();(*角钢进给降速*)
+FBSplitValue();
+FBUserDefineListen();
+
+FBParalleGetZMaxPos();(*寻边时 获取z轴最大坐标*)
+(********新框架FB end**************)
+IF g_nLoadMaterialNum <> 0 THEN
+  FBLoadCylinderControl();  (*上料气缸手动及全局变量控制*)
+END_IF;
+FBLoadControl();          (*上料气缸M代码控制，将该FB放出来，因为传感器检测在该FB里面，后期优化*)
+FBLoadInteractiveSignal();(*上料信号交互信号输出，之前都是用Hal文件配置，复位不能清除，并且不能用配置工具配*)
+IF g_nLinearActuatorFun <> 0 THEN
+   FBLinearActuator();      (*上料 电动推杆 控制*)
+END_IF;
+IF g_bBlankCylinderEnable THEN
+  FBBlankingControl();      (*前支撑气缸M代码控制*)
+  FBBlankingCylinderControl();(*前支撑气缸手动及全局变量控制*)
+END_IF;
+FBHandlePlaneAxis();      (*板管一体龙门轴位置保持*)
+(*当Y轴回零后检测避让*)
+IF g_biAxIsYisHome THEN
+  FBChuckAvoidance();       (*前卡卡爪避让*)
+END_IF;
+FBPlanProcess();          (*加工计划*)
+IF g_bQREnable THEN
+  FBLoadSensor();         (*全锐下料机控制*)
+END_IF;
+IF g_bDustEnable OR g_bIsConfigDustAxis2 THEN
+  FBDustAxisControl();    (*除尘轴控制*)
+END_IF;
+g_boDustEnable := g_bDustEnable;(*输出给第二PLC*)
+IF g_bWeldinspectionOpen OR g_nMachineType=3 THEN
+FBWeldCheck();          (*焊缝检测*)
+END_IF;
+IF g_nMachineType = 1 OR g_nMachineType = 7 THEN
+  FBBKFeedingMachineCtrl();(*标克下料机控制*)
+ELSIF g_nMachineType=3 THEN
+  FBKuXunLoadControl();   (*库迅管切机控制*)
+  
+ELSIF g_nMachineType=6 THEN(*g_nMachineType=6为3卡盘模式*)
+  FBU3AxisControl();      (*迅镭三卡盘控制*)
+  FBY2Y3AxisControl();
+ELSIF g_nMachineType=13 THEN(*法利莱下料机*)
+  FBDDAxisControl();(*轴控制模块：用于卡盘托架轴*)
+  FBHGTECHAvoid();(*避让模块*)
+  FBHGTECHAvoidCheck();(*检测下个轮廓是否避让*)
+  FBHGTECHAvoidBlankingControl();(*上下料信号对接模块*)
+  FBHGTECHPipeDiameterCheck();(*管径检测反馈及对比模块*)
+END_IF;
+FBAxisEnableJudge();      (*CNC及NC轴实际使能判断*)
+IF g_bDustCylinderEnable OR g_bIsConfigDoubleDustChangeCyl THEN
+  FBDustCylinder();       (*除尘气缸控制*)
+ELSE
+  g_boDustCylinderDone := TRUE;
+END_IF;
+FBCloseLaserControl();    (*CNC暂停状态强制关光关气*)
+g_boDustCylinderEnable := g_bDustCylinderEnable;(*输出给第二PLC*)
+IF g_bSustainEnable OR g_bFrontSustainEnable THEN
+  FBCalSustainPos();        (*浮动支撑Z轴位置计算*)
+END_IF;
+FBSustainControl();       (*支撑轴浮动控制*)
+FBFrontSustainControl();  (*前支撑轴浮动控制*)
+IF g_nUnloadSupportClylinderNum <> 0 THEN
+  FBUnloadSupportCly();
+END_IF;
+IF g_nMachineType = 4 OR g_nMachineType = 9 THEN
+  FBDingDianManage();       (*鼎点管切控制*)
+  FBDDAxisControl();      (*鼎点轴控制*)
+END_IF;
+FBNcAlarmHandle();        (*NC轴详细报警*)
+IF g_bTurnCylinderEnable THEN
+  IF g_nTurnCylControlMode = 0 THEN
+    FBTurnCylinderControl();  (*翻转气缸控制*)
+    FBTurnUpDown();           (*翻转气缸一键控制*)
+  ELSIF g_nTurnCylControlMode = 1 THEN
+    FBTurnUpDownNew();
+  END_IF;
+ELSE
+  g_bTurnUpDownDone := TRUE;
+  g_boTurnUpDownDone := TRUE;
+END_IF;
+FBYSpeed();
+(*通用轴使用*)
+IF g_bUseCommonAxis1 OR g_bUseCommonAxis2 OR g_bUseCommonAxis3 OR g_nMachineType = 19 THEN
+  FBGeneralAxisControl();
+  FBDDAxisControl(); 
+END_IF;
+(*艾泰四卡*)
+IF g_nMachineType = 19 THEN
+  FBU3AxisControl();
+END_IF;
+(*亿得*)
+IF g_nMachineType = 8 OR g_nMachineType = 10 OR g_nMachineType = 9 OR g_nMachineType = 14 THEN
+  FBYDControl();(*亿得下料机*)
+END_IF;
+
+FBProfileControl();       (*型材切割*)
+IF g_nMachineType = 9 THEN
+  FBBoendeAvoid();        (*博恩德避让检测*)
+  FBBoendeAvoidCheck();   (*博恩德报警检测*)
+END_IF;
+
+IF g_nMachineType = 10 THEN
+  FBBKFlatAbsAdjust();    
+END_IF;
+IF g_nAntiRejectionFun<>0 THEN(*左右防甩功能*)
+  FBAntiRejectionControl();
+END_IF;
+(*3卡盘*)
+IF g_nMachineType = 11 THEN
+  FBY1AxisControl();
+END_IF;
+(*防甩轴*)
+IF g_nAntiRejectionFun=2 THEN
+  FBAntiRejectionManage();
+END_IF;
+IF g_nMachineType = 12 THEN
+  FBXSControl();
+END_IF;
+IF g_nMachineType = 14 THEN
+  FBWeiTuoManage();
+END_IF;
+IF g_nMachineType <> 0 THEN
+  FBStartPauseResetShunt();
+END_IF;
+(*只有探边时才会调用*)
+IF g_nEdgeCode = 1 THEN
+  FBEdgeProtect();
+END_IF;
+HanleF050Home();
+IF g_nMachineType = 21 THEN
+  FBGuanLi();
+END_IF;
+
+(*新上料气缸 *)
+FBSupport2();
+FBCheckCutRange();
+FBBracketAutoRise();
+
+
+FBAvoidCylAndAxisListen();(*中卡避让和横梁避让*)
+(*中卡移动避让轴*)
+IF g_bIsConfigMiddleAvoidAxis1 OR g_bIsConfigMiddleAvoidAxis2 THEN
+  FBMiddleAvoidAxisListen();
+END_IF;
+(*管材尺寸检测*)
+FBPipeDimensionsCheck();
+IF g_bDustEnable OR g_bDustCylinderEnable THEN
+  FBDustExtractionValue();
+END_IF;
+
+(*双工位模式*)
+IF g_bDualStationModeEnable THEN
+  FBDualConfigMode();
+END_IF;
+
+
+MachinesStateRingBuffer(
+     LayerStartStateIn := INT_TO_DINT(g_nLayerStart),
+     LayerEndStateIn := INT_TO_DINT(g_nLayerEnd),
+     nFollowStateIn := g_noFollowState_ZAxisFollow,
+     nLiftStateIn := LREAL_TO_DINT(g_foTorqueState),
+     nFollowErrorStateIn := INT_TO_DINT(g_nFollowStateToHmi),
+     nZErrorIDIn := INT_TO_DINT(g_nZErrorIDToHmi)
+     );
+
+
+(*如果是普雷切割头，则将普雷调焦的使能变量赋值给外部唯一的调焦使能引脚*)
+IF g_dIsPresterFocus >= 1.0 THEN
+    g_boVoltageEnable :=g_boPresterFoucsEnable;
+END_IF;
+(*处理恩耐激光器*)
+IF g_nLaserBrand=2 THEN
+  g_boLaserEnable := g_boExtenIn;
+END_IF;
+(*安全位置信号检测*)
+FBSafeSignalCheck();
+IF g_bPlcPauseBuffer THEN
+  g_bPlcPauseBuffer := FALSE;
+  g_bPlcPause := FALSE;
+END_IF;
+IF  g_bPlcResetBuffer THEN
+  g_bPlcReset := FALSE;
+  g_bPlcResetBuffer := FALSE;
+END_IF;
+IF  g_bPlcStartBuffer THEN
+  g_bPlcStart := FALSE;
+  g_bPlcStartBuffer := FALSE;
+END_IF;
+
+IF g_bplcHardwareResetBuffer THEN(*plc伺服复位*)
+  g_bplcHardwareReset :=FALSE;
+  g_bplcHardwareResetBuffer := FALSE;
+END_IF;
+
+IF g_bClearAlarmButtonClickedBuffer THEN
+  g_bClearAlarmButtonClickedBuffer := FALSE;
+  g_bClearAlarmButtonClicked := FALSE;
+END_IF;
+
+IF NOT g_bIsSetSlowCutEnableFlag OR g_bProcessEndM THEN
+		g_boSlowcutEnable := FALSE;
+END_IF;
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[主程序]]></xhtml:p>
+  </documentation>
+</pou>

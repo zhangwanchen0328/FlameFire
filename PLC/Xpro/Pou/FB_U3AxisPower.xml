@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_U3AxisPower" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_U3Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴使能模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="PowerEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴使能开启]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bU3AxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[允许正向运动使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bU3AxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[允许反向运动使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3Override">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+      </variable>
+      <variable name="g_dCurOverride">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[g_U3Power.Enable := PowerEnable;
+g_U3Power.EnablePosition := NOT g_bU3AxisPosLimit;
+g_U3Power.EnableNegative := NOT g_bU3AxisNegLimit;
+
+IF g_U3Power.Error THEN
+  PowerEnable := FALSE;
+END_IF; 
+
+g_U3Override.Enable := TRUE;
+g_U3Override.VelFactor := g_dCurOverride; 
+IF ABS(Axis_U3.NCTOPLC.ACTPOS - Axis_U3.NCTOPLC.SETPOS) > g_fU3AxisMaxPosError THEN
+  g_bU3AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bU3AxisPosErrorAlarm := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

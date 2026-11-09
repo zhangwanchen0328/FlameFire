@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_GasDiagnosis" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bGasDiagnosisStart">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGasDiagnosisStop">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_dGasDiagnosisPressure">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="DiagnoState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="RTDiagnosisStart">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTDiagnosisStop">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTGasRise">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Ton1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonRise">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonStable">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonRiseIN">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="TonStableIN">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="StandarDeviationSet">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0.3"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[均方差阈值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Num">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[诊断次数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="i">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[TonRise(IN :=TonRiseIN, PT := T#20s);
+TonStable(IN :=TonStableIN, PT := T#20s);
+
+
+RTDiagnosisStart(CLK := g_bGasDiagnosisStart);
+IF RTDiagnosisStart.Q THEN
+  For i := 1 TO 16 BY 1 DO  (*初始化气体诊断数组*)
+    g_STAirDiagnosis[i].Pressuer := 0.0; 
+    g_STAirDiagnosis[i].StableTm := 0.0; 
+    g_STAirDiagnosis[i].RiseTm := 0.0; 
+    g_STAirDiagnosis[i].StandardDeviation := 0.0;
+    g_STAirDiagnosis[i].MaxPre := 0.0;
+    g_STAirDiagnosis[i].MinPre := 0.0;
+    g_STAirDiagnosis[i].Done := FALSE; 
+    
+    g_STN2Diagnosis[i].Pressuer := 0.0; 
+    g_STN2Diagnosis[i].StableTm := 0.0; 
+    g_STN2Diagnosis[i].RiseTm := 0.0; 
+    g_STN2Diagnosis[i].StandardDeviation := 0.0;
+    g_STN2Diagnosis[i].MaxPre := 0.0;
+    g_STN2Diagnosis[i].MinPre := 0.0;
+    g_STN2Diagnosis[i].Done := FALSE;
+    
+    g_STO2Diagnosis[i].Pressuer := 0.0; 
+    g_STO2Diagnosis[i].StableTm := 0.0; 
+    g_STO2Diagnosis[i].RiseTm := 0.0; 
+    g_STO2Diagnosis[i].StandardDeviation := 0.0;
+    g_STO2Diagnosis[i].MaxPre := 0.0;
+    g_STO2Diagnosis[i].MinPre := 0.0;
+    g_STO2Diagnosis[i].Done := FALSE;  
+  END_FOR;
+  TonRiseIN := FALSE;
+  TonStableIN := FALSE;
+  Ton1(IN :=FALSE);
+  Ton2(IN :=FALSE);
+  Num := 0;
+  DiagnoState := 10;
+END_IF;
+
+RTDiagnosisStop(CLK := g_bGasDiagnosisStop);
+IF RTDiagnosisStop.Q  AND DiagnoState <> 0 THEN
+  g_bGasDiagnosisStart :=  FALSE;
+  g_bGasDiagnosisStop := FALSE;
+  DiagnoState := 100;
+END_IF;
+
+CASE DiagnoState OF
+  10:
+    Num := Num+1;
+    DiagnoState := 20;
+  20:
+    (*开气*)
+    g_ugas_type := g_bGasDiagnosisType; 
+    g_dmaster_pressure := g_dGasDiagnosisPressure;
+    g_dair_pressure := g_dGasDiagnosisPressure;
+    g_doxygen_pressure := g_dGasDiagnosisPressure;
+    g_dnitogen_pressure := g_dGasDiagnosisPressure;
+    g_bgas_enable := TRUE;
+   
+    (*气压上升时间*)
+    TonRiseIN := TRUE;
+    RTGasRise(CLK := g_nAheadCutGasPressureAct >= 0.9*g_dGasDiagnosisPressure);
+    IF RTGasRise.Q THEN 
+      IF g_bGasDiagnosisType = 0 THEN
+        g_STAirDiagnosis[Num].RiseTm := TIME_TO_LREAL(TonRise.ET); 
+      ELSIF g_bGasDiagnosisType = 1 THEN
+        g_STO2Diagnosis[Num].RiseTm := TIME_TO_LREAL(TonRise.ET); 
+      ELSIF g_bGasDiagnosisType = 2 THEN
+        g_STN2Diagnosis[Num].RiseTm := TIME_TO_LREAL(TonRise.ET); 
+      END_IF;        
+    END_IF;
+    (*气压均方差,稳定时间,气压,最大值,最小值*)
+    TonStableIN := TRUE; 
+    Ton1(IN :=g_CutPreStandarDeviation < StandarDeviationSet AND g_CutPreAverage >0.9*g_dGasDiagnosisPressure,PT := T#100ms);
+    IF Ton1.Q THEN
+      IF g_bGasDiagnosisType = 0 THEN
+        g_STAirDiagnosis[Num].StandardDeviation := g_CutPreStandarDeviation;
+        g_STAirDiagnosis[Num].StableTm := TIME_TO_LREAL(TonStable.ET)-0.1; 
+        g_STAirDiagnosis[Num].Pressuer := g_CutPreAverage;
+        g_STAirDiagnosis[Num].MaxPre := FBCutGasPressure10Date.MaxValue;
+        g_STAirDiagnosis[Num].MinPre := FBCutGasPressure10Date.MinValue;
+      ELSIF g_bGasDiagnosisType = 1 THEN
+        g_STO2Diagnosis[Num].StandardDeviation := g_CutPreStandarDeviation;
+        g_STO2Diagnosis[Num].StableTm := TIME_TO_LREAL(TonStable.ET)-0.1; 
+        g_STO2Diagnosis[Num].Pressuer := g_CutPreAverage;
+        g_STO2Diagnosis[Num].MaxPre := FBCutGasPressure10Date.MaxValue;
+        g_STO2Diagnosis[Num].MinPre := FBCutGasPressure10Date.MinValue;
+      ELSIF g_bGasDiagnosisType = 2 THEN
+        g_STN2Diagnosis[Num].StandardDeviation := g_CutPreStandarDeviation;
+        g_STN2Diagnosis[Num].StableTm := TIME_TO_LREAL(TonStable.ET)-0.1; 
+        g_STN2Diagnosis[Num].Pressuer := g_CutPreAverage;
+        g_STN2Diagnosis[Num].MaxPre := FBCutGasPressure10Date.MaxValue;
+        g_STN2Diagnosis[Num].MinPre := FBCutGasPressure10Date.MinValue;
+      END_IF;
+      Ton1(IN :=FALSE);
+      DiagnoState := 30;
+    END_IF;
+  30:(*关气*)
+    TonRiseIN := FALSE;
+    TonStableIN := FALSE;
+    g_bgas_enable := FALSE;
+    Ton2(IN :=g_nAheadCutGasPressureAct <= 0.01,PT := T#100ms);
+    IF Ton2.Q THEN
+      Ton2(IN :=FALSE);
+      DiagnoState := 40;
+    END_IF;
+  40:(*继续诊断或诊断结束*)
+    IF g_bGasDiagnosisType = 0 THEN
+      g_STAirDiagnosis[Num].Done := TRUE; 
+    ELSIF g_bGasDiagnosisType = 1 THEN
+      g_STO2Diagnosis[Num].Done := TRUE; 
+    ELSIF g_bGasDiagnosisType = 2 THEN
+      g_STN2Diagnosis[Num].Done := TRUE; 
+    END_IF; 
+    IF Num = 16 THEN
+      g_bGasDiagnosisStart :=  FALSE;
+      DiagnoState := 0;
+    ELSE
+      DiagnoState := 10;
+    END_IF;
+  100:(*停止诊断*)
+    g_bgas_enable := FALSE;
+    DiagnoState := 0;
+END_CASE;
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

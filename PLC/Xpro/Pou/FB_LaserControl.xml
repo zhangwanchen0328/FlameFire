@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_LaserControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="LaserPowerOnControl">
+        <type>
+          <derived name="FB_LaserPowerOnControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光上电]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="LaserDot">
+        <type>
+          <derived name="FB_LaserDot"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光打点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="LaserCutting">
+        <type>
+          <derived name="FB_LaserCutting"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光切割]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="LaserRedLight">
+        <type>
+          <derived name="FB_LaserRedLight"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光红点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SpeedBuffer">
+        <type>
+          <derived name="FB_SpeedBuffer"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[速度延时输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AngleBuffer">
+        <type>
+          <derived name="FB_SpeedBuffer"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[摆轴角度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dtemp">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[摆轴角度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SlowStartAndEndCutListen">
+        <type>
+          <derived name="FB_SlowStartAndEndCut"/>
+        </type>
+      </variable>
+      <variable name="fActualCommunicationCycle">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+IF g_nLaserBrand=6 THEN(*激关器品牌6是新添加的IPG-QCW激光器，与IPG原理一样*)
+  g_nLaserBrand :=0;
+  g_bQCWType := TRUE;
+ELSE
+  g_bQCWType := FALSE;
+END_IF;
+g_fXYUCurrentSpeed_ABS := g_fiXYUCurrentSpeed;
+IF g_fXYUCurrentSpeed_ABS <=0.0 THEN
+ g_fXYUCurrentSpeed_ABS :=0.0; 
+END_IF;
+IF g_bChangeSecondFlyAndPowerCutCommunicationCycle THEN
+  fActualCommunicationCycle := g_fSecondCommunicationCycle;
+ELSE
+  fActualCommunicationCycle := g_fCommunicationCycle;
+END_IF; 
+SpeedBuffer(InValue := g_fXYUCurrentSpeed_ABS,
+InCycle := fActualCommunicationCycle,
+OutCycleValue => g_fiXYCurrentSpeedBuff);(*对切割命令速度进行延时通讯周期时间处理*)
+g_foCurrentSpeed := g_fiXYCurrentSpeedBuff;
+
+AngleBuffer(InValue := g_diRotateAxisMachineCoordinate,
+InCycle := fActualCommunicationCycle,
+OutCycleValue => g_dPendulumAngleSfterFilter);
+SlowStartAndEndCutListen();
+LaserPowerOnControl();(*激光上电*)
+LaserCutting();(*激光出光*)
+LaserDot();(*激光打点*)
+LaserRedLight();(*激光红点*)  
+IF NOT g_bLaserPowerOnEnable THEN
+  g_noULaserPowerValue := 0;
+  g_noUPwmFreq :=0;
+  g_noUPwmDuty :=0;
+  g_boLaserEnable := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[激光控制]]></xhtml:p>
+  </documentation>
+</pou>

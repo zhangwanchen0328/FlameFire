@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Filter20ms" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Ton_Filter">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Filter2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="FilterTime">
+        <type>
+          <TIME/>
+        </type>
+      </variable>
+      <variable name="LimitLogic">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Ton_In">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </inputVars>
+    <outputVars>
+      <variable name="Ton_Out">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </outputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF LimitLogic THEN
+  IF Ton_In THEN
+    Ton_Filter2(IN:= FALSE);
+    Ton_Filter(IN:= Ton_In,PT:=FilterTime);
+    IF Ton_Filter.Q THEN
+      Ton_Out:=TRUE;
+    END_IF; 
+  ELSE
+    Ton_Filter(IN:= FALSE);
+    Ton_Filter2(IN:= NOT Ton_In,PT:=FilterTime);
+    IF Ton_Filter2.Q THEN
+      Ton_Out:=FALSE;
+    END_IF;    
+  END_IF;  
+ELSE  
+  IF Ton_In THEN
+    Ton_Filter2(IN:= FALSE);
+    Ton_Filter(IN:= Ton_In,PT:=FilterTime);
+    IF Ton_Filter.Q THEN
+      Ton_Out:=FALSE;
+    END_IF; 
+  ELSE
+    Ton_Filter(IN:= FALSE);
+    Ton_Filter2(IN:= NOT Ton_In,PT:=FilterTime);
+    IF Ton_Filter2.Q THEN
+      Ton_Out:=TRUE;
+    END_IF;    
+  END_IF;  
+END_IF;  ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,1023 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CommunicationCheck" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bCommunicationCheck">
+        <type>
+          <derived name="ST_CommunicationCheck"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检测从站通讯状态的结构体]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation1IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第1个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation2IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第2个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation3IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第3个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation4IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第4个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation5IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第5个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation6IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第6个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation7IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第7个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation8IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第8个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation9IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第9个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation10IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第10个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation11IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第11个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation12IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第12个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation13IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第13个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation14IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第14个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation15IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第15个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation16IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第16个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation17IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第17个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation18IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第18个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation19IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第19个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation20IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第20个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation21IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第21个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation22IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第22个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation23IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第23个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation24IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第24个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation25IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第25个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation26IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第26个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation27IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第27个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation28IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第28个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation29IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第29个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation30IsOp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第30个从站是否进入OP]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation1IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第1个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation2IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第2个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation3IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第3个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation4IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第4个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation5IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第5个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation6IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第6个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation7IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第7个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation8IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第8个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation9IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第9个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation10IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第10个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation11IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第11个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation12IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第12个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation13IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第13个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation14IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第14个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation15IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第15个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation16IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第16个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation17IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第17个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation18IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第18个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation19IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第19个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation20IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第20个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation21IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第21个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation22IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第22个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation23IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第23个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation24IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第24个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation25IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第25个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation26IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第26个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation27IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第27个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation28IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第28个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation29IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第29个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biSlaveStation30IsOnline">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 输入引脚     判断第30个从站是否在线]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nHeartBeat">
+        <type>
+          <UINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="999"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[心跳检测变量，定时检查该值是否为54321，如果是则返回12345]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHeartTon">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[心跳检测定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPauseTon">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[心跳检测定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bStartHeartCheck">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开启心跳检测]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHeartCheckTime">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开启心跳检测]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHeartCase">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[心跳检测状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCncMoveFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[cnc轴可以运动的标志位，由界面给true]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="rMoveTrig">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nSlaveNum">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nSlaveNums">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bSlaveDisconnect">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="tSlaveDisconnect">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="iDeviceOpState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dOpFilterTime">
+        <type>
+          <TIME/>
+        </type>
+      </variable>
+      <variable name="dOpFilterTimeHMI">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter1">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter2">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter3">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter4">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter5">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter6">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter7">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter8">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter9">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter10">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter11">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter12">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter13">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter14">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter15">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter16">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter17">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter18">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter19">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter20">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter21">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter22">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter23">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter24">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter25">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter26">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter27">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter28">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter29">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="SlaveStationIsOpFilter30">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="CapHeartTon">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[EDS2000上1个周期心跳值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="CapHeartTon1">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[EDS2000上1个周期心跳值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="CapHeartTon2">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[EDS2000上1个周期心跳值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCapHeart_1">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[EDS2000上1个周期心跳值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCapHeart_2">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[EDS2000上1个周期心跳值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCapHeart_3">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[EDS2000上1个周期心跳值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nEDS3000Number">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[EDS2000上1个周期心跳值]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*从站OP和在线滤波后监测*)
+dOpFilterTime := LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dOpFilterTimeHMI))); (*HMI下发通讯中断滤波时间*)
+SlaveStationIsOpFilter1(dOpFilterTime,FALSE,g_biSlaveStation1IsOp);
+g_bCommunicationCheck.SlaveStateOp[0] := SlaveStationIsOpFilter1.Ton_Out;
+
+SlaveStationIsOpFilter2(dOpFilterTime,FALSE,g_biSlaveStation2IsOp);
+g_bCommunicationCheck.SlaveStateOp[1] := SlaveStationIsOpFilter2.Ton_Out;
+
+SlaveStationIsOpFilter3(dOpFilterTime,FALSE,g_biSlaveStation3IsOp);
+g_bCommunicationCheck.SlaveStateOp[2] := SlaveStationIsOpFilter3.Ton_Out;
+
+SlaveStationIsOpFilter4(dOpFilterTime,FALSE,g_biSlaveStation4IsOp);
+g_bCommunicationCheck.SlaveStateOp[3] := SlaveStationIsOpFilter4.Ton_Out;
+
+SlaveStationIsOpFilter5(dOpFilterTime,FALSE,g_biSlaveStation5IsOp);
+g_bCommunicationCheck.SlaveStateOp[4] := SlaveStationIsOpFilter5.Ton_Out;
+
+SlaveStationIsOpFilter6(dOpFilterTime,FALSE,g_biSlaveStation6IsOp);
+g_bCommunicationCheck.SlaveStateOp[5] := SlaveStationIsOpFilter6.Ton_Out;
+
+SlaveStationIsOpFilter7(dOpFilterTime,FALSE,g_biSlaveStation7IsOp);
+g_bCommunicationCheck.SlaveStateOp[6] := SlaveStationIsOpFilter7.Ton_Out;
+
+SlaveStationIsOpFilter8(dOpFilterTime,FALSE,g_biSlaveStation8IsOp);
+g_bCommunicationCheck.SlaveStateOp[7] := SlaveStationIsOpFilter8.Ton_Out;
+
+SlaveStationIsOpFilter9(dOpFilterTime,FALSE,g_biSlaveStation9IsOp);
+g_bCommunicationCheck.SlaveStateOp[8] := SlaveStationIsOpFilter9.Ton_Out;
+
+SlaveStationIsOpFilter10(dOpFilterTime,FALSE,g_biSlaveStation10IsOp);
+g_bCommunicationCheck.SlaveStateOp[9] := SlaveStationIsOpFilter10.Ton_Out;
+
+SlaveStationIsOpFilter11(dOpFilterTime,FALSE,g_biSlaveStation11IsOp);
+g_bCommunicationCheck.SlaveStateOp[10] := SlaveStationIsOpFilter11.Ton_Out;
+
+SlaveStationIsOpFilter12(dOpFilterTime,FALSE,g_biSlaveStation12IsOp);
+g_bCommunicationCheck.SlaveStateOp[11] := SlaveStationIsOpFilter12.Ton_Out;
+
+SlaveStationIsOpFilter13(dOpFilterTime,FALSE,g_biSlaveStation13IsOp);
+g_bCommunicationCheck.SlaveStateOp[12] := SlaveStationIsOpFilter13.Ton_Out;
+
+SlaveStationIsOpFilter14(dOpFilterTime,FALSE,g_biSlaveStation14IsOp);
+g_bCommunicationCheck.SlaveStateOp[13] := SlaveStationIsOpFilter14.Ton_Out;
+
+SlaveStationIsOpFilter15(dOpFilterTime,FALSE,g_biSlaveStation15IsOp);
+g_bCommunicationCheck.SlaveStateOp[14] := SlaveStationIsOpFilter15.Ton_Out;
+
+SlaveStationIsOpFilter16(dOpFilterTime,FALSE,g_biSlaveStation16IsOp);
+g_bCommunicationCheck.SlaveStateOp[15] := SlaveStationIsOpFilter16.Ton_Out;
+
+SlaveStationIsOpFilter17(dOpFilterTime,FALSE,g_biSlaveStation17IsOp);
+g_bCommunicationCheck.SlaveStateOp[16] := SlaveStationIsOpFilter17.Ton_Out;
+
+SlaveStationIsOpFilter18(dOpFilterTime,FALSE,g_biSlaveStation18IsOp);
+g_bCommunicationCheck.SlaveStateOp[17] := SlaveStationIsOpFilter18.Ton_Out;
+
+SlaveStationIsOpFilter19(dOpFilterTime,FALSE,g_biSlaveStation19IsOp);
+g_bCommunicationCheck.SlaveStateOp[18] := SlaveStationIsOpFilter19.Ton_Out;
+
+SlaveStationIsOpFilter20(dOpFilterTime,FALSE,g_biSlaveStation20IsOp);
+g_bCommunicationCheck.SlaveStateOp[19] := SlaveStationIsOpFilter20.Ton_Out;
+
+SlaveStationIsOpFilter21(dOpFilterTime,FALSE,g_biSlaveStation21IsOp);
+g_bCommunicationCheck.SlaveStateOp[20] := SlaveStationIsOpFilter21.Ton_Out;
+
+SlaveStationIsOpFilter22(dOpFilterTime,FALSE,g_biSlaveStation22IsOp);
+g_bCommunicationCheck.SlaveStateOp[21] := SlaveStationIsOpFilter22.Ton_Out;
+
+SlaveStationIsOpFilter23(dOpFilterTime,FALSE,g_biSlaveStation23IsOp);
+g_bCommunicationCheck.SlaveStateOp[22] := SlaveStationIsOpFilter23.Ton_Out;
+
+SlaveStationIsOpFilter24(dOpFilterTime,FALSE,g_biSlaveStation24IsOp);
+g_bCommunicationCheck.SlaveStateOp[23] := SlaveStationIsOpFilter24.Ton_Out;
+
+SlaveStationIsOpFilter25(dOpFilterTime,FALSE,g_biSlaveStation25IsOp);
+g_bCommunicationCheck.SlaveStateOp[24] := SlaveStationIsOpFilter25.Ton_Out;
+
+SlaveStationIsOpFilter26(dOpFilterTime,FALSE,g_biSlaveStation26IsOp);
+g_bCommunicationCheck.SlaveStateOp[25] := SlaveStationIsOpFilter26.Ton_Out;
+
+SlaveStationIsOpFilter27(dOpFilterTime,FALSE,g_biSlaveStation27IsOp);
+g_bCommunicationCheck.SlaveStateOp[26] := SlaveStationIsOpFilter27.Ton_Out;
+
+SlaveStationIsOpFilter28(dOpFilterTime,FALSE,g_biSlaveStation28IsOp);
+g_bCommunicationCheck.SlaveStateOp[27] := SlaveStationIsOpFilter28.Ton_Out;
+
+SlaveStationIsOpFilter29(dOpFilterTime,FALSE,g_biSlaveStation29IsOp);
+g_bCommunicationCheck.SlaveStateOp[28] := SlaveStationIsOpFilter29.Ton_Out;
+
+SlaveStationIsOpFilter30(dOpFilterTime,FALSE,g_biSlaveStation30IsOp);
+g_bCommunicationCheck.SlaveStateOp[29] := SlaveStationIsOpFilter30.Ton_Out;
+
+
+(*断电检测：通讯中断连续断开超过2S认为断电了，需要重新回零*)
+bSlaveDisconnect := FALSE;
+FOR nSlaveNum := 1 TO g_nSlaveNums BY 1 DO
+  IF (g_bCommunicationCheck.SlaveStateOp[nSlaveNum-1]=FALSE) THEN
+    bSlaveDisconnect := TRUE;
+  END_IF;
+END_FOR;
+case iDeviceOpState of 
+0:
+  tSlaveDisconnect(IN := bSlaveDisconnect, PT := T#2S);
+  IF tSlaveDisconnect.Q THEN
+    g_bSlaveNoPower := TRUE;
+    tSlaveDisconnect(IN := FALSE);
+    iDeviceOpState:=10;
+  END_IF;
+10:
+  if NOT bSlaveDisconnect THEN
+    g_bSlaveNoPower := FALSE;
+    iDeviceOpState:=0;
+  end_if;
+END_CASE;
+
+(*************心跳检测*******************************)
+nHeartTon(IN := bStartHeartCheck, PT := UINT_TO_TIME(nHeartCheckTime));
+rMoveTrig(CLK := bCncMoveFlag);
+
+IF rMoveTrig.Q THEN 
+  g_boCNCMoveDisable := FALSE;
+  bCncMoveFlag := FALSE;
+END_IF;
+
+
+IF nHeartTon.Q THEN 
+  bStartHeartCheck := FALSE;
+  nHeartTon(IN := FALSE);
+  IF nHeartBeat = 54321 THEN(*说明HMI给赋值54321了*)
+     nHeartBeat := 12345;(*plc将改变量再给回初始值*)
+     nHeartCase := 10;
+  ELSE
+    IF g_nMotionMode = 3 OR g_nMotionMode = 5 OR g_nMotionMode = 4 THEN  (*手动模式，回零模式,MDI模式*)
+       nHeartCase := 30;
+    ELSE
+       nHeartCase := 20;
+     END_IF;
+  END_IF;
+END_IF;
+
+CASE nHeartCase OF
+  0: (*啥都不做*)
+  nHeartCase := 0;
+  10:(*通讯正常，再次开启定时器开始检测*)
+  bStartHeartCheck := TRUE;
+  nHeartCase := 0;
+  20:(*通讯断开了，将暂停变量置true 10个周期供plc所有模块进行暂停操作*)
+  g_bPlcPauseBuffer := TRUE;
+  g_boCNCMoveDisable := TRUE;
+  g_bgas_enable := FALSE;
+  g_bLaserCuttingEnable := FALSE;
+  nHeartCase := 0;
+  g_bDriveEnable := FALSE;
+  g_bParallePLC1Start := FALSE;
+	  g_bParallePLC2Start := FALSE;
+	  g_bParallePLC3Start := FALSE;
+	  g_bParallePLC4Start := FALSE;
+	  g_bParallePLC5Start := FALSE;
+	  g_bParallePLC6Start := FALSE;
+	  g_bParallePLC7Start := FALSE;
+	  g_bParallePLC8Start := FALSE;
+	  g_bParallePLC9Start := FALSE;
+	  g_bParallePLC10Start := FALSE;
+  30:
+  g_boCNCMoveDisable := TRUE;  (*手动模式下断线需要停止轴运动*)
+  g_bgas_enable := FALSE;
+  g_bLaserCuttingEnable := FALSE;
+  nHeartCase := 0;
+  g_bDriveEnable := FALSE;
+  g_bParallePLC1Start := FALSE;
+  g_bParallePLC2Start := FALSE;
+  g_bParallePLC3Start := FALSE;
+	  g_bParallePLC4Start := FALSE;
+	  g_bParallePLC5Start := FALSE;
+	  g_bParallePLC6Start := FALSE;
+	  g_bParallePLC7Start := FALSE;
+	  g_bParallePLC8Start := FALSE;
+	  g_bParallePLC9Start := FALSE;
+	  g_bParallePLC10Start := FALSE;
+END_CASE;
+
+
+
+(*EDS板卡1.2.3心跳检测,正常心跳会1ms累加计数*)
+CapHeartTon(IN := (nEDS3000Number >=1 AND g_niCapHeart = nCapHeart_1), PT := T#5ms); 
+CapHeartTon1(IN := (nEDS3000Number >=2 AND g_niCapHeart1 = nCapHeart_2), PT := T#5ms); 
+CapHeartTon2(IN := (nEDS3000Number >= 3 AND g_niCapHeart2 = nCapHeart_3), PT := T#5ms); 
+IF g_bCapHeartEnable AND CapHeartTon.Q  THEN
+  g_bCapHeartAlarm := TRUE;
+ELSE
+  g_bCapHeartAlarm := FALSE;  
+END_IF;
+IF g_bCapHeartEnable AND CapHeartTon1.Q THEN
+  g_bCapHeartAlarm := TRUE;
+ELSE
+  g_bCapHeartAlarm := FALSE;  
+END_IF;
+IF g_bCapHeartEnable AND CapHeartTon2.Q THEN
+  g_bCapHeartAlarm := TRUE;
+ELSE
+  g_bCapHeartAlarm := FALSE;  
+END_IF;
+
+nCapHeart_1 := g_niCapHeart;
+nCapHeart_2 := g_niCapHeart1;
+nCapHeart_3 := g_niCapHeart2;
+
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[通讯检测]]></xhtml:p>
+  </documentation>
+</pou>

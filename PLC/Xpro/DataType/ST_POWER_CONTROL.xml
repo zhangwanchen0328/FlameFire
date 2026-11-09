@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ST_POWER_CONTROL">
+  <baseType>
+    <struct>
+      <variable name="bOpenDutyCtl">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bOpenFreCtl">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bOpenPowerCtl">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dDutyA">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dDutyB">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dDutyC">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dDutyD">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dDutyXPt">
+        <type>
+          <array>
+            <dimension lower="0" upper="6"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dDutyYPt">
+        <type>
+          <array>
+            <dimension lower="0" upper="6"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dFreA">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dFreB">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dFreC">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dFreD">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dFreXPt">
+        <type>
+          <array>
+            <dimension lower="0" upper="6"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dFreYPt">
+        <type>
+          <array>
+            <dimension lower="0" upper="6"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dPowerA">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dPowerB">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dPowerC">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dPowerD">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dPowerXPt">
+        <type>
+          <array>
+            <dimension lower="0" upper="6"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dPowerYPt">
+        <type>
+          <array>
+            <dimension lower="0" upper="6"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

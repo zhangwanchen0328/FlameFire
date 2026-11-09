@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SpeedBuffer" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Data">
+        <type>
+          <array>
+            <dimension lower="0" upper="29"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="MaxLength">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="30"/>
+        </initialValue>
+      </variable>
+      <variable name="headIdx">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="-1"/>
+        </initialValue>
+      </variable>
+      <variable name="Cycle1Idx">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="Cycle2Idx">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="InValue">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0.0"/>
+        </initialValue>
+      </variable>
+      <variable name="InCycle">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="3.0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[延时周期]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="Cycle1">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[延时周期取余]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Cycle2">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[延时周期取余＋1]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <outputVars>
+      <variable name="HeadValue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[延时周期取余＋1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="OutCycleValue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[延时周期取余＋1]]></xhtml:p>
+        </documentation>
+      </variable>
+    </outputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*速度排列算法*)
+
+headIdx := (headIdx + 1) mod MaxLength;  
+Data[headIdx]:= InValue;                  (*速度存到30位数组*)
+
+Cycle1 := TRUNC(InCycle);  (*去余取整数*)
+Cycle2 := Cycle1+1;
+Cycle1Idx := (headIdx - Cycle1 + MaxLength) mod MaxLength;  
+Cycle2Idx := (headIdx - Cycle2 + MaxLength) mod MaxLength;  
+
+
+HeadValue := Data[headIdx];
+OutCycleValue := Data[Cycle1Idx] + (Data[Cycle2Idx] - Data[Cycle1Idx])*(InCycle-INT_TO_LREAL(Cycle1));  (*延时InCycle周期数值*)]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

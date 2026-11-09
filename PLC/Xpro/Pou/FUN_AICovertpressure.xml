@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FUN_AICovertpressure" pouType="function">
+  <interface>
+    <returnType>
+      <LREAL/>
+    </returnType>
+    <inputVars>
+      <variable name="uiAI">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[反馈模拟信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dimaxpressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最大反馈气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dimaxVolate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最大电压]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="offset">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[偏移量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[offset := 0;
+IF (UINT_TO_LREAL(uiAI - offset)*10.0/32767.0) >= dimaxVolate  THEN
+  FUN_AICovertpressure := dimaxpressure;
+ELSIF (UINT_TO_LREAL(uiAI - offset)*10.0/32767.0) <=0.0  THEN
+  FUN_AICovertpressure := 0.0;
+ELSE
+  FUN_AICovertpressure := (UINT_TO_LREAL(uiAI - offset)*10.0/32767.0)*dimaxpressure/dimaxVolate;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[将电压模拟信号转化成气压:参数一：反馈模拟信号，参数二：最大反馈气压，参数三：最大电压]]></xhtml:p>
+  </documentation>
+</pou>

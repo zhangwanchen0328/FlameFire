@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_HGTECHAvoidCheck" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_biHGTECHAvoidCheck">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boHGTECHCheckDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bHGTECHCheckWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bHGTECHAvoidOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bHGTECHAvoidDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boHGTECHXMoveSafePos">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fNextFasterPointM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fNextNearestPointM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_diYMachineCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_diYWorkCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="DDAxis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_dHGTechRearChuckSafeDis">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[后卡安全距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dHGTechDDAxisPosInY">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡盘托架在Y轴上的坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dNextFasterPoint">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dNextNearestPoint">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nCheckState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="RTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger(CLK := g_biHGTECHAvoidCheck);(*切割开始就开始监测*)
+
+IF RTrigger.Q THEN
+  g_boHGTECHCheckDone := FALSE;
+  nCheckState := 10;
+END_IF;
+
+CASE nCheckState OF
+  0:
+    nCheckState := 0;
+  10:(*如果下个轮廓在卡盘托架安全范围内，直接报警暂停，暂停后会自动上抬，如果下一个在安全范围之后，Z轴上抬并压零位,否则继续切割*)
+    dNextNearestPoint := g_fNextNearestPointM - g_diYWorkCoordinate + g_diYMachineCoordinate;(*下一个轮廓的最近点机械坐标*)
+    dNextFasterPoint := g_fNextFasterPointM - g_diYWorkCoordinate + g_diYMachineCoordinate;(*下一个轮廓的最远点机械坐标*)
+    IF dNextFasterPoint >= (g_dHGTechDDAxisPosInY-g_dHGTechRearChuckSafeDis) AND dNextFasterPoint <= (g_dHGTechDDAxisPosInY+g_dHGTechRearChuckSafeDis) OR
+      dNextNearestPoint >= (g_dHGTechDDAxisPosInY-g_dHGTechRearChuckSafeDis) AND dNextNearestPoint <= (g_dHGTechDDAxisPosInY+g_dHGTechRearChuckSafeDis) THEN
+      g_boHGTECHCheckDone := FALSE;
+      g_bHGTECHCheckWarn := TRUE;
+    ELSE
+      g_boHGTECHCheckDone := TRUE;
+      nCheckState := 0;
+    END_IF;
+  20:(*上抬*)
+    g_bHGTECHAvoidOpen:=TRUE;
+    nCheckState := 30;
+  30: (**)
+    IF g_bHGTECHAvoidDone THEN
+      (*IF g_diYMachineCoordinate >(g_dHGTechDDAxisPosInY+g_dHGTechRearChuckSafeDis) THEN *)
+        g_boHGTECHCheckDone := TRUE;
+        nCheckState := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  g_boHGTECHCheckDone := FALSE;
+  g_bHGTECHCheckWarn := FALSE;
+  nCheckState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[法利莱切割过程中避让实时监测fb]]></xhtml:p>
+  </documentation>
+</pou>

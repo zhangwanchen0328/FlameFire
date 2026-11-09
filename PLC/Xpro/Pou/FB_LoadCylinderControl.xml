@@ -1,0 +1,2479 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_LoadCylinderControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_boLoadCyl01Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl11Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl21Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl31Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl41Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl01Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl11Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl21Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl31Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl41Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl01UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl02UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl03UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl04UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl11UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl12UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl13UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl14UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl21UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl22UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl23UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl24UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl31UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl32UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl33UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl34UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl41UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl42UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl43UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl44UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl01DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl02DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl03DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl04DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl11DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl12DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl13DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl14DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl21DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl22DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl23DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl24DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl31DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl32DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl33DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl34DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl41DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl42DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl43DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl44DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterialUpInPlaceSignal1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nLoadMaterialUpInPlaceDelay1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterial1DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterial2DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterial3DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterial4DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterial5DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderOpen1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderOpen2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderOpen3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderOpen4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderOpen5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderClose1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderClose2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderClose3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderClose4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderClose5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bCylinder1Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder2Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder3Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder4Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder5Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder6Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder7Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder8Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder9Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder10Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder11Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder1Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder2Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder3Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder4Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder5Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder6Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder7Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder8Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder9Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder10Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder11Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="RTrigger1Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger2Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger3Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger4Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger5Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger6Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger7Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger8Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger9Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger10Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger11Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger1Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger2Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger3Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger4Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger5Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger6Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger7Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger8Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger9Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger10Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger11Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bLoadMaterialStateHmi1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[给hmi上料机气缸1状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLoadMaterialStateHmi2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[给hmi上料机气缸2状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLoadMaterialStateHmi3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[给hmi上料机气缸3状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLoadMaterialStateHmi4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[给hmi上料机气缸4状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLoadMaterialStateHmi5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[给hmi上料机气缸5状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLoadMaterialStateHmi6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[给hmi上料机气缸6状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLoadMaterialStateHmi7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[给hmi上料机气缸7状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLoadMaterialStateHmi8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[给hmi上料机气缸8状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLoadMaterialStateHmi9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[给hmi上料机气缸9状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLoadMaterialStateHmi10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[给hmi上料机气缸10状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLoadMaterialStateHmi11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[给hmi上料机气缸11状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLoadMaterialState1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料上升下降到位信號]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLoadMaterialState2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterialState3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterialState4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterialState5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterialState6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterialState7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterialState8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterialState9">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterialState10">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterialState11">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="InPlaceDelay0">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="InPlaceDelay1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay6">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay7">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay8">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay9">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay10">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nMachineType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="fKuXunDelay0">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="KuXunTon">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial1UpDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial2UpDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial3UpDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial4UpDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial5UpDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial6UpDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial7UpDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial8UpDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial9UpDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial10UpDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial11UpDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial1DownDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial2DownDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial3DownDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial4DownDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial5DownDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial6DownDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial7DownDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial8DownDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial9DownDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial10DownDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadMaterial11DownDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm0">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm6">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm7">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm8">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm9">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm10">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm0">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm6">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm7">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm8">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm9">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm10">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger1Open(CLK := bCylinder1Open OR g_bCylinderOpen1 OR g_biCylinderOpen1);
+RTrigger2Open(CLK := bCylinder2Open OR g_bCylinderOpen2 OR g_biCylinderOpen2);
+RTrigger3Open(CLK := bCylinder3Open OR g_bCylinderOpen3 OR g_biCylinderOpen3);
+RTrigger4Open(CLK := bCylinder4Open OR g_bCylinderOpen4 OR g_biCylinderOpen4);
+RTrigger5Open(CLK := bCylinder5Open OR g_bCylinderOpen5 OR g_biCylinderOpen5);
+RTrigger6Open(CLK := bCylinder6Open OR g_bCylinderOpen6 OR g_biCylinderOpen6);
+RTrigger7Open(CLK := bCylinder7Open OR g_bCylinderOpen7 OR g_biCylinderOpen7);
+RTrigger8Open(CLK := bCylinder8Open OR g_bCylinderOpen8 OR g_biCylinderOpen8);
+RTrigger9Open(CLK := bCylinder9Open OR g_bCylinderOpen9 OR g_biCylinderOpen9);
+RTrigger10Open(CLK := bCylinder10Open OR g_bCylinderOpen10 OR g_biCylinderOpen10);
+RTrigger11Open(CLK := bCylinder11Open OR g_bCylinderOpen11 OR g_biCylinderOpen11);
+
+RTrigger1Close(CLK := bCylinder1Close OR g_bCylinderClose1 OR g_biCylinderClose1);
+RTrigger2Close(CLK := bCylinder2Close OR g_bCylinderClose2 OR g_biCylinderClose2);
+RTrigger3Close(CLK := bCylinder3Close OR g_bCylinderClose3 OR g_biCylinderClose3);
+RTrigger4Close(CLK := bCylinder4Close OR g_bCylinderClose4 OR g_biCylinderClose4);
+RTrigger5Close(CLK := bCylinder5Close OR g_bCylinderClose5 OR g_biCylinderClose5);
+RTrigger6Close(CLK := bCylinder6Close OR g_bCylinderClose6 OR g_biCylinderClose6);
+RTrigger7Close(CLK := bCylinder7Close OR g_bCylinderClose7 OR g_biCylinderClose7);
+RTrigger8Close(CLK := bCylinder8Close OR g_bCylinderClose8 OR g_biCylinderClose8);
+RTrigger9Close(CLK := bCylinder9Close OR g_bCylinderClose9 OR g_biCylinderClose9);
+RTrigger10Close(CLK := bCylinder10Close OR g_bCylinderClose10 OR g_biCylinderClose10);
+RTrigger11Close(CLK := bCylinder11Close OR g_bCylinderClose11 OR g_biCylinderClose11);
+IF RTrigger1Open.Q THEN
+  bCylinder1Open:= FALSE;(*资源回收*)
+  g_bCylinderOpen1:= FALSE;(*资源回收*)
+  g_boLoadCyl01Up := TRUE;
+  g_boLoadCyl01Down := FALSE;
+  g_bLoadMaterial1DelayFlag := TRUE;
+  g_bLoadMaterialState1:= FALSE;
+  g_boLoading1UpDone:= FALSE;
+  g_boLoading1DownDone:= FALSE;
+  bLoadMaterial1UpDelayFlag := TRUE;
+  bLoadMaterial1DownDelayFlag := FALSE;
+  InDownPlaceAlarm0(IN :=FALSE);
+  InPlaceDelay0(IN :=FALSE);
+  g_bLoadCylinder1DownSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+IF RTrigger1Close.Q THEN
+  bCylinder1Close:= FALSE;(*资源回收*)
+  g_bCylinderClose1:= FALSE;(*资源回收*)
+  g_boLoadCyl01Up := FALSE;
+  g_boLoadCyl01Down := TRUE;
+  g_bLoadMaterial1DelayFlag := TRUE;
+  g_bLoadMaterialState1:= FALSE;
+  g_boLoading1UpDone:= FALSE;
+  g_boLoading1DownDone:= FALSE;
+  bLoadMaterial1UpDelayFlag := FALSE ;
+  bLoadMaterial1DownDelayFlag := TRUE;
+  InUpPlaceAlarm0(IN :=FALSE);
+  InPlaceDelay0(IN :=FALSE);
+  g_bLoadCylinder1UpSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+
+IF g_bLoadMaterialUpInPlaceSignal1 THEN (*使用上升到位信号*)
+  IF g_boLoadCyl01Up AND g_boLoadCyl01Down=FALSE THEN
+    InPlaceDelay0(IN :=FALSE);
+    IF g_bLoadCyl01UpInPlace AND g_bLoadCyl02UpInPlace AND g_bLoadCyl03UpInPlace AND g_bLoadCyl04UpInPlace THEN
+      g_bLoadMaterialStateHmi1:= TRUE;
+      g_bLoadMaterialState1:= TRUE;
+      g_boLoading1UpDone:= TRUE;
+      InUpPlaceAlarm0(IN :=FALSE);
+      g_bLoadCylinder1UpSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF NOT g_bLoadMaterialStateHmi1 THEN
+        InUpPlaceAlarm0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay1)));
+        IF InUpPlaceAlarm0.Q THEN
+          InUpPlaceAlarm0(IN :=FALSE);
+          g_bLoadCylinder1UpSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF;
+      END_IF;        
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[1] AND g_bLoadMaterialStateHmi1 THEN
+      g_bLoadCylinder1UpSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[1] AND g_bLoadMaterialStateHmi1 THEN
+      g_bLoadCylinder1UpSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF; 
+  END_IF;
+ELSE(*使用上升到位延时*)
+   g_bLoadCylinder1UpSignalInplaceTimeoutAlarm:=FALSE;
+   IF bLoadMaterial1UpDelayFlag THEN
+    InPlaceDelay0(IN :=g_boLoadCyl01Up,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay1)));
+    IF InPlaceDelay0.Q THEN
+      g_bLoadMaterial1DelayFlag := FALSE;
+      bLoadMaterial1UpDelayFlag := FALSE;
+      InPlaceDelay0(IN :=FALSE);
+      IF g_boLoadCyl01Up AND g_boLoadCyl01Down=FALSE THEN
+        g_bLoadMaterialStateHmi1:= TRUE;
+        g_bLoadMaterialState1:= TRUE;
+        g_boLoading1UpDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF g_bLoadMaterialDownInPlaceSignal1 THEN(*使用下降到位信号*)
+  IF g_boLoadCyl01Down AND g_boLoadCyl01Up=FALSE THEN
+    InPlaceDelay0(IN :=FALSE);
+    IF g_bLoadCyl01DownInPlace AND g_bLoadCyl02DownInPlace AND g_bLoadCyl03DownInPlace AND g_bLoadCyl04DownInPlace THEN
+      g_bLoadMaterialStateHmi1:= FALSE;
+      g_bLoadMaterialState1:= TRUE;
+      g_boLoading1DownDone:= TRUE;
+      InDownPlaceAlarm0(IN :=FALSE);
+      g_bLoadCylinder1DownSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF g_bLoadMaterialStateHmi1 THEN
+        InDownPlaceAlarm0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay1)));
+        IF InDownPlaceAlarm0.Q THEN
+          InDownPlaceAlarm0(IN :=FALSE);
+          g_bLoadCylinder1DownSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF;
+      END_IF;   
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[0] AND NOT g_bLoadMaterialStateHmi1 THEN
+      g_bLoadCylinder1DownSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[0] AND NOT g_bLoadMaterialStateHmi1 THEN
+      g_bLoadCylinder1DownSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF; 
+  END_IF;
+ELSE(*使用下降到位延时*)
+   g_bLoadCylinder1DownSignalInplaceTimeoutAlarm:=FALSE;
+   IF bLoadMaterial1DownDelayFlag THEN
+    InPlaceDelay0(IN :=g_boLoadCyl01Down,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay1)));
+    IF InPlaceDelay0.Q THEN
+      InPlaceDelay0(IN :=FALSE);
+      bLoadMaterial1DownDelayFlag := FALSE;
+      g_bLoadMaterial1DelayFlag := FALSE;
+      IF g_boLoadCyl01Down AND g_boLoadCyl01Up=FALSE THEN
+        g_bLoadMaterialStateHmi1:= FALSE;
+        g_bLoadMaterialState1:= TRUE;
+        g_boLoading1DownDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+
+
+IF RTrigger2Open.Q THEN
+  bCylinder2Open:= FALSE;
+  g_bCylinderOpen2:= FALSE;
+  g_boLoadCyl11Up := TRUE;
+  g_boLoadCyl11Down := FALSE;
+  g_bLoadMaterial2DelayFlag := TRUE;
+  g_bLoadMaterialState2:= FALSE;
+  g_boLoading2UpDone:= FALSE;
+  g_boLoading2DownDone:= FALSE;
+  bLoadMaterial2UpDelayFlag := TRUE;
+  bLoadMaterial2DownDelayFlag := FALSE;
+  InDownPlaceAlarm1(IN :=FALSE);
+  InPlaceDelay1(IN :=FALSE);
+  g_bLoadCylinder2DownSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+IF RTrigger2Close.Q THEN
+  bCylinder2Close:= FALSE;
+  g_bCylinderClose2:= FALSE;
+  g_boLoadCyl11Up := FALSE;
+  g_boLoadCyl11Down := TRUE;
+  g_bLoadMaterial2DelayFlag := TRUE;
+  g_boLoading2UpDone:= FALSE;
+  g_boLoading2DownDone:= FALSE;
+  bLoadMaterial2UpDelayFlag := FALSE;
+  bLoadMaterial2DownDelayFlag := TRUE;
+  InUpPlaceAlarm1(IN :=FALSE);
+  InPlaceDelay1(IN :=FALSE);
+  g_bLoadCylinder2UpSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+
+IF g_bLoadMaterialUpInPlaceSignal2 THEN
+  IF g_boLoadCyl11Up AND g_boLoadCyl11Down=FALSE THEN
+    InPlaceDelay1(IN :=FALSE);
+    IF g_bLoadCyl11UpInPlace AND g_bLoadCyl12UpInPlace AND g_bLoadCyl13UpInPlace AND g_bLoadCyl14UpInPlace THEN
+      g_bLoadMaterialStateHmi2:= TRUE;
+      g_bLoadMaterialState2:= TRUE;
+      g_boLoading2UpDone:= TRUE;
+      InUpPlaceAlarm1(IN :=FALSE);
+      g_bLoadCylinder2UpSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF NOT g_bLoadMaterialStateHmi2 THEN
+        InUpPlaceAlarm1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay2)));
+        IF InUpPlaceAlarm1.Q THEN
+          InUpPlaceAlarm1(IN :=FALSE);
+          g_bLoadCylinder2UpSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF; 
+      END_IF; 
+    END_IF; 
+    IF NOT g_CylAllStateUpDate.BoolArr[3] AND g_bLoadMaterialStateHmi2 THEN
+      g_bLoadCylinder2UpSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[3] AND g_bLoadMaterialStateHmi2 THEN
+      g_bLoadCylinder2UpSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF;    
+  END_IF;
+ELSE
+  g_bLoadCylinder2UpSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial2UpDelayFlag THEN
+    InPlaceDelay1(IN :=g_boLoadCyl11Up,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay2)));
+    IF InPlaceDelay1.Q THEN
+      bLoadMaterial2UpDelayFlag := FALSE;
+      g_bLoadMaterial2DelayFlag := FALSE;
+      InPlaceDelay1(IN :=FALSE);
+      IF g_boLoadCyl11Up AND g_boLoadCyl11Down=FALSE THEN
+        g_bLoadMaterialStateHmi2:= TRUE;
+        g_bLoadMaterialState2:= TRUE;
+        g_boLoading2UpDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+IF g_bLoadMaterialDownInPlaceSignal2 THEN
+   IF g_boLoadCyl11Down AND g_boLoadCyl11Up=FALSE THEN
+    InPlaceDelay1(IN :=FALSE);
+    IF g_bLoadCyl11DownInPlace AND g_bLoadCyl12DownInPlace AND g_bLoadCyl13DownInPlace AND g_bLoadCyl14DownInPlace THEN
+      g_bLoadMaterialStateHmi2:= FALSE;
+      g_bLoadMaterialState2:= TRUE;
+      g_boLoading2DownDone:= TRUE;
+      InDownPlaceAlarm1(IN :=FALSE);
+      g_bLoadCylinder2DownSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF g_bLoadMaterialStateHmi2 THEN
+        InDownPlaceAlarm1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay2)));
+        IF InDownPlaceAlarm1.Q THEN
+          InDownPlaceAlarm1(IN :=FALSE);
+          g_bLoadCylinder2DownSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF; 
+      END_IF;
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[2] AND NOT g_bLoadMaterialStateHmi2 THEN
+      g_bLoadCylinder2DownSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[2] AND NOT g_bLoadMaterialStateHmi2 THEN
+      g_bLoadCylinder2DownSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF;
+  END_IF;
+ELSE
+   g_bLoadCylinder2DownSignalInplaceTimeoutAlarm:=FALSE;
+   IF bLoadMaterial2DownDelayFlag THEN
+    InPlaceDelay1(IN :=g_boLoadCyl11Down,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay2)));
+    IF InPlaceDelay1.Q THEN
+      g_bLoadMaterial2DelayFlag := FALSE;
+      bLoadMaterial2DownDelayFlag := FALSE;
+      InPlaceDelay1(IN :=FALSE);
+      IF g_boLoadCyl11Down AND g_boLoadCyl11Up=FALSE THEN
+        g_bLoadMaterialStateHmi2:= FALSE;
+        g_bLoadMaterialState2:= TRUE;
+        g_boLoading2DownDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+  
+IF RTrigger3Open.Q THEN
+  bCylinder3Open := FALSE;
+  g_bCylinderOpen3:= FALSE;
+  g_boLoadCyl21Up := TRUE;
+  g_boLoadCyl21Down := FALSE;
+  g_bLoadMaterial3DelayFlag := TRUE;
+  g_bLoadMaterialState3:= FALSE;
+  g_boLoading3UpDone:= FALSE;
+  g_boLoading3DownDone:= FALSE;
+  bLoadMaterial3UpDelayFlag := TRUE;
+  bLoadMaterial3DownDelayFlag := FALSE;
+  InDownPlaceAlarm2(IN :=FALSE);
+  InPlaceDelay2(IN :=FALSE);
+  g_bLoadCylinder3DownSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+IF RTrigger3Close.Q THEN
+  bCylinder3Close := FALSE;
+  g_bCylinderClose3 := FALSE;
+  g_boLoadCyl21Up := FALSE;
+  g_boLoadCyl21Down := TRUE;
+  g_bLoadMaterial3DelayFlag := TRUE;
+  g_bLoadMaterialState3:= FALSE;
+  g_boLoading3UpDone:= FALSE;
+  g_boLoading3DownDone:= FALSE;
+  bLoadMaterial3UpDelayFlag := FALSE;
+  bLoadMaterial3DownDelayFlag := TRUE;
+  InUpPlaceAlarm2(IN :=FALSE);
+  InPlaceDelay2(IN :=FALSE);
+  g_bLoadCylinder3UpSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+  
+IF g_bLoadMaterialUpInPlaceSignal3 THEN
+  IF g_boLoadCyl21Up AND g_boLoadCyl21Down=FALSE THEN
+    InPlaceDelay2(IN :=FALSE);
+    IF g_bLoadCyl21UpInPlace AND g_bLoadCyl22UpInPlace AND g_bLoadCyl23UpInPlace AND g_bLoadCyl24UpInPlace THEN
+      g_bLoadMaterialStateHmi3:= TRUE;
+      g_bLoadMaterialState3:= TRUE;
+      g_boLoading3UpDone:= TRUE;
+      InUpPlaceAlarm2(IN :=FALSE);
+      g_bLoadCylinder3UpSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF NOT g_bLoadMaterialStateHmi3 THEN
+        InUpPlaceAlarm2(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay3)));
+        IF InUpPlaceAlarm2.Q THEN
+          InUpPlaceAlarm2(IN :=FALSE);
+          g_bLoadCylinder3UpSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF;
+      END_IF; 
+    END_IF; 
+    IF NOT g_CylAllStateUpDate.BoolArr[5] AND g_bLoadMaterialStateHmi3 THEN
+      g_bLoadCylinder3UpSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[5] AND g_bLoadMaterialStateHmi3 THEN
+      g_bLoadCylinder3UpSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF; 
+  END_IF;   
+ELSE
+   g_bLoadCylinder3UpSignalInplaceTimeoutAlarm:=FALSE;
+   IF bLoadMaterial3UpDelayFlag THEN
+    InPlaceDelay2(IN :=g_boLoadCyl21Up,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay3)));
+    IF InPlaceDelay2.Q THEN
+      g_bLoadMaterial3DelayFlag := FALSE;
+      bLoadMaterial3UpDelayFlag := FALSE;
+      InPlaceDelay2(IN :=FALSE);
+      IF g_boLoadCyl21Up AND g_boLoadCyl21Down=FALSE THEN
+        g_bLoadMaterialStateHmi3:= TRUE;
+        g_bLoadMaterialState3:= TRUE;
+        g_boLoading3UpDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;  
+END_IF;
+
+IF g_bLoadMaterialDownInPlaceSignal3 THEN
+   IF g_boLoadCyl21Down AND g_boLoadCyl21Up=FALSE THEN
+    InPlaceDelay2(IN :=FALSE);
+    IF g_bLoadCyl21DownInPlace AND g_bLoadCyl22DownInPlace AND g_bLoadCyl23DownInPlace AND g_bLoadCyl24DownInPlace THEN
+      g_bLoadMaterialStateHmi3:= FALSE;
+      g_bLoadMaterialState3:= TRUE;
+      g_boLoading3DownDone:= TRUE;
+      InDownPlaceAlarm2(IN :=FALSE);
+      g_bLoadCylinder3DownSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF g_bLoadMaterialStateHmi3 THEN
+        InDownPlaceAlarm2(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay3)));
+        IF InDownPlaceAlarm2.Q THEN
+          InDownPlaceAlarm2(IN :=FALSE);
+          g_bLoadCylinder3DownSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF;  
+      END_IF;
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[4] AND NOT g_bLoadMaterialStateHmi3 THEN
+      g_bLoadCylinder3DownSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[4] AND NOT g_bLoadMaterialStateHmi3 THEN
+      g_bLoadCylinder3DownSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF;
+  END_IF;
+   
+ELSE
+  g_bLoadCylinder3DownSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial3DownDelayFlag THEN
+    InPlaceDelay2(IN :=g_boLoadCyl21Down,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay3)));
+    IF InPlaceDelay2.Q THEN
+      g_bLoadMaterial3DelayFlag := FALSE;
+      bLoadMaterial3DownDelayFlag := FALSE;
+      InPlaceDelay2(IN :=FALSE);
+      IF g_boLoadCyl21Down AND g_boLoadCyl21Up=FALSE THEN
+        g_bLoadMaterialStateHmi3:= FALSE;
+        g_bLoadMaterialState3:= TRUE;
+        g_boLoading3DownDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+   
+END_IF; 
+    
+      
+          
+  
+  
+IF RTrigger4Open.Q THEN
+  bCylinder4Open := FALSE;
+  g_bCylinderOpen4 := FALSE;
+  g_boLoadCyl31Up := TRUE;
+  g_boLoadCyl31Down := FALSE;
+  g_bLoadMaterial4DelayFlag := TRUE;
+  g_bLoadMaterialState4:= FALSE;
+  g_boLoading4UpDone:= FALSE;
+  g_boLoading4DownDone:= FALSE;
+  bLoadMaterial4UpDelayFlag := TRUE;
+  bLoadMaterial4DownDelayFlag := FALSE;
+  InDownPlaceAlarm3(IN :=FALSE);
+  InPlaceDelay3(IN :=FALSE);
+  g_bLoadCylinder4DownSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+IF RTrigger4Close.Q THEN
+  bCylinder4Close := FALSE;
+  g_bCylinderClose4 := FALSE;
+  g_boLoadCyl31Up := FALSE;
+  g_boLoadCyl31Down := TRUE;
+  g_bLoadMaterial4DelayFlag := TRUE;
+  g_bLoadMaterialState4:= FALSE;
+  g_boLoading4UpDone:= FALSE;
+  g_boLoading4DownDone:= FALSE;
+  bLoadMaterial4UpDelayFlag := FALSE;
+  bLoadMaterial4DownDelayFlag := TRUE;
+  InUpPlaceAlarm3(IN :=FALSE);
+  InPlaceDelay3(IN :=FALSE);
+  g_bLoadCylinder4UpSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+
+(*hmi状态灯显示,自动上料机中也可使用*)
+IF g_bLoadMaterialUpInPlaceSignal4 THEN
+  IF g_boLoadCyl31Up AND g_boLoadCyl31Down=FALSE THEN
+    InPlaceDelay3(IN :=FALSE);
+    IF g_bLoadCyl31UpInPlace AND g_bLoadCyl32UpInPlace AND g_bLoadCyl33UpInPlace AND g_bLoadCyl34UpInPlace THEN
+      g_bLoadMaterialStateHmi4:= TRUE;
+      g_bLoadMaterialState4:= TRUE;
+      g_boLoading4UpDone:= TRUE;
+      InUpPlaceAlarm3(IN :=FALSE);
+      g_bLoadCylinder4UpSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF NOT g_bLoadMaterialStateHmi4 THEN
+        InUpPlaceAlarm3(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay4)));
+        IF InUpPlaceAlarm3.Q THEN
+          InUpPlaceAlarm3(IN :=FALSE);
+          g_bLoadCylinder4UpSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF;
+      END_IF;  
+    END_IF; 
+    IF NOT g_CylAllStateUpDate.BoolArr[7] AND g_bLoadMaterialStateHmi4 THEN
+      g_bLoadCylinder4UpSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[7] AND g_bLoadMaterialStateHmi4 THEN
+      g_bLoadCylinder4UpSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF; 
+  END_IF;  
+ELSE
+  g_bLoadCylinder4UpSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial4UpDelayFlag THEN
+    InPlaceDelay3(IN :=g_boLoadCyl31Up,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay4)));
+    IF InPlaceDelay3.Q THEN
+      g_bLoadMaterial4DelayFlag := FALSE;
+      bLoadMaterial4UpDelayFlag := FALSE;
+      InPlaceDelay3(IN :=FALSE);
+      IF g_boLoadCyl31Up AND g_boLoadCyl31Down=FALSE THEN
+        g_bLoadMaterialStateHmi4:= TRUE;
+        g_bLoadMaterialState4:= TRUE;
+        g_boLoading4UpDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;   
+END_IF; 
+IF g_bLoadMaterialDownInPlaceSignal4 THEN
+   IF g_boLoadCyl31Down AND g_boLoadCyl31Up=FALSE THEN
+    InPlaceDelay3(IN :=FALSE);
+    IF g_bLoadCyl31DownInPlace AND g_bLoadCyl32DownInPlace AND g_bLoadCyl33DownInPlace AND g_bLoadCyl34DownInPlace THEN
+      g_bLoadMaterialStateHmi4:= FALSE;
+      g_bLoadMaterialState4:= TRUE;
+      g_boLoading4DownDone:= TRUE;
+      InDownPlaceAlarm3(IN :=FALSE);
+      g_bLoadCylinder4DownSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF g_bLoadMaterialStateHmi4 THEN
+        InDownPlaceAlarm3(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay4)));
+        IF InDownPlaceAlarm3.Q THEN
+          InDownPlaceAlarm3(IN :=FALSE);
+          g_bLoadCylinder4DownSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF; 
+      END_IF;
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[6] AND NOT g_bLoadMaterialStateHmi4 THEN
+      g_bLoadCylinder4DownSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[6] AND NOT g_bLoadMaterialStateHmi4 THEN
+      g_bLoadCylinder4DownSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF;
+  END_IF;   
+ELSE
+  g_bLoadCylinder4DownSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial4DownDelayFlag THEN
+    InPlaceDelay3(IN :=g_boLoadCyl31Down,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay4)));
+    IF InPlaceDelay3.Q THEN
+      g_bLoadMaterial4DelayFlag := FALSE;
+      bLoadMaterial4DownDelayFlag := FALSE;
+      InPlaceDelay3(IN :=FALSE);
+      IF g_boLoadCyl31Down AND g_boLoadCyl31Up=FALSE THEN
+        g_bLoadMaterialStateHmi4:= FALSE;
+        g_bLoadMaterialState4:= TRUE;
+        g_boLoading4DownDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;  
+END_IF;  
+  
+  
+
+IF RTrigger5Open.Q THEN
+  bCylinder5Open := FALSE;
+  g_bCylinderOpen5 := FALSE;
+  g_boLoadCyl41Up := TRUE;
+  g_boLoadCyl41Down := FALSE;
+  g_bLoadMaterial5DelayFlag := TRUE;
+  g_bLoadMaterialState5:= FALSE;
+  g_boLoading5UpDone:= FALSE;
+  g_boLoading5DownDone:= FALSE;
+  KuXunTon(IN :=FALSE);
+  bLoadMaterial5UpDelayFlag := TRUE;
+  bLoadMaterial5DownDelayFlag := FALSE;
+  InDownPlaceAlarm4(IN :=FALSE);
+  InPlaceDelay4(IN :=FALSE);
+  g_bLoadCylinder5DownSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+IF RTrigger5Close.Q THEN
+  bCylinder5Close := FALSE;
+  g_bCylinderClose5 := FALSE;
+  g_boLoadCyl41Up := FALSE;
+  g_boLoadCyl41Down := TRUE;
+  g_bLoadMaterial5DelayFlag := TRUE;
+  g_bLoadMaterialState5:= FALSE;
+  g_boLoading5UpDone:= FALSE;
+  g_boLoading5DownDone:= FALSE;
+  KuXunTon(IN :=FALSE);
+  bLoadMaterial5UpDelayFlag := FALSE;
+  bLoadMaterial5DownDelayFlag := TRUE;
+  InUpPlaceAlarm4(IN :=FALSE);
+  InPlaceDelay4(IN :=FALSE);
+  g_bLoadCylinder5UpSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+
+(*hmi状态灯显示,自动上料机中也可使用*)
+IF g_bLoadMaterialUpInPlaceSignal5 THEN(*使用到位信号*)
+  IF g_boLoadCyl41Up AND g_boLoadCyl41Down=FALSE THEN
+    InPlaceDelay4(IN :=FALSE);
+    IF g_bLoadCyl41UpInPlace AND g_bLoadCyl42UpInPlace AND g_bLoadCyl43UpInPlace AND g_bLoadCyl44UpInPlace THEN
+      g_bLoadMaterialStateHmi5:= TRUE;
+      g_bLoadMaterialState5:= TRUE;
+      g_boLoading5UpDone:= TRUE;
+      IF g_nMachineType=3 THEN(*库讯，收到到位了自动返回*)
+        KuXunTon(IN :=TRUE,PT := LREAL_TO_TIME(fKuXunDelay0));
+        IF KuXunTon.Q THEN
+          KuXunTon(IN :=FALSE);
+          g_boLoadCyl41Up := FALSE;
+          g_boLoadCyl41Down := TRUE;
+        END_IF;
+      END_IF;
+      InUpPlaceAlarm4(IN :=FALSE);
+      g_bLoadCylinder5UpSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF NOT g_bLoadMaterialStateHmi5 THEN
+        InUpPlaceAlarm4(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay5)));
+        IF InUpPlaceAlarm4.Q THEN
+          InUpPlaceAlarm4(IN :=FALSE);
+          g_bLoadCylinder5UpSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF; 
+      END_IF;
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[9] AND g_bLoadMaterialStateHmi5 THEN
+      g_bLoadCylinder5UpSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[9] AND g_bLoadMaterialStateHmi5 THEN
+      g_bLoadCylinder5UpSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF;    
+  END_IF;
+ELSE(*使用延时信号*)
+  g_bLoadCylinder5UpSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial5UpDelayFlag THEN
+    InPlaceDelay4(IN :=g_boLoadCyl41Up,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay5)));
+    IF InPlaceDelay4.Q THEN
+      g_bLoadMaterial5DelayFlag := FALSE;
+      bLoadMaterial5UpDelayFlag := FALSE;
+      InPlaceDelay4(IN :=FALSE);
+      IF g_boLoadCyl41Up AND g_boLoadCyl41Down=FALSE THEN
+        g_bLoadMaterialStateHmi5:= TRUE;
+        g_bLoadMaterialState5:= TRUE;
+        g_boLoading5UpDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF; 
+IF g_bLoadMaterialDownInPlaceSignal5 THEN(*使用到位信号*)
+  IF g_boLoadCyl41Down AND g_boLoadCyl41Up=FALSE THEN
+    InPlaceDelay4(IN :=FALSE);
+    IF g_bLoadCyl41DownInPlace AND g_bLoadCyl42DownInPlace AND g_bLoadCyl43DownInPlace AND g_bLoadCyl44DownInPlace THEN
+      g_bLoadMaterialStateHmi5:= FALSE;
+      g_bLoadMaterialState5:= TRUE;
+      g_boLoading5DownDone:= TRUE;
+      InDownPlaceAlarm4(IN :=FALSE);
+      g_bLoadCylinder5DownSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF g_bLoadMaterialStateHmi5 THEN
+        InDownPlaceAlarm4(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay5)));
+        IF InDownPlaceAlarm4.Q THEN
+          InDownPlaceAlarm4(IN :=FALSE);
+          g_bLoadCylinder5DownSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF; 
+      END_IF; 
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[8] AND NOT g_bLoadMaterialStateHmi5 THEN
+      g_bLoadCylinder5DownSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[8] AND NOT g_bLoadMaterialStateHmi5 THEN
+      g_bLoadCylinder5DownSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF;
+  END_IF;
+ELSE(*使用延时信号*)
+  g_bLoadCylinder5DownSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial5DownDelayFlag THEN
+    InPlaceDelay4(IN :=g_boLoadCyl41Down,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay5)));
+    IF InPlaceDelay4.Q THEN
+      g_bLoadMaterial5DelayFlag := FALSE;
+      bLoadMaterial5DownDelayFlag := FALSE;
+      InPlaceDelay4(IN :=FALSE);
+      IF g_boLoadCyl41Down AND g_boLoadCyl41Up=FALSE THEN
+        g_bLoadMaterialStateHmi5:= FALSE;
+        g_bLoadMaterialState5:= TRUE;
+        g_boLoading5DownDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF; 
+  
+
+
+
+
+
+
+
+
+
+(*第六组*)
+IF RTrigger6Open.Q THEN
+  bCylinder6Open := FALSE;
+  g_bCylinderOpen6 := FALSE;
+  g_boLoadCyl51Up := TRUE;
+  g_boLoadCyl51Down := FALSE;
+  g_bLoadMaterial6DelayFlag := TRUE;
+  g_bLoadMaterialState6:= FALSE;
+  g_boLoading6UpDone:= FALSE;
+  g_boLoading6DownDone:= FALSE;
+  bLoadMaterial6UpDelayFlag := TRUE;
+  bLoadMaterial6DownDelayFlag := FALSE;
+  InDownPlaceAlarm5(IN :=FALSE);
+  InPlaceDelay5(IN :=FALSE);
+  g_bLoadCylinder6DownSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+IF RTrigger6Close.Q THEN
+  bCylinder6Close := FALSE;
+  g_bCylinderClose6 := FALSE;
+  g_boLoadCyl51Up := FALSE;
+  g_boLoadCyl51Down := TRUE;
+  g_bLoadMaterial6DelayFlag := TRUE;
+  g_bLoadMaterialState6:= FALSE;
+  g_boLoading6UpDone:= FALSE;
+  g_boLoading6DownDone:= FALSE;
+  bLoadMaterial6UpDelayFlag := FALSE;
+  bLoadMaterial6DownDelayFlag := TRUE;
+  InUpPlaceAlarm5(IN :=FALSE);
+  InPlaceDelay5(IN :=FALSE);
+  g_bLoadCylinder6UpSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+
+(*hmi状态灯显示,自动上料机中也可使用*)
+IF g_bLoadMaterialUpInPlaceSignal6 THEN(*使用到位信号*)
+  IF g_boLoadCyl51Up AND g_boLoadCyl51Down=FALSE THEN
+    InPlaceDelay5(IN :=FALSE);
+    IF g_bLoadCyl51UpInPlace AND g_bLoadCyl52UpInPlace AND g_bLoadCyl53UpInPlace AND g_bLoadCyl54UpInPlace THEN
+      g_bLoadMaterialStateHmi6:= TRUE;
+      g_bLoadMaterialState6:= TRUE;
+      g_boLoading6UpDone:= TRUE;
+      InUpPlaceAlarm5(IN :=FALSE);
+      g_bLoadCylinder6UpSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF NOT g_bLoadMaterialStateHmi6 THEN
+        InUpPlaceAlarm5(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay6)));
+        IF InUpPlaceAlarm5.Q THEN
+          InUpPlaceAlarm5(IN :=FALSE);
+          g_bLoadCylinder6UpSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF;
+      END_IF;  
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[11] AND g_bLoadMaterialStateHmi6 THEN
+      g_bLoadCylinder6UpSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[11] AND g_bLoadMaterialStateHmi6 THEN
+      g_bLoadCylinder6UpSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF; 
+  END_IF;
+ELSE(*使用延时信号*)
+  g_bLoadCylinder6UpSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial6UpDelayFlag THEN
+    InPlaceDelay5(IN :=g_boLoadCyl51Up,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay6)));
+    IF InPlaceDelay5.Q THEN
+      g_bLoadMaterial6DelayFlag := FALSE;
+      bLoadMaterial6UpDelayFlag := FALSE;
+      InPlaceDelay5(IN :=FALSE);
+      IF g_boLoadCyl51Up AND g_boLoadCyl51Down=FALSE THEN
+        g_bLoadMaterialStateHmi6:= TRUE;
+        g_bLoadMaterialState6:= TRUE;
+        g_boLoading6UpDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF; 
+
+
+IF g_bLoadMaterialDownInPlaceSignal6 THEN(*使用到位信号*)
+  IF g_boLoadCyl51Down AND g_boLoadCyl51Up=FALSE THEN
+    InPlaceDelay5(IN :=FALSE);
+    IF g_bLoadCyl51DownInPlace AND g_bLoadCyl52DownInPlace AND g_bLoadCyl53DownInPlace AND g_bLoadCyl54DownInPlace THEN
+      g_bLoadMaterialStateHmi6:= FALSE;
+      g_bLoadMaterialState6:= TRUE;
+      g_boLoading6DownDone:= TRUE;
+      InDownPlaceAlarm5(IN :=FALSE);
+      g_bLoadCylinder6DownSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF g_bLoadMaterialStateHmi6 THEN
+        InDownPlaceAlarm5(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay6)));
+        IF InDownPlaceAlarm5.Q THEN
+          InDownPlaceAlarm5(IN :=FALSE);
+          g_bLoadCylinder6DownSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF; 
+      END_IF; 
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[10] AND NOT g_bLoadMaterialStateHmi6 THEN
+      g_bLoadCylinder6DownSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[10] AND NOT g_bLoadMaterialStateHmi6 THEN
+      g_bLoadCylinder6DownSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF;
+  END_IF;
+ELSE(*使用延时信号*)
+  g_bLoadCylinder6DownSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial6DownDelayFlag THEN
+    InPlaceDelay5(IN :=g_boLoadCyl51Down,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay6)));
+    IF InPlaceDelay5.Q THEN
+      g_bLoadMaterial6DelayFlag := FALSE;
+      bLoadMaterial6DownDelayFlag := FALSE;
+      InPlaceDelay5(IN :=FALSE);
+      IF g_boLoadCyl51Down AND g_boLoadCyl51Up=FALSE THEN
+        g_bLoadMaterialStateHmi6:= FALSE;
+        g_bLoadMaterialState6:= TRUE;
+        g_boLoading6DownDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF; 
+
+(*第七组*)
+IF RTrigger7Open.Q THEN
+  bCylinder7Open := FALSE;
+  g_bCylinderOpen7 := FALSE;
+  g_boLoadCyl61Up := TRUE;
+  g_boLoadCyl61Down := FALSE;
+  g_bLoadMaterial7DelayFlag := TRUE;
+  g_bLoadMaterialState7:= FALSE;
+  g_boLoading7UpDone:= FALSE;
+  g_boLoading7DownDone:= FALSE;
+  bLoadMaterial7UpDelayFlag := TRUE;
+  bLoadMaterial7DownDelayFlag := FALSE;
+  InDownPlaceAlarm6(IN :=FALSE);
+  InPlaceDelay6(IN :=FALSE);
+  g_bLoadCylinder7DownSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+IF RTrigger7Close.Q THEN
+  bCylinder7Close := FALSE;
+  g_bCylinderClose7 := FALSE;
+  g_boLoadCyl61Up := FALSE;
+  g_boLoadCyl61Down := TRUE;
+  g_bLoadMaterial7DelayFlag := TRUE;
+  g_bLoadMaterialState7:= FALSE;
+  g_boLoading7UpDone:= FALSE;
+  g_boLoading7DownDone:= FALSE;
+  bLoadMaterial7UpDelayFlag := FALSE;
+  bLoadMaterial7DownDelayFlag := TRUE;
+  InUpPlaceAlarm6(IN :=FALSE);
+  InPlaceDelay6(IN :=FALSE);
+  g_bLoadCylinder7UpSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+
+(*hmi状态灯显示,自动上料机中也可使用*)
+IF g_bLoadMaterialUpInPlaceSignal7 THEN(*使用到位信号*)
+  IF g_boLoadCyl61Up AND g_boLoadCyl61Down=FALSE THEN
+    InPlaceDelay6(IN :=FALSE);
+    IF g_bLoadCyl61UpInPlace AND g_bLoadCyl62UpInPlace AND g_bLoadCyl63UpInPlace AND g_bLoadCyl64UpInPlace THEN
+      g_bLoadMaterialStateHmi7:= TRUE;
+      g_bLoadMaterialState7:= TRUE;
+      g_boLoading7UpDone:= TRUE;
+      InUpPlaceAlarm6(IN :=FALSE);
+      g_bLoadCylinder7UpSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF NOT g_bLoadMaterialStateHmi7 THEN
+        InUpPlaceAlarm6(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay7)));
+        IF InUpPlaceAlarm6.Q THEN
+          InUpPlaceAlarm6(IN :=FALSE);
+          g_bLoadCylinder7UpSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF; 
+      END_IF; 
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[13] AND g_bLoadMaterialStateHmi7 THEN
+      g_bLoadCylinder7UpSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[13] AND g_bLoadMaterialStateHmi7 THEN
+      g_bLoadCylinder7UpSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF; 
+  END_IF;
+ELSE(*使用延时信号*)
+  g_bLoadCylinder7UpSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial7UpDelayFlag THEN
+    InPlaceDelay6(IN :=g_boLoadCyl61Up,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay7)));
+    IF InPlaceDelay6.Q THEN
+      g_bLoadMaterial7DelayFlag := FALSE;
+      bLoadMaterial7UpDelayFlag := FALSE;
+      InPlaceDelay6(IN :=FALSE);
+      IF g_boLoadCyl61Up AND g_boLoadCyl61Down=FALSE THEN
+        g_bLoadMaterialStateHmi7:= TRUE;
+        g_bLoadMaterialState7:= TRUE;
+        g_boLoading7UpDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+ IF g_bLoadMaterialDownInPlaceSignal7 THEN(*使用到位信号*)
+  IF g_boLoadCyl61Down AND g_boLoadCyl61Up=FALSE THEN
+    InPlaceDelay6(IN :=FALSE);
+    IF g_bLoadCyl61DownInPlace AND g_bLoadCyl62DownInPlace AND g_bLoadCyl63DownInPlace AND g_bLoadCyl64DownInPlace THEN
+      g_bLoadMaterialStateHmi7:= FALSE;
+      g_bLoadMaterialState7:= TRUE;
+      g_boLoading7DownDone:= TRUE;
+      InDownPlaceAlarm6(IN :=FALSE);
+      g_bLoadCylinder7DownSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF g_bLoadMaterialStateHmi7 THEN
+        InDownPlaceAlarm6(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay7)));
+        IF InDownPlaceAlarm6.Q THEN
+          InDownPlaceAlarm6(IN :=FALSE);
+          g_bLoadCylinder7DownSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF; 
+      END_IF; 
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[12] AND NOT g_bLoadMaterialStateHmi7 THEN
+      g_bLoadCylinder7DownSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[12] AND NOT g_bLoadMaterialStateHmi7 THEN
+      g_bLoadCylinder7DownSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF;
+  END_IF;
+  
+ELSE(*使用延时信号*)
+  g_bLoadCylinder7DownSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial7DownDelayFlag THEN
+    InPlaceDelay6(IN :=g_boLoadCyl61Down,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay7)));
+    IF InPlaceDelay6.Q THEN
+      g_bLoadMaterial7DelayFlag := FALSE;
+      bLoadMaterial7DownDelayFlag := FALSE;
+      InPlaceDelay6(IN :=FALSE);
+      IF g_boLoadCyl61Down AND g_boLoadCyl61Up=FALSE THEN
+        g_bLoadMaterialStateHmi7:= FALSE;
+        g_bLoadMaterialState7:= TRUE;
+        g_boLoading7DownDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF; 
+   
+(*第八组*)
+IF RTrigger8Open.Q THEN
+  bCylinder8Open := FALSE;
+  g_bCylinderOpen8 := FALSE;
+  g_boLoadCyl71Up := TRUE;
+  g_boLoadCyl71Down := FALSE;
+  g_bLoadMaterial8DelayFlag := TRUE;
+  g_bLoadMaterialState8:= FALSE;
+  g_boLoading8UpDone:= FALSE;
+  g_boLoading8DownDone:= FALSE;
+  bLoadMaterial8UpDelayFlag := TRUE;
+  bLoadMaterial8DownDelayFlag := FALSE;
+  InDownPlaceAlarm7(IN :=FALSE);
+  InPlaceDelay7(IN :=FALSE);
+  g_bLoadCylinder8DownSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+IF RTrigger8Close.Q THEN
+  bCylinder8Close := FALSE;
+  g_bCylinderClose8 := FALSE;
+  g_boLoadCyl71Up := FALSE;
+  g_boLoadCyl71Down := TRUE;
+  g_bLoadMaterial8DelayFlag := TRUE;
+  g_bLoadMaterialState8:= FALSE;
+  g_boLoading8UpDone:= FALSE;
+  g_boLoading8DownDone:= FALSE;
+  bLoadMaterial8UpDelayFlag := FALSE;
+  bLoadMaterial8DownDelayFlag := TRUE;
+  InUpPlaceAlarm7(IN :=FALSE);
+  InPlaceDelay7(IN :=FALSE);
+  g_bLoadCylinder8UpSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+
+(*hmi状态灯显示,自动上料机中也可使用*)
+IF g_bLoadMaterialUpInPlaceSignal8 THEN(*使用到位信号*)
+  IF g_boLoadCyl71Up AND g_boLoadCyl71Down=FALSE THEN
+    InPlaceDelay7(IN :=FALSE);
+    IF g_bLoadCyl71UpInPlace AND g_bLoadCyl72UpInPlace AND g_bLoadCyl73UpInPlace AND g_bLoadCyl74UpInPlace THEN
+      g_bLoadMaterialStateHmi8:= TRUE;
+      g_bLoadMaterialState8:= TRUE;
+      g_boLoading8UpDone:= TRUE;
+      InUpPlaceAlarm7(IN :=FALSE);
+      g_bLoadCylinder8UpSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF NOT g_bLoadMaterialStateHmi8 THEN
+        InUpPlaceAlarm7(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay8)));
+        IF InUpPlaceAlarm7.Q THEN
+          InUpPlaceAlarm7(IN :=FALSE);
+          g_bLoadCylinder8UpSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[15] AND g_bLoadMaterialStateHmi8 THEN
+      g_bLoadCylinder8UpSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[15] AND g_bLoadMaterialStateHmi8 THEN
+      g_bLoadCylinder8UpSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF; 
+  END_IF;
+ELSE(*使用延时信号*)
+  g_bLoadCylinder8UpSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial8UpDelayFlag THEN
+    InPlaceDelay7(IN :=g_boLoadCyl71Up,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay8)));
+    IF InPlaceDelay7.Q THEN
+      g_bLoadMaterial8DelayFlag := FALSE;
+      bLoadMaterial8UpDelayFlag := FALSE;
+      InPlaceDelay7(IN :=FALSE);
+      IF g_boLoadCyl71Up AND g_boLoadCyl71Down=FALSE THEN
+        g_bLoadMaterialStateHmi8:= TRUE;
+        g_bLoadMaterialState8:= TRUE;
+        g_boLoading8UpDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+IF g_bLoadMaterialDownInPlaceSignal8 THEN(*使用到位信号*)
+  IF g_boLoadCyl71Down AND g_boLoadCyl71Up=FALSE THEN
+    InPlaceDelay7(IN :=FALSE);
+    IF g_bLoadCyl71DownInPlace AND g_bLoadCyl72DownInPlace AND g_bLoadCyl73DownInPlace AND g_bLoadCyl74DownInPlace THEN
+      g_bLoadMaterialStateHmi8:= FALSE;
+      g_bLoadMaterialState8:= TRUE;
+      g_boLoading8DownDone:= TRUE;
+      InDownPlaceAlarm7(IN :=FALSE);
+      g_bLoadCylinder8DownSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF g_bLoadMaterialStateHmi8 THEN
+        InDownPlaceAlarm7(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay8)));
+        IF InDownPlaceAlarm7.Q THEN
+          InDownPlaceAlarm7(IN :=FALSE);
+          g_bLoadCylinder8DownSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[14] AND NOT g_bLoadMaterialStateHmi8 THEN
+      g_bLoadCylinder8DownSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[14] AND NOT g_bLoadMaterialStateHmi8 THEN
+       g_bLoadCylinder8DownSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF;
+  END_IF;
+ELSE(*使用延时信号*)
+  g_bLoadCylinder8DownSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial8DownDelayFlag THEN
+    InPlaceDelay7(IN :=g_boLoadCyl71Down,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay8)));
+    IF InPlaceDelay7.Q THEN
+      g_bLoadMaterial8DelayFlag := FALSE;
+      bLoadMaterial8DownDelayFlag := FALSE;
+      InPlaceDelay7(IN :=FALSE);
+      IF g_boLoadCyl71Down AND g_boLoadCyl71Up=FALSE THEN
+        g_bLoadMaterialStateHmi8:= FALSE;
+        g_bLoadMaterialState8:= TRUE;
+        g_boLoading8DownDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+(*第九组*)
+IF RTrigger9Open.Q THEN
+  bCylinder9Open := FALSE;
+  g_bCylinderOpen9 := FALSE;
+  g_boLoadCyl81Up := TRUE;
+  g_boLoadCyl81Down := FALSE;
+  g_bLoadMaterial9DelayFlag := TRUE;
+  g_bLoadMaterialState9:= FALSE;
+  g_boLoading9UpDone:= FALSE;
+  g_boLoading9DownDone:= FALSE;
+  bLoadMaterial9UpDelayFlag := TRUE;
+  bLoadMaterial9DownDelayFlag := FALSE;
+  InDownPlaceAlarm8(IN :=FALSE);
+  InPlaceDelay8(IN :=FALSE);
+  g_bLoadCylinder9DownSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+IF RTrigger9Close.Q THEN
+  bCylinder9Close := FALSE;
+  g_bCylinderClose9 := FALSE;
+  g_boLoadCyl81Up := FALSE;
+  g_boLoadCyl81Down := TRUE;
+  g_bLoadMaterial9DelayFlag := TRUE;
+  g_bLoadMaterialState9:= FALSE;
+  g_boLoading9UpDone:= FALSE;
+  g_boLoading9DownDone:= FALSE;
+  bLoadMaterial9UpDelayFlag := FALSE;
+  bLoadMaterial9DownDelayFlag := TRUE;
+  InUpPlaceAlarm8(IN :=FALSE);
+  InPlaceDelay8(IN :=FALSE);
+  g_bLoadCylinder9UpSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+
+(*hmi状态灯显示,自动上料机中也可使用*)
+IF g_bLoadMaterialUpInPlaceSignal9 THEN(*使用到位信号*)
+  IF g_boLoadCyl81Up AND g_boLoadCyl81Down=FALSE THEN
+    InPlaceDelay8(IN :=FALSE);
+    IF g_bLoadCyl81UpInPlace AND g_bLoadCyl82UpInPlace AND g_bLoadCyl83UpInPlace AND g_bLoadCyl84UpInPlace THEN
+      g_bLoadMaterialStateHmi9:= TRUE;
+      g_bLoadMaterialState9:= TRUE;
+      g_boLoading9UpDone:= TRUE;
+      InUpPlaceAlarm8(IN :=FALSE);
+      g_bLoadCylinder9UpSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF NOT g_bLoadMaterialStateHmi9 THEN
+        InUpPlaceAlarm8(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay9)));
+        IF InUpPlaceAlarm8.Q THEN
+          InUpPlaceAlarm8(IN :=FALSE);
+          g_bLoadCylinder9UpSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF;  
+      END_IF;
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[17] AND g_bLoadMaterialStateHmi9 THEN
+      g_bLoadCylinder9UpSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[17] AND g_bLoadMaterialStateHmi9 THEN
+      g_bLoadCylinder9UpSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF; 
+  END_IF;
+ELSE(*使用延时信号*)
+  g_bLoadCylinder9UpSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial9UpDelayFlag THEN
+    InPlaceDelay8(IN :=g_boLoadCyl81Up,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay9)));
+    IF InPlaceDelay8.Q THEN
+      g_bLoadMaterial9DelayFlag := FALSE;
+      bLoadMaterial9UpDelayFlag := FALSE;
+      InPlaceDelay8(IN :=FALSE);
+      IF g_boLoadCyl81Up AND g_boLoadCyl81Down=FALSE THEN
+        g_bLoadMaterialStateHmi9:= TRUE;
+        g_bLoadMaterialState9:= TRUE;
+        g_boLoading9UpDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF g_bLoadMaterialDownInPlaceSignal9 THEN(*使用到位信号*)
+  IF g_boLoadCyl81Down AND g_boLoadCyl81Up=FALSE THEN
+    InPlaceDelay8(IN :=FALSE);
+    IF g_bLoadCyl81DownInPlace AND g_bLoadCyl82DownInPlace AND g_bLoadCyl83DownInPlace AND g_bLoadCyl84DownInPlace THEN
+      g_bLoadMaterialStateHmi9:= FALSE;
+      g_bLoadMaterialState9:= TRUE;
+      g_boLoading9DownDone:= TRUE;
+      InDownPlaceAlarm8(IN :=FALSE);
+      g_bLoadCylinder9DownSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF g_bLoadMaterialStateHmi9 THEN
+        InDownPlaceAlarm8(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay9)));
+        IF InDownPlaceAlarm8.Q THEN
+          InDownPlaceAlarm8(IN :=FALSE);
+          g_bLoadCylinder9DownSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF;
+      END_IF; 
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[16] AND NOT g_bLoadMaterialStateHmi9 THEN
+      g_bLoadCylinder9DownSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[16] AND NOT g_bLoadMaterialStateHmi9 THEN
+       g_bLoadCylinder9DownSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF;
+  END_IF;
+ELSE(*使用延时信号*)
+  g_bLoadCylinder9DownSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial9DownDelayFlag THEN
+    InPlaceDelay8(IN :=g_boLoadCyl81Down,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay9)));
+    IF InPlaceDelay8.Q THEN
+      g_bLoadMaterial9DelayFlag := FALSE;
+      bLoadMaterial9DownDelayFlag := FALSE;
+      InPlaceDelay8(IN :=FALSE);
+      IF g_boLoadCyl81Down AND g_boLoadCyl81Up=FALSE THEN
+        g_bLoadMaterialStateHmi9:= FALSE;
+        g_bLoadMaterialState9:= TRUE;
+        g_boLoading9DownDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+(*第十组*)
+IF RTrigger10Open.Q THEN
+  bCylinder10Open := FALSE;
+  g_bCylinderOpen10 := FALSE;
+  g_boLoadCyl91Up := TRUE;
+  g_boLoadCyl91Down := FALSE;
+  g_bLoadMaterial10DelayFlag := TRUE;
+  g_bLoadMaterialState10:= FALSE;
+  g_boLoading10UpDone:= FALSE;
+  g_boLoading10DownDone:= FALSE;
+  bLoadMaterial10UpDelayFlag := TRUE;
+  bLoadMaterial10DownDelayFlag := FALSE;
+  InDownPlaceAlarm9(IN :=FALSE);
+  InPlaceDelay9(IN :=FALSE);
+  g_bLoadCylinder10DownSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+IF RTrigger10Close.Q THEN
+  bCylinder10Close := FALSE;
+  g_bCylinderClose10 := FALSE;
+  g_boLoadCyl91Up := FALSE;
+  g_boLoadCyl91Down := TRUE;
+  g_bLoadMaterial10DelayFlag := TRUE;
+  g_bLoadMaterialState10:= FALSE;
+  g_boLoading10UpDone:= FALSE;
+  g_boLoading10DownDone:= FALSE;
+  bLoadMaterial10UpDelayFlag := FALSE;
+  bLoadMaterial10DownDelayFlag := TRUE;
+  InUpPlaceAlarm9(IN :=FALSE);
+  InPlaceDelay9(IN :=FALSE);
+  g_bLoadCylinder10UpSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+
+(*hmi状态灯显示,自动上料机中也可使用*)
+IF g_bLoadMaterialUpInPlaceSignal10 THEN(*使用到位信号*)
+  IF g_boLoadCyl91Up AND g_boLoadCyl91Down=FALSE THEN
+    InPlaceDelay9(IN :=FALSE);
+    IF g_bLoadCyl91UpInPlace AND g_bLoadCyl92UpInPlace AND g_bLoadCyl93UpInPlace AND g_bLoadCyl94UpInPlace THEN
+      g_bLoadMaterialStateHmi10:= TRUE;
+      g_bLoadMaterialState10:= TRUE;
+      g_boLoading10UpDone:= TRUE;
+      InUpPlaceAlarm9(IN :=FALSE);
+      g_bLoadCylinder10UpSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF NOT g_bLoadMaterialStateHmi10 THEN
+        InUpPlaceAlarm9(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay10)));
+        IF InUpPlaceAlarm9.Q THEN
+          InUpPlaceAlarm9(IN :=FALSE);
+          g_bLoadCylinder10UpSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF; 
+      END_IF; 
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[19] AND g_bLoadMaterialStateHmi10 THEN
+      g_bLoadCylinder10UpSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[19] AND g_bLoadMaterialStateHmi10 THEN
+      g_bLoadCylinder10UpSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF; 
+  END_IF;
+ELSE(*使用延时信号*)
+  g_bLoadCylinder10UpSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial10UpDelayFlag THEN
+    InPlaceDelay9(IN :=g_boLoadCyl91Up,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay10)));
+    IF InPlaceDelay9.Q THEN
+      g_bLoadMaterial10DelayFlag := FALSE;
+      bLoadMaterial10UpDelayFlag := FALSE;
+      InPlaceDelay9(IN :=FALSE);
+      IF g_boLoadCyl91Up AND g_boLoadCyl91Down=FALSE THEN
+        g_bLoadMaterialStateHmi10:= TRUE;
+        g_bLoadMaterialState10:= TRUE;
+        g_boLoading10UpDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF g_bLoadMaterialDownInPlaceSignal10 THEN(*使用到位信号*)
+  IF g_boLoadCyl91Down AND g_boLoadCyl91Up=FALSE THEN
+    InPlaceDelay9(IN :=FALSE);
+    IF g_bLoadCyl91DownInPlace AND g_bLoadCyl92DownInPlace AND g_bLoadCyl93DownInPlace AND g_bLoadCyl94DownInPlace THEN
+      g_bLoadMaterialStateHmi10:= FALSE;
+      g_bLoadMaterialState10:= TRUE;
+      g_boLoading10DownDone:= TRUE;
+      InDownPlaceAlarm9(IN :=FALSE);
+      g_bLoadCylinder10DownSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF g_bLoadMaterialStateHmi10 THEN
+        InDownPlaceAlarm9(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay10)));
+        IF InDownPlaceAlarm9.Q THEN
+          InDownPlaceAlarm9(IN :=FALSE);
+          g_bLoadCylinder10DownSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF; 
+      END_IF; 
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[18] AND NOT g_bLoadMaterialStateHmi10 THEN
+      g_bLoadCylinder10DownSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[18] AND NOT g_bLoadMaterialStateHmi10 THEN
+       g_bLoadCylinder10DownSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF;
+  END_IF;
+ELSE(*使用延时信号*)
+  g_bLoadCylinder10DownSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial10DownDelayFlag THEN
+    InPlaceDelay9(IN :=g_boLoadCyl91Down,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay10)));
+    IF InPlaceDelay9.Q THEN
+      g_bLoadMaterial10DelayFlag := FALSE;
+      bLoadMaterial10DownDelayFlag := FALSE;
+      InPlaceDelay9(IN :=FALSE);
+      IF g_boLoadCyl91Down AND g_boLoadCyl91Up=FALSE THEN
+        g_bLoadMaterialStateHmi10 := FALSE;
+        g_bLoadMaterialState10 := TRUE;
+        g_boLoading10DownDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+(*第十一组*)
+IF RTrigger11Open.Q THEN
+  bCylinder11Open := FALSE;
+  g_bCylinderOpen11 := FALSE;
+  g_boLoadCyl101Up := TRUE;
+  g_boLoadCyl101Down := FALSE;
+  g_bLoadMaterial11DelayFlag := TRUE;
+  g_bLoadMaterialState11:= FALSE;
+  g_boLoading11UpDone:= FALSE;
+  g_boLoading11DownDone:= FALSE;
+  bLoadMaterial11UpDelayFlag := TRUE;
+  bLoadMaterial11DownDelayFlag := FALSE;
+  InDownPlaceAlarm10(IN :=FALSE);
+  InPlaceDelay10(IN :=FALSE);
+  g_bLoadCylinder11DownSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+IF RTrigger11Close.Q THEN
+  bCylinder11Close := FALSE;
+  g_bCylinderClose11 := FALSE;
+  g_boLoadCyl101Up := FALSE;
+  g_boLoadCyl101Down := TRUE;
+  g_bLoadMaterial11DelayFlag := TRUE;
+  g_bLoadMaterialState11:= FALSE;
+  g_boLoading11UpDone:= FALSE;
+  g_boLoading11DownDone:= FALSE;
+  bLoadMaterial11UpDelayFlag := FALSE;
+  bLoadMaterial11DownDelayFlag := TRUE;
+  InUpPlaceAlarm10(IN :=FALSE);
+  InPlaceDelay10(IN :=FALSE);
+  g_bLoadCylinder11UpSignalInplaceTimeoutAlarm:=FALSE;
+END_IF;
+
+(*hmi状态灯显示,自动上料机中也可使用*)
+IF g_bLoadMaterialUpInPlaceSignal11 THEN(*使用到位信号*)
+  IF g_boLoadCyl101Up AND g_boLoadCyl101Down=FALSE THEN
+    InPlaceDelay10(IN :=FALSE);
+    IF g_bLoadCyl101UpInPlace AND g_bLoadCyl102UpInPlace AND g_bLoadCyl103UpInPlace AND g_bLoadCyl104UpInPlace THEN
+      g_bLoadMaterialStateHmi11:= TRUE;
+      g_bLoadMaterialState11:= TRUE;
+      g_boLoading11UpDone:= TRUE;
+      InUpPlaceAlarm10(IN :=FALSE);
+      g_bLoadCylinder11UpSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF NOT g_bLoadMaterialStateHmi11 THEN
+        InUpPlaceAlarm10(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay11)));
+        IF InUpPlaceAlarm10.Q THEN
+          InUpPlaceAlarm10(IN :=FALSE);
+          g_bLoadCylinder11UpSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF; 
+      END_IF;
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[21] AND g_bLoadMaterialStateHmi11 THEN
+      g_bLoadCylinder11UpSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[21] AND g_bLoadMaterialStateHmi11 THEN
+      g_bLoadCylinder11UpSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF; 
+  END_IF;
+ELSE(*使用延时信号*)
+  g_bLoadCylinder11UpSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial11UpDelayFlag THEN
+    InPlaceDelay10(IN :=g_boLoadCyl101Up,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay11)));
+    IF InPlaceDelay10.Q THEN
+      g_bLoadMaterial11DelayFlag := FALSE;
+      bLoadMaterial11UpDelayFlag := FALSE;
+      InPlaceDelay10(IN :=FALSE);
+      IF g_boLoadCyl101Up AND g_boLoadCyl101Down=FALSE THEN
+        g_bLoadMaterialStateHmi11:= TRUE;
+        g_bLoadMaterialState11:= TRUE;
+        g_boLoading11UpDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF g_bLoadMaterialDownInPlaceSignal11 THEN(*使用到位信号*)
+  IF g_boLoadCyl101Down AND g_boLoadCyl101Up=FALSE THEN
+    InPlaceDelay10(IN :=FALSE);
+    IF g_bLoadCyl101DownInPlace AND g_bLoadCyl102DownInPlace AND g_bLoadCyl103DownInPlace AND g_bLoadCyl104DownInPlace THEN
+      g_bLoadMaterialStateHmi11:= FALSE;
+      g_bLoadMaterialState11:= TRUE;
+      g_boLoading11DownDone:= TRUE;
+      InDownPlaceAlarm10(IN :=FALSE);
+      g_bLoadCylinder11DownSignalInplaceTimeoutAlarm:=FALSE;
+    ELSE
+      IF g_bLoadMaterialStateHmi11 THEN
+        InDownPlaceAlarm10(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay11)));
+        IF InDownPlaceAlarm10.Q THEN
+          InDownPlaceAlarm10(IN :=FALSE);
+          g_bLoadCylinder11DownSignalInplaceTimeoutAlarm:=TRUE;
+        END_IF; 
+      END_IF; 
+    END_IF;
+    IF NOT g_CylAllStateUpDate.BoolArr[20] AND NOT g_bLoadMaterialStateHmi11 THEN
+      g_bLoadCylinder11DownSignalInplaceTimeoutAlarm:=TRUE;
+    ELSIF g_CylAllStateUpDate.BoolArr[20] AND NOT g_bLoadMaterialStateHmi11 THEN
+       g_bLoadCylinder11DownSignalInplaceTimeoutAlarm:=FALSE;
+    END_IF;
+  END_IF;
+ELSE(*使用延时信号*)
+  g_bLoadCylinder11DownSignalInplaceTimeoutAlarm:=FALSE;
+  IF bLoadMaterial11DownDelayFlag THEN
+    InPlaceDelay10(IN :=g_boLoadCyl101Down,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay11)));
+    IF InPlaceDelay10.Q THEN
+      g_bLoadMaterial11DelayFlag := FALSE;
+      bLoadMaterial11DownDelayFlag := FALSE;
+      InPlaceDelay10(IN :=FALSE);
+      IF g_boLoadCyl101Down AND g_boLoadCyl101Up=FALSE THEN
+        g_bLoadMaterialStateHmi11 := FALSE;
+        g_bLoadMaterialState11 := TRUE;
+        g_boLoading11DownDone:= TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+
+(*打开输出口控制 气缸使用延时的状态切换  143-164 上料气缸的状态切换*)
+IF ArrayConfigOutputNumber[143] AND NOT g_bLoadMaterialUpInPlaceSignal1 THEN
+  g_bLoadMaterialStateHmi1:= TRUE;
+  g_bLoadMaterialState1:= TRUE;
+  g_boLoading1UpDone:= TRUE;
+  g_boLoading1DownDone:= FALSE;
+  ArrayConfigOutputNumber[143] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[144] AND NOT g_bLoadMaterialUpInPlaceSignal2 THEN
+  g_bLoadMaterialStateHmi2:= TRUE;
+  g_bLoadMaterialState2:= TRUE;
+  g_boLoading2UpDone:= TRUE;
+  g_boLoading2DownDone:= FALSE;
+  ArrayConfigOutputNumber[144] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[145] AND NOT g_bLoadMaterialUpInPlaceSignal3 THEN
+  g_bLoadMaterialStateHmi3:= TRUE;
+  g_bLoadMaterialState3:= TRUE;
+  g_boLoading3UpDone:= TRUE;
+  g_boLoading3DownDone:= FALSE;
+  ArrayConfigOutputNumber[145] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[146] AND NOT g_bLoadMaterialUpInPlaceSignal4 THEN
+  g_bLoadMaterialStateHmi4:= TRUE;
+  g_bLoadMaterialState4:= TRUE;
+  g_boLoading4UpDone:= TRUE;
+  g_boLoading4DownDone:= FALSE;
+  ArrayConfigOutputNumber[146] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[147] AND NOT g_bLoadMaterialUpInPlaceSignal5 THEN
+  g_bLoadMaterialStateHmi5:= TRUE;
+  g_bLoadMaterialState5:= TRUE;
+  g_boLoading5UpDone:= TRUE;
+  g_boLoading5DownDone:= FALSE;
+  ArrayConfigOutputNumber[147] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[148] AND NOT g_bLoadMaterialUpInPlaceSignal6 THEN
+  g_bLoadMaterialStateHmi6:= TRUE;
+  g_bLoadMaterialState6:= TRUE;
+  g_boLoading6UpDone:= TRUE;
+  g_boLoading6DownDone:= FALSE;
+  ArrayConfigOutputNumber[148] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[149] AND NOT g_bLoadMaterialUpInPlaceSignal7 THEN
+  g_bLoadMaterialStateHmi7:= TRUE;
+  g_bLoadMaterialState7:= TRUE;
+  g_boLoading7UpDone:= TRUE;
+  g_boLoading7DownDone:= FALSE;
+  ArrayConfigOutputNumber[149] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[150] AND NOT g_bLoadMaterialUpInPlaceSignal8 THEN
+  g_bLoadMaterialStateHmi8:= TRUE;
+  g_bLoadMaterialState8:= TRUE;
+  g_boLoading8UpDone:= TRUE;
+  g_boLoading8DownDone:= FALSE;
+  ArrayConfigOutputNumber[150] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[151] AND NOT g_bLoadMaterialUpInPlaceSignal9 THEN
+  g_bLoadMaterialStateHmi9:= TRUE;
+  g_bLoadMaterialState9:= TRUE;
+  g_boLoading9UpDone:= TRUE;
+  g_boLoading9DownDone:= FALSE;
+  ArrayConfigOutputNumber[151] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[152] AND NOT g_bLoadMaterialUpInPlaceSignal10 THEN
+  g_bLoadMaterialStateHmi10:= TRUE;
+  g_bLoadMaterialState10:= TRUE;
+  g_boLoading10UpDone:= TRUE;
+  g_boLoading10DownDone:= FALSE;
+  ArrayConfigOutputNumber[152] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[153] AND NOT g_bLoadMaterialUpInPlaceSignal11 THEN
+  g_bLoadMaterialStateHmi11:= TRUE;
+  g_bLoadMaterialState11:= TRUE;
+  g_boLoading11UpDone:= TRUE;
+  g_boLoading11DownDone:= FALSE;
+  ArrayConfigOutputNumber[153] := FALSE;
+END_IF; 
+
+IF ArrayConfigOutputNumber[154] AND NOT g_bLoadMaterialDownInPlaceSignal1 THEN
+  g_bLoadMaterialStateHmi1 := FALSE;
+  g_bLoadMaterialState1 := TRUE;
+  g_boLoading1DownDone:= TRUE;
+  g_boLoading1UpDone:= FALSE;
+  ArrayConfigOutputNumber[154] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[155] AND NOT g_bLoadMaterialDownInPlaceSignal2 THEN
+  g_bLoadMaterialStateHmi2 := FALSE;
+  g_bLoadMaterialState2 := TRUE;
+  g_boLoading2DownDone:= TRUE;
+  g_boLoading2UpDone:= FALSE;
+  ArrayConfigOutputNumber[155] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[156] AND NOT g_bLoadMaterialDownInPlaceSignal3 THEN
+  g_bLoadMaterialStateHmi3 := FALSE;
+  g_bLoadMaterialState3 := TRUE;
+  g_boLoading3DownDone:= TRUE;
+  g_boLoading3UpDone:= FALSE;
+  ArrayConfigOutputNumber[156] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[157] AND NOT g_bLoadMaterialDownInPlaceSignal4 THEN
+  g_bLoadMaterialStateHmi4 := FALSE;
+  g_bLoadMaterialState4 := TRUE;
+  g_boLoading4DownDone:= TRUE;
+  g_boLoading4UpDone:= FALSE;
+  ArrayConfigOutputNumber[157] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[158] AND NOT g_bLoadMaterialDownInPlaceSignal5 THEN
+  g_bLoadMaterialStateHmi5 := FALSE;
+  g_bLoadMaterialState5 := TRUE;
+  g_boLoading5DownDone:= TRUE;
+  g_boLoading5UpDone:= FALSE;
+  ArrayConfigOutputNumber[158] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[159] AND NOT g_bLoadMaterialDownInPlaceSignal6 THEN
+  g_bLoadMaterialStateHmi6 := FALSE;
+  g_bLoadMaterialState6 := TRUE;
+  g_boLoading6DownDone:= TRUE;
+  g_boLoading6UpDone:= FALSE;
+  ArrayConfigOutputNumber[159] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[160] AND NOT g_bLoadMaterialDownInPlaceSignal7 THEN
+  g_bLoadMaterialStateHmi7 := FALSE;
+  g_bLoadMaterialState7 := TRUE;
+  g_boLoading7DownDone:= TRUE;
+  g_boLoading7UpDone:= FALSE;
+  ArrayConfigOutputNumber[160] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[161] AND NOT g_bLoadMaterialDownInPlaceSignal8 THEN
+  g_bLoadMaterialStateHmi8 := FALSE;
+  g_bLoadMaterialState8 := TRUE;
+  g_boLoading8DownDone:= TRUE;
+  g_boLoading8UpDone:= FALSE;
+  ArrayConfigOutputNumber[161] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[162] AND NOT g_bLoadMaterialDownInPlaceSignal9 THEN
+  g_bLoadMaterialStateHmi9 := FALSE;
+  g_bLoadMaterialState9 := TRUE;
+  g_boLoading9DownDone:= TRUE;
+  g_boLoading9UpDone:= FALSE;
+  ArrayConfigOutputNumber[162] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[163] AND NOT g_bLoadMaterialDownInPlaceSignal10 THEN
+  g_bLoadMaterialStateHmi10 := FALSE;
+  g_bLoadMaterialState10 := TRUE;
+  g_boLoading10DownDone:= TRUE;
+  g_boLoading10UpDone:= FALSE;
+  ArrayConfigOutputNumber[163] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[164] AND NOT g_bLoadMaterialDownInPlaceSignal11 THEN
+  g_bLoadMaterialStateHmi11 := FALSE;
+  g_bLoadMaterialState11 := TRUE;
+  g_boLoading11DownDone:= TRUE;
+  g_boLoading11UpDone:= FALSE;
+  ArrayConfigOutputNumber[164] := FALSE;
+END_IF; ]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[手动控制上料机气缸]]></xhtml:p>
+  </documentation>
+</pou>

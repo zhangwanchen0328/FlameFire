@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_HGTECHPipeDiameterCheck" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="nPipeNum">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管类型（hmi 1~5  -> plc 0~4）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="rTrigCheck">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bHGTECHPipeDiameterCheck">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bHGTECHPipeDiameterCheckDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nHGTECHPipeMin1">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面 模拟量范围最小值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHGTECHPipeMin2">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面 模拟量范围最小值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHGTECHPipeMin3">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面 模拟量范围最小值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHGTECHPipeMin4">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面 模拟量范围最小值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHGTECHPipeMin5">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面 模拟量范围最小值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHGTECHPipeMax1">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面 模拟量范围最大值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHGTECHPipeMax2">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面 模拟量范围最大值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHGTECHPipeMax3">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面 模拟量范围最大值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHGTECHPipeMax4">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面 模拟量范围最大值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHGTECHPipeMax5">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面 模拟量范围最大值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHGTECHCheckState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nHGTECHGetValue">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nHGTECHGetValueFB">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_niHGTECHPipeDiameterValue">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模块输入值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bHGTECHPipeDiameterErrorWarn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管径不匹配报警]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Ton1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nDelay1">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[延时一段时间再获取模拟量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dChuckMoveToCutting1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管材1  W轴切割坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dChuckMoveToCutting2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管材2  W轴切割坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dChuckMoveToCutting3">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管材3  W轴切割坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dChuckMoveToCutting4">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管材4  W轴切割坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dChuckMoveToCutting5">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[W轴]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[rTrigCheck(CLK := g_bHGTECHPipeDiameterCheck);
+
+IF rTrigCheck.Q THEN
+  g_bHGTECHPipeDiameterCheck:=FALSE;
+  g_bHGTECHPipeDiameterCheckDone:=FALSE;
+  nHGTECHCheckState:=5;
+  Ton1(IN :=FALSE);
+END_IF;
+
+CASE nHGTECHCheckState OF
+  0:
+    nHGTECHCheckState:=0;
+  5:(*延时*)
+    Ton1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelay1)));
+    IF Ton1.Q THEN
+      Ton1(IN :=FALSE);
+      nHGTECHCheckState:=10;
+    END_IF;
+  10:(*获取当前模拟量*)
+    nHGTECHGetValue:=g_niHGTECHPipeDiameterValue;(*检测完成的模拟量*)
+    nHGTECHCheckState:=15;
+  15:(*对比数据，给出结果*)
+    IF nPipeNum=0 THEN
+      IF nHGTECHGetValue >= nHGTECHPipeMin1 AND nHGTECHGetValue <= nHGTECHPipeMax1 THEN
+        g_bHGTECHPipeDiameterCheckDone:=TRUE;
+      ELSE 
+       g_bHGTECHPipeDiameterErrorWarn:=TRUE;
+       g_bDefineOutputEnableOutOFF16:=TRUE;
+      END_IF;
+    ELSIF nPipeNum=1 THEN
+      IF nHGTECHGetValue >= nHGTECHPipeMin2 AND nHGTECHGetValue <= nHGTECHPipeMax2 THEN
+        g_bHGTECHPipeDiameterCheckDone:=TRUE;
+      ELSE 
+       g_bHGTECHPipeDiameterErrorWarn:=TRUE;
+       g_bDefineOutputEnableOutOFF16:=TRUE;
+      END_IF;
+    ELSIF nPipeNum=2 THEN
+      IF nHGTECHGetValue >= nHGTECHPipeMin3 AND nHGTECHGetValue <= nHGTECHPipeMax3 THEN
+        g_bHGTECHPipeDiameterCheckDone:=TRUE;
+      ELSE 
+       g_bHGTECHPipeDiameterErrorWarn:=TRUE;
+       g_bDefineOutputEnableOutOFF16:=TRUE;
+      END_IF;
+    ELSIF nPipeNum=3 THEN
+      IF nHGTECHGetValue >= nHGTECHPipeMin4 AND nHGTECHGetValue <= nHGTECHPipeMax4 THEN
+        g_bHGTECHPipeDiameterCheckDone:=TRUE;
+      ELSE 
+       g_bHGTECHPipeDiameterErrorWarn:=TRUE;
+       g_bDefineOutputEnableOutOFF16:=TRUE;
+      END_IF;
+    ELSIF nPipeNum=4 THEN
+      IF nHGTECHGetValue >= nHGTECHPipeMin5 AND nHGTECHGetValue <= nHGTECHPipeMax5 THEN
+        g_bHGTECHPipeDiameterCheckDone:=TRUE;
+      ELSE 
+       g_bHGTECHPipeDiameterErrorWarn:=TRUE;
+       g_bDefineOutputEnableOutOFF16:=TRUE;
+      END_IF;
+    END_IF;
+    nHGTECHCheckState:=20;
+  20:
+    nHGTECHCheckState:=20;
+    
+END_CASE;
+
+nHGTECHGetValueFB := g_niHGTECHPipeDiameterValue;
+IF nPipeNum=0 THEN
+  g_dHGTECHChuckMoveToPos:=dChuckMoveToCutting1;
+ELSIF nPipeNum=1 THEN
+  g_dHGTECHChuckMoveToPos:=dChuckMoveToCutting2;
+ELSIF nPipeNum=2 THEN
+  g_dHGTECHChuckMoveToPos:=dChuckMoveToCutting3;
+ELSIF nPipeNum=3 THEN
+  g_dHGTECHChuckMoveToPos:=dChuckMoveToCutting4;
+ELSIF nPipeNum=4 THEN 
+  g_dHGTECHChuckMoveToPos:=dChuckMoveToCutting5;
+END_IF;
+
+IF g_bPlcResetBuffer THEN
+  nHGTECHCheckState:=0;
+  g_bHGTECHPipeDiameterCheckDone:=FALSE;
+  g_bHGTECHPipeDiameterErrorWarn:=FALSE;
+  Ton1(IN :=FALSE);
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[管径检测比较模块]]></xhtml:p>
+  </documentation>
+</pou>

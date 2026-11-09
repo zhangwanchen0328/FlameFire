@@ -1,0 +1,673 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AxisEnableJudge" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_nDriveStatus">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[所有驱动器状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Alarm">
+        <type>
+          <derived name="DT_ALARM"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警数组]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dDriveStatus0">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器状态判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDriveStatus1">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器状态判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDriveStatus2">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器状态判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDriveStatus3">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器状态判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDriveStatus4">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器状态判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDriveStatus5">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器状态判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDriveStatus6">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器状态判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDriveStatus7">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器状态判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDriveStatus8">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器状态判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDriveStatus9">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器状态判断]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_FAxis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[F轴]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_U">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_Z">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_Load">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料轴]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_Sensor">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下料轴]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_Sustain1">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_Sustain2">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴2]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_Sustain3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴3]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="D_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[除尘轴]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Feeding_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[送料轴]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FixedLen_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[定长轴]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Dust_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘轴]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_U3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[3卡盘-U3]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_Y3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[3卡盘-Y3]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_Y2">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[3卡盘-Y2]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_Sustain4">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[前浮动支撑轴1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_Sustain5">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[前浮动支撑轴2]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_Sustain6">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[前浮动支撑轴3]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bU2AxisEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFAxisEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nSusutainCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bDustEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[除尘轴使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bDriveEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bFrontSustainEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Ton_time">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[定時器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisNumber">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴数目]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisNum">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前轴数目]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nMachineType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nFrontSusutainCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="DDAxis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[鼎点新增轴]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nGeneralAxisEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nGeneralAxisCount">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_General1_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+    (*NC轴使能判断*)
+    (*U轴*)
+    IF g_bU2AxisEnable  THEN
+      IF Axis_U.NCTOPLC.AxisState = 1 THEN
+         g_NcAlarm.alarmArray[278] := 18001;
+      ELSE
+          g_NcAlarm.alarmArray[278] := 0;
+      END_IF;
+    END_IF;
+    (*F轴*) (*F轴*)(*0 :关闭 1 ：F050  2 轴控制 3: 普雷斯特 4 : BM11X *)
+    IF g_nFAxisControl=2 THEN
+      IF g_FAxis.NCTOPLC.AxisState = 1 THEN
+        g_NcAlarm.alarmArray[279] := 18002;
+      ELSE
+        g_NcAlarm.alarmArray[279] := 0;
+      END_IF;
+    END_IF; 
+    (*支撑轴1-3*)
+    IF g_bSustainEnable = TRUE THEN
+      IF g_nSusutainCount >= 1 THEN
+        IF Axis_Sustain1.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[280] := 18003;
+        ELSE
+          g_NcAlarm.alarmArray[280] := 0;
+        END_IF; 
+      END_IF;
+      IF g_nSusutainCount >= 2 THEN
+        IF Axis_Sustain2.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[281] := 18004;
+        ELSE
+          g_NcAlarm.alarmArray[281] := 0;
+        END_IF; 
+      END_IF;
+      IF g_nSusutainCount >= 3 THEN
+        IF Axis_Sustain3.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[282] := 18005;
+        ELSE
+          g_NcAlarm.alarmArray[282] := 0;
+        END_IF; 
+      END_IF;
+      IF g_nSusutainCount >= 4 THEN
+        IF Axis_Sustain7.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[283] := 18006;
+        ELSE
+          g_NcAlarm.alarmArray[283] := 0;
+        END_IF; 
+      END_IF;
+      IF g_nSusutainCount >= 5 THEN
+        IF Axis_Sustain8.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[284] := 18007;
+        ELSE
+          g_NcAlarm.alarmArray[284] := 0;
+        END_IF; 
+      END_IF;
+      IF g_nSusutainCount >= 6 THEN
+        IF Axis_Sustain9.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[285] := 18008;
+        ELSE
+          g_NcAlarm.alarmArray[285] := 0;
+        END_IF; 
+      END_IF;
+      IF g_nSusutainCount >= 7 THEN
+        IF Axis_S7.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[383] := 18026;
+        ELSE
+          g_NcAlarm.alarmArray[383] := 0;
+        END_IF; 
+      END_IF;
+      IF g_nSusutainCount >= 8 THEN
+        IF Axis_S8.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[384] := 18027;
+        ELSE
+          g_NcAlarm.alarmArray[384] := 0;
+        END_IF; 
+      END_IF;
+      IF g_nSusutainCount >= 9 THEN
+        IF Axis_S9.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[385] := 18028;
+        ELSE
+          g_NcAlarm.alarmArray[385] := 0;
+        END_IF; 
+      END_IF;
+      IF g_nSusutainCount >= 10 THEN
+        IF Axis_S10.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[386] := 18029;
+        ELSE
+          g_NcAlarm.alarmArray[386] := 0;
+        END_IF; 
+      END_IF;
+      IF g_nSusutainCount >= 11 THEN
+        IF Axis_S11.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[387] := 18030;
+        ELSE
+          g_NcAlarm.alarmArray[387] := 0;
+        END_IF; 
+      END_IF;
+      IF g_nSusutainCount >= 12 THEN
+        IF Axis_S12.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[388] := 18031;
+        ELSE
+          g_NcAlarm.alarmArray[388] := 0;
+        END_IF; 
+      END_IF;
+    END_IF;
+   (*除尘轴使能判断*)
+    IF g_bDustEnable THEN
+      IF D_Axis.NCTOPLC.AxisState = 1 THEN
+        g_NcAlarm.alarmArray[286] := 18009;
+      ELSE
+        g_NcAlarm.alarmArray[286] := 0;
+      END_IF;
+    END_IF;
+     (*除尘轴2使能判断*)
+    IF g_bIsConfigDustAxis2 THEN
+		IF AntiRejection3.NCTOPLC.AxisState = 1 THEN
+		  g_NcAlarm.alarmArray[287] := 18010;
+        ELSE
+          g_NcAlarm.alarmArray[287] := 0;
+		END_IF;
+    END_IF;
+    (*全瑞*)
+    IF g_nMachineType = 2 THEN
+      (*上料轴*)
+      IF Axis_Load.NCTOPLC.AxisState = 1 THEN
+        g_Alarm.alarmArray[168] := 871;
+      ELSE
+        g_Alarm.alarmArray[168] := 0;
+      END_IF;
+      (*下料轴*)
+      IF Axis_Sensor.NCTOPLC.AxisState = 1 THEN
+        g_Alarm.alarmArray[169] := 872;
+      ELSE
+        g_Alarm.alarmArray[169] := 0;
+      END_IF;
+    END_IF;
+    (*鼎点新增轴*)
+    IF g_nMachineType = 4 OR g_nMachineType = 9 THEN
+      IF DDAxis.NCTOPLC.AxisState = 1 THEN
+        g_Alarm.alarmArray[251] := 959;
+      ELSE
+        g_Alarm.alarmArray[251] := 0;
+      END_IF;
+    END_IF;  
+    (*标克*)
+    IF g_nMachineType = 1 OR g_nMachineType = 7 THEN
+      IF Dust_Axis.NCTOPLC.AxisState=1 THEN
+        g_Alarm.alarmArray[171] := 874;
+      ELSE
+        g_Alarm.alarmArray[171] := 0;
+      END_IF;
+      IF Feeding_Axis.NCTOPLC.AxisState =1 THEN
+        g_Alarm.alarmArray[172] := 875;
+      ELSE
+        g_Alarm.alarmArray[172] := 0;
+      END_IF;
+      IF FixedLen_Axis.NCTOPLC.AxisState = 1 THEN
+        g_Alarm.alarmArray[173] := 876;
+      ELSE
+        g_Alarm.alarmArray[173] := 0;
+      END_IF; 
+    END_IF;
+    (*3卡盘*)
+    IF g_nMachineType=6 THEN
+      IF Axis_U3.NCTOPLC.AxisState=1 THEN(*u3*)
+        g_Alarm.alarmArray[179] := 883;
+      ELSE
+        g_Alarm.alarmArray[179] := 0;
+      END_IF;
+      IF Axis_Y3.NCTOPLC.AxisState=1 THEN(*y3*)
+        g_Alarm.alarmArray[180] := 884;
+      ELSE
+        g_Alarm.alarmArray[180] := 0;
+      END_IF;
+      IF Axis_Y2.NCTOPLC.AxisState=1 THEN(*y2*)
+        g_Alarm.alarmArray[181] := 885;
+      ELSE
+        g_Alarm.alarmArray[181] := 0;
+      END_IF;
+    END_IF;
+    (*Z軸*)
+    IF Axis_Z.NCTOPLC.AxisState = 1 THEN
+      g_NcAlarm.alarmArray[288] := 18011;
+    ELSE
+      g_NcAlarm.alarmArray[288] := 0;
+    END_IF;
+    (*前浮动支撑*)
+    IF g_bFrontSustainEnable THEN
+      IF g_nFrontSusutainCount >= 1 THEN
+        IF Axis_Sustain4.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[289] := 18012;
+        ELSE
+          g_NcAlarm.alarmArray[289] := 0;
+        END_IF; 
+      END_IF;
+      IF g_nFrontSusutainCount >= 2 THEN
+        IF Axis_Sustain5.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[290] := 18013;
+        ELSE
+          g_NcAlarm.alarmArray[290] := 0;
+        END_IF; 
+      END_IF;
+      IF g_nFrontSusutainCount >= 3 THEN
+        IF Axis_Sustain6.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[291] := 18014;
+        ELSE
+          g_Alarm.alarmArray[291] := 0;
+        END_IF; 
+      END_IF;
+      IF g_nFrontSusutainCount >= 4 THEN
+        IF AntiRejection2.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[292] := 18015;
+        ELSE
+          g_Alarm.alarmArray[292] := 0;
+        END_IF; 
+      END_IF;
+    END_IF;
+     (*艾泰四卡*)
+    IF g_nMachineType=19 THEN
+      IF Axis_U3.NCTOPLC.AxisState=1 THEN(*u3*)
+        g_Alarm.alarmArray[179] := 883;
+      ELSE
+        g_Alarm.alarmArray[179] := 0;
+      END_IF;
+      IF g_General1_Axis.NCTOPLC.AxisState = 1 THEN
+          g_Alarm.alarmArray[273] := 20002;
+        ELSE
+          g_Alarm.alarmArray[273] := 0;
+        END_IF;
+    END_IF;
+    (*非标通用轴*)
+    IF g_bUseCommonAxis1 THEN
+        IF g_General1_Axis.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[293] := 18016;
+        ELSE
+          g_NcAlarm.alarmArray[293] := 0;
+        END_IF; 
+    END_IF;
+      
+    IF g_bUseCommonAxis2 THEN
+        IF g_General1_Axis.NCTOPLC.AxisState = 1 THEN
+          g_NcAlarm.alarmArray[294] := 18017;
+        ELSE
+          g_NcAlarm.alarmArray[294] := 0;
+        END_IF; 
+    END_IF;
+    IF g_bUseCommonAxis3 THEN
+		IF DDAxis.NCTOPLC.AXISSTATE = 1 THEN
+		  g_NcAlarm.alarmArray[295] := 18018;
+        ELSE
+          g_NcAlarm.alarmArray[295] := 0;
+		END_IF;
+	END_IF;
+    (*横梁移动避让轴*)
+    IF g_bIsConfigAvoidAxis THEN
+		IF AntiRejection6.NCTOPLC.AXISSTATE = 1 THEN
+		  g_NcAlarm.alarmArray[296] := 18019;
+        ELSE
+          g_NcAlarm.alarmArray[296] := 0;
+		END_IF;
+    END_IF;
+    (*中卡避让轴*)
+    IF g_bIsConfigMiddleAvoidAxis2 THEN
+		IF AntiRejection5.NCTOPLC.AXISSTATE = 1 THEN
+		  g_NcAlarm.alarmArray[297] := 18020;
+        ELSE
+          g_NcAlarm.alarmArray[297] := 0;
+		END_IF;
+    END_IF;
+    (*中卡避让进给轴*)
+    IF g_bIsConfigMiddleAvoidAxis1 THEN
+		IF AntiRejection4.NCTOPLC.AXISSTATE = 1 THEN
+		  g_NcAlarm.alarmArray[298] := 18021;
+        ELSE
+          g_NcAlarm.alarmArray[298] := 0;
+		END_IF;
+    END_IF;
+    IF g_bDualAxis1Config THEN
+      IF DualAxis1.NCTOPLC.AXISSTATE = 1 THEN
+        g_NcAlarm.alarmArray[331] := 18022;
+      ELSE
+        g_NcAlarm.alarmArray[331] := 0;
+      END_IF;
+    END_IF;
+    IF g_bDualAxis2Config THEN
+      IF DualAxis2.NCTOPLC.AXISSTATE = 1 THEN
+        g_NcAlarm.alarmArray[332] := 18023;
+      ELSE
+        g_NcAlarm.alarmArray[332] := 0;
+      END_IF;
+    END_IF;
+    IF g_bDualAxis3Config THEN
+      IF DualAxis3.NCTOPLC.AXISSTATE = 1 THEN
+        g_NcAlarm.alarmArray[333] := 18024;
+      ELSE
+        g_NcAlarm.alarmArray[333] := 0;
+      END_IF;
+    END_IF;
+    IF g_bDualAxis4Config THEN
+      IF DualAxis4.NCTOPLC.AXISSTATE = 1 THEN
+        g_NcAlarm.alarmArray[334] := 18025;
+      ELSE
+        g_NcAlarm.alarmArray[334] := 0;
+      END_IF;
+    END_IF;
+      
+      
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[判断轴未使能状态]]></xhtml:p>
+  </documentation>
+</pou>

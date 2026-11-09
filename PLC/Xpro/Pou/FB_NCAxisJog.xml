@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_NCAxisJog" pouType="functionBlock">
+  <interface>
+    <inputVars>
+      <variable name="NCAxisName">
+        <type>
+          <derived name="REF_TO AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="bJogFast">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bJogForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bBackForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="NCJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+    </localVars>
+    <outputVars>
+      <variable name="ERRORID">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+    </outputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF g_bFastInch THEN
+  NCJog.Mode := 1;
+ELSE
+  NCJog.Mode := 0;
+END_IF;
+NCJog(
+     JOGFORWARD := bJogForward(*BOOL*),
+     JOGBACKWARDS := bBackForward(*BOOL*),
+     AXIS :=NCAxisName^(*AXIS_REF*),
+     OUTAXIS => NCAxisName^(*AXIS_REF*));
+
+ERRORID := NCJog.ERRORID;
+IF g_bPlcResetBuffer THEN
+  bJogForward := FALSE;
+  bBackForward := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

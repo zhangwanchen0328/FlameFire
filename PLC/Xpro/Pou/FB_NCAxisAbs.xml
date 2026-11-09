@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_NCAxisAbs" pouType="functionBlock">
+  <interface>
+    <inputVars>
+      <variable name="IndexNumber">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="NCAxisName">
+        <type>
+          <derived name="REF_TO AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="TargetVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="TargetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="nAxisState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="Rtring_ABS">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <outputVars>
+      <variable name="AbsMoveDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </outputVars>
+    <inOutVars>
+      <variable name="AxisMoveDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </inOutVars>
+    <outputVars>
+      <variable name="ERRORID">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+    </outputVars>
+    <localVars>
+      <variable name="NCAxisAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="UpdateStatus">
+        <type>
+          <derived name="MC_AXISSTATUS"/>
+        </type>
+      </variable>
+      <variable name="NCAxisStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+Rtring_ABS(CLK := g_NCMoveData.NCAXISCMD[IndexNumber].NCAxisAbs);
+IF Rtring_ABS.Q THEN
+  g_NCMoveData.NCAXISCMD[IndexNumber].NCAxisAbs := FALSE;
+    nAxisState := 1;
+	AbsMoveDone := FALSE;
+    AxisMoveDone :=FALSE;
+(*  IF nAxisState <> 0 AND nAxisState <> 20 AND NCAxisName.NCTOPLC.ACTVELO > g_dCheckAxisIsMovingSpeedSet THEN
+    g_bAxisIsMoveAlarm := TRUE;
+    nAxisState := 21;
+  END_IF;*)
+END_IF;
+NCAxisAbs(
+     AXIS :=NCAxisName^(*AXIS_REF*),
+     OUTAXIS => NCAxisName^(*AXIS_REF*));
+NCAxisStop( 
+    AXIS :=NCAxisName^(*AXIS_REF*),
+     OUTAXIS => NCAxisName^(*AXIS_REF*));
+CASE nAxisState OF
+  0:
+    nAxisState := 0;
+  1:
+    NCAxisAbs.Execute := TRUE;
+    NCAxisAbs.Velocity := TargetVel;
+    IF g_bSetAuxiliaryAxisSpeed THEN
+      NCAxisAbs.Velocity := g_nAuxiliaryAxisSpeed;
+      g_bSetAuxiliaryAxisSpeed := FALSE;
+    END_IF;
+    NCAxisAbs.Position := TargetPos;
+    IF NCAxisAbs.Done THEN
+      NCAxisAbs.Execute := FALSE;
+      AbsMoveDone := TRUE;
+      AxisMoveDone :=TRUE;
+      nAxisState := 0;
+    END_IF;    
+    IF g_bPlcPauseBuffer THEN      
+      NCAxisAbs.Execute := FALSE;
+      g_NCMoveData.NCAXISCMD[IndexNumber].NCAxisStop := TRUE;
+      nAxisState := 20;
+    END_IF;
+    IF g_bPlcResetBuffer THEN
+      nAxisState := 21;
+    END_IF;
+    IF NCAxisAbs.CommandAborted OR NCAxisAbs.Error THEN
+      NCAxisAbs.Execute := FALSE;
+      nAxisState := 0;
+    END_IF;
+  20:
+     IF g_NCMoveData.NCAXISDATA[IndexNumber].AxisStopDone  THEN
+      g_NCMoveData.NCAXISCMD[IndexNumber].NCAxisStop := FALSE;
+    END_IF;
+    
+    IF g_NCMoveData.NCAXISDATA[IndexNumber].AxisStopDone AND g_bPlcStartBuffer THEN
+      nAxisState := 1;
+    END_IF;
+    
+    IF g_bPlcResetBuffer THEN
+      nAxisState := 0;
+    END_IF;
+    
+    IF NCAxisStop.CommandAborted OR NCAxisStop.Error THEN
+      g_NCMoveData.NCAXISCMD[IndexNumber].NCAxisStop := FALSE;
+      nAxisState := 0;
+    END_IF;
+  21:
+    NCAxisAbs.Execute := FALSE;
+    g_NCMoveData.NCAXISCMD[IndexNumber].NCAxisStop := TRUE;
+    IF g_NCMoveData.NCAXISDATA[IndexNumber].AxisStopDone THEN
+      g_NCMoveData.NCAXISCMD[IndexNumber].NCAxisStop := FALSE;
+      nAxisState := 0;
+      AbsMoveDone := TRUE;
+      AxisMoveDone :=TRUE;
+    END_IF;
+    IF NCAxisStop.CommandAborted OR NCAxisStop.Error THEN
+      g_NCMoveData.NCAXISCMD[IndexNumber].NCAxisStop := FALSE;
+      nAxisState := 0;
+    END_IF;
+END_CASE;
+
+ERRORID := NCAxisAbs.ERRORID;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_10DateSave" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="MaxLength">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="10"/>
+        </initialValue>
+      </variable>
+      <variable name="headIdx">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="-1"/>
+        </initialValue>
+      </variable>
+      <variable name="i">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="SaveTime1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Variance1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="SaveTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="InValue">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="ValueNum">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </inputVars>
+    <outputVars>
+      <variable name="Data">
+        <type>
+          <array>
+            <dimension lower="0" upper="9"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="Sum">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Average">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Variance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="StandardDeviation">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MaxValue">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MinValue">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </outputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[MaxLength := ValueNum;
+Sum := 0.0;
+Variance1 := 0.0;
+MaxValue := -32767.0;
+MinValue := 32767.0;
+
+
+SaveTime1 := SaveTime1 + 1.0;
+IF SaveTime1 >= SaveTime THEN
+  headIdx := (headIdx + 1) mod MaxLength;
+  Data[headIdx]:= InValue;
+  SaveTime1 := 0.0;
+END_IF;
+
+For i := 1 TO ValueNum BY 1 DO 
+  Sum := Sum + Data[i-1];
+END_FOR;
+Average := Sum/INT_TO_LREAL(ValueNum);
+
+For i := 1 TO ValueNum BY 1 DO 
+  Variance1 := Variance1 + EXPT((Data[i-1]-Average),2);
+END_FOR;
+(*方差*)
+Variance := Variance1/INT_TO_LREAL(ValueNum);
+(*均方差*)
+StandardDeviation := SQRT(Variance);
+
+(*最大值,最小值*)
+For i := 1 TO ValueNum BY 1 DO 
+  IF Data[i-1] > MaxValue THEN
+    MaxValue := Data[i-1];
+  END_IF;
+  IF Data[i-1] < MinValue THEN
+    MinValue := Data[i-1];
+  END_IF;
+END_FOR;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[定时采集10个数据]]></xhtml:p>
+  </documentation>
+</pou>

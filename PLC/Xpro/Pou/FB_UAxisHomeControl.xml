@@ -1,0 +1,359 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_UAxisHomeControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC暂停全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC复位全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biUHomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUHomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUAxisZero">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零零位信号引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UHome">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UMoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UMoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bHomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始，一般被HMI控制]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bU2HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bHomeError">
+        <type>
+          <USINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零错误]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHomeState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零状态机变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHomingMode">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dHomePosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后位置偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dHomeOffset">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dHomeVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="RTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bChangeHomeMode">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[至零点触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nChangeHomeModeState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[置零点状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_UMoveSetPosition">
+        <type>
+          <derived name="MC_SETPOSITION"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[置零点状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dUBackDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ U轴回退距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dRollBackCoordinateShow">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴回退后坐标显示]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nRecoverU2DatumMarkState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴回退后坐标显示]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger(CLK := g_biUHomeEnable OR bHomeEnable);
+IF bChangeHomeMode THEN
+  bChangeHomeMode := FALSE;
+  nChangeHomeModeState := 1;
+END_IF;
+
+IF RTrigger.Q THEN
+    nHomeState := 1;
+    g_boUHomeDone := FALSE;
+    g_bU2HomeDone := FALSE;
+END_IF;
+
+CASE nHomeState OF
+  0:
+    nHomeState := 0;
+  1:(*回零*)
+    g_UHome.Execute := TRUE;
+    IF nHomingMode = 0 THEN
+      g_UHome.HomingMode := 0;
+      g_UHome.Position := dHomePosition;
+      g_UHome.DISTANCE := dHomeOffset;
+    ELSIF nHomingMode = 1 THEN
+      g_UHome.HomingMode := 5;
+      g_UHome.Position := 0.0;
+    ELSIF nHomingMode = 2 THEN
+      g_UHome.HomingMode := 4;
+      g_UHome.Position := 0.0;
+    ELSIF nHomingMode = 3 THEN
+      g_UHome.HomingMode := 1;
+    END_IF;
+    g_UHome.bCalibrationCam := g_bUAxisZero;
+    IF g_UHome.Done THEN
+      g_UHome.Execute := FALSE;
+      g_bU2HomeDone := TRUE;
+      g_boUHomeDone := TRUE;
+      nHomeState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nHomeState := 20;
+    END_IF;
+    IF g_UHome.CommandAborted OR g_UHome.Error THEN
+      g_UHome.Execute := FALSE;
+      nHomeState := 0;
+    END_IF;
+  20:
+    g_UHome.Execute := FALSE;
+    g_UMoveStop.Execute := TRUE;
+    IF g_UMoveStop.Done AND g_bPlcStartBuffer THEN
+      g_UMoveStop.Execute := FALSE;
+      nHomeState := 1;
+    END_IF;
+    IF g_UMoveStop.CommandAborted OR g_UMoveStop.Error THEN
+      g_UMoveStop.Execute := FALSE;
+      nHomeState := 0;
+    END_IF;
+END_CASE;
+
+CASE nChangeHomeModeState OF
+  0:
+    nChangeHomeModeState := 0;
+  1:
+    g_UHome.Execute := TRUE;
+    IF nHomingMode = 0 THEN
+      g_UHome.HomingMode := 0;
+    ELSIF nHomingMode = 1 THEN
+      g_UHome.HomingMode := 5;
+    ELSIF nHomingMode = 2 THEN
+      g_UHome.HomingMode := 4;
+      IF g_bUAndU2BackToPoint THEN
+        g_UHome.POSITION := dUBackDistance;(*只有在同步回零时才生效*)
+      END_IF;
+    END_IF;
+      g_UHome.Position := 0.0;
+      g_UHome.DISTANCE := 0.0;
+    IF g_UHome.Done THEN
+      g_UHome.Execute := FALSE;
+      IF g_bUAndU2BackToPoint THEN
+        nChangeHomeModeState := 2;
+      ELSE
+        nChangeHomeModeState := 0;
+      END_IF;
+    END_IF;
+    IF g_UHome.CommandAborted OR g_UHome.Error THEN
+      g_UHome.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+  2:
+     g_UMoveSetPosition.EXECUTE := TRUE;
+      g_UMoveSetPosition.POSITION := dRollBackCoordinateShow;
+    IF g_UMoveSetPosition.DONE THEN
+      g_UMoveSetPosition.EXECUTE := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+    IF g_UMoveSetPosition.ERROR THEN
+      g_UMoveSetPosition.EXECUTE := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+END_CASE;
+(***界面上下发了去掉U2轴回零标志***)
+IF g_bCleanU2Homed THEN
+   g_UHome.HomingMode := 1;
+   g_UHome.Execute := TRUE; 
+   g_bU2HomeDone := FALSE; 
+   IF g_UHome.DONE OR g_UHome.ERROR THEN 
+    g_UHome.Execute := FALSE; 
+    g_bCleanU2Homed := FALSE; 
+   END_IF;
+END_IF;
+
+
+(*伺服断电恢复基准点*)
+RTrigger2(CLK := g_bRecoverU2DatumMark);
+IF RTrigger2.Q THEN
+  g_bRecoverU2DatumMark := FALSE;
+  nRecoverU2DatumMarkState := 1;
+END_IF;
+CASE nRecoverU2DatumMarkState OF
+  1:
+   g_UHome.HomingMode := 4;
+   g_UHome.Position :=g_dU2DatumMark; (*恢复基准点坐标差值*)
+   g_UHome.Execute := TRUE;  
+   IF  g_UHome.DONE OR g_UHome.ERROR THEN 
+      g_bU2HomeDone := TRUE;
+      g_boUHomeDone := TRUE;
+    g_UHome.Execute := FALSE; 
+    nRecoverU2DatumMarkState := 0; 
+   END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nHomeState := 0;
+  nChangeHomeModeState := 0;
+  g_bU2HomeDone := TRUE;
+  g_UMoveStop.Execute := FALSE;
+  g_UHome.Execute := FALSE;
+END_IF;
+
+
+g_nUHomeMode := nHomingMode;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

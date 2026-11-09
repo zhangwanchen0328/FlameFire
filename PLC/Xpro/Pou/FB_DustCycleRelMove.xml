@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DustCycleRelMove" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="RTringCycleDustRelMove">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTringCycleDustRelMoveEnable">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nstate">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dCycleDustStartPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDustAbsVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDustRelVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTringCycleDustRelMove(CLK := g_bCycleDustRelMoveEnableM);
+RTringCycleDustRelMoveEnable(CLK := g_bCycleDustRelMoveEnable);
+IF RTringCycleDustRelMove.Q THEN
+  g_bCycleDustRelMoveEnableM := FALSE;
+  DustAxisRel.EXECUTE := FALSE;
+  DustAbsolute.EXECUTE := FALSE;
+  DustAxis_Stop.EXECUTE := FALSE;
+  dCycleDustStartPos := g_DustAxisCoordinate;
+  nstate := 10;
+END_IF;
+CASE nstate OF
+  0:
+    nstate := 0;
+  10:
+    DustAxisRel.EXECUTE := TRUE;
+    DustAxisRel.VELOCITY := dDustRelVel;
+    DustAxisRel.DISTANCE := g_dDustCycleRelMoveDistance;
+    IF DustAxisRel.DONE THEN
+      DustAxisRel.EXECUTE := FALSE;
+      nstate := 50;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+       DustAxisRel.EXECUTE := FALSE;    
+       DustAbsolute.EXECUTE:= FALSE;
+       DustAxis_Stop.EXECUTE := FALSE;
+       nstate := 100;
+    END_IF;
+  50:
+    DustAxisRel.EXECUTE := TRUE;
+    DustAxisRel.VELOCITY := dDustRelVel;
+    DustAxisRel.DISTANCE := -g_dDustCycleRelMoveDistance;
+    IF DustAxisRel.DONE THEN
+      DustAxisRel.EXECUTE := FALSE;
+      nstate := 10;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      DustAxisRel.EXECUTE := FALSE;
+      DustAbsolute.EXECUTE := FALSE;
+      DustAxis_Stop.EXECUTE := FALSE;
+      nstate := 100;
+    END_IF;
+  100:
+    DustAxis_Stop.EXECUTE := TRUE;
+    IF DustAxis_Stop.DONE THEN
+      DustAxis_Stop.EXECUTE := FALSE;
+      nstate := 150;
+    END_IF;
+    IF DustAxis_Stop.COMMANDABORTED OR DustAxis_Stop.ERROR THEN
+      DustAxis_Stop.EXECUTE := FALSE;
+      nstate := 0;
+    END_IF;
+  150:
+    IF g_bPlcStartBuffer THEN
+      DustAxisRel.EXECUTE := FALSE;
+      DustAbsolute.EXECUTE := FALSE;
+      nstate := 200;
+    END_IF;
+  200:
+    DustAbsolute.EXECUTE := TRUE;
+    DustAbsolute.VELOCITY := dDustAbsVel;
+    DustAbsolute.POSITION := dCycleDustStartPos;
+    IF DustAbsolute.DONE THEN
+      DustAbsolute.EXECUTE := FALSE;
+      nstate := 10;
+    END_IF;
+END_CASE;
+IF g_bPlcResetBuffer OR RTringCycleDustRelMoveEnable.Q THEN
+  nstate := 0;
+  DustAxisRel.EXECUTE := FALSE;
+  DustAbsolute.EXECUTE := FALSE;
+  DustAxis_Stop.EXECUTE := FALSE;
+  g_bCycleDustRelMoveEnable := FALSE;
+END_IF;
+  ]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[抽尘轴往返运动控制]]></xhtml:p>
+  </documentation>
+</pou>

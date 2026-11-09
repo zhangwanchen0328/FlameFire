@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_UAxisPowerControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_UPower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴使能模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="PowerEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴使能开启]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bUAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[允许正向运动使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[允许反向运动使能]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="F_PowerOff">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisPowerBrake">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下使能]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[F_PowerOff(CLK := g_bDriveEnable);
+IF F_PowerOff.Q THEN
+  PowerEnable := FALSE;
+END_IF;
+
+
+IF g_UPower.Error THEN
+  PowerEnable := FALSE;
+END_IF; 
+
+AxisPowerBrake(
+	bPower := PowerEnable,
+    AxisRef := REF(Axis_U),
+    HomeSignal := g_U2AxisHomeSignal,
+    HomeMode := g_nUHomeMode,
+    AxisPosLimit := NOT g_bUAxisPosLimit,
+    AxisNegLimit := NOT g_bUAxisNegLimit,
+    AxisPower := REF(g_UPower),
+    OutBrake => g_boNcAxisU2HoldBrake);
+
+IF ABS(Axis_U.NCTOPLC.ACTPOS - Axis_U.NCTOPLC.SETPOS) > g_fU2AxisMaxPosError THEN
+  g_bU2AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bU2AxisPosErrorAlarm := FALSE;
+END_IF; ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

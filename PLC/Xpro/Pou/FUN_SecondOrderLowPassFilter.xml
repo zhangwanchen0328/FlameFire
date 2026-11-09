@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FUN_SecondOrderLowPassFilter" pouType="function">
+  <interface>
+    <returnType>
+      <LREAL/>
+    </returnType>
+    <inputVars>
+      <variable name="InputSignal">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="CutOffFrequency">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="12.0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[输入信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SamplingTime">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0.001"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[采样时间]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <outputVars>
+      <variable name="ValueOut">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波结果]]></xhtml:p>
+        </documentation>
+      </variable>
+    </outputVars>
+    <localVars>
+      <variable name="a">
+        <type>
+          <array>
+            <dimension lower="1" upper="3"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[分母系数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="b">
+        <type>
+          <array>
+            <dimension lower="1" upper="3"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[分子系数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="x">
+        <type>
+          <array>
+            <dimension lower="1" upper="3"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入信号历史值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="y">
+        <type>
+          <array>
+            <dimension lower="1" upper="3"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出信号历史值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Wn">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[归一化截止频率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="K">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中间变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Norm">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[归一化因子]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*计算归一化截止频率*)
+Wn := 2.0 * SamplingTime * CutoffFrequency; 
+
+(*计算滤波器系数*)
+K := TAN(3.1415926 * Wn);  
+Norm := 1.0 / (1.0 + SQRT(2.0) * K + K * K);  
+
+b[1] := K * K * Norm;  
+b[2] := 2.0 * K * K * Norm;  
+b[3] := K * K * Norm;  
+
+a[1] := 1.0;  
+a[2] := 2.0 * (K * K - 1.0) * Norm;  
+a[3] := (1.0 - SQRT(2.0) * K + K * K) * Norm;  
+
+(*更新输入信号历史值*)
+x[1] := InputSignal;  
+
+(*计算输出信号*)
+ValueOut := b[1] * x[1] + b[2] * x[2] + b[3] * x[3] - a[2] * y[2] - a[3] * y[3];
+
+(*更新输出信号历史值 *)
+y[1] := ValueOut;  
+(*移动历史值*)  
+x[3] := x[2];  
+x[2] := x[1];  
+y[3] := y[2];
+y[2] := y[1];
+
+  
+FUN_SecondOrderLowPassFilter := ValueOut;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

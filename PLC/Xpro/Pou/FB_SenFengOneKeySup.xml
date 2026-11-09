@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SenFengOneKeySup" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_SenFOneKeySupUp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_SenFOneKeySupDown">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_SenFOneKeySupUp(CLK := g_bSenFengOneKeySupUp);
+R_SenFOneKeySupDown(CLK := g_bSenFengOneKeySupDown);
+IF R_SenFOneKeySupUp.Q THEN
+  g_noSenFengOneKeySwtich := 10;
+  g_bSenFengOneKeySupUp := FALSE;
+  g_boSenFengOneKeySupUpDone := FALSE;
+  g_boSenFengOneKeySupDownDone := FALSE;
+END_IF;
+
+IF R_SenFOneKeySupDown.Q THEN
+  g_noSenFengOneKeySwtich := 50;
+  g_bSenFengOneKeySupDown := FALSE;
+  g_boSenFengOneKeySupUpDone := FALSE;
+  g_boSenFengOneKeySupDownDone := FALSE;
+END_IF;
+
+CASE g_noSenFengOneKeySwtich OF 
+  0:
+    g_noSenFengOneKeySwtich := 0;
+
+  10:(*0支撑上升  1左右夹持一键松开，支撑一键上升*)
+    g_bSenFeng_SupUp1 := TRUE;
+    g_bSenFeng_SupUp2 := TRUE;
+    g_bSenFeng_SupUp3 := TRUE;
+    g_bSenFeng_SupUp4 := TRUE;
+    g_fSenFeng_SupCylType1 := g_nSenFengOneKeySupUpType;
+    g_fSenFeng_SupCylType2 := g_nSenFengOneKeySupUpType;
+    g_fSenFeng_SupCylType3 := g_nSenFengOneKeySupUpType;
+    g_fSenFeng_SupCylType4 := g_nSenFengOneKeySupUpType;
+    g_noSenFengOneKeySwtich := 20;
+  20:
+    IF g_boSenFeng_SupUpDone1 AND g_boSenFeng_SupUpDone2 AND g_boSenFeng_SupUpDone3 AND g_boSenFeng_SupUpDone4 THEN
+      g_noSenFengOneKeySwtich := 0;
+      g_boSenFengOneKeySupUpDone := TRUE;
+      M.ENABLE[272] := 0;
+    END_IF;
+  
+  50:(*0支撑上升  1左右夹持一键松开，支撑一键上升*)
+    g_bSenFeng_SupDown1 := TRUE;
+    g_bSenFeng_SupDown2 := TRUE;
+    g_bSenFeng_SupDown3 := TRUE;
+    g_bSenFeng_SupDown4 := TRUE;    
+    g_fSenFeng_SupCylType1 := g_nSenFengOneKeySupUpType;
+    g_fSenFeng_SupCylType2 := g_nSenFengOneKeySupUpType;
+    g_fSenFeng_SupCylType3 := g_nSenFengOneKeySupUpType;
+    g_fSenFeng_SupCylType4 := g_nSenFengOneKeySupUpType;
+  
+    g_noSenFengOneKeySwtich := 60;
+  60:
+    IF g_boSenFeng_SupDownDone1 AND g_boSenFeng_SupDownDone2 AND g_boSenFeng_SupDownDone3 AND g_boSenFeng_SupDownDone4 THEN
+      g_noSenFengOneKeySwtich := 0;
+      g_boSenFengOneKeySupDownDone := TRUE;
+      M.ENABLE[272] := 0;
+    END_IF;
+  
+END_CASE;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[森峰一键气缸移动]]></xhtml:p>
+  </documentation>
+</pou>

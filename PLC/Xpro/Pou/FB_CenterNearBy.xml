@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CenterNearBy" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="dInteger">
+        <type>
+          <LINT/>
+        </type>
+      </variable>
+      <variable name="dIntegerCoordA">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dIntegerCoordB">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nNearByCenterEnable">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="1"/>
+        </initialValue>
+      </variable>
+      <variable name="bTrendZeroCenter">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[趋向于0的回中]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+(*判断当前坐标是否大于初次设置的水平点*)
+(*坐标大于水平点*)
+IF nNearByCenterEnable = 1 THEN
+  IF g_diUMachineCoordinate > g_dAngle THEN
+    dInteger := LREAL_TO_LINT((g_diUMachineCoordinate - g_dAngle) / 360.0);
+    dIntegerCoordA := LINT_TO_LREAL(dInteger * 360);
+    IF g_diUMachineCoordinate - g_dAngle >= g_dAngle + dIntegerCoordA - g_diUMachineCoordinate THEN
+      g_noCenterUCoorditate := g_dAngle + dIntegerCoordA;
+    ELSE
+      g_noCenterUCoorditate := g_dAngle;
+    END_IF;
+  ELSIF g_diUMachineCoordinate < g_dAngle THEN
+    dInteger := LREAL_TO_LINT((g_dAngle - g_diUMachineCoordinate) / 360.0);
+    dIntegerCoordA := LINT_TO_LREAL(dInteger * 360);
+    dIntegerCoordB := LINT_TO_LREAL((dInteger + 1)*360);
+    IF dInteger >= 1 THEN
+      IF (g_dAngle - dIntegerCoordA) - g_diUMachineCoordinate >= g_diUMachineCoordinate - (g_dAngle - dIntegerCoordB) THEN
+        g_noCenterUCoorditate := g_dAngle - dIntegerCoordB;
+      ELSE
+        g_noCenterUCoorditate := g_dAngle - dIntegerCoordA;
+      END_IF;
+    ELSE
+      IF g_dAngle - g_diUMachineCoordinate >= g_diUMachineCoordinate - (g_dAngle - dIntegerCoordB) THEN
+        g_noCenterUCoorditate := g_dAngle - dIntegerCoordB;
+      ELSE
+        g_noCenterUCoorditate := g_dAngle;
+      END_IF;
+    END_IF;
+  END_IF;
+ELSE
+  g_noCenterUCoorditate := g_dAngle;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[就近回中]]></xhtml:p>
+  </documentation>
+</pou>

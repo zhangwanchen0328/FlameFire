@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BoendeAvoidCheck" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_biBoendeAvoidCheck">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBoendeCheckDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBoendeCheckWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fNextFasterPointM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fNextNearestPointM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_diYMachineCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_diYWorkCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="DDAxis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dFrontChuckSafeDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dRearChuckSafeDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dGantryFrontChuckDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dGantryRearChuckDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDDAxisPosInY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dNextFasterPoint">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dNextNearestPoint">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nCheckState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger1(CLK := g_biBoendeAvoidCheck);
+RTrigger2(CLK := g_bLayerStartM1);
+
+IF RTrigger1.Q THEN
+  g_boBoendeCheckDone := FALSE;
+  nCheckState := 10;
+END_IF;
+
+IF RTrigger2.Q THEN
+  g_bBoendeAvoid := TRUE;
+  g_boBoendeCheckDone := FALSE;
+  g_bLayerStartM1 := FALSE;
+END_IF;
+
+dDDAxisPosInY := DDAxis.NCTOPLC.ACTPOS + dGantryRearChuckDis;
+
+CASE nCheckState OF
+  0:
+    nCheckState := 0;
+  10:
+    dNextFasterPoint := g_fNextFasterPointM - g_diYWorkCoordinate + g_diYMachineCoordinate;
+    dNextNearestPoint := g_fNextNearestPointM - g_diYWorkCoordinate + g_diYMachineCoordinate;
+    IF (dNextNearestPoint > dGantryFrontChuckDis - dFrontChuckSafeDis AND dNextNearestPoint < dGantryFrontChuckDis + dFrontChuckSafeDis) OR
+       (dNextFasterPoint > dGantryFrontChuckDis - dFrontChuckSafeDis AND dNextFasterPoint < dGantryFrontChuckDis + dFrontChuckSafeDis) OR
+       (dNextNearestPoint > dDDAxisPosInY - dRearChuckSafeDis AND dNextNearestPoint < dDDAxisPosInY + dRearChuckSafeDis) OR
+       (dNextFasterPoint > dDDAxisPosInY - dRearChuckSafeDis AND dNextFasterPoint < dDDAxisPosInY + dRearChuckSafeDis) THEN
+      g_boBoendeCheckDone := FALSE;
+      g_bBoendeCheckWarn := TRUE;
+    ELSE
+      IF (dNextFasterPoint < dDDAxisPosInY AND dNextNearestPoint < dDDAxisPosInY AND g_diYMachineCoordinate < dDDAxisPosInY) OR
+         (dNextFasterPoint > dGantryFrontChuckDis AND dNextNearestPoint > dGantryFrontChuckDis AND g_diYMachineCoordinate > dGantryFrontChuckDis) OR
+         ((dNextFasterPoint > dDDAxisPosInY AND dNextFasterPoint < dGantryFrontChuckDis) AND (dNextNearestPoint > dDDAxisPosInY AND dNextNearestPoint < dGantryFrontChuckDis) AND
+         (g_diYMachineCoordinate > dDDAxisPosInY AND g_diYMachineCoordinate < dGantryFrontChuckDis)) THEN
+        g_bBoendeAvoid := FALSE;
+      ELSE
+        g_bBoendeAvoid := TRUE;
+      END_IF;
+      g_boBoendeCheckDone := TRUE;
+      nCheckState := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  g_boBoendeCheckDone := FALSE;
+  g_bBoendeCheckWarn := FALSE;
+  nCheckState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

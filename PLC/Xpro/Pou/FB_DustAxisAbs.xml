@@ -1,0 +1,408 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DustAxisAbs" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="D_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="DustAxis_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="DustAbsolute">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dDustAbsPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面抽尘距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDustAbsPosHMI">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面抽尘距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDustAbsOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dDustAbsVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面轴参数自动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R_Trriger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTring3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nDustRelState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustAxisAbsOpenM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustAxisAbsCloseM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boDustAxisAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fDustTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dTargetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTargetVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDustAbsZeroPos">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0.0"/>
+        </initialValue>
+      </variable>
+      <variable name="bAntiRejection3AbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nARAbsState3">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dARTargetVel3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dARTargetPos3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dARAbsPosition3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dARAbsVelocity3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDust2AbsZeroPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘2起始位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDust2AbsPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘2抽尘位置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDustAxis1DockPostion">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘1抽尘停靠位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDustAxis2DockPostion">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘2抽尘停靠位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trriger(CLK := bDustAbsOpen OR g_bDustAxisAbsOpenM OR g_biDustAxisAbsOpen OR g_bDustAxisAbsOpen);
+R_Trriger1(CLK := g_bDustAxisAbsCloseM OR g_biDustAxisAbsClose);
+R_Trriger2(CLK := g_biDustForcedMove);
+
+IF R_Trriger.Q THEN
+  bDustAbsDone := FALSE;
+  g_boDustAxisAbsDone := FALSE;
+  IF g_biDustAxisAbsOpen THEN(*引脚触发*)
+    dTargetPos := g_fiDustAxisAbsPos;
+    dTargetVel := g_fiDustAxisAbsVel;
+  ELSIF g_bDustAxisAbsOpenM THEN(*M代码触发*)
+    (*目标位置*)
+    IF g_fDustTypeM=0.0 THEN
+      dTargetPos := g_fDustAxisAbsPosM;
+    ELSIF g_fDustTypeM=1.0 THEN(*回零位，默认为0,当前未使用，后续需要可界面开参数传下来*)
+      dTargetPos := dDustAbsZeroPos;
+    ELSIF g_fDustTypeM=2.0 THEN(*抽尘位,界面下发参数*)
+      dTargetPos := dDustAbsPosHMI;
+    ELSIF g_fDustTypeM=3.0 THEN(*抽尘停靠位,界面下发参数*)
+      dTargetPos := dDustAxis1DockPostion;
+    END_IF;
+    dTargetVel := g_fDustAxisAbsVelM;
+    (*目标位置速度*)
+    IF dTargetVel=0.0 THEN
+      dTargetVel := dDustAbsVel;
+    END_IF;
+    
+  ELSIF g_bDustAxisAbsOpen THEN(*PLC触发,当前未使用*)
+    dTargetPos := g_fDustAxisAbsPos;
+    dTargetVel := g_fDustAxisAbsVel;
+  ELSE(*界面触发,当前未使用，默认使用界面参数,后续根据需要修改*)
+    dTargetPos := dDustAbsPos;(*界面抽尘距离*)
+    dTargetVel := dDustAbsVel;(*界面轴参数自动速度*)
+    IF g_bPowerOffMoveToTargetPosSetSpeedFlag THEN
+      dTargetVel := g_dPowerOffMoveToTargetPosSpeed;
+    END_IF;
+  END_IF;
+
+  g_bDustAxisAbsOpen := FALSE;
+  g_bDustAxisAbsOpenM := FALSE;
+  bDustAbsOpen := FALSE;
+  nDustRelState := 2;
+END_IF;
+
+IF R_Trriger1.Q THEN
+  bDustAbsDone := FALSE;
+  g_boDustAxisAbsDone := FALSE;
+  g_bDustAxisAbsCloseM := FALSE;
+END_IF;
+IF R_Trriger2.Q THEN
+  bDustAbsDone := FALSE;
+  g_boDustAxisAbsDone := FALSE;
+  g_bDustAxisAbsCloseM := FALSE;
+  nDustRelState := 20;
+END_IF;
+CASE nDustRelState OF
+  0:
+  nDustRelState := 0;
+  1:
+  IF LREAL_TO_INT(g_fDustTypeM) = 0 THEN
+    DustAbsolute.Position := dDustAbsPos;
+  ELSIF LREAL_TO_INT(g_fDustTypeM) = 1 THEN(*扩展抽尘功能*)
+    DustAbsolute.Position := 0.0;
+  END_IF;
+  nDustRelState := 2;
+  2:
+  DustAbsolute.Execute := TRUE;
+  DustAbsolute.Position := dTargetPos;
+  DustAbsolute.Velocity := dTargetVel;
+  IF DustAbsolute.Done THEN
+    DustAbsolute.Execute := FALSE;
+    bDustAbsDone := TRUE;
+    g_boDustAxisAbsDone := TRUE;
+    g_bDustAxis1MoveDoneM320 := TRUE;
+    nDustRelState := 0;
+    M.ENABLE[201] := 0;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer THEN
+    nDustRelState := 10;
+  END_IF;
+  
+  IF DustAbsolute.CommandAborted OR DustAbsolute.Error THEN
+    DustAbsolute.Execute := FALSE;
+    bDustAbsDone := FALSE;
+    g_boDustAxisAbsDone := FALSE;
+    nDustRelState := 0;
+  END_IF;
+  10:
+  DustAbsolute.Execute := FALSE;
+  DustAxis_Stop.Execute := TRUE;
+  IF DustAxis_Stop.Done AND g_bPlcStartBuffer THEN
+    DustAxis_Stop.Execute := FALSE;
+    nDustRelState := 2;
+  END_IF;
+  
+  IF DustAxis_Stop.CommandAborted OR DustAxis_Stop.Error THEN
+    DustAxis_Stop.Execute := FALSE;
+    nDustRelState := 0;
+  END_IF;
+20:(*强制打断，执行下一操作*)
+  DustAbsolute.Execute := FALSE;
+  DustAxis_Reset.Execute := TRUE;
+  IF DustAxis_Reset.Done THEN
+    DustAxis_Reset.Execute := FALSE;
+    bDustAbsDone := TRUE;
+    g_boDustAxisAbsDone := TRUE;
+    nDustRelState := 0;
+    M.ENABLE[201] := 0;
+  END_IF;
+  IF DustAxis_Reset.Error THEN
+    DustAxis_Reset.Execute := FALSE;
+    nDustRelState := 0;
+  END_IF;
+ 
+END_CASE;
+(*防甩轴3==抽尘轴2*)
+RTring3(CLK := g_biAntiRejection3AbsExecute OR bAntiRejection3AbsExecute OR g_bAntiRejection3AbsExecute OR g_bDustAxis2AbsControlM);
+
+IF RTring3.Q THEN
+  nARAbsState3 := 1;
+  g_boAntiRejection3AbsDone := FALSE;
+  g_bAntiRejection3AbsDone := FALSE;
+  IF g_biAntiRejection3AbsExecute THEN
+    dARTargetPos3 := g_fiARTargetPos3; 
+    dARTargetVel3 := g_fiARTargetVel3;
+  ELSIF bAntiRejection3AbsExecute THEN
+    dARTargetPos3 := dARAbsPosition3;
+    dARTargetVel3 := 0.0;
+    bAntiRejection3AbsExecute := FALSE;
+    IF g_bPowerOffMoveToTargetPosSetSpeedFlag THEN
+      dARTargetVel3 := g_dPowerOffMoveToTargetPosSpeed;
+    END_IF;
+  ELSIF g_bDustAxis2AbsControlM THEN
+    g_bDustAxis2AbsControlM := FALSE;
+     (*目标位置*)
+    IF g_fDustAxis2AbsTypeM=0.0 THEN
+      dARTargetPos3 := g_fDustAxis2AbsPosM;
+    ELSIF g_fDustAxis2AbsTypeM=1.0 THEN(*回零位，默认为0,当前未使用，后续需要可界面开参数传下来*)
+      dARTargetPos3 := dDust2AbsZeroPos;
+    ELSIF g_fDustAxis2AbsTypeM=2.0 THEN(*抽尘位,界面下发参数*)
+      dARTargetPos3 := dDust2AbsPos;
+    ELSIF g_fDustAxis2AbsTypeM=3.0 THEN(*抽尘停靠位,界面下发参数*)
+      dARTargetPos3 := dDustAxis2DockPostion;
+    END_IF;
+    dARTargetVel3 := g_fDustAxis2AbsVelM;
+  ELSE
+    dARTargetPos3 := g_fARAbsPosition3;
+    dARTargetVel3 := g_fARAbsVelocity3;
+  END_IF;
+  IF dARTargetVel3 = 0.0 THEN
+    dARTargetVel3 := dARAbsVelocity3;
+  END_IF;
+END_IF;
+
+
+
+CASE nARAbsState3 OF
+  0:
+    nARAbsState3 := 0;
+  1:
+    g_AntiRejection3Abs.Execute := TRUE;
+    g_AntiRejection3Abs.Velocity := dARTargetVel3;
+    g_AntiRejection3Abs.Position := dARTargetPos3;
+    IF g_AntiRejection3Abs.Done THEN
+      g_AntiRejection3Abs.Execute := FALSE;
+      g_boAntiRejection3AbsDone := TRUE;
+      g_bAntiRejection3AbsDone := TRUE;
+      g_bDustAxis2MoveDoneM320 := TRUE;
+      nARAbsState3 := 0;
+      M.ENABLE[201] := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nARAbsState3 := 20;
+    END_IF;
+    IF g_AntiRejection3Abs.CommandAborted OR g_AntiRejection3Abs.Error THEN
+      g_AntiRejection3Abs.Execute := FALSE;
+      nARAbsState3 := 0;
+    END_IF;
+  20:
+    g_AntiRejection3Abs.Execute := FALSE;
+    g_AntiRejection3Stop.Execute := TRUE;
+    IF g_AntiRejection3Stop.Done AND g_bPlcStartBuffer THEN
+      g_AntiRejection3Stop.Execute := FALSE;
+      nARAbsState3 := 1;
+    END_IF;
+    IF g_AntiRejection3Stop.CommandAborted OR g_AntiRejection3Stop.Error THEN
+      g_AntiRejection3Stop.Execute := FALSE;
+      nARAbsState3 := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  DustAbsolute.Execute := FALSE;
+  DustAxis_Stop.Execute := FALSE;
+  nDustRelState := 0;
+   nARAbsState3 := 0;
+  g_AntiRejection3Abs.Execute := FALSE;
+  g_AntiRejection3Stop.Execute := FALSE;
+  g_bDustAxis2AbsControlM := FALSE;
+  g_bDustAxisAbsOpenM := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

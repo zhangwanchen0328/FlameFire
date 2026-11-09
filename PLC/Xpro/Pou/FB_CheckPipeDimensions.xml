@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CheckPipeDimensions" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Tring_CheckStart">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Tring_CheckEnd">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger0">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nCheckState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dZAxisCurPos1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dZAxisCurPos2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCompensate1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCompensate2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dActualMin">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dActualMax">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bAlarmFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dCheckCompen">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0.3"/>
+        </initialValue>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Tring_CheckStart(CLK := g_bCheckPipeSizeBeforeCuttingStartM);
+Tring_CheckEnd(CLK := g_bCheckPipeSizeBeforeCuttingEndM);
+IF Tring_CheckStart.Q THEN
+  g_bCheckPipeSizeBeforeCuttingStartM := FALSE;
+  nCheckState := 10;
+END_IF;
+IF Tring_CheckEnd.Q THEN
+  g_bCheckPipeSizeBeforeCuttingEndM := FALSE;
+  nCheckState := 15;
+  
+END_IF;
+dActualMax := MAX(g_dSquareLenght,g_dSquareWidth)/2.0;(*最大尺寸*)
+dActualMin := MIN(g_dSquareLenght,g_dSquareWidth)/2.0; (*最小尺寸*)
+
+
+R_Trigger0(CLK := g_bFlatNumEnableM);
+
+
+CASE nCheckState OF
+  0:
+	nCheckState := 0;
+  10:
+	IF R_Trigger0.Q THEN
+		IF LREAL_TO_INT(g_fFlatNumM) = 1 THEN
+			dZAxisCurPos1 := g_fZCoordinate;
+		ELSIF LREAL_TO_INT(g_fFlatNumM) = 2 THEN
+			dZAxisCurPos2 := g_fZCoordinate;
+		END_IF;
+		g_bFlatNumEnableM := FALSE;
+		IF g_bPlcPauseBuffer THEN
+		  nCheckState := 20;
+		END_IF;  
+    END_IF;
+  15:(*根据坐标比较管材尺寸,容许值放宽0.3mm*)
+	bAlarmFlag := FALSE;
+	IF ABS(dZAxisCurPos1) > ABS(dZAxisCurPos2) THEN
+      dCompensate1 := ABS(g_dChuckCenterInZpos)-ABS(dZAxisCurPos1)-1.0;
+      dCompensate2 := ABS(g_dChuckCenterInZpos)-ABS(dZAxisCurPos2)-1.0;
+    ELSE
+      dCompensate1 := ABS(g_dChuckCenterInZpos)-ABS(dZAxisCurPos2)-1.0;
+      dCompensate2 := ABS(g_dChuckCenterInZpos)-ABS(dZAxisCurPos1)-1.0;
+    END_IF;
+    IF NOT (dCompensate1 >= dActualMin-dCheckCompen AND dCompensate1 <= dActualMin+dCheckCompen) THEN
+      bAlarmFlag := TRUE;
+    END_IF;
+    IF NOT (dCompensate2 >= dActualMax-dCheckCompen AND dCompensate2 <= dActualMax+dCheckCompen) THEN
+      bAlarmFlag := TRUE;
+    END_IF;
+    IF bAlarmFlag THEN
+      g_bCheckPipeSizeBeforeCuttingAlarm := TRUE;
+      g_bZLiftExecute := TRUE;
+    ELSE
+      g_bCheckPipeSizeBeforeCuttingAlarm := FALSE;
+      M.ENABLE[331] := 0;
+    END_IF;
+    nCheckState := 0;
+  20:
+	IF g_bPlcStartBuffer THEN
+		nCheckState := 10;
+	END_IF;
+  
+END_CASE;
+
+IF g_bPlcResetBuffer  THEN
+ g_bCheckPipeSizeBeforeCuttingStartM := FALSE;
+  g_bCheckPipeSizeBeforeCuttingEndM := FALSE;
+  nCheckState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[加工开始前检测夹持管材尺寸]]></xhtml:p>
+  </documentation>
+</pou>

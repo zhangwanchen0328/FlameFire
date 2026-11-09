@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FlameGasShare" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="RTrigger_OpenCombustible">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[可燃气比例阀电源开启触发器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger_OpenOxidizing">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[助燃气比例阀电源开启触发器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger_CloseGasPower">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关闭比例阀电源触发器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bcloseGasPower">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关闭比例阀电源触发器的开光   HMI下发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*来了可燃气输出的上升沿就开启可燃气电源*)
+RTrigger_OpenCombustible(CLK := g_boCombustibleValve ); 
+IF  RTrigger_OpenCombustible.Q THEN
+  g_boCombustibleValvePower:=g_boCombustibleValve;
+END_IF;
+
+(*来了空气输出的上升沿就开启空气电源*)
+RTrigger_OpenOxidizing(CLK := g_boOxidizingValve ); 
+IF  RTrigger_OpenOxidizing.Q THEN
+  g_boOxidizingValvePower:=g_boOxidizingValve;
+END_IF;
+
+RTrigger_CloseGasPower(CLK := g_bProcessDone ); 
+IF bcloseGasPower AND  RTrigger_CloseGasPower.Q THEN
+  g_boCombustibleValvePower:=FALSE;
+  g_boOxidizingValvePower:=FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

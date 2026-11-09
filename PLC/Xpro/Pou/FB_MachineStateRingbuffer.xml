@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_MachineStateRingbuffer" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="MachineStateBuffer">
+        <type>
+          <array>
+            <dimension lower="0" upper="99"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="MaxLength">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="100"/>
+        </initialValue>
+      </variable>
+      <variable name="headIdx">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="LayerStartStateIn">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="LayerStartStateIn_1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="LayerEndStateIn">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="LayerEndStateIn_1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="nFollowStateIn">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="nFollowStateIn_1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="nLiftStateIn">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="nLiftStateIn_1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="nFollowErrorStateIn">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="nFollowErrorStateIn_1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="nZErrorIDIn">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nZErrorIDIn_1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </inputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*状态机监控*)
+IF LayerStartStateIn <> LayerStartStateIn_1 THEN
+  headIdx := (headIdx + 1) mod MaxLength;
+  MachineStateBuffer[headIdx]:= DINT_TO_LREAL(LayerStartStateIn+100000);
+END_IF;
+IF LayerEndStateIn <> LayerEndStateIn_1 THEN
+  headIdx := (headIdx + 1) mod MaxLength;
+  MachineStateBuffer[headIdx]:= DINT_TO_LREAL(LayerEndStateIn+200000);
+END_IF;
+(*随动*)
+IF nFollowStateIn <> nFollowStateIn_1 THEN
+  headIdx := (headIdx + 1) mod MaxLength;
+  MachineStateBuffer[headIdx]:= DINT_TO_LREAL(nFollowStateIn+400000);
+END_IF;
+(*Z轴上抬*)
+
+IF nLiftStateIn <> nLiftStateIn_1 THEN
+  headIdx := (headIdx + 1) mod MaxLength;
+  MachineStateBuffer[headIdx]:= DINT_TO_LREAL(nLiftStateIn+600000);
+END_IF;
+
+IF nFollowErrorStateIn <> nFollowErrorStateIn_1 THEN
+  headIdx := (headIdx + 1) mod MaxLength;
+  MachineStateBuffer[headIdx]:= DINT_TO_LREAL(nFollowErrorStateIn+800000);
+END_IF;
+(*这里为了读取随动下  z轴报错的 ERRORID*)
+IF nZErrorIDIn <> 0 AND nZErrorIDIn <> 100 AND nZErrorIDIn <> 101 AND nZErrorIDIn <> nZErrorIDIn_1 THEN
+  headIdx := (headIdx + 1) mod MaxLength;
+  MachineStateBuffer[headIdx]:= DINT_TO_LREAL(nZErrorIDIn+900000);
+END_IF;
+
+
+
+LayerStartStateIn_1 := LayerStartStateIn;
+LayerEndStateIn_1 := LayerEndStateIn;
+nFollowStateIn_1 := nFollowStateIn;
+nLiftStateIn_1 := nLiftStateIn;
+nFollowErrorStateIn_1 := nFollowErrorStateIn;
+nZErrorIDIn_1 := nZErrorIDIn;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

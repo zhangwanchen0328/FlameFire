@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="NCTOPLC_AXIS_REF">
+  <baseType>
+    <struct>
+      <variable name="ACTHEIGHT">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="ACTPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="ACTTORQUE">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="ACTVELO">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="AXISID">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="AXISSTATE">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="CURMODE">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="DRIVECONTROL">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="DRIVEERROR">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="DRIVEERRORCODE">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="DRIVESTATE">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="ERRORCODE">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="FOLLOWLOSTWARN">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GANTRYERROR">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="HEIGHTCAP">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="HEIGHTWARN">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="HOMINGSTATE">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="MODULOACTPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MODULOACTTURNS">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="MODULOSETPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MODULOSETTURNS">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="NEGSOFTWARN">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="POSLAG">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="POSLAGWARN">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="POSSOFTWARN">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="POWERNEGWARN">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="POWERPOSWARN">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="SETACC">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SETJERK">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SETPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SETTORQUE">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SETVELO">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="TARGETPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

@@ -1,0 +1,1281 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Y2Y3Avoid" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY2AbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY3AbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY2AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY3AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biY2Y3AvoidCheck">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boY2Y3AvoidCheckDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boY2Y3AvoidCheckDone2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biYMoveDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw2Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw2EnableOff">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3EnableOff">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boClaw2Done">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boClaw3Done">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3State">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fY2AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fY3AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_diYMachineCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_diYWorkCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fNextFasterPointM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fNextNearestPointM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fPipeHeadCoordM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_foYMoveTarget">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_foYMoveType">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_nPlcState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nClawMode">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[0：三卡模式  1：两卡模式 2:单卡模式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_no3ClawState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nMotionMode">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_bZAbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fZAbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bZAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fLiftCoord">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bClaw3OpenEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dY2ZeroDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中卡零位与Y轴零位距离]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dY2SafePosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中卡避让安全位置 Y2坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY3SafePosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[前卡避让安全位置 Y3坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY3AuxiliaryPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[前卡辅助夹紧位置 Y3坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY2AuxiliaryPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中卡辅助夹紧位置 Y2坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dAvoidDistance1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[前卡避让坐标1，第一软限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dAvoidDistance2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[避让坐标2 第二软限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCoordTemp">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nLastPlcState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nAvoidState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nY3AvoidMode">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="fFloatRange">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="5.0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[浮动范围，卡盘开始前检查卡盘是否在切割点位的浮动范围]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fY2SupportMinPosInY">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中卡耦合位Y轴坐标系]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fY2SupportMinPosInY2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中卡耦合位Y2轴坐标系]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fY2SupportMaxPosInY">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y轴坐标系，中卡解耦位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fY2SupportMaxPosInY2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y2轴坐标系，中卡解耦位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fY2SupportAveragePosInY2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[坐标：开始时Y轴Y2零位的中间位置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fY2SupportAveragePosInY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nY2AvoidState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y2轴移动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fY3Coordinate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y3轴机械坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fY2Coordinate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y2轴机械坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dY2Y3ZeroDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中卡零位与前卡轴零位距离]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="fY2CutingPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中卡切割位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fY2ZeroPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中卡零位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fY3ZeroPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[前卡零位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fY3AvoidVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[前卡避让速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fY2AvoidVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中卡避让速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fY2AbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fY3AbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bY3NoPrepare">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y3轴不在切割位置2范围内为1，在为0]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY2NoPrepare">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_b2ClawY3NoPrepare">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_b2ClawY2NoPrepare">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY2GearIn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY2GearOut">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY2GearDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZAxisZero">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[z轴零位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_Y2">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Y3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_bY1Y2DisError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY2Y3DisError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_dY1Y2MinDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dY2Y3MinDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dY2CoorInY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dY3CoorInY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bY2MoveAllow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAvoidOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAvoidDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biY2Y3Start">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bAvoidCheck">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nGearOutState">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[解耦状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcEndM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[解耦状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bClaw3CylForbid">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bOneKeyEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bOneKeyDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fOneKeyPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fOneKeyClaw">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nNumerator">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nDenominator">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dGearYDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dGearY2Dis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dGearRatio">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bNeedGear">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[需要耦合为true]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dYY2AvoidMaxMachine">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y2避让时Y可以走到的最大机械坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dYY2AvoidMaxWork">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y2避让时Y可以走到的最大工件坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY2SoftPositive">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bClaw3YY2Collision">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中卡和后卡过近硬件信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bClaw3Y2Y3Collision">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中卡和前卡过近硬件信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boCNCMoveDisable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biMiddleClawCheck">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boMiddleClawCheckDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nMiddleClawState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="R_Trigger5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bClaw2State">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger1(CLK := g_biY2Y3Start OR g_bY2Y3StartM);
+R_Trigger2(CLK := g_biYMoveDone OR g_bYMoveDoneM);
+R_Trigger3(CLK := g_biY2Y3AvoidCheck OR g_bY2Y3AvoidCheckM);
+R_Trigger4(CLK := g_bPlcResetBuffer OR g_bPlcEndM );
+R_Trigger5(CLK := g_biMiddleClawCheck OR g_bMiddleClawCheckM); 
+
+IF R_Trigger1.Q THEN
+  nAvoidState := 1;
+  nY2AvoidState := 0;
+  g_boY2Y3AvoidCheckDone := FALSE;
+  g_boY2Y3AvoidCheckDone2 := FALSE;
+  g_foYMoveTarget := 0.0;
+  g_foYMoveType := 0.0;
+  bAvoidCheck := FALSE;
+  g_bY2Y3StartM := FALSE;
+END_IF;
+
+IF R_Trigger3.Q THEN
+  bAvoidCheck := TRUE;
+  g_bY2Y3AvoidCheckM := FALSE;
+  g_boY2Y3AvoidCheckDone := FALSE;
+END_IF;
+IF R_Trigger4.Q THEN
+  nGearOutState := 10;
+END_IF;
+
+g_dY2CoorInY := g_dY2ZeroDistance + Axis_Y2.NCTOPLC.ACTPOS;
+g_dY3CoorInY := g_dY2ZeroDistance + g_dY2Y3ZeroDistance + Axis_Y3.NCTOPLC.ACTPOS;
+
+IF (g_nMotionMode=2 OR g_nMotionMode=4) AND g_nPlcState <> 0 THEN
+  CASE nAvoidState OF
+  0:
+    nAvoidState := 0;
+  1:
+    (*先判断是两卡、三卡模式*)
+    IF g_nClawMode = 0 THEN
+      nAvoidState := 9;
+    ELSIF g_nClawMode = 1 THEN
+      nAvoidState := 30;
+    ELSIF g_nClawMode = 2 THEN
+      nAvoidState := 60;
+    END_IF;
+  9:
+  (*判断后卡在哪个范围，在前卡避让位之前...*)
+    IF g_diYMachineCoordinate<dAvoidDistance1 THEN
+      nAvoidState := 10;
+    ELSIF g_diYMachineCoordinate>=dAvoidDistance1 AND g_diYMachineCoordinate<dAvoidDistance2 THEN
+      nAvoidState := 40;
+    ELSIF g_diYMachineCoordinate>=dAvoidDistance2 THEN
+      nAvoidState := 50;
+    END_IF;
+  10:
+  (*判断中卡是否需要到耦合*)
+    g_bY2MoveAllow := TRUE;
+    g_bOneKeyEnable:=FALSE;
+    fY2SupportAveragePosInY:= (g_dY2ZeroDistance + fY2ZeroPos - g_diYMachineCoordinate)/2.0;(*Y轴坐标系中卡支撑坐标：前卡零位在Y上的坐标到Y轴机械坐标的距离除2*)
+    fY2SupportAveragePosInY2:= fY2ZeroPos - fY2SupportAveragePosInY;(*Y2轴坐标系中卡支撑坐标*)
+    IF fY2SupportAveragePosInY2 <= fY2SupportMinPosInY THEN
+      g_fOneKeyPos:=fY2SupportMinPosInY;
+      g_fOneKeyClaw:=2;
+      nAvoidState := 13;
+      bNeedGear:=TRUE;
+    ELSIF fY2SupportAveragePosInY2 > fY2SupportMinPosInY AND fY2SupportAveragePosInY2 <= fY2SupportMaxPosInY THEN
+      g_fOneKeyPos:=fY2SupportAveragePosInY2;
+      g_fOneKeyClaw:=2;
+      nAvoidState := 13;
+      bNeedGear:=TRUE;
+    ELSE
+      g_fOneKeyPos:=fY2ZeroPos;
+      g_bY2MoveAllow := FALSE;
+      g_fOneKeyClaw:=2;
+      nAvoidState := 13;
+      bNeedGear:=FALSE;
+      g_bY2MoveAllow := FALSE;
+    END_IF;
+  
+  13:(*中卡移动到耦合或者中卡零位*)
+    g_bOneKeyEnable:=TRUE;
+    g_bOneKeyDone:=FALSE;
+    nAvoidState := 14;
+  14:   
+    IF g_bOneKeyDone THEN
+      nAvoidState := 15;
+      g_bOneKeyEnable:=FALSE;
+    END_IF;
+
+  15:(*前卡移动到切割点位*)
+    g_fOneKeyClaw:=3;
+    g_fOneKeyPos:=fY3ZeroPos;
+    g_bOneKeyEnable:=TRUE;
+    g_bOneKeyDone:=FALSE;
+    nAvoidState := 17;
+  17:  
+    IF g_bOneKeyDone THEN
+      IF bNeedGear THEN
+        nAvoidState := 20;
+      ELSE  
+        nAvoidState := 100;
+      END_IF;
+      g_bOneKeyEnable:=FALSE;
+      dGearYDis := ABS(g_diYMachineCoordinate - (g_dY2ZeroDistance + fY2SupportMaxPosInY)) - 500.0;
+      dGearY2Dis := ABS(Axis_Y2.NCTOPLC.ACTPOS - fY2SupportMaxPosInY);
+      dGearRatio := dGearYDis/dGearY2Dis;
+      IF dGearRatio < 1.0 THEN
+        dGearRatio := 1.0;
+      END_IF;
+      IF dGearRatio > 4.0 THEN
+        dGearRatio := 4.0;
+      END_IF;
+    END_IF;
+    
+  20:(*耦合Y和Y2轴*)
+    g_nNumerator := 1;
+    g_nDenominator := TRUNC(dGearRatio);
+    g_bY2GearIn:=TRUE;
+    IF g_bY2GearDone THEN
+      g_bY2GearIn:=FALSE;
+      nAvoidState := 100;
+      nY2AvoidState := 30;
+      g_bY2MoveAllow := FALSE;
+    END_IF;
+  (*2卡盘模式判断*)
+  30:(*2卡模式，前卡移动到安全位置*)
+    IF g_fY3Coordinate>=dY3SafePosition THEN
+      nAvoidState := 33;
+    ELSE
+      nAvoidState := 31;     
+    END_IF;
+  31:
+    g_fOneKeyClaw:=3;
+    g_fOneKeyPos:=dY3SafePosition;
+    g_bOneKeyEnable:=TRUE;
+    IF g_bOneKeyDone THEN
+      nAvoidState := 33;
+      g_bOneKeyEnable:=FALSE;
+    END_IF;
+  33:(*2卡模式，判断Y轴坐标决定中卡位置*)
+    IF g_diYMachineCoordinate>=dAvoidDistance2 THEN
+      (*中卡大于中卡避让位小于中卡安全位，执行中卡到安全位，中卡大于中卡避让也大于中卡安全位，直接避让完成*)
+      IF Axis_Y2.NCTOPLC.ACTPOS >= dY2SafePosition THEN
+        nAvoidState := 230;
+      ELSE
+        nAvoidState := 35;
+      END_IF;
+    ELSE
+      nAvoidState := 37;    
+    END_IF;
+  35:(*中卡大于中卡避让位小于中卡安全位，执行中卡到安全位*)
+    g_fOneKeyPos := dY2SafePosition;
+    g_fOneKeyClaw:=2;
+    g_bOneKeyEnable:=TRUE;
+    g_bOneKeyDone:=FALSE;
+    nAvoidState := 36;
+  36:  
+    IF g_bOneKeyDone THEN
+      nAvoidState := 230;
+      g_bOneKeyEnable:=FALSE;
+    END_IF;
+  37:
+    g_fOneKeyPos := fY2CutingPos; 
+    g_fOneKeyClaw:=2;
+    g_bOneKeyEnable:=TRUE;
+    g_bOneKeyDone:=FALSE;
+    nAvoidState := 38;
+  38:  
+    IF g_bOneKeyDone THEN
+      nAvoidState := 130;
+      g_bOneKeyEnable:=FALSE;
+    END_IF;
+  40:
+  (*后卡盘在前卡避让后，中卡避让前*)
+    (*前卡移动到安全位置*)
+     g_fOneKeyClaw:=3;
+      g_fOneKeyPos:=dY3SafePosition;
+      g_bOneKeyEnable:=TRUE;
+      g_bOneKeyDone:=FALSE;
+     nAvoidState := 41;
+  41: 
+      IF g_bOneKeyDone THEN
+        nAvoidState := 43;
+        g_bOneKeyEnable:=FALSE;
+      END_IF;
+  43:(*中卡移动到切割位置*)
+    g_fOneKeyClaw:=2;
+    g_fOneKeyPos:=fY2CutingPos;
+    g_bOneKeyEnable:=TRUE;
+    g_bOneKeyDone:=FALSE;
+    nAvoidState := 44;
+  44:  
+    IF g_bOneKeyDone THEN
+      nAvoidState := 130;
+      g_bOneKeyEnable:=FALSE;
+    END_IF;
+  50:(*后卡盘在中卡避让位之后*)
+    (*前卡移动到安全位置*)
+    g_fOneKeyClaw:=3;
+    g_fOneKeyPos:=dY3SafePosition;
+    
+    g_bOneKeyEnable:=TRUE;
+    g_bOneKeyDone:=FALSE;
+    nAvoidState := 51;
+  51:  
+    IF g_bOneKeyDone THEN
+      nAvoidState := 53;
+      g_bOneKeyEnable:=FALSE;
+    END_IF;
+  53:(*中卡移动到安全位置*)
+    g_fOneKeyClaw:=2;
+    g_fOneKeyPos:=dY2SafePosition;
+    g_bOneKeyEnable:=TRUE;
+    g_bOneKeyDone:=FALSE;
+    nAvoidState := 54;
+  54:  
+    IF g_bOneKeyDone THEN
+      g_boY2Y3AvoidCheckDone := TRUE;
+      g_bOneKeyEnable:=FALSE;
+      nAvoidState:= 230;
+    END_IF;
+  60:
+    IF g_fY3Coordinate>=dY3SafePosition THEN
+      nAvoidState := 63;
+    ELSE
+      nAvoidState := 61;     
+    END_IF;
+  61:
+    g_fOneKeyClaw:=3;
+    g_fOneKeyPos:=dY3SafePosition;
+    g_bOneKeyEnable:=TRUE;
+    g_bOneKeyDone:=FALSE;
+    nAvoidState := 62;
+  62:  
+    IF g_bOneKeyDone THEN
+      nAvoidState := 63;
+      g_bOneKeyEnable:=FALSE;
+    END_IF;
+  63:
+    IF dY2SoftPositive >= dY2SafePosition THEN
+      g_fOneKeyPos := dY2SoftPositive - 1.0;
+    ELSE 
+      g_fOneKeyPos := dY2SafePosition;
+    END_IF;
+    IF Axis_Y2.NCTOPLC.ACTPOS >= g_fOneKeyPos THEN
+      nAvoidState := 230;
+    ELSE
+      nAvoidState := 65;
+    END_IF;
+  65:
+    g_fOneKeyClaw:=2;
+    g_bOneKeyEnable:=TRUE;
+    g_bOneKeyDone:=FALSE;
+    nAvoidState := 67;
+  67:  
+    IF g_bOneKeyDone THEN
+      nAvoidState := 230;
+      g_bOneKeyEnable:=FALSE;
+    END_IF;
+  100:
+    (*等待检测信号，如果不避让，直接置Done为true，否则进入避让状态机*)
+    IF bAvoidCheck THEN
+      bAvoidCheck := FALSE;
+      dCoordTemp := g_fNextFasterPointM - g_diYWorkCoordinate + g_diYMachineCoordinate;
+      IF dCoordTemp > dAvoidDistance1 THEN(*大于第一软限位，执行前卡避让*)
+        nAvoidState := 110;
+        g_boY2Y3AvoidCheckDone := FALSE;
+      ELSE
+        g_boY2Y3AvoidCheckDone := TRUE;
+      END_IF;
+    END_IF;
+  110:
+    (*避让前，调用避让状态机*)
+    g_bAvoidOpen := TRUE;
+    nAvoidState := 111;
+  111:
+    (*等待Z轴、气缸避让完成*)
+    IF g_bAvoidDone THEN
+      nAvoidState := 112;
+    END_IF;
+  112:
+    (*上抬完成，根据界面设置参数，判断前卡避让时是否需要松开*)
+    IF bClaw3OpenEnable THEN
+      g_bOneKeyDone:=FALSE;
+      nAvoidState := 114;
+    ELSE
+      g_bClaw2EnableOff := TRUE;
+      nAvoidState := 113;
+    END_IF;
+  113:
+    (*松开前卡*)
+    IF g_boClaw2Done THEN
+      g_bOneKeyDone:=FALSE;
+      nAvoidState := 114;
+    END_IF;
+  114:
+    (*判断管头工件坐标到当前工件坐标的差值是不是大于前卡零位（切割位）到辅助支撑位置差值*)
+    IF (g_diYWorkCoordinate - g_fPipeHeadCoordM) > dY3AuxiliaryPos THEN
+      nY3AvoidMode := 1;
+       g_fOneKeyPos:= dY3AuxiliaryPos;
+    ELSE
+      nY3AvoidMode := 2;
+       g_fOneKeyPos:= dY3SafePosition;
+    END_IF;
+    (*如果管头伸出卡盘足够长，就需要卡盘3做辅助支撑，卡盘3移动到辅助支撑位置，否则移动到避让位置*)
+      g_fOneKeyClaw:=3;
+      g_bOneKeyEnable:=TRUE;      
+    IF g_bOneKeyDone THEN
+      g_bOneKeyEnable := FALSE;
+      nAvoidState := 115;
+    END_IF;
+  115:
+    (*如果卡盘3在辅助支撑位置，并且卡爪3处于松开状态，就需要把前卡卡爪夹紧，否则直接开始中卡到切割位*)
+    IF nY3AvoidMode = 1 THEN
+      IF NOT g_bClaw2State THEN
+        g_bClaw2Enable := TRUE;
+        nAvoidState := 116;
+      END_IF;
+    ELSE
+      nAvoidState := 117;
+    END_IF;
+  116:
+    (*等待前卡卡爪夹紧完成*)
+    IF g_boClaw2Done THEN
+      nAvoidState := 116;(*问题：中卡避让时，四否需要前卡同时张卡？*)
+    END_IF;
+  117:
+    (*判断卡盘2避让位置*)
+    dCoordTemp := g_fNextFasterPointM - g_diYWorkCoordinate + g_diYMachineCoordinate;
+    IF dCoordTemp > dAvoidDistance2 THEN(*当一个零件同时触发2个卡盘的避让时，直接中卡避让，否则到切割位*)
+      nAvoidState := 140;
+    ELSE
+      nAvoidState := 120;
+    END_IF;
+  120:(*如果Y2有耦合先解耦*)
+    IF Axis_Y2.NCTOPLC.AxisState = 8 THEN
+      g_bY2GearOut:=TRUE;
+      nAvoidState := 122;
+    ELSE 
+      nAvoidState := 125;
+    END_IF;
+  122:
+    IF Axis_Y2.NCTOPLC.AxisState = 2 THEN
+      g_bY2GearOut:=FALSE;
+      nAvoidState := 125;
+    END_IF; 
+  125:
+    (*卡盘2移动到切割位*)
+    g_fOneKeyClaw:=2;
+     g_fOneKeyPos:= fY2CutingPos;
+    g_bOneKeyEnable := TRUE;
+    g_bOneKeyDone:=FALSE;
+    nAvoidState := 127;
+  127:  
+    IF g_bOneKeyDone THEN
+      g_bOneKeyEnable := FALSE;
+      nAvoidState := 130;
+      g_boY2Y3AvoidCheckDone := TRUE;
+    END_IF;
+  130:
+    (*等待检测信号*)
+    IF bAvoidCheck THEN
+      bAvoidCheck := FALSE;
+      dCoordTemp := g_fNextFasterPointM - g_diYWorkCoordinate + g_diYMachineCoordinate;
+      IF dCoordTemp > dAvoidDistance2 THEN
+        nAvoidState := 140;
+        g_boY2Y3AvoidCheckDone := FALSE;
+      ELSE
+        g_boY2Y3AvoidCheckDone := TRUE;
+      END_IF;
+    END_IF;
+  140:
+    (*避让前，调用避让状态机*)
+    g_bAvoidOpen := TRUE;
+    nAvoidState := 150;
+  150:
+    (*等待Z轴、气缸避让完成*)
+    IF g_bAvoidDone THEN
+      nAvoidState := 155;
+    END_IF;
+  155:(*中卡避让，如果前卡在辅助夹持位，需要松开前卡盘，所以松开前卡盘*)
+    g_bClaw2EnableOff := TRUE;
+    nAvoidState := 157;
+  157:
+    (*松开前卡*)
+    IF g_boClaw2Done THEN
+      nAvoidState := 160;
+    END_IF;
+  160:
+    dYY2AvoidMaxMachine := Axis_Y2.NCTOPLC.ACTPOS + g_dY2ZeroDistance - g_dY1Y2MinDis - 1.0;
+    dYY2AvoidMaxWork := Axis_Y2.NCTOPLC.ACTPOS + g_dY2ZeroDistance - g_dY1Y2MinDis - 1.0 - g_diYMachineCoordinate + g_diYWorkCoordinate;
+    (*如果下一个轮廓最近点和最远点都可以夹住管子，才会夹，否则松开卡爪，直接中卡避让开始切割*)
+    IF ((g_fNextFasterPointM - g_fPipeHeadCoordM) > (dY2SafePosition - fY2CutingPos + 10.0)) AND
+       ((g_fNextNearestPointM - g_fPipeHeadCoordM) > (dY2SafePosition - fY2CutingPos + 10.0)) THEN
+      (*如果当前工件坐标减去零件头长度已经足够夹紧，那么后卡就不需要往前推进一段*)
+      IF (g_diYWorkCoordinate - g_fPipeHeadCoordM) > (dY2SafePosition - fY2CutingPos + 10.0) THEN
+        nAvoidState := 200;
+      ELSE
+        (*如果当前后卡移动到离中卡最近点，后卡避让后仍然不能夹住管子，那么就不夹管子，直接中卡避让开始切割*)
+        IF (dYY2AvoidMaxWork - g_fPipeHeadCoordM) > (dY2SafePosition - fY2CutingPos + 10.0) THEN
+          nAvoidState := 180;
+        ELSE
+          nAvoidState := 170;
+          g_bClaw3EnableOff := TRUE;(*中卡松开*)
+        END_IF;
+      END_IF;
+    ELSE
+      nAvoidState := 170;
+      g_bClaw3EnableOff := TRUE;(*中卡松开*)
+    END_IF;
+  170:
+    (*等待中卡松开完成*)
+    IF g_boClaw3Done THEN
+      nAvoidState := 200;
+    END_IF;
+  180:
+    (**)
+    IF dYY2AvoidMaxWork > g_fNextNearestPointM THEN
+      g_foYMoveTarget := g_fNextNearestPointM;
+    ELSE
+      g_foYMoveTarget := dYY2AvoidMaxWork;
+    END_IF;
+    g_foYMoveType := 1.0;
+    g_boY2Y3AvoidCheckDone := TRUE;
+    nAvoidState := 190;
+  190:
+    (*等待Y轴移动完成*)
+    g_boCNCMoveDisable := FALSE;
+    IF R_Trigger2.Q THEN
+      g_bYMoveDoneM := FALSE;
+      nAvoidState := 200;
+    END_IF;
+  200:(*前卡如果在辅助支撑位，需要移动到安全位置*)
+    IF g_fY3Coordinate>=dY3SafePosition THEN
+      nAvoidState := 220;
+    ELSE
+      nAvoidState := 205;     
+    END_IF;
+  205:
+    g_fOneKeyClaw:=3;
+    g_fOneKeyPos:=dY3SafePosition;
+    g_bOneKeyEnable:=TRUE;
+    g_bOneKeyDone:=FALSE;
+    nAvoidState := 207;
+    
+  207:  
+    IF g_bOneKeyDone THEN
+      nAvoidState := 220;
+      g_bOneKeyEnable:=FALSE;
+    END_IF;
+  220:
+    (*中卡移动到避让位置*)
+    g_fOneKeyClaw:=2;
+    g_fOneKeyPos := dY2SafePosition;
+    g_bOneKeyEnable := TRUE;
+    g_bOneKeyDone:=FALSE;
+    nAvoidState := 222;
+  222:  
+    IF g_bOneKeyDone THEN
+      g_bOneKeyEnable := FALSE;
+      nAvoidState := 230;
+      g_boY2Y3AvoidCheckDone := TRUE;
+      g_boY2Y3AvoidCheckDone2 := TRUE;
+      g_foYMoveType := 0.0; 
+      IF NOT g_bClaw2State THEN
+        nMiddleClawState := 10;
+      END_IF;
+    END_IF; 
+  230:
+    g_boY2Y3AvoidCheckDone := TRUE;
+    g_boY2Y3AvoidCheckDone2 := TRUE;(*问题：如果中卡辅助夹持没有张开卡盘，此时切割好几个零件，中卡也没张开*)
+  END_CASE;
+END_IF;
+
+CASE nY2AvoidState OF
+  0:
+    nY2AvoidState:=0;
+  30:(*实时监测中卡盘是否大于中卡最大支撑范围*)
+    g_bY2MoveAllow := TRUE;
+    IF g_fY2Coordinate >= fY2SupportMaxPosInY THEN
+      nY2AvoidState:=33;
+    END_IF;
+  33:(*Y0和Y2解耦*)
+    g_bY2GearOut:=TRUE;
+    IF Axis_Y2.NCTOPLC.AxisState = 2 THEN
+      g_bY2GearOut:=FALSE;
+      nY2AvoidState:=35;
+    END_IF;
+  35:(*中卡移动到零位*)
+    g_bY2AbsExecute:=TRUE;
+    g_fY2AbsVelocity:=g_fY2AvoidVel;
+    g_fY2AbsPosition:=fY2ZeroPos;
+    IF g_bY2AbsDone THEN
+      g_bY2AbsExecute:=FALSE;
+      nY2AvoidState:=0;
+      g_bY2MoveAllow := FALSE;
+    END_IF;
+END_CASE;
+(*复位是解耦状态机*)
+CASE nGearOutState OF
+  0:
+    nGearOutState:=0;
+  10:(*8是耦合*)
+    IF Axis_Y2.NCTOPLC.AxisState = 8 THEN
+      g_bY2GearOut:=TRUE;
+      nGearOutState := 20;
+    ELSE 
+      nGearOutState := 0;
+    END_IF;
+    nAvoidState := 0;
+    nY2AvoidState := 0;
+  20:
+    IF Axis_Y2.NCTOPLC.AxisState = 2 THEN
+      g_bY2GearOut:=FALSE;
+      nGearOutState := 0;
+    END_IF; 
+END_CASE;
+
+CASE nMiddleClawState OF
+  0:
+    nMiddleClawState := 0;
+    g_boMiddleClawCheckDone := TRUE;
+    M.ENABLE[510] := 0; 
+    g_bMiddleClawCheckM := FALSE;
+  10:
+    g_boMiddleClawCheckDone := FALSE;
+    IF R_Trigger5.Q THEN
+      g_bMiddleClawCheckM := FALSE;
+      nMiddleClawState := 20;
+    END_IF;
+  20:
+    IF (g_diYWorkCoordinate - g_fPipeHeadCoordM) > (dY2SafePosition - fY2CutingPos + 10.0) THEN
+      nMiddleClawState := 30;
+
+      g_bClaw2Enable := TRUE;
+    ELSE
+      nMiddleClawState := 0;
+
+      g_boMiddleClawCheckDone := TRUE;
+    END_IF;
+  30:
+    IF g_boClaw2Done THEN 
+      nMiddleClawState := 0; 
+    END_IF;
+END_CASE;
+
+IF g_dY3CoorInY - g_dY2CoorInY < g_dY2Y3MinDis THEN
+  g_bY2Y3DisError := TRUE;
+ELSE
+  g_bY2Y3DisError := FALSE;
+END_IF;
+
+IF g_dY2CoorInY - g_diYMachineCoordinate < g_dY1Y2MinDis THEN
+  g_bY1Y2DisError := TRUE;
+ELSE
+  g_bY1Y2DisError := FALSE;
+END_IF;
+
+IF Axis_Y2.NCTOPLC.ACTPOS > (fY2CutingPos + 0.1) OR (Axis_Y3.NCTOPLC.ACTPOS > (fY3ZeroPos + 0.1) AND 
+   Axis_Y3.NCTOPLC.ACTPOS < (dY3SafePosition - 0.1)) THEN
+  g_bClaw3CylForbid := TRUE;
+ELSE
+  g_bClaw3CylForbid := FALSE;
+END_IF;
+g_nY2Y3AvoidState := nAvoidState;
+IF g_bPlcResetBuffer THEN
+  nAvoidState := 0;
+  nY2AvoidState := 0;
+  nMiddleClawState := 0;
+  g_fY2AbsVelocity := 0.0;
+  g_bY2MoveAllow  := FALSE;
+END_IF;
+nLastPlcState := g_nPlcState;
+g_no3ClawState := nAvoidState;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[3卡盘 卡盘间避让模块]]></xhtml:p>
+  </documentation>
+</pou>

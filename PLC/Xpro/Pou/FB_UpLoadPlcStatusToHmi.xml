@@ -1,0 +1,946 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_UpLoadPlcStatusToHmi" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="StatusFBArr">
+        <type>
+          <derived name="PlcDataToHmi"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态以及数据存放上传 HMI]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boLaserRedLight">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[红光输出信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boLaserPowerOn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光上电输出信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boLaserReset">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光复位输出信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nDotSWState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光打点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ugas_type">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气体类型：0:空气1：氧气2：氮气]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bgas_enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开气使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_Z">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF g_boLaserRedLight THEN 
+   StatusFBArr.BoolArr[0] := TRUE; (*红光*)
+ELSE
+   StatusFBArr.BoolArr[0] := FALSE;
+END_IF;
+IF g_boLaserPowerOn THEN 
+   StatusFBArr.BoolArr[1] := TRUE; (*激光上电*)
+ELSE
+   StatusFBArr.BoolArr[1] := FALSE;
+END_IF;
+IF g_nDotSWState = 2 THEN 
+   StatusFBArr.BoolArr[2] := TRUE; (*激光打点*)
+ELSE
+   StatusFBArr.BoolArr[2] := FALSE;
+END_IF;
+IF g_boLaserReset THEN
+  StatusFBArr.BoolArr[3] := TRUE;(*激光复位*)
+ELSE
+  StatusFBArr.BoolArr[3] := FALSE;
+END_IF; 
+IF g_ugas_type =2  AND g_bgas_enable THEN
+   StatusFBArr.BoolArr[4] := TRUE;(*氮气状态*)
+ELSE 
+   StatusFBArr.BoolArr[4] := FALSE;
+END_IF;
+IF g_ugas_type =1  AND g_bgas_enable THEN
+   StatusFBArr.BoolArr[5] := TRUE;(*氧气状态*)
+ELSE 
+   StatusFBArr.BoolArr[5] := FALSE;
+END_IF;
+IF g_ugas_type = 0 AND g_bgas_enable THEN
+   StatusFBArr.BoolArr[6] := TRUE;(*空气状态*)
+ELSE 
+   StatusFBArr.BoolArr[6] := FALSE;
+END_IF;
+IF Axis_Z.NcToPlc.AXISSTATE = 9 THEN
+  StatusFBArr.BoolArr[7] := TRUE;(*一键随动状态*)
+ELSE
+  StatusFBArr.BoolArr[7] := FALSE;
+END_IF;
+StatusFBArr.BoolArr[8] := g_bLifting;(*Z轴上抬*)
+(*自定义IO输出*)
+(*16个IO输出状态*)
+StatusFBArr.BoolArr[9] := g_boUserDefineIoOut1;
+StatusFBArr.BoolArr[10] := g_boUserDefineIoOut2;
+StatusFBArr.BoolArr[11] := g_boUserDefineIoOut3;
+StatusFBArr.BoolArr[12] := g_boUserDefineIoOut4;
+StatusFBArr.BoolArr[13] := g_boUserDefineIoOut5;
+StatusFBArr.BoolArr[14] := g_boUserDefineIoOut6;
+StatusFBArr.BoolArr[15] := g_boUserDefineIoOut7;
+StatusFBArr.BoolArr[16] := g_boUserDefineIoOut8;
+StatusFBArr.BoolArr[17] := g_boUserDefineIoOut9;
+StatusFBArr.BoolArr[18] := g_boUserDefineIoOut10;
+StatusFBArr.BoolArr[19] := g_boUserDefineIoOut11;
+StatusFBArr.BoolArr[20] := g_boUserDefineIoOut12;
+StatusFBArr.BoolArr[21] := g_boUserDefineIoOut13;
+StatusFBArr.BoolArr[22] := g_boUserDefineIoOut14;
+StatusFBArr.BoolArr[23] := g_boUserDefineIoOut15;
+StatusFBArr.BoolArr[24] := g_boUserDefineIoOut16;
+StatusFBArr.BoolArr[25] := g_bDriveEnable; (*使能*)
+StatusFBArr.BoolArr[26] := g_bFastInch;(*HMI快速*)
+StatusFBArr.BoolArr[27] := g_bInchMode;(*HMI寸动*)
+(*气缸状态*)
+StatusFBArr.BoolArr[28] := g_bClylinder1State;
+StatusFBArr.BoolArr[29] := g_bClylinder2State;
+StatusFBArr.BoolArr[30] := g_bClylinder3State;
+StatusFBArr.BoolArr[31] := g_bClylinder4State;
+StatusFBArr.BoolArr[32] := g_bClylinder5State;
+StatusFBArr.BoolArr[33] := g_bClylinder6State;
+StatusFBArr.BoolArr[34] := g_bClylinder7State;
+StatusFBArr.BoolArr[35] := g_bClylinder8State;
+(*卡爪状态*)
+StatusFBArr.BoolArr[36] := g_bBackClawState;
+StatusFBArr.BoolArr[37] := g_bFrontClawState;
+StatusFBArr.BoolArr[38] := g_bMiddleClawState;
+StatusFBArr.BoolArr[39] := g_bZHomeDone AND Axis_Z.NcToPlc.HOMINGSTATE;        (*Z回零完成*)
+StatusFBArr.BoolArr[40] := g_bU2HomeDone AND Axis_U.NcToPlc.HOMINGSTATE;        (*U2回零完成*)
+IF Axis_U.NcToPlc.AXISSTATE = 8 THEN (*耦合状态*)
+  StatusFBArr.BoolArr[41] := TRUE;
+ELSE
+  StatusFBArr.BoolArr[41] := FALSE;
+END_IF;
+StatusFBArr.BoolArr[42] := g_bDryRunEnable;(*空运行*)
+StatusFBArr.BoolArr[43] := g_bTurnState1;(*翻转气缸1状态*)
+StatusFBArr.BoolArr[44] := g_bTurnState2;(*翻转气缸2状态*)
+StatusFBArr.BoolArr[45] := g_bTurnState3;(*翻转气缸3状态*)
+StatusFBArr.BoolArr[46] := g_bTurnState4;(*翻转气缸4状态*)
+StatusFBArr.BoolArr[47] := g_bTurnState5;(*翻转气缸5状态*)
+StatusFBArr.BoolArr[48] := g_bBlankingStateUp1;(*下料气缸1上升状态*)
+
+StatusFBArr.BoolArr[49] := g_bBlankingStateUp2;(*下料气缸2上升状态*)
+
+StatusFBArr.BoolArr[50] := g_bBlankingStateUp3;(*下料气缸3上升状态*)
+
+StatusFBArr.BoolArr[51] := g_bBlankingStateUp4;(*下料气缸4上升状态*)
+
+StatusFBArr.BoolArr[52] := g_bBlankingStateUp5;(*下料气缸5上升状态*)
+
+StatusFBArr.BoolArr[53] := g_bBlankingStateDown1;(*下料气缸1下降状态*)
+
+StatusFBArr.BoolArr[54] := g_bBlankingStateDown2;(*下料气缸2下降状态*)
+
+StatusFBArr.BoolArr[55] := g_bBlankingStateDown3;(*下料气缸3下降状态*)
+
+StatusFBArr.BoolArr[56] := g_bBlankingStateDown4;(*下料气缸4下降状态*)
+
+StatusFBArr.BoolArr[57] := g_bBlankingStateDown5;(*下料气缸5下降状态*)
+
+
+(*自动下的加工控制类功能反馈*)
+StatusFBArr.BoolArr[58] := g_bCropStatusFb;(*裁切状态标志位*)
+StatusFBArr.BoolArr[59] := g_bRollBackStatusFb;(*回退状态标志位*)
+StatusFBArr.BoolArr[60] := g_bContinueStatusFb;(*续切状态标志位*)
+g_boContinueStatusFb  := g_bContinueStatusFb;
+StatusFBArr.BoolArr[61] := g_bBackToCenterStatusFb;(*回中状态标志位*)
+StatusFBArr.BoolArr[62] := g_bBackToLoadPointStatusFb;(*回上料点状态标志位*)
+StatusFBArr.BoolArr[63] := g_bFourSideCenterStatusFb;(*四面分中状态标志位*)
+StatusFBArr.BoolArr[64] := g_bTwoSideCenterStatusFb;(*两面分中状态标志位*)
+StatusFBArr.BoolArr[65] := g_bCheckLevelSideStatusFb;(*校水平状态标志位*)
+StatusFBArr.BoolArr[66] := g_bOneSideCenterStatusFb;(*校横梁状态标志位*)
+StatusFBArr.BoolArr[67] := INT_TO_BOOL(g_nCalStatus) OR g_bPresterCalStatus; (*标定状态*)
+StatusFBArr.BoolArr[68] := g_Alarm.alarmArray[18] = 718;(*碰板报警*)
+StatusFBArr.BoolArr[69] := g_bPlanEnable;(*是否开启加工计划*)
+StatusFBArr.BoolArr[70] := g_boLaserEnable;(*电子光闸*)
+StatusFBArr.BoolArr[71] := g_bGeneralDustCylinderState;(*抽尘气缸1*)
+StatusFBArr.BoolArr[72] := g_bDustCylinder1State;(*抽尘气缸2*)
+StatusFBArr.BoolArr[73] := g_bDustCylinder2State;(*抽尘气缸3*)
+StatusFBArr.BoolArr[74] := g_bDustGasValveState; (*抽尘气缸4*)
+StatusFBArr.BoolArr[75] := g_bDustHomeDone AND D_Axis.NcToPlc.HOMINGSTATE;(*抽尘轴回零完成*)
+StatusFBArr.BoolArr[76] := g_bSustain4HomeDone AND Axis_Sustain4.NcToPlc.HOMINGSTATE;(*下料轴1回零完成*)
+StatusFBArr.BoolArr[77] := g_bSustain5HomeDone AND Axis_Sustain5.NcToPlc.HOMINGSTATE;(*下料轴1回零完成*)
+StatusFBArr.BoolArr[78] := g_bSustain6HomeDone AND Axis_Sustain6.NcToPlc.HOMINGSTATE;(*下料轴1回零完成*)
+(*支撑轴上升/下降状态*)
+StatusFBArr.BoolArr[79] := g_bSustain1DownState;
+StatusFBArr.BoolArr[80] := g_bSustain2DownState;
+StatusFBArr.BoolArr[81] := g_bSustain3DownState;
+StatusFBArr.BoolArr[82] := g_bSustain7DownState;
+StatusFBArr.BoolArr[83] := g_bSustain8DownState;
+StatusFBArr.BoolArr[84] := g_bSustain9DownState;
+(*支撑轴回零状态*)
+StatusFBArr.BoolArr[85] := g_bSustain1HomeDone AND Axis_Sustain1.NcToPlc.HOMINGSTATE;(*支撑轴1回零完成*)
+StatusFBArr.BoolArr[86] := g_bSustain2HomeDone AND Axis_Sustain2.NcToPlc.HOMINGSTATE;(*支撑轴2回零完成*)
+StatusFBArr.BoolArr[87] := g_bSustain3HomeDone AND Axis_Sustain3.NcToPlc.HOMINGSTATE;(*支撑轴3回零完成*)
+StatusFBArr.BoolArr[88] := g_bSustain7HomeDone AND Axis_Sustain7.NcToPlc.HOMINGSTATE;(*支撑轴1回零完成*)
+StatusFBArr.BoolArr[89] := g_bSustain8HomeDone AND Axis_Sustain8.NcToPlc.HOMINGSTATE;(*支撑轴2回零完成*)
+StatusFBArr.BoolArr[90] := g_bSustain9HomeDone AND Axis_Sustain9.NcToPlc.HOMINGSTATE;(*支撑轴3回零完成*)
+
+StatusFBArr.BoolArr[91] := g_bFHomeDone AND g_FAxis.NcToPlc.HOMINGSTATE;(*变焦轴回零完成*)
+
+(*上料气缸状态反馈 1~5*)
+StatusFBArr.BoolArr[92] := g_bLoadMaterialStateHmi1;
+StatusFBArr.BoolArr[93] := g_bLoadMaterialStateHmi2;
+StatusFBArr.BoolArr[94] := g_bLoadMaterialStateHmi3;
+StatusFBArr.BoolArr[95] := g_bLoadMaterialStateHmi4;
+StatusFBArr.BoolArr[96] := g_bLoadMaterialStateHmi5;
+StatusFBArr.BoolArr[97] := g_bOneKeyLoadStatusFb;(*一键上料状态标志位*)
+StatusFBArr.BoolArr[98] := g_bControlPanelPause;(*面板暂停*)
+StatusFBArr.BoolArr[99] := g_bControlPanelStop;(*面板停止*)
+(*通用轴回零状态*)
+StatusFBArr.BoolArr[100] := g_bGeneral1HomeDone AND g_General1_Axis.NcToPlc.HOMINGSTATE;(*通用轴1回零完成*)
+StatusFBArr.BoolArr[101] := g_bGeneral2HomeDone AND g_General2_Axis.NcToPlc.HOMINGSTATE;(*通用轴2回零完成*)
+StatusFBArr.BoolArr[102] := g_bIsCalibrateFlag;(*是否标定过*)
+StatusFBArr.BoolArr[103] := g_bSlaveNoPower; (*从站断电的标志*)
+
+StatusFBArr.BoolArr[104] := g_bBackCardIsJiaJin; (*后卡是否加紧*)
+
+StatusFBArr.BoolArr[105] := g_bFrontCardIsJiaJin; (*前卡是否加紧*)
+StatusFBArr.BoolArr[106] := g_bSupportDeviceIsJiaJin; (*支持轴或者支撑气缸是否加紧*)
+(*下料轴上升/下降状态*)
+StatusFBArr.BoolArr[107] := g_bSustain4DownState;
+StatusFBArr.BoolArr[108] := g_bSustain5DownState;
+StatusFBArr.BoolArr[109] := g_bSustain6DownState;
+(*卡爪保压状态*)
+StatusFBArr.BoolArr[110] := g_bKeepPressure1;
+StatusFBArr.BoolArr[111] := g_bKeepPressure2;
+StatusFBArr.BoolArr[112] := g_bKeepPressure3;
+StatusFBArr.BoolArr[113] := g_bSingleSideStatusFb;(*单面分中状态标志位*)
+StatusFBArr.BoolArr[114] := g_boU3HomeDone AND Axis_U3.NcToPlc.HOMINGSTATE;        (*U3回零完成*)
+StatusFBArr.BoolArr[115] := g_boY2HomeDone AND Axis_Y2.NcToPlc.HOMINGSTATE;        (*Y2回零完成*)
+StatusFBArr.BoolArr[116] := g_boY3HomeDone AND Axis_Y3.NcToPlc.HOMINGSTATE;        (*Y3回零完成*)
+IF Axis_U3.NcToPlc.AXISSTATE = 8 THEN (*U3耦合状态*)
+  StatusFBArr.BoolArr[117] := TRUE;
+ELSE
+  StatusFBArr.BoolArr[117] := FALSE;
+END_IF;
+IF Axis_Y2.NcToPlc.AXISSTATE = 8 THEN (*Y2耦合状态*)
+  StatusFBArr.BoolArr[118] := TRUE;
+ELSE
+  StatusFBArr.BoolArr[118] := FALSE;
+END_IF;
+
+StatusFBArr.BoolArr[119] := g_bM200AutoTrigPause;(*传输给界面*)
+IF g_General1_Axis.NCTOPLC.AXISSTATE = 8 THEN  (*通用轴耦合状态*)
+  StatusFBArr.BoolArr[120] := TRUE;
+ELSE
+  StatusFBArr.BoolArr[120] := FALSE;
+END_IF;
+StatusFBArr.BoolArr[121] := g_bClaw4Status;(*卡爪4的状态*)
+StatusFBArr.BoolArr[122] := g_bKeepPressure4;(*卡爪4保压*) 
+StatusFBArr.BoolArr[123] := g_bMiddleCardIsJiaJin;(*中卡是否加紧*)
+StatusFBArr.BoolArr[124] := g_bAutoSigleSideFlag;(*自动模式下调用单面分中控制进给的标志位*)
+StatusFBArr.BoolArr[125] := g_bDDAxisHomeDone AND DDAxis.NcToPlc.HOMINGSTATE;(*通用轴3回零完成*)
+StatusFBArr.BoolArr[126] := g_bFourSidesCenterStatusFb;(*四面寻中标志位*)
+StatusFBArr.BoolArr[127] := g_bTwoSidesCenterStatusFb;(*两面寻中*)
+(*支撑气缸和支撑轴的状态，用于手柄指令和M代码一致*)
+StatusFBArr.BoolArr[128] := g_bClylinder1IsUp;
+StatusFBArr.BoolArr[129] := g_bClylinder2IsUp;
+StatusFBArr.BoolArr[130] := g_bClylinder3IsUp;
+StatusFBArr.BoolArr[131] := g_bClylinder4IsUp;
+StatusFBArr.BoolArr[132] := g_bClylinder5IsUp;
+StatusFBArr.BoolArr[133] := g_bClylinder6IsUp;
+StatusFBArr.BoolArr[134] := g_bClylinder7IsUp;
+StatusFBArr.BoolArr[135] := g_bClylinder8IsUp;
+StatusFBArr.BoolArr[136] := g_bSustainAxis1IsUp;
+StatusFBArr.BoolArr[137] := g_bSustainAxis2IsUp;
+StatusFBArr.BoolArr[138] := g_bSustainAxis3IsUp;
+StatusFBArr.BoolArr[139] := g_bSustainAxis4IsUp;
+StatusFBArr.BoolArr[140] := g_bSustainAxis5IsUp;
+StatusFBArr.BoolArr[141] := g_bSustainAxis6IsUp;
+StatusFBArr.BoolArr[142] := g_bUAbsDone;(*就近回零时U2轴用到的标志*)
+(*上料气缸状态反馈 6~11*)
+StatusFBArr.BoolArr[143] := g_bLoadMaterialStateHmi6;
+StatusFBArr.BoolArr[144] := g_bLoadMaterialStateHmi7;
+StatusFBArr.BoolArr[145] := g_bLoadMaterialStateHmi8;
+StatusFBArr.BoolArr[146] := g_bLoadMaterialStateHmi9;
+StatusFBArr.BoolArr[147] := g_bLoadMaterialStateHmi10;
+StatusFBArr.BoolArr[148] := g_bLoadMaterialStateHmi11;
+(*NC轴跟随误差报警*)
+StatusFBArr.BoolArr[149] := g_bZAxisPosErrorAlarm;
+StatusFBArr.BoolArr[150] := g_bFAxisPosErrorAlarm;
+StatusFBArr.BoolArr[151] := g_bU2AxisPosErrorAlarm;
+StatusFBArr.BoolArr[152] := g_bT1AxisPosErrorAlarm;
+StatusFBArr.BoolArr[153] := g_bT2AxisPosErrorAlarm;
+StatusFBArr.BoolArr[154] := g_bT3AxisPosErrorAlarm;
+StatusFBArr.BoolArr[155] := g_bZ1AxisPosErrorAlarm;
+StatusFBArr.BoolArr[156] := g_bZ2AxisPosErrorAlarm;
+StatusFBArr.BoolArr[157] := g_bZ3AxisPosErrorAlarm;
+StatusFBArr.BoolArr[158] := g_bS1AxisPosErrorAlarm;
+StatusFBArr.BoolArr[159] := g_bS2AxisPosErrorAlarm;
+StatusFBArr.BoolArr[160] := g_bS3AxisPosErrorAlarm;
+StatusFBArr.BoolArr[161] := g_bS4AxisPosErrorAlarm;
+StatusFBArr.BoolArr[162] := g_bS5AxisPosErrorAlarm;
+StatusFBArr.BoolArr[163] := g_bS6AxisPosErrorAlarm;
+StatusFBArr.BoolArr[164] := g_bU3AxisPosErrorAlarm;
+StatusFBArr.BoolArr[165] := g_bY2AxisPosErrorAlarm;
+StatusFBArr.BoolArr[166] := g_bY3AxisPosErrorAlarm;
+StatusFBArr.BoolArr[167] := g_bDustAxisPosErrorAlarm;
+StatusFBArr.BoolArr[168] := g_boProcessEndToThirdPlc;
+StatusFBArr.BoolArr[169] := g_bRealTimeDynamicOPen;
+StatusFBArr.BoolArr[170] := g_bRealTimeDynamicClose;
+StatusFBArr.BoolArr[171] := g_bAutoParaDoneEnable;
+StatusFBArr.BoolArr[172] := g_bFallBackStatusFb;(*回退按钮指示灯*)
+StatusFBArr.BoolArr[173] := g_bForwardStatusFb;(*前进按钮指示灯*)
+StatusFBArr.BoolArr[174] :=  g_bIsCanClickForwarnOrBackwardState;
+StatusFBArr.BoolArr[175] := g_bUnloadSupportcyLinder1StateHMI;(*下料支撑气缸1状态*)
+StatusFBArr.BoolArr[176] := g_bUnloadSupportcyLinder2StateHMI;(*下料支撑气缸2状态*)
+StatusFBArr.BoolArr[177] := g_bUnloadSupportcyLinder3StateHMI;(*下料支撑气缸3状态*)
+StatusFBArr.BoolArr[178] := g_bUnloadSupportcyLinder4StateHMI;(*下料支撑气缸4状态*)
+StatusFBArr.BoolArr[179] := g_bUnloadSupportcyLinder5StateHMI;(*下料支撑气缸5状态*)
+StatusFBArr.BoolArr[180] := g_bUnloadSupportcyLinder6StateHMI;(*下料支撑气缸6状态*)
+StatusFBArr.BoolArr[181] := g_bUnloadSupportcyLinder7StateHMI;(*下料支撑气缸7状态*)
+StatusFBArr.BoolArr[182] := g_bUnloadSupportcyLinder8StateHMI;(*下料支撑气缸8状态*)
+StatusFBArr.BoolArr[183] := g_bCycleStart; (*循环加工的标志*)
+
+StatusFBArr.BoolArr[184] := g_boUserDefineIoOut17;
+StatusFBArr.BoolArr[185] := g_boUserDefineIoOut18;
+StatusFBArr.BoolArr[186] := g_boUserDefineIoOut19;
+StatusFBArr.BoolArr[187] := g_boUserDefineIoOut20;
+StatusFBArr.BoolArr[188] := g_boUserDefineIoOut21;
+StatusFBArr.BoolArr[189] := g_boUserDefineIoOut22;
+StatusFBArr.BoolArr[190] := g_boUserDefineIoOut23;
+StatusFBArr.BoolArr[191] := g_boUserDefineIoOut24;
+StatusFBArr.BoolArr[192] := g_boUserDefineIoOut25;
+StatusFBArr.BoolArr[193] := g_boUserDefineIoOut26;
+StatusFBArr.BoolArr[194] := g_boUserDefineIoOut27;
+StatusFBArr.BoolArr[195] := g_boUserDefineIoOut28;
+StatusFBArr.BoolArr[196] := g_boUserDefineIoOut29;
+StatusFBArr.BoolArr[197] := g_boUserDefineIoOut30;
+StatusFBArr.BoolArr[198] := g_boUserDefineIoOut31;
+StatusFBArr.BoolArr[199] := g_boUserDefineIoOut32;
+
+StatusFBArr.BoolArr[200] := g_bUserDefineAlarmFromModbus1;
+StatusFBArr.BoolArr[201] := g_bUserDefineAlarmFromModbus2;
+StatusFBArr.BoolArr[202] := g_bUserDefineAlarmFromModbus3;
+StatusFBArr.BoolArr[203] := g_bUserDefineAlarmFromModbus4;
+StatusFBArr.BoolArr[204] := g_bUserDefineAlarmFromModbus5;
+StatusFBArr.BoolArr[205] := g_bUserDefineAlarmFromModbus6;
+StatusFBArr.BoolArr[206] := g_bUserDefineAlarmFromModbus7;
+StatusFBArr.BoolArr[207] := g_bUserDefineAlarmFromModbus8;
+StatusFBArr.BoolArr[208] := g_bUserDefineAlarmFromModbus9;
+StatusFBArr.BoolArr[209] := g_bUserDefineAlarmFromModbus10;
+StatusFBArr.BoolArr[210] := g_bUserDefineAlarmFromModbus11;
+StatusFBArr.BoolArr[211] := g_bUserDefineAlarmFromModbus12;
+StatusFBArr.BoolArr[212] := g_bUserDefineAlarmFromModbus13;
+StatusFBArr.BoolArr[213] := g_bUserDefineAlarmFromModbus14;
+StatusFBArr.BoolArr[214] := g_bUserDefineAlarmFromModbus15;
+StatusFBArr.BoolArr[215] := g_bUserDefineAlarmFromModbus16;
+StatusFBArr.BoolArr[216] := g_bUserDefineAlarmFromModbus17;
+StatusFBArr.BoolArr[217] := g_bUserDefineAlarmFromModbus18;
+StatusFBArr.BoolArr[218] := g_bUserDefineAlarmFromModbus19;
+StatusFBArr.BoolArr[219] := g_bUserDefineAlarmFromModbus20;
+StatusFBArr.BoolArr[220] := g_bUserDefineAlarmFromModbus21;
+StatusFBArr.BoolArr[221] := g_bUserDefineAlarmFromModbus22;
+StatusFBArr.BoolArr[222] := g_bUserDefineAlarmFromModbus23;
+StatusFBArr.BoolArr[223] := g_bUserDefineAlarmFromModbus24;
+StatusFBArr.BoolArr[224] := g_bUserDefineAlarmFromModbus25;
+StatusFBArr.BoolArr[225] := g_bUserDefineAlarmFromModbus26;
+StatusFBArr.BoolArr[226] := g_bUserDefineAlarmFromModbus27;
+StatusFBArr.BoolArr[227] := g_bUserDefineAlarmFromModbus28;
+StatusFBArr.BoolArr[228] := g_bUserDefineAlarmFromModbus29;
+StatusFBArr.BoolArr[229] := g_bUserDefineAlarmFromModbus30;
+StatusFBArr.BoolArr[230] := g_bUserDefineAlarmFromModbus31;
+StatusFBArr.BoolArr[231] := g_bUserDefineAlarmFromModbus32;
+StatusFBArr.BoolArr[232] := g_bProcessDone;
+StatusFBArr.BoolArr[233] := g_bExecuteAvoidanceFB;
+StatusFBArr.BoolArr[234] := g_bProcessCutDoneForWorkPlan;(*程序结束-计划加工使用*)
+StatusFBArr.BoolArr[235] := g_bIsCanExecuteFallBack;(*用来判断是否可以执行回退*)
+StatusFBArr.BoolArr[236] := g_bM300ExecuteFlag;
+StatusFBArr.BoolArr[237] := g_bZCalibrateDone;
+StatusFBArr.BoolArr[238] := g_bControlPanelEmergencyStop;
+StatusFBArr.BoolArr[239] := g_bUseSup2CylState1;
+StatusFBArr.BoolArr[240] := g_bUseSup2CylState2;
+StatusFBArr.BoolArr[241] := g_bUseSup2CylState3;
+StatusFBArr.BoolArr[242] := g_bCentringCyl2State1;
+StatusFBArr.BoolArr[243] := g_bCentringCyl2State2;
+StatusFBArr.BoolArr[244] := g_bCentringCyl2State3;
+(*判断NC轴的使能状态*)
+IF Axis_Z.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[245] := FALSE;
+ELSIF Axis_Z.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[245] := TRUE;
+END_IF;
+IF g_UPower.Enable THEN
+  StatusFBArr.BoolArr[246] := TRUE;
+ELSE
+   StatusFBArr.BoolArr[246] := FALSE;
+END_IF;
+
+IF g_FAxis.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[247] := FALSE;
+ELSIF g_FAxis.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[247] := TRUE;
+END_IF;
+
+IF Axis_Sustain1.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[248] := FALSE;
+ELSIF Axis_Sustain1.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[248] := TRUE;
+END_IF;
+
+IF Axis_Sustain2.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[249] := FALSE;
+ELSIF Axis_Sustain2.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[249] := TRUE;
+END_IF;
+
+IF Axis_Sustain3.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[250] := FALSE;
+ELSIF Axis_Sustain3.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[250] := TRUE;
+END_IF;
+
+IF Axis_Sustain7.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[251] := FALSE;
+ELSIF Axis_Sustain7.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[251] := TRUE;
+END_IF;
+
+IF Axis_Sustain8.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[252] := FALSE;
+ELSIF Axis_Sustain8.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[252] := TRUE;
+END_IF;
+
+IF Axis_Sustain9.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[253] := FALSE;
+ELSIF Axis_Sustain9.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[253] := TRUE;
+END_IF;
+
+IF Axis_Sustain4.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[254] := FALSE;
+ELSIF Axis_Sustain4.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[254] := TRUE;
+END_IF;
+
+IF Axis_Sustain5.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[255] := FALSE;
+ELSIF Axis_Sustain5.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[255] := TRUE;
+END_IF;
+
+IF Axis_Sustain6.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[256] := FALSE;
+ELSIF Axis_Sustain6.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[256] := TRUE;
+END_IF;
+
+IF D_Axis.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[257] := FALSE;
+ELSIF D_Axis.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[257] := TRUE;
+END_IF;
+
+IF g_General1_Axis.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[258] := FALSE;
+ELSIF g_General1_Axis.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[258] := TRUE;
+END_IF;
+
+IF g_General2_Axis.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[259] := FALSE;
+ELSIF g_General2_Axis.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[259] := TRUE;
+END_IF;
+
+IF DDAxis.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[260] := FALSE;
+ELSIF DDAxis.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[260] := TRUE;
+END_IF;
+
+StatusFBArr.BoolArr[261] := g_bOneKeyUnLoadStatusFb;(*一键下料状态标志位*)
+StatusFBArr.BoolArr[262] := g_bProfileProbeCompletionFlag;(*板外引入完成标志*)
+StatusFBArr.BoolArr[263] :=g_bAvoidCylinderStateHmi;(*避让气缸状态灯*)
+StatusFBArr.BoolArr[264] := AntiRejection6.NCTOPLC.HOMINGSTATE AND g_bAvoidAxisHomedDone;
+StatusFBArr.BoolArr[265] := g_bWeldCheckStateFb;
+
+(*并行过程1~10的状态是否被触发*)
+StatusFBArr.BoolArr[266] := g_bParallePLC1Start;
+StatusFBArr.BoolArr[267] := g_bParallePLC2Start;
+StatusFBArr.BoolArr[268] := g_bParallePLC3Start;
+StatusFBArr.BoolArr[269] := g_bParallePLC4Start;
+StatusFBArr.BoolArr[270] := g_bParallePLC5Start;
+StatusFBArr.BoolArr[271] := g_bParallePLC6Start;
+StatusFBArr.BoolArr[272] := g_bParallePLC7Start;
+StatusFBArr.BoolArr[273] := g_bParallePLC8Start;
+StatusFBArr.BoolArr[274] := g_bParallePLC9Start;
+StatusFBArr.BoolArr[275] := g_bParallePLC10Start;
+StatusFBArr.BoolArr[276] := g_bHMIStartExecuteSideCenterM; (*M312触发通知HMI*)
+StatusFBArr.BoolArr[277] :=  g_bControlSpecialSignal;(*自定义外部信号触发*)
+StatusFBArr.BoolArr[278] :=  AntiRejection4.NCTOPLC.HOMINGSTATE AND g_bAntiRejection4HomeDone;(*零尾料轴1回原状态*)
+StatusFBArr.BoolArr[279] :=  AntiRejection5.NCTOPLC.HOMINGSTATE AND g_bAntiRejection5HomeDone;(*零尾料轴2回原状态*)
+
+IF AntiRejection4.NCTOPLC.AXISSTATE = 8 THEN
+StatusFBArr.BoolArr[280] := TRUE;
+ELSE
+  StatusFBArr.BoolArr[280] := FALSE;
+END_IF;
+IF AntiRejection5.NCTOPLC.AXISSTATE = 8 THEN
+StatusFBArr.BoolArr[281] := TRUE;
+ELSE
+  StatusFBArr.BoolArr[281] := FALSE;
+END_IF;
+StatusFBArr.BoolArr[282] :=  AntiRejection3.NCTOPLC.HOMINGSTATE AND g_bAntiRejection3HomeDone;(*抽尘轴2回原状态*)
+StatusFBArr.BoolArr[283] := g_bDoubleDustChangeCylState;
+StatusFBArr.BoolArr[284] :=g_bMiddleCylinderStateHmi;
+StatusFBArr.BoolArr[285] :=g_bThreeSidesCenterStatusFb;
+StatusFBArr.BoolArr[286] :=g_bAlignTubeHeadStatusFb;
+StatusFBArr.BoolArr[287] :=g_bM328AutoTrigStop;
+StatusFBArr.BoolArr[288] := g_bM329AutoTrrigerToBreakMode;
+StatusFBArr.BoolArr[289] := g_bZAxisSafeCheckSignal;(*z轴安全信号*)
+StatusFBArr.BoolArr[290] := g_bXAxisSafeCheckSignal;(*x轴安全信号*)
+(*支撑轴浮动开启关闭标志*)
+IF g_bSustainAxis1VelAddEnable OR g_bSustainAxis2VelAddEnable OR g_bSustainAxis3VelAddEnable OR g_bSustainAxis4VelAddEnable OR g_bSustainAxis5VelAddEnable OR g_bSustainAxis6VelAddEnable 
+  OR g_bSustainAxis7VelAddEnable OR g_bSustainAxis8VelAddEnable OR g_bSustainAxis9VelAddEnable OR g_bSustainAxis10VelAddEnable OR g_bSustainAxis11VelAddEnable OR g_bSustainAxis12VelAddEnable THEN
+  StatusFBArr.BoolArr[291] := TRUE;
+ELSE
+  StatusFBArr.BoolArr[291] := FALSE;
+END_IF;
+(*托料轴浮动开启关闭标志*)
+IF g_bFrontAxis1VelAddEnable OR g_bFrontAxis2VelAddEnable OR g_bFrontAxis3VelAddEnable OR g_bFrontAxis4VelAddEnable THEN
+  StatusFBArr.BoolArr[292] := TRUE;
+ELSE
+  StatusFBArr.BoolArr[292] := FALSE;
+END_IF;
+
+IF AntiRejection6.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[293] := FALSE;
+ELSIF AntiRejection6.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[293] := TRUE;
+END_IF;
+IF AntiRejection5.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[294] := FALSE;
+ELSIF AntiRejection5.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[294] := TRUE;
+END_IF;
+IF AntiRejection4.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[295] := FALSE;
+ELSIF AntiRejection4.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[295] := TRUE;
+END_IF;
+IF AntiRejection3.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[296] := FALSE;
+ELSIF AntiRejection3.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[296] := TRUE;
+END_IF;
+(*单独支撑轴浮动开关*)
+StatusFBArr.BoolArr[297] := g_bSustainAxis1VelAddEnable;
+StatusFBArr.BoolArr[298] := g_bSustainAxis2VelAddEnable;
+StatusFBArr.BoolArr[299] := g_bSustainAxis3VelAddEnable;
+StatusFBArr.BoolArr[300] := g_bSustainAxis4VelAddEnable;
+StatusFBArr.BoolArr[301] := g_bSustainAxis5VelAddEnable;
+StatusFBArr.BoolArr[302] := g_bSustainAxis6VelAddEnable;
+(*单独下料轴浮动开关*)
+StatusFBArr.BoolArr[303] := g_bFrontAxis1VelAddEnable;
+StatusFBArr.BoolArr[304] := g_bFrontAxis2VelAddEnable;
+StatusFBArr.BoolArr[305] := g_bFrontAxis3VelAddEnable;
+StatusFBArr.BoolArr[306] := g_bUseSup2CylState4;
+StatusFBArr.BoolArr[307] := g_bCentringCyl2State4;
+StatusFBArr.BoolArr[308] := g_bModbusNotificateHMIGetValueFlag;
+StatusFBArr.BoolArr[309] := g_bMiddleFeedAxisSelfTuningDone;(*避让进给轴自整定完成*)
+StatusFBArr.BoolArr[310] := g_bZ4AxisPosErrorAlarm;
+StatusFBArr.BoolArr[311] := g_boAntiRejection2HomeDone AND AntiRejection2.NcToPlc.HOMINGSTATE;(*下料轴4回零完成*)
+StatusFBArr.BoolArr[312] := g_bFrontAxis4VelAddEnable;
+StatusFBArr.BoolArr[313] := g_bClylinder9State;
+StatusFBArr.BoolArr[314] := g_bClylinder9IsUp;
+StatusFBArr.BoolArr[315] := g_bRealTimeUpdateParallePLCExecuteFlag;
+StatusFBArr.BoolArr[316] := g_bClylinder10State;
+StatusFBArr.BoolArr[317] := g_bClylinder10IsUp;
+StatusFBArr.BoolArr[318] := g_bClylinder11State;
+StatusFBArr.BoolArr[319] := g_bClylinder11IsUp;
+StatusFBArr.BoolArr[320] := g_bClylinder12State;
+StatusFBArr.BoolArr[321] := g_NCMoveData.NCAXISDATA[0].AxisHomeDone AND DualAxis1.NCTOPLC.HOMINGSTATE;(*双工位轴回原标志上传*)
+StatusFBArr.BoolArr[322] := g_NCMoveData.NCAXISDATA[1].AxisHomeDone AND DualAxis2.NCTOPLC.HOMINGSTATE;
+StatusFBArr.BoolArr[323] := g_NCMoveData.NCAXISDATA[2].AxisHomeDone AND DualAxis3.NCTOPLC.HOMINGSTATE;
+StatusFBArr.BoolArr[324] := g_NCMoveData.NCAXISDATA[3].AxisHomeDone AND DualAxis4.NCTOPLC.HOMINGSTATE;
+StatusFBArr.BoolArr[325] := g_bDualStation1Chuck1Status;(*双工位卡盘状态*)
+StatusFBArr.BoolArr[326] := g_bDualStation1Chuck2Status;
+StatusFBArr.BoolArr[327] := g_bDualStation2Chuck1Status;
+StatusFBArr.BoolArr[328] := g_bDualStation2Chuck2Status;
+IF DualAxis1.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[329] := FALSE;
+ELSIF DualAxis1.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[329] := TRUE;
+END_IF;
+IF DualAxis2.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[330] := FALSE;
+ELSIF DualAxis2.NCTOPLC.AXISSTATE =2  THEN
+  StatusFBArr.BoolArr[330] := TRUE;
+END_IF;
+IF DualAxis3.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[331] := FALSE;
+ELSIF DualAxis3.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[331] := TRUE;
+END_IF;
+IF DualAxis4.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[332] := FALSE;
+ELSIF DualAxis4.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[332] := TRUE;
+END_IF;
+StatusFBArr.BoolArr[333] :=g_bDualStation1ExternalSignalTriggered;
+StatusFBArr.BoolArr[334] :=g_bDualStation2ExternalSignalTriggered;
+StatusFBArr.BoolArr[335] :=g_bDualStation1IsCuttingStatus;
+StatusFBArr.BoolArr[336] :=g_bDualStation2IsCuttingStatus;
+StatusFBArr.BoolArr[337] :=g_bBeamAvoidAxisSelfTuningDone;(*横梁避让轴自整定完成*)
+StatusFBArr.BoolArr[338] :=g_bMiddleAvoidAxisSelfTuningDone;(*中卡避让轴自整定完成*)
+StatusFBArr.BoolArr[339] := g_bNotifyHMIToAcquireValue;
+StatusFBArr.BoolArr[340] := g_bS7AxisPosErrorAlarm;
+StatusFBArr.BoolArr[341] := g_NCMoveData.NCAXISDATA[4].AxisHomeDone AND Axis_S7.NcToPlc.HOMINGSTATE;(*支撑轴7回零完成*)
+IF Axis_S7.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[342] := FALSE;
+ELSIF Axis_S7.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[342] := TRUE;
+END_IF;
+StatusFBArr.BoolArr[343] := g_bSustainAxis7VelAddEnable;
+
+StatusFBArr.BoolArr[344] := g_bS8AxisPosErrorAlarm;
+StatusFBArr.BoolArr[345] := g_NCMoveData.NCAXISDATA[5].AxisHomeDone AND Axis_S8.NcToPlc.HOMINGSTATE;(*支撑轴8回零完成*)
+IF Axis_S8.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[346] := FALSE;
+ELSIF Axis_S8.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[346] := TRUE;
+END_IF;
+StatusFBArr.BoolArr[347] := g_bSustainAxis8VelAddEnable;
+
+
+StatusFBArr.BoolArr[348] := g_bS9AxisPosErrorAlarm;
+StatusFBArr.BoolArr[349] := g_NCMoveData.NCAXISDATA[6].AxisHomeDone AND Axis_S9.NcToPlc.HOMINGSTATE;(*支撑轴9回零完成*)
+IF Axis_S9.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[350] := FALSE;
+ELSIF Axis_S9.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[350] := TRUE;
+END_IF;
+StatusFBArr.BoolArr[351] := g_bSustainAxis9VelAddEnable;
+
+
+StatusFBArr.BoolArr[352] := g_bS10AxisPosErrorAlarm;
+StatusFBArr.BoolArr[353] := g_NCMoveData.NCAXISDATA[7].AxisHomeDone AND Axis_S10.NcToPlc.HOMINGSTATE;(*支撑轴10回零完成*)
+IF Axis_S10.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[354] := FALSE;
+ELSIF Axis_S10.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[354] := TRUE;
+END_IF;
+StatusFBArr.BoolArr[355] := g_bSustainAxis10VelAddEnable;
+
+
+StatusFBArr.BoolArr[356] := g_bS11AxisPosErrorAlarm;
+StatusFBArr.BoolArr[357] := g_NCMoveData.NCAXISDATA[8].AxisHomeDone AND Axis_S11.NcToPlc.HOMINGSTATE;(*支撑轴11回零完成*)
+IF Axis_S11.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[358] := FALSE;
+ELSIF Axis_S11.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[358] := TRUE;
+END_IF;
+StatusFBArr.BoolArr[359] := g_bSustainAxis11VelAddEnable;
+
+
+StatusFBArr.BoolArr[360] := g_bS12AxisPosErrorAlarm;
+StatusFBArr.BoolArr[361] := g_NCMoveData.NCAXISDATA[9].AxisHomeDone AND Axis_S12.NcToPlc.HOMINGSTATE;(*支撑轴12回零完成*)
+IF Axis_S12.NCTOPLC.AXISSTATE = 1 THEN
+  StatusFBArr.BoolArr[362] := FALSE;
+ELSIF Axis_S12.NCTOPLC.AXISSTATE = 2 THEN
+  StatusFBArr.BoolArr[362] := TRUE;
+END_IF;
+StatusFBArr.BoolArr[363] := g_bSustainAxis12VelAddEnable;
+StatusFBArr.BoolArr[364] := g_bS7AxisPosErrorAlarm;
+StatusFBArr.BoolArr[365] := g_bS8AxisPosErrorAlarm;
+StatusFBArr.BoolArr[366] := g_bS9AxisPosErrorAlarm;
+StatusFBArr.BoolArr[367] := g_bS10AxisPosErrorAlarm;
+StatusFBArr.BoolArr[368] := g_bS11AxisPosErrorAlarm;
+StatusFBArr.BoolArr[369] := g_bS12AxisPosErrorAlarm;
+
+
+(*************Double***************)
+StatusFBArr.DoubleArr[0] := DINT_TO_LREAL(g_nMotionMode);(*模式*)
+StatusFBArr.DoubleArr[1] := INT_TO_LREAL(g_nPlcState);(*状态*)
+StatusFBArr.DoubleArr[2] := g_dCurOverrideToHmi;(*进给倍率*)
+IF g_dCurOverrideToHmi > 1.0 THEN
+
+  g_dCurOverride := 1.0;
+
+ELSE 
+
+  g_dCurOverride := g_dCurOverrideToHmi;
+
+END_IF;
+StatusFBArr.DoubleArr[3] := g_fZCoordinate;(*Z轴坐标*)
+StatusFBArr.DoubleArr[4] := g_fZAxisHeight;(*Z轴工件坐标*)
+StatusFBArr.DoubleArr[5] := g_fUCoordinate;(*U轴坐标*)
+StatusFBArr.DoubleArr[6] := g_dGasPressurefeed;(*气压倍率*)
+StatusFBArr.DoubleArr[7] := g_dAngle;(*校水平角度*)
+StatusFBArr.DoubleArr[8] := g_dBeamCenterPos;(*横梁中心点*)
+StatusFBArr.DoubleArr[9] := g_dCurVersion;(*当前plc版本号*)
+StatusFBArr.DoubleArr[10] := UDINT_TO_LREAL(g_niZSensorValue);(*电容值反馈*)
+(*NC轴速度反馈*)
+
+StatusFBArr.DoubleArr[11] := g_fZVelocity;(*Z轴速度*)
+StatusFBArr.DoubleArr[12] := g_fUVelocity;(*U2轴速度*)
+StatusFBArr.DoubleArr[13] := g_dFourSideCompensationA;(*四面分中A面补偿*)
+StatusFBArr.DoubleArr[14] := g_dFourSideCompensationB;(*四面分中B面补偿*)
+StatusFBArr.DoubleArr[15] := g_dFourSideCompensationC;(*四面分中C面补偿*)
+StatusFBArr.DoubleArr[16] := g_dFourSideCompensationD;(*四面分中D面补偿*)
+StatusFBArr.DoubleArr[17] := g_dInformHmiUpdateValue;(*用于通知Hmi更新某部分数据（四面分中两面分中使用）*)
+StatusFBArr.DoubleArr[18] := g_dTwoSideCompensationA;(*2面分中A面补偿*)
+StatusFBArr.DoubleArr[19] := g_dTwoSideCompensationB;(*2面分中B面补偿*)
+StatusFBArr.DoubleArr[20] := DINT_TO_LREAL(g_nProcessedPart);(*已加工的零件数量*)
+StatusFBArr.DoubleArr[21] := g_dProcessTimers;(*本次加工计时*) 
+StatusFBArr.DoubleArr[22] := DINT_TO_LREAL(g_nPlanPartNum);(*计划加工数量*) 
+StatusFBArr.DoubleArr[23] := g_dTotalProcessTimers;(*总加工计时*) 
+StatusFBArr.DoubleArr[24] := g_dGantryAxisJointErr;(*龙门轴坐标*)
+
+(*驱动器扭力.速度值反馈*)
+StatusFBArr.DoubleArr[25] :=REAL_TO_LREAL(g_fServoTorque0);
+StatusFBArr.DoubleArr[26] := REAL_TO_LREAL(g_fServoTorque1);
+StatusFBArr.DoubleArr[27] :=REAL_TO_LREAL(g_fServoTorque2);
+StatusFBArr.DoubleArr[28] := REAL_TO_LREAL(g_fServoTorque3);
+StatusFBArr.DoubleArr[29] :=REAL_TO_LREAL(g_fServoTorque4);
+StatusFBArr.DoubleArr[30] := REAL_TO_LREAL(g_fServoTorque5);
+StatusFBArr.DoubleArr[31] :=REAL_TO_LREAL(g_fServoTorque6);
+StatusFBArr.DoubleArr[32] := REAL_TO_LREAL(g_fServoTorque7);
+StatusFBArr.DoubleArr[33] :=REAL_TO_LREAL(g_fServoTorque8);
+StatusFBArr.DoubleArr[34] := REAL_TO_LREAL(g_fServoTorque9);
+
+StatusFBArr.DoubleArr[35] :=REAL_TO_LREAL(g_fServoVelcity0);
+StatusFBArr.DoubleArr[36] := REAL_TO_LREAL(g_fServoVelcity1);
+StatusFBArr.DoubleArr[37] :=REAL_TO_LREAL(g_fServoVelcity2);
+StatusFBArr.DoubleArr[38] := REAL_TO_LREAL(g_fServoVelcity3);
+StatusFBArr.DoubleArr[39] :=REAL_TO_LREAL(g_fServoVelcity4);
+StatusFBArr.DoubleArr[40] := REAL_TO_LREAL(g_fServoVelcity5);
+StatusFBArr.DoubleArr[41] :=REAL_TO_LREAL(g_fServoVelcity6);
+StatusFBArr.DoubleArr[42] := REAL_TO_LREAL(g_fServoVelcity7);
+StatusFBArr.DoubleArr[43] :=REAL_TO_LREAL(g_fServoVelcity8);
+StatusFBArr.DoubleArr[44] := REAL_TO_LREAL(g_fServoVelcity9);
+StatusFBArr.DoubleArr[45] := g_DustAxisCoordinate;(*除尘轴坐标*)
+StatusFBArr.DoubleArr[46] := g_fSustain4Coord;(*下料轴1坐标*)
+StatusFBArr.DoubleArr[47] := g_fSustain5Coord;(*下料轴2坐标*)
+StatusFBArr.DoubleArr[48] := g_fSustain6Coord;(*下料轴3坐标*)
+StatusFBArr.DoubleArr[49] := g_DustAxisVelocity;(*抽尘轴速度*)
+StatusFBArr.DoubleArr[50] := g_fSustainTargetPos;(*支撑轴上升目标高度*)
+(*支撑轴机床坐标*)
+StatusFBArr.DoubleArr[51] := g_fSustain1Coord;
+StatusFBArr.DoubleArr[52] := g_fSustain2Coord;
+StatusFBArr.DoubleArr[53] := g_fSustain3Coord;
+StatusFBArr.DoubleArr[54] := g_fSustain7Coord;
+StatusFBArr.DoubleArr[55] := g_fSustain8Coord;
+StatusFBArr.DoubleArr[56] := g_fSustain9Coord;
+IF g_nFAxisControl = 2 THEN
+  StatusFBArr.doubleArr[58] := g_dFCoordinate;
+ELSE
+  StatusFBArr.doubleArr[57] := g_dFaxisAnoagePosFb; (*变焦位置反馈*)
+END_IF; 
+StatusFBArr.DoubleArr[59] := g_dChuckCenterInZpos;(*卡盘中心在Z轴上的坐标*)
+StatusFBArr.DoubleArr[60] :=  UINT_TO_LREAL(g_ugas_type);(*气体类型*)
+StatusFBArr.DoubleArr[61] := g_dLaserPowerFB;(*功率反馈*)
+StatusFBArr.DoubleArr[62] := UINT_TO_LREAL(g_nPower); (*输出功率*)
+StatusFBArr.DoubleArr[63] := UINT_TO_LREAL(g_nDotPower);(*激光打点输出功率*)
+StatusFBArr.DoubleArr[64] := g_dAirPressureFB;(*空气气压反馈*)
+StatusFBArr.DoubleArr[65] := g_dNirPressureFB;(*氮气气压反馈*)
+StatusFBArr.DoubleArr[66] := g_dOxyPressureFB;(*氧气压反馈*)
+StatusFBArr.DoubleArr[67] := g_dair_pressure;(*空气阀气压*)
+StatusFBArr.DoubleArr[68] := g_doxygen_pressure;(*氧气阀气压*)
+StatusFBArr.DoubleArr[69] := g_dnitogen_pressure;(*氮气阀气压*)
+StatusFBArr.DoubleArr[70] :=BOOL_TO_LREAL(g_bSendControlPanelStrat);
+StatusFBArr.DoubleArr[71] := g_dGeneral1Coordinate;(*通用轴1坐标*)
+StatusFBArr.DoubleArr[72] := g_dGeneral2Coordinate;(*通用轴2坐标*)
+StatusFBArr.DoubleArr[73] :=Axis_U.NcToPlc.SETPOS - Axis_U.NcToPlc.ACTPOS;(*U2轴跟随误差*)
+(*将左右夹持气缸状态上传*)
+StatusFBArr.DoubleArr[74] := INT_TO_LREAL(g_nAntiRejectionCylHMI1);
+StatusFBArr.DoubleArr[75] := INT_TO_LREAL(g_nAntiRejectionCylHMI2);
+StatusFBArr.DoubleArr[76] := INT_TO_LREAL(g_nAntiRejectionCylHMI3);
+StatusFBArr.DoubleArr[77] := INT_TO_LREAL(g_nAntiRejectionCylHMI4);
+StatusFBArr.DoubleArr[78] := INT_TO_LREAL(g_nAntiRejectionCylHMI5);
+StatusFBArr.DoubleArr[79] := INT_TO_LREAL(g_nAntiRejectionCylHMI6);
+StatusFBArr.DoubleArr[80] := INT_TO_LREAL(g_nAntiRejectionCylHMI7);
+StatusFBArr.DoubleArr[81] := INT_TO_LREAL(g_nAntiRejectionCylHMI8);
+StatusFBArr.DoubleArr[82] := g_bFindEageCoord;
+StatusFBArr.DoubleArr[83] := g_dSingleSideCompensation;
+StatusFBArr.DoubleArr[84] := g_fU3Coordinate;(*U3坐标*)
+StatusFBArr.DoubleArr[85] := g_fY2Coordinate;(*Y2坐标*)
+StatusFBArr.DoubleArr[86] := g_fY3Coordinate;(*Y3坐标*)
+StatusFBArr.DoubleArr[87] := g_fU3Velocity;(*U3速度*)
+StatusFBArr.DoubleArr[88] := g_fY2Velocity;(*Y2速度*)
+StatusFBArr.DoubleArr[89] := g_fY3Velocity;(*Y2速度*)
+StatusFBArr.DoubleArr[90] := g_fSustain1Velocity;(*S1速度*)
+StatusFBArr.DoubleArr[91] := g_fSustain2Velocity;(*S2速度*)
+StatusFBArr.DoubleArr[92] := g_fSustain3Velocity;(*S3速度*)
+StatusFBArr.DoubleArr[93] := g_fSustain7Velocity;(*S4速度*)
+StatusFBArr.DoubleArr[94] := g_fSustain8Velocity;(*S5速度*)
+StatusFBArr.DoubleArr[95] := g_fSustain9Velocity;(*S6速度*)
+StatusFBArr.DoubleArr[96] := g_fSustain4Velocity;(*Z1速度*)
+StatusFBArr.DoubleArr[97] := g_fSustain5Velocity;(*Z2速度*)
+StatusFBArr.DoubleArr[98] := g_fSustain6Velocity;(*Z3速度*)
+StatusFBArr.DoubleArr[99] := g_fGeneral1AxisVelocity;(*T1速度*)
+StatusFBArr.DoubleArr[100] := g_fGeneral2AxisVelocity;(*T2速度*)
+StatusFBArr.DoubleArr[101] := g_DDAxisVelocity;(*W速度*)
+StatusFBArr.DoubleArr[102] := g_fCNCMcsUPos;(*CNC_U轴的机床坐标*)
+StatusFBArr.DoubleArr[103] := g_fCNCAcsUPos;(*CNC_U轴的工件坐标*)
+StatusFBArr.DoubleArr[104] := g_fCNCLagDistanceU;(*CNC_U轴的私服误差*)
+StatusFBArr.DoubleArr[105] := g_dChuckmanualIsLoosenFb;
+StatusFBArr.DoubleArr[106] := g_dBackDissurfaceUCoord;(*记录高低面识别后的U坐标*)
+StatusFBArr.DoubleArr[107] := g_DDAxisCoordinate;(*W == T3轴坐标*)
+StatusFBArr.DoubleArr[108] := g_dFourSidesCenterCompensationA;(*四面寻中补偿值A面*)
+StatusFBArr.DoubleArr[109] := g_dFourSidesCenterCompensationB;(*四面寻中补偿值B面*)
+StatusFBArr.DoubleArr[110] := g_dFourSidesCenterCompensationC;(*四面寻中补偿值C面*)
+StatusFBArr.DoubleArr[111] := g_dFourSidesCenterCompensationD;(*四面寻中补偿值D面*)
+StatusFBArr.DoubleArr[112] := g_dTwoSidesCenterCompensationA;(*两面寻中补偿值A面*)
+StatusFBArr.DoubleArr[113] := g_dTwoSidesCenterCompensationB;(*两面寻中补偿值B面*)
+StatusFBArr.DoubleArr[114] := INT_TO_LREAL(g_nCurMCode);(*执行的M代码*)
+(*光气监控*)
+StatusFBArr.DoubleArr[115] := UINT_TO_LREAL(g_noULaserPowerValue);(*输出功率*)
+StatusFBArr.DoubleArr[116] := UINT_TO_LREAL(g_noUPwmDuty);
+StatusFBArr.DoubleArr[117] := UINT_TO_LREAL(g_noUPwmFreq);
+StatusFBArr.DoubleArr[119] := UINT_TO_LREAL(g_uoAirPressureOut);
+StatusFBArr.DoubleArr[120] := UINT_TO_LREAL(g_uoOxygenPressureOut);
+StatusFBArr.DoubleArr[121] := UINT_TO_LREAL(g_uoNirtogenPressureOut);
+StatusFBArr.DoubleArr[122] := BOOL_TO_LREAL(g_boAirValve);
+StatusFBArr.DoubleArr[123] := BOOL_TO_LREAL(g_boOxygenValve);
+StatusFBArr.DoubleArr[124] := BOOL_TO_LREAL(g_boNirtogenValve);
+StatusFBArr.DoubleArr[125] := g_dZAxisCenterPos;(*单卡下料机Z轴中心*)
+StatusFBArr.DoubleArr[126] := g_dLevelAndSideCenterCompensationA;(*校平+分中补偿值A面*)
+StatusFBArr.DoubleArr[127] := g_dLevelAndSideCenterCompensationB;(*校平+分中补偿值B面*)
+StatusFBArr.DoubleArr[128] := g_dLevelAndSideCenterCompensationC;(*校平+分中补偿值C面*)
+StatusFBArr.DoubleArr[129] := g_dLevelAndSideCenterCompensationD;(*校平+分中补偿值D面*)
+StatusFBArr.DoubleArr[130] := Axis_Z.NcToPlc.SETPOS - Axis_Z.NcToPlc.ACTPOS;(*Z轴跟随误差*)
+StatusFBArr.DoubleArr[131] := g_FAxis.NcToPlc.SETPOS - g_FAxis.NcToPlc.ACTPOS;(*F轴跟随误差*)
+StatusFBArr.DoubleArr[132] := D_Axis.NcToPlc.SETPOS - D_Axis.NcToPlc.ACTPOS;(*D轴跟随误差*)
+StatusFBArr.DoubleArr[133] := g_General1_Axis.NcToPlc.SETPOS - g_General1_Axis.NcToPlc.ACTPOS;(*T1轴跟随误差*)
+StatusFBArr.DoubleArr[134] := g_General2_Axis.NcToPlc.SETPOS - g_General2_Axis.NcToPlc.ACTPOS;(*T2轴跟随误差*)
+StatusFBArr.DoubleArr[135] := DDAxis.NcToPlc.SETPOS - DDAxis.NcToPlc.ACTPOS;(*T3轴跟随误差*)
+StatusFBArr.DoubleArr[136] := Axis_Sustain4.NcToPlc.SETPOS - Axis_Sustain4.NcToPlc.ACTPOS;(*Z1轴跟随误差*)
+StatusFBArr.DoubleArr[137] := Axis_Sustain5.NcToPlc.SETPOS - Axis_Sustain5.NcToPlc.ACTPOS;(*Z2轴跟随误差*)
+StatusFBArr.DoubleArr[138] := Axis_Sustain6.NcToPlc.SETPOS - Axis_Sustain6.NcToPlc.ACTPOS;(*Z3轴跟随误差*)
+StatusFBArr.DoubleArr[139] := Axis_Sustain1.NcToPlc.SETPOS - Axis_Sustain1.NcToPlc.ACTPOS;(*S1轴跟随误差*)
+StatusFBArr.DoubleArr[140] := Axis_Sustain2.NcToPlc.SETPOS - Axis_Sustain2.NcToPlc.ACTPOS;(*S2轴跟随误差*)
+StatusFBArr.DoubleArr[141] := Axis_Sustain3.NcToPlc.SETPOS - Axis_Sustain3.NcToPlc.ACTPOS;(*S3轴跟随误差*)
+StatusFBArr.DoubleArr[142] := Axis_Sustain7.NcToPlc.SETPOS - Axis_Sustain7.NcToPlc.ACTPOS;(*S4轴跟随误差*)
+StatusFBArr.DoubleArr[143] := Axis_Sustain8.NcToPlc.SETPOS -Axis_Sustain8.NcToPlc.ACTPOS;(*S5轴跟随误差*)
+StatusFBArr.DoubleArr[144] := Axis_Sustain9.NcToPlc.SETPOS - Axis_Sustain9.NcToPlc.ACTPOS;(*S6轴跟随误差*)
+StatusFBArr.DoubleArr[145] := Axis_U3.NcToPlc.SETPOS - Axis_U3.NcToPlc.ACTPOS;(*U3轴跟随误差*)
+StatusFBArr.DoubleArr[146] := Axis_Y2.NcToPlc.SETPOS - Axis_Y2.NcToPlc.ACTPOS;(*Y2轴跟随误差*)
+StatusFBArr.DoubleArr[147] := Axis_Y3.NcToPlc.SETPOS - Axis_Y3.NcToPlc.ACTPOS;(*Y3轴跟随误差*)
+StatusFBArr.DoubleArr[148] := INT_TO_LREAL(g_nToolNum);(*当前使用的刀具号*)
+StatusFBArr.DoubleArr[149] := g_dCutHeight;(*当前的切割高度*)
+StatusFBArr.DoubleArr[150] := INT_TO_LREAL(g_nQuantityProcessedCount);
+StatusFBArr.DoubleArr[151] := INT_TO_LREAL(g_nProcessCutPartsCount);
+StatusFBArr.DoubleArr[152] := INT_TO_LREAL(g_nProcessCutWholeTubeCounts);
+StatusFBArr.DoubleArr[153] := UDINT_TO_LREAL(g_niZSensorValue);
+g_boDryRubFlag := g_bDryRunEnable OR g_bDebugMode;
+StatusFBArr.DoubleArr[154] := INT_TO_LREAL(Axis_Z.NcToPlc.AxisState);
+StatusFBArr.DoubleArr[155] := INT_TO_LREAL(g_noTest1);
+StatusFBArr.DoubleArr[156] := INT_TO_LREAL(g_noTest2);
+StatusFBArr.DoubleArr[157] := g_FAxis.NcToPlc.SETPOS;   (*F轴位置命令*)
+StatusFBArr.DoubleArr[158] := g_dM178PassedPValue; (*焊缝识别是佛通知*)
+StatusFBArr.DoubleArr[159] := g_dAntiRejection6Coordinate; (*避让轴位置*)
+StatusFBArr.DoubleArr[160] := g_dAntiRejection6Velocity; (*避让轴速度*)
+StatusFBArr.DoubleArr[161] := g_dWaitInputPorTimeOutAlarmNumber; (*超时报警报警端口*)
+StatusFBArr.DoubleArr[162] := g_dHMIStartExecuteSideCenterType;(*M312触发HMI执行分中类型*)
+StatusFBArr.DoubleArr[163] := g_dAntiRejection4Coordinate; (*零尾料主卡进给轴坐标显示*)
+StatusFBArr.DoubleArr[164] := g_dAntiRejection5Coordinate; (*零尾料中卡移动轴坐标显示*)
+StatusFBArr.DoubleArr[165] := g_dAntiRejection4Velocity; (*零尾料轴1速度*)
+StatusFBArr.DoubleArr[166] := g_dAntiRejection5Velocity; (*零尾料轴2速度*)
+StatusFBArr.DoubleArr[167] := g_dAntiRejection3Coordinate; (*抽尘轴2坐标显示*)
+StatusFBArr.DoubleArr[168] := g_dAntiRejection3Velocity; (*抽尘轴2速度*)
+StatusFBArr.DoubleArr[169] := AntiRejection3.NcToPlc.SETPOS - AntiRejection3.NcToPlc.ACTPOS; (*抽尘轴2跟随误差*)
+StatusFBArr.DoubleArr[170] := AntiRejection4.NcToPlc.SETPOS - AntiRejection4.NcToPlc.ACTPOS; (*中卡避让轴*)
+StatusFBArr.DoubleArr[171] := AntiRejection5.NcToPlc.SETPOS - AntiRejection5.NcToPlc.ACTPOS; (*中卡避让轴跟随误差*)
+StatusFBArr.DoubleArr[172] := AntiRejection6.NcToPlc.SETPOS - AntiRejection6.NcToPlc.ACTPOS; (*横梁移动避让轴跟随误差*)
+StatusFBArr.DoubleArr[173] := INT_TO_LREAL(g_no2AvoidState);(*中卡避让状态机*)
+StatusFBArr.DoubleArr[174] := g_dThreeSidesCenterCompensationA;(*三面寻中补偿值A面*)
+StatusFBArr.DoubleArr[175] := g_dThreeSidesCenterCompensationB;(*三面寻中补偿值B面*)
+StatusFBArr.DoubleArr[176] := g_dThreeSidesCenterCompensationD;(*三面寻中补偿值D面*)
+StatusFBArr.DoubleArr[177] := g_dXGantryAxisJointErr;(*横梁X坐标*)
+StatusFBArr.DoubleArr[178] := g_SlaveFollowError;(*龙门Y1跟随误差*)
+StatusFBArr.DoubleArr[179] := g_dMiddleFeedAxisSelfSelfTuningCF;(*避让进给轴的自整定结果*)
+StatusFBArr.DoubleArr[180] := g_dFVelocity;(*F轴速度*)
+StatusFBArr.DoubleArr[181] := g_dAntiRejection2Coordinate;(*零件托举轴4坐标*)
+StatusFBArr.DoubleArr[182] := g_dAntiRejection2Velocity;(*零件托举轴4速度*)
+StatusFBArr.DoubleArr[183] := AntiRejection2.NcToPlc.SETPOS - AntiRejection2.NcToPlc.ACTPOS;(*Z4轴跟随误差*)
+StatusFBArr.DoubleArr[184] := INT_TO_LREAL(g_nAntiRejectionCylHMI9);
+StatusFBArr.DoubleArr[185] := INT_TO_LREAL(g_nAntiRejectionCylHMI10);
+StatusFBArr.DoubleArr[186] := INT_TO_LREAL(g_nAntiRejectionCylHMI11);
+StatusFBArr.DoubleArr[187] := INT_TO_LREAL(g_nAntiRejectionCylHMI12);
+StatusFBArr.DoubleArr[188] := DualAxis1.NCTOPLC.ACTPOS;
+StatusFBArr.DoubleArr[189] := DualAxis1.NCTOPLC.ACTVELO;
+StatusFBArr.DoubleArr[190] := DualAxis2.NCTOPLC.ACTPOS;
+StatusFBArr.DoubleArr[191] := DualAxis2.NCTOPLC.ACTVELO;
+StatusFBArr.DoubleArr[192] := DualAxis3.NCTOPLC.ACTPOS;
+StatusFBArr.DoubleArr[193] := DualAxis3.NCTOPLC.ACTVELO;
+StatusFBArr.DoubleArr[194] := DualAxis4.NCTOPLC.ACTPOS;
+StatusFBArr.DoubleArr[195] := DualAxis4.NCTOPLC.ACTVELO;
+StatusFBArr.DoubleArr[196] := g_General1_Axis.NCTOPLC.ACTPOS +g_General1_Axis.NCTOPLC.GANTRYERROR;(*通用轴1从轴坐标*)
+StatusFBArr.DoubleArr[197] := g_General2_Axis.NCTOPLC.ACTPOS +g_General2_Axis.NCTOPLC.GANTRYERROR;(*通用轴2从轴坐标*)
+StatusFBArr.DoubleArr[198] := DDAxis.NCTOPLC.ACTPOS + DDAxis.NCTOPLC.GANTRYERROR;(*通用轴3从轴坐标*)
+StatusFBArr.DoubleArr[199] := AntiRejection6.NCTOPLC.ACTPOS + AntiRejection6.NCTOPLC.GANTRYERROR;(*横梁避让轴从轴坐标*)
+StatusFBArr.DoubleArr[200] := g_dBeamAvoidAxisSelfTuningCF;(*横梁避让轴整定延时*)
+StatusFBArr.DoubleArr[201] := g_dMiddleAvoidAxisSelfTuningCF;(*中卡避让轴整定延时*)
+
+StatusFBArr.DoubleArr[202] := Axis_S7.NCTOPLC.ACTVELO;(*S7速度*)
+StatusFBArr.DoubleArr[203] := Axis_S7.NCTOPLC.ACTPOS;(*S7坐标*)
+StatusFBArr.DoubleArr[204] := Axis_S7.NcToPlc.SETPOS - Axis_S7.NcToPlc.ACTPOS;(*S7轴跟随误差*)
+
+StatusFBArr.DoubleArr[205] := Axis_S8.NCTOPLC.ACTVELO;(*S8速度*)
+StatusFBArr.DoubleArr[206] := Axis_S8.NCTOPLC.ACTPOS;(*S8坐标*)
+StatusFBArr.DoubleArr[207] := Axis_S8.NcToPlc.SETPOS - Axis_S8.NcToPlc.ACTPOS;(*S8轴跟随误差*)
+
+StatusFBArr.DoubleArr[208] := Axis_S9.NCTOPLC.ACTVELO;(*S9速度*)
+StatusFBArr.DoubleArr[209] := Axis_S9.NCTOPLC.ACTPOS;(*S9坐标*)
+StatusFBArr.DoubleArr[210] := Axis_S9.NcToPlc.SETPOS - Axis_S9.NcToPlc.ACTPOS;(*S9轴跟随误差*)
+
+StatusFBArr.DoubleArr[211] := Axis_S10.NCTOPLC.ACTVELO;(*S10速度*)
+StatusFBArr.DoubleArr[212] := Axis_S10.NCTOPLC.ACTPOS;(*S10坐标*)
+StatusFBArr.DoubleArr[213] := Axis_S10.NcToPlc.SETPOS - Axis_S10.NcToPlc.ACTPOS;(*S10轴跟随误差*)
+
+StatusFBArr.DoubleArr[214] := Axis_S11.NCTOPLC.ACTVELO;(*S11速度*)
+StatusFBArr.DoubleArr[215] := Axis_S11.NCTOPLC.ACTPOS;(*S11坐标*)
+StatusFBArr.DoubleArr[216] := Axis_S11.NcToPlc.SETPOS - Axis_S11.NcToPlc.ACTPOS;(*S11轴跟随误差*)
+
+StatusFBArr.DoubleArr[217] := Axis_S12.NCTOPLC.ACTVELO;(*S12速度*)
+StatusFBArr.DoubleArr[218] := Axis_S12.NCTOPLC.ACTPOS;(*S12坐标*)
+StatusFBArr.DoubleArr[219] := Axis_S12.NcToPlc.SETPOS - Axis_S12.NcToPlc.ACTPOS;(*S12轴跟随误差*)
+g_doTubeCAMCreateGCodeDone := g_dTubeCAMCreateGCodeDoneHMI;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

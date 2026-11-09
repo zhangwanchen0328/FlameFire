@@ -1,0 +1,785 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BKAdjustFeedingPos" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Feeding_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_biFeedingAbsOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFeedingAbsClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFeedingAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFeedingSensorLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFeedingSensorLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_foRemainPipeLen">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_biBaffleSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fipartType">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="FeedingAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="Feeding_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="Feeding_Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="FeedingOverride">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dFeedingPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTargetposition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dHeadVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[送头料速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFeedingVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[送料速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R_Trriger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger6">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger7">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nSwitchState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dBKheadLength">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[头料长度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dBKPartLength">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[零件长度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dBKTailLength">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[尾料长度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dMarginLength">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[余量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dOverrideValue">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dPipeLength">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管材长度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSensorZZeroLength">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[送料轴传感器到Z轴的距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dRemainLength">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[剩余长度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSlowDownDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[降速距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dPipeRemainLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dRemainTailLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dPushTailCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dLimitPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bSlowDownFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dPipeRemainTailLen">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_noRemainPartCount">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="g_dLimitMoveDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nLimitState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dTailFeedingLen">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_biFeedingPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFeedingPosLimit1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFeedingBackDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nofeedState1">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nofeedState2">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dFeedingBackDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biDosingCylinderOpen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[分料气缸，头料]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biDosingCylinderOpen1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[分料气缸，尾料]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biDosingCylinderClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boDosingCylinder">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dSlowHomePos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零前先到当前位置，再开始执行回零]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bThinPipeSlowFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[薄管细管慢速标志位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLimitSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dFeedingSlowVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[薄管细管慢速速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFeedingBackVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[碰到尾料传感器后的回退速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFeedingTailDelay">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Ton_TailTime">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nBKCuttingState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trriger1(CLK := g_biFeedingAbsOpen);
+R_Trriger2(CLK := g_biFeedingAbsClose);
+R_Trriger4(CLK := g_biFeedingPosLimit1);
+R_Trriger5(CLK := g_biDosingCylinderOpen);
+R_Trriger6(CLK := g_biDosingCylinderClose);
+R_Trriger7(CLK := g_biDosingCylinderOpen1);
+
+IF R_Trriger1.Q THEN
+  g_boFeedingAbsDone := FALSE;
+  g_boFeedingBackDone := FALSE;
+  g_boFeedingSensorLimit := FALSE;
+  nSwitchState := 1;
+END_IF;
+
+IF R_Trriger2.Q THEN
+  g_boFeedingAbsDone := FALSE;
+  g_boFeedingBackDone := FALSE;
+END_IF;
+
+IF R_Trriger4.Q THEN
+  bSlowDownFlag := TRUE;
+END_IF;
+
+IF R_Trriger5.Q THEN
+  IF g_dBKheadLength <> g_dBKPartLength THEN
+    g_boDosingCylinder := TRUE;
+  END_IF;
+END_IF;
+
+IF R_Trriger7.Q THEN
+  g_boDosingCylinder := TRUE;
+END_IF;
+
+IF R_Trriger6.Q THEN
+  g_boDosingCylinder := FALSE;
+END_IF;
+
+FeedingOverride.Enable := TRUE;
+
+CASE nSwitchState OF
+  0:
+  nSwitchState := 0;
+  1:
+  FeedingAbs.Execute := FALSE;
+  IF LREAL_TO_INT(g_fipartType) = 0 THEN
+    dTargetposition := 7000.0;
+    FeedingAbs.Velocity := dHeadVelocity;
+    dFeedingPos := Feeding_Axis.NCTOPLC.SETPOS + g_dBKheadLength + dSensorZZeroLength;
+    bSlowDownFlag := FALSE;
+    g_nBKCuttingState := 5;
+    nSwitchState := 2;
+  ELSIF LREAL_TO_INT(g_fipartType) = 1 OR LREAL_TO_INT(g_fipartType) = 6 THEN
+    dPushTailCoordinate := Feeding_Axis.NCTOPLC.ACTPOS;
+    dTargetposition := Feeding_Axis.NCTOPLC.SETPOS + g_dBKPartLength + dMarginLength + dFeedingBackDis;
+    IF bThinPipeSlowFlag AND bLimitSignal THEN
+      FeedingAbs.Velocity := dFeedingSlowVel;
+    ELSE
+      FeedingAbs.Velocity := dFeedingVelocity;
+    END_IF;
+    dFeedingPos := dTargetposition - dRemainLength - dMarginLength;
+    nSwitchState := 3;
+    g_nBKCuttingState := 14;
+  ELSIF LREAL_TO_INT(g_fipartType) = 2 THEN
+    dTargetposition := Feeding_Axis.NCTOPLC.SETPOS - dFeedingBackDis;
+    FeedingAbs.Velocity := dFeedingVelocity;
+    nSwitchState := 4;
+    g_nBKCuttingState := 11;
+  ELSIF LREAL_TO_INT(g_fipartType) = 3 THEN
+    dTargetposition := Feeding_Axis.NCTOPLC.SETPOS + g_dBKPartLength - g_dLimitMoveDistance + 10000.0;
+    dFeedingPos := Feeding_Axis.NCTOPLC.SETPOS + g_dBKPartLength - g_dLimitMoveDistance;
+    IF bThinPipeSlowFlag THEN
+      FeedingAbs.Velocity := dFeedingSlowVel;
+    ELSE
+      FeedingAbs.Velocity := dFeedingVelocity;
+    END_IF;
+    bSlowDownFlag := FALSE;
+    nSwitchState := 3;
+    g_nBKCuttingState := 20;
+  ELSIF LREAL_TO_INT(g_fipartType) = 4 THEN
+    dRemainTailLength := g_dPipeRemainTailLen - INT_TO_LREAL(TRUNC(g_noRemainPartCount))*g_dBKPartLength;
+    dTargetposition := Feeding_Axis.NCTOPLC.SETPOS + dRemainTailLength;
+    FeedingAbs.Velocity := dFeedingVelocity;
+    bLimitSignal := FALSE;
+    nSwitchState := 6;
+    g_nBKCuttingState := 21;
+  ELSIF LREAL_TO_INT(g_fipartType) = 5 THEN
+    dTargetposition := dSlowHomePos;
+    FeedingAbs.Velocity := dFeedingBackVel;
+    nSwitchState := 5;
+    g_nBKCuttingState := 15;
+  ELSIF LREAL_TO_INT(g_fipartType) = 7 THEN
+    dTargetposition := Feeding_Axis.NCTOPLC.SETPOS - dRemainTailLength - 30.0;
+    FeedingAbs.Velocity := dFeedingVelocity;
+    nSwitchState := 4;
+    g_nBKCuttingState := 11;
+  ELSE
+    FeedingAbs.Velocity := dFeedingVelocity;
+    dFeedingPos := Feeding_Axis.NCTOPLC.SETPOS;
+    nSwitchState := 3;
+  END_IF;
+  2:
+  FeedingAbs.Position := dTargetposition;
+  FeedingAbs.Execute := TRUE;
+  IF Feeding_Axis.NCTOPLC.ACTPOS >= dFeedingPos THEN
+    FeedingOverride.VelFactor := dOverrideValue;
+  END_IF;
+  
+  (*等待挡板信号*)
+  IF g_biBaffleSignal THEN
+    FeedingOverride.VelFactor := 1.0;
+    g_boFeedingAbsDone := TRUE;
+    g_nBKCuttingState := 6;
+    nSwitchState := 20;
+  ELSIF g_biFeedingPosLimit THEN
+    FeedingOverride.VelFactor := 1.0;
+    nSwitchState := 21;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer THEN
+    nSwitchState := 10;
+  END_IF;
+  
+  IF FeedingAbs.CommandAborted OR FeedingAbs.Error THEN
+    FeedingAbs.Execute := FALSE;
+    g_boFeedingAbsDone := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  3:
+  FeedingAbs.Position := dTargetposition;
+  FeedingAbs.Execute := TRUE;
+  IF Feeding_Axis.NCTOPLC.ACTPOS >= dFeedingPos OR bSlowDownFlag THEN
+    FeedingOverride.Enable := TRUE;
+    FeedingOverride.VelFactor := dOverrideValue;
+  END_IF;
+  
+  (*IF FeedingAbs.Done THEN
+    FeedingAbs.Execute := FALSE;
+    nSwitchState := 30;
+  END_IF;*)
+  
+  IF g_bPlcPauseBuffer THEN
+    nSwitchState := 11;
+  END_IF;
+  
+  IF FeedingAbs.CommandAborted OR FeedingAbs.Error THEN
+    FeedingAbs.Execute := FALSE;
+    g_boFeedingAbsDone := FALSE;
+    nSwitchState := 40;
+  END_IF;
+  (*等待挡板信号*)
+  IF g_biBaffleSignal THEN
+    FeedingOverride.VelFactor := 1.0;
+    g_boFeedingAbsDone := TRUE;
+    g_nBKCuttingState := 6;
+    nSwitchState := 20;
+  END_IF;
+  4:
+  FeedingAbs.Position := dTargetposition;
+  FeedingAbs.Execute := TRUE;
+  IF FeedingAbs.Done THEN
+    FeedingAbs.Execute := FALSE;
+    g_boFeedingBackDone := TRUE;
+    g_nBKCuttingState := 12;
+    nSwitchState := 0;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer THEN
+    nSwitchState := 12;
+  END_IF;
+  
+  IF FeedingAbs.CommandAborted OR FeedingAbs.Error THEN
+    FeedingAbs.Execute := FALSE;
+    g_boFeedingBackDone := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  5:
+  FeedingOverride.VelFactor := 1.0;
+  FeedingAbs.Position := dTargetposition;
+  FeedingAbs.Execute := TRUE;
+  IF FeedingAbs.Done THEN
+    FeedingAbs.Execute := FALSE;
+    g_boFeedingAbsDone := TRUE;
+    g_nBKCuttingState := 16;
+    nSwitchState := 0;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer THEN
+    nSwitchState := 13;
+  END_IF;
+  
+  IF FeedingAbs.CommandAborted OR FeedingAbs.Error THEN
+    FeedingAbs.Execute := FALSE;
+    g_boFeedingAbsDone := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  6:
+  FeedingOverride.VelFactor := 1.0;
+  FeedingAbs.Position := dTargetposition;
+  FeedingAbs.Execute := TRUE;
+  IF FeedingAbs.Done THEN
+    FeedingAbs.Execute := FALSE;
+    nSwitchState := 7;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer THEN
+    nSwitchState := 14;
+  END_IF;
+  
+  IF FeedingAbs.CommandAborted OR FeedingAbs.Error THEN
+    FeedingAbs.Execute := FALSE;
+    g_boFeedingAbsDone := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  7:
+  (*送料轴推送尾料后，延时时间*)
+  Ton_TailTime(IN := TRUE,PT := LREAL_TO_TIME(dFeedingTailDelay/1000.0));
+  IF Ton_TailTime.Q THEN
+    g_boFeedingAbsDone := TRUE;
+    g_nBKCuttingState := 22;
+    Ton_TailTime(IN := FALSE);
+    nSwitchState := 0;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer THEN
+    nSwitchState := 15;
+  END_IF;
+  10:
+  FeedingAbs.Execute := FALSE;
+  Feeding_Stop.Execute := TRUE;
+  IF Feeding_Stop.Done AND g_bPlcStartBuffer THEN
+    Feeding_Stop.Execute := FALSE;
+    nSwitchState := 2;
+  END_IF;
+  
+  IF Feeding_Stop.CommandAborted OR Feeding_Stop.Error THEN
+    Feeding_Stop.Execute := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  11:
+  FeedingAbs.Execute := FALSE;
+  Feeding_Stop.Execute := TRUE;
+  IF Feeding_Stop.Done AND g_bPlcStartBuffer THEN
+    Feeding_Stop.Execute := FALSE;
+    nSwitchState := 3;
+  END_IF;
+  
+  IF Feeding_Stop.CommandAborted OR Feeding_Stop.Error THEN
+    Feeding_Stop.Execute := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  12:
+  FeedingAbs.Execute := FALSE;
+  Feeding_Stop.Execute := TRUE;
+  IF Feeding_Stop.Done AND g_bPlcStartBuffer THEN
+    Feeding_Stop.Execute := FALSE;
+    nSwitchState := 4;
+  END_IF;
+  
+  IF Feeding_Stop.CommandAborted OR Feeding_Stop.Error THEN
+    Feeding_Stop.Execute := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  13:
+  FeedingAbs.Execute := FALSE;
+  Feeding_Stop.Execute := TRUE;
+  IF Feeding_Stop.Done AND g_bPlcStartBuffer THEN
+    Feeding_Stop.Execute := FALSE;
+    nSwitchState := 5;
+  END_IF;
+  
+  IF Feeding_Stop.CommandAborted OR Feeding_Stop.Error THEN
+    Feeding_Stop.Execute := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  14:
+  FeedingAbs.Execute := FALSE;
+  Feeding_Stop.Execute := TRUE;
+  IF Feeding_Stop.Done AND g_bPlcStartBuffer THEN
+    Feeding_Stop.Execute := FALSE;
+    nSwitchState := 6;
+  END_IF;
+  
+  IF Feeding_Stop.CommandAborted OR Feeding_Stop.Error THEN
+    Feeding_Stop.Execute := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  15:
+  Ton_TailTime(IN := FALSE);
+  IF g_bPlcStartBuffer THEN
+    nSwitchState := 7;
+  END_IF;
+  (*20:
+  FeedingAbs.Execute := FALSE;
+  Feeding_Stop.Execute := TRUE;
+  IF Feeding_Stop.Done THEN
+    Feeding_Stop.Execute := FALSE;
+    nSwitchState := 30;
+  END_IF;*)
+  20:
+  FeedingAbs.Execute := FALSE;
+  Feeding_Reset.Execute := TRUE;
+  IF Feeding_Reset.Done THEN
+    Feeding_Reset.Execute := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  
+  IF Feeding_Reset.Error THEN
+    Feeding_Reset.Execute := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  21:
+  FeedingAbs.Execute := FALSE;
+  Feeding_Reset.Execute := TRUE;
+  IF Feeding_Reset.Done THEN
+    Feeding_Reset.Execute := FALSE;
+    g_boFeedingSensorLimit := TRUE;
+    g_boFeedingAbsDone := TRUE;
+    nSwitchState := 0;
+  END_IF;
+  
+  IF Feeding_Reset.Error THEN
+    Feeding_Reset.Execute := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  30:
+  nSwitchState := 30;
+  40:
+  nSwitchState := 40;
+END_CASE;
+
+IF nSwitchState<>2 AND nSwitchState<>3 THEN
+  FeedingOverride.VelFactor := 1.0;
+END_IF;
+
+g_nofeedState1 := nSwitchState;
+
+(*送料轴挡板碰到限位传感器*)
+R_Trriger3(CLK := g_biFeedingPosLimit);
+
+IF R_Trriger3.Q AND LREAL_TO_INT(g_fipartType)=1 THEN
+  dLimitPosition := Feeding_Axis.NCTOPLC.ACTPOS;
+  bLimitSignal := TRUE;
+  nLimitState := 1;
+  nSwitchState := 0;
+END_IF;
+
+CASE nLimitState OF
+  0:
+  nLimitState := 0;
+  1:
+  FeedingAbs.Execute := FALSE;
+  Feeding_Reset.Execute := TRUE;
+  nLimitState := 2;
+  2:
+  g_dLimitMoveDistance := dLimitPosition - dPushTailCoordinate - dFeedingBackDis;
+  g_dPipeRemainTailLen := g_dLimitMoveDistance + dSensorZZeroLength;
+  g_foRemainPipeLen := g_dPipeRemainTailLen;
+  g_noRemainPartCount := INT_TO_LREAL(TRUNC((g_dPipeRemainTailLen - g_dBKTailLength) / g_dBKPartLength));
+  nLimitState := 3;
+  3:
+  IF Feeding_Reset.Done THEN
+    Feeding_Reset.Execute := FALSE;
+    g_boFeedingSensorLimit := TRUE;
+    g_boFeedingAbsDone := TRUE;
+    FeedingOverride.VelFactor := 1.0;
+    nLimitState := 0;
+  END_IF;
+END_CASE;
+
+g_nofeedState2 := nLimitState;
+
+IF g_bPlcResetBuffer THEN
+  nSwitchState := 0;
+  bSlowDownFlag := FALSE;
+  FeedingAbs.Execute := FALSE;
+  Feeding_Stop.Execute := FALSE;
+  FeedingOverride.VelFactor := 1.0;
+  bLimitSignal := FALSE;
+  Ton_TailTime(IN := FALSE);
+  g_nBKCuttingState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

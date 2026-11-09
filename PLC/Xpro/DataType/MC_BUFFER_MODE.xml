@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MC_BUFFER_MODE">
+  <baseType>
+    <enum>
+      <values>
+        <value name="MC_Aborting"/>
+        <value name="MC_Buffered"/>
+        <value name="MC_BlendingLow"/>
+        <value name="MC_BlendingPrevious"/>
+        <value name="MC_BleddingNext"/>
+        <value name="MC_BlendingHigh"/>
+      </values>
+    </enum>
+  </baseType>
+</dataType>

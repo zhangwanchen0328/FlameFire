@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FUN_MStoS" pouType="function">
+  <interface>
+    <returnType>
+      <LREAL/>
+    </returnType>
+    <inputVars>
+      <variable name="msTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </inputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FUN_MStoS := DINT_TO_LREAL(msTime)/1000.0;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

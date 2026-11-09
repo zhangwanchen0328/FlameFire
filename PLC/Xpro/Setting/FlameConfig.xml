@@ -1,0 +1,597 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <globalVars>
+    <variable name="g_boCombustibleValve" address="%QX18.104">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[可燃气阀输出使能]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boOxidizingValve" address="%QX18.105">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[助燃气阀输出使能]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_uoCombustiblePressureOut" address="%QD18.106">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[可燃气阀输出气压]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_uoOxidizingPressureOut" address="%QD18.107">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[助燃气阀输出气压]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_biCombustibleValveAlarm" address="%IX18.108">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[可燃气压力报警DI信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCombustibleValveAlarmLogic">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[可燃气压力报警DI信号逻辑 1常开  0常闭]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_biOxidizingValveAlarm" address="%IX18.109">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[助燃气压力报警DI信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bOxidizingValveAlarmlogic">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[助燃气压力报警DI信号逻辑 1常开  0常闭]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boCombustibleValvePower" address="%QX18.110">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[可燃气比例阀电源输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boOxidizingValvePower" address="%QX18.111">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[助燃气比例阀电源输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dCombustible_maxvalue">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[可燃气阀最大气压]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dOxidizing_maxvalue">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[助燃气阀最大气压]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dOxidizing_pressure">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[助燃气阀气压]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dCombustible_pressure">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[助燃气阀气压]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bLaserFlameCutEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[启用火焰切割]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dOpenFlameTiming">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[开火时机:0-不开火1-开火切割2-开火穿孔切割关火]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bOpenManualCombustibleGas">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[手动开启可燃气]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCloseManualCombustibleGas">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[手动关闭可燃气]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCloseFlameManualHMI">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[关闭火焰手动调试]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dManualCombustiblePre">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[手动可燃气压]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_TManualCombustibleTime">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[手动可燃气吹气时间]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dManualOxidizingPre">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[手动助燃气压]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_TManualOxidizingTime">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[手动助燃气吹气时间]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCombustibleGas_enable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[可燃气开气使能]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bOxidizingGas_enable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[助燃气开气使能]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bOpenManualOxidizingGas">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[手动开启助燃气]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCloseManualOxidizingGas">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[手动关闭助燃气]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bIgnitionDone">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[点火完成]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCombustiblePressureAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[可燃气阀压力报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCheckCombustibleDA">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[是否开启可燃气气体校正]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCheckOxidizingDA">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[是否开启助燃气气体校正]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_DACombustibleOutputArr">
+      <type>
+        <derived name="ST_DAArray"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[气体校正数组]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_DAOxidizingOutputArr">
+      <type>
+        <derived name="ST_DAArray"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[气体校正数组]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_DaCombustibleGroupNum">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[多少组气体数据]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_DaOxidizingGroupNum">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[多少组气体数据]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dCombustiblePressureFB">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[可燃气气压反馈]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCombustibleMaxPressureAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[可燃气气阀压力报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bOxidizingMaxPressureAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[助燃气气阀压力报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dCombustibleMaxFbFromHMI">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[可燃气传感器反馈最大气压值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dOxidizingMaxFbFromHMI">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[助燃气传感器反馈最大气压值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dCombustible_maxfeedpercentance">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[可燃气传感器反馈气压报警阈值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dOxidizing_maxfeedpercentance">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[助燃气传感器反馈气压报警阈值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bOxidizingPressureAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[助燃气阀压力报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dOxidizingPressureFB">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[助燃气气压反馈]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_uiCombustibleFeedPressure" address="%ID18.112">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[可燃气气压反馈]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_uiOxidizingFeedPressure" address="%ID18.113">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[助燃气气阀反馈]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bIgnition">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[点火]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bIgnitionType">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[点火方式0：点火1：随动点火]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dIgnitionHeight">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[点火方式0：点火1：随动点火]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dIgnitionFocus">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[点火焦点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dIgnitionCutGasPressure">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[点火切割气气压]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dIgnitionCutGasBlowTime">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[点火切割气吹气时间]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dCutGasPurgeDelayT">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割气排空时间]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dOpenCombustibleGasDelayT">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[可燃气开气后延时时间]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dOpenOxidizingGasDelayT">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[助燃气开气后延时时间]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dIgnitionTime">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[点火时间]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dCloseCombustibleGasDelayT">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[可燃气关气延时时间]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dIgnitionPower">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[点火功率]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dIgnitionPwmFreq">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[点火频率]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dIgnitionPwmDuty">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[点火占空比]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bOffFire">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[点火占空比]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bShortDisNotOffFire">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[短距离不关火]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dNotOffFireDis">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[短距离不关火距离]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bOffFireDone">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[关火完成]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="MCZAxisFlameCal">
+      <type>
+        <derived name="MC_FLAMECALIBRATE"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Z轴火焰标定模块]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="MCZFlameHeight">
+      <type>
+        <derived name="MC_FLAMEHEIGHT"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[火焰标定高度曲线模块]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bZAxisFlameCalDone">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Z轴火焰标定完成]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dFlameCalHeight">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[火焰标定高度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dFlameCalAccuracy">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[火焰标定准确度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dFlameCalStability">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[火焰标定稳定度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dFlameCalHitpanelCap">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[火焰标定碰板电容]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dFlameCalBodyCap">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[火焰标定本体电容]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFlameHeightEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[启用火焰标定高度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bZAxisFlameCalcmd">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Z轴火焰标定]]></xhtml:p>
+      </documentation>
+    </variable>
+  </globalVars>
+</root>

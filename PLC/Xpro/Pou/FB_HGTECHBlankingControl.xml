@@ -1,0 +1,405 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_HGTECHBlankingControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bZAxisZero">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boHGTECHZAxisZero">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴零位输入后转一道再输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biHGTECHLoadAsk">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[M代码：可上料请求开启]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biHGTECHLoadAskOff">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[M代码：可上料请求关闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boHGTECHLoadAsk">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：将上料请求转一道再输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="rTrigLoadAsk">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="rTrigChuckMove">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="rTrigChuckBack">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="rTrigLoadAskOff">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="rTrigLoadStart">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bHGTECHLoadAsk">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biHGTECHChuckMove">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入引脚：卡盘托架切割位移动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biHGTECHChuckBack">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入引脚：卡盘托架归位触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bHGTECHChuckMove">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bHGTECHChuckBack">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dHGTECHChuckMoveToPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡盘托架上升到切割位坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dHGTECHChuckBackToPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡盘托架归位坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHGTECHStartState">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nHGTECHStartState_back">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_noHGTECHStartState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态机输出引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Ton_CloseLoadSingle">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关闭可上料信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_CloseForwardBracket">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关闭前进托架]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_LoadSingleDone">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料完成信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDelayTime_CloseLoad">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nDelayTime_CloseForwardBracket">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nDelayTime_LoadSingleDone">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*************************M代码控制模块开启关闭输出请求上料信号*)
+rTrigLoadAsk(CLK := g_biHGTECHLoadAsk);
+rTrigLoadAskOff(CLK := g_biHGTECHLoadAskOff);
+IF rTrigLoadAsk.Q THEN
+  bHGTECHLoadAsk:=TRUE;
+END_IF;
+
+IF rTrigLoadAskOff.Q THEN
+  bHGTECHLoadAsk:=FALSE;
+END_IF;
+g_boHGTECHLoadAsk:=bHGTECHLoadAsk;
+
+(************************将零位信号发送给M代码用*)
+g_boHGTECHZAxisZero:=g_bZAxisZero;
+
+(*************************M代码或自动运行触发卡盘托架移动到固定坐标:绝对运动，手动一键移动不调用*)
+rTrigChuckMove(CLK := bHGTECHChuckMove OR g_biHGTECHChuckMove);
+rTrigChuckBack(CLK := bHGTECHChuckBack OR g_biHGTECHChuckBack);
+IF rTrigChuckMove.Q THEN
+  g_bDDAxisAbsExecuteEnable := TRUE;
+  g_fDDAxisAbsPosition := g_dHGTECHChuckMoveToPos;
+  g_fDDAxisAbsVelocity := 0.0;
+END_IF;
+IF rTrigChuckBack.Q THEN
+  g_bDDAxisAbsExecuteEnable := TRUE;
+  g_fDDAxisAbsPosition := dHGTECHChuckBackToPos;
+  g_fDDAxisAbsVelocity := 0.0;
+END_IF;
+(**************************上料状态机*)
+rTrigLoadStart(CLK := g_biHGTECHLoadStartCheck);
+IF rTrigLoadStart.Q THEN
+  g_boHGTECHLoadDone:=FALSE;
+    (*定时器重置*)
+  Ton_CloseLoadSingle(IN :=FALSE);
+  Ton_CloseForwardBracket(IN :=FALSE);
+  Ton_LoadSingleDone(IN := FALSE);
+  nHGTECHStartState := LREAL_TO_INT(g_diHGTECHLoadStartNum)*10;
+END_IF;
+
+CASE nHGTECHStartState OF
+  0:
+    nHGTECHStartState:=0;
+    nHGTECHStartState_back:=0;
+  10:(*M卡盘张开*)
+    nHGTECHStartState:=10; 
+    nHGTECHStartState_back:=10; 
+  15:(*M暂停前进托架*)
+    nHGTECHStartState:=15;  
+    nHGTECHStartState_back:=15;    
+  30:(*防撞气缸下降 - 等下降到位*)
+    nHGTECHStartState_back:=30;    
+    g_bCylinderClose1:=TRUE;
+    nHGTECHStartState:=35; 
+  35:  
+    nHGTECHStartState_back:=35;
+    IF g_bLoadMaterialState1 THEN
+      nHGTECHStartState:=50;
+    END_IF; 
+  50:(*卡盘托架自动上升到切割位置*)
+    nHGTECHStartState_back:=50;
+    g_bDDAxisAbsExecuteEnable := TRUE;
+    g_fDDAxisAbsPosition := g_dHGTECHChuckMoveToPos;
+    g_fDDAxisAbsVelocity := 0.0;
+    nHGTECHStartState:=55;
+  55:
+    nHGTECHStartState_back:=55;
+    IF g_bDDAxisAbsDone THEN
+      nHGTECHStartState:=70;
+    END_IF;
+  70:(*前进托架运动并发送可送料信号*)
+    nHGTECHStartState_back:=70;
+    g_bDefineOutputEnableOut16:=TRUE;
+    bHGTECHLoadAsk:=TRUE;
+    nHGTECHStartState:=75;
+  75:
+    nHGTECHStartState_back:=75;
+    IF g_boUserDefineIoOut16 THEN
+      nHGTECHStartState:=90;
+    END_IF;
+  90:(*等传感器发出的进管信号*)(*上料传感器1*)
+    nHGTECHStartState_back:=90;
+    IF g_boLoadSensor0 THEN
+      g_bHGTECHPipeDiameterCheck:=TRUE;(*触发管径检测FB运作*)
+      nHGTECHStartState:=100;
+    END_IF;
+  100:(*延时 - 发送关闭可上料信号*)
+    nHGTECHStartState_back:=100;
+    Ton_CloseLoadSingle(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime_CloseLoad)));
+    IF Ton_CloseLoadSingle.Q THEN
+      Ton_CloseLoadSingle(IN :=FALSE);
+      nHGTECHStartState:=105;
+    END_IF;
+  105:
+    nHGTECHStartState_back:=105;
+    bHGTECHLoadAsk:=FALSE;
+    nHGTECHStartState:=110;
+  110:(*管径数据合格的将在这里继续跑状态机，不合格的将会在别的FB报警并等待手动复位重新开始*)
+    nHGTECHStartState_back:=110;
+    IF g_bHGTECHPipeDiameterCheckDone THEN
+      nHGTECHStartState:=120;
+    END_IF;
+  120:(*等待停止送料信号*)(*上料传感器2*)
+    nHGTECHStartState_back:=120;
+    IF g_boLoadSensor1 THEN
+      nHGTECHStartState:=130;
+    END_IF;
+  130:(*延时 - 关闭前进托架*)
+    nHGTECHStartState_back:=130;
+    Ton_CloseForwardBracket(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime_CloseForwardBracket)));
+    IF Ton_CloseForwardBracket.Q THEN
+      Ton_CloseForwardBracket(IN :=FALSE);
+      nHGTECHStartState:=140;
+    END_IF;
+  140:
+    nHGTECHStartState_back:=140;
+    g_bDefineOutputEnableOutOFF16:=TRUE;
+    nHGTECHStartState:=150;
+  150:(*延时 - 发送上料完成信号*)
+    nHGTECHStartState_back:=150;
+    Ton_LoadSingleDone(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime_LoadSingleDone)));
+    IF Ton_LoadSingleDone.Q THEN
+      Ton_LoadSingleDone(IN := FALSE);
+      nHGTECHStartState:=160;
+    END_IF;
+  160:
+    nHGTECHStartState_back:=160;
+    g_boHGTECHLoadDone:=TRUE;
+    nHGTECHStartState:=0;
+  800:(*-pause-*)
+    nHGTECHStartState:=900;
+  900:(*Wait - start*)
+    IF g_bPlcStartBuffer THEN
+      IF nHGTECHStartState_back=100 THEN
+        nHGTECHStartState:=105;
+      ELSIF nHGTECHStartState_back=130 THEN
+        nHGTECHStartState:=140;
+      ELSIF nHGTECHStartState_back=150 THEN
+        nHGTECHStartState:=160;
+      ELSE
+        nHGTECHStartState:=nHGTECHStartState_back;
+      END_IF;
+      (*可送料信号在暂停过程轴会停止发送，点击开始时，根据状态机之前是开着就开，关了就关*)
+      IF nHGTECHStartState_back>=75 AND nHGTECHStartState_back<=100 THEN
+        bHGTECHLoadAsk:=TRUE;
+      END_IF;
+      (*前进命令在暂停过程中发送停止命令，点击开始时，根据情况恢复*)
+      IF nHGTECHStartState_back>=75 AND nHGTECHStartState_back<=130 THEN
+        g_bDefineOutputEnableOut16:=TRUE;
+      END_IF;
+      
+    END_IF;
+    
+END_CASE;
+(*当关闭延时和检测延时过长，也必须要能停下来*)
+(*IF g_boLoadSensor2 AND nHGTECHStartState<>130 THEN
+  nHGTECHStartState:=130;
+END_IF;*)
+(*暂停处理：前进气缸暂停*)
+(*暂停开始不处理：手动操作了挡料气缸、前进托架的检测和处理*)
+IF g_bPlcPauseBuffer THEN
+  IF nHGTECHStartState<>0 THEN
+    (*前进气缸暂停,可送料信号停止发送*)
+    g_bDefineOutputEnableOutOFF16:=TRUE;
+    bHGTECHLoadAsk:=FALSE;
+    (*定时器重置*)
+    Ton_CloseLoadSingle(IN :=FALSE);
+    Ton_CloseForwardBracket(IN :=FALSE);
+    Ton_LoadSingleDone(IN := FALSE);
+    IF nHGTECHStartState=100 THEN
+      bHGTECHLoadAsk:=FALSE;
+    END_IF;
+    nHGTECHStartState:=800;
+  END_IF;
+END_IF;
+
+IF g_bPlcResetBuffer THEN
+  IF nHGTECHStartState<>0 THEN
+    g_bDefineOutputEnableOutOFF16:=TRUE;
+  END_IF;
+  (*关闭输出请求上料信号*)
+  bHGTECHLoadAsk:=FALSE;
+  (*定时器重置*)
+  Ton_CloseLoadSingle(IN :=FALSE);
+  Ton_CloseForwardBracket(IN :=FALSE);
+  Ton_LoadSingleDone(IN := FALSE);
+  nHGTECHStartState:=0;
+END_IF;
+
+g_noHGTECHStartState:=nHGTECHStartState;
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[华工法利莱下料机控制]]></xhtml:p>
+  </documentation>
+</pou>

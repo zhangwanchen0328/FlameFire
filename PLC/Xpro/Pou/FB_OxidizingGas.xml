@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_OxidizingGas" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="dmax_preesure_set">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="10.0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[标准电压值宏定义（默认为10）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dOxidizing_pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[助燃气气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="DAOutputVol">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="1.0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[输入电压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="DAOutputVolAna">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[转换后电压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDAOutputVolEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI输出，下一个]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDAOutputVolCloseEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关闭输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigge">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigge2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bOxidizingValveAlarmbooltemp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中间booltemp]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bOxidizingPressureTempAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中间booltemp]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TonOxidizingAlarmDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonOxidizingAlarmDelay2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="dDelayTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF g_bDAOutputVolEnable THEN
+  RETURN;  (*气压标定中*)
+END_IF;
+
+dOxidizing_pressure := g_dOxidizing_pressure;
+
+IF g_bOxidizingGas_enable = TRUE THEN
+  g_boOxidizingValve := TRUE;
+  IF g_bCheckOxidizingDA THEN
+    g_uoOxidizingPressureOut :=UINT_TO_DINT (FUN_Cailbration(g_DAOxidizingOutputArr,g_DaOxidizingGroupNum,dOxidizing_pressure));  
+  ELSE
+     g_uoOxidizingPressureOut := UINT_TO_DINT(FUN_pressureCovertAO(dOxidizing_pressure,g_dOxidizing_maxvalue,dmax_preesure_set));
+  END_IF;
+ELSE
+  g_boOxidizingValve := FALSE;
+  g_uoOxidizingPressureOut := 0;
+END_IF;
+(*气压DI报警信号*)
+bOxidizingValveAlarmbooltemp := FUN_SingalLogic(g_biOxidizingValveAlarm,g_bOxidizingValveAlarmLogic) AND g_boOxidizingValve;
+TonOxidizingAlarmDelay(IN :=bOxidizingValveAlarmbooltemp,PT := LREAL_TO_TIME(dDelayTime/1000.0));
+IF TonOxidizingAlarmDelay.Q THEN
+  g_bOxidizingPressureAlarm := TRUE;
+ELSIF bOxidizingValveAlarmbooltemp = FALSE THEN
+  g_bOxidizingPressureAlarm := FALSE;
+END_IF;
+
+(*气压AI反馈报警*)
+(*比例阀:电压型DC0～10V控制,反馈出DC1～5V*) 
+g_dOxidizingPressureFB := FUN_AITOPressure(g_uiOxidizingFeedPressure,g_dOxidizingMaxFbFromHMI,0.0,5.0,1.0);
+IF g_dOxidizingPressureFB <(g_dOxidizing_pressure*g_dOxidizing_maxfeedpercentance/100.0) THEN
+  bOxidizingPressureTempAlarm := true;
+ELSE
+  bOxidizingPressureTempAlarm := false;
+END_IF;
+TonOxidizingAlarmDelay2(IN :=bOxidizingPressureTempAlarm,PT := LREAL_TO_TIME(dDelayTime/1000.0));
+IF TonOxidizingAlarmDelay2.Q THEN
+  g_bOxidizingMaxPressureAlarm := true;
+ELSIF bOxidizingPressureTempAlarm = false THEN
+  g_bOxidizingMaxPressureAlarm := false;
+END_IF; ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

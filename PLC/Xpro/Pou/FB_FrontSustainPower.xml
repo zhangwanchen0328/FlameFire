@@ -1,0 +1,246 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FrontSustainPower" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_Sustain4Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain5Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain6Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3CylForbid">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bSustainsPower4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainsPower5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainsPower6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainsPower7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis1PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis2PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis3PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis4PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis1NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis2NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis3NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis4NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="F_PowerOff">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake1">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake2">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake3">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[F_PowerOff(CLK := g_bDriveEnable);
+IF F_PowerOff.Q THEN
+  bSustainsPower4 := FALSE;
+  bSustainsPower5 := FALSE;
+  bSustainsPower6 := FALSE;
+  bSustainsPower7 := FALSE;
+END_IF;
+
+
+
+IF g_nMachineType=6 THEN
+	bAxis1PosLimit := NOT g_bClaw3CylForbid;
+	bAxis1NegLimit := TRUE;
+  IF g_Sustain4Power.Error THEN
+    bSustainsPower4 := FALSE;
+  END_IF;
+
+	bAxis2PosLimit := NOT g_bClaw3CylForbid;
+	bAxis2NegLimit := TRUE;
+
+
+  IF g_Sustain5Power.Error THEN
+    bSustainsPower5:= FALSE;
+  END_IF;
+
+  
+	bAxis3PosLimit := NOT g_bClaw3CylForbid;
+	bAxis3NegLimit := TRUE;
+  
+  IF g_Sustain6Power.Error THEN
+    bSustainsPower6 := FALSE;
+  END_IF;
+ELSE 
+	bAxis1PosLimit := NOT g_bSustain4PosLimit;
+	bAxis1NegLimit := NOT g_bSustain4NegLimit;
+
+  IF g_Sustain4Power.Error THEN
+    bSustainsPower4 := FALSE;
+  END_IF;
+
+	bAxis2PosLimit := NOT g_bSustain5PosLimit;
+	bAxis2NegLimit := NOT g_bSustain5NegLimit;
+    
+  IF g_Sustain5Power.Error THEN
+    bSustainsPower5:= FALSE;
+  END_IF;
+
+
+	bAxis3PosLimit := NOT g_bSustain6PosLimit;
+	bAxis3NegLimit := NOT g_bSustain6NegLimit;
+
+  IF g_Sustain6Power.Error THEN
+    bSustainsPower6 := FALSE;
+  END_IF;
+  
+	bAxis4PosLimit := NOT g_bAntiRejection2PosLimit;
+	bAxis4NegLimit := NOT g_bAntiRejection2NegLimit;
+
+IF g_AntiRejection2Power.error THEN
+  bSustainsPower7 := FALSE;
+END_IF;
+g_AntiRejection2SetOverRide.Enable := TRUE;
+g_AntiRejection2SetOverRide.VelFactor := g_dCurOverride;
+
+  AxisPowerBrake(
+	bPower := bSustainsPower4,
+    AxisRef := REF(Axis_Sustain4),
+    HomeSignal := g_nSustainHomeSignal4,
+    HomeMode := g_nZ1HomeMode,
+    AxisPosLimit := bAxis1PosLimit,
+    AxisNegLimit := bAxis1NegLimit,
+    AxisPower := REF(g_Sustain4Power),
+    OutBrake => g_boFrontSupportAxis1HoldBrake);
+    
+  AxisPowerBrake1(
+	bPower := bSustainsPower5,
+    AxisRef := REF(Axis_Sustain5),
+    HomeSignal := g_nSustainHomeSignal5,
+    HomeMode := g_nZ2HomeMode,
+    AxisPosLimit := bAxis2PosLimit,
+    AxisNegLimit := bAxis2NegLimit,
+    AxisPower := REF(g_Sustain5Power),
+    OutBrake => g_boFrontSupportAxis2HoldBrake);
+    
+  AxisPowerBrake2(
+	bPower := bSustainsPower6,
+    AxisRef := REF(Axis_Sustain6),
+    HomeSignal := g_nSustainHomeSignal6,
+    HomeMode := g_nZ3HomeMode,
+    AxisPosLimit := bAxis3PosLimit,
+    AxisNegLimit := bAxis3NegLimit,
+    AxisPower := REF(g_Sustain6Power),
+    OutBrake => g_boFrontSupportAxis3HoldBrake);
+    
+  AxisPowerBrake3(
+	bPower := bSustainsPower7,
+    AxisRef := REF(AntiRejection2),
+    HomeSignal := g_AntiRejection2HomeSignal,
+    HomeMode := g_nZ4HomeMode,
+    AxisPosLimit := bAxis1PosLimit,
+    AxisNegLimit := bAxis1NegLimit,
+    AxisPower := REF(g_AntiRejection2Power),
+    OutBrake => g_boFrontSupportAxis4HoldBrake);
+  
+  
+  
+  
+END_IF;
+IF ABS(Axis_Sustain4.NCTOPLC.ACTPOS - Axis_Sustain4.NCTOPLC.SETPOS) > g_fZ1AxisMaxPosError THEN
+  g_bZ1AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bZ1AxisPosErrorAlarm := FALSE;
+END_IF;
+IF ABS(Axis_Sustain5.NCTOPLC.ACTPOS - Axis_Sustain5.NCTOPLC.SETPOS) > g_fZ2AxisMaxPosError THEN
+  g_bZ2AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bZ2AxisPosErrorAlarm := FALSE;
+END_IF;
+IF ABS(Axis_Sustain6.NCTOPLC.ACTPOS - Axis_Sustain6.NCTOPLC.SETPOS) > g_fZ3AxisMaxPosError THEN
+  g_bZ3AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bZ3AxisPosErrorAlarm := FALSE;
+END_IF;
+IF ABS(AntiRejection2.NCTOPLC.ACTPOS - AntiRejection2.NCTOPLC.SETPOS) > g_fZ4AxisMaxPosError THEN
+  g_bZ4AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bZ4AxisPosErrorAlarm := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

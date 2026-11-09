@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <globalVars>
+    <variable name="g_fCenterClylinder1CoordY">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder2CoordY">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder3CoordY">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder4CoordY">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder5CoordY">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder6CoordY">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder7CoordY">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder8CoordY">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder9CoordY">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder10CoordY">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder11CoordY">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder12CoordY">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder1DownDistance">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder2DownDistance">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder3DownDistance">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder4DownDistance">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder5DownDistance">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder6DownDistance">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder7DownDistance">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder8DownDistance">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder9DownDistance">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder10DownDistance">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder11DownDistance">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCenterClylinder12DownDistance">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+  </globalVars>
+</root>

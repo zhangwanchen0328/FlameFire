@@ -1,0 +1,260 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DusAxisRel" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="D_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="DustAxisRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="DustAxis_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dDustRelDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDustRelTargetDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDustRelVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bDustRelEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustRelDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="R_Trriger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RelRtring3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nRelState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFastInch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dDustAxisSlowVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDustAxisFastVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bAnRejection3RelEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nRelState3">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dARTargetPos3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dARTargetVel3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dARRelDis3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAntiRejection3SlowVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAntiRejection3FastVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAntiRejection3RelVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trriger(CLK := bDustRelEnable);
+
+IF R_Trriger.Q THEN
+  nRelState := 1;
+  bDustRelDone := FALSE;
+  bDustRelEnable := FALSE;
+  dDustRelTargetDis := D_Axis.NCTOPLC.SETPOS + dDustRelDis;
+END_IF;
+
+
+CASE nRelState OF
+  0:
+    nRelState := 0;
+  1:
+    DustAxisRel.Execute := TRUE;
+    IF g_bFastInch=0 THEN
+      DustAxisRel.Velocity := dDustAxisSlowVel;
+    ELSE
+      DustAxisRel.Velocity := dDustAxisFastVel;
+    END_IF;
+    DustAxisRel.Distance := dDustRelTargetDis - D_Axis.NCTOPLC.SETPOS;
+    IF DustAxisRel.Done THEN
+      DustAxisRel.Execute := FALSE;
+      bDustRelDone := TRUE;
+      nRelState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nRelState := 20;
+    END_IF;
+    IF DustAxisRel.CommandAborted OR DustAxisRel.Error THEN
+      DustAxisRel.Execute := FALSE;
+      bDustRelDone := FALSE;
+      nRelState := 0;
+    END_IF;
+  20:
+    DustAxisRel.Execute := FALSE;
+    DustAxis_Stop.Execute := TRUE;
+    IF DustAxis_Stop.Done AND g_bPlcStartBuffer THEN
+      DustAxis_Stop.Execute := FALSE;
+      nRelState := 1;
+    END_IF;
+    IF DustAxis_Stop.CommandAborted OR DustAxis_Stop.Error THEN
+      DustAxis_Stop.Execute := FALSE;
+      nRelState := 0;
+    END_IF;
+END_CASE;
+
+
+(*防甩轴3 == 抽尘轴2*)
+RelRtring3(CLK :=g_bAnRejection3RelEnable OR g_biAnRejection3RelEnable OR bAnRejection3RelEnable);
+IF RelRtring3.Q THEN
+  nRelState3 :=1;
+  g_bAnRejection3RelDone := FALSE;
+  g_boAnRejection3RelDone := FALSE;
+  IF g_biAnRejection3RelEnable THEN
+    dARTargetPos3 := AntiRejection3.NCTOPLC.ActPos + g_fiARRelDis3;
+    dARTargetVel3 := g_fiARRelVel3;
+  ELSIF g_bAnRejection3RelEnable THEN
+    dARTargetPos3 := AntiRejection3.NCTOPLC.ActPos + g_fARRelDis3;
+    dARTargetVel3 := g_fARRelVel3;
+    g_bAnRejection3RelEnable := FALSE;
+  ELSE
+      dARTargetPos3 := AntiRejection3.NCTOPLC.ActPos + dARRelDis3;
+      IF g_bFastInch=0 THEN
+        dARTargetVel3 := dAntiRejection3SlowVel;
+      ELSE
+        dARTargetVel3 := dAntiRejection3FastVel;
+      END_IF;
+      bAnRejection3RelEnable := FALSE; 
+  END_IF;
+  IF dARTargetVel3 = 0.0 THEN
+    dARTargetVel3 := dAntiRejection3RelVelocity;
+  END_IF;
+END_IF;
+
+CASE nRelState3 OF
+  0:
+  nRelState3 := 0;
+  1:
+  g_AntiRejection3Rel.Execute := TRUE;
+  g_AntiRejection3Rel.Velocity := dARTargetVel3;
+  g_AntiRejection3Rel.Distance := dARTargetPos3 - AntiRejection3.NCTOPLC.ACTPOS;
+  IF g_AntiRejection3Rel.Done THEN
+    g_AntiRejection3Rel.Execute := FALSE;
+    g_bAnRejection3RelDone :=TRUE;
+    g_boAnRejection3RelDone := TRUE;
+    nRelState3 := 0;
+  END_IF;
+  IF g_bPlcPauseBuffer THEN
+    nRelState3 := 20;
+  END_IF;
+  IF g_AntiRejection3Rel.CommandAborted OR g_AntiRejection3Rel.Error THEN
+    g_AntiRejection3Rel.Execute := FALSE;
+    nRelState3 := 0;
+  END_IF;
+  20:
+  g_AntiRejection3Rel.Execute := FALSE;
+  g_AntiRejection3Stop.Execute := TRUE;
+  IF g_AntiRejection3Stop.Done AND g_bPlcStartBuffer THEN
+    g_AntiRejection3Stop.Execute := FALSE;
+    nRelState3 := 1;
+  END_IF;
+  IF g_AntiRejection3Stop.CommandAborted OR g_AntiRejection3Stop.Error THEN 
+    g_AntiRejection3Stop.Execute := FALSE;
+    nRelState3 := 0;
+  END_IF;
+END_CASE;
+
+
+
+IF g_bPlcResetBuffer THEN
+  nRelState := 0;
+  DustAxisRel.Execute := FALSE;
+  DustAxis_Stop.Execute := FALSE;
+   nRelState3 := 0;
+  g_AntiRejection3Rel.Execute := FALSE;
+  g_AntiRejection3Stop.Execute := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

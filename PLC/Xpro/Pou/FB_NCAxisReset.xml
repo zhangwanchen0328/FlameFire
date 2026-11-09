@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_NCAxisReset" pouType="functionBlock">
+  <interface>
+    <inputVars>
+      <variable name="NCAxisName">
+        <type>
+          <derived name="REF_TO AXIS_REF"/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="NCReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="NCReset1">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="bAxisErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <outputVars>
+      <variable name="ERRORID">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+    </outputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[NCReset(
+     AXIS := NCAxisName^(*AXIS_REF*),
+     OUTAXIS =>NCAxisName^ (*AXIS_REF*));
+NCReset1(
+	AXIS := Axis_C(*AXIS_REF*),
+     OUTAXIS =>Axis_C(*AXIS_REF*));
+bAxisErrorAlarm :=  NCAxisName^.NCTOPLC.POWERPOSWARN OR NCAxisName^.NCTOPLC.POWERNEGWARN 
+     OR NCAxisName^.NCTOPLC.ERRORCODE <>0;
+
+
+ERRORID := NCReset.ERRORID;
+IF bAxisErrorAlarm AND g_bPlcResetBuffer THEN
+  NCReset.Execute := TRUE;
+ELSE
+  NCReset.Execute := FALSE;   
+END_IF;
+
+IF Axis_C.NCTOPLC.ERRORCODE <> 0 AND g_bPlcResetBuffer THEN
+  NCReset1.EXECUTE := TRUE;
+ELSE
+  NCReset1.EXECUTE := FALSE;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

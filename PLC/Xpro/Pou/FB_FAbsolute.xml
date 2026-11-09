@@ -1,0 +1,334 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FAbsolute" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_FAxis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变焦轴运动过程开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变焦轴运动过程暂停]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变焦轴运动过程复位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="F_Trigger">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nAbsoluteSwitch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_FAbsolute">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对位置运动]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAbsoluteEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对位置运动使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[运动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dAbsTargetPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[目标位置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAbsoluteDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[运动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biAbsoluteEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对位置运动使能，引脚控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAbsoluteClose">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关闭绝对位置运动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_FPause">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[暂停]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_FReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiFAbsolutePos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚输入运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bFixedAbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变焦轴绝对运动固定位置使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dFixedAbsPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变焦轴绝对运动固定位置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bFixedAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变焦轴绝对运动固定位置完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boFixedAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变焦轴绝对运动固定位置完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAbsClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dTargetVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fiAbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dAbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bFAbsoluteEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变焦轴绝对运动固定位置使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bFocusDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[调焦完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bFProgressFocusAbs">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[渐进调焦绝对运动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dFProgressFocusVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[渐进调焦速度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dFAxisVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bFAbsoluteEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFAbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger(CLK := g_bFAbsoluteEnable OR bFAbsoluteEnable OR g_bFProgressFocusAbs);
+F_Trigger(CLK := bAbsoluteEnable OR g_biAbsoluteClose OR g_bFixedAbsExecute);
+
+IF R_Trigger.Q THEN
+  
+  IF g_bFProgressFocusAbs THEN  (*渐进运动给渐进速度，不是给F轴界面速度*)
+    dTargetVel := g_dFProgressFocusVel;
+  ELSE
+    dTargetVel := dFAxisVel;
+  END_IF; 
+  IF bFAbsoluteEnable THEN
+    dPosition := dFAbsPosition;
+  ELSE
+     dPosition := g_dAnalogPosition;
+  END_IF;
+  g_bFAbsoluteEnable :=FALSE;
+  g_bFocusEnable := FALSE;
+  g_bFocusDone := FALSE;
+  nAbsoluteSwitch := 10;
+  bAbsClose := FALSE;
+  g_bFProgressFocusAbs := FALSE;
+  bFAbsoluteEnable := FALSE;
+END_IF;
+
+IF F_Trigger.Q THEN
+  bAbsClose := TRUE;
+  
+END_IF;
+
+IF bAbsClose THEN
+  bAbsoluteDone := false;
+  g_bFixedAbsDone := false;
+  g_boFixedAbsDone := false;
+  bAbsClose := FALSE;
+END_IF;
+
+CASE nAbsoluteSwitch OF
+  0:
+  nAbsoluteSwitch := 0;
+  10:
+  g_FAbsolute.Execute := true;
+  g_FAbsolute.Position := dPosition;
+  g_FAbsolute.Velocity := dTargetVel;
+  
+  IF g_FAbsolute.Done THEN
+    g_FAbsolute.Execute := false;
+    bAbsoluteDone := true;
+    g_bFixedAbsDone := true;
+    g_boFixedAbsDone := true;
+    g_bFocusDone := TRUE;    
+    nAbsoluteSwitch := 0;
+  END_IF;
+    
+  IF g_FAbsolute.CommandAborted OR g_FAbsolute.Error THEN
+    g_FAbsolute.Execute := false;
+    nAbsoluteSwitch := 0;
+  END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nAbsoluteSwitch := 0;
+  g_FPause.Execute := false;
+  g_FAbsolute.Execute := false;
+  g_bFocusDone := FALSE;
+  g_bFProgressFocusAbs := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

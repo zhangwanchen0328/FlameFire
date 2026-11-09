@@ -1,0 +1,705 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_KuXunLoadControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biKXPrepareLoad">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biKXLoad">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boKXPrepareLoadDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boKXLoadDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderOpen1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料气缸：上升]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylinderOpen2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderOpen3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderOpen4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderOpen5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderClose1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料气缸：下降]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylinderClose2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderClose3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderClose4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinderClose5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterialState1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterialState2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterialState3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterialState4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterialState5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainUpDown">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑气缸控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nSustainMoveType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[0是下降，1是上升 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bSustainUpDownDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴1下落到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴2下落到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴3下落到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴4下落到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bClaw1Enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡爪控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bClaw2Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw1EnableOff">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw2EnableOff">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boClaw1Done">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boClaw2Done">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadSensor0">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[有无管子传感器信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boLoadSensor1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadSensor2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bNoPipeWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biKuXunNoSuitable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fiKuXunNoSuitable">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bKuXunExceed">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bKuXunUnder">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_noKXLoadState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nPipeLenthSuitType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bLoadFun">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料备料开关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bClawFun">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡爪夹（松）管移动开关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bWeldFun">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[焊缝开关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nLoadState">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nLoadState_back">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[状态机纪录]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigPrepareLoad">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigLoad">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerNoSuit">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bValueTmp">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="false"/>
+        </initialValue>
+      </variable>
+      <variable name="Ton0">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton1">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[等管子放好在检测有没有管子]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDelayTime">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="20"/>
+        </initialValue>
+      </variable>
+      <variable name="nDelayTime1">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="2500"/>
+        </initialValue>
+      </variable>
+      <variable name="nDelayTime2">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="500"/>
+        </initialValue>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boLoadCyl41Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl41Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*上料功能分成2部分执行：备料-上料-加工*)
+(*备料：第一次由M代码触发，后续plc内部触发*)
+RTrigPrepareLoad(CLK := g_biKXPrepareLoad);(*备料*)
+RTrigLoad(CLK := g_biKXLoad);(*上料＋备料*)
+RTriggerNoSuit(CLK := g_biKuXunNoSuitable);
+
+IF RTrigPrepareLoad.Q THEN
+  g_boKXPrepareLoadDone:=FALSE;
+  nLoadState:=10;
+END_IF;
+
+IF RTrigLoad.Q THEN
+  bValueTmp := TRUE;
+  g_boKXLoadDone:= FALSE;
+END_IF;
+
+IF bValueTmp AND g_boKXPrepareLoadDone THEN
+  nLoadState:= 550;
+  bValueTmp:= FALSE;
+END_IF;
+
+IF RTriggerNoSuit.Q THEN
+  nPipeLenthSuitType := LREAL_TO_INT(g_fiKuXunNoSuitable);
+  IF nPipeLenthSuitType=1 THEN
+    g_bKuXunExceed:=TRUE;
+  ELSIF nPipeLenthSuitType=2 THEN
+    g_bKuXunUnder:=TRUE;
+  END_IF;
+END_IF;
+
+IF bLoadFun THEN 
+  CASE nLoadState OF
+  0:(*空闲*)
+    nLoadState:=0;
+    nLoadState_back:=0;
+  10:(*所有气缸归位*)(*cmd*)
+     nLoadState_back:=10;
+    (*上料*)
+    g_bCylinderClose1:=TRUE;
+    g_bCylinderClose2:=TRUE;
+    g_bCylinderClose3:=TRUE;
+    g_bCylinderClose4:=TRUE;
+    g_bCylinderClose5:=TRUE;
+    (*支撑气缸*)
+    g_bSustainUpDown:=TRUE;
+    g_nSustainMoveType:=0;
+    (*卡爪控制*)
+    g_bClaw1EnableOff:=TRUE;
+    g_bClaw2EnableOff:=TRUE;
+    
+    Ton1(IN :=FALSE);
+    nLoadState:=14;
+  14:(*wait*)
+    Ton0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime)));
+    IF Ton0.Q THEN
+      Ton0(IN :=FALSE);
+      nLoadState:=15;
+    END_IF;
+  15:
+      nLoadState_back:=15;
+      IF g_bSustainUpDownDone AND g_bLoadMaterialState1 AND g_bLoadMaterialState2 AND g_bLoadMaterialState3 AND g_bLoadMaterialState4 AND g_bLoadMaterialState5 AND g_boClaw1Done AND g_boClaw2Done THEN
+        nLoadState:=200;
+      END_IF;
+  200:(*备料开始*) (*检测传感器2是否有管子信号*)
+      nLoadState_back:=200;
+      Ton1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime1)));
+      IF Ton1.Q THEN
+      Ton1(IN :=FALSE);
+        IF g_boLoadSensor1 THEN
+          nLoadState:=400;
+        ELSE
+          nLoadState:=220; 
+        END_IF;
+      END_IF;
+  220:(*检测传感器1是否有管子信号*)
+    nLoadState_back:=220;
+    Ton1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime1)));
+    IF Ton1.Q THEN
+      Ton1(IN :=FALSE);
+      IF g_boLoadSensor0 THEN
+        nLoadState:=330; 
+      ELSE
+        nLoadState:=240; 
+      END_IF;
+    END_IF;   
+  240:(*氣缸1控制：上*)
+    nLoadState_back:=240;
+    g_bCylinderOpen1:=TRUE;
+    nLoadState:=241;
+  241:
+    Ton0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime)));
+    IF Ton0.Q THEN
+      Ton0(IN :=FALSE);
+      nLoadState:=250;
+    END_IF;
+  250:(*wait*)
+    nLoadState_back:=250;
+    IF g_bLoadMaterialState1 THEN
+      nLoadState:=270;
+    END_IF;  
+  270:(*氣缸1控制：下*)
+    nLoadState_back:=270;
+    g_bCylinderClose1:=TRUE;
+    nLoadState:=271;
+  271:
+    Ton0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime)));
+    IF Ton0.Q THEN
+      Ton0(IN :=FALSE);
+      nLoadState:=290;
+    END_IF;
+  290:
+    nLoadState_back:=290;
+    IF g_bLoadMaterialState1 THEN
+      nLoadState:=310;
+    END_IF; 
+  310:
+    nLoadState_back:=310;
+    IF g_boLoadSensor0 THEN
+      nLoadState:=330; 
+    ELSE
+      nLoadState:=800; 
+    END_IF;
+  330:(*氣缸2控制：上*)
+    nLoadState_back:=330;
+    g_bCylinderOpen2:=TRUE;
+    g_bLoadMaterialState2:=FALSE;
+    nLoadState:=331;
+  331:
+    Ton0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime)));
+    IF Ton0.Q THEN
+      Ton0(IN :=FALSE);
+      nLoadState:=340;
+    END_IF;
+  340:
+    nLoadState_back:=340;
+    IF g_bLoadMaterialState2 THEN
+      nLoadState:=360; 
+    END_IF;
+  360:(*氣缸2控制：下*)
+    nLoadState_back:=360;
+    Ton0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime2)));
+    IF Ton0.Q THEN
+      Ton0(IN :=FALSE);
+      g_bCylinderClose2:=TRUE;
+      g_bLoadMaterialState2:=FALSE;
+      nLoadState:=361;
+     END_IF; 
+  361:
+      Ton0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime)));
+    IF Ton0.Q THEN
+      Ton0(IN :=FALSE);
+      nLoadState:=370;
+    END_IF;
+  370:
+    nLoadState_back:=370;
+    IF g_bLoadMaterialState2 THEN
+      nLoadState:=200; 
+    END_IF;
+  400:(*备料完成，等待进入预备上料*) 
+    nLoadState_back:=400;
+    IF g_bSupportcyLinderDownInPlace1 AND g_bSupportcyLinderDownInPlace2 AND g_bSupportcyLinderDownInPlace3 AND g_bSupportcyLinderDownInPlace4 THEN
+     nLoadState:=410; 
+    END_IF;
+  410:(*上料氣缸3控制:上*)(*预备上料*)
+    nLoadState_back:=410;
+
+    g_bCylinderOpen3:=TRUE;
+    nLoadState:=411;
+  411:
+      Ton0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime)));
+    IF Ton0.Q THEN
+      Ton0(IN :=FALSE);
+      nLoadState:=420;
+    END_IF;
+  420:
+    nLoadState_back:=420;
+    IF g_bLoadMaterialState3 THEN
+       nLoadState:=440;
+    END_IF;
+  440:(*上料氣缸4控制:上*)
+    nLoadState_back:=440;
+    g_bCylinderOpen4:=TRUE;
+    nLoadState:=441;
+  441:
+    Ton0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime)));
+    IF Ton0.Q THEN
+      Ton0(IN :=FALSE);
+      nLoadState:=450;
+    END_IF;
+  450:
+    nLoadState_back:=450;
+    IF g_bLoadMaterialState4 THEN
+      nLoadState:=470;
+    END_IF;
+  470: (*上料气缸5控制:上，到位需要回退進行保護*)
+    nLoadState_back:=470;
+    g_bCylinderOpen5:=TRUE;
+    nLoadState:=471;
+  471:
+    Ton0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime)));
+    IF Ton0.Q THEN
+      Ton0(IN :=FALSE);
+      nLoadState:=480;
+    END_IF;
+  480:(*气缸5控制：下*)
+    nLoadState_back:=480;
+    IF g_bLoadMaterialState5 THEN
+      g_bCylinderClose5:=TRUE;
+      nLoadState:=481;
+    END_IF;
+  481:
+      Ton0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime)));
+    IF Ton0.Q THEN
+      Ton0(IN :=FALSE);
+      nLoadState:=490;
+    END_IF;
+  490:(*wait*)
+    nLoadState_back:=490;
+    IF g_bLoadMaterialState5 THEN
+      nLoadState:=500;
+    END_IF;
+  500:
+    nLoadState_back:=500;
+    g_bCylinderClose4:=TRUE;
+    nLoadState:=510;
+  510:(*预备上料完成*)
+    nLoadState_back:=510;
+    IF g_bLoadMaterialState4 THEN
+      nLoadState:=0;
+      g_boKXPrepareLoadDone:=TRUE;
+    END_IF;  
+  550:(*支撑气缸全上升*)(*上料开始*)
+    nLoadState_back:=550;
+    g_bSustainUpDown:=TRUE;
+    g_nSustainMoveType:=1;
+    g_boKXPrepareLoadDone := FALSE;
+    nLoadState:=551;
+  551:
+      Ton0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime)));
+    IF Ton0.Q THEN
+      Ton0(IN :=FALSE);
+      nLoadState:=570;
+    END_IF;
+  570:
+    nLoadState_back:=570;
+    IF g_bSustainUpDownDone THEN
+      g_bCylinderClose3:=TRUE;
+      nLoadState:=571;
+    END_IF;
+  571:
+    Ton0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayTime)));
+    IF Ton0.Q THEN
+      Ton0(IN :=FALSE);
+      nLoadState:=600;
+    END_IF;
+  600:(*氣缸3回退完成*)(*上料結束*)
+    nLoadState_back:=600;
+    g_boKXLoadDone:= TRUE;
+    IF g_bLoadMaterialState3 THEN
+      nLoadState:=630;
+    END_IF;
+  630:
+    nLoadState_back:=630;
+    nLoadState:=200;
+    
+  800:(*沒有管子的報警，發到引擎會跳進暫停狀態機*)
+    nLoadState_back:=800;
+    g_bNoPipeWarn:=TRUE; 
+  900:(*暫停*)
+    IF g_bPlcStartBuffer AND nLoadState_back=15 THEN
+      nLoadState:=10;
+    ELSIF g_bPlcStartBuffer AND nLoadState_back=480 THEN(*氣缸5上重新執行一遍*)
+      nLoadState:=470;
+    ELSIF g_bPlcStartBuffer AND nLoadState_back=800 THEN(*清除報警重新備料*)
+      nLoadState:=200;
+    ELSE 
+      IF g_bPlcStartBuffer THEN
+        nLoadState:= nLoadState_back;
+      END_IF;
+    END_IF;
+  END_CASE;
+ELSE
+    nLoadState:=0;
+    nLoadState_back:=0;
+    g_boKXLoadDone:=TRUE;
+    g_boKXPrepareLoadDone:=TRUE;
+END_IF;
+
+IF g_bPlcPauseBuffer AND nLoadState<> 0 THEN
+  IF nLoadState_back=480 THEN
+    IF NOT (g_boLoadCyl41Down AND g_boLoadCyl41Up=FALSE) THEN
+      g_bCylinderClose5:=TRUE;
+    END_IF;
+  END_IF;
+  Ton0(IN :=FALSE);
+  Ton1(IN :=FALSE);
+   nLoadState:=900;
+END_IF;
+IF g_bPlcResetBuffer THEN
+  Ton0(IN :=FALSE);
+  Ton1(IN :=FALSE);
+  IF  nLoadState<> 0 THEN
+    IF NOT (g_boLoadCyl41Down AND g_boLoadCyl41Up=FALSE) THEN
+      g_bCylinderClose5:=TRUE;
+    END_IF;
+    g_boKXLoadDone:=FALSE;
+    g_boKXPrepareLoadDone:=FALSE;
+  END_IF;
+  nLoadState:=0;
+  nLoadState_back:=0;
+END_IF;
+
+g_noKXLoadState:=nLoadState;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[ 库讯]]></xhtml:p>
+  </documentation>
+</pou>

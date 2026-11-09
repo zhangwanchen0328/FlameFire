@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ST_AXISCMD">
+  <baseType>
+    <struct>
+      <variable name="NCAxisHome">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回原开关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="NCAxisJogForward">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动正向]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="NCAxisJogBackward">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动负向]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="NCAxisPower">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="NCAxisStop">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴停止]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="CleanHomed">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[清除回原标志]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ChangeHome">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回原置零]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="NCAxisAbs">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动指令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="NCAxisRel">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动指令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="NCAxisGearIn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="NCAxisGearOut">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[解耦]]></xhtml:p>
+        </documentation>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

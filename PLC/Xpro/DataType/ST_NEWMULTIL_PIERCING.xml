@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ST_NEWMULTIL_PIERCING">
+  <baseType>
+    <struct>
+      <variable name="bPierEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[是否使用该穿孔]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Piercing_Type">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[//穿孔类型]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Piercing_Time">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="1"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[穿孔时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Piercing_Height">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿孔高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Piercing_Gas">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿孔气体]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Piercing_Gas_Pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿孔气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Piercing_Power">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿孔功率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Piercing_Duty">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿孔占空比]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Piercing_Frequency">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿孔频率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Piercing_Retention_Time">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿孔停留时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fStart_Zoom_Position">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿孔开始焦点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fEnd_Zoom_Position">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿孔结束焦点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Piercing_DutyStart">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[闪电穿孔的开始占空比]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Piercing_DutyEnd">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[闪电穿孔的结束占空比]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Piercing_FrequencyStart">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[闪电穿孔的开始频率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Piercing_FrequencyEnd">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[闪电穿孔的结束频率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="StopLight_BlowGasTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="CombustibleGasPressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[可燃气气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="OxidizingGasPressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[助燃气气压]]></xhtml:p>
+        </documentation>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

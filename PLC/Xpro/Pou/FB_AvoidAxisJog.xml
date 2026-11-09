@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AvoidAxisJog" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="bForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bBackward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[ (*防甩轴6*)
+IF g_bFastInch THEN
+  g_AntiRejection6Jog.Mode := 1;
+ELSE
+  g_AntiRejection6Jog.Mode := 0;
+END_IF;
+
+  g_AntiRejection6Jog.JogForward := bForward;
+  g_AntiRejection6Jog.JogBackwards := bBackward;
+    
+
+IF g_bPlcResetBuffer THEN
+  bForward := FALSE;
+  bBackward := FALSE;
+END_IF;     ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

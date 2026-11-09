@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CNC_MCONTROL">
+  <baseType>
+    <struct>
+      <variable name="ENABLE">
+        <type>
+          <array>
+            <dimension lower="100" upper="899"/>
+            <baseType>
+              <INT/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="PARAMETER_H">
+        <type>
+          <array>
+            <dimension lower="100" upper="899"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="PARAMETER_I">
+        <type>
+          <array>
+            <dimension lower="100" upper="899"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="PARAMETER_J">
+        <type>
+          <array>
+            <dimension lower="100" upper="899"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="PARAMETER_K">
+        <type>
+          <array>
+            <dimension lower="100" upper="899"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="PARAMETER_P">
+        <type>
+          <array>
+            <dimension lower="100" upper="899"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="PARAMETER_Q">
+        <type>
+          <array>
+            <dimension lower="100" upper="899"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

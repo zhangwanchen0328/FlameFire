@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_U3AxisRel" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Axis_U3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴结构体]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC暂停全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC复位全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biU3RelExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bU3RelExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiU3RelDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动距离引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fU3RelDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiU3RelVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动速度引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fU3RelVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boU3RelDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bU3RelDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3MoveRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3MoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bRelEXecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bRelDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nRelState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dRelDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dTargetPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动目标位置，用于暂停后开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dTargetVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动目标速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dU3RelVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动目标速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bFastInch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dU3AxisSlowVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dU3AxisFastVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger(CLK := g_biU3RelExecute OR bRelEXecute OR g_bU3RelExecute);
+
+IF RTrigger.Q THEN
+  nRelState := 1;
+  g_boU3RelDone := FALSE;
+  g_bU3RelDone := FALSE;
+  bRelDone := FALSE;
+  IF g_biU3RelExecute THEN
+    dTargetPos := Axis_U3.NCTOPLC.ActPos + g_fiU3RelDistance; 
+    dTargetVel := g_fiU3RelVelocity;
+  ELSIF g_bU3RelExecute THEN
+    dTargetPos := Axis_U3.NCTOPLC.ActPos + g_fU3RelDistance; 
+    dTargetVel := g_fU3RelVelocity;
+  ELSE
+    dTargetPos := Axis_U3.NCTOPLC.ActPos + dRelDistance; 
+    IF g_bFastInch = 0 THEN
+      dTargetVel:=dU3AxisSlowVel;
+    ELSE
+      dTargetVel:=dU3AxisFastVel;
+    END_IF;
+  END_IF;
+  IF dTargetVel = 0.0 THEN
+    dTargetVel := dU3RelVelocity;
+  END_IF;
+END_IF;
+
+IF NOT(g_biU3RelExecute OR bRelEXecute OR g_bU3RelExecute) THEN
+  g_boU3RelDone := FALSE;
+  g_bU3RelDone := FALSE;
+  bRelDone := FALSE;
+END_IF;
+
+CASE nRelState OF
+  0:
+    nRelState := 0;
+  1:
+    g_U3MoveRel.Execute := TRUE;
+    g_U3MoveRel.Velocity := dTargetVel;
+    g_U3MoveRel.Distance := dTargetPos - Axis_U3.NCTOPLC.ActPos;
+    IF g_U3MoveRel.Done THEN
+      g_U3MoveRel.Execute := FALSE;
+      g_boU3RelDone := TRUE;
+      g_bU3RelDone := TRUE;
+      bRelDone := TRUE;
+      nRelState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nRelState := 20;
+    END_IF;
+    IF g_U3MoveRel.CommandAborted OR g_U3MoveRel.Error THEN
+      g_U3MoveRel.Execute := FALSE;
+      nRelState := 0;
+    END_IF;
+  20:
+    g_U3MoveRel.Execute := FALSE;
+    g_U3MoveStop.Execute := TRUE;
+    IF g_U3MoveStop.Done AND g_bPlcStartBuffer THEN
+      g_U3MoveStop.Execute := FALSE;
+      nRelState := 1;
+    END_IF;
+    IF g_U3MoveStop.CommandAborted OR g_U3MoveStop.Error THEN
+      g_U3MoveStop.Execute := FALSE;
+      nRelState := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nRelState := 0;
+  g_U3MoveRel.Execute := FALSE;
+  g_U3MoveStop.Execute := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,1288 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FBLimitYSpeed" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="nThirdSupportType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第3组支撑类型]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nFourthSupportType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第4组支撑类型]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nFiveSupportType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第5组支撑类型]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSixthSupportType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第6组支撑类型]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bOpenLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开启支撑下降区间降速]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dG00YVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y轴空移速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDownVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y轴空移速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSupportAxis1DownTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴1下降需要的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSupportAxis2DownTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴2下降需要的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSupportAxis3DownTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴3下降需要的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSupportAxis4DownTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴4下降需要的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSupportAxis5DownTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴5下降需要的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSupportAxis6DownTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴6下降需要的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSupportAxis7DownTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴7下降需要的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSupportAxis8DownTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴8下降需要的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSupportAxis9DownTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴9下降需要的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSupportAxis10DownTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴10下降需要的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSupportAxis11DownTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴11下降需要的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSupportAxis12DownTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴12下降需要的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis1AbsVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴1下降的速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis2AbsVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴2下降的速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis3AbsVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴3下降的速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis4AbsVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴4下降的速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis5AbsVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴5下降的速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis6AbsVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴6下降的速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis7AbsVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴7下降的速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis8AbsVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴8下降的速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis9AbsVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴9下降的速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis10AbsVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴10下降的速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis11AbsVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴11下降的速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis12AbsVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴12下降的速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis1DownTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴1下降的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis2DownTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴2下降的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis3DownTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴3下降的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis4DownTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴4下降的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis5DownTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴5下降的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis6DownTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴6下降的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis7DownTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴7下降的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis8DownTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴8下降的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis9DownTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴9下降的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis10DownTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴10下降的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis11DownTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴11下降的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis12DownTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴12下降的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis1Acc">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴1加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis2Acc">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴2加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis3Acc">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴3加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis4Acc">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴4加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis5Acc">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴5加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis6Acc">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴6加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis7Acc">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴7加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis8Acc">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴8加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis9Acc">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴9加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis10Acc">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴10加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis11Acc">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴11加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis12Acc">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴12加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis1Jerk">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴1加加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis2Jerk">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴2加加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis3Jerk">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴3加加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis4Jerk">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴4加加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis5Jerk">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴5加加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis6Jerk">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴6加加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis7Jerk">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴7加加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis8Jerk">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴8加加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis9Jerk">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴9加加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis10Jerk">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴10加加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis11Jerk">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴11加加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportAxis12Jerk">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴12加加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSupportLimitSpeedPercent">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Rtring_ForceLimit">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[流程编辑强制降速]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportCylinder1ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志气缸1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportCylinder2ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志气缸2]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportCylinder3ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志气缸3]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportCylinder4ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志气缸4]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportCylinder5ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志气缸5]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportCylinder6ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志气缸6]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportCylinder7ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志气缸7]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportCylinder8ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志气缸8]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportCylinder9ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志气缸9]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportCylinder10ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志气缸10]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportCylinder11ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志气缸11]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportCylinder12ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志气缸12]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportAxis1ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志轴1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportAxis2ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志轴2]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportAxis3ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志轴3]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportAxis4ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志轴4]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportAxis5ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志轴5]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportAxis6ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志轴6]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportAxis7ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志轴7]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportAxis8ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志轴8]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportAxis9ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志轴9]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportAxis10ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志轴10]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportAxis11ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志轴11]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupportAxis12ForceFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志轴12]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bForceLimitSpeedFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[强降标志]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*强制降速*)
+Rtring_ForceLimit(CLK := g_bSupportForceLimitM);
+IF Rtring_ForceLimit.Q THEN
+  g_bSupportForceLimitM := FALSE;
+  IF g_fSustainMoveTypeM = 1.0 THEN
+	  IF g_nClylinderCount >= 1 THEN
+		SupportCylinder1ForceFlag := TRUE;
+	  END_IF;
+	  IF g_nClylinderCount >= 2 THEN
+		SupportCylinder2ForceFlag := TRUE;
+	  END_IF; 
+	  IF g_nClylinderCount >= 3 THEN
+		SupportCylinder3ForceFlag := TRUE;
+	  END_IF; 
+	  IF g_nClylinderCount >= 4 THEN
+		SupportCylinder4ForceFlag := TRUE;
+	  END_IF; 
+	  IF g_nClylinderCount >= 5 THEN
+		SupportCylinder5ForceFlag := TRUE;
+	  END_IF; 
+	  IF g_nClylinderCount >= 6 THEN
+		SupportCylinder6ForceFlag := TRUE;
+	  END_IF; 
+	  IF g_nClylinderCount >= 7 THEN
+		SupportCylinder7ForceFlag := TRUE;
+	  END_IF; 
+	  IF g_nClylinderCount >= 8 THEN
+		SupportCylinder8ForceFlag := TRUE;
+	  END_IF; 
+      IF g_nClylinderCount >= 9 THEN
+		SupportCylinder9ForceFlag := TRUE;
+	  END_IF; 
+      IF g_nClylinderCount >= 10 THEN
+		SupportCylinder10ForceFlag := TRUE;
+	  END_IF; 
+      IF g_nClylinderCount >= 11 THEN
+		SupportCylinder11ForceFlag := TRUE;
+	  END_IF; 
+      IF g_nClylinderCount >= 12 THEN
+		SupportCylinder12ForceFlag := TRUE;
+	  END_IF;   
+	  IF g_nSusutainCount >= 1 THEN
+		SupportAxis1ForceFlag := TRUE;
+	  END_IF;
+	  IF g_nSusutainCount >= 2 THEN
+		SupportAxis2ForceFlag := TRUE;
+	  END_IF;
+	  IF g_nSusutainCount >= 3 THEN
+		SupportAxis3ForceFlag := TRUE;
+	  END_IF;
+	  IF g_nSusutainCount >= 4 THEN
+		SupportAxis4ForceFlag := TRUE;
+	  END_IF;
+	  IF g_nSusutainCount >= 5 THEN
+		SupportAxis5ForceFlag := TRUE;
+	  END_IF;
+	  IF g_nSusutainCount >= 6 THEN
+		SupportAxis6ForceFlag := TRUE;
+	  END_IF;
+	  IF g_nSusutainCount >= 7 THEN
+		SupportAxis7ForceFlag := TRUE;
+	  END_IF;
+	  IF g_nSusutainCount >= 8 THEN
+		SupportAxis8ForceFlag := TRUE;
+	  END_IF;
+	  IF g_nSusutainCount >= 9 THEN
+		SupportAxis9ForceFlag := TRUE;
+	  END_IF;
+	  IF g_nSusutainCount >= 10 THEN
+		SupportAxis10ForceFlag := TRUE;
+	  END_IF;
+	  IF g_nSusutainCount >= 11 THEN
+		SupportAxis11ForceFlag := TRUE;
+	  END_IF;
+	  IF g_nSusutainCount >= 12 THEN
+		SupportAxis12ForceFlag := TRUE;
+	  END_IF;
+      bOpenLimit := TRUE;
+  ELSE
+		SupportCylinder1ForceFlag := FALSE;
+		SupportCylinder2ForceFlag := FALSE;
+		SupportCylinder3ForceFlag := FALSE;
+		SupportCylinder4ForceFlag := FALSE;
+		SupportCylinder5ForceFlag := FALSE;
+		SupportCylinder6ForceFlag := FALSE;
+		SupportCylinder7ForceFlag := FALSE;
+		SupportCylinder8ForceFlag := FALSE;
+		SupportCylinder9ForceFlag := FALSE;
+		SupportCylinder10ForceFlag := FALSE;
+		SupportCylinder11ForceFlag := FALSE;
+		SupportCylinder12ForceFlag := FALSE;
+		SupportAxis1ForceFlag := FALSE;
+		SupportAxis2ForceFlag := FALSE;
+		SupportAxis3ForceFlag := FALSE;
+		SupportAxis4ForceFlag := FALSE;
+		SupportAxis5ForceFlag := FALSE;
+		SupportAxis6ForceFlag := FALSE;
+		SupportAxis7ForceFlag := FALSE;
+		SupportAxis8ForceFlag := FALSE;
+		SupportAxis9ForceFlag := FALSE;
+		SupportAxis10ForceFlag := FALSE;
+		SupportAxis11ForceFlag := FALSE;
+		SupportAxis12ForceFlag := FALSE;
+        bOpenLimit := FALSE;
+  END_IF;
+  M.ENABLE[177] := 0;
+  
+END_IF;
+
+bForceLimitSpeedFlag := FALSE;
+
+(*六组判断*)
+IF bOpenLimit  THEN
+	IF g_nClylinderCount >= 1 THEN 
+		IF (g_fClylinder1CoordY-g_fCurrentCoordYBuffer < g_fClylinder1DownDistance) AND (g_niMotionType=1 OR g_niMotionType=2 OR  SupportCylinder1ForceFlag) AND g_fCurrentCoordYBuffer < g_fClylinder1CoordY AND g_bClylinder1State THEN
+			dDownVel := (g_fClylinder1DownDistance - g_fClylinder1SafeDistance) / FUN_MSTOS(g_dClylinder1DownDoneTime);
+			g_doRealtimeOverrid := dDownVel  / dG00YVel * dSupportLimitSpeedPercent;
+			IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <= 0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF; 
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF NOT g_bClylinder1State  THEN
+            SupportCylinder1ForceFlag := FALSE;
+		END_IF;
+	END_IF;
+	IF g_nClylinderCount >= 2 THEN 
+		IF (g_fClylinder2CoordY-g_fCurrentCoordYBuffer < g_fClylinder2DownDistance) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportCylinder2ForceFlag) AND g_fCurrentCoordYBuffer < g_fClylinder2CoordY AND g_bClylinder2State THEN
+			dDownVel := (g_fClylinder2DownDistance -  g_fClylinder2SafeDistance) / FUN_MSTOS(g_dClylinder2DownDoneTime);
+			g_doRealtimeOverrid := dDownVel  / dG00YVel* dSupportLimitSpeedPercent;
+			IF g_doRealtimeOverrid > 1.0 THEN
+                g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <= 0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF; 
+			bForceLimitSpeedFlag := TRUE; 
+  		END_IF;
+		IF NOT g_bClylinder2State THEN
+           SupportCylinder2ForceFlag := FALSE;
+		END_IF;
+	END_IF;
+	IF g_nClylinderCount >= 3 THEN 
+		IF (g_fClylinder3CoordY-g_fCurrentCoordYBuffer < g_fClylinder3DownDistance) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportCylinder3ForceFlag) AND g_fCurrentCoordYBuffer < g_fClylinder3CoordY AND g_bClylinder3State THEN
+			dDownVel := (g_fClylinder3DownDistance - g_fClylinder3SafeDistance) / FUN_MSTOS(g_dClylinder3DownDoneTime);
+			g_doRealtimeOverrid := dDownVel  / dG00YVel* dSupportLimitSpeedPercent;
+			IF g_doRealtimeOverrid > 1.0 THEN
+              g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <= 0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF;  
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF NOT g_bClylinder3State  THEN
+            SupportCylinder3ForceFlag := FALSE;
+		END_IF;
+	END_IF;
+	IF g_nClylinderCount >= 4 THEN 
+		IF (g_fClylinder4CoordY-g_fCurrentCoordYBuffer < g_fClylinder4DownDistance) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportCylinder4ForceFlag) AND g_fCurrentCoordYBuffer < g_fClylinder4CoordY AND g_bClylinder4State THEN
+			dDownVel := (g_fClylinder4DownDistance - g_fClylinder4SafeDistance) / FUN_MSTOS(g_dClylinder4DownDoneTime);
+			g_doRealtimeOverrid := dDownVel  / dG00YVel* dSupportLimitSpeedPercent;
+			IF g_doRealtimeOverrid > 1.0 THEN
+              g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <= 0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF; 
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF NOT g_bClylinder4State  THEN
+            SupportCylinder4ForceFlag := FALSE;
+		END_IF;
+	END_IF;
+	IF g_nClylinderCount >= 5 THEN 
+		IF (g_fClylinder5CoordY-g_fCurrentCoordYBuffer < g_fClylinder5DownDistance) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportCylinder5ForceFlag) AND g_fCurrentCoordYBuffer < g_fClylinder5CoordY AND g_bClylinder5State THEN
+			dDownVel := (g_fClylinder5DownDistance - g_fClylinder5SafeDistance) / FUN_MSTOS(g_dClylinder5DownDoneTime);
+			g_doRealtimeOverrid := dDownVel  / dG00YVel* dSupportLimitSpeedPercent;
+			IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <= 0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF;
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF NOT g_bClylinder5State  THEN
+            SupportCylinder5ForceFlag := FALSE;
+		END_IF;
+	END_IF;
+	IF g_nClylinderCount >= 6 THEN 
+		IF (g_fClylinder6CoordY-g_fCurrentCoordYBuffer < g_fClylinder6DownDistance) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportCylinder6ForceFlag) AND g_fCurrentCoordYBuffer < g_fClylinder6CoordY AND g_bClylinder6State THEN
+			dDownVel := (g_fClylinder6DownDistance  - g_fClylinder6SafeDistance) / FUN_MSTOS(g_dClylinder6DownDoneTime);
+			g_doRealtimeOverrid := dDownVel  / dG00YVel* dSupportLimitSpeedPercent;
+			IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <= 0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF;
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF NOT g_bClylinder6State  THEN
+            SupportCylinder6ForceFlag := FALSE;
+		END_IF;
+	END_IF;
+	IF g_nClylinderCount >= 7 THEN 
+		IF (g_fClylinder7CoordY-g_fCurrentCoordYBuffer < g_fClylinder7DownDistance) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportCylinder7ForceFlag) AND g_fCurrentCoordYBuffer < g_fClylinder7CoordY AND g_bClylinder7State THEN
+			dDownVel := (g_fClylinder7DownDistance  - g_fClylinder7SafeDistance) / FUN_MSTOS(g_dClylinder7DownDoneTime);
+			g_doRealtimeOverrid := dDownVel  / dG00YVel* dSupportLimitSpeedPercent;
+			IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <= 0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF; 
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF NOT g_bClylinder7State  THEN
+            SupportCylinder7ForceFlag := FALSE;
+		END_IF;
+	END_IF;
+	IF g_nClylinderCount >= 8 THEN 
+		IF (g_fClylinder8CoordY-g_fCurrentCoordYBuffer < g_fClylinder8DownDistance) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportCylinder8ForceFlag) AND g_fCurrentCoordYBuffer < g_fClylinder8CoordY AND g_bClylinder8State THEN
+			dDownVel := (g_fClylinder8DownDistance  - g_fClylinder8SafeDistance) / FUN_MSTOS(g_dClylinder8DownDoneTime);
+			g_doRealtimeOverrid := dDownVel  / dG00YVel* dSupportLimitSpeedPercent;
+			IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <= 0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF; 
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF NOT g_bClylinder8State THEN
+			SupportCylinder8ForceFlag := FALSE;
+		END_IF;
+	END_IF;
+    
+    IF g_nClylinderCount >= 9 THEN 
+		IF (g_fClylinder9CoordY-g_fCurrentCoordYBuffer < g_fClylinder9DownDistance) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportCylinder9ForceFlag) AND g_fCurrentCoordYBuffer < g_fClylinder9CoordY AND g_bClylinder9State THEN
+			dDownVel := (g_fClylinder9DownDistance  - g_fClylinder9SafeDistance) / FUN_MSTOS(g_dClylinder9DownDoneTime);
+			g_doRealtimeOverrid := dDownVel  / dG00YVel* dSupportLimitSpeedPercent;
+			IF g_doRealtimeOverrid > 1.0 THEN
+                g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <= 0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF; 
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF NOT g_bClylinder9State THEN
+			SupportCylinder9ForceFlag := FALSE;
+		END_IF;
+	END_IF;
+    
+    IF g_nClylinderCount >= 10 THEN 
+		IF (g_fClylinder10CoordY-g_fCurrentCoordYBuffer < g_fClylinder10DownDistance) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportCylinder10ForceFlag) AND g_fCurrentCoordYBuffer < g_fClylinder10CoordY AND g_bClylinder10State THEN
+			dDownVel := (g_fClylinder10DownDistance  - g_fClylinder10SafeDistance) / FUN_MSTOS(g_dClylinder10DownDoneTime);
+			g_doRealtimeOverrid := dDownVel  / dG00YVel* dSupportLimitSpeedPercent;
+			IF g_doRealtimeOverrid > 1.0 THEN
+                g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <= 0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF;
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF NOT g_bClylinder10State THEN
+			SupportCylinder10ForceFlag := FALSE;
+		END_IF;
+	END_IF;
+    
+    IF g_nClylinderCount >= 11 THEN 
+		IF (g_fClylinder11CoordY-g_fCurrentCoordYBuffer < g_fClylinder11DownDistance) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportCylinder11ForceFlag) AND g_fCurrentCoordYBuffer < g_fClylinder11CoordY AND g_bClylinder11State THEN
+			dDownVel := (g_fClylinder11DownDistance  - g_fClylinder11SafeDistance) / FUN_MSTOS(g_dClylinder11DownDoneTime);
+			g_doRealtimeOverrid := dDownVel  / dG00YVel* dSupportLimitSpeedPercent;
+			IF g_doRealtimeOverrid > 1.0 THEN
+                g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <= 0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF; 
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF NOT g_bClylinder11State THEN
+			SupportCylinder11ForceFlag := FALSE;
+		END_IF;
+	END_IF;
+    
+    IF g_nClylinderCount >= 12 THEN 
+		IF (g_fClylinder12CoordY-g_fCurrentCoordYBuffer < g_fClylinder12DownDistance) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportCylinder12ForceFlag) AND g_fCurrentCoordYBuffer < g_fClylinder12CoordY AND g_bClylinder12State THEN
+			dDownVel := (g_fClylinder12DownDistance  - g_fClylinder12SafeDistance) / FUN_MSTOS(g_dClylinder12DownDoneTime);
+			g_doRealtimeOverrid := dDownVel  / dG00YVel* dSupportLimitSpeedPercent;
+			IF g_doRealtimeOverrid > 1.0 THEN
+                g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <= 0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF; 
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF NOT g_bClylinder12State THEN
+			SupportCylinder12ForceFlag := FALSE;
+		END_IF;
+	END_IF;
+  
+  (*轴*)
+	IF g_nSusutainCount >= 1 THEN
+		IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY1 - g_fSupAxisDownDis1) AND (g_niMotionType=1  OR g_niMotionType=2  OR SupportAxis1ForceFlag) AND g_fCurrentCoordYBuffer < g_fSupAxisCoordY1 AND Axis_Sustain1.NCTOPLC.ACTPOS > 0.01 THEN
+			dSupportAxis1DownTime := FUN_CALCAXISMOVETIME(g_dSupportAxis1ActPos,0.0,dSupportAxis1AbsVel,dSupportAxis1Acc,dSupportAxis1Jerk);
+			IF dSupportAxis1DownTime < 0.001 THEN 
+              dSupportAxis1DownTime:=0.001;
+            END_IF;
+            g_doRealtimeOverrid := (((g_fSupAxisDownDis1 -  g_fSupAxisSafeDis1) / dSupportAxis1DownTime) / dG00YVel)* dSupportLimitSpeedPercent * (dSupportAxis1AbsVel / dG00YVel) ;
+			IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <= 0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF; 
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF Axis_Sustain1.NCTOPLC.ACTPOS <= 0.01 THEN
+            SupportAxis1ForceFlag := FALSE;
+		END_IF;
+	END_IF;
+	IF g_nSusutainCount >= 2 THEN
+		IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY2 - g_fSupAxisDownDis2) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportAxis2ForceFlag) AND g_fCurrentCoordYBuffer < g_fSupAxisCoordY2 AND Axis_Sustain2.NCTOPLC.ACTPOS > 0.01  THEN
+			dSupportAxis2DownTime := FUN_CALCAXISMOVETIME(g_dSupportAxis2ActPos,0.0,dSupportAxis2AbsVel,dSupportAxis2Acc,dSupportAxis2Jerk);
+            IF dSupportAxis2DownTime < 0.001 THEN 
+              dSupportAxis2DownTime:=0.001;
+            END_IF;
+            g_doRealtimeOverrid := (((g_fSupAxisDownDis2 -  g_fSupAxisSafeDis2) / dSupportAxis2DownTime)/ dG00YVel) * dSupportLimitSpeedPercent* (dSupportAxis2AbsVel / dG00YVel) ;
+			 IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid := 1.0;
+			 ELSIF g_doRealtimeOverrid <= 0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			 END_IF;
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF Axis_Sustain2.NCTOPLC.ACTPOS <= 0.01 THEN
+            SupportAxis2ForceFlag := FALSE;
+		END_IF;
+	END_IF;
+  
+	IF g_nSusutainCount >= 3 THEN
+		IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY3 - g_fSupAxisDownDis3) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportAxis3ForceFlag) AND g_fCurrentCoordYBuffer < g_fSupAxisCoordY3 AND Axis_Sustain3.NCTOPLC.ACTPOS > 0.01  THEN
+			dSupportAxis3DownTime := FUN_CALCAXISMOVETIME(g_dSupportAxis3ActPos,0.0,dSupportAxis3AbsVel,dSupportAxis3Acc,dSupportAxis3Jerk);
+			IF dSupportAxis3DownTime < 0.001 THEN 
+              dSupportAxis3DownTime:=0.001;
+            END_IF;
+            g_doRealtimeOverrid := (((g_fSupAxisDownDis3 -  g_fSupAxisSafeDis3) / dSupportAxis3DownTime) / dG00YVel) * dSupportLimitSpeedPercent* (dSupportAxis3AbsVel / dG00YVel) ;
+			IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid :=1.0;
+			ELSIF g_doRealtimeOverrid <=  0.0 THEN
+				g_doRealtimeOverrid :=0.1;
+			END_IF; 
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF Axis_Sustain3.NCTOPLC.ACTPOS <= 0.01 THEN
+            SupportAxis3ForceFlag := FALSE;
+		END_IF;
+	END_IF;
+  
+	IF g_nSusutainCount >= 4 THEN
+		IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY4 - g_fSupAxisDownDis4) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportAxis4ForceFlag) AND g_fCurrentCoordYBuffer < g_fSupAxisCoordY4 AND Axis_Sustain7.NCTOPLC.ACTPOS > 0.01 THEN
+			dSupportAxis4DownTime := FUN_CALCAXISMOVETIME(g_dSupportAxis4ActPos,0.0,dSupportAxis4AbsVel,dSupportAxis4Acc,dSupportAxis4Jerk);
+			IF dSupportAxis4DownTime < 0.001 THEN 
+              dSupportAxis4DownTime:=0.001;
+            END_IF;
+            g_doRealtimeOverrid := (((g_fSupAxisDownDis4 -  g_fSupAxisSafeDis4) / dSupportAxis4DownTime) / dG00YVel) * dSupportLimitSpeedPercent* (dSupportAxis4AbsVel / dG00YVel) ;
+			IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <=  0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF;
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF Axis_Sustain7.NCTOPLC.ACTPOS <= 0.01 THEN
+            SupportAxis4ForceFlag := FALSE;
+        END_IF;
+	END_IF;
+	IF g_nSusutainCount >= 5 THEN
+		IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY5 - g_fSupAxisDownDis5) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportAxis5ForceFlag) AND g_fCurrentCoordYBuffer < g_fSupAxisCoordY5 AND Axis_Sustain8.NCTOPLC.ACTPOS > 0.01 THEN
+			dSupportAxis5DownTime := FUN_CALCAXISMOVETIME(g_dSupportAxis5ActPos,0.0,dSupportAxis5AbsVel,dSupportAxis5Acc,dSupportAxis5Jerk);
+			IF dSupportAxis5DownTime < 0.001 THEN 
+              dSupportAxis5DownTime:=0.001;
+            END_IF;
+            g_doRealtimeOverrid := (((g_fSupAxisDownDis5 -  g_fSupAxisSafeDis5) / dSupportAxis5DownTime) / dG00YVel)* dSupportLimitSpeedPercent* (dSupportAxis5AbsVel / dG00YVel) ;
+			IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <=  0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF;
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF Axis_Sustain8.NCTOPLC.ACTPOS <= 0.01  THEN
+            SupportAxis5ForceFlag := FALSE;
+		END_IF;
+	END_IF;
+  
+  
+	IF g_nSusutainCount >= 6 THEN
+		IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY6 - g_fSupAxisDownDis6) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportAxis6ForceFlag) AND g_fCurrentCoordYBuffer < g_fSupAxisCoordY6 AND Axis_Sustain9.NCTOPLC.ACTPOS > 0.01 THEN
+			dSupportAxis6DownTime := FUN_CALCAXISMOVETIME(g_dSupportAxis6ActPos,0.0,dSupportAxis6AbsVel,dSupportAxis6Acc,dSupportAxis6Jerk);
+			IF dSupportAxis6DownTime < 0.001 THEN 
+              dSupportAxis6DownTime:=0.001;
+            END_IF;
+            g_doRealtimeOverrid := (((g_fSupAxisDownDis6 -  g_fSupAxisSafeDis6) / dSupportAxis6DownTime) / dG00YVel)* dSupportLimitSpeedPercent * (dSupportAxis6AbsVel / dG00YVel) ;
+			IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <=  0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF;
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF Axis_Sustain9.NCTOPLC.ACTPOS <= 0.01  THEN
+            SupportAxis6ForceFlag := FALSE;
+        END_IF;
+	END_IF;
+	IF g_nSusutainCount >= 7 THEN
+		IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY7 - g_fSupAxisDownDis7) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportAxis7ForceFlag) AND g_fCurrentCoordYBuffer < g_fSupAxisCoordY7 AND Axis_S7.NCTOPLC.ACTPOS > 0.01 THEN
+			dSupportAxis7DownTime := FUN_CALCAXISMOVETIME(g_dSupportAxis7ActPos,0.0,dSupportAxis7AbsVel,dSupportAxis7Acc,dSupportAxis7Jerk);
+			IF dSupportAxis7DownTime < 0.001 THEN 
+              dSupportAxis7DownTime:=0.001;
+            END_IF;
+            g_doRealtimeOverrid := (((g_fSupAxisDownDis7 -  g_fSupAxisSafeDis7) / dSupportAxis7DownTime) / dG00YVel)* dSupportLimitSpeedPercent * (dSupportAxis7AbsVel / dG00YVel) ;
+			IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <=  0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF; 
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF Axis_S7.NCTOPLC.ACTPOS <= 0.01  THEN
+            SupportAxis7ForceFlag := FALSE;
+        END_IF;
+	END_IF;
+	IF g_nSusutainCount >= 8 THEN
+		IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY8 - g_fSupAxisDownDis8) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportAxis8ForceFlag) AND g_fCurrentCoordYBuffer < g_fSupAxisCoordY8 AND Axis_S8.NCTOPLC.ACTPOS > 0.01 THEN
+			dSupportAxis8DownTime := FUN_CALCAXISMOVETIME(g_dSupportAxis8ActPos,0.0,dSupportAxis8AbsVel,dSupportAxis8Acc,dSupportAxis8Jerk);
+			IF dSupportAxis8DownTime < 0.001 THEN 
+              dSupportAxis8DownTime:=0.001;
+            END_IF;
+            g_doRealtimeOverrid := (((g_fSupAxisDownDis8 -  g_fSupAxisSafeDis8) / dSupportAxis8DownTime) / dG00YVel)* dSupportLimitSpeedPercent * (dSupportAxis8AbsVel / dG00YVel) ;
+			IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <=  0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF;
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF Axis_S8.NCTOPLC.ACTPOS <= 0.01  THEN
+            SupportAxis8ForceFlag := FALSE;
+        END_IF;
+	END_IF;
+	IF g_nSusutainCount >= 9 THEN
+		IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY9 - g_fSupAxisDownDis9) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportAxis9ForceFlag) AND g_fCurrentCoordYBuffer < g_fSupAxisCoordY9 AND Axis_S9.NCTOPLC.ACTPOS > 0.01 THEN
+			dSupportAxis9DownTime := FUN_CALCAXISMOVETIME(g_dSupportAxis9ActPos,0.0,dSupportAxis9AbsVel,dSupportAxis9Acc,dSupportAxis9Jerk);
+			IF dSupportAxis9DownTime < 0.001 THEN 
+              dSupportAxis9DownTime:=0.001;
+            END_IF;
+            g_doRealtimeOverrid := (((g_fSupAxisDownDis9 -  g_fSupAxisSafeDis9) / dSupportAxis9DownTime) / dG00YVel)* dSupportLimitSpeedPercent * (dSupportAxis9AbsVel / dG00YVel) ;
+			IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <=  0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF;
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF Axis_S9.NCTOPLC.ACTPOS <= 0.01  THEN
+            SupportAxis9ForceFlag := FALSE;
+        END_IF;
+	END_IF;
+	IF g_nSusutainCount >= 10 THEN
+		IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY10 - g_fSupAxisDownDis10) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportAxis10ForceFlag) AND g_fCurrentCoordYBuffer < g_fSupAxisCoordY10 AND Axis_S10.NCTOPLC.ACTPOS > 0.01 THEN
+			dSupportAxis10DownTime := FUN_CALCAXISMOVETIME(g_dSupportAxis10ActPos,0.0,dSupportAxis10AbsVel,dSupportAxis10Acc,dSupportAxis10Jerk);
+			IF dSupportAxis10DownTime < 0.001 THEN 
+              dSupportAxis10DownTime:=0.001;
+            END_IF;
+            g_doRealtimeOverrid := (((g_fSupAxisDownDis10 -  g_fSupAxisSafeDis10) / dSupportAxis10DownTime) / dG00YVel)* dSupportLimitSpeedPercent * (dSupportAxis10AbsVel / dG00YVel) ;
+			IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <=  0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF;
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF Axis_S10.NCTOPLC.ACTPOS <= 0.01  THEN
+            SupportAxis10ForceFlag := FALSE;
+        END_IF;
+	END_IF;
+	IF g_nSusutainCount >= 11 THEN
+		IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY11 - g_fSupAxisDownDis11) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportAxis11ForceFlag) AND g_fCurrentCoordYBuffer < g_fSupAxisCoordY11 AND Axis_S11.NCTOPLC.ACTPOS > 0.01 THEN
+			dSupportAxis11DownTime := FUN_CALCAXISMOVETIME(g_dSupportAxis11ActPos,0.0,dSupportAxis11AbsVel,dSupportAxis11Acc,dSupportAxis11Jerk);
+			IF dSupportAxis11DownTime < 0.001 THEN 
+              dSupportAxis11DownTime:=0.001;
+            END_IF;
+            g_doRealtimeOverrid := (((g_fSupAxisDownDis11 -  g_fSupAxisSafeDis11) / dSupportAxis11DownTime) / dG00YVel)* dSupportLimitSpeedPercent * (dSupportAxis11AbsVel / dG00YVel) ;
+			IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <=  0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF;
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF Axis_S11.NCTOPLC.ACTPOS <= 0.01  THEN
+            SupportAxis11ForceFlag := FALSE;
+        END_IF;
+	END_IF;
+	IF g_nSusutainCount >= 12 THEN
+		IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY12 - g_fSupAxisDownDis12) AND (g_niMotionType=1 OR g_niMotionType=2 OR SupportAxis12ForceFlag) AND g_fCurrentCoordYBuffer < g_fSupAxisCoordY12 AND Axis_S12.NCTOPLC.ACTPOS > 0.01 THEN
+			dSupportAxis12DownTime := FUN_CALCAXISMOVETIME(g_dSupportAxis12ActPos,0.0,dSupportAxis12AbsVel,dSupportAxis12Acc,dSupportAxis12Jerk);
+			IF dSupportAxis12DownTime < 0.001 THEN 
+              dSupportAxis12DownTime:=0.001;
+            END_IF;
+            g_doRealtimeOverrid := (((g_fSupAxisDownDis12 -  g_fSupAxisSafeDis12) / dSupportAxis12DownTime) / dG00YVel)* dSupportLimitSpeedPercent * (dSupportAxis12AbsVel / dG00YVel) ;
+			IF g_doRealtimeOverrid > 1.0 THEN
+				g_doRealtimeOverrid := 1.0;
+			ELSIF g_doRealtimeOverrid <=  0.0 THEN
+				g_doRealtimeOverrid := 0.1;
+			END_IF;
+			bForceLimitSpeedFlag := TRUE;
+		END_IF;
+		IF Axis_S12.NCTOPLC.ACTPOS <= 0.01  THEN
+            SupportAxis12ForceFlag := FALSE;
+        END_IF;
+	END_IF;
+END_IF;
+
+IF bForceLimitSpeedFlag THEN
+  g_boSlowcutEnable := TRUE; 
+  g_bIsSetSlowCutEnableFlag := TRUE;
+END_IF;
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

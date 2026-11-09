@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_HandleF050Home" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="tonCloseHomeSingle">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+(*0 :关闭 1 ：F050  2 轴控制 3: 普雷斯特 4 : BM11X *)
+IF g_nFAxisControlType = 1 THEN
+
+    g_boPresterHome :=g_bF050Home;
+    tonCloseHomeSingle(IN := g_bF050Home, PT:=T#4s);
+    IF  tonCloseHomeSingle.Q  THEN
+       tonCloseHomeSingle(IN := FALSE);
+       g_bF050Home := FALSE;
+    END_IF;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

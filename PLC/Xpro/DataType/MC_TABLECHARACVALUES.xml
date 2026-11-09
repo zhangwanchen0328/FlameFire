@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MC_TABLECHARACVALUES">
+  <baseType>
+    <struct>
+      <variable name="BUSY">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="CAMTABLEID">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="FIXEDTABLE">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="MASTERENDPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MASTERSTARTPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MODIFYING">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="PERIODIC">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="POINTNUMBER">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="SLAVEENDACC">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SLAVEENDJERK">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SLAVEENDPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SLAVEENDVEL">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SLAVESTARTACC">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SLAVESTARTJERK">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SLAVESTARTPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SLAVESTARTVEL">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

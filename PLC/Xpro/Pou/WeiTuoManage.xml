@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WeiTuoManage" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Rtring0">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ftring0">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ftring1">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biWeiTuoAbsStartFirst">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[维拓：卡盘轴回零信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biWeiTuoAbsStartSecond">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[维拓：卡盘轴移动到制定法位置信号]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="fAbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[维拓：卡盘轴移动到位置（HMI)]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring0(CLK :=g_biWeiTuoAbsStartFirst);
+Rtring1(CLK :=g_biWeiTuoAbsStartSecond);
+IF Rtring0.Q THEN
+  g_bGeneral1ABSOpen := TRUE;
+  g_fGeneral1ABSPos := 0.0;
+END_IF;
+IF Rtring1.Q THEN
+  g_bGeneral1ABSOpen := TRUE;
+
+  g_fGeneral1ABSPos := fAbsPosition;
+END_IF;
+Ftring0(CLK := g_biWeiTuoAbsStartFirst);
+Ftring1(CLK := g_biWeiTuoAbsStartSecond); 
+IF Ftring0.Q OR Ftring1.Q THEN
+  g_bGeneral1ABSOpen := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

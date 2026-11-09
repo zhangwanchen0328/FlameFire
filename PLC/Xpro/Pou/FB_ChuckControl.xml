@@ -1,0 +1,308 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ChuckControl" pouType="functionBlock">
+  <interface>
+    <inputVars>
+      <variable name="ClampEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[夹紧]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="LossenEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="KeepPressure">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[是否保压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="KeepPressureTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保压时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ClampInplaceDelay">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[夹紧完成时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="LossenInplaceDelay">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[松开完成时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UseClampPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使用夹紧到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UseLossenPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使用松开到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ClampInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[夹紧到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="LossenInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[松开到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ChuckStatus">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡盘状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ChuckDoneWaitTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡盘到位信号等待延时]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <outputVars>
+      <variable name="ClampDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[夹紧完成状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="LossenDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[松开完成状态]]></xhtml:p>
+        </documentation>
+      </variable>
+    </outputVars>
+    <localVars>
+      <variable name="RtrigClawEnable">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtrigClawOff">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nClawChangeState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nTonClawKeep">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="ClawClampTon">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="ClawClampDoneWait">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+    <outputVars>
+      <variable name="ClawKeepPressureDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="WaitClampDoneOutTimeAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[等待到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="WaitLossenDoneOutTimeAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[等待到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+    </outputVars>
+    <localVars>
+      <variable name="nClawKeepPressureState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bClawClampCMDFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bClawLossenCMDFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RtrigClawEnable(CLK := ClampEnable);
+RtrigClawOff(CLK := LossenEnable);
+
+
+IF RtrigClawEnable.Q THEN(*夹紧操作：先上下夹紧，延时时间后左右夹紧*)
+    nClawChangeState:=10;
+    nTonClawKeep(IN :=FALSE);
+    ClawClampTon(IN :=FALSE);
+    ClampDone :=FALSE;
+    LossenDone := FALSE;
+    bClawClampCMDFlag := TRUE;
+    bClawLossenCMDFlag := FALSE;
+    WaitClampDoneOutTimeAlarm := FALSE;
+    WaitLossenDoneOutTimeAlarm := FALSE;
+    ClawClampDoneWait(IN :=FALSE);
+END_IF;
+IF RtrigClawOff.Q THEN
+    nClawChangeState:=50;
+    nTonClawKeep(IN :=FALSE);
+    ClampDone :=FALSE;
+    LossenDone := FALSE;
+    bClawClampCMDFlag := FALSE;
+    bClawLossenCMDFlag := TRUE;
+    WaitClampDoneOutTimeAlarm := FALSE;
+    WaitLossenDoneOutTimeAlarm := FALSE;
+    ClawClampDoneWait(IN :=FALSE);
+END_IF;
+
+
+  CASE nClawChangeState OF
+    0:
+      nClawChangeState:=0;
+    10:
+      IF KeepPressure THEN
+        ClawKeepPressureDone :=TRUE;
+        nClawKeepPressureState := 10; 
+      ELSE
+        ClawKeepPressureDone :=FALSE; 
+      END_IF;
+      nClawChangeState:=20; 
+    20:
+      IF UseClampPlaceSignal THEN
+        IF ClampInPlaceSignal THEN  
+          nClawChangeState:=150;
+          ClawClampDoneWait(IN :=FALSE);
+          WaitClampDoneOutTimeAlarm := FALSE;
+        END_IF;
+         ClawClampDoneWait(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(ChuckDoneWaitTime)));
+         IF ClawClampDoneWait.Q THEN
+          ClawClampDoneWait(IN := FALSE);
+          WaitClampDoneOutTimeAlarm := TRUE;
+         END_IF;
+      ELSE
+        ClawClampTon(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(ClampInplaceDelay)));
+        IF ClawClampTon.Q THEN
+          nClawChangeState:=150;
+          ClawClampTon(IN :=FALSE);
+        END_IF;
+      END_IF;
+    50:
+     
+      IF KeepPressure THEN
+        ClawKeepPressureDone :=TRUE;
+        nClawKeepPressureState := 10;
+      ELSE
+        ClawKeepPressureDone :=FALSE;   
+      END_IF; 
+      nClawChangeState:=60; 
+    60:
+      IF UseLossenPlaceSignal  THEN
+        IF LossenInPlaceSignal THEN
+          nClawChangeState := 150;
+          ClawClampDoneWait(IN := FALSE);
+          WaitLossenDoneOutTimeAlarm := FALSE;
+        END_IF;
+         ClawClampDoneWait(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(ChuckDoneWaitTime)));
+         IF ClawClampDoneWait.Q THEN
+          ClawClampDoneWait(IN := FALSE);
+          WaitLossenDoneOutTimeAlarm := TRUE;
+         END_IF;
+      ELSE  
+        ClawClampTon(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(LossenInplaceDelay)));
+        IF ClawClampTon.Q THEN
+          nClawChangeState := 150;
+          ClawClampTon(IN :=FALSE);
+        END_IF;
+      END_IF;  
+    150:  
+      IF NOT ClawKeepPressureDone THEN
+        IF bClawClampCMDFlag THEN
+           ClampDone :=TRUE;
+        END_IF;
+        IF bClawLossenCMDFlag THEN
+			LossenDone := TRUE;
+        END_IF;
+        nClawChangeState:=0;
+      END_IF;    
+  END_CASE;  
+
+CASE nClawKeepPressureState OF
+  0:
+  ;
+  10:
+    nTonClawKeep(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(KeepPressureTime)));
+    ClawKeepPressureDone:= TRUE;
+    IF nTonClawKeep.Q THEN
+      nTonClawKeep(IN :=FALSE);
+      ClawKeepPressureDone := FALSE;
+      nClawKeepPressureState:=0;
+    END_IF;
+END_CASE;  ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

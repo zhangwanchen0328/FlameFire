@@ -1,0 +1,323 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SustainJogControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_Sustain1Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Sustain2Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Sustain3Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Sustain7Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Sustain8Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Sustain9Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bJogForwardEnable1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动前进]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogForwardEnable2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动前进]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogForwardEnable3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动前进]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogForwardEnable7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动前进]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogForwardEnable8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动前进]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogForwardEnable9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动前进]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogBackwardEnable1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点后退]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogBackwardEnable2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点后退]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogBackwardEnable3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点后退]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogBackwardEnable7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点后退]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogBackwardEnable8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点后退]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogBackwardEnable9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点后退]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bFastInch">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boSustain1enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boSustain2enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boSustain3enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boSustain7enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boSustain8enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boSustain9enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boSustain1errorid">
+        <type>
+          <USINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boSustain2errorid">
+        <type>
+          <USINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boSustain3errorid">
+        <type>
+          <USINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boSustain7errorid">
+        <type>
+          <USINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boSustain8errorid">
+        <type>
+          <USINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boSustain9errorid">
+        <type>
+          <USINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF g_bFastInch THEN
+  g_Sustain1Jog.Mode := 1;
+  g_Sustain2Jog.Mode := 1;
+  g_Sustain3Jog.Mode := 1;
+  g_Sustain7Jog.Mode := 1;
+  g_Sustain8Jog.Mode := 1;
+  g_Sustain9Jog.Mode := 1;
+ELSE
+  g_Sustain1Jog.Mode := 0;
+  g_Sustain2Jog.Mode := 0;
+  g_Sustain3Jog.Mode := 0;
+  g_Sustain7Jog.Mode := 0;
+  g_Sustain8Jog.Mode := 0;
+  g_Sustain9Jog.Mode := 0;
+END_IF;
+
+g_Sustain1Jog.JogForward := bJogForwardEnable1;
+g_Sustain1Jog.JogBackwards := bJogBackwardEnable1;
+g_boSustain1enable := g_Sustain1Jog.JogForward;
+g_boSustain1errorid := g_Sustain1Jog.ERRORID;
+
+g_Sustain2Jog.JogForward := bJogForwardEnable2;
+g_Sustain2Jog.JogBackwards := bJogBackwardEnable2;
+g_boSustain2enable := g_Sustain2Jog.JogForward;
+g_boSustain2errorid := g_Sustain2Jog.ERRORID;
+
+g_Sustain3Jog.JogForward := bJogForwardEnable3;
+g_Sustain3Jog.JogBackwards := bJogBackwardEnable3;
+g_boSustain3enable := g_Sustain3Jog.JogForward;
+g_boSustain3errorid := g_Sustain3Jog.ERRORID;
+
+g_Sustain7Jog.JogForward := bJogForwardEnable7;
+g_Sustain7Jog.JogBackwards := bJogBackwardEnable7;
+g_boSustain7enable := g_Sustain7Jog.JogForward;
+g_boSustain7errorid := g_Sustain7Jog.ERRORID;
+
+g_Sustain8Jog.JogForward := bJogForwardEnable8;
+g_Sustain8Jog.JogBackwards := bJogBackwardEnable8;
+g_boSustain8enable := g_Sustain8Jog.JogForward;
+g_boSustain8errorid := g_Sustain8Jog.ERRORID;
+
+g_Sustain9Jog.JogForward := bJogForwardEnable9;
+g_Sustain9Jog.JogBackwards := bJogBackwardEnable9;
+g_boSustain9enable := g_Sustain9Jog.JogForward;
+g_boSustain9errorid := g_Sustain9Jog.ERRORID;
+
+IF g_bPlcResetBuffer THEN
+  bJogForwardEnable1 := FALSE;
+  bJogBackwardEnable1 := FALSE;
+  bJogForwardEnable2 := FALSE;
+  bJogBackwardEnable2 := FALSE;
+  bJogForwardEnable3 := FALSE;
+  bJogBackwardEnable3 := FALSE;
+  bJogForwardEnable7 := FALSE;
+  bJogBackwardEnable7 := FALSE;
+  bJogForwardEnable8 := FALSE;
+  bJogBackwardEnable8 := FALSE;
+  bJogForwardEnable9 := FALSE;
+  bJogBackwardEnable9 := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

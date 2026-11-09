@@ -1,0 +1,333 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_UserDefineListen" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBUserDefineControl">
+        <type>
+          <derived name="FB_UserDefineControl"/>
+        </type>
+      </variable>
+      <variable name="FBUserDefineOutput">
+        <type>
+          <derived name="FB_UserDefineControlOutput"/>
+        </type>
+      </variable>
+      <variable name="FBMotorControl">
+        <type>
+          <derived name="FB_MotorControl"/>
+        </type>
+      </variable>
+      <variable name="FBAllAxisDone">
+        <type>
+          <derived name="FB_AllAxisDone"/>
+        </type>
+      </variable>
+      <variable name="FBVESetValue">
+        <type>
+          <derived name="FB_VESetValue"/>
+        </type>
+      </variable>
+      <variable name="FBInputConfig">
+        <type>
+          <derived name="FB_BoardInputSignalConfig"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+BoardInPutArray.BoolArr[0] := FUN_SingalLogic(g_ConfigMonitorDI_201,LREAL_TO_BOOL(BoardInputSignalLogic[0]));
+BoardInPutArray.BoolArr[1] := FUN_SingalLogic(g_ConfigMonitorDI_202,LREAL_TO_BOOL(BoardInputSignalLogic[1]));
+BoardInPutArray.BoolArr[2] := FUN_SingalLogic(g_ConfigMonitorDI_203,LREAL_TO_BOOL(BoardInputSignalLogic[2]));
+BoardInPutArray.BoolArr[3] := FUN_SingalLogic(g_ConfigMonitorDI_204,LREAL_TO_BOOL(BoardInputSignalLogic[3]));
+BoardInPutArray.BoolArr[4] := FUN_SingalLogic(g_ConfigMonitorDI_205,LREAL_TO_BOOL(BoardInputSignalLogic[4]));
+BoardInPutArray.BoolArr[5] := FUN_SingalLogic(g_ConfigMonitorDI_206,LREAL_TO_BOOL(BoardInputSignalLogic[5]));
+BoardInPutArray.BoolArr[6] := FUN_SingalLogic(g_ConfigMonitorDI_207,LREAL_TO_BOOL(BoardInputSignalLogic[6]));
+BoardInPutArray.BoolArr[7] := FUN_SingalLogic(g_ConfigMonitorDI_208,LREAL_TO_BOOL(BoardInputSignalLogic[7]));
+BoardInPutArray.BoolArr[8] := FUN_SingalLogic(g_ConfigMonitorDI_209,LREAL_TO_BOOL(BoardInputSignalLogic[8]));
+BoardInPutArray.BoolArr[9] := FUN_SingalLogic(g_ConfigMonitorDI_210,LREAL_TO_BOOL(BoardInputSignalLogic[9]));
+BoardInPutArray.BoolArr[10] := FUN_SingalLogic(g_ConfigMonitorDI_211,LREAL_TO_BOOL(BoardInputSignalLogic[10]));
+BoardInPutArray.BoolArr[11] := FUN_SingalLogic(g_ConfigMonitorDI_212,LREAL_TO_BOOL(BoardInputSignalLogic[11]));
+BoardInPutArray.BoolArr[12] := FUN_SingalLogic(g_ConfigMonitorDI_213,LREAL_TO_BOOL(BoardInputSignalLogic[12]));
+BoardInPutArray.BoolArr[13] := FUN_SingalLogic(g_ConfigMonitorDI_214,LREAL_TO_BOOL(BoardInputSignalLogic[13]));
+BoardInPutArray.BoolArr[14] := FUN_SingalLogic(g_ConfigMonitorDI_215,LREAL_TO_BOOL(BoardInputSignalLogic[14]));
+BoardInPutArray.BoolArr[15] := FUN_SingalLogic(g_ConfigMonitorDI_216,LREAL_TO_BOOL(BoardInputSignalLogic[15]));
+BoardInPutArray.BoolArr[16] := FUN_SingalLogic(g_ConfigMonitorDI_217,LREAL_TO_BOOL(BoardInputSignalLogic[16]));
+BoardInPutArray.BoolArr[17] := FUN_SingalLogic(g_ConfigMonitorDI_218,LREAL_TO_BOOL(BoardInputSignalLogic[17]));
+BoardInPutArray.BoolArr[18] := FUN_SingalLogic(g_ConfigMonitorDI_219,LREAL_TO_BOOL(BoardInputSignalLogic[18]));
+BoardInPutArray.BoolArr[19] := FUN_SingalLogic(g_ConfigMonitorDI_220,LREAL_TO_BOOL(BoardInputSignalLogic[19]));
+BoardInPutArray.BoolArr[20] := FUN_SingalLogic(g_ConfigMonitorDI_221,LREAL_TO_BOOL(BoardInputSignalLogic[20]));
+BoardInPutArray.BoolArr[21] := FUN_SingalLogic(g_ConfigMonitorDI_222,LREAL_TO_BOOL(BoardInputSignalLogic[21]));
+BoardInPutArray.BoolArr[22] := FUN_SingalLogic(g_ConfigMonitorDI_223,LREAL_TO_BOOL(BoardInputSignalLogic[22]));
+BoardInPutArray.BoolArr[23] := FUN_SingalLogic(g_ConfigMonitorDI_224,LREAL_TO_BOOL(BoardInputSignalLogic[23]));
+BoardInPutArray.BoolArr[24] := FUN_SingalLogic(g_ConfigMonitorDI_225,LREAL_TO_BOOL(BoardInputSignalLogic[24]));
+BoardInPutArray.BoolArr[25] := FUN_SingalLogic(g_ConfigMonitorDI_226,LREAL_TO_BOOL(BoardInputSignalLogic[25]));
+BoardInPutArray.BoolArr[26] := FUN_SingalLogic(g_ConfigMonitorDI_227,LREAL_TO_BOOL(BoardInputSignalLogic[26]));
+BoardInPutArray.BoolArr[27] := FUN_SingalLogic(g_ConfigMonitorDI_228,LREAL_TO_BOOL(BoardInputSignalLogic[27]));
+BoardInPutArray.BoolArr[28] := FUN_SingalLogic(g_ConfigMonitorDI_229,LREAL_TO_BOOL(BoardInputSignalLogic[28]));
+BoardInPutArray.BoolArr[29] := FUN_SingalLogic(g_ConfigMonitorDI_230,LREAL_TO_BOOL(BoardInputSignalLogic[29]));
+BoardInPutArray.BoolArr[30] := FUN_SingalLogic(g_ConfigMonitorDI_231,LREAL_TO_BOOL(BoardInputSignalLogic[30]));
+BoardInPutArray.BoolArr[31] := FUN_SingalLogic(g_ConfigMonitorDI_232,LREAL_TO_BOOL(BoardInputSignalLogic[31]));
+BoardInPutArray.BoolArr[32] := FUN_SingalLogic(g_ConfigMonitorDI_233,LREAL_TO_BOOL(BoardInputSignalLogic[32]));
+BoardInPutArray.BoolArr[33] := FUN_SingalLogic(g_ConfigMonitorDI_234,LREAL_TO_BOOL(BoardInputSignalLogic[33]));
+BoardInPutArray.BoolArr[34] := FUN_SingalLogic(g_ConfigMonitorDI_235,LREAL_TO_BOOL(BoardInputSignalLogic[34]));
+BoardInPutArray.BoolArr[35] := FUN_SingalLogic(g_ConfigMonitorDI_236,LREAL_TO_BOOL(BoardInputSignalLogic[35]));
+BoardInPutArray.BoolArr[36] := FUN_SingalLogic(g_ConfigMonitorDI_237,LREAL_TO_BOOL(BoardInputSignalLogic[36]));
+BoardInPutArray.BoolArr[37] := FUN_SingalLogic(g_ConfigMonitorDI_238,LREAL_TO_BOOL(BoardInputSignalLogic[37]));
+BoardInPutArray.BoolArr[38] := FUN_SingalLogic(g_ConfigMonitorDI_239,LREAL_TO_BOOL(BoardInputSignalLogic[38]));
+BoardInPutArray.BoolArr[39] := FUN_SingalLogic(g_ConfigMonitorDI_240,LREAL_TO_BOOL(BoardInputSignalLogic[39]));
+BoardInPutArray.BoolArr[40] := FUN_SingalLogic(g_ConfigMonitorDI_241,LREAL_TO_BOOL(BoardInputSignalLogic[40]));
+BoardInPutArray.BoolArr[41] := FUN_SingalLogic(g_ConfigMonitorDI_242,LREAL_TO_BOOL(BoardInputSignalLogic[41]));
+BoardInPutArray.BoolArr[42] := FUN_SingalLogic(g_ConfigMonitorDI_243,LREAL_TO_BOOL(BoardInputSignalLogic[42]));
+BoardInPutArray.BoolArr[43] := FUN_SingalLogic(g_ConfigMonitorDI_244,LREAL_TO_BOOL(BoardInputSignalLogic[43]));
+BoardInPutArray.BoolArr[44] := FUN_SingalLogic(g_ConfigMonitorDI_245,LREAL_TO_BOOL(BoardInputSignalLogic[44]));
+BoardInPutArray.BoolArr[45] := FUN_SingalLogic(g_ConfigMonitorDI_246,LREAL_TO_BOOL(BoardInputSignalLogic[45]));
+BoardInPutArray.BoolArr[46] := FUN_SingalLogic(g_ConfigMonitorDI_247,LREAL_TO_BOOL(BoardInputSignalLogic[46]));
+BoardInPutArray.BoolArr[47] := FUN_SingalLogic(g_ConfigMonitorDI_248,LREAL_TO_BOOL(BoardInputSignalLogic[47]));
+BoardInPutArray.BoolArr[48] := FUN_SingalLogic(g_ConfigMonitorDI_249,LREAL_TO_BOOL(BoardInputSignalLogic[48]));
+BoardInPutArray.BoolArr[49] :=FUN_SingalLogic (g_ConfigMonitorDI_250,LREAL_TO_BOOL(BoardInputSignalLogic[49]));
+BoardInPutArray.BoolArr[50] :=FUN_SingalLogic (g_ConfigMonitorDI_251,LREAL_TO_BOOL(BoardInputSignalLogic[50]));
+BoardInPutArray.BoolArr[51] := FUN_SingalLogic(g_ConfigMonitorDI_252,LREAL_TO_BOOL(BoardInputSignalLogic[51]));
+BoardInPutArray.BoolArr[52] := FUN_SingalLogic(g_ConfigMonitorDI_253,LREAL_TO_BOOL(BoardInputSignalLogic[52]));
+BoardInPutArray.BoolArr[53] := FUN_SingalLogic(g_ConfigMonitorDI_254,LREAL_TO_BOOL(BoardInputSignalLogic[53]));
+BoardInPutArray.BoolArr[54] := FUN_SingalLogic(g_ConfigMonitorDI_255,LREAL_TO_BOOL(BoardInputSignalLogic[54]));
+BoardInPutArray.BoolArr[55] := FUN_SingalLogic(g_ConfigMonitorDI_256,LREAL_TO_BOOL(BoardInputSignalLogic[55]));
+BoardInPutArray.BoolArr[56] := FUN_SingalLogic(g_ConfigMonitorDI_257,LREAL_TO_BOOL(BoardInputSignalLogic[56]));
+BoardInPutArray.BoolArr[57] := FUN_SingalLogic(g_ConfigMonitorDI_258,LREAL_TO_BOOL(BoardInputSignalLogic[57]));
+BoardInPutArray.BoolArr[58] := FUN_SingalLogic(g_ConfigMonitorDI_259,LREAL_TO_BOOL(BoardInputSignalLogic[58]));
+BoardInPutArray.BoolArr[59] := FUN_SingalLogic(g_ConfigMonitorDI_260,LREAL_TO_BOOL(BoardInputSignalLogic[59]));
+BoardInPutArray.BoolArr[60] := FUN_SingalLogic(g_ConfigMonitorDI_261,LREAL_TO_BOOL(BoardInputSignalLogic[60]));
+BoardInPutArray.BoolArr[61] := FUN_SingalLogic(g_ConfigMonitorDI_262,LREAL_TO_BOOL(BoardInputSignalLogic[61]));
+BoardInPutArray.BoolArr[62] := FUN_SingalLogic(g_ConfigMonitorDI_263,LREAL_TO_BOOL(BoardInputSignalLogic[62]));
+BoardInPutArray.BoolArr[63] := FUN_SingalLogic(g_ConfigMonitorDI_264,LREAL_TO_BOOL(BoardInputSignalLogic[63]));
+BoardInPutArray.BoolArr[64] := FUN_SingalLogic(g_ConfigMonitorDI_265,LREAL_TO_BOOL(BoardInputSignalLogic[64]));
+BoardInPutArray.BoolArr[65] := FUN_SingalLogic(g_ConfigMonitorDI_266,LREAL_TO_BOOL(BoardInputSignalLogic[65]));
+BoardInPutArray.BoolArr[66] := FUN_SingalLogic(g_ConfigMonitorDI_267,LREAL_TO_BOOL(BoardInputSignalLogic[66]));
+BoardInPutArray.BoolArr[67] :=FUN_SingalLogic (g_ConfigMonitorDI_268,LREAL_TO_BOOL(BoardInputSignalLogic[67]));
+BoardInPutArray.BoolArr[68] := FUN_SingalLogic(g_ConfigMonitorDI_269,LREAL_TO_BOOL(BoardInputSignalLogic[68]));
+BoardInPutArray.BoolArr[69] := FUN_SingalLogic(g_ConfigMonitorDI_270,LREAL_TO_BOOL(BoardInputSignalLogic[69]));
+BoardInPutArray.BoolArr[70] := FUN_SingalLogic(g_ConfigMonitorDI_271,LREAL_TO_BOOL(BoardInputSignalLogic[70]));
+BoardInPutArray.BoolArr[71] := FUN_SingalLogic(g_ConfigMonitorDI_272,LREAL_TO_BOOL(BoardInputSignalLogic[71]));
+BoardInPutArray.BoolArr[72] := FUN_SingalLogic(g_ConfigMonitorDI_273,LREAL_TO_BOOL(BoardInputSignalLogic[72]));
+BoardInPutArray.BoolArr[73] := FUN_SingalLogic(g_ConfigMonitorDI_274,LREAL_TO_BOOL(BoardInputSignalLogic[73]));
+BoardInPutArray.BoolArr[74] := FUN_SingalLogic(g_ConfigMonitorDI_275,LREAL_TO_BOOL(BoardInputSignalLogic[74]));
+BoardInPutArray.BoolArr[75] := FUN_SingalLogic(g_ConfigMonitorDI_276,LREAL_TO_BOOL(BoardInputSignalLogic[75]));
+BoardInPutArray.BoolArr[76] := FUN_SingalLogic(g_ConfigMonitorDI_277,LREAL_TO_BOOL(BoardInputSignalLogic[76]));
+BoardInPutArray.BoolArr[77] := FUN_SingalLogic(g_ConfigMonitorDI_278,LREAL_TO_BOOL(BoardInputSignalLogic[77]));
+BoardInPutArray.BoolArr[78] := FUN_SingalLogic(g_ConfigMonitorDI_279,LREAL_TO_BOOL(BoardInputSignalLogic[78]));
+BoardInPutArray.BoolArr[79] := FUN_SingalLogic(g_ConfigMonitorDI_280,LREAL_TO_BOOL(BoardInputSignalLogic[79]));
+BoardInPutArray.BoolArr[80] := FUN_SingalLogic(g_ConfigMonitorDI_281,LREAL_TO_BOOL(BoardInputSignalLogic[80]));
+BoardInPutArray.BoolArr[81] := FUN_SingalLogic(g_ConfigMonitorDI_282,LREAL_TO_BOOL(BoardInputSignalLogic[81]));
+BoardInPutArray.BoolArr[82] := FUN_SingalLogic(g_ConfigMonitorDI_283,LREAL_TO_BOOL(BoardInputSignalLogic[82]));
+BoardInPutArray.BoolArr[83] := FUN_SingalLogic(g_ConfigMonitorDI_284,LREAL_TO_BOOL(BoardInputSignalLogic[83]));
+BoardInPutArray.BoolArr[84] := FUN_SingalLogic(g_ConfigMonitorDI_285,LREAL_TO_BOOL(BoardInputSignalLogic[84]));
+BoardInPutArray.BoolArr[85] := FUN_SingalLogic(g_ConfigMonitorDI_286,LREAL_TO_BOOL(BoardInputSignalLogic[85]));
+BoardInPutArray.BoolArr[86] := FUN_SingalLogic(g_ConfigMonitorDI_287,LREAL_TO_BOOL(BoardInputSignalLogic[86]));
+BoardInPutArray.BoolArr[87] := FUN_SingalLogic(g_ConfigMonitorDI_288,LREAL_TO_BOOL(BoardInputSignalLogic[87]));
+BoardInPutArray.BoolArr[88] := FUN_SingalLogic(g_ConfigMonitorDI_289,LREAL_TO_BOOL(BoardInputSignalLogic[88]));
+BoardInPutArray.BoolArr[89] := FUN_SingalLogic(g_ConfigMonitorDI_290,LREAL_TO_BOOL(BoardInputSignalLogic[89]));
+BoardInPutArray.BoolArr[90] := FUN_SingalLogic(g_ConfigMonitorDI_291,LREAL_TO_BOOL(BoardInputSignalLogic[90]));
+BoardInPutArray.BoolArr[91] := FUN_SingalLogic(g_ConfigMonitorDI_292,LREAL_TO_BOOL(BoardInputSignalLogic[91]));
+BoardInPutArray.BoolArr[92] := FUN_SingalLogic(g_ConfigMonitorDI_293,LREAL_TO_BOOL(BoardInputSignalLogic[92]));
+BoardInPutArray.BoolArr[93] := FUN_SingalLogic(g_ConfigMonitorDI_294,LREAL_TO_BOOL(BoardInputSignalLogic[93]));
+BoardInPutArray.BoolArr[94] := FUN_SingalLogic(g_ConfigMonitorDI_295,LREAL_TO_BOOL(BoardInputSignalLogic[94]));
+BoardInPutArray.BoolArr[95] := FUN_SingalLogic(g_ConfigMonitorDI_296,LREAL_TO_BOOL(BoardInputSignalLogic[95]));
+
+
+(*板卡输出口的判断 用于流程编辑*)
+BoardOutPutArray.BoolArr[0]  := g_ConfigMonitorDO_601;
+BoardOutPutArray.BoolArr[1]  := g_ConfigMonitorDO_602;
+BoardOutPutArray.BoolArr[2]  := g_ConfigMonitorDO_603;
+BoardOutPutArray.BoolArr[3]  := g_ConfigMonitorDO_604;
+BoardOutPutArray.BoolArr[4]  := g_ConfigMonitorDO_605;
+BoardOutPutArray.BoolArr[5]  := g_ConfigMonitorDO_606;
+BoardOutPutArray.BoolArr[6]  := g_ConfigMonitorDO_607;
+BoardOutPutArray.BoolArr[7]  := g_ConfigMonitorDO_608;
+BoardOutPutArray.BoolArr[8]  := g_ConfigMonitorDO_609;
+BoardOutPutArray.BoolArr[9]  := g_ConfigMonitorDO_610;
+BoardOutPutArray.BoolArr[10] := g_ConfigMonitorDO_611;
+BoardOutPutArray.BoolArr[11] := g_ConfigMonitorDO_612;
+BoardOutPutArray.BoolArr[12] := g_ConfigMonitorDO_613;
+BoardOutPutArray.BoolArr[13] := g_ConfigMonitorDO_614;
+BoardOutPutArray.BoolArr[14] := g_ConfigMonitorDO_615;
+BoardOutPutArray.BoolArr[15] := g_ConfigMonitorDO_616;
+BoardOutPutArray.BoolArr[16] := g_ConfigMonitorDO_617;
+BoardOutPutArray.BoolArr[17] := g_ConfigMonitorDO_618;
+BoardOutPutArray.BoolArr[18] := g_ConfigMonitorDO_619;
+BoardOutPutArray.BoolArr[19] := g_ConfigMonitorDO_620;
+BoardOutPutArray.BoolArr[20] := g_ConfigMonitorDO_621;
+BoardOutPutArray.BoolArr[21] := g_ConfigMonitorDO_622;
+BoardOutPutArray.BoolArr[22] := g_ConfigMonitorDO_623;
+BoardOutPutArray.BoolArr[23] := g_ConfigMonitorDO_624;
+BoardOutPutArray.BoolArr[24] := g_ConfigMonitorDO_625;
+BoardOutPutArray.BoolArr[25] := g_ConfigMonitorDO_626;
+BoardOutPutArray.BoolArr[26] := g_ConfigMonitorDO_627;
+BoardOutPutArray.BoolArr[27] := g_ConfigMonitorDO_628;
+BoardOutPutArray.BoolArr[28] := g_ConfigMonitorDO_629;
+BoardOutPutArray.BoolArr[29] := g_ConfigMonitorDO_630;
+BoardOutPutArray.BoolArr[30] := g_ConfigMonitorDO_631;
+BoardOutPutArray.BoolArr[31] := g_ConfigMonitorDO_632;
+BoardOutPutArray.BoolArr[32] := g_ConfigMonitorDO_633;
+BoardOutPutArray.BoolArr[33] := g_ConfigMonitorDO_634;
+BoardOutPutArray.BoolArr[34] := g_ConfigMonitorDO_635;
+BoardOutPutArray.BoolArr[35] := g_ConfigMonitorDO_636;
+BoardOutPutArray.BoolArr[36] := g_ConfigMonitorDO_637;
+BoardOutPutArray.BoolArr[37] := g_ConfigMonitorDO_638;
+BoardOutPutArray.BoolArr[38] := g_ConfigMonitorDO_639;
+BoardOutPutArray.BoolArr[39] := g_ConfigMonitorDO_640;
+BoardOutPutArray.BoolArr[40] := g_ConfigMonitorDO_641;
+BoardOutPutArray.BoolArr[41] := g_ConfigMonitorDO_642;
+BoardOutPutArray.BoolArr[42] := g_ConfigMonitorDO_643;
+BoardOutPutArray.BoolArr[43] := g_ConfigMonitorDO_644;
+BoardOutPutArray.BoolArr[44] := g_ConfigMonitorDO_645;
+BoardOutPutArray.BoolArr[45] := g_ConfigMonitorDO_646;
+BoardOutPutArray.BoolArr[46] := g_ConfigMonitorDO_647;
+BoardOutPutArray.BoolArr[47] := g_ConfigMonitorDO_648;
+BoardOutPutArray.BoolArr[48] := g_ConfigMonitorDO_649;
+BoardOutPutArray.BoolArr[49] := g_ConfigMonitorDO_650;
+BoardOutPutArray.BoolArr[50] := g_ConfigMonitorDO_651;
+BoardOutPutArray.BoolArr[51] := g_ConfigMonitorDO_652;
+BoardOutPutArray.BoolArr[52] := g_ConfigMonitorDO_653;
+BoardOutPutArray.BoolArr[53] := g_ConfigMonitorDO_654;
+BoardOutPutArray.BoolArr[54] := g_ConfigMonitorDO_655;
+BoardOutPutArray.BoolArr[55] := g_ConfigMonitorDO_656;
+BoardOutPutArray.BoolArr[56] := g_ConfigMonitorDO_657;
+BoardOutPutArray.BoolArr[57] := g_ConfigMonitorDO_658;
+BoardOutPutArray.BoolArr[58] := g_ConfigMonitorDO_659;
+BoardOutPutArray.BoolArr[59] := g_ConfigMonitorDO_660;
+BoardOutPutArray.BoolArr[60] := g_ConfigMonitorDO_661;
+BoardOutPutArray.BoolArr[61] := g_ConfigMonitorDO_662;
+BoardOutPutArray.BoolArr[62] := g_ConfigMonitorDO_663;
+BoardOutPutArray.BoolArr[63] := g_ConfigMonitorDO_664;
+BoardOutPutArray.BoolArr[64] := g_ConfigMonitorDO_665;
+BoardOutPutArray.BoolArr[65] := g_ConfigMonitorDO_666;
+BoardOutPutArray.BoolArr[66] := g_ConfigMonitorDO_667;
+BoardOutPutArray.BoolArr[67] := g_ConfigMonitorDO_668;
+BoardOutPutArray.BoolArr[68] := g_ConfigMonitorDO_669;
+BoardOutPutArray.BoolArr[69] := g_ConfigMonitorDO_670;
+BoardOutPutArray.BoolArr[70] := g_ConfigMonitorDO_671;
+BoardOutPutArray.BoolArr[71] := g_ConfigMonitorDO_672;
+BoardOutPutArray.BoolArr[72] := g_ConfigMonitorDO_673;
+BoardOutPutArray.BoolArr[73] := g_ConfigMonitorDO_674;
+BoardOutPutArray.BoolArr[74] := g_ConfigMonitorDO_675;
+BoardOutPutArray.BoolArr[75] := g_ConfigMonitorDO_676;
+BoardOutPutArray.BoolArr[76] := g_ConfigMonitorDO_677;
+BoardOutPutArray.BoolArr[77] := g_ConfigMonitorDO_678;
+BoardOutPutArray.BoolArr[78] := g_ConfigMonitorDO_679;
+BoardOutPutArray.BoolArr[79] := g_ConfigMonitorDO_680;
+BoardOutPutArray.BoolArr[80] := g_ConfigMonitorDO_681;
+BoardOutPutArray.BoolArr[81] := g_ConfigMonitorDO_682;
+BoardOutPutArray.BoolArr[82] := g_ConfigMonitorDO_683;
+BoardOutPutArray.BoolArr[83] := g_ConfigMonitorDO_684;
+BoardOutPutArray.BoolArr[84] := g_ConfigMonitorDO_685;
+BoardOutPutArray.BoolArr[85] := g_ConfigMonitorDO_686;
+BoardOutPutArray.BoolArr[86] := g_ConfigMonitorDO_687;
+BoardOutPutArray.BoolArr[87] := g_ConfigMonitorDO_688;
+BoardOutPutArray.BoolArr[88] := g_ConfigMonitorDO_689;
+BoardOutPutArray.BoolArr[89] := g_ConfigMonitorDO_690;
+BoardOutPutArray.BoolArr[90] := g_ConfigMonitorDO_691;
+BoardOutPutArray.BoolArr[91] := g_ConfigMonitorDO_692;
+BoardOutPutArray.BoolArr[92] := g_ConfigMonitorDO_693;
+BoardOutPutArray.BoolArr[93] := g_ConfigMonitorDO_694;
+BoardOutPutArray.BoolArr[94] := g_ConfigMonitorDO_695;
+BoardOutPutArray.BoolArr[95] := g_ConfigMonitorDO_696;
+BoardOutPutArray.BoolArr[96] := g_ConfigMonitorDO_697;
+
+(*自定义过程状态标志位*)
+g_UserDefineProcessState[0] := REF(g_bUserDefineProcess1State);
+g_UserDefineProcessState[1] := REF(g_bUserDefineProcess2State);
+g_UserDefineProcessState[2] := REF(g_bUserDefineProcess3State);
+g_UserDefineProcessState[3] := REF(g_bUserDefineProcess4State);
+g_UserDefineProcessState[4] := REF(g_bUserDefineProcess5State);
+g_UserDefineProcessState[5] := REF(g_bUserDefineProcess6State);
+g_UserDefineProcessState[6] := REF(g_bUserDefineProcess7State);
+g_UserDefineProcessState[7] := REF(g_bUserDefineProcess8State);
+g_UserDefineProcessState[8] := REF(g_bUserDefineProcess9State);
+g_UserDefineProcessState[9] := REF(g_bUserDefineProcess10State);
+g_UserDefineProcessState[10] := REF(g_bUserDefineProcess11State);
+g_UserDefineProcessState[11] := REF(g_bUserDefineProcess12State);
+g_UserDefineProcessState[12] := REF(g_bUserDefineProcess13State);
+g_UserDefineProcessState[13] := REF(g_bUserDefineProcess14State);
+g_UserDefineProcessState[14] := REF(g_bUserDefineProcess15State);
+g_UserDefineProcessState[15] := REF(g_bUserDefineProcess16State);
+g_UserDefineProcessState[16] := REF(g_bUserDefineProcess17State);
+g_UserDefineProcessState[17] := REF(g_bUserDefineProcess18State);
+g_UserDefineProcessState[18] := REF(g_bUserDefineProcess19State);
+g_UserDefineProcessState[19] := REF(g_bUserDefineProcess20State);
+g_UserDefineProcessState[20] := REF(g_bUserDefineProcess21State);
+g_UserDefineProcessState[21] := REF(g_bUserDefineProcess22State);
+g_UserDefineProcessState[22] := REF(g_bUserDefineProcess23State);
+g_UserDefineProcessState[23] := REF(g_bUserDefineProcess24State);
+g_UserDefineProcessState[24] := REF(g_bUserDefineProcess25State);
+g_UserDefineProcessState[25] := REF(g_bUserDefineProcess26State);
+g_UserDefineProcessState[26] := REF(g_bUserDefineProcess27State);
+g_UserDefineProcessState[27] := REF(g_bUserDefineProcess28State);
+g_UserDefineProcessState[28] := REF(g_bUserDefineProcess29State);
+g_UserDefineProcessState[29] := REF(g_bUserDefineProcess30State);
+g_UserDefineProcessState[30] := REF(g_bUserDefineProcess31State);
+g_UserDefineProcessState[31] := REF(g_bUserDefineProcess32State);
+g_UserDefineProcessState[32] := REF(g_bUserDefineProcess33State);
+g_UserDefineProcessState[33] := REF(g_bUserDefineProcess34State);
+g_UserDefineProcessState[34] := REF(g_bUserDefineProcess35State);
+g_UserDefineProcessState[35] := REF(g_bUserDefineProcess36State);
+g_UserDefineProcessState[36] := REF(g_bUserDefineProcess37State);
+g_UserDefineProcessState[37] := REF(g_bUserDefineProcess38State);
+g_UserDefineProcessState[38] := REF(g_bUserDefineProcess39State);
+g_UserDefineProcessState[39] := REF(g_bUserDefineProcess40State);
+g_UserDefineProcessState[40] := REF(g_bUserDefineProcess41State);
+g_UserDefineProcessState[41] := REF(g_bUserDefineProcess42State);
+g_UserDefineProcessState[42] := REF(g_bUserDefineProcess43State);
+g_UserDefineProcessState[43] := REF(g_bUserDefineProcess44State);
+g_UserDefineProcessState[44] := REF(g_bUserDefineProcess45State);
+g_UserDefineProcessState[45] := REF(g_bUserDefineProcess46State);
+g_UserDefineProcessState[46] := REF(g_bUserDefineProcess47State);
+g_UserDefineProcessState[47] := REF(g_bUserDefineProcess48State);
+g_UserDefineProcessState[48] := REF(g_bUserDefineProcess49State);
+g_UserDefineProcessState[49] := REF(g_bUserDefineProcess50State);
+g_UserDefineProcessState[50] := REF(g_bUserDefineProcess51State);
+g_UserDefineProcessState[51] := REF(g_bUserDefineProcess52State);
+g_UserDefineProcessState[52] := REF(g_bUserDefineProcess53State);
+g_UserDefineProcessState[53] := REF(g_bUserDefineProcess54State);
+g_UserDefineProcessState[54] := REF(g_bUserDefineProcess55State);
+g_UserDefineProcessState[55] := REF(g_bUserDefineProcess56State);
+g_UserDefineProcessState[56] := REF(g_bUserDefineProcess57State);
+g_UserDefineProcessState[57] := REF(g_bUserDefineProcess58State);
+g_UserDefineProcessState[58] := REF(g_bUserDefineProcess59State);
+g_UserDefineProcessState[59] := REF(g_bUserDefineProcess60State);
+g_UserDefineProcessState[60] := REF(g_bUserDefineProcess61State);
+g_UserDefineProcessState[61] := REF(g_bUserDefineProcess62State);
+g_UserDefineProcessState[62] := REF(g_bUserDefineProcess63State);
+g_UserDefineProcessState[63] := REF(g_bUserDefineProcess64State);
+g_UserDefineProcessState[64] := REF(g_bUserDefineProcess65State);
+g_UserDefineProcessState[65] := REF(g_bUserDefineProcess66State);
+g_UserDefineProcessState[66] := REF(g_bUserDefineProcess67State);
+g_UserDefineProcessState[67] := REF(g_bUserDefineProcess68State);
+g_UserDefineProcessState[68] := REF(g_bUserDefineProcess69State);
+g_UserDefineProcessState[69] := REF(g_bUserDefineProcess70State);
+g_UserDefineProcessState[70] := REF(g_bUserDefineProcess71State);
+g_UserDefineProcessState[71] := REF(g_bUserDefineProcess72State);
+g_UserDefineProcessState[72] := REF(g_bUserDefineProcess73State);
+g_UserDefineProcessState[73] := REF(g_bUserDefineProcess74State);
+g_UserDefineProcessState[74] := REF(g_bUserDefineProcess75State);
+g_UserDefineProcessState[75] := REF(g_bUserDefineProcess76State);
+g_UserDefineProcessState[76] := REF(g_bUserDefineProcess77State);
+g_UserDefineProcessState[77] := REF(g_bUserDefineProcess78State);
+g_UserDefineProcessState[78] := REF(g_bUserDefineProcess79State);
+g_UserDefineProcessState[79] := REF(g_bUserDefineProcess80State);
+
+
+(*判断信号是否配置*)
+FBInputConfig();
+FBUserDefineControl();
+FBUserDefineOutput();
+FBMotorControl();
+FBAllAxisDone();
+FBVESetValue();
+
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

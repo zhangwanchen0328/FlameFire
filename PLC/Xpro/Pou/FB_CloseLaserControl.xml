@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CloseLaserControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="RtringCloseLaser">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关光上升沿检测]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fiXYUCurrentSpeed">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[和速度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bLaserFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标志位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bLaserCuttingEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bgas_enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bLaserClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RtringCloseLaser(CLK := bLaserClose);
+IF RtringCloseLaser.Q THEN
+  bLaserFlag := TRUE;
+  bLaserClose := FALSE;
+END_IF;
+IF bLaserFlag AND g_fiXYUCurrentSpeed<= 0.001  THEN
+  g_bLaserCuttingEnable := FALSE;
+  g_bgas_enable := FALSE;
+  bLaserFlag := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[CNC暂停状态强制关光关气]]></xhtml:p>
+  </documentation>
+</pou>

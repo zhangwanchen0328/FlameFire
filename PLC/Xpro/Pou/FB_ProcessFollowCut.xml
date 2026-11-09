@@ -1,0 +1,3741 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ProcessFollowCut" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="nLayerStartState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轮廓前控制状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nLayerStartState_bak">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轮廓前控制状态机(上次状态)]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nLayerEndState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轮廓后控制状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nLayerEndState_bak">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轮廓后控制状态机(上次状态)]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger_Layerstart">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger_Layerend">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger_ProcessEnd">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger_LayerstartOffLaser">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bLayerStartM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[LayerStart启动信号（M代码中使用）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLayerEndM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[LayerEnd启动信号（M代码中使用）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_TechData">
+        <type>
+          <derived name="ST_MULTIL_TECGDATA"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工艺数据]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nToolNum">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[图层号]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bZFollowExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动开启]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZFollowClose">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动关闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fZFollowHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZFollowDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ugas_type">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气体类型]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bgas_enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开气使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dmaster_pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主阀气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dair_pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[空气气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_doxygen_pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氧气气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dnitogen_pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氮气气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nPower">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光功率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nPwmFreq">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光频率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nPwmDuty">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光占空比]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLaserCuttingEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开光使能]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="TON_NormalPiercingTime">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[普通穿孔定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TON_BurstingTime">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[爆孔计时器]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_foCuttingSpeed">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[切割速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boCNCMoveDisable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[CNC暂停运动使能引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bFrogLeapEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开启蛙跳]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFrogLeapMinDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[蛙跳最短距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFrogLeapMinAngle">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[蛙跳最小角度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFrogLeapPreDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[蛙跳提前下落距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFrogLeapPreAngle">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[蛙跳提前下落角度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dUpLiftheight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轮廓间上抬距离]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bZRelExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴相对运动使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fZRelDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴相对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZRelDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴相对运动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMotionType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[运动类型]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dNestingDistanceToGoM">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[运动剩余距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dNestingMotionAngleM">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[运动剩余角度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZMoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴运动停止模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boLayerEndDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[LayerEnd完成信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nPiercingStatus">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿孔状态 1表示在穿孔中]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fZAxisHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bDryRunEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[空运行]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Timer_Multil_High">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[高位穿孔计时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Timer_Multil_Middle">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中位穿孔计时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Timer_Multil_Low">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[低位穿孔计时器]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZFollowOutDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_noTest1">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_noTest2">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_fZRelVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dLaserControlPowerScale">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dLaserControlFreqScale">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dLaserControlDutyScale">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_doCornerSpeed">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Axis_Z">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_bZLiftingExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZLiftingDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bStartRunOpenGasM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入引脚：首点吹起 M代码 ]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Timer_LayerEndStopLightTime">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轮廓结束关光延时计时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nLayerEndStopLight_Time">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轮廓结束关光延时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nStratAfterPauseLightDelayTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[暂停后开始开光延时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bStratAfterPause">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="FALSE"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[判断是否是暂停后的开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="StratAfterPauseLightDelayTime_TON">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[暂停后开始开光延时计时器]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nPipeType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管类型 0：圆管 1：方管]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dSquareLenght">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[方管长度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dSquareWidth">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[方管宽度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dMaxChangeHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管的最大变化高度（是避让必须上抬的最小高度，和蛙跳无关）]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fLiftCoord">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴上抬坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dZoomPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dProgressZoomTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[渐进穿孔变焦累计时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dProgressZoomDiff">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[渐进穿孔焦距差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLookBackEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回退使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLookBackDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回退完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPower_note">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录功率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPwmFreq_note">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录频率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPwmDuty_note">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录占空比]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dPressure_note">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dAirPressure_note">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录空气气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dOxygenPressure_note">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录氧气气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dNirtogenPressure_note">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录氮气气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger_Corner_in">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[进拐角上升沿检测]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger_Corner_out">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[出拐角上升沿检测]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TON_PreCutDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[预切割延时定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TON_PauseStopLaserDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[暂停关光延时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger_FirstGas">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bFirstGas">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[首吹气开关：需要首吹气延时置为1，不需要或者延时完成置为0]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="TON_FirstGasDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[首吹气延时定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nFirstGasDelayTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[首吹气延时时间]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="TON_ChangeGasDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[换气延时定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nChangeGasDelayTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[换气延时时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bChangeGasFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[换气延时的flag]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="TON_OpenGasDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开气延时定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nOpenGasDelayTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开气延时时间（ 首点吹气和开气延时可叠加关系）]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="TON_CloseGasDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关气延时定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCloseGasDelayTime">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[关气延时时间]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bLaserOnCornerM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[进拐角]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLaserOutCornerM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[出拐角]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="WaitTimeOut">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TON_StopLightBlow">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关光吹气延时]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_foInCornerCoolTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_foOutCornerCoolTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_biHeadCheck">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bQREnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_dZAvoidPartLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dZAvoidHeight">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fPartLenght">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fPipeHead">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fiXYUCurrentSpeed">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[和速度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bCloseGasDelayEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[开启关气延时定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dZSetPosTemp">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开启关气延时定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCurState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biLayerEndUplift">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nMachineType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="RTrigger_UpLift">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bUpLiftFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[三卡盘变量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biClaw3UpLift">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boClaw3UpLiftDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bClaw3UpLiftFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="RTriggerClaw3UpLift">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fMicroConnectEnableM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bProfileStartM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="RTriggerProfileStart">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerProfileLaserGasStart">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bProfileEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[该轮廓是否是板外切割 1 是 0不是]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZAxisZero">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBoendeZWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nNoLayerStartEndState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nTimeTemp">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="fFAbsDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[渐进调焦距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_wait1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TON_FrogLeapOpenGas">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="dCalUpliftHight">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dG00Vel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dXG00Vel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dYG00Vel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bFropLeapType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[1 根据角度蛙跳 2根据距离蛙跳]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dXCoordToCenter">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[X轴当前坐标距离X轴中心的距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCircleLiftTemp">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用于计算圆管蛙跳最小高度的临时变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dResidueTemp">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[剩余角度或者距离的零时变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDistanceAndAngleRealRate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[剩余距离和剩余角度实际比值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDistanceAndAngleRate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[剩余距离和剩余角度比较比值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFropLeapLiftUpHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[蛙跳上抬总高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RringFlyOpen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[飞切开关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fringFlyClose">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[飞切开关]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nFlyState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[飞切状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TonFlyOpenLightDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[飞切开光延时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TonFlyCloseLightDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[飞切光光延时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bZHeightJudgeOpen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[判断开始]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bZHeightJudgeOpen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[判断开始]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Rtring_ZProtect">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保护状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ftring_ZProtect">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保护状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nZProtectstate">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保护状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_Alarm">
+        <type>
+          <derived name="DT_ALARM"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保护状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dDecelerationdistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[减速距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_KernelWaitTime">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[内核预读时间定时器，控制PLC出光]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dKernelWaitTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[内核预读时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TonFollowPosError">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动切割高度异常定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger_Layerstart(CLK := g_bLayerStartM);
+RTrigger_Layerend(CLK := g_bLayerEndM);
+RTrigger_Corner_in(CLK := g_bLaserOnCornerM OR g_biLaserOnCorner);
+RTrigger_Corner_out(CLK := g_bLaserOutCornerM OR g_biLaserOutCorner);
+RTrigger_FirstGas(CLK := g_bStartRunOpenGasM);
+RTrigger_UpLift(CLK := g_biLayerEndUplift OR g_bLayerEndUpliftM);
+RTriggerClaw3UpLift(CLK := g_biClaw3UpLift OR g_bClaw3UpLiftM);
+RTriggerProfileStart(CLK := g_bProfileStartM);(*从这里进来，说明该轮廓是板外切割profile_start*)
+RTriggerProfileLaserGasStart(CLK := g_bProfileLaserGasM);
+RTrigger_ProcessEnd(CLK := g_bPlcEndM OR g_bProcessEndM);
+RTrigger_LayerstartOffLaser(CLK := g_bLayerStartOffLaserM);(*从这里进来，说明需要开随动而不开光 *)
+
+nToolNum := g_nToolNum;
+
+(*输出拐角速度*)
+g_doCornerSpeed := g_TechData.multilTechData[nToolNum-1].CornerCompen.dSpeed;
+(*输出进/出拐角冷却时间*)
+g_dCutHeight := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Height;
+(*将切割高度传给CNC,不切割状态默认传第一把刀具的切割高度*)
+g_doCutHeightToCNC := g_dCutHeight;
+IF g_nPlcState = 0 THEN
+  g_doCutHeightToCNC := g_TechData.multilTechData[0].DIRECUT_CUTTING.fCutting_Height;
+END_IF;
+
+g_foInCornerCoolTime := DINT_TO_LREAL(g_TechData.multilTechData[nToolNum-1].CornerCompen.nInCornerCloseLaserTime)/1000.0;
+g_foOutCornerCoolTime := DINT_TO_LREAL(g_TechData.multilTechData[nToolNum-1].CornerCompen.nOutCornerCloseLaserTime)/1000.0;
+(*关气延时到了，就关气，如果在这个过程中又来了开气的指令，则忽略关气*)
+(*在Layer end中已经实现了关气，所以不需要再在LayerStart中处理bCloseGasDelayEnable*)
+(*但是为了安全起见，还是在Layerstart里面对bCloseGasDelayEnable置false*)
+IF RTrigger_Layerstart.Q THEN
+  bCloseGasDelayEnable := FALSE;
+END_IF;
+TON_CloseGasDelay(IN := bCloseGasDelayEnable, PT := LREAL_TO_TIME(FUN_MStoS(nCloseGasDelayTime)));
+IF TON_CloseGasDelay.Q THEN
+      g_bgas_enable := FALSE;(*关闭气阀的数字量输出*)
+      bCloseGasDelayEnable := FALSE;
+END_IF;
+IF g_nOpenGasDelayTime<5 THEN(*开气延时最小5ms，保证气比光先出5ms*)
+  g_nOpenGasDelayTime := 5;
+END_IF;
+
+IF RTrigger_FirstGas.Q THEN
+  g_bFirstGas := TRUE;
+  g_bStartRunOpenGasM := FALSE;
+END_IF;
+
+g_foCuttingSpeed := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Speed *1000.0;
+IF RTrigger_Layerstart.Q THEN
+  g_bLayerStartM := FALSE;
+  IF g_bDryRunEnable OR g_bDebugMode OR g_bFallBackStatusFb OR g_bAutoExecuteFallBack OR g_bForwardStatusFb THEN
+    nLayerStartState := 500;
+    bLookBackDone := FALSE;
+  ELSE
+    nLayerStartState := 9;
+  END_IF;
+  nLayerEndState := 0;
+  TON_PauseStopLaserDelay(IN :=FALSE);(*暂停关光延时*)
+  g_bProfileEnable := FALSE;
+  g_bProfileLaserEnable := FALSE;
+  (*bUpLiftFlag := FALSE;
+  bClaw3UpLiftFlag := FALSE;*)
+END_IF;
+
+(*板外切割-随动定高：随动定高后上抬*)
+IF RTriggerProfileStart.Q THEN
+  IF g_bDryRunEnable OR g_bDebugMode OR g_bFallBackStatusFb OR g_bAutoExecuteFallBack OR g_bForwardStatusFb THEN
+    nLayerStartState := 501;
+    bLookBackDone := FALSE;
+  ELSE
+    nLayerStartState := 9;
+  END_IF;
+  nLayerEndState := 0;
+  g_dProfileCuttingPos := 0.0;(*板外切割时，随动下来记录的坐标，用于暂停后开始寸动下来时使用*)
+  TON_PauseStopLaserDelay(IN :=FALSE);(*暂停关光延时*)
+  g_bProfileEnable := TRUE;
+  g_bProfileFollowEnable := FALSE;(*板外切割开随动标志位清零*)
+  g_bProfileStartM := FALSE;
+END_IF;
+(*板外切割开始触发，跳过穿孔、随动，直接定高开始出气、出光切割*)
+IF RTriggerProfileLaserGasStart.Q THEN
+  g_bProfileLaserGasM  := FALSE;
+  g_bProfileLaserEnable := TRUE;
+  
+  IF g_bDryRunEnable OR g_bDebugMode OR g_bFallBackStatusFb OR g_bAutoExecuteFallBack OR g_bForwardStatusFb THEN
+    nLayerStartState := 500;
+    bLookBackDone := FALSE;
+  ELSE
+    g_boCNCMoveDisable := TRUE;
+    nLayerStartState := 400;
+  END_IF;
+  nLayerEndState := 0;
+END_IF;
+
+IF RTrigger_Layerend.Q THEN
+  g_bLayerEndM := FALSE;
+  g_bLayerStartOffLaser:= FALSE;(*开随动不开关状态标志位*)
+  IF g_bDryRunEnable OR g_bDebugMode OR g_bFallBackStatusFb OR g_bAutoExecuteFallBack OR g_bForwardStatusFb THEN
+    nLayerEndState := 600;
+  ELSE
+    nLayerEndState := 10;
+  END_IF;
+  nLayerStartState := 0;
+  g_boLayerEndDone := FALSE;
+  bClaw3UpLiftFlag := FALSE;
+  bUpLiftFlag := FALSE;
+  g_bProfileEnable := FALSE;
+  g_bProfileLaserEnable := FALSE;
+  g_bProfileFollowEnable := FALSE;(*板外切割开随动标志位清零*)
+END_IF;
+
+IF RTrigger_UpLift.Q THEN
+  bUpLiftFlag := TRUE;
+  g_bLayerEndUpliftM  := FALSE;
+END_IF;
+
+IF RTriggerClaw3UpLift.Q THEN
+  IF g_bDryRunEnable OR g_bDebugMode OR g_bFallBackStatusFb OR g_bAutoExecuteFallBack OR g_bForwardStatusFb THEN
+    bClaw3UpLiftFlag := FALSE;
+    g_boClaw3UpLiftDone := TRUE;
+  ELSE
+    bClaw3UpLiftFlag := TRUE;
+    g_boClaw3UpLiftDone := FALSE;    
+  END_IF;
+  g_bClaw3UpLiftM := FALSE;  
+END_IF;
+
+IF RTrigger_ProcessEnd.Q THEN
+  nLayerStartState := 0;
+  nLayerEndState := 0;
+  g_bProcessEndM := FALSE;
+END_IF;
+
+IF RTrigger_LayerstartOffLaser.Q THEN
+  g_bLayerStartOffLaserM := FALSE;
+  g_bLayerStartOffLaser:= TRUE;(*开随动不开关状态标志位*)
+  IF g_bDryRunEnable OR g_bDebugMode OR g_bFallBackStatusFb OR g_bAutoExecuteFallBack OR g_bForwardStatusFb THEN
+    nLayerStartState := 500;
+    bLookBackDone := FALSE;
+  ELSE
+    nLayerStartState := 9;
+  END_IF;
+  nLayerEndState := 0;
+  TON_PauseStopLaserDelay(IN :=FALSE);(*暂停关光延时*)
+  g_bProfileEnable := FALSE;
+  g_bProfileLaserEnable := FALSE;
+  (*bUpLiftFlag := FALSE;
+  bClaw3UpLiftFlag := FALSE;*)
+END_IF;
+
+
+CASE nLayerStartState OF
+  0:(*空闲*)
+    nLayerStartState := 0;
+    nLayerStartState_bak := 0;
+  9:(*关闭CNC运动使能*)
+    nLayerStartState_bak := 9;
+    g_boCNCMoveDisable := TRUE;
+    g_nCurCutState :=0;
+    bZHeightJudgeOpen := TRUE;
+    nLayerStartState := 10;
+    IF g_bProfileEnable THEN
+      nLayerStartState := 20;
+    END_IF;
+    IF bLookBackDone THEN
+      bLookBackDone := FALSE;
+      IF g_niMotionType > 1 THEN
+        nLayerStartState := 400;
+      END_IF;
+    END_IF;
+  10:
+    nLayerStartState_bak := 10; 
+    g_bZFollowClose := TRUE;
+    IF g_bZFollowOutDone THEN
+      nLayerStartState := 11;
+      g_bZFollowClose := FALSE;
+    END_IF;
+    g_nFrogLeapOpenGasTime := LREAL_TO_DINT(TIME_TO_LREAL(TON_FrogLeapOpenGas.ET)*1000.0); (*蛙跳到此时已出气时间ms*)
+    IF g_nFrogLeapOpenGasTime >= g_nOpenGasDelayTime THEN
+      g_nOpenGasDelayTimeAdd := 0;      (*蛙跳出气时间>=开气延时时间，就不需开气延时，否则开气延时时间要减去蛙跳出气时间*)
+    ELSE
+      g_nOpenGasDelayTimeAdd := ABS(g_nOpenGasDelayTime - g_nFrogLeapOpenGasTime);
+    END_IF;
+    TON_FrogLeapOpenGas(In := FALSE);
+  11:(*穿孔*)
+    nLayerStartState_bak := 11;
+    g_nPiercingStatus := 1;
+    IF g_TechData.multilTechData[nToolNum-1].nPiercing_Type=0 THEN
+      nLayerStartState := 20;
+    ELSIF g_TechData.multilTechData[nToolNum-1].nPiercing_Type=1 THEN
+      nLayerStartState := 100;
+    ELSIF g_TechData.multilTechData[nToolNum-1].nPiercing_Type=2 THEN
+      nLayerStartState := 200;
+    ELSIF g_TechData.multilTechData[nToolNum-1].nPiercing_Type=3 THEN
+      nLayerStartState := 300;
+    END_IF;
+    IF g_bLayerStartOffLaser THEN(*不开光切割，穿孔就跳过了*)
+      nLayerStartState := 20;
+    END_IF;
+  20:(*直接切割*)
+    nLayerStartState_bak := 20;
+    IF g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Height <= g_dZFollowMaxHeight THEN (*直接切割高度小于随动最大高度，直接到切割高度*)  
+      nLayerStartState := 400;
+      IF g_bProfileEnable THEN
+        nLayerStartState := 50;
+      END_IF;
+    ELSE  
+     nLayerStartState := 25;
+    END_IF;
+  25:(*随动到1.0mm*)  
+    nLayerStartState_bak := 25;
+    g_fZFollowHeight := 1.0;
+    g_bZFollowExecute := TRUE;
+    g_bFocusDone := FALSE;
+    g_dZoomPosition := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Focus;
+    g_bFocusEnable := TRUE;(*通知F *) 
+    nLayerStartState := 30;
+  30:(*等待随动到位，并关随动*)     
+    nLayerStartState_bak := 30; 
+    IF g_bZFollowDone THEN 
+      g_bZFollowExecute := FALSE;
+      g_bZFollowClose := TRUE;
+      nLayerStartState := 35;
+      bZHeightJudgeOpen := FALSE;
+    END_IF; 
+  35: (*等待关随动到位*)  
+    nLayerStartState_bak := 35;
+    IF g_bZFollowOutDone THEN
+      g_bZFollowClose := FALSE;
+     nLayerStartState := 40;
+    END_IF; 
+  40: (*上抬到切割高度，并出光出气*)  
+    nLayerStartState_bak := 40;
+    g_fZRelDistance := g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.fCutting_Height - 1.0;
+    g_bZRelExecute := TRUE; 
+    IF g_bProfileEnable THEN(*板外切割：不出光不出气*)
+      nLayerStartState := 45;
+    ELSE(*出气*)
+      g_ugas_type := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.nCutting_Gas;
+      g_dmaster_pressure := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Gas_Pressure;
+      g_dair_pressure := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Gas_Pressure;
+      g_doxygen_pressure := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Gas_Pressure;
+      g_dnitogen_pressure := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Gas_Pressure;
+      g_bgas_enable := TRUE; 
+      IF g_bFirstGas THEN
+        IF g_bChangeGasFlag THEN 
+          nTimeTemp := g_nFirstGasDelayTime + g_nChangeGasDelayTime;
+        ELSE
+          nTimeTemp := g_nFirstGasDelayTime;
+        END_IF;
+      ELSE
+        IF g_bChangeGasFlag THEN 
+          nTimeTemp := g_nChangeGasDelayTime;
+        ELSE
+          nTimeTemp := 0;
+        END_IF;
+      END_IF;
+      IF g_TechData.multilTechData[nToolNum-1].nPiercing_Type=0 THEN
+        nTimeTemp := nTimeTemp + g_nOpenGasDelayTimeAdd;
+      END_IF;
+      TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTimeTemp)));
+      IF TON_FirstGasDelay.Q THEN
+        TON_FirstGasDelay(IN :=FALSE);
+        nLayerStartState := 45;
+      END_IF;
+    END_IF;
+    
+  45: (*上抬完成*)
+    nLayerStartState_bak := 45;
+    IF g_bZRelDone THEN
+      g_bZRelExecute := FALSE;
+      nLayerStartState := 50;
+    END_IF;
+    g_nPiercingStatus := 0;
+    g_foCuttingSpeed := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Speed *1000.0;
+  50: (*随动到切割高度*)
+    nLayerStartState_bak := 50;
+    g_fZFollowHeight := g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.fCutting_Height;
+    g_bZFollowExecute := TRUE;
+    IF g_bProfileEnable THEN
+      nLayerStartState := 55;
+    ELSE
+      nLayerStartState := 420;
+    END_IF;
+    
+  55:(*等待切割随动到位*)(*板外切割：记录要定高的坐标，并且上抬*)
+    nLayerStartState_bak := 55; 
+    IF g_bZFollowDone THEN
+      g_bZFollowExecute := FALSE;
+      g_dProfileCuttingPos := Axis_Z.NCTOPLC.SETPOS;
+      nLayerStartState := 60;
+      bZHeightJudgeOpen := FALSE;
+    END_IF;
+  60:(*板外切割：关随动*)
+    nLayerStartState_bak := 55;
+    g_bZFollowExecute := FALSE;
+    g_bZFollowClose := TRUE;
+    IF g_bZFollowOutDone THEN
+      g_bZFollowClose := FALSE;
+      nLayerStartState := 65;
+      (*根据不同管型，获取△上抬距离（安全距离） pipetype: 0、平面 1、圆 2、矩形 3、腰 4、椭圆 5、D型管 10、H钢 11、角钢*)
+      dXCoordToCenter := ABS(g_diXMachineCoordinate - g_dBeamCenterPos);(*X轴当前坐标距离X轴中心的距离*)
+      IF g_nPipeType = 1 THEN 
+        IF dXCoordToCenter >= 0.5 THEN(*判断是平面孔情况的还是空间孔情况*) 
+           (*如果轮廓跳转时检测到X轴不在中心位置，需要上抬保证安全*)
+           dCircleLiftTemp := SQRT(g_dCircleRadius*g_dCircleRadius - dXCoordToCenter*dXCoordToCenter);
+           dMaxChangeHeight := g_dCircleRadius - dCircleLiftTemp + 1.0;
+        ELSE
+          dMaxChangeHeight := 0.0; 
+        END_IF;
+      ELSIF g_nPipeType = 2 OR g_nPipeType = 11 THEN
+        dMaxChangeHeight := SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0) - MIN(g_dSquareLenght,g_dSquareWidth)/2.0 + 10.0;
+      ELSIF g_nPipeType = 3 OR g_nPipeType = 4 THEN  
+        dMaxChangeHeight := (g_dSquareLenght-g_dSquareWidth)/2.0 + 5.0;
+      ELSIF g_nPipeType = 10 THEN
+        dMaxChangeHeight := SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0) + 10.0;
+      ELSE 
+        dMaxChangeHeight := 0.0;
+      END_IF;
+    END_IF;
+    
+  65:(*上抬*)
+    nLayerStartState_bak := 65;
+    (*dUpLiftheight:轮廓间上抬高度  dMaxChangeHeight：△上抬距离（安全距离）*)
+    IF (Axis_Z.NCTOPLC.ACTPOS + dUpLiftheight + dMaxChangeHeight) <= g_fLiftCoord THEN
+      g_fZRelDistance := dUpLiftheight + dMaxChangeHeight;
+    ELSIF (Axis_Z.NCTOPLC.ACTPOS + dUpLiftheight + dMaxChangeHeight) > g_fLiftCoord AND (Axis_Z.NCTOPLC.ACTPOS + dMaxChangeHeight) < g_fLiftCoord THEN
+      g_fZRelDistance := g_fLiftCoord - Axis_Z.NCTOPLC.ACTPOS;
+    ELSIF (Axis_Z.NCTOPLC.ACTPOS + dMaxChangeHeight) >= g_fLiftCoord THEN
+      g_fZRelDistance := dMaxChangeHeight;
+    END_IF;  
+
+    g_bZRelExecute := TRUE;
+    
+    IF g_bZRelDone THEN
+      g_bZRelExecute := FALSE;
+      nLayerStartState := 70;
+    END_IF;
+  70:(*开启CNC运动使能*)
+    nLayerStartState_bak := 70; 
+    g_boCNCMoveDisable := FALSE;
+    nLayerStartState := 501;  
+    
+
+  100:(*普通穿孔出气变焦及随动*)
+    nLayerStartState_bak := 100;
+    IF g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Height <= g_dZFollowMaxHeight THEN (*普通穿孔高度<随动最高高度,直接随动到位*)
+      g_ugas_type := g_TechData.multilTechData[nToolNum-1].NORMAL_CUTTING.nNormal_Piercing_Gas;
+      g_dmaster_pressure := g_TechData.multilTechData[nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Gas_Pressure;
+      g_dair_pressure := g_TechData.multilTechData[nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Gas_Pressure;
+      g_doxygen_pressure := g_TechData.multilTechData[nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Gas_Pressure;
+      g_dnitogen_pressure := g_TechData.multilTechData[nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Gas_Pressure;
+      g_bgas_enable := TRUE;
+       
+      g_fZFollowHeight := g_TechData.multilTechData[nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Height;
+      g_bZFollowExecute := TRUE;
+      
+      nLayerStartState := 101;  
+    ELSE
+      g_fZFollowHeight := 1.0;
+      g_bZFollowExecute := TRUE;
+      
+      nLayerStartState := 102;  
+    END_IF;  
+    g_bFocusDone := FALSE;
+    g_dZoomPosition := g_TechData.multilTechData[nToolNum-1].NORMAL_CUTTING.fNormal_Zoom_Position;   
+    g_bFocusEnable := TRUE;(*通知F轴调焦*) 
+    
+  101:(*等待普通穿孔出气延时完成*)
+    nLayerStartState_bak := 101;
+    IF g_bFirstGas THEN(*首吹气延时:*)
+      TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(MAX(g_nFirstGasDelayTime,g_nOpenGasDelayTimeAdd))));
+      IF TON_FirstGasDelay.Q THEN
+        TON_FirstGasDelay(IN :=FALSE);
+        g_bFirstGas := FALSE;
+        nLayerStartState := 102;
+      END_IF;
+    ELSE
+      TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nOpenGasDelayTimeAdd)));
+      IF TON_FirstGasDelay.Q THEN
+        TON_FirstGasDelay(IN :=FALSE);
+        nLayerStartState := 102;
+      END_IF;
+    END_IF; 
+      
+  102:(*等待普通穿孔随动到位完成*)
+    nLayerStartState_bak := 102; 
+    IF g_bZFollowDone THEN
+      TON_FirstGasDelay(IN := FALSE); 
+      g_bZFollowExecute := FALSE;
+      g_bZFollowClose := TRUE;
+      nLayerStartState := 103;
+      bZHeightJudgeOpen := FALSE;
+    END_IF; 
+  103:(*等待普通穿孔关随动完成*)
+    nLayerStartState_bak := 103;
+    IF g_bZFollowOutDone THEN
+      g_bZFollowClose := FALSE;
+      IF g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Height <= g_dZFollowMaxHeight THEN
+        nLayerStartState := 120;
+      ELSE
+        nLayerStartState := 104;
+      END_IF;
+    END_IF;
+  104: (*探底后移动到普通穿孔高度，出气变焦*)
+    nLayerStartState_bak := 104;
+    g_fZRelDistance := g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Height - 1.0;
+    g_bZRelExecute := TRUE;
+    g_ugas_type := g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.nNormal_Piercing_Gas;
+    g_dmaster_pressure := g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Gas_Pressure;
+    g_dair_pressure := g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Gas_Pressure;
+    g_doxygen_pressure := g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Gas_Pressure;
+    g_dnitogen_pressure := g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Gas_Pressure;
+    g_bgas_enable := TRUE;
+    
+    IF g_bFirstGas THEN(*首吹气延时:*)
+      TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(MAX(g_nFirstGasDelayTime,g_nOpenGasDelayTimeAdd))));
+      IF TON_FirstGasDelay.Q THEN
+        TON_FirstGasDelay(IN :=FALSE);
+        g_bFirstGas := FALSE;
+        nLayerStartState := 105;
+      END_IF;
+    ELSE
+      TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nOpenGasDelayTimeAdd)));
+      IF TON_FirstGasDelay.Q THEN
+        TON_FirstGasDelay(IN :=FALSE);
+        nLayerStartState := 105;
+      END_IF;
+    END_IF;  
+    
+  105:(*等待运动到普通穿孔*)
+    nLayerStartState_bak := 105;
+    IF g_bZRelDone THEN
+      g_bZRelExecute := FALSE;
+      nLayerStartState := 120;
+    END_IF;
+      
+  120:(*普通穿孔出光*)
+    nLayerStartState_bak := 120;
+    g_bFirstGas := FALSE; (*复位首点吹气标志位*)
+    IF g_bFocusDone THEN (*调焦完成*)
+      g_nPower := g_TechData.multilTechData[nToolNum-1].NORMAL_CUTTING.nNormal_Piercing_Power;
+      g_nPwmFreq := g_TechData.multilTechData[nToolNum-1].NORMAL_CUTTING.nNormal_Piercing_Frequency;
+      g_nPwmDuty := g_TechData.multilTechData[nToolNum-1].NORMAL_CUTTING.nNormal_Piercing_Duty;
+      g_bLaserCuttingEnable := TRUE;
+      TON_NormalPiercingTime(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_TechData.multilTechData[nToolNum-1].NORMAL_CUTTING.nNormal_Piercing_Time)));
+      IF TON_NormalPiercingTime.Q THEN
+        nLayerStartState := 130;
+        TON_NormalPiercingTime(IN := FALSE);
+      END_IF;
+    END_IF;
+  130:(*普通穿孔关光*)
+    nLayerStartState_bak := 130;
+    g_bLaserCuttingEnable := FALSE;
+    nLayerStartState := 140;
+  140:(*普通穿孔关气*)
+    nLayerStartState_bak := 140;
+    IF (g_TechData.multilTechData[nToolNum-1].NORMAL_CUTTING.nNormal_Piercing_Gas<>g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.nCutting_Gas) AND (nToolNum-1)<>6 THEN
+      g_bChangeGasFlag := TRUE; 
+    END_IF;
+    IF g_TechData.multilTechData[nToolNum-1].NORMAL_CUTTING.bNormal_StopLight_BlowGas THEN
+       nLayerStartState := 145;
+    ELSE
+       nLayerStartState := 400;
+    END_IF;
+  145:(*普通穿孔--停光吹气延时*)
+    nLayerStartState_bak := 145;
+    TON_StopLightBlow(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_TechData.multilTechData[nToolNum-1].NORMAL_CUTTING.nNormal_StopLight_BlowGasTime)));
+    IF TON_StopLightBlow.Q THEN
+      TON_StopLightBlow(IN := FALSE); 
+     nLayerStartState := 390;
+    END_IF;
+  200:(*渐进穿孔*)
+    nLayerStartState_bak := 200; 
+    (*是否开启爆孔*)
+    IF g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.bBurstingHole_Enable THEN
+      IF g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Height <= g_dZFollowMaxHeight THEN (*爆孔高度<随动最高高度,直接随动到爆孔位置*)
+        (*通知随动:爆孔位置*)
+        g_fZFollowHeight := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Height;
+        g_bZFollowExecute := TRUE;
+        (*通知吹气:爆孔*)
+        g_ugas_type := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nBurstingHole_gas;
+        g_dmaster_pressure := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fBurstingHole_gas_pressure;
+        g_dair_pressure := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fBurstingHole_gas_pressure;
+        g_doxygen_pressure := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fBurstingHole_gas_pressure;
+        g_dnitogen_pressure := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fBurstingHole_gas_pressure;
+        g_bgas_enable := TRUE;
+        IF g_bFirstGas THEN(*首吹气延时:*)
+          TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(MAX(g_nFirstGasDelayTime,g_nOpenGasDelayTimeAdd))));
+          IF TON_FirstGasDelay.Q THEN
+            TON_FirstGasDelay(IN :=FALSE);
+            g_bFirstGas := FALSE;
+            nLayerStartState := 201;
+          END_IF;
+        ELSE
+          TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nOpenGasDelayTimeAdd)));
+          IF TON_FirstGasDelay.Q THEN
+            TON_FirstGasDelay(IN :=FALSE); 
+            nLayerStartState := 201;
+          END_IF;
+        END_IF; 
+      ELSE
+        (*通知随动:1MM*)
+        g_fZFollowHeight := 1.0;
+        g_bZFollowExecute := TRUE;
+        nLayerStartState := 201;
+      END_IF;  
+      (*通知F轴调焦:爆孔*)
+      g_bFocusDone := FALSE;
+      g_dZoomPosition := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fBurstingHole_zoom_position;
+      g_bFocusEnable := TRUE;
+
+    ELSE(* 不爆孔*)
+      IF g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Height <= g_dZFollowMaxHeight THEN (*渐进穿孔高度<随动最高高度，直接穿孔到位*)
+        (*通知随动:渐进穿孔高度*)
+        g_fZFollowHeight := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Height;
+        g_bZFollowExecute := TRUE;
+        (*通知吹气:渐进穿孔 *)
+        g_ugas_type := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nMove_Piercing_Gas;
+        g_dmaster_pressure := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Gas_Pressure;
+        g_dair_pressure := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Gas_Pressure;
+        g_doxygen_pressure := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Gas_Pressure;
+        g_dnitogen_pressure := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Gas_Pressure;
+        g_bgas_enable := TRUE;
+        IF g_bFirstGas THEN(*首吹气延时:*)
+          TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(MAX(g_nFirstGasDelayTime,g_nOpenGasDelayTimeAdd))));
+          IF TON_FirstGasDelay.Q THEN
+            TON_FirstGasDelay(IN :=FALSE);
+            g_bFirstGas := FALSE;
+            nLayerStartState := 201;
+          END_IF;
+        ELSE
+          TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nOpenGasDelayTimeAdd)));
+          IF TON_FirstGasDelay.Q THEN
+            TON_FirstGasDelay(IN :=FALSE); 
+            nLayerStartState := 201;
+          END_IF;
+        END_IF; 
+      ELSE
+        (*通知随动:1mm*)
+        g_fZFollowHeight := 1.0;
+        g_bZFollowExecute := TRUE;
+        nLayerStartState := 201;
+      END_IF; 
+      (*通知F轴调焦:渐进穿孔*)
+      g_bFocusDone := FALSE;
+      g_dZoomPosition := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fStart_Zoom_Position; (*Z轴上抬变焦坐标*)
+      g_bFocusEnable := TRUE;
+    END_IF;     
+  201:(*等待随动完成*)
+    nLayerStartState_bak := 201;
+    IF g_bZFollowDone THEN
+      g_bZFollowExecute := FALSE; 
+      g_bZFollowClose := TRUE;
+      nLayerStartState := 202;
+      bZHeightJudgeOpen := FALSE;
+    END_IF;
+  202:(*等待关随动完成*)
+    nLayerStartState_bak := 202;  
+    IF g_bZFollowOutDone THEN
+      g_bZFollowClose := FALSE;
+      nLayerStartState := 203;
+    END_IF;
+  203:
+    nLayerStartState_bak := 203;
+    (*是否开启爆孔*)
+    IF g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.bBurstingHole_Enable THEN 
+      IF g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Height <= g_dZFollowMaxHeight THEN (*爆孔高度<随动最高高度,直接随动到爆孔位置*)
+         nLayerStartState := 230;
+      ELSE
+        nLayerStartState := 205;
+      END_IF;
+    ELSE
+      (*不爆孔*)
+      IF g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Height <= g_dZFollowMaxHeight THEN
+        nLayerStartState := 265;
+      ELSE
+        nLayerStartState := 205;
+      END_IF; 
+    END_IF;   
+    
+  205:
+    nLayerStartState_bak := 205;  
+      IF g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.bBurstingHole_Enable THEN
+        nLayerStartState := 210; 
+      ELSE
+        nLayerStartState := 250;
+      END_IF; 
+    (*dProgressZoomTime := 0.0;*)
+    (*dProgressZoomDiff := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fEnd_Zoom_Position - g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fStart_Zoom_Position; *)
+  210:(*爆孔*)
+    nLayerStartState_bak := 210;
+    (*通知上抬:渐进穿孔高度*)
+    g_fZRelDistance := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Height - 1.0;
+    g_bZRelExecute := TRUE; 
+    (*通知吹气:爆孔*)
+    g_ugas_type := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.nBurstingHole_gas;
+    g_dmaster_pressure := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fBurstingHole_gas_pressure;
+    g_dair_pressure := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fBurstingHole_gas_pressure;
+    g_doxygen_pressure := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fBurstingHole_gas_pressure;
+    g_dnitogen_pressure := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fBurstingHole_gas_pressure;
+    g_bgas_enable := TRUE;
+    IF g_bFirstGas THEN(*首吹气延时:*)
+      TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(MAX(g_nFirstGasDelayTime,g_nOpenGasDelayTimeAdd))));
+      IF TON_FirstGasDelay.Q THEN
+        TON_FirstGasDelay(IN :=FALSE);
+        g_bFirstGas := FALSE;
+        nLayerStartState := 220;
+      END_IF;
+    ELSE
+      TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nOpenGasDelayTimeAdd)));
+      IF TON_FirstGasDelay.Q THEN
+        TON_FirstGasDelay(IN :=FALSE); 
+        nLayerStartState := 220;
+      END_IF;
+    END_IF;     
+  220:(*等待爆孔位完成*)
+    nLayerStartState_bak := 220;
+    g_bFirstGas := FALSE;  (*首吹气标志位复位*)
+    IF g_bZRelDone THEN
+      g_bZRelExecute := FALSE;
+      nLayerStartState := 230;
+    END_IF;
+    
+  230:(*出光*)
+    nLayerStartState_bak := 230;
+    IF g_bFocusDone THEN
+      g_nPower := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Power;
+      g_nPwmFreq := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Frequency;
+      g_nPwmDuty := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Duty;
+      g_bLaserCuttingEnable := TRUE;
+      TON_BurstingTime(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fBurstingHole_Time)));
+      IF TON_BurstingTime.Q THEN
+        TON_BurstingTime(IN := FALSE);
+        nLayerStartState := 235;
+      END_IF;
+    END_IF;
+  235:(*关光*)
+    nLayerStartState_bak := 235;
+    g_bLaserCuttingEnable := FALSE;
+    nLayerStartState := 238;
+  238:(*关气*)
+    nLayerStartState_bak := 238;
+    IF g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nMove_Piercing_Gas<>g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nBurstingHole_gas THEN
+      g_bChangeGasFlag := TRUE;
+    END_IF;
+    IF g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.bBurstingHole_open_gas THEN
+       nLayerStartState := 239;
+    ELSE
+       nLayerStartState := 240;
+    END_IF;
+  239:(*爆孔-停光吹气延时*)
+    nLayerStartState_bak := 239;
+    TON_StopLightBlow(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nBurstingHole_open_gas_time)));
+    IF TON_StopLightBlow.Q THEN
+      TON_StopLightBlow(IN := FALSE);
+      nLayerStartState := 240;
+    END_IF;
+  240:(*去渐进位*)
+    nLayerStartState_bak := 240;
+    g_fZRelDistance := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Height - g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Height;
+    g_bZRelExecute := TRUE;
+    g_ugas_type := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nMove_Piercing_Gas;
+    g_dmaster_pressure := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Gas_Pressure;
+    g_dair_pressure := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Gas_Pressure;
+    g_doxygen_pressure := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Gas_Pressure;
+    g_dnitogen_pressure := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Gas_Pressure;
+    g_bgas_enable := TRUE; 
+    nLayerStartState := 260;
+    g_bFocusDone := FALSE;
+    g_dZoomPosition := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fStart_Zoom_Position;   
+    g_bFocusEnable := TRUE;(*通知F轴调焦*)
+  250:(*去渐进位*)
+    nLayerStartState_bak := 250;
+    TON_FirstGasDelay(IN := TRUE);
+    g_fZRelDistance := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Height - 1.0;
+    g_bZRelExecute := TRUE;
+    
+    g_bFocusDone := FALSE;
+    g_dZoomPosition := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fStart_Zoom_Position;   
+    g_bFocusEnable := TRUE;(*通知F轴调焦*)
+    
+    g_ugas_type := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nMove_Piercing_Gas;
+    g_dmaster_pressure := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Gas_Pressure;
+    g_dair_pressure := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Gas_Pressure;
+    g_doxygen_pressure := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Gas_Pressure;
+    g_dnitogen_pressure := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Gas_Pressure;
+    g_bgas_enable := TRUE;
+    IF g_bFirstGas THEN(*首吹气延时:*)
+      TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(MAX(g_nFirstGasDelayTime,g_nOpenGasDelayTimeAdd))));
+      IF TON_FirstGasDelay.Q THEN
+        TON_FirstGasDelay(IN :=FALSE);
+        g_bFirstGas := FALSE;
+        nLayerStartState := 260;
+      END_IF;
+    ELSE
+      TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nOpenGasDelayTimeAdd)));
+      IF TON_FirstGasDelay.Q THEN
+        TON_FirstGasDelay(IN :=FALSE); 
+        nLayerStartState := 260;
+      END_IF;
+    END_IF; 
+  260:(*渐进等待到渐进位完成*)
+    nLayerStartState_bak := 260;
+    g_bFirstGas := FALSE;  (*首吹气标志位复位*)
+    IF g_bZRelDone THEN
+      g_bZRelExecute := FALSE; 
+      nLayerStartState := 265;
+    END_IF;
+  265:(*渐进出光*)
+    nLayerStartState_bak := 265;
+    IF g_bFocusDone THEN
+      g_nPower := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Power;
+      g_nPwmFreq := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Frequency;
+      g_nPwmDuty := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Duty;
+      g_bLaserCuttingEnable := TRUE;
+      nLayerStartState := 270;
+    END_IF;
+  270:
+    nLayerStartState_bak := 270;
+    g_fZRelDistance := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Height - g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Height;
+    (*fixme需要给定速度*)
+    g_fZRelVelocity := ABS(g_fZRelDistance/FUN_MStoS(g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nMove_Piercing_Time));
+    g_bZRelExecute := TRUE;
+    dProgressZoomTime := 0.0;  (*变焦时间清零，变焦寸动距离*)
+    dProgressZoomDiff := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fEnd_Zoom_Position - g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fStart_Zoom_Position;
+    nLayerStartState := 272;
+  272:
+    nLayerStartState_bak := 272;
+    IF g_nFAxisControl = 2 THEN (*轴控变焦*)  (*0 :关闭 1 ：F050  2 轴控制 3: 普雷斯特 4 : BM11X *)
+       g_bFocusDone := FALSE;
+      g_dZoomPosition := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fEnd_Zoom_Position;
+      fFAbsDistance := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fEnd_Zoom_Position - g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fStart_Zoom_Position;
+      g_dFProgressFocusVel := ABS(fFAbsDistance /FUN_MSTOS(g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.nMove_Piercing_Time));
+      g_bFProgressFocusAbs := TRUE;
+      g_bFocusEnable := TRUE;
+      nLayerStartState := 273;  (*轴控调焦使能不能一直给，会导致下次上升沿不触发，所以跳到273*)
+    ELSIF g_nFAxisControlType <> 0 THEN(*模拟量变焦*)  (*0 :关闭 1 ：F050  2 轴控制 3: 普雷斯特 4 : BM11X *)
+       IF dProgressZoomTime <= DINT_TO_LREAL(g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nMove_Piercing_Time) THEN
+        dProgressZoomTime := dProgressZoomTime + 1.0;
+        g_bFocusDone := FALSE;
+        g_dZoomPosition := g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.fStart_Zoom_Position + dProgressZoomTime*dProgressZoomDiff/DINT_TO_LREAL(g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nMove_Piercing_Time);
+        g_bFocusEnable := TRUE;(*通知F轴调焦*)
+      END_IF;
+    END_IF; 
+    
+    IF g_fZAxisHeight <= g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.fCutting_Height THEN
+      g_ZMoveStop.EXECUTE := TRUE;
+      g_bZRelExecute := FALSE;
+      g_fZRelVelocity := 0.0;
+      nLayerStartState := 275;
+    ELSIF g_bZRelDone THEN
+      g_bZRelExecute := FALSE;
+      g_fZRelVelocity := 0.0;
+      nLayerStartState := 280;
+    END_IF; 
+  273:
+    nLayerStartState_bak := 273;
+    IF g_fZAxisHeight <= g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.fCutting_Height THEN
+      g_ZMoveStop.EXECUTE := TRUE;
+      g_bZRelExecute := FALSE;
+      g_fZRelVelocity := 0.0;
+      nLayerStartState := 275;
+    ELSIF g_bZRelDone THEN
+      g_bZRelExecute := FALSE;
+      g_fZRelVelocity := 0.0;
+      nLayerStartState := 280;
+    END_IF;
+  275:
+    nLayerStartState_bak := 275;
+    IF g_ZMoveStop.Done THEN
+      g_ZMoveStop.EXECUTE := FALSE;
+      nLayerStartState := 280;
+    END_IF;
+  280:(*渐进关光*)
+    nLayerStartState_bak := 280;
+    g_bLaserCuttingEnable := FALSE;
+    nLayerStartState := 285;
+  285:(*渐进关气*)
+    nLayerStartState_bak := 285;
+    IF (g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nMove_Piercing_Gas<>g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.nCutting_Gas) AND (nToolNum-1)<>6 THEN
+      g_bChangeGasFlag := TRUE;
+    END_IF;
+    IF g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.bMove_Piercing_Open_Gas THEN
+      nLayerStartState := 288;
+    ELSE
+      nLayerStartState := 290;
+    END_IF;    
+  288:(*渐进--停光吹气*)
+    nLayerStartState_bak := 288;
+    TON_StopLightBlow(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.nMove_Piercing_Open_Gas_time)));
+    IF TON_StopLightBlow.Q THEN
+      TON_StopLightBlow(IN := FALSE);
+    nLayerStartState := 290;
+    END_IF;   
+  290:(*防止渐进变焦还没结束，切割调焦命令就开始，导致不能切割变焦*)
+    nLayerStartState_bak := 290;
+    IF g_bFocusDone THEN 
+      nLayerStartState := 390;
+    END_IF; 
+
+        
+  300:(*多级穿孔*)
+    nLayerStartState_bak := 300; 
+    IF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.bPierEnable THEN
+      nLayerStartState := 314;
+    ELSIF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.bPierEnable THEN
+      nLayerStartState := 334;
+    ELSIF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.bPierEnable THEN
+      nLayerStartState := 365;
+    END_IF;  
+  304:(*多级穿孔，随动到1mm，调焦*)
+    nLayerStartState_bak := 304;
+    g_fZFollowHeight := 1.0;
+    g_bZFollowExecute := TRUE;
+    IF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.bPierEnable THEN
+      g_dZoomPosition := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.zoom_FoucsPosition;
+    ELSIF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.bPierEnable THEN
+      g_dZoomPosition := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.zoom_FoucsPosition;
+    ELSIF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.bPierEnable THEN
+      g_dZoomPosition := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.zoom_FoucsPosition;
+    END_IF; 
+    g_bFocusDone := FALSE;
+    g_bFocusEnable := TRUE;  
+    IF g_bZFollowDone THEN
+      nLayerStartState := 305;
+      g_bZFollowExecute := FALSE;
+      bZHeightJudgeOpen := FALSE;
+    END_IF;
+  305:
+    nLayerStartState_bak := 305;
+    g_bZFollowClose := TRUE;
+    IF g_bZFollowOutDone THEN
+      g_bZFollowClose := FALSE;
+      IF g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_HIGH.bPierEnable THEN
+        nLayerStartState := 310;
+      ELSIF g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.bPierEnable THEN
+        nLayerStartState := 330;
+      ELSIF g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_LOW.bPierEnable THEN
+        nLayerStartState := 360;
+      END_IF;
+    END_IF;
+  310:(*高位穿孔*)
+    nLayerStartState_bak := 310;
+    g_ugas_type := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Gas;
+    g_dmaster_pressure := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Gas_Pressure;
+    g_dair_pressure := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Gas_Pressure;
+    g_doxygen_pressure := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Gas_Pressure;
+    g_dnitogen_pressure := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Gas_Pressure;
+    
+    g_fZRelDistance := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Height - 1.0;
+    g_bZRelExecute := TRUE;
+    g_bgas_enable := TRUE; 
+    IF g_bFirstGas THEN(*首吹气延时:*)
+      TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(MAX(g_nFirstGasDelayTime,g_nOpenGasDelayTimeAdd))));
+      IF TON_FirstGasDelay.Q THEN
+        TON_FirstGasDelay(IN :=FALSE);
+        g_bFirstGas := FALSE;
+        nLayerStartState := 312;
+      END_IF;
+    ELSE
+      TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nOpenGasDelayTimeAdd)));
+      IF TON_FirstGasDelay.Q THEN
+        TON_FirstGasDelay(IN :=FALSE); 
+        nLayerStartState := 312;
+      END_IF;
+    END_IF;   
+ 312:(*等待到达高位完成*)
+    nLayerStartState_bak := 312;
+    g_bFirstGas := FALSE;  (*首吹气标志位复位*)
+    IF g_bZRelDone THEN
+      g_bZRelExecute := FALSE;
+      nLayerStartState := 318;
+    END_IF;
+  314:(*高位穿孔高度>=随动最高高度,探底*)
+    nLayerStartState_bak := 314;    
+    IF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Height <= g_dZFollowMaxHeight THEN
+      nLayerStartState := 315;
+    ELSE
+      nLayerStartState := 304;
+    END_IF; 
+  315:(*多级穿孔，随动到高位穿孔,吹气*)  (*等待到达高位完成*)
+    nLayerStartState_bak := 315;
+    (*通知随动 :高位*)
+    g_fZFollowHeight := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Height ;
+    g_bZFollowExecute := TRUE;
+    
+    g_ugas_type := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Gas;
+    g_dmaster_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Gas_Pressure;
+    g_dair_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Gas_Pressure;
+    g_doxygen_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Gas_Pressure;
+    g_dnitogen_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Gas_Pressure;
+    g_bgas_enable := TRUE;
+    IF g_bFirstGas THEN(*首吹气延时:*)
+      TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(MAX(g_nFirstGasDelayTime,g_nOpenGasDelayTimeAdd))));
+      IF TON_FirstGasDelay.Q THEN
+        TON_FirstGasDelay(IN :=FALSE);
+        g_bFirstGas := FALSE;
+        nLayerStartState := 316;
+      END_IF;
+    ELSE
+      TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nOpenGasDelayTimeAdd)));
+      IF TON_FirstGasDelay.Q THEN
+        TON_FirstGasDelay(IN :=FALSE); 
+        nLayerStartState := 316;
+      END_IF;
+    END_IF;  
+    g_bFocusDone := FALSE;
+    g_dZoomPosition := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.zoom_FoucsPosition; 
+    g_bFocusEnable := TRUE;  (*通知F轴调焦*) 
+ 
+  316:(*等待随动到位*)
+    nLayerStartState_bak := 316;
+    g_bFirstGas := FALSE; (*首吹气标志位复位*)
+    IF g_bZFollowDone THEN
+      nLayerStartState := 317;
+      g_bZFollowExecute := FALSE;
+      bZHeightJudgeOpen := FALSE;
+    END_IF; 
+  317:(*关闭随动*)
+    nLayerStartState_bak := 317; 
+    g_bZFollowClose := TRUE;
+    IF g_bZFollowOutDone THEN
+      g_bZFollowClose := FALSE;
+      nLayerStartState := 318;
+    END_IF;  
+  318:(*出光*)
+    nLayerStartState_bak := 318;
+    IF g_bFocusDone THEN
+      g_nPower := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_HIGH.nMulitil_Piercing_Power;
+      g_nPwmFreq := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Frequency;
+      g_nPwmDuty := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Duty;
+      g_bLaserCuttingEnable := TRUE;
+      Timer_Multil_High(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Time)));
+      IF Timer_Multil_High.Q THEN
+        Timer_Multil_High(IN := FALSE);
+        nLayerStartState := 320;
+      END_IF;
+    END_IF;
+  320:(*关光*)
+    nLayerStartState_bak := 320;
+    g_bLaserCuttingEnable := FALSE;
+    nLayerStartState := 323;
+  323:(*不关气*)
+    nLayerStartState_bak := 323;
+    IF g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_HIGH.bStopLight_BlowGas THEN
+      nLayerStartState := 325;
+    ELSE
+      nLayerStartState := 329;             
+    END_IF;
+  325:(*多级穿孔-高-停光吹气*)
+    nLayerStartState_bak := 325;
+    TON_StopLightBlow(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_HIGH.StopLight_BlowGasTime)));
+    IF TON_StopLightBlow.Q THEN
+      TON_StopLightBlow(IN := FALSE);
+      nLayerStartState := 329;
+    END_IF;  
+  329:(*判断是否开启中位穿孔,低位穿孔*) 
+    nLayerStartState_bak := 329;
+    IF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.bPierEnable THEN
+       nLayerStartState := 330;
+    ELSIF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.bPierEnable THEN
+      nLayerStartState := 360;
+    ELSE
+      nLayerStartState := 383;(*去383判断是否换气*)
+    END_IF;  
+ 
+  330:(*中位穿孔*)
+    nLayerStartState_bak := 330;
+    g_ugas_type := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Gas;
+    g_dmaster_pressure := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Gas_Pressure;
+    g_dair_pressure := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Gas_Pressure;
+    g_doxygen_pressure := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Gas_Pressure;
+    g_dnitogen_pressure := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Gas_Pressure;
+    
+    IF g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_HIGH.bPierEnable THEN 
+      g_bFocusDone := FALSE;
+      g_dZoomPosition := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.zoom_FoucsPosition;
+      g_bFocusEnable := TRUE;  (*通知F轴调焦*)   
+      g_fZRelDistance := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Height - g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Height;
+    ELSE
+      g_fZRelDistance := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Height - 1.0;
+    END_IF;
+    g_bZRelExecute := TRUE;
+    g_bgas_enable := TRUE; 
+    IF g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_HIGH.bPierEnable THEN 
+      nLayerStartState := 332;
+    ELSE   
+      IF g_bFirstGas THEN(*首吹气延时:*)
+        TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(MAX(g_nFirstGasDelayTime,g_nOpenGasDelayTimeAdd))));
+        IF TON_FirstGasDelay.Q THEN
+          TON_FirstGasDelay(IN :=FALSE);
+          g_bFirstGas := FALSE;
+          nLayerStartState := 332;
+        END_IF;
+      ELSE
+        TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nOpenGasDelayTimeAdd)));
+        IF TON_FirstGasDelay.Q THEN
+          TON_FirstGasDelay(IN :=FALSE); 
+          nLayerStartState := 332;
+        END_IF;
+      END_IF; 
+    END_IF;  
+  332:(*等待中位到位完成*)
+    nLayerStartState_bak := 332;
+    g_bFirstGas := FALSE;
+    IF g_bZRelDone THEN
+      g_bZRelExecute := FALSE;
+      nLayerStartState := 338;
+    END_IF;
+    
+  334:(*中位穿孔高度>=随动最高高度,不执行穿孔直接到位*)
+    nLayerStartState_bak := 334;
+    IF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Height <= g_dZFollowMaxHeight THEN
+      nLayerStartState := 335;
+    ELSE
+      nLayerStartState := 304;
+    END_IF;
+   
+  335:(*多级穿孔，随动到中位穿孔,吹气*)
+    nLayerStartState_bak := 335;
+    g_fZFollowHeight := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Height ;
+    g_bZFollowExecute := TRUE;
+    
+    g_ugas_type := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Gas;
+    g_dmaster_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Gas_Pressure;
+    g_dair_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Gas_Pressure;
+    g_doxygen_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Gas_Pressure;
+    g_dnitogen_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Gas_Pressure;
+    g_bgas_enable := TRUE;
+    IF g_bFirstGas THEN(*首吹气延时:*)
+        TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(MAX(g_nFirstGasDelayTime,g_nOpenGasDelayTimeAdd))));
+        IF TON_FirstGasDelay.Q THEN
+          TON_FirstGasDelay(IN :=FALSE);
+          g_bFirstGas := FALSE;
+          nLayerStartState := 336;
+        END_IF;
+      ELSE
+        TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nOpenGasDelayTimeAdd)));
+        IF TON_FirstGasDelay.Q THEN
+          TON_FirstGasDelay(IN :=FALSE); 
+          nLayerStartState := 336;
+        END_IF;
+      END_IF; 
+    g_bFocusDone := FALSE;
+    g_dZoomPosition := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.zoom_FoucsPosition;
+    g_bFocusEnable := TRUE;  (*通知F轴调焦*)
+  336:(*等待随动中位到位*)
+    nLayerStartState_bak := 336;
+    g_bFirstGas := FALSE; 
+    IF g_bZFollowDone THEN
+      nLayerStartState := 337;
+      g_bZFollowExecute := FALSE;
+      bZHeightJudgeOpen := FALSE;
+    END_IF;
+  337:(*关闭随动*)
+    nLayerStartState_bak := 337; 
+    g_bZFollowClose := TRUE;
+    IF g_bZFollowOutDone THEN
+      g_bZFollowClose := FALSE;
+      nLayerStartState := 338;
+    END_IF; 
+      
+  338:(*出光*)
+    nLayerStartState_bak := 338;
+    IF g_bFocusDone THEN
+      g_nPower := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.nMulitil_Piercing_Power;
+      g_nPwmFreq := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Frequency;
+      g_nPwmDuty := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Duty;
+      g_bLaserCuttingEnable := TRUE;
+      Timer_Multil_Middle(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Time)));
+      IF Timer_Multil_Middle.Q THEN
+        Timer_Multil_Middle(IN := FALSE);
+        nLayerStartState := 340;
+      END_IF;
+    END_IF;
+  340:(*关光*)
+    nLayerStartState_bak := 340;
+    g_bLaserCuttingEnable := FALSE;
+    nLayerStartState := 345;
+  345:(*不关气*)
+    nLayerStartState_bak := 345;
+    IF g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.bStopLight_BlowGas THEN
+      nLayerStartState := 348;
+    ELSE 
+      nLayerStartState := 360;             
+    END_IF;
+  348: (*多级穿孔--中--停光吹气*)
+    nLayerStartState_bak := 348;
+    TON_StopLightBlow(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.StopLight_BlowGasTime)));
+    IF TON_StopLightBlow.Q THEN
+      TON_StopLightBlow(IN := FALSE);
+    nLayerStartState := 359;
+    END_IF; 
+  359:  (*判断是否开启低位穿孔*)
+    nLayerStartState_bak := 359;
+    IF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.bPierEnable THEN
+      nLayerStartState := 360;
+    ELSE
+      nLayerStartState := 383;(*去383判断是否换气*)
+    END_IF;
+  360:(*低位穿孔*)
+    nLayerStartState_bak := 360;
+    IF g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.bPierEnable THEN
+       (*通知相对运动*)
+      g_fZRelDistance := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Height - g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Height;
+       (*通知F轴调焦*)
+      g_bFocusDone := FALSE;
+      g_dZoomPosition := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.zoom_FoucsPosition;
+      g_bFocusEnable := TRUE; 
+    ELSIF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.bPierEnable THEN
+      (*通知相对运动*)
+      g_fZRelDistance := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Height - g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Height;    
+      (*通知F轴调焦*) 
+      g_bFocusDone := FALSE;
+      g_dZoomPosition := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.zoom_FoucsPosition;
+      g_bFocusEnable := TRUE; 
+    ELSE
+      (*通知相对运动*)
+      g_fZRelDistance := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Height - 1.0; 
+    END_IF;
+    g_bZRelExecute := TRUE;
+    (*通知吹气*)
+    g_ugas_type := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Gas;
+    g_dmaster_pressure := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Gas_Pressure;
+    g_dair_pressure := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Gas_Pressure;
+    g_doxygen_pressure := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Gas_Pressure;
+    g_dnitogen_pressure := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Gas_Pressure;
+    g_bgas_enable := TRUE; 
+    IF g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_MIDDLE.bPierEnable THEN 
+      nLayerStartState := 364;
+    ELSE   
+      IF g_bFirstGas THEN(*首吹气延时:*)
+        TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(MAX(g_nFirstGasDelayTime,g_nOpenGasDelayTimeAdd))));
+        IF TON_FirstGasDelay.Q THEN
+          TON_FirstGasDelay(IN :=FALSE);
+          g_bFirstGas := FALSE;
+          nLayerStartState := 364;
+        END_IF;
+      ELSE
+        TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nOpenGasDelayTimeAdd)));
+        IF TON_FirstGasDelay.Q THEN
+          TON_FirstGasDelay(IN :=FALSE); 
+          nLayerStartState := 364;
+        END_IF;
+      END_IF; 
+    END_IF;  
+  364:(*等待低位到达完成*)
+    nLayerStartState_bak := 364;
+    g_bFirstGas := FALSE;
+    IF g_bZRelDone THEN
+      g_bZRelExecute := FALSE;
+      nLayerStartState := 370;
+    END_IF;
+    
+  365:(*低位穿孔高度>=随动最高高度,不执行穿孔直接到位*)
+    nLayerStartState_bak := 365;
+    IF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Height <= g_dZFollowMaxHeight THEN
+      nLayerStartState := 366;
+    ELSE
+      nLayerStartState := 304;
+    END_IF;
+
+ 366:(*多级穿孔，随动到低穿孔,吹气*)
+    nLayerStartState_bak := 366;
+    g_fZFollowHeight := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Height;
+    g_bZFollowExecute := TRUE;
+    
+    g_ugas_type := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Gas;
+    g_dmaster_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Gas_Pressure;
+    g_dair_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Gas_Pressure;
+    g_doxygen_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Gas_Pressure;
+    g_dnitogen_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Gas_Pressure;
+    g_bgas_enable := TRUE;
+    IF g_bFirstGas THEN(*首吹气延时:*)
+        TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(MAX(g_nFirstGasDelayTime,g_nOpenGasDelayTimeAdd))));
+        IF TON_FirstGasDelay.Q THEN
+          TON_FirstGasDelay(IN :=FALSE);
+          g_bFirstGas := FALSE;
+          nLayerStartState := 367;
+        END_IF;
+      ELSE
+        TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nOpenGasDelayTimeAdd)));
+        IF TON_FirstGasDelay.Q THEN
+          TON_FirstGasDelay(IN :=FALSE); 
+          nLayerStartState := 367;
+        END_IF;
+      END_IF; 
+    g_bFocusDone := FALSE;
+    g_dZoomPosition := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.zoom_FoucsPosition;
+    g_bFocusEnable := TRUE;  (*通知F轴调焦*)
+  367:(*等待随动低位到位*)
+    nLayerStartState_bak := 367;
+    g_bFirstGas := FALSE; 
+    IF g_bZFollowDone THEN
+      nLayerStartState := 368;
+      g_bZFollowExecute := FALSE;
+      bZHeightJudgeOpen := FALSE;
+    END_IF;
+  368:(*关闭随动*)
+    nLayerStartState_bak := 368; 
+      g_bZFollowClose := TRUE;
+      IF g_bZFollowOutDone THEN
+        g_bZFollowClose := FALSE;
+        nLayerStartState := 370;
+      END_IF;    
+            
+  370:(*出光*)
+    nLayerStartState_bak := 370;
+    IF g_bFocusDone THEN
+      g_nPower := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_LOW.nMulitil_Piercing_Power;
+      g_nPwmFreq := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Frequency;
+      g_nPwmDuty := g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Duty;
+      g_bLaserCuttingEnable := TRUE;
+      Timer_Multil_Low(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Time)));
+      IF Timer_Multil_Low.Q THEN
+        Timer_Multil_Low(IN := FALSE);
+        nLayerStartState := 375;
+      END_IF;
+    END_IF;
+  375:(*关光*)
+    nLayerStartState_bak := 375;
+    g_bLaserCuttingEnable := FALSE;
+    nLayerStartState := 380;
+  380:(*不关气*)
+    nLayerStartState_bak := 380;
+    IF g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_LOW.bStopLight_BlowGas THEN
+      nLayerStartState := 382;
+    ELSE 
+      nLayerStartState := 383;             
+    END_IF; 
+  382: (*多级穿孔--低--停光吹气*)
+    nLayerStartState_bak := 382;
+    TON_StopLightBlow(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_TechData.multilTechData[nToolNum-1].MULTIL_PIERCING_LOW.StopLight_BlowGasTime)));
+    IF TON_StopLightBlow.Q THEN
+      TON_StopLightBlow(IN := FALSE);
+    nLayerStartState := 383;
+    END_IF;  
+  383:(*换气判断*)
+    nLayerStartState_bak := 383;
+    IF (g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Gas<>g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.nCutting_Gas) AND (g_nToolNum-1)<>6 THEN
+      g_bChangeGasFlag := TRUE;
+    END_IF;
+    nLayerStartState := 390; 
+  390:(*换气关气，预穿孔判断*)
+    nLayerStartState_bak := 390;
+    IF g_bChangeGasFlag THEN  (*换气关气，不换气不关气*)
+      g_bgas_enable := FALSE;
+    END_IF; 
+    nLayerStartState := 400; 
+  
+  400:(*切割速度*)
+    nLayerStartState_bak := 400;
+    g_nPiercingStatus := 0;
+    g_foCuttingSpeed := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Speed *1000.0;
+    nLayerStartState := 410;
+    g_bFocusDone := FALSE;
+    g_dZoomPosition := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Focus;
+    g_bFocusEnable := TRUE;(*通知F轴调焦*)  
+    g_nCurCutState :=1;
+  410:(*切割出气*)
+    nLayerStartState_bak := 410;
+    g_ugas_type := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.nCutting_Gas;
+    g_dmaster_pressure := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Gas_Pressure;
+    g_dair_pressure := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Gas_Pressure;
+    g_doxygen_pressure := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Gas_Pressure;
+    g_dnitogen_pressure := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Gas_Pressure;
+    g_bgas_enable := TRUE;
+    IF g_bProfileEnable AND NOT g_bProfileFollowEnable THEN(*板外切割：关随动切割*)
+      (*g_dProfileAltimetricCompensation : 板外起刀补偿高度：这个补偿作用于在板外关随动情况下进来，避免撞头的问题，默认值0.1*)
+      IF g_dProfileCuttingPos = 0.0 THEN
+        g_fZAbsPosition := g_dProfileCuttingSimPos + g_dProfileAltimetricCompensation;
+      ELSE
+        g_fZAbsPosition := g_dProfileCuttingPos + g_dProfileAltimetricCompensation;
+      END_IF;
+      g_bZAbsExecute := TRUE;  
+    ELSE
+      g_fZFollowHeight := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Height;
+      g_bZFollowExecute := TRUE;
+    END_IF;
+
+    IF g_bFirstGas THEN
+      IF g_bChangeGasFlag THEN 
+        nTimeTemp := g_nFirstGasDelayTime + g_nChangeGasDelayTime;
+      ELSE
+        nTimeTemp := g_nFirstGasDelayTime;
+      END_IF;
+    ELSE
+      IF g_bChangeGasFlag THEN 
+        nTimeTemp := g_nChangeGasDelayTime;
+      ELSE
+        nTimeTemp := 0;
+      END_IF;
+    END_IF;
+    IF g_TechData.multilTechData[nToolNum-1].nPiercing_Type=0 THEN
+      nTimeTemp := nTimeTemp + g_nOpenGasDelayTimeAdd;
+    END_IF;
+    TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTimeTemp)));
+    IF TON_FirstGasDelay.Q THEN
+      TON_FirstGasDelay(IN :=FALSE);
+      IF g_bProfileEnable AND NOT g_bProfileFollowEnable THEN(*板外切割：关随动切割*)
+        nLayerStartState := 422;
+      ELSE
+        nLayerStartState := 420;
+      END_IF;
+    END_IF;
+    
+  415:
+    nLayerStartState_bak := 415;
+    g_ugas_type := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.nCutting_Gas;
+    g_dmaster_pressure := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Gas_Pressure;
+    g_dair_pressure := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Gas_Pressure;
+    g_doxygen_pressure := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Gas_Pressure;
+    g_dnitogen_pressure := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Gas_Pressure;
+    g_bgas_enable := TRUE;
+    IF g_bFirstGas THEN
+      IF g_bChangeGasFlag THEN 
+        nTimeTemp := g_nFirstGasDelayTime + g_nChangeGasDelayTime;
+      ELSE
+        nTimeTemp := g_nFirstGasDelayTime;
+      END_IF;
+    ELSE
+      IF g_bChangeGasFlag THEN 
+        nTimeTemp := g_nChangeGasDelayTime;
+      ELSE
+        nTimeTemp := g_nOpenGasDelayTimeAdd;
+      END_IF;
+    END_IF;
+    IF g_TechData.multilTechData[nToolNum-1].nPiercing_Type=0 THEN
+      nTimeTemp := nTimeTemp + g_nOpenGasDelayTimeAdd;
+    END_IF;
+    TON_FirstGasDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTimeTemp)));
+    IF TON_FirstGasDelay.Q THEN
+
+      TON_FirstGasDelay(IN :=FALSE);
+
+      nLayerStartState := 425;
+
+    END_IF;
+  
+  420:(*等待切割随动到位*)
+    nLayerStartState_bak := 420; 
+    g_bChangeGasFlag := FALSE;   (*复位换气标志位*) 
+    g_bFirstGas := FALSE;        (*复位首吹气标志位*)
+    IF g_bZFollowDone THEN
+      g_bZFollowExecute := FALSE;
+      TON_FirstGasDelay(IN := FALSE);
+      nLayerStartState := 430;
+      IF g_bProcessHalCloseFollowState THEN
+        nLayerStartState := 427;
+      END_IF;
+      bZHeightJudgeOpen := FALSE;
+    END_IF;
+  422:(*板外切割：等待切割到位*)
+    nLayerStartState_bak := 422; 
+    g_bChangeGasFlag := FALSE;   (*复位换气标志位*) 
+    g_bFirstGas := FALSE;        (*复位首吹气标志位*)
+    IF g_bZAbsDone THEN
+      g_bZAbsExecute := FALSE;  
+      TON_FirstGasDelay(IN := FALSE);
+      nLayerStartState := 430;
+    END_IF;
+  425:  
+    nLayerStartState_bak := 425; 
+    g_bChangeGasFlag := FALSE;   (*复位换气标志位*) 
+    g_bFirstGas := FALSE;        (*复位首吹气标志位*)
+    nLayerStartState := 430; 
+    
+  427:(*引脚触发关随动切割，随动下来后，把随动关了*)
+    nLayerStartState_bak := 427;
+    g_bZFollowClose := TRUE;
+    IF g_bZFollowOutDone THEN
+      g_bZFollowClose := FALSE;
+      TON_FirstGasDelay(IN := FALSE);
+      nLayerStartState := 430;
+    END_IF;
+  430:(*切割出光*)
+   nLayerStartState_bak := 430;
+    IF g_bFocusDone THEN(*调焦完成*)
+        g_nPower := LREAL_TO_UINT(UINT_TO_LREAL(g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.nCutting_Power));
+        g_nPwmFreq := LREAL_TO_UINT(UINT_TO_LREAL(g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.nCutting_Frequency));
+        g_nPwmDuty := LREAL_TO_UINT(UINT_TO_LREAL(g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.nCutting_Duty));
+        g_bLaserCuttingEnable := TRUE;
+        IF g_bProcessHalCloseLaserState THEN(*外部M代码关光标志*)
+          g_bLaserCuttingEnable := FALSE;
+        END_IF;
+        IF g_bLayerStartOffLaser THEN(*轮廓随动不开关标志位,直到引脚开随动将它冲掉*)
+          g_bLaserCuttingEnable := FALSE;
+        END_IF; 
+        nLayerStartState := 440;
+    END_IF;
+  440:(*开启NC运动使能*)
+    nLayerStartState_bak := 440;
+    TON_PreCutDelay(IN:=TRUE,PT :=LREAL_TO_TIME(FUN_MStoS(g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.nCutting_PreCutDelay)));
+    IF TON_PreCutDelay.Q THEN(*预切割延时：延时完成开始NC运动*)
+      TON_PreCutDelay(IN :=FALSE);
+      g_boCNCMoveDisable := FALSE;
+      nLayerStartState := 500;
+    END_IF;   
+  500:(*切割中*)
+    nLayerStartState_bak := 500;
+    g_foCuttingSpeed := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Speed *1000.0;
+    nLayerStartState := 500;
+    g_nCurCutState :=1;
+  501:(*板外切割 第二阶段 空行中*)
+    nLayerStartState_bak := 501;
+    g_foCuttingSpeed := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Speed *1000.0;
+    nLayerStartState := 501;
+    g_nCurCutState :=0;
+  600:(*和速度为0*)
+    IF g_fiXYUCurrentSpeed<=0.001 THEN
+      nLayerStartState := 601;
+    END_IF;
+  601:
+    (*暂停-关光关气*)
+    IF g_bDryRunEnable OR g_bDebugMode THEN
+      nLayerStartState := 602;
+    ELSE
+      IF g_bLaserCuttingEnable THEN
+        TON_PauseStopLaserDelay(IN:=TRUE,PT :=LREAL_TO_TIME(FUN_MStoS(g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.nCutting_PauseStopLaserDelay)));
+        IF TON_PauseStopLaserDelay.Q THEN(*暂停关光延时*)
+          TON_PauseStopLaserDelay(IN :=FALSE);
+          g_bLaserCuttingEnable := FALSE;
+          bCloseGasDelayEnable := TRUE;
+          g_bgas_enable := FALSE;
+          nLayerStartState := 602;
+        END_IF;
+      ELSE
+        g_bgas_enable := FALSE;
+        g_bLaserCuttingEnable := FALSE;
+        bCloseGasDelayEnable := TRUE;
+        nLayerStartState := 602;
+      END_IF;
+    END_IF;
+  602: 
+    g_bZLiftExecute := FALSE;
+    IF Axis_Z.NCTOPLC.AXISSTATE = 2 THEN
+      nLayerStartState := 610;
+    END_IF;
+  610:
+    (*遇到某些不需要上抬的情况，直接进入下一个状态机，否则上抬*)
+    IF g_bDryRunEnable OR bLookBackEnable OR g_bDebugMode THEN
+      nLayerStartState := 620;
+    ELSE
+      g_bZLiftExecute := TRUE;
+    END_IF;
+    IF g_bZLiftingDone THEN
+      g_bZLiftExecute := FALSE;
+      nLayerStartState := 620;
+    END_IF;
+  620:(*暂停*)
+    IF nLayerStartState_bak=0 THEN
+      nLayerStartState := 0;
+    ELSIF bLookBackEnable OR g_bFallBackStatusFb OR g_bAutoExecuteFallBack  THEN
+      nLayerStartState := 0;
+      g_boCNCMoveDisable := FALSE;
+      bLookBackDone := TRUE;
+      g_bAutoExecuteFallBack := FALSE;
+    ELSIF bCurState AND (g_bDryRunEnable OR g_bDebugMode) THEN
+      nLayerStartState := 500;
+      g_boCNCMoveDisable := FALSE;
+    ELSIF bCurState AND nLayerStartState_bak>=400 THEN
+      IF nLayerStartState_bak >=440 THEN
+        bStratAfterPause := TRUE; 
+      END_IF;
+      nLayerStartState := 400;
+      g_boCNCMoveDisable := TRUE;
+    ELSIF bCurState AND nLayerStartState_bak<400 THEN
+      nLayerStartState := 9;
+    END_IF;
+END_CASE;
+
+CASE nLayerEndState OF
+  0:(*空闲*)
+    nLayerEndState_bak := 0;
+    nLayerEndState := 0;
+    WaitTimeOut(IN := FALSE);
+  10:(*关闭CNC运动使能*)
+    nLayerEndState_bak := 10;
+    g_boCNCMoveDisable := TRUE;
+    nLayerEndState := 100;
+  100:(*关闭切割关光*)
+    nLayerEndState_bak := 100;
+    Timer_LayerEndStopLightTime(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nLayerEndStopLight_Time)));
+    IF Timer_LayerEndStopLightTime.Q THEN
+      Timer_LayerEndStopLightTime(IN := FALSE);
+      g_bLaserCuttingEnable := FALSE;
+      g_nCurCutState :=0;
+      (*型材切割有可能会出现未开随动轮廓结束，所以执行Layer_End，如果发现不在随动状态，直接跳过关随动状态机*)
+      IF Axis_Z.NCTOPLC.AxisState = 9 THEN
+        nLayerEndState := 110;
+      ELSE
+        bCloseGasDelayEnable := TRUE;
+        nLayerEndState := 200;
+      END_IF;
+    END_IF;
+  110:(*关闭切割关气，关随动*)
+    nLayerEndState_bak := 110;
+    bCloseGasDelayEnable := TRUE;
+    g_bZFollowExecute := FALSE;
+    g_bZFollowClose := TRUE;
+    IF g_bZFollowOutDone THEN
+      (*如果是微连的话，不需要进入111，直接进入上抬判断*)
+      IF LREAL_TO_INT(g_fMicroConnectEnableM) = 1 THEN
+        nLayerEndState := 200;
+        g_boClaw3UpLiftDone := TRUE;
+      ELSIF g_nMachineType = 6 THEN
+        nLayerEndState := 111;
+      ELSIF g_nMachineType = 9 THEN
+        nLayerEndState := 130;
+      ELSE
+        nLayerEndState := 200;
+      END_IF;
+      g_bZFollowClose := FALSE;
+      IF g_bRealTimeCAlibrateStarting THEN
+        g_bRealTimeCAlibrateStarting := FALSE;
+        g_bZLiftExecute := TRUE;
+        nLayerEndState := 307;
+      END_IF;
+    END_IF;
+  111:
+    nLayerEndState_bak := 111;
+    g_boCNCMoveDisable := TRUE;
+  
+    IF bUpLiftFlag OR (g_dNestingDistanceToGoM = 0.0 AND g_dNestingMotionAngleM = 0.0) THEN
+      IF Axis_Z.NCTOPLC.ACTPOS > (g_fLiftCoord - 1.0) THEN
+        nLayerEndState := 600;
+        g_boCNCMoveDisable := FALSE;
+      ELSE
+        nLayerEndState := 200;
+      END_IF;
+    ELSIF bClaw3UpLiftFlag THEN
+      IF Axis_Z.NCTOPLC.ACTPOS >= (g_fLiftCoord - 1.0) THEN
+        nLayerEndState := 120;
+      ELSE
+        g_bZRelExecute := FALSE;
+        nLayerEndState := 115;
+      END_IF;
+    END_IF;
+  115:
+    nLayerEndState_bak := 115;
+    g_bZRelExecute := TRUE;
+    g_fZRelDistance := dUpLiftheight;
+    IF g_bZRelDone THEN
+      g_bZRelExecute := FALSE;
+      g_boClaw3UpLiftDone := TRUE;
+      nLayerEndState := 120;
+    END_IF;
+  120:
+    nLayerEndState_bak := 120;
+    g_boClaw3UpLiftDone := TRUE;
+   
+    IF bUpLiftFlag THEN
+      IF Axis_Z.NCTOPLC.ACTPOS > (g_fLiftCoord - 1.0) THEN
+        nLayerEndState := 600;
+        g_boCNCMoveDisable := FALSE;
+      ELSE
+        nLayerEndState := 200;
+      END_IF;
+    END_IF;
+  130:
+    g_boCNCMoveDisable := FALSE;
+    IF g_boBoendeCheckDone THEN
+      g_boCNCMoveDisable := TRUE;
+      nLayerEndState := 200;
+    END_IF;
+  200:(*判断是否蛙跳*)
+    nLayerEndState_bak := 200;
+   
+    (*没有蛙跳，直接上抬*)
+    IF bFrogLeapEnable AND (g_dNestingDistanceToGoM <> 0.0 OR g_dNestingMotionAngleM <> 0.0) THEN(*当下个零件剩余角度和距离都为0时，确认已经是最后一个轮廓了，不蛙跳。*)
+      nLayerEndState := 210;(*执行蛙跳*)
+      IF g_dNestingIsUseSideCenterM<>0.0 OR g_dNestingIsPullerM = 1.0 THEN(*下个轮廓执行分中的话，就不执行蛙跳了,下个轮廓要拉料的话也不要蛙跳*)
+        nLayerEndState := 300;(*直接上抬*) 
+      END_IF;
+    ELSE
+      nLayerEndState := 300;(*直接上抬*) 
+    END_IF;
+    IF bFrogLeapEnable AND g_bClaw2Aoiding THEN(*当前情况是当卡盘避让和蛙跳同时执行时，蛙跳上台而cnc未运动，Z轴重新上台到轮廓高度，确保管子不碰到切割头*)
+      g_bClaw2Aoiding := FALSE;
+      nLayerEndState := 300;(*直接上抬*)
+    END_IF;
+    (*根据不同管型，获取△上抬距离（安全距离） pipetype: 0、平面 1、圆 2、矩形 3、腰 4、椭圆 5、D型管 10、H钢 11、角钢*)
+    dXCoordToCenter := ABS(g_diXMachineCoordinate - g_dBeamCenterPos);(*X轴当前坐标距离X轴中心的距离*)
+    IF g_nPipeType = 1 THEN 
+      IF dXCoordToCenter >= 0.5 THEN(*判断是平面孔情况的还是空间孔情况*) 
+         (*如果轮廓跳转时检测到X轴不在中心位置，需要上抬保证安全*)
+         dCircleLiftTemp := SQRT(g_dCircleRadius*g_dCircleRadius - dXCoordToCenter*dXCoordToCenter);
+         dMaxChangeHeight := g_dCircleRadius - dCircleLiftTemp + 1.0;
+      ELSE
+        dMaxChangeHeight := 0.0; 
+      END_IF;
+    ELSIF g_nPipeType = 2 OR g_nPipeType = 11 THEN
+      dMaxChangeHeight := SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0) - MIN(g_dSquareLenght,g_dSquareWidth)/2.0 + 10.0;
+    ELSIF g_nPipeType = 3 OR g_nPipeType = 4 THEN  
+      dMaxChangeHeight := (g_dSquareLenght-g_dSquareWidth)/2.0 + 5.0;
+    ELSIF g_nPipeType = 10 THEN
+      dMaxChangeHeight := SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0) + 10.0;
+     ELSIF g_nPipeType = 12 THEN
+       dMaxChangeHeight := SQRT(g_dBoundRectangleWidth*g_dBoundRectangleWidth/4.0 + g_dBoundRectangleheight*g_dBoundRectangleheight/4.0) - MIN(g_dBoundRectangleWidth,g_dBoundRectangleheight)/2.0 + 10.0; 
+    ELSE(*对于未做蛙跳处理的管型，默认不蛙跳，比如椭圆管，腰管*) 
+      dMaxChangeHeight := 0.0;
+      nLayerEndState := 300;
+    END_IF;
+    
+  210:(*蛙跳情况分类*)
+    nLayerEndState_bak := 210;
+    (*下个零件距离和角度的比值*)
+    dDistanceAndAngleRealRate := g_dNestingDistanceToGoM/g_dNestingMotionAngleM;
+    dDistanceAndAngleRate := 1.0/3.0;
+    (*pipetype: 0、平面 1、圆 2、矩形 3、腰 4、椭圆 5、D型管 10、H钢 11、角钢*)
+    IF g_nPipeType = 1 THEN   
+      IF g_dNestingMotionAngleM = 0.0 THEN
+          bFropLeapType := 2;(*根据X（或Y轴）和Z轴的速度比计算蛙跳上抬的高度*)
+          nLayerEndState := 500; 
+      ELSE 
+        IF g_dNestingDistanceToGoM = 0.0 THEN
+          bFropLeapType := 1;
+        ELSE(*按比例来，大于比例用距离，小于比例用角度*)
+          IF dDistanceAndAngleRealRate > dDistanceAndAngleRate THEN
+            bFropLeapType := 2;
+          ELSE
+            bFropLeapType := 1;
+          END_IF;
+        END_IF;
+        nLayerEndState := 500;  
+      END_IF;
+    ELSIF g_nPipeType = 2 OR g_nPipeType = 10 OR g_nPipeType = 11 THEN 
+      (*判断是不是在同一面蛙跳*)
+      IF g_dNestingMotionAngleM = 0.0 THEN(*蛙跳到同一面*) 
+        bFropLeapType := 2;
+        dMaxChangeHeight := 0.0;
+        nLayerEndState := 520;(*无安全隐患，直接蛙跳*) 
+      ELSE(*蛙跳到另一面*)
+        IF g_dNestingDistanceToGoM = 0.0 THEN
+          bFropLeapType := 1;
+        ELSE(*按比例来，大于比例用距离，小于比例用角度*)
+          IF dDistanceAndAngleRealRate > dDistanceAndAngleRate THEN
+            bFropLeapType := 2;
+          ELSE
+            bFropLeapType := 1;
+          END_IF; 
+        END_IF ;  
+        nLayerEndState := 500;
+      END_IF;
+    ELSIF g_nPipeType = 3 THEN (*腰管*)
+      (*判断是不是在同一面蛙跳*)
+      IF g_dNestingMotionAngleM = 0.0 THEN(*蛙跳到同一面*) 
+        bFropLeapType := 2;
+        nLayerEndState := 500;
+        (*当前切割头如果在腰管的AC面的同一水平面*)
+        (*IF dXCoordToCenter <= (g_dSquareLenght-g_dSquareWidth)/2.0 THEN
+          dMaxChangeHeight := 0.0;
+          nLayerEndState := 520; 
+        END_IF;*) (*无安全隐患，直接蛙跳*) 
+      ELSE(*蛙跳到另一面*)
+        IF g_dNestingDistanceToGoM = 0.0 THEN
+          bFropLeapType := 1;
+        ELSE(*按比例来，大于比例用距离，小于比例用角度*)
+          IF dDistanceAndAngleRealRate > dDistanceAndAngleRate THEN
+            bFropLeapType := 2;
+          ELSE
+            bFropLeapType := 1;
+          END_IF; 
+        END_IF ;  
+        nLayerEndState := 500;
+      END_IF;
+    ELSIF g_nPipeType = 4 THEN 
+      (*判断是不是在同一面蛙跳*)
+      IF g_dNestingMotionAngleM = 0.0 THEN(*蛙跳到同一面*) 
+        bFropLeapType := 2;
+        nLayerEndState := 500;
+      ELSE(*蛙跳到另一面*)
+        IF g_dNestingDistanceToGoM = 0.0 THEN
+          bFropLeapType := 1;
+        ELSE(*按比例来，大于比例用距离，小于比例用角度*)
+          IF dDistanceAndAngleRealRate > dDistanceAndAngleRate THEN
+            bFropLeapType := 2;
+          ELSE
+            bFropLeapType := 1;
+          END_IF; 
+        END_IF ;  
+        nLayerEndState := 500;
+      END_IF;
+    END_IF;
+   
+    WaitTimeOut(IN := TRUE,PT := T#30ms);
+    IF WaitTimeOut.Q THEN
+      nLayerEndState := 300; (*layend触发了,但是拿不到剩余距离，延时到了之后就直接上抬*)
+      g_bZRelExecute := FALSE;
+      WaitTimeOut(IN := FALSE);
+    END_IF;
+  300:(*不蛙跳上抬*)
+    nLayerEndState_bak := 300;
+    IF g_dNestingDistanceToGoM=0.0 AND g_dNestingMotionAngleM=0.0 THEN (*判断下个轮廓的移动距离和角度同时为0即为程序结束直接上抬到最高点*)
+      g_bZLiftExecute := TRUE;
+      nLayerEndState := 307;
+    ELSIF (Axis_Z.NCTOPLC.ACTPOS + dUpLiftheight + dMaxChangeHeight) <= g_fLiftCoord THEN
+      (*dUpLiftheight:轮廓间上抬高度  dMaxChangeHeight：△上抬距离（安全距离）*)
+       g_fZRelDistance := dUpLiftheight + dMaxChangeHeight;
+        nLayerEndState := 305;
+    ELSE
+      g_bZLiftExecute := TRUE;
+      nLayerEndState := 307;
+    END_IF; 
+  305:
+    g_bZRelExecute := TRUE;
+    IF g_bZRelDone THEN
+      g_bZRelExecute := FALSE;
+      nLayerEndState := 310;
+    END_IF;
+  307:
+    nLayerEndState_bak := 307;
+    IF g_bZLiftingDone THEN
+      nLayerEndState := 310;
+      g_bZLiftExecute := FALSE;
+    END_IF;
+  310:(*不蛙跳：开启CNC运动使能*)
+    nLayerEndState_bak := 310; 
+    g_boCNCMoveDisable := FALSE;
+    nLayerEndState := 600; 
+    
+   
+  500:(*蛙跳前：计算避让上抬安全高度*) 
+    nLayerEndState_bak := 500;
+    
+    IF g_nPipeType = 1 THEN 
+      dXCoordToCenter := ABS(g_diXMachineCoordinate - g_dBeamCenterPos);(*X轴当前坐标距离X轴中心的距离*)
+      IF dXCoordToCenter >= 0.5 THEN(*判断是平面孔情况的还是空间孔情况*) 
+         (*如果轮廓跳转时检测到X轴不在中心位置，需要上抬保证安全*)
+         dCircleLiftTemp := SQRT(g_dCircleRadius*g_dCircleRadius - dXCoordToCenter*dXCoordToCenter);
+         dMaxChangeHeight := g_dCircleRadius - dCircleLiftTemp;
+      ELSE
+        dMaxChangeHeight := 0.0; 
+      END_IF;
+    ELSIF g_nPipeType = 2 OR g_nPipeType = 11 THEN
+      dMaxChangeHeight := SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0) - MIN(g_dSquareLenght,g_dSquareWidth)/2.0;
+    ELSIF g_nPipeType = 3 OR g_nPipeType = 4 THEN  
+      dMaxChangeHeight := (g_dSquareLenght-g_dSquareWidth)/2.0;
+    ELSIF g_nPipeType = 10 THEN
+      dMaxChangeHeight := SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0); 
+    END_IF;
+    nLayerEndState := 520; 
+  520:(*蛙跳 ：根据U或者X或者Y轴速度于Z速度的比值计算可上抬高度*) 
+    nLayerEndState_bak := 520;  
+    IF bFropLeapType = 1 THEN(*U/Z*)(*根据U轴和Z轴的速度比计算蛙跳上抬的高度*)
+      dG00Vel := g_dUG00Vel; 
+      dCalUpliftHight := 0.5*g_dNestingMotionAngleM*g_fZAxisVel/dG00Vel;(*同比例下Z轴能上抬的高度*)
+    ELSIF bFropLeapType = 2 THEN(*X/Z*)(*根据X（或Y轴）和Z轴的速度比计算蛙跳上抬的高度*)
+      dG00Vel := MIN(g_dXG00Vel,g_dYG00Vel); 
+      dCalUpliftHight := 0.5*g_dNestingDistanceToGoM*g_fZAxisVel/dG00Vel;(*同比例下Z轴能上抬的高度*)
+    END_IF;  
+    (*对计算出来的高度进行异常过滤*)
+    IF dCalUpliftHight > dUpLiftheight OR dCalUpliftHight <= 0.0 THEN (*如果计算出来的上抬高度,大于设置上抬高度则用设置上抬高度*)
+       dCalUpliftHight := dUpLiftheight;
+    END_IF; 
+    dFropLeapLiftUpHeight := dMaxChangeHeight + dCalUpliftHight;
+    nLayerEndState := 525;  
+  525:(*蛙跳：蛙跳开启CNC运动使能*) 
+    nLayerEndState_bak := 525;
+    IF Axis_Z.NCTOPLC.ACTPOS  >= g_fLiftCoord THEN
+      g_fZRelDistance := 0.0;  
+    ELSIF Axis_Z.NCTOPLC.ACTPOS  < g_fLiftCoord THEN
+      IF Axis_Z.NCTOPLC.ACTPOS + dFropLeapLiftUpHeight >= g_fLiftCoord THEN
+        g_fZRelDistance := g_fLiftCoord - Axis_Z.NCTOPLC.ACTPOS;
+      ELSE
+        g_fZRelDistance := dFropLeapLiftUpHeight;
+      END_IF;
+    END_IF;
+    dZSetPosTemp := Axis_Z.NCTOPLC.ACTPOS;
+    g_bZRelExecute := TRUE;
+    nLayerEndState := 530; 
+  530:(*蛙跳：蛙跳上抬*)(* 边上抬边CNC移动*)
+    nLayerEndState_bak := 530;
+    IF g_bZRelDone THEN
+      g_bZRelExecute := FALSE;
+      g_boCNCMoveDisable := FALSE; 
+      nLayerEndState := 540;
+    ELSIF Axis_Z.NCTOPLC.ACTPOS - dZSetPosTemp >= dMaxChangeHeight THEN(*高度在上抬到大于安全高度的位置，就可以移动CNC轴进行蛙跳了*)
+      g_boCNCMoveDisable := FALSE; 
+      nLayerEndState := 535;
+    END_IF;  
+  535:(*蛙跳上抬中*)
+    nLayerEndState_bak := 535;
+    IF g_bZRelDone THEN
+      g_bZRelExecute := FALSE;
+      g_boCNCMoveDisable := FALSE;
+      nLayerEndState := 540;
+    END_IF; 
+  540:(*蛙跳上抬完成，获取CNC传来的剩余角度或剩余数据，等待下落条件满足*)
+    nLayerEndState_bak := 540;
+    IF bFropLeapType=1 THEN
+      dResidueTemp := g_diMotionAngle;
+    ELSIF bFropLeapType=2 THEN
+      dResidueTemp := g_diMotionDistance;
+    END_IF; 
+    IF dResidueTemp = 0.0 THEN (*如果获取的数据为零，可能还未传过来，延时等待一下*)
+      IF g_bClaw2Aoiding OR g_bProcessEndStopFlag THEN(*由别处将触发打断蛙跳时，将直接上抬：卡盘避让，计件暂停报警*)
+        IF Axis_Z.NCTOPLC.ACTPOS >= dUpLiftheight THEN
+          nLayerEndState := 600;
+        ELSE 
+          nLayerEndState := 200;
+        END_IF;
+        Ton_wait1(IN :=FALSE);
+      ELSIF g_doMCodeEnable<>0.0 THEN (*如果有M代码正在执行中，那么等待M代码的enable为0，否则会拿不到CNC传来的剩余角度或剩余数据*)
+        Ton_wait1(IN :=FALSE);
+      ELSE
+        Ton_wait1(IN := TRUE,PT := T#100ms); 
+        IF Ton_wait1.Q THEN
+          Ton_wait1(IN :=FALSE);
+          nLayerEndState := 545;
+        END_IF;
+      END_IF;
+    ELSE
+       Ton_wait1(IN :=FALSE);
+       nLayerEndState := 545;
+    END_IF; 
+  545:(*等待满足蛙跳随动下落条件*)
+    nLayerEndState_bak := 545;
+    IF g_dNestingDistanceToGoM = 0.0 AND g_dNestingMotionAngleM <> 0.0 THEN
+      g_doLeapfrogDownType := 1.0;
+      (*情况1:当实际剩余角度小于提前下落角度时，开启随动下落，提前下落角度不能太大，所以需要限制*)
+      IF (g_diMotionAngle <= MIN(dFrogLeapPreAngle,15.0)) THEN 
+        nLayerEndState := 580;
+      END_IF;  
+    ELSIF g_dNestingDistanceToGoM <> 0.0 AND g_dNestingMotionAngleM = 0.0 THEN
+      g_doLeapfrogDownType := 2.0;
+      (*情况2：当实际剩余距离小于蛙跳提前下落距离时，开始随动下落，如果蛙跳提前下落距离大于下个零件剩余距离的一半，则取下个零件剩余距离的一半*)
+      IF g_diMotionDistance <= MIN(dFrogLeapPreDistance,0.5*g_dNestingDistanceToGoM) THEN 
+        nLayerEndState := 580;
+      END_IF; 
+    ELSE
+      g_doLeapfrogDownType := 3.0;
+      (*情况3：同时满足1、2条件*)
+      (*1 、当实际剩余角度小于提前下落角度时，开启随动下落，提前下落角度不能太大，所以需要限制*)
+      (*2 、当实际剩余距离小于蛙跳提前下落距离时，开始随动下落，如果蛙跳提前下落距离大于下个零件剩余距离的一半，则取下个零件剩余距离的一半*)
+      IF (g_diMotionAngle <= MIN(dFrogLeapPreAngle,15.0)) AND (g_diMotionDistance <= MIN(dFrogLeapPreDistance,0.5*g_dNestingDistanceToGoM)) THEN 
+        nLayerEndState := 580;
+      END_IF;
+    END_IF; 
+ 
+  580:(*蛙跳随动下落*)
+
+    nLayerEndState_bak := 580;
+
+    IF g_TechData.multilTechData[g_nToolNum-1].nPiercing_Type=0 THEN
+
+      nLayerEndState := 582;
+
+    ELSIF g_TechData.multilTechData[g_nToolNum-1].nPiercing_Type=1 THEN
+
+      nLayerEndState := 584;
+
+    ELSE
+
+      nLayerEndState := 587;
+
+    END_IF;
+
+  582:  (*直接切割高度>=随动最高高度，蛙跳到1mm*)
+
+    nLayerEndState_bak := 582;
+    IF g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.fCutting_Height <= g_dZFollowMaxHeight THEN
+
+      g_fZFollowHeight := g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.fCutting_Height;  
+
+    ELSE
+
+      g_fZFollowHeight := 1.0;
+
+    END_IF;      
+
+    g_bZFollowExecute := TRUE;
+
+    
+
+    g_ugas_type := g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.nCutting_Gas;
+
+    g_dmaster_pressure := g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.fCutting_Gas_Pressure;
+
+    g_dair_pressure := g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.fCutting_Gas_Pressure;
+
+    g_doxygen_pressure := g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.fCutting_Gas_Pressure;
+
+    g_dnitogen_pressure := g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.fCutting_Gas_Pressure;
+
+    g_bgas_enable := TRUE;
+
+    TON_FrogLeapOpenGas(IN := TRUE,PT := T#20s);  (*蛙跳出气计时*)
+
+    IF g_bZFollowDone THEN
+
+      nLayerEndState := 588;
+
+      g_bZFollowExecute := FALSE;
+      bZHeightJudgeOpen := FALSE;
+    END_IF;
+
+  584:
+
+    nLayerEndState_bak := 584;
+
+    IF g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Height <= g_dZFollowMaxHeight THEN 
+
+      g_fZFollowHeight := g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Height;
+
+    ELSE
+
+      g_fZFollowHeight := 1.0;
+
+    END_IF;
+
+    g_bZFollowExecute := TRUE;
+
+    g_ugas_type := g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.nNormal_Piercing_Gas;
+
+    g_dmaster_pressure := g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Gas_Pressure;
+
+    g_dair_pressure := g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Gas_Pressure;
+
+    g_doxygen_pressure := g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Gas_Pressure;
+
+    g_dnitogen_pressure := g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Gas_Pressure;
+
+    g_bgas_enable := TRUE;  (*蛙跳下落开始出气*)
+
+    TON_FrogLeapOpenGas(IN := TRUE,PT := T#20s);  (*蛙跳出气计时*)
+
+    IF g_bZFollowDone THEN
+
+      nLayerEndState := 588;
+
+      g_bZFollowExecute := FALSE;
+      bZHeightJudgeOpen := FALSE;
+    END_IF;
+
+  587:
+
+    nLayerEndState_bak := 587;
+
+    (*蛙跳下落位置*)
+
+      IF g_TechData.multilTechData[g_nToolNum-1].nPiercing_Type=2 THEN (*渐进穿孔*)
+
+        IF g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.bBurstingHole_Enable THEN (*是否爆孔*)
+
+          IF g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Height <= g_dZFollowMaxHeight THEN (*爆孔高度<随动最高高度，否则需要探底后再到爆孔位置*)
+
+            g_fZFollowHeight := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Height;
+
+            ELSE
+
+              g_fZFollowHeight := 1.0;
+
+            END_IF; 
+
+        ELSE
+
+          g_fZFollowHeight := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Height;
+
+        END_IF;
+
+      ELSIF g_TechData.multilTechData[g_nToolNum-1].nPiercing_Type=3 THEN (*多级穿孔*)
+
+        IF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.bPierEnable THEN
+
+          IF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Height <= g_dZFollowMaxHeight THEN
+
+            g_fZFollowHeight := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Height;
+
+          ELSE
+
+            g_fZFollowHeight := 1.0;
+
+          END_IF; 
+
+        ELSIF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.bPierEnable THEN
+
+          IF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Height <= g_dZFollowMaxHeight THEN
+
+            g_fZFollowHeight := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Height;
+
+          ELSE
+
+            g_fZFollowHeight := 1.0;
+
+          END_IF; 
+
+        ELSIF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.bPierEnable THEN
+
+          IF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Height <= g_dZFollowMaxHeight THEN
+
+            g_fZFollowHeight := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Height;
+
+          ELSE
+
+            g_fZFollowHeight := 1.0;
+
+          END_IF;
+
+        END_IF;
+
+      END_IF;    
+
+    g_bZFollowExecute := TRUE;
+
+    IF g_bZFollowDone THEN
+
+      nLayerEndState := 588;
+
+      g_bZFollowExecute := FALSE;
+      bZHeightJudgeOpen := FALSE;
+    END_IF;
+
+    
+
+    (*蛙跳下落出气*)
+
+    IF g_TechData.multilTechData[g_nToolNum-1].nPiercing_Type=2 THEN (*渐进穿孔*)
+
+        IF g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.bBurstingHole_Enable THEN (*是否爆孔*)
+
+          g_ugas_type := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.nBurstingHole_gas;
+
+          g_dmaster_pressure := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fBurstingHole_gas_pressure;
+
+          g_dair_pressure := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fBurstingHole_gas_pressure;
+
+          g_doxygen_pressure := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fBurstingHole_gas_pressure;
+
+          g_dnitogen_pressure := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fBurstingHole_gas_pressure;
+
+        ELSE
+
+          g_ugas_type := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.nMove_Piercing_Gas;
+
+          g_dmaster_pressure := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Gas_Pressure;
+
+          g_dair_pressure := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Gas_Pressure;
+
+          g_doxygen_pressure := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Gas_Pressure;
+
+          g_dnitogen_pressure := g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.fMove_Piercing_Gas_Pressure;
+
+        END_IF;
+
+    ELSIF g_TechData.multilTechData[g_nToolNum-1].nPiercing_Type=3 THEN (*多级穿孔*)
+
+        IF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.bPierEnable THEN
+
+          g_ugas_type := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Gas;
+
+          g_dmaster_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Gas_Pressure;
+
+          g_dair_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Gas_Pressure;
+
+          g_doxygen_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Gas_Pressure;
+
+          g_dnitogen_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Gas_Pressure;
+
+        ELSIF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.bPierEnable THEN
+
+          g_ugas_type := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Gas;
+
+          g_dmaster_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Gas_Pressure;
+
+          g_dair_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Gas_Pressure;
+
+          g_doxygen_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Gas_Pressure;
+
+          g_dnitogen_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Gas_Pressure;
+
+        ELSIF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.bPierEnable THEN
+
+          g_ugas_type := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Gas;
+
+          g_dmaster_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Gas_Pressure;
+
+          g_dair_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Gas_Pressure;
+
+          g_doxygen_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Gas_Pressure;
+
+          g_dnitogen_pressure := g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.Mulitil_Piercing_Gas_Pressure;
+
+        END_IF;
+
+    END_IF;
+
+    g_bgas_enable := TRUE;
+
+    TON_FrogLeapOpenGas(IN := TRUE,PT := T#20s);  (*蛙跳出气计时*)
+  588:
+    nLayerEndState_bak := 588;
+    TON_CloseGasDelay(IN :=FALSE);
+    TON_FirstGasDelay(IN := TRUE);
+    IF (g_niMotionType=1 AND g_diMotionDistance<=0.05 AND g_diMotionAngle<=0.05) OR g_niMotionType<>1 THEN
+        g_bZFollowClose := TRUE;
+    END_IF;
+    IF g_bZFollowOutDone THEN
+      nLayerEndState := 600;
+      g_bZFollowClose := FALSE;
+    END_IF;
+  600:(*LayerEnd完成*)(*用于layerStart中等其结束防止异常结束,建议采集高电平*)
+    nLayerEndState_bak := 600;
+    g_boLayerEndDone := TRUE;
+    g_boClaw3UpLiftDone := TRUE;
+    g_dNestingDistanceToGoM := 0.0;
+    g_dNestingMotionAngleM := 0.0;
+    g_dNestingIsUseSideCenterM := 0.0;
+    nLayerEndState := 601;
+  601:
+    nLayerEndState_bak := 601;
+    nLayerEndState := 601;
+  700:(*暂停*)
+    g_bZLiftExecute := FALSE;
+    IF Axis_Z.NCTOPLC.AXISSTATE = 2 THEN
+      nLayerEndState := 710;
+    END_IF;
+  710:
+    IF g_bDryRunEnable OR bLookBackEnable OR g_bDebugMode OR g_bFallBackStatusFb OR g_bAutoExecuteFallBack  THEN
+      nLayerEndState := 720;
+    ELSE
+      g_bZLiftExecute := TRUE;
+    END_IF;
+    IF g_bZLiftingDone THEN
+      g_bZLiftExecute := FALSE;
+      nLayerEndState := 720;
+    END_IF;
+  720:
+    IF nLayerEndState_bak=0 THEN
+      nLayerEndState := 0;
+    ELSIF bLookBackEnable  OR g_bFallBackStatusFb OR g_bAutoExecuteFallBack  THEN
+      g_boCNCMoveDisable := FALSE;
+      nLayerEndState := 0;
+      bLookBackDone := TRUE;
+      g_boLayerEndDone := TRUE;
+      g_bAutoExecuteFallBack := FALSE;
+    ELSIF bCurState THEN
+      IF g_bDryRunEnable OR g_bDebugMode THEN
+        g_boCNCMoveDisable := FALSE;
+        nLayerEndState := 600;
+      ELSIF g_nMachineType = 6 THEN
+        nLayerEndState := 111;
+        g_boCNCMoveDisable := FALSE;
+      ELSIF bFrogLeapEnable AND (g_dNestingDistanceToGoM <> 0.0 OR g_dNestingMotionAngleM <> 0.0) THEN
+       nLayerEndState := 540;
+       g_boCNCMoveDisable := FALSE;
+      ELSIF nLayerEndState_bak=601 THEN
+        nLayerEndState := 601;
+        g_boCNCMoveDisable := FALSE;
+      ELSE
+       nLayerEndState := 310;
+      END_IF;
+    END_IF;
+END_CASE;
+IF g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.bCuttingLongBlows AND (nLayerStartState <> 0 OR nLayerEndState <> 0) AND g_nPlcState = 1  AND 
+  NOT (g_bDryRunEnable OR g_bDebugMode OR g_bFallBackStatusFb OR g_bAutoExecuteFallBack OR g_bForwardStatusFb) THEN
+  g_bgas_enable := TRUE;
+ELSIF nLayerStartState = 0 AND nLayerEndState = 0 AND NOT g_bManualOpenGas  THEN 
+  g_bgas_enable := FALSE;
+END_IF;
+Rtring_ZProtect(CLK := bZHeightJudgeOpen);(*高度再判断一个随动误差*)
+Ftring_ZProtect(CLK := bZHeightJudgeOpen);
+IF Ftring_ZProtect.Q THEN
+  nZProtectstate := 0;
+  g_bZHeightJudgeOpen := FALSE;
+END_IF;
+IF Rtring_ZProtect.Q THEN
+   IF g_TechData.multilTechData[nToolNum-1].nPiercing_Type=0 THEN (*直接切割，卡盘中心高度-G00Z高度 - 切割高度*)
+      nZProtectstate := 20;
+    ELSIF g_TechData.multilTechData[nToolNum-1].nPiercing_Type=1 THEN(*穿孔，卡盘中心高度-G00Z高度 - 穿孔高度*)
+      nZProtectstate := 100;
+    ELSIF g_TechData.multilTechData[nToolNum-1].nPiercing_Type=2 THEN
+      nZProtectstate := 200;
+    ELSIF g_TechData.multilTechData[nToolNum-1].nPiercing_Type=3 THEN
+      nZProtectstate := 300;
+    END_IF;
+    IF g_bLayerStartOffLaser THEN(*不开光切割，穿孔就跳过了*)
+      nZProtectstate := 20;
+    END_IF;
+END_IF;
+IF NOT g_bFollowprotectOPen THEN
+  nZProtectstate := 0;
+END_IF;
+CASE nZProtectstate OF
+  0:
+    nZProtectstate := 0;
+  20:
+    dDecelerationdistance := ABS (FUN_DISTANCECALC(0.0,g_fZVelocity,g_dZAxisAcceleration,g_dRunCycleNum));
+     IF g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Height <= g_dZFollowMaxHeight THEN (*直接切割高度小于随动最大高度，直接到切割高度*)  
+        IF ABS(g_fZCoordinate) + dDecelerationdistance >= ABS(g_dChuckCenterInZpos) - ABS(g_fiZG00Height) - g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Height - g_dZHeightJudgeError THEN
+          g_bZHeightJudgeOpen := TRUE;
+          nZProtectstate := 0;
+          g_bZFollowClose :=TRUE;
+          g_bgas_enable := FALSE;
+          g_bZFollowExecute :=FALSE;
+        END_IF;
+      ELSE
+        IF ABS(g_fZCoordinate)+ dDecelerationdistance >= ABS(g_dChuckCenterInZpos) - ABS(g_fiZG00Height) - 1.0 - g_dZHeightJudgeError THEN
+          g_bZHeightJudgeOpen := TRUE;
+          nZProtectstate := 0;
+          g_bZFollowClose :=TRUE;
+          g_bgas_enable := FALSE;
+          g_bZFollowExecute :=FALSE;
+        END_IF;
+     END_IF;
+  100:
+    dDecelerationdistance := ABS(FUN_DISTANCECALC(0.0,g_fZVelocity,g_dZAxisAcceleration,g_dRunCycleNum));
+    IF g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Height <= g_dZFollowMaxHeight THEN (*普通穿孔高度<随动最高高度,直接随动到位*)
+      IF ABS(g_fZCoordinate)+ dDecelerationdistance >= ABS(g_dChuckCenterInZpos) - ABS(g_fiZG00Height) - g_TechData.multilTechData[g_nToolNum-1].NORMAL_CUTTING.fNormal_Piercing_Height - g_dZHeightJudgeError THEN
+          g_bZHeightJudgeOpen := TRUE;
+          nZProtectstate := 0;
+          g_bZFollowClose :=TRUE;
+          g_bgas_enable := FALSE;
+          g_bZFollowExecute :=FALSE;
+        END_IF;
+    ELSE
+       IF ABS(g_fZCoordinate)+ dDecelerationdistance >= ABS(g_dChuckCenterInZpos) - ABS(g_fiZG00Height) - 1.0 - g_dZHeightJudgeError THEN
+          g_bZHeightJudgeOpen := TRUE;
+          nZProtectstate := 0;
+          g_bZFollowClose :=TRUE;
+          g_bgas_enable := FALSE;
+          g_bZFollowExecute :=FALSE;
+        END_IF;
+    END_IF;
+  200:(*渐进穿孔*)
+  dDecelerationdistance := ABS(FUN_DISTANCECALC(0.0,g_fZVelocity,g_dZAxisAcceleration,g_dRunCycleNum));
+      IF g_TechData.multilTechData[nToolNum-1].PROGRESS_CUTTING.bBurstingHole_Enable THEN
+        IF g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Height <= g_dZFollowMaxHeight THEN (*爆孔高度<随动最高高度,直接随动到爆孔位置*)
+          IF ABS(g_fZCoordinate)+dDecelerationdistance >= ABS(g_dChuckCenterInZpos) - ABS(g_fiZG00Height) - g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Height - g_dZHeightJudgeError THEN
+            g_bZHeightJudgeOpen := TRUE;
+            nZProtectstate := 0;
+            g_bZFollowClose :=TRUE;
+            g_bgas_enable := FALSE;
+            g_bZFollowExecute :=FALSE;
+          END_IF;
+        ELSE
+           IF ABS(g_fZCoordinate)+dDecelerationdistance >= ABS(g_dChuckCenterInZpos) - ABS(g_fiZG00Height) - 1.0 - g_dZHeightJudgeError THEN
+            g_bZHeightJudgeOpen := TRUE;
+            nZProtectstate := 0;
+            g_bZFollowClose :=TRUE;
+            g_bgas_enable := FALSE;
+            g_bZFollowExecute :=FALSE;
+          END_IF;
+        END_IF;
+      ELSE
+        IF g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Height <= g_dZFollowMaxHeight THEN (*爆孔高度<随动最高高度,直接随动到爆孔位置*)
+          IF ABS(g_fZCoordinate)+dDecelerationdistance >= ABS(g_dChuckCenterInZpos) - ABS(g_fiZG00Height) - g_TechData.multilTechData[g_nToolNum-1].PROGRESS_CUTTING.nBurstingHole_Height - g_dZHeightJudgeError THEN
+            g_bZHeightJudgeOpen := TRUE;
+            nZProtectstate := 0;
+            g_bZFollowClose :=TRUE;
+            g_bgas_enable := FALSE;
+            g_bZFollowExecute :=FALSE;
+          END_IF;
+        ELSE
+           IF ABS(g_fZCoordinate)+dDecelerationdistance >= ABS(g_dChuckCenterInZpos) - ABS(g_fiZG00Height) - 1.0 - g_dZHeightJudgeError THEN
+            g_bZHeightJudgeOpen := TRUE;
+            nZProtectstate := 0;
+            g_bZFollowClose :=TRUE;
+            g_bgas_enable := FALSE;
+            g_bZFollowExecute :=FALSE;
+          END_IF;
+        END_IF;
+      END_IF;
+  300:(*多级穿孔*)
+     IF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.bPierEnable THEN
+      nZProtectstate := 314;
+    ELSIF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.bPierEnable THEN
+      nZProtectstate := 334;
+    ELSIF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_LOW.bPierEnable THEN
+      nZProtectstate := 365;
+    END_IF; 
+  314:
+  dDecelerationdistance := ABS(FUN_DISTANCECALC(0.0,g_fZVelocity,g_dZAxisAcceleration,g_dRunCycleNum));
+    IF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Height <= g_dZFollowMaxHeight THEN
+        IF ABS(g_fZCoordinate)+dDecelerationdistance >= ABS(g_dChuckCenterInZpos) - ABS(g_fiZG00Height) - g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_HIGH.Mulitil_Piercing_Height - g_dZHeightJudgeError THEN
+          g_bZHeightJudgeOpen := TRUE;
+          nZProtectstate := 0;
+          g_bZFollowClose :=TRUE;
+          g_bgas_enable := FALSE;
+          g_bZFollowExecute :=FALSE;
+        END_IF;
+    ELSE
+       IF ABS(g_fZCoordinate)+dDecelerationdistance >= ABS(g_dChuckCenterInZpos) - ABS(g_fiZG00Height) - 1.0 - g_dZHeightJudgeError THEN
+          g_bZHeightJudgeOpen := TRUE;
+          nZProtectstate := 0;
+          g_bZFollowClose :=TRUE;
+          g_bgas_enable := FALSE;
+          g_bZFollowExecute :=FALSE;
+        END_IF;
+    END_IF;
+  334:
+  dDecelerationdistance := ABS(FUN_DISTANCECALC(0.0,g_fZVelocity,g_dZAxisAcceleration,g_dRunCycleNum));
+    IF g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Height <= g_dZFollowMaxHeight THEN
+      IF ABS(g_fZCoordinate)+dDecelerationdistance >= ABS(g_dChuckCenterInZpos) - ABS(g_fiZG00Height) - g_TechData.multilTechData[g_nToolNum-1].MULTIL_PIERCING_MIDDLE.Mulitil_Piercing_Height - g_dZHeightJudgeError THEN
+          g_bZHeightJudgeOpen := TRUE;
+          nZProtectstate := 0;
+          g_bZFollowClose :=TRUE;
+          g_bgas_enable := FALSE;
+          g_bZFollowExecute :=FALSE;
+        END_IF;
+    ELSE
+        IF ABS(g_fZCoordinate)+dDecelerationdistance >= ABS(g_dChuckCenterInZpos) - ABS(g_fiZG00Height) - 1.0 - g_dZHeightJudgeError THEN
+          g_bZHeightJudgeOpen := TRUE;
+          nZProtectstate := 0;
+          g_bZFollowClose :=TRUE;
+          g_bgas_enable := FALSE;
+          g_bZFollowExecute :=FALSE;
+        END_IF;
+    END_IF;
+END_CASE;
+(*判断当前高度是否大于卡盘中心-当前管面的高度*)
+IF g_bZHeightJudgeOpen AND Axis_Z.NcToPlc.AXISSTATE = 9 AND g_bFollowprotectOPen THEN
+  g_Alarm.alarmArray[390] := 1118;
+END_IF;
+(*拐角*)
+IF RTrigger_Corner_in.Q THEN
+  g_bLaserOnCornerM := FALSE;
+  dPressure_note := g_dmaster_pressure;
+  nPower_note := g_nPower;
+  dAirPressure_note := g_dair_pressure;
+  dOxygenPressure_note := g_doxygen_pressure;
+  dNirtogenPressure_note := g_dnitogen_pressure;
+  nPwmFreq_note := g_nPwmFreq;
+  nPwmDuty_note := g_nPwmDuty;
+  g_dmaster_pressure := g_TechData.multilTechData[nToolNum-1].CornerCompen.dPressure;
+  g_dair_pressure := g_TechData.multilTechData[nToolNum-1].CornerCompen.dPressure;
+  g_doxygen_pressure := g_TechData.multilTechData[nToolNum-1].CornerCompen.dPressure;
+  g_dnitogen_pressure := g_TechData.multilTechData[nToolNum-1].CornerCompen.dPressure;
+  g_nPower := DINT_TO_UINT(g_TechData.multilTechData[nToolNum-1].CornerCompen.nPower);
+  g_nPwmFreq := DINT_TO_UINT(g_TechData.multilTechData[nToolNum-1].CornerCompen.nHz);
+  g_nPwmDuty :=DINT_TO_UINT(g_TechData.multilTechData[nToolNum-1].CornerCompen.nDuty);
+END_IF;
+IF  RTrigger_Corner_out.Q THEN
+  g_bLaserOutCornerM := FALSE;
+  g_dmaster_pressure := dPressure_note;
+  g_nPower := nPower_note;
+  g_dair_pressure := dAirPressure_note;
+  g_doxygen_pressure := dOxygenPressure_note;
+  g_dnitogen_pressure := dNirtogenPressure_note;
+  g_nPwmFreq := nPwmFreq_note;
+  g_nPwmDuty := nPwmDuty_note;
+END_IF;
+
+(*切割过程中随动跟随误差超过5,20ms报警*)
+IF nLayerStartState = 500 AND ABS(g_fZFollowHeight - g_fZAxisHeight) > 5.0 AND Axis_Z.NCTOPLC.AXISSTATE = 9 AND g_ZFollowIn.DONE THEN
+    TonFollowPosError(IN := TRUE,PT := T#20ms);
+    IF TonFollowPosError.Q THEN
+      TonFollowPosError(IN := FALSE);
+      g_bFollowPosErrorAlarm := TRUE;
+    END_IF;
+ELSE
+   TonFollowPosError(IN := FALSE);
+  g_bFollowPosErrorAlarm := FALSE;
+END_IF;
+
+
+
+
+
+
+IF g_bPlcPauseBuffer AND nLayerStartState <> 0 THEN
+  g_boCNCMoveDisable := TRUE;
+  TON_NormalPiercingTime(IN := FALSE);
+  TON_BurstingTime(IN := FALSE);
+  Timer_Multil_High(IN := FALSE);
+  Timer_Multil_Middle(IN := FALSE);
+  Timer_Multil_Low(IN := FALSE);
+  g_bZFollowExecute := FALSE;
+  g_bZFollowClose := FALSE;
+  g_bZRelExecute := FALSE;
+  g_bZAbsExecute := FALSE;(*?*)
+  g_fZAbsVelocity := 0.0;
+  TON_PreCutDelay(IN :=FALSE);(*预切割延时定时器*)
+ (* TON_PauseStopLaserDelay(IN :=FALSE);暂停关光延时*)
+  TON_FirstGasDelay(IN :=FALSE);(*首点吹气延时定时器*)
+  TON_ChangeGasDelay(IN :=FALSE);(*换气延时定时器*)
+  TON_OpenGasDelay(IN :=FALSE);(*开气延时定时器*)
+  TON_FrogLeapOpenGas(In := FALSE); (*蛙跳出气计时器*)
+  TON_StopLightBlow(IN :=FALSE);(*停光吹气延时*)
+  IF nLayerStartState < 600 THEN
+    nLayerStartState := 600;
+    TON_CloseGasDelay(IN :=FALSE);(*关气延时定时器*)
+    bCloseGasDelayEnable := FALSE;
+    g_ZMoveStop.EXECUTE := FALSE;
+  END_IF;
+  Ton_KernelWaitTime(IN := FALSE);
+END_IF;
+
+IF g_bPlcPauseBuffer AND nLayerEndState <> 0 THEN
+  g_boCNCMoveDisable := TRUE;
+  g_bLaserCuttingEnable := FALSE;
+  g_bgas_enable := FALSE;
+  g_bZFollowExecute := FALSE;
+  g_bZFollowClose := FALSE;
+  g_bZRelExecute := FALSE;
+  g_fZRelVelocity := 0.0;
+  g_bZAbsExecute := FALSE;
+  g_fZAbsVelocity := 0.0;
+  TON_CloseGasDelay(IN :=FALSE);(*关气延时定时器*)
+  TON_FirstGasDelay(IN := FALSE);
+  TON_FrogLeapOpenGas(In := FALSE); (*蛙跳出气计时器*)
+  bCloseGasDelayEnable := FALSE;
+  IF nLayerEndState < 700 THEN
+    nLayerEndState := 700;
+    g_ZMoveStop.EXECUTE := FALSE;
+  END_IF;
+END_IF;
+
+
+
+IF g_bPlcResetBuffer THEN
+  nLayerStartState := 0;
+  nLayerEndState := 0;
+  TON_NormalPiercingTime(IN := FALSE);
+  TON_BurstingTime(IN := FALSE);
+  Timer_Multil_High(IN := FALSE);
+  Timer_Multil_Middle(IN := FALSE);
+  Timer_Multil_Low(IN := FALSE);
+  g_boLayerEndDone := TRUE;
+  g_bLaserCuttingEnable := FALSE;
+  g_bgas_enable := FALSE;
+  g_bZFollowExecute := FALSE;
+  g_bZFollowClose := FALSE;
+  g_ZMoveStop.EXECUTE := FALSE;
+  g_bZRelExecute := FALSE;
+  g_fZRelVelocity := 0.0;
+  g_bZAbsExecute := FALSE;(*?*)
+  g_fZAbsVelocity := 0.0;
+  g_boCNCMoveDisable := FALSE;
+  g_bZLiftExecute := FALSE;
+  bLookBackDone := FALSE;
+  TON_PreCutDelay(IN :=FALSE);(*预切割延时定时器*)
+  TON_PauseStopLaserDelay(IN :=FALSE);(*暂停关光延时*)
+  TON_FirstGasDelay(IN :=FALSE);(*首点吹气延时定时器*)
+  TON_ChangeGasDelay(IN :=FALSE);(*换气延时定时器*)
+  g_bChangeGasFlag := FALSE;
+  TON_OpenGasDelay(IN :=FALSE);(*开气延时定时器*)
+  TON_CloseGasDelay(IN :=FALSE);(*关气延时定时器*)
+  TON_FrogLeapOpenGas(In := FALSE); (*蛙跳出气计时器*)
+  bCloseGasDelayEnable := FALSE;
+  bUpLiftFlag := FALSE;
+  bClaw3UpLiftFlag := FALSE;
+  g_boClaw3UpLiftDone := FALSE;
+  g_bProfileEnable := FALSE;
+  g_bProfileLaserEnable := FALSE;
+  g_bProfileFollowEnable := FALSE;(*板外切割关随动*)
+  g_bFocusEnable := FALSE;
+  g_bFProgressFocusAbs := FALSE;
+  g_bFirstGas := FALSE;        (*复位首吹气标志位*)
+  g_bProcessHalCloseFollowState:= FALSE;(*引脚关随动标志位*)
+  g_bProcessHalCloseLaserState:=FALSE;(*引脚关关光标志位*)
+  g_bProcessHalOpenLaserState:=FALSE;(*引脚开光标志位*)
+  TonFlyCloseLightDelay(IN := FALSE);
+  TonFlyOpenLightDelay(IN := FALSE);
+  bZHeightJudgeOpen := FALSE;
+  nZProtectstate := 0;
+  g_bZHeightJudgeOpen := FALSE;
+  Ton_KernelWaitTime(IN := FALSE);
+  g_bForwardStatusFb := FALSE;
+  g_bFallBackStatusFb := FALSE;
+  g_bFollowPosErrorAlarm := FALSE;
+END_IF;
+
+IF g_bPlcStartBuffer THEN
+  bCurState := TRUE;
+END_IF;
+IF g_bPlcPauseBuffer THEN
+  bCurState := FALSE;
+END_IF;
+
+
+
+
+  
+g_noTest1 := nLayerStartState;
+g_noTest2 := nLayerEndState;
+g_nLayerStart := nLayerStartState;
+g_nLayerEnd := nLayerEndState;
+g_doNestingIsUseSideCenter :=g_dNestingIsUseSideCenterM;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[工艺控制模块]]></xhtml:p>
+  </documentation>
+</pou>

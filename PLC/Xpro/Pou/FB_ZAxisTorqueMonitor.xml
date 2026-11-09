@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ZAxisTorqueMonitor" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_fiZAxisTorque">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bZAxisTorqueWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTouchPanel">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZIdleWarnLift">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Axis_Z">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="TorqueDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="bTouchPanelLift">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTorqueMonitor">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nMotorDir">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nTorqueDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dZAxisAcc1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dZAxisAcc2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTorqueValue1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTorqueValue2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTorqueTemp1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTorqueTemp2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAcc2Temp">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dMaxTorque">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTemp1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTemp2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTemp3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTemp4">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[dTemp4 := Axis_Z.NcToPlc.SetAcc;
+IF bTorqueMonitor THEN
+  IF nMotorDir = 0 THEN
+    dTorqueTemp1 := dTorqueValue1;
+    dTorqueTemp2 := dTorqueValue2;
+    dAcc2Temp := -dZAxisAcc2;
+    dTemp3 := dZAxisAcc1 - dAcc2Temp;
+    IF dTemp3 = 0.0 THEN
+      dTemp3 := 1.0;
+    END_IF;
+    dTemp1 := (dTorqueTemp1 - dTorqueTemp2)/dTemp3;
+    dTemp2 := (dZAxisAcc1*dTorqueTemp2 - dAcc2Temp*dTorqueTemp1)/dTemp3;
+    dMaxTorque := dTemp1*Axis_Z.NcToPlc.SetAcc + dTemp2;
+    IF g_fiZAxisTorque > dMaxTorque AND Axis_Z.NcToPlc.SetAcc <= 0.0 THEN
+      TorqueDelay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTorqueDelay)));
+      IF TorqueDelay.Q THEN
+        g_bZAxisTorqueWarn := TRUE;
+      END_IF;
+    ELSE
+      TorqueDelay(IN := FALSE);
+      g_bZAxisTorqueWarn := FALSE;
+    END_IF;
+  ELSIF nMotorDir = 1 THEN
+    dTorqueTemp1 := -dTorqueValue1;
+    dTorqueTemp2 := -dTorqueValue2;
+    dAcc2Temp := -dZAxisAcc2;
+    dTemp3 := dZAxisAcc1 - dAcc2Temp;
+    IF dTemp3 = 0.0 THEN
+      dTemp3 := 1.0;
+    END_IF;
+    dTemp1 := (dTorqueTemp1 - dTorqueTemp2)/dTemp3;
+    dTemp2 := (dZAxisAcc1*dTorqueTemp2 - dAcc2Temp*dTorqueTemp1)/dTemp3;
+    dMaxTorque := dTemp1*Axis_Z.NcToPlc.SetAcc + dTemp2;
+    IF g_fiZAxisTorque < dMaxTorque AND Axis_Z.NcToPlc.SetAcc <= 0.0 THEN
+      TorqueDelay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTorqueDelay)));
+      IF TorqueDelay.Q THEN
+        g_bZAxisTorqueWarn := TRUE;
+      END_IF;
+    ELSE
+      TorqueDelay(IN := FALSE);
+      g_bZAxisTorqueWarn := FALSE;
+    END_IF;
+  ELSE
+    TorqueDelay(IN := FALSE);
+    g_bZAxisTorqueWarn := FALSE;
+  END_IF;
+ELSE
+  TorqueDelay(IN := FALSE);
+  g_bZAxisTorqueWarn := FALSE;
+END_IF;
+
+IF g_bTouchPanel THEN
+  IF g_nPlcState = 0 AND Axis_Z.NCTOPLC.AXISSTATE = 9 THEN
+    bTouchPanelLift := TRUE;
+  END_IF;
+ELSE
+  bTouchPanelLift := FALSE;
+END_IF;
+
+IF g_bZAxisTorqueWarn OR bTouchPanelLift THEN
+  g_bZIdleWarnLift := TRUE;
+ELSE
+  g_bZIdleWarnLift := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

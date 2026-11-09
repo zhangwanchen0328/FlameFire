@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ST_NewAxisData">
+  <baseType>
+    <struct>
+      <variable name="NCAXISDATA">
+        <type>
+          <array>
+            <dimension lower="0" upper="9"/>
+            <baseType>
+              <derived name="ST_AXISDATA"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="NCAXISCMD">
+        <type>
+          <array>
+            <dimension lower="0" upper="9"/>
+            <baseType>
+              <derived name="ST_AXISCMD"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

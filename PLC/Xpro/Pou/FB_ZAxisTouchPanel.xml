@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ZAxisTouchPanel" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="bPreTouchEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[是否开启预碰板功能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dPreTouchHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[预碰板高度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fZAxisHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前高度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dTouchDelayTimeG00">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[G00碰板延时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dTouchDelayTimeCutting">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[切割碰板延时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dTouchDelayTimePiercing">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿孔碰板延时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Timer_G00">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[G00碰板计时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Timer_Cutting">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[切割碰板计时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Timer_Piercing">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿孔碰板计时器]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bTouchPanel">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[碰板状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMotionType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nCalStatus">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nPiercingStatus">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nSensorDown">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_niZSensorValue">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_biPresterPanelSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*检测碰板*)
+IF g_nCalStatus=0 THEN
+  IF bPreTouchEnable THEN
+    IF g_fZAxisHeight <= dPreTouchHeight OR g_biPresterPanelSignal THEN
+      IF g_niMotionType=1 THEN
+        Timer_G00(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dTouchDelayTimeG00)));
+      ELSIF g_nPiercingStatus=1 THEN
+        Timer_Piercing(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dTouchDelayTimePiercing)));
+      ELSE
+        Timer_Cutting(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dTouchDelayTimeCutting)));
+      END_IF;
+    
+      IF Timer_G00.Q OR Timer_Piercing.Q OR Timer_Cutting.Q THEN
+        g_bTouchPanel := TRUE;
+        Timer_G00(IN := FALSE);
+        Timer_Cutting(IN := FALSE);
+        Timer_Piercing(IN := FALSE);
+      END_IF;
+    ELSE
+      Timer_G00(IN := FALSE);
+      Timer_Cutting(IN := FALSE);
+      Timer_Piercing(IN := FALSE);
+      g_bTouchPanel := FALSE;
+    END_IF;
+  ELSE
+    IF (g_niZSensorValue <= g_nSensorDown) OR g_biPresterPanelSignal THEN
+      IF g_niMotionType=1 THEN
+        Timer_G00(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dTouchDelayTimeG00)));
+      ELSIF g_nPiercingStatus=1 THEN
+        Timer_Piercing(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dTouchDelayTimePiercing)));
+      ELSE
+        Timer_Cutting(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dTouchDelayTimeCutting)));
+      END_IF;
+    
+      IF Timer_G00.Q OR Timer_Piercing.Q OR Timer_Cutting.Q THEN
+        g_bTouchPanel := TRUE;
+        Timer_G00(IN := FALSE);
+        Timer_Cutting(IN := FALSE);
+        Timer_Piercing(IN := FALSE);
+      END_IF;
+    ELSE
+      Timer_G00(IN := FALSE);
+      Timer_Cutting(IN := FALSE);
+      Timer_Piercing(IN := FALSE);
+      g_bTouchPanel := FALSE;
+    END_IF;
+  END_IF;
+END_IF;
+IF g_bResetCurHeight  OR g_bHmiCloseFollow THEN(*重置本体电容，碰板报警不报*)
+  g_bTouchPanel := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

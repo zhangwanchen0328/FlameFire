@@ -1,0 +1,1039 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <globalVars>
+    <variable name="g_bFinishedM177_0">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM177_1">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM177_2">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM183_0">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM183_1">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM183_2">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM183_3">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM183_4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM183_5">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM183_6">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM183_7">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM183_8">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM183_9">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM183_10">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM183_11">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM185_100">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM185_1">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM185_2">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM185_3">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM185_4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM185_5">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM185_6">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM185_7">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM185_8">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM185_9">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM185_10">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM185_11">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM185_12">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM193_0">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM193_1">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM193_11">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM193_12">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM193_13">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM193_14">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM193_15">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM193_16">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM193_17">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM193_18">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM193_19">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM193_20">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM193_21">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM193_22">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM197_0">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[卡盘气缸1/后卡 并行结束的标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM197_1">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[卡盘气缸2/中卡 并行结束的标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM197_2">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[卡盘气缸3/前卡 并行结束的标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM197_10">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[卡盘气缸一键控制 并行结束的标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM206_0">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴——Q]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM206_1">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM206_2">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM206_3">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM206_4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM222_11">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM222_12">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM222_13">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM222_14">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM222_15">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM222_16">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM222_17">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM222_18">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM264_0">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑气缸1 并行结束的标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM264_1">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM264_2">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM264_3">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM264_4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM264_5">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM264_6">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM264_7">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM264_8">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM264_9">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM264_10">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM264_11">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM264_12">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM267_1">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM267_2">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM267_3">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM267_4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM269_1">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM269_2">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM269_3">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM269_4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM273_0">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[下料支撑气缸]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM273_1">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM273_2">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM273_3">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM273_4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM273_5">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM273_6">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM273_7">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM273_8">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM273_9">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM274_1">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴1运动结束标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM274_2">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM274_3">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM301_1">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[变频器1运动结束标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM301_2">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM301_3">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM304_1">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[打开关闭输出口并行1完成标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM304_2">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[打开关闭输出口并行2完成标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM304_3">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[打开关闭输出口并行3完成标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM304_4">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[打开关闭输出口并行4完成标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM304_5">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[打开关闭输出口并行5完成标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM304_6">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[打开关闭输出口并行6完成标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM304_7">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[打开关闭输出口并行7完成标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM304_8">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[打开关闭输出口并行8完成标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM304_9">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[打开关闭输出口并行9完成标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM304_10">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[打开关闭输出口并行10完成标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM304_11">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[打开关闭输出口并行11完成标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM305_1">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[下料轴1运动结束标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM305_2">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM305_3">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM305_4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM306_1">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴1运动结束标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM306_2">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM306_3">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM306_4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM306_5">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM306_6">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM306_7">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM306_8">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM306_9">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM306_10">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM306_11">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM306_12">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM316_1">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM316_2">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_1">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_2">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_3">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_5">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_6">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_7">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_8">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_9">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_10">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_11">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_12">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_13">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_14">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_15">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_16">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_17">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_18">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_19">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_20">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_21">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_22">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM320_23">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_1">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Z轴停止运动完成标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM325_2">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴1停止运动完成标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM325_3">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_5">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴1停止运动完成标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM325_6">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_7">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_8">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_9">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_10">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_11">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[下料轴1停止运动完成标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFinishedM325_12">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_13">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_14">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_15">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_16">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_17">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_18">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_19">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_20">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM325_21">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM334_1">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM334_2">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM334_3">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM336">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM338_1">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM338_2">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM338_100">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM338_200">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM341">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bFinishedM342">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_nDownCmdCount1">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[新支撑气缸避让标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nDownCmdCount2">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[新支撑气缸避让标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nDownCmdCount3">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[新支撑气缸避让标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dCurrentCutPartLength">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[计算零件总长]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dCurrentCuttedPartLength">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+  </globalVars>
+</root>

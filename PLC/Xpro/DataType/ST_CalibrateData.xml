@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ST_CalibrateData">
+  <baseType>
+    <struct>
+      <variable name="nSensorValue">
+        <type>
+          <array>
+            <dimension lower="0" upper="20000"/>
+            <baseType>
+              <UDINT/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="dActualHeight">
+        <type>
+          <array>
+            <dimension lower="0" upper="20000"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

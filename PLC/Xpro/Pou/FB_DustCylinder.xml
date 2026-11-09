@@ -1,0 +1,1143 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DustCylinder" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bGeneralDustCylinder1OpenM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘气缸开启]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bGeneralDustCylinderOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneralDustCylinder1CloseM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘气缸关闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bGeneralDustCylinderClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biDustCylinder1Open">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘辅助气缸1开启]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biDustCylinder1Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustCylinder1Open">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘辅助气缸1关闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bDustCylinder1Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biDustCylinder2Open">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘辅助气缸2开启]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biDustCylinder2Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustCylinder2Open">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘辅助气缸1关闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bDustCylinder2Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustGasValveOpenM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘气阀开启]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bDustGasValveOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustGasValveCloseM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘气阀关闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bDustGasValveClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boGeneralDustCylinderUp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[通用抽尘气缸]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boGeneralDustCylinderDown">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[通用抽尘气缸]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boDustCylinder1Up">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘辅助气缸前后]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boDustCylinder1Down">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘辅助气缸前后]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boDustCylinder2Up">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘辅助气缸左右]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boDustCylinder2Down">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘辅助气缸左右]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boDustGasValve">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘辅助气缸左右]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘气阀输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger6">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bGeneralDustCylinderUp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bGeneralDustCylinderDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustCylinder1Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustCylinder1Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustCylinder2Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustCylinder2Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bDustCylinderUPInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升到位信号开启关闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bDustCylinderDownInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降到位信号开启关闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bGeneralDustCylinderUpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneralDustCylinderDownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneralDustCylinderDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustCylinder1UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustCylinder1DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nDustCylinderUpInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nDustCylinderDownInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_bDustCylinder1DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustCylinder2UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustCylinder2DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustCylinder2DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneralDustCylinderState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustCylinder1State">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸上升下降的状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bDustCylinder2State">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustGasValveState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="InPlaceDelay0">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[无到位信号时，气缸延时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="InPlaceDelay1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bFrontSustainEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankCylinderEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boDustCylinderDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚输出，气缸到位状态输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boDustCylinderDone1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚输出，辅助气缸1到位状态输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boDustCylinderDone2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚输出，辅助气缸2到位状态输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bCheckFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustCyl1UseUpInplaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustCyl1UseDownInplaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustCyl2UseUpInplaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustCyl2UseDownInplaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustCyl3UseUpInplaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustCyl3UseDownInplaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dDustCyl1UpTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dDustCyl2UpTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dDustCyl3UpTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dDustChangeCylUpTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dDustCyl1DownTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dDustCyl2DownTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dDustCyl3DownTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dDustChangeCylDownTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="Ton_Down1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Down2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Down3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Down4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Up1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Up2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Up3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Up4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="bUpNoSignalAlarm1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUpNoSignalAlarm2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUpNoSignalAlarm3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUpNoSignalAlarm4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDownNoSignalAlarm1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDownNoSignalAlarm2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDownNoSignalAlarm3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDownNoSignalAlarm4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl1UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl2UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl3UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl4UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Rtring_DustChangeCylUp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_DustChangeCylDown">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bDustChangeCylUp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustChangeCylDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDoubleDustChangeCylUseDownInplaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDoubleDustChangeCylUseInInplaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dDoubleDustChangeCylUpDoneTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dDoubleDustChangeCylDownDoneTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="bDoubleDustChangeCylDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+(*开启前浮动支撑轴或者气缸，抽尘避让*)
+IF g_bFrontSustainEnable OR g_bBlankCylinderEnable THEN
+  g_boGeneralDustCylinderUp := FALSE;
+  g_boGeneralDustCylinderDown := TRUE;
+  g_boDustCylinder1Up := FALSE;
+  g_boDustCylinder1Down := TRUE;
+  g_boDustCylinder2Up := FALSE;
+  g_boDustCylinder2Down := TRUE;
+  g_boDustCylinderDone := TRUE;
+  M.ENABLE[218] := 0;
+END_IF;
+
+(*通用抽尘气缸1(hmi) 打开*)
+R_Trigger1(CLK := g_bGeneralDustCylinder1OpenM OR bGeneralDustCylinderUp OR g_bGeneralDustCylinderOpen);
+IF R_Trigger1.Q AND g_bFrontSustainEnable=FALSE AND g_bBlankCylinderEnable=FALSE THEN
+  bGeneralDustCylinderUp := FALSE;
+  g_bGeneralDustCylinderOpen := FALSE;
+  g_bGeneralDustCylinder1OpenM := FALSE;
+  g_boGeneralDustCylinderUp := TRUE;
+  g_boGeneralDustCylinderDown := FALSE;
+  g_bGeneralDustCylinderDelayFlag := TRUE;
+  g_boDustCylinderDone := FALSE;
+  bDownNoSignalAlarm1 := FALSE;
+  Ton_Down1(IN := FALSE);
+END_IF;
+
+(*通用抽尘气缸1(hmi) 关闭*)
+R_Trigger2(CLK := g_bGeneralDustCylinder1CloseM OR bGeneralDustCylinderDown OR g_bGeneralDustCylinderClose);
+IF R_Trigger2.Q AND g_bFrontSustainEnable=FALSE AND g_bBlankCylinderEnable=FALSE THEN
+  bGeneralDustCylinderDown := FALSE;
+  g_bGeneralDustCylinderClose := FALSE;
+  g_bGeneralDustCylinder1CloseM := FALSE;
+  g_boGeneralDustCylinderUp := FALSE;
+  g_boGeneralDustCylinderDown := TRUE;
+  g_bGeneralDustCylinderDelayFlag := TRUE;
+  g_boDustCylinderDone := FALSE;
+  bUpNoSignalAlarm1 := FALSE;
+  Ton_Up1(IN := FALSE);
+END_IF;
+
+IF bDustCyl1UseUpInplaceSignal AND g_boGeneralDustCylinderUp THEN
+  IF g_bGeneralDustCylinderUpInPlace THEN
+    g_bGeneralDustCylinderState := TRUE;
+    g_boDustCylinderDone := TRUE;
+    bUpNoSignalAlarm1:= FALSE;
+    M.ENABLE[218] := 0;
+    Ton_Up1(IN := FALSE);
+    bCyl1UpState := TRUE;
+  ELSE
+    IF NOT bCyl1UpState THEN
+      Ton_Up1(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dDustCyl1UpTime)));
+      IF Ton_Up1.Q THEN
+        bUpNoSignalAlarm1 := TRUE;
+        Ton_Up1(IN := FALSE);
+      END_IF;
+    ELSE
+      IF g_CylAllStateUpDate.BoolArr[32] THEN
+        bUpNoSignalAlarm1 := FALSE;
+      ELSE
+        bUpNoSignalAlarm1 := TRUE;
+      END_IF;
+    END_IF;  
+  END_IF;
+ELSIF bDustCyl1UseDownInplaceSignal AND g_boGeneralDustCylinderDown THEN
+  IF g_bGeneralDustCylinderDownInPlace THEN
+    g_bGeneralDustCylinderState := FALSE;
+    g_boDustCylinderDone := TRUE;
+    M.ENABLE[218] := 0;
+    bDownNoSignalAlarm1 := FALSE;
+    Ton_Down1(IN := FALSE);
+     bCyl1UpState := FALSE;
+  ELSE
+    IF  bCyl1UpState THEN
+      Ton_Down1(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dDustCyl1DownTime)));
+      IF Ton_Down1.Q THEN
+        bDownNoSignalAlarm1 := TRUE;
+        Ton_Down1(IN := FALSE);
+      END_IF;
+    ELSE
+      IF g_CylAllStateUpDate.BoolArr[33] THEN
+        bDownNoSignalAlarm1 := FALSE;
+      ELSE
+        bDownNoSignalAlarm1 := TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+ELSE
+  bUpNoSignalAlarm1 := FALSE;
+  bDownNoSignalAlarm1 := FALSE;
+  IF g_bGeneralDustCylinderDelayFlag THEN
+    IF g_boGeneralDustCylinderUp THEN
+      InPlaceDelay0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dDustCyl1UpTime)));
+    ELSE
+      InPlaceDelay0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dDustCyl1DownTime)));
+    END_IF;
+    IF InPlaceDelay0.Q THEN
+      g_bGeneralDustCylinderDelayFlag := FALSE;
+      InPlaceDelay0(IN :=FALSE);
+      IF g_boGeneralDustCylinderUp AND g_boGeneralDustCylinderDown=FALSE THEN
+        g_bGeneralDustCylinderState:= TRUE;
+        g_boDustCylinderDone := TRUE;
+        M.ENABLE[218] := 0;
+         bCyl1UpState := TRUE;
+      END_IF;
+      IF g_boGeneralDustCylinderDown AND g_boGeneralDustCylinderUp=FALSE THEN
+        g_bGeneralDustCylinderState:= FALSE;
+        g_boDustCylinderDone := TRUE;
+        M.ENABLE[218] := 0;
+         bCyl1UpState := FALSE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+
+IF bUpNoSignalAlarm1 THEN
+  g_Alarm.alarmArray[517] := 1230;
+ELSE
+  g_Alarm.alarmArray[517] := 0;
+END_IF;
+IF bDownNoSignalAlarm1 THEN
+  g_Alarm.alarmArray[496] := 1209;
+ELSE
+  g_Alarm.alarmArray[496] := 0;
+END_IF;
+
+(*抽尘气缸2(hmi) 打开*)
+R_Trigger3(CLK := g_biDustCylinder1Open OR bDustCylinder1Up OR g_bDustCylinder1Open OR g_bGeneralDustCylinder2OpenM);
+IF R_Trigger3.Q AND g_bFrontSustainEnable=FALSE AND g_bBlankCylinderEnable=FALSE THEN
+  bDustCylinder1Up := FALSE;
+  g_bDustCylinder1Open := FALSE;
+  g_boDustCylinder1Up := TRUE;
+  g_boDustCylinder1Down := FALSE;
+  g_bDustCylinder1DelayFlag := TRUE;
+  g_boDustCylinderDone1 := FALSE;
+  g_bGeneralDustCylinder2OpenM := FALSE;
+  bDownNoSignalAlarm2 := FALSE;
+  Ton_Down2(IN := FALSE);
+END_IF;
+
+(*抽尘气缸2(hmi) 关闭*)
+R_Trigger4(CLK := g_biDustCylinder1Close OR bDustCylinder1Down OR g_bDustCylinder1Close OR g_bGeneralDustCylinder2CloseM);
+IF R_Trigger4.Q AND g_bFrontSustainEnable=FALSE AND g_bBlankCylinderEnable=FALSE THEN
+  bDustCylinder1Down := FALSE;
+  g_bDustCylinder1Close := FALSE;
+  g_boDustCylinder1Up := FALSE;
+  g_boDustCylinder1Down := TRUE;
+  g_bDustCylinder1DelayFlag := TRUE;
+  g_boDustCylinderDone1 := FALSE;
+  g_bGeneralDustCylinder2CloseM := FALSE;
+  bUpNoSignalAlarm2 := FALSE;
+  Ton_Up2(IN := FALSE);
+END_IF;
+
+
+IF bDustCyl2UseUpInplaceSignal AND g_boDustCylinder1Up THEN
+  IF g_bDustCylinder1UpInPlace THEN
+    g_bDustCylinder1State := TRUE;
+    g_boDustCylinderDone1 := TRUE;
+    bUpNoSignalAlarm2:= FALSE;
+    M.ENABLE[218] := 0;
+    Ton_Up2(IN := FALSE);
+    bCyl2UpState := TRUE;
+  ELSE
+    IF NOT bCyl2UpState THEN
+      Ton_Up2(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dDustCyl2UpTime)));
+      IF Ton_Up2.Q THEN
+        bUpNoSignalAlarm2 := TRUE;
+        Ton_Up2(IN := FALSE);
+      END_IF;
+    ELSE
+      IF g_CylAllStateUpDate.BoolArr[34] THEN
+        bUpNoSignalAlarm2 := FALSE;
+      ELSE
+        bUpNoSignalAlarm2 := TRUE;
+      END_IF;
+    END_IF;  
+  END_IF;
+ELSIF bDustCyl2UseDownInplaceSignal AND g_boDustCylinder1Down THEN
+  IF g_bDustCylinder1DownInPlace THEN
+    g_bDustCylinder1State := FALSE;
+    g_boDustCylinderDone1 := TRUE;
+    M.ENABLE[218] := 0;
+    bDownNoSignalAlarm2 := FALSE;
+    Ton_Down2(IN := FALSE);
+    bCyl2UpState := FALSE;
+  ELSE
+    IF bCyl2UpState THEN
+      Ton_Down2(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dDustCyl2DownTime)));
+      IF Ton_Down2.Q THEN
+        bDownNoSignalAlarm2 := TRUE;
+        Ton_Down2(IN := FALSE);
+      END_IF;
+    ELSE
+      IF g_CylAllStateUpDate.BoolArr[35] THEN
+         bDownNoSignalAlarm2 := FALSE;
+      ELSE
+         bDownNoSignalAlarm2 := TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+ELSE
+  bUpNoSignalAlarm2 := FALSE;
+  bDownNoSignalAlarm2 := FALSE;
+  IF g_bDustCylinder1DelayFlag THEN
+    IF g_boDustCylinder1Up THEN
+      InPlaceDelay1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dDustCyl2UpTime)));
+    ELSE
+      InPlaceDelay1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dDustCyl2DownTime)));
+    END_IF;
+    IF InPlaceDelay1.Q THEN
+      g_bDustCylinder1DelayFlag := FALSE;
+      InPlaceDelay1(IN :=FALSE);
+      IF g_boDustCylinder1Up AND g_boDustCylinder1Down=FALSE THEN
+        g_bDustCylinder1State:= TRUE;
+        g_boDustCylinderDone1 := TRUE;
+        M.ENABLE[218] := 0;
+        bCyl2UpState := TRUE;
+      END_IF;
+      IF g_boDustCylinder1Down AND g_boDustCylinder1Up=FALSE THEN
+        g_bDustCylinder1State:= FALSE;
+        g_boDustCylinderDone1 := TRUE;
+        M.ENABLE[218] := 0;
+        bCyl2UpState := FALSE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF bUpNoSignalAlarm2 THEN
+  g_Alarm.alarmArray[518] := 1231;
+ELSE
+  g_Alarm.alarmArray[518] := 0;
+END_IF;
+IF bDownNoSignalAlarm2 THEN
+  g_Alarm.alarmArray[497] := 1210;
+ELSE
+  g_Alarm.alarmArray[497] := 0;
+END_IF;
+(*抽尘气缸3(hmi) 打开*)
+R_Trigger5(CLK := g_biDustCylinder2Open OR bDustCylinder2Up OR g_bDustCylinder2Open OR g_bGeneralDustCylinder3OpenM);
+IF R_Trigger5.Q AND g_bFrontSustainEnable=FALSE AND g_bBlankCylinderEnable=FALSE THEN
+  bDustCylinder2Up := FALSE;
+  g_bDustCylinder2Open := FALSE;
+  g_boDustCylinder2Up := TRUE;
+  g_boDustCylinder2Down := FALSE;
+  g_bDustCylinder2DelayFlag := TRUE;
+  g_boDustCylinderDone2 := FALSE;
+  g_bGeneralDustCylinder3OpenM := FALSE;
+  bDownNoSignalAlarm3 := FALSE;
+  Ton_Down3(IN := FALSE);
+END_IF;
+
+(*抽尘气缸3(hmi) 关闭*)
+R_Trigger6(CLK := g_biDustCylinder2Close OR bDustCylinder2Down OR g_bDustCylinder2Close OR g_bGeneralDustCylinder3CloseM);
+IF R_Trigger6.Q AND g_bFrontSustainEnable=FALSE AND g_bBlankCylinderEnable=FALSE THEN
+  bDustCylinder2Down := FALSE;
+  g_bDustCylinder2Close := FALSE;
+  g_boDustCylinder2Up := FALSE;
+  g_boDustCylinder2Down := TRUE;
+  g_bDustCylinder2DelayFlag := TRUE;
+  g_boDustCylinderDone2 := FALSE;
+  g_bGeneralDustCylinder3CloseM := FALSE;
+  bUpNoSignalAlarm3 := FALSE;
+  Ton_Up3(IN := FALSE);
+END_IF;
+
+IF bDustCyl3UseUpInplaceSignal AND g_boDustCylinder2Up THEN
+  IF g_bDustCylinder2UpInPlace THEN
+    g_bDustCylinder2State := TRUE;
+    g_boDustCylinderDone2 := TRUE;
+    bUpNoSignalAlarm3:= FALSE;
+    M.ENABLE[218] := 0;
+    Ton_Up3(IN := FALSE);
+    bCyl3UpState := TRUE;
+  ELSE
+    IF NOT bCyl3UpState THEN
+      Ton_Up3(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dDustCyl3UpTime)));
+      IF Ton_Up3.Q THEN
+        bUpNoSignalAlarm3 := TRUE;
+        Ton_Up3(IN := FALSE);
+      END_IF;
+    ELSE
+      IF g_CylAllStateUpDate.BoolArr[36] THEN
+        bUpNoSignalAlarm3 := FALSE;
+      ELSE
+        bUpNoSignalAlarm3 := TRUE;
+      END_IF;
+    END_IF;  
+  END_IF;
+ELSIF bDustCyl3UseDownInplaceSignal AND g_boDustCylinder2Down THEN
+  IF g_bDustCylinder2DownInPlace THEN
+    g_bDustCylinder2State := FALSE;
+    g_boDustCylinderDone2 := TRUE;
+    M.ENABLE[218] := 0;
+    bDownNoSignalAlarm3 := FALSE;
+    Ton_Down3(IN := FALSE);
+    bCyl3UpState := FALSE;
+  ELSE
+    IF bCyl3UpState THEN
+      Ton_Down3(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dDustCyl3DownTime)));
+      IF Ton_Down3.Q THEN
+        bDownNoSignalAlarm3 := TRUE;
+        Ton_Down3(IN := FALSE);
+      END_IF;
+    ELSE
+      IF g_CylAllStateUpDate.BoolArr[37] THEN
+         bDownNoSignalAlarm3 := FALSE;
+      ELSE
+         bDownNoSignalAlarm3 := TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+ELSE
+  bUpNoSignalAlarm3 := FALSE;
+  bDownNoSignalAlarm3 := FALSE;
+  IF g_bDustCylinder2DelayFlag THEN
+    IF g_boDustCylinder2Up THEN
+      InPlaceDelay2(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dDustCyl3UpTime)));
+    ELSE
+      InPlaceDelay2(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dDustCyl3DownTime)));
+    END_IF;
+    IF InPlaceDelay2.Q THEN
+      g_bDustCylinder2DelayFlag := FALSE;
+      InPlaceDelay2(IN :=FALSE);
+      IF g_boDustCylinder2Up AND g_boDustCylinder2Down=FALSE THEN
+        g_bDustCylinder2State:= TRUE;
+        g_boDustCylinderDone2 := TRUE;
+        M.ENABLE[218] := 0;
+        bCyl3UpState := TRUE;
+      END_IF;
+      IF g_boDustCylinder2Down AND g_boDustCylinder2Up=FALSE THEN
+        g_bDustCylinder2State:= FALSE;
+        g_boDustCylinderDone2 := TRUE;
+        M.ENABLE[218] := 0;
+        bCyl3UpState := FALSE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+IF bUpNoSignalAlarm3 THEN
+  g_Alarm.alarmArray[519] := 1232;
+ELSE
+  g_Alarm.alarmArray[519] := 0;
+END_IF;
+IF bDownNoSignalAlarm3 THEN
+  g_Alarm.alarmArray[498] := 1211;
+ELSE
+  g_Alarm.alarmArray[498] := 0;
+END_IF;
+
+(*抽尘切换气缸:用来切换抽尘轴1-2的装置*)
+Rtring_DustChangeCylUp(CLK := bDustChangeCylUp OR g_bDoubleDustChangeCylUpControlM OR g_bDoubleDustChangeCylUpControl);
+IF Rtring_DustChangeCylUp.Q THEN
+  bDustChangeCylUp := FALSE;
+  g_bDoubleDustChangeCylUpControlM := FALSE;
+  g_bDoubleDustChangeCylUpControl := FALSE;
+  g_boDustChangeCylinderUp := TRUE;
+  g_boDustChangeCylinderDown := FALSE;
+  g_bDoubleDustChangeCylUpDone := FALSE;
+  bDoubleDustChangeCylDelayFlag := TRUE;
+END_IF;
+Rtring_DustChangeCylDown(CLK := bDustChangeCyldown OR g_bDoubleDustChangeCylDownControlM OR g_bDoubleDustChangeCylDownControl);
+IF Rtring_DustChangeCylDown.Q THEN
+  bDustChangeCyldown := FALSE;
+  g_bDoubleDustChangeCylDownControlM := FALSE;
+  g_bDoubleDustChangeCylDownControl := FALSE;
+  g_boDustChangeCylinderUp := FALSE;
+  g_boDustChangeCylinderDown := TRUE;
+  g_bDoubleDustChangeCylDownDone := FALSE;
+  bDoubleDustChangeCylDelayFlag := TRUE;
+END_IF;
+
+IF bDoubleDustChangeCylUseInInplaceSignal AND g_boDustChangeCylinderUp THEN
+  IF g_bDoubleDustChangeCylUpInPlace THEN
+    g_bDoubleDustChangeCylState := TRUE;
+    g_bDoubleDustChangeCylUpDone := TRUE;
+    bUpNoSignalAlarm4:= FALSE;
+    M.ENABLE[218] := 0;
+    Ton_Up4(IN := FALSE);
+    bCyl4UpState := TRUE;
+  ELSE
+    IF NOT bCyl4UpState THEN
+      Ton_Up4(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dDoubleDustChangeCylUpDoneTime)));
+      IF Ton_Up4.Q THEN
+        bUpNoSignalAlarm4 := TRUE;
+        Ton_Up4(IN := FALSE);
+      END_IF;
+    ELSE
+      IF g_CylAllStateUpDate.BoolArr[92] THEN
+        bUpNoSignalAlarm4 := FALSE;
+      ELSE
+        bUpNoSignalAlarm4 := TRUE;
+      END_IF;
+    END_IF;  
+  END_IF;
+ELSIF bDoubleDustChangeCylUseDownInplaceSignal AND g_boDustChangeCylinderDown THEN
+  IF g_bDoubleDustChangeCylDownInPlace THEN
+    g_bDoubleDustChangeCylState := FALSE;
+    g_bDoubleDustChangeCylDownDone := TRUE;
+    M.ENABLE[218] := 0;
+    bDownNoSignalAlarm4 := FALSE;
+    Ton_Down4(IN := FALSE);
+    bCyl4UpState := FALSE;
+  ELSE
+    IF bCyl4UpState THEN
+      Ton_Down4(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dDoubleDustChangeCylDownDoneTime)));
+      IF Ton_Down4.Q THEN
+        bDownNoSignalAlarm4 := TRUE;
+        Ton_Down4(IN := FALSE);
+      END_IF;
+    ELSE
+      IF g_CylAllStateUpDate.BoolArr[93] THEN
+         bDownNoSignalAlarm4 := FALSE;
+      ELSE
+         bDownNoSignalAlarm4 := TRUE;
+      END_IF;
+    END_IF;
+  END_IF;
+ELSE
+  bUpNoSignalAlarm4 := FALSE;
+  bDownNoSignalAlarm4 := FALSE;
+  IF bDoubleDustChangeCylDelayFlag THEN
+    IF g_boDustChangeCylinderUp THEN
+      InPlaceDelay3(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dDoubleDustChangeCylUpDoneTime)));
+    ELSE
+      InPlaceDelay3(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dDoubleDustChangeCylDownDoneTime)));
+    END_IF;
+    IF InPlaceDelay3.Q THEN
+      bDoubleDustChangeCylDelayFlag := FALSE;
+      InPlaceDelay3(IN :=FALSE);
+      IF g_boDustChangeCylinderUp AND g_boDustChangeCylinderDown=FALSE THEN
+        g_bDoubleDustChangeCylState:= TRUE;
+        g_bDoubleDustChangeCylUpDone := TRUE;
+        M.ENABLE[218] := 0;
+        bCyl4UpState := TRUE;
+      END_IF;
+      IF g_boDustChangeCylinderDown AND g_boDustChangeCylinderUp=FALSE THEN
+        g_bDoubleDustChangeCylState:= FALSE;
+        g_bDoubleDustChangeCylDownDone := TRUE;
+        M.ENABLE[218] := 0;
+        bCyl4UpState := FALSE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF bUpNoSignalAlarm4 THEN
+  g_Alarm.alarmArray[567] := 1280;
+ELSE
+  g_Alarm.alarmArray[567] := 0;
+END_IF;
+IF bDownNoSignalAlarm4 THEN
+  g_Alarm.alarmArray[568] := 1281;
+ELSE
+  g_Alarm.alarmArray[568] := 0;
+END_IF;
+
+(*打开输出口控制 气缸使用延时的状态切换  137-138 除尘气缸的状态切换*)
+IF ArrayConfigOutputNumber[137] AND NOT bDustCyl1UseUpInplaceSignal THEN
+  g_bGeneralDustCylinderState :=TRUE;
+  g_boDustCylinderDone :=TRUE;
+  bCyl1UpState := TRUE;
+  ArrayConfigOutputNumber[137] := FALSE;
+END_IF;
+IF ArrayConfigOutputNumber[138] AND NOT bDustCyl1UseDownInplaceSignal THEN
+  g_bGeneralDustCylinderState :=FALSE;
+  g_boDustCylinderDone :=TRUE;
+  bCyl1UpState := FALSE;
+  ArrayConfigOutputNumber[138] := FALSE;
+END_IF;
+IF ArrayConfigOutputNumber[139] AND NOT bDustCyl2UseUpInplaceSignal THEN
+  g_bDustCylinder1State:= TRUE;
+  g_boDustCylinderDone1 := TRUE;
+  bCyl2UpState := TRUE;
+  ArrayConfigOutputNumber[139] := FALSE;
+END_IF;
+IF ArrayConfigOutputNumber[140] AND NOT bDustCyl2UseDownInplaceSignal THEN
+  g_bDustCylinder1State:= FALSE;
+  g_boDustCylinderDone1 := TRUE;
+  bCyl2UpState := FALSE;
+  ArrayConfigOutputNumber[140] := FALSE;
+END_IF;
+IF ArrayConfigOutputNumber[141] AND NOT bDustCyl3UseUpInplaceSignal THEN
+  g_bDustCylinder2State:= TRUE;
+  g_boDustCylinderDone2 := TRUE;
+  bCyl3UpState := TRUE;
+  ArrayConfigOutputNumber[139] := FALSE;
+END_IF;
+IF ArrayConfigOutputNumber[141] AND NOT bDustCyl3UseDownInplaceSignal THEN
+  g_bDustCylinder2State:= FALSE;
+  g_boDustCylinderDone2 := TRUE;
+  bCyl3UpState := FALSE;
+  ArrayConfigOutputNumber[140] := FALSE;
+END_IF;
+
+IF g_bPlcResetBuffer THEN
+  bGeneralDustCylinderUp := FALSE;
+  g_bGeneralDustCylinderOpen := FALSE;
+  bGeneralDustCylinderDown := FALSE;
+  g_bGeneralDustCylinderClose := FALSE;
+  bDustCylinder1Up := FALSE;
+  g_bDustCylinder1Open := FALSE;
+  bDustCylinder1Down := FALSE;
+  g_bDustCylinder1Close := FALSE;
+  bDustCylinder2Up := FALSE;
+  g_bDustCylinder2Open := FALSE;
+  bDustCylinder2Down := FALSE;
+  g_bDustCylinder2Close := FALSE;
+  InPlaceDelay0(IN :=FALSE);
+  InPlaceDelay1(IN :=FALSE);
+  InPlaceDelay2(IN :=FALSE);
+  g_bGeneralDustCylinderDelayFlag := FALSE;
+  g_bDustCylinder1DelayFlag := FALSE;
+  g_bDustCylinder2DelayFlag := FALSE;
+  bDoubleDustChangeCylDelayFlag := FALSE;
+  g_bGeneralDustCylinder3CloseM := FALSE;
+  g_bGeneralDustCylinder2CloseM := FALSE;
+  g_bGeneralDustCylinder2OpenM := FALSE;
+  g_bGeneralDustCylinder3OpenM := FALSE;
+  bDustChangeCylUp := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

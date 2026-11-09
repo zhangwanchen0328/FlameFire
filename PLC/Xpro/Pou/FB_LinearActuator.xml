@@ -1,0 +1,237 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_LinearActuator" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bLinearActuatorEnablM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLinearActuatorEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLinearActuatorClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bLinearActuatorEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLinearActuatorClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLinearActuatorDirection">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLinearActuatorBeZero">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bLinearActuatorDirection">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_dLinearActuatorDirectionM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dLinearActuatorBeZeroM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bDirection">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[运动方向 0前进  1 后退]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMaualType">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[手动操控方式， 0 直接操控  1 一键操控（初始化）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerMove">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerStop">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nLinearActuatorSwitch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dLinearActuatorLength">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[极限长度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dLinearActuatorVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[速度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boLinearActuatorForward">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚  ：io控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boLinearActuatorBack">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLinearActuatorMoveDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[运动完成标志位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nMoveTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="TonMove">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTriggerMove(CLK := g_bLinearActuatorEnablM OR g_bLinearActuatorEnable OR bLinearActuatorEnable);
+RTriggerStop(CLK := g_bLinearActuatorClose OR bLinearActuatorClose);
+IF RTriggerMove.Q THEN
+  nMoveTime:=LREAL_TO_DINT(g_dCircleRadius/dLinearActuatorVel);
+  IF g_bLinearActuatorEnablM THEN
+    g_bLinearActuatorEnablM := FALSE;
+    bDirection:=LREAL_TO_BOOL(g_dLinearActuatorDirectionM);
+    bLinearActuatorBeZero:=LREAL_TO_BOOL(g_dLinearActuatorBeZeroM);
+    IF bLinearActuatorBeZero THEN
+      nMoveTime:=LREAL_TO_DINT(dLinearActuatorLength/dLinearActuatorVel);
+    END_IF;
+    nLinearActuatorSwitch:=50;
+  ELSIF g_bLinearActuatorEnable THEN
+    bDirection := g_bLinearActuatorDirection;
+    nLinearActuatorSwitch:=50;
+  ELSIF bLinearActuatorEnable THEN
+    bDirection := bLinearActuatorDirection;
+    nLinearActuatorSwitch:=10;
+  END_IF;
+  
+  bLinearActuatorEnable:=FALSE;
+  g_bLinearActuatorEnable:=FALSE;
+  TonMove(IN :=FALSE);
+  
+  g_boLinearActuatorForward:=FALSE;  
+  g_boLinearActuatorBack:=FALSE;
+  
+  g_boLinearActuatorMoveDone:=FALSE;
+END_IF;
+
+IF RTriggerStop.Q THEN
+  g_bLinearActuatorClose:=FALSE;
+  bLinearActuatorClose:=FALSE;
+  g_boLinearActuatorForward:=FALSE;
+  g_boLinearActuatorBack:=FALSE;  
+  g_boLinearActuatorMoveDone:=TRUE;
+END_IF;
+
+CASE nLinearActuatorSwitch OF
+  0:
+    nLinearActuatorSwitch:=0;
+  10:(*手动控制*)
+    IF bMaualType THEN
+      nMoveTime:= LREAL_TO_DINT(dLinearActuatorLength/dLinearActuatorVel);
+      nLinearActuatorSwitch:=50;
+    ELSE
+      IF bDirection THEN
+        g_boLinearActuatorForward:=FALSE;
+        g_boLinearActuatorBack:=TRUE;
+      ELSE 
+        g_boLinearActuatorForward:=TRUE;
+        g_boLinearActuatorBack:=FALSE;
+      END_IF;
+      nLinearActuatorSwitch:=0;
+    END_IF;
+  50:
+    IF bDirection THEN
+      g_boLinearActuatorForward:=FALSE;
+      g_boLinearActuatorBack:=TRUE;
+    ELSE 
+      g_boLinearActuatorForward:=TRUE;
+      g_boLinearActuatorBack:=FALSE;
+    END_IF;
+    nLinearActuatorSwitch:=60;
+  60:
+    TonMove(IN :=TRUE,PT := DINT_TO_TIME(nMoveTime));
+    IF TonMove.Q THEN
+      TonMove(IN :=FALSE);
+      g_boLinearActuatorForward:=FALSE;
+      g_boLinearActuatorBack:=FALSE;  
+      g_boLinearActuatorMoveDone:=TRUE;
+      M.ENABLE[237] := 0;
+      nLinearActuatorSwitch:=0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  g_boLinearActuatorForward:=FALSE;
+  g_boLinearActuatorBack:=FALSE;
+  g_boLinearActuatorMoveDone:=FALSE;
+  nLinearActuatorSwitch:=0;
+  TonMove(IN :=FALSE);
+END_IF;
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[电动推杆控制]]></xhtml:p>
+  </documentation>
+</pou>

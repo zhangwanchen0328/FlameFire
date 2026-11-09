@@ -1,0 +1,557 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_GeneralAxisHome" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_biGeneral1HomeOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral1HomeOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bGeneral1HomeOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biGeneral2HomeOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral2HomeOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bGeneral2HomeOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biGeneral1HomeClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral1HomeClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bGeneral1HomeClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biGeneral2HomeClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral2HomeClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bGeneral2HomeClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boGeneral1HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral1HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bGeneral1HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="1"/>
+        </initialValue>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boGeneral2HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral2HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bGeneral2HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="1"/>
+        </initialValue>
+      </variable>
+      <variable name="R_Trriger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nSwitchState1">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nSwitchState2">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_General1_Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Home">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="g_General1_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_General1_ABS">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_General2_ABS">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dHomePosition1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dHomePosition2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nHomingMode1">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nHomingMode2">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dAxisHomeOffset1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAxisHomeOffset2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAxisHomeVel1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAxisHomeVel2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneralAxis1Zero">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneralAxis2Zero">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bChangeHomeMode">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nChangeHomeModeState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nChangeModeAxis">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="Rtring_T1Recover">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_T2Recover">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nRecoverT1DatumMarkState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nRecoverT2DatumMarkState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trriger1(CLK := g_biGeneral1HomeOpen OR g_bGeneral1HomeOpen OR bGeneral1HomeOpen);
+R_Trriger2(CLK := g_biGeneral1HomeClose OR g_bGeneral1HomeClose OR bGeneral1HomeClose);
+
+IF R_Trriger1.Q THEN
+  g_boGeneral1HomeDone := FALSE;
+  g_bGeneral1HomeDone := FALSE;
+  bGeneral1HomeDone := FALSE;
+  bGeneral1HomeOpen := FALSE;
+  g_bGeneral1HomeOpen := FALSE;
+  nSwitchState1 := 1;
+END_IF;
+
+IF R_Trriger2.Q THEN
+  nSwitchState1 := 0;
+  bGeneral1HomeClose := FALSE;
+  g_bGeneral1HomeClose := FALSE;
+END_IF;
+
+CASE nSwitchState1 OF
+  0:
+  nSwitchState1 := 0;
+  1:
+  g_General1_Home.Execute := TRUE;
+  g_General1_Home.Position := dHomePosition1;
+   g_General1_Home.bCalibrationCam := g_bGeneralAxis1Zero;
+   g_General1_Home.DISTANCE := dAxisHomeOffset1;
+  IF nHomingMode1 = 0 THEN
+    g_General1_Home.HomingMode := 0;
+  ELSIF nHomingMode1 = 1 THEN
+    g_General1_Home.HomingMode := 5;
+  ELSIF nHomingMode1 = 3 THEN
+    g_General1_Home.HomingMode := 1;
+  END_IF;
+  
+ 
+  
+  IF g_General1_Home.Done THEN
+     g_General1_Home.Execute := FALSE;
+     g_boGeneral1HomeDone := TRUE;
+    g_bGeneral1HomeDone := TRUE;
+    bGeneral1HomeDone := TRUE;
+    nSwitchState1 := 0;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer THEN
+    nSwitchState1 := 10;
+  END_IF;
+  
+  IF g_General1_Home.CommandAborted OR g_General1_Home.Error THEN
+    g_General1_Home.Execute := FALSE;
+    nSwitchState1 := 0;
+  END_IF;
+  10:
+  g_General1_Home.Execute := FALSE;
+  g_General1_Stop.Execute := TRUE;
+  IF g_General1_Stop.Done AND g_bPlcStartBuffer THEN
+    g_General1_Stop.Execute := FALSE;
+    nSwitchState1 := 1;
+  END_IF;
+  
+  IF g_General1_Stop.CommandAborted OR g_General1_Stop.Error THEN
+    g_General1_Stop.Execute := FALSE;
+    nSwitchState1 := 0;
+  END_IF;
+END_CASE;
+
+
+R_Trriger3(CLK := g_biGeneral2HomeOpen OR g_bGeneral2HomeOpen OR bGeneral2HomeOpen);
+R_Trriger4(CLK := g_biGeneral2HomeClose OR g_bGeneral2HomeClose OR bGeneral2HomeClose);
+
+IF R_Trriger3.Q THEN
+  g_boGeneral2HomeDone := FALSE;
+  g_bGeneral2HomeDone := FALSE;
+  bGeneral2HomeDone := FALSE;
+  bGeneral2HomeOpen := FALSE;
+  g_bGeneral2HomeOpen := FALSE;
+  nSwitchState2 := 1;
+END_IF;
+
+IF R_Trriger4.Q THEN
+  nSwitchState2 := 0;
+  bGeneral2HomeClose := FALSE;
+  g_bGeneral2HomeClose := FALSE;
+END_IF;
+
+CASE nSwitchState2 OF
+  0:
+  nSwitchState2 := 0;
+  1:
+  g_General2_Home.Execute := TRUE;
+  g_General2_Home.Position := dHomePosition2;
+  g_General2_Home.DISTANCE := dAxisHomeOffset2;
+  IF nHomingMode2 = 0 THEN
+    g_General2_Home.HomingMode := 0;
+  ELSIF nHomingMode2 = 1 THEN
+    g_General2_Home.HomingMode := 5;
+  ELSIF nHomingMode2 = 3 THEN
+    g_General2_Home.HomingMode := 1; 
+  END_IF;
+  g_General2_Home.bCalibrationCam := g_bGeneralAxis2Zero;
+  IF g_General2_Home.Done THEN
+    g_General2_Home.Execute := FALSE;
+    
+     g_boGeneral2HomeDone := TRUE;
+    g_bGeneral2HomeDone := TRUE;
+    bGeneral2HomeDone := TRUE;
+    nSwitchState2 := 0;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer THEN
+    nSwitchState2 := 10;
+  END_IF;
+  
+  IF g_General2_Home.CommandAborted OR g_General2_Home.Error THEN
+    g_General2_Home.Execute := FALSE;
+    nSwitchState2 := 0;
+  END_IF;
+  10:
+  g_General2_Home.Execute := FALSE;
+  g_General2_Stop.Execute := TRUE;
+  IF g_General2_Stop.Done AND g_bPlcStartBuffer THEN
+    g_General2_Stop.Execute := FALSE;
+    nSwitchState2 := 1;
+  END_IF;
+  
+  IF g_General2_Stop.CommandAborted OR g_General2_Stop.Error THEN
+    g_General2_Stop.Execute := FALSE;
+    nSwitchState2 := 0;
+  END_IF;
+END_CASE;
+
+IF bChangeHomeMode THEN
+  bChangeHomeMode := FALSE;
+  nChangeHomeModeState := nChangeModeAxis;
+END_IF;
+(*置零点功能*)
+CASE nChangeHomeModeState OF
+  0:
+    nChangeHomeModeState := 0;
+  1:
+    g_General1_Home.Execute := TRUE;
+    IF nHomingMode1 = 0 THEN
+      g_General1_Home.HomingMode := 0;
+    ELSIF nHomingMode1 = 1 THEN
+      g_General1_Home.HomingMode := 5;
+    ELSIF nHomingMode1 = 2 THEN
+      g_General1_Home.HomingMode := 4;
+    END_IF;
+  g_General1_Home.Position := 0.0;
+   g_General1_Home.DISTANCE := 0.0;
+    IF g_General1_Home.Done THEN
+      g_General1_Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+    IF g_General1_Home.CommandAborted OR g_General1_Home.Error THEN
+      g_General1_Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+   2:
+    g_General2_Home.Execute := TRUE;
+    IF nHomingMode2 = 0 THEN
+      g_General2_Home.HomingMode := 0;
+    ELSIF nHomingMode2 = 1 THEN
+      g_General2_Home.HomingMode := 5;
+    ELSIF nHomingMode2 = 2 THEN
+      g_General2_Home.HomingMode := 4;
+    END_IF;
+  g_General2_Home.Position := 0.0;
+   g_General2_Home.DISTANCE := 0.0;
+    IF g_General2_Home.Done THEN
+      g_General2_Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+    IF g_General2_Home.CommandAborted OR g_General2_Home.Error THEN
+      g_General2_Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+END_CASE;
+g_boGeneral2AxisHomeDone:= g_bGeneral2HomeDone AND g_General2_Axis.NcToPlc.HOMINGSTATE;
+(***界面上下发了去掉T1轴回零标志***)
+IF g_bCleanT1Homed THEN
+   g_General1_Home.HomingMode := 1;
+   g_General1_Home.Execute := TRUE; 
+   g_bGeneral1HomeDone := FALSE; 
+   IF g_General1_Home.DONE OR g_General1_Home.ERROR THEN 
+    g_General1_Home.Execute := FALSE; 
+    g_bCleanT1Homed := FALSE; 
+   END_IF;
+END_IF;
+(***界面上下发了去掉T2轴回零标志***)
+IF g_bCleanT2Homed THEN
+   g_General2_Home.HomingMode := 1;
+   g_General2_Home.Execute := TRUE; 
+   g_bGeneral2HomeDone := FALSE; 
+   IF g_General2_Home.DONE OR g_General2_Home.ERROR THEN 
+    g_General2_Home.Execute := FALSE; 
+    g_bCleanT2Homed := FALSE; 
+   END_IF;
+END_IF;
+
+(*伺服断电恢复基准点*)
+Rtring_T1Recover(CLK := g_bRecoverT1DatumMark);
+IF Rtring_T1Recover.Q THEN
+  g_bRecoverT1DatumMark := FALSE;
+  nRecoverT1DatumMarkState := 1;
+END_IF;
+CASE nRecoverT1DatumMarkState OF
+  1:
+   g_General1_Home.HomingMode := 4;
+   g_General1_Home.Position :=g_dT1DatumMark; (*恢复基准点坐标差值*)
+   g_General1_Home.Execute := TRUE;  
+   IF  g_General1_Home.DONE OR g_General1_Home.ERROR THEN 
+		g_boGeneral1HomeDone := TRUE;
+		g_bGeneral1HomeDone := TRUE;
+		g_General1_Home.Execute := FALSE; 
+		nRecoverT1DatumMarkState := 0; 
+   END_IF;
+END_CASE;
+
+Rtring_T2Recover(CLK := g_bRecoverT2DatumMark);
+IF Rtring_T2Recover.Q THEN
+  g_bRecoverT2DatumMark := FALSE;
+  nRecoverT2DatumMarkState := 1;
+END_IF;
+CASE nRecoverT2DatumMarkState OF
+  1:
+   g_General2_Home.HomingMode := 4;
+   g_General2_Home.Position :=g_dT2DatumMark; (*恢复基准点坐标差值*)
+   g_General2_Home.Execute := TRUE;  
+   IF  g_General2_Home.DONE OR g_General2_Home.ERROR THEN 
+		g_boGeneral2HomeDone := TRUE;
+		g_bGeneral2HomeDone := TRUE;
+		g_General2_Home.Execute := FALSE; 
+		nRecoverT2DatumMarkState := 0; 
+   END_IF;
+END_CASE;
+
+
+
+IF g_bPlcResetBuffer THEN
+  nSwitchState1 := 0;
+  g_General1_Home.Execute := FALSE;
+  g_General1_ABS.Execute := FALSE;
+  g_General1_Stop.Execute := FALSE;
+  g_boGeneral1HomeDone := TRUE;
+  g_bGeneral1HomeDone := TRUE;
+  bGeneral1HomeDone := TRUE;
+  nSwitchState2 := 0;
+  g_General2_Home.Execute := FALSE;
+  g_General2_ABS.Execute := FALSE;
+  g_General2_Stop.Execute := FALSE;
+  g_boGeneral2HomeDone := TRUE;
+  g_bGeneral2HomeDone := TRUE;
+  bGeneral2HomeDone := TRUE;
+  nChangeHomeModeState := 0;
+  g_bRecoverT2DatumMark := FALSE;
+  g_bRecoverT1DatumMark := FALSE;
+END_IF;
+g_nT1HomeMode := nHomingMode1;
+g_nT2HomeMode := nHomingMode2;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

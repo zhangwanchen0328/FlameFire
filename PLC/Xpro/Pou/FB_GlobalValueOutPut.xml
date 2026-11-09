@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_GlobalValueOutPut" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="LocalVar0">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(***********---------bool-----------************)
+
+(***********---------int-----------************)
+g_noOutPut_PipeType := g_nPipeType;(*管型*)
+g_noOutPut_MotionMode := DINT_TO_INT(g_nMotionMode);(*当前模式 2：自动 3：手动 4：MDI 5:回零*)
+
+(***********---------double-----------************)
+g_doOutPut_TotalPartLenth := g_dTotalPartLenth;(*套料生产的总零件长度*)
+g_doOutPut_CircleRadius := g_dCircleRadius;(*圆管半径*)
+g_doOutPut_SquareLenght := g_dSquareLenght;(*方管宽*)
+g_doOutPut_SquareWidth := g_dSquareWidth;(*方管高*)
+g_foOutPut_CornerRadius := g_fCornerRadius;(*拐角半径*)
+g_doOutPut_TotalHeadLenth := g_dTotalHeadLenth;(*套料生产的头料长度*)
+g_foCurrentCoordY := g_fCurrentCoordYBuffer;
+g_boAxIsYisHome := g_biAxIsYisHome;
+g_noCutNum := INT_TO_LREAL(g_nCutNum);(*排料零件个数*)
+g_doWaistRoundWidth := g_dWaistRoundWidth;(*平椭管宽度*)
+g_doWaistRoundHeight :=g_dWaistRoundHeight;(*平椭管高度*)
+g_doEllipseLongAxis := g_dEllipseLongAxis;(*椭圆管长轴*)
+g_doEllipseMinorAxis := g_dEllipseMinorAxis;(*椭圆管长轴*)
+g_doBoundRectangleWidth :=g_dBoundRectangleWidth;(*外接矩形宽度*)
+g_doBoundRectangleheight := g_dBoundRectangleheight;(*外界矩形高度*)]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[全局变量转化成引脚输出]]></xhtml:p>
+  </documentation>
+</pou>

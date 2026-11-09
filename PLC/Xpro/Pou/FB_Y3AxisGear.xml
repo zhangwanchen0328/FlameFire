@@ -1,0 +1,303 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Y3AxisGear" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Axis_Y3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴轴结构体]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biY3GearIn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合开始输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biY3GearOut">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合关闭输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY3GearIn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY3GearOut">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合关闭全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boY3GearDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY3GearDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合完成全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY3GearError">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴耦合误差报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY3GearInError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY3GearOutError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fCurrentCoordYBuffer">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[CNC中Y轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3GearIn">
+        <type>
+          <derived name="MC_GEARIN"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3GearOut">
+        <type>
+          <derived name="MC_GEAROUT"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[解耦模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3MoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_noY3GearErrorID">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+      <variable name="g_nY3Numerator">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nY3Denominator">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nGearState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nRatioNumerator">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="1"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[比例分子]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nRatioDenominator">
+        <type>
+          <USINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="1"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[比例分母]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCoordDiff">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合成功时U和U2的坐标差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCoordMaxDiff">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U和U2最大的的坐标差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGearIn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGearOut">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合关闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGearDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGearCheck">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[是否检测耦合误差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+RTrigger1(CLK := g_biY3GearIn OR g_bY3GearIn OR bGearIn);
+RTrigger2(CLK := g_biY3GearOut OR g_bY3GearOut OR bGearOut);
+
+IF RTrigger1.Q THEN
+  IF Axis_Y3.NCTOPLC.AxisState <> 8 THEN
+    nGearState := 1;
+    g_boY3GearDone := FALSE;
+    g_bY3GearDone := FALSE;
+    bGearDone := FALSE;
+  END_IF;
+END_IF;
+
+IF RTrigger2.Q THEN
+  IF Axis_Y3.NCTOPLC.AxisState = 8 THEN
+    nGearState := 2;
+    g_boY3GearDone := FALSE;
+    g_bY3GearDone := FALSE;
+    bGearDone := FALSE;
+  END_IF;
+END_IF;
+
+CASE nGearState OF
+  0:
+    nGearState := 0;
+  1:
+    g_Y3GearIn.Execute := TRUE;
+    g_Y3GearIn.RatioNumerator := INT_TO_LREAL(g_nY3Numerator);
+    g_Y3GearIn.RatioDenominator := g_nY3Denominator;
+    IF g_Y3GearIn.InGear THEN
+      g_boY3GearDone := TRUE;
+      g_bY3GearDone := TRUE;
+      bGearDone := TRUE;
+      nGearState := 30;
+      bGearCheck := TRUE;
+      dCoordDiff := ABS(g_fCurrentCoordYBuffer - Axis_Y3.NCTOPLC.ACTPOS);
+    END_IF;
+    IF g_Y3GearIn.Error OR g_Y3GearIn.CommandAborted THEN
+      g_Y3GearIn.Execute := FALSE;
+      g_noY3GearErrorID := g_Y3GearIn.ErrorID;
+      g_bY3GearInError := TRUE;
+      nGearState := 0;
+    END_IF;
+  2:
+    g_Y3GearOut.Execute := TRUE;
+    g_Y3GearIn.Execute := FALSE;
+    IF g_Y3GearOut.Done THEN
+      g_Y3GearOut.Execute := FALSE;
+      IF Axis_Y3.NCTOPLC.AxisState = 2 THEN
+        nGearState := 0;
+      ELSE
+        nGearState := 3;
+      END_IF;
+    END_IF;
+    IF g_Y3GearOut.Error THEN
+      g_Y3GearOut.Execute := FALSE;
+      g_bY3GearInError := TRUE;
+      nGearState := 0;
+      bGearCheck := FALSE;
+    END_IF;
+  3:
+    g_Y3MoveStop.Execute := TRUE;
+    IF g_Y3MoveStop.Done THEN
+      g_Y3MoveStop.Execute := FALSE;
+      nGearState := 0;
+    END_IF;
+    IF g_Y3MoveStop.Commandaborted OR g_Y3MoveStop.Error THEN
+      g_Y3MoveStop.Execute := FALSE;
+      nGearState := 0;
+    END_IF;
+END_CASE;
+
+IF Axis_Y3.NCTOPLC.AxisState = 8 THEN
+  IF ABS(ABS(g_fCurrentCoordYBuffer - Axis_Y3.NCTOPLC.ACTPOS) - dCoordDiff) > dCoordMaxDiff AND Axis_Y3.NCTOPLC.AXISSTATE = 8 THEN
+      g_bY3GearError := TRUE;
+  END_IF;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

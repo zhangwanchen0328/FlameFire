@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ST_AXISDATA">
+  <baseType>
+    <struct>
+      <variable name="NCAxisName">
+        <type>
+          <derived name="REF_TO AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[正限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[负限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisHomeMode">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回原模式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisHomeSignal">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回原信号类型]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisPosLimitLogic">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[正限位信号逻辑]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisNegLimitLogic">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[负限位信号逻辑]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisZeroSignalLogic">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[零位信号逻辑]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisZero">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴回原零位触发信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ErrorID">
+        <type>
+          <array>
+            <dimension lower="0" upper="19"/>
+            <baseType>
+              <USINT/>
+            </baseType>
+          </array>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴报警ID]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisSignalArr">
+        <type>
+          <array>
+            <dimension lower="0" upper="2"/>
+            <baseType>
+              <BOOL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="Filter_PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Filter_NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="AxisCurrentPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisMoveSpeed">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="NCHomePosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回原后坐标显示]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisHomeOffset">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[零点偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisHomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回原完成标志]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisStopDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="AxisChangeHomeMode">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[置零点的模式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisAbsVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisAbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对位置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisRelDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对移动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisRelVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对移动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisAbsMoveDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisRelMoveDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisGearDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="AxisMoveDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ThreeSidesCenter" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_TringOpen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TringClose">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TringUseValue">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TringCleanValue">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TringSetValue">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TringManula">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bDiffEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bManualHMI">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nThreesidesstate">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dThreeSidesCompensationA">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dThreeSidesCompensationB">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dThreeSidesCompensationD">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dThreeSidesCompensationOffsetA">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dThreeSidesCompensationOffsetB">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_TringOpen(CLK := g_bThreeSidesCenterOpenM);
+R_TringClose(CLK := g_bThreeSidesCenterCloseM);
+R_TringSetValue(CLK := g_bFourSidesCenterSetValueM);
+R_TringManula(CLK := bManualHMI);
+IF R_TringOpen.Q THEN
+  g_bThreeSidesCenterOpenM := FALSE;
+  nThreesidesstate := 10;
+  g_dUseSideCenterType := 7.0;
+  g_bExecuteSingeSideOnAFace := FALSE;
+  g_bExecuteSingeSideOnBFace := FALSE;
+  g_bExecuteSingeSideOnCFace := FALSE;
+  g_bExecuteSingeSideOnDFace := FALSE;
+END_IF;
+IF R_TringClose.Q THEN
+  g_bThreeSidesCenterCloseM := FALSE;
+  nThreesidesstate := 20;
+END_IF;
+IF R_TringManula.Q THEN
+  g_dInformHmiUpdateValue := 8.0;
+  bManualHMI := FALSE;
+END_IF;
+
+CASE nThreesidesstate OF
+  0:
+  nThreesidesstate := 0;
+  10:
+  IF R_TringSetValue.Q THEN
+    IF g_nFourSidesCenterSetValueP = 0 THEN
+      dThreeSidesCompensationA := g_dFourSidesCenterSetValueQ;
+    ELSIF g_nFourSidesCenterSetValueP = 1 THEN
+      dThreeSidesCompensationB := g_dFourSidesCenterSetValueQ;
+    ELSIF g_nFourSidesCenterSetValueP = 2 THEN
+      dThreeSidesCompensationD := g_dFourSidesCenterSetValueQ;  
+    END_IF;
+    g_bFourSidesCenterSetValueM := FALSE;
+  END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nThreesidesstate := 30;
+    END_IF;
+  20:
+    g_dThreeSidesCenterCompensationA := dThreeSidesCompensationA - g_dBeamCenterPos;
+    g_dThreeSidesCenterCompensationB := dThreeSidesCompensationB - g_dBeamCenterPos;
+    g_dThreeSidesCenterCompensationD := dThreeSidesCompensationD - g_dBeamCenterPos;
+    g_dInformHmiUpdateValue := 8.0;
+    nThreesidesstate := 0;
+    IF ABS(g_dThreeSidesCenterCompensationA)>g_dCompensationThreshold OR ABS(g_dThreeSidesCenterCompensationB) > g_dCompensationThreshold
+      OR ABS(g_dThreeSidesCenterCompensationD) > g_dCompensationThreshold THEN
+      g_bExcessiveDeviationOfCentringCompensationAlarm := TRUE;
+    END_IF;
+  30:
+    IF g_bPlcStartBuffer THEN
+      nThreesidesstate := 10;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer OR g_bPlcEndM THEN
+  nThreesidesstate := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

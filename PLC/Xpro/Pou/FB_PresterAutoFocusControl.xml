@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_PresterAutoFocusControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="iState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="iState_REF">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="TON_Com">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TON_Move">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TON_REF">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="FocusTon">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="ToFAlarm220">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Init_REF">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Init_Temp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Pre_outAOGasPressure">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="RTrigge_REF">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="dFPosFb">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFPosFb2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dMinPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dMaxPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dMaxVoltage">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dMinVoltage">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dZeroPositionVoltage">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dIntercept">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSlope">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dVoltage">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFPosFbLast">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bFocusShiftfEnablelag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigge_REF(CLK:= g_bF050Home);
+IF RTrigge_REF.Q THEN
+ iState_REF :=10;
+  g_bF050Home := FALSE;
+  g_boFHomeDone := FALSE;
+END_IF;
+
+CASE iState_REF OF
+  0:
+    iState_REF :=0;
+  10:
+    TON_REF(IN:=FALSE);
+    g_boPresterHome :=TRUE;
+    iState_REF :=20;
+  20:
+    TON_REF(IN:=TRUE, PT:=LREAL_TO_TIME(FUN_MStoS(g_dFocusHomeTime)));
+    IF TON_REF.Q THEN
+      TON_REF(IN:=FALSE);
+      g_boPresterHome :=FALSE;
+      dFPosFb := 0.0;   (*焦点设0*)
+      iState_REF :=30;
+    END_IF;
+  30:
+     g_boFHomeDone := TRUE;
+    iState_REF :=40;
+END_CASE;
+
+(*使用高电平触发*)
+IF g_bMnualAnalogEnable AND iState_REF =40 AND iState =0 THEN  (*手动触发调焦,普镭回零完成*)
+  dFPosFb := g_dMnualAnalogPosition + g_fFocusShiftValue;
+  dFPosFb2 := g_dMnualAnalogPosition;
+  g_bMnualAnalogEnable := FALSE;
+  iState:=10; 
+ELSIF g_bAnalogEnable AND iState_REF =40 AND iState =0 THEN  (*模拟量自动调焦*)
+  dFPosFb := g_dAnalogPosition + g_fFocusShiftValue;
+  dFPosFb2 := g_dAnalogPosition;
+  g_bAnalogEnable:=FALSE;
+  g_bFocusEnable := FALSE;
+  iState:=10; 
+END_IF;  
+CASE  iState OF
+  0:
+    iState :=0;
+  10:
+    TON_Move(IN:=FALSE);
+    TON_Com(IN:=FALSE);
+    FocusTon(IN := FALSE); 
+    IF g_bCheckFocusDA THEN (*开启焦点矫正*)
+      g_noVoltageValue :=0;(*FUN_FocusCailbration(g_FocusDAOutputArr, g_FocusDAGroupNum, dFPosFb);*)
+    ELSE        
+      IF dFPosFb >= dMinPosition AND dFPosFb < 0.0 THEN
+        IF dMinPosition > -0.01 AND dMinPosition < 0.01 THEN
+          return;
+        ELSE
+          dSlope := dMaxVoltage - dZeroPositionVoltage;
+          dSlope := dSlope / dMinPosition;
+          dIntercept := dZeroPositionVoltage;
+          dVoltage :=  dSlope * dFPosFb + dIntercept;
+        END_IF;
+      ELSIF dFPosFb >= 0.0 AND dFPosFb <= dMaxPosition THEN
+        IF dMaxPosition > -0.01 AND dMaxPosition < 0.01 THEN
+          return;
+        ELSE
+          dSlope := dMinVoltage - dZeroPositionVoltage;
+          dSlope := dSlope / dMaxPosition;
+          dIntercept := dZeroPositionVoltage;
+          dVoltage :=  dSlope * dFPosFb + dIntercept;
+        END_IF;
+      END_IF;
+      g_noVoltageValue := FUN_FAxisVoltageToAnalog(dVoltage);
+    END_IF;
+    IF dFPosFbLast = dFPosFb THEN (*焦点不变,焦点完成信号提前给,延时缩短*)
+      g_bFocusDone := TRUE;
+      iState:=30; 
+    ELSIF bFocusShiftfEnablelag THEN  (*焦漂补偿,焦点完成信号不给,延时缩短*)
+      bFocusShiftfEnablelag := FALSE;
+      iState:=30;
+    ELSE
+      iState:=15; 
+    END_IF;
+  15:(*调焦电压发出稳定延时后发调焦使能*)   
+    TON_Com(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MStoS(g_dFocusAoTime)));
+    IF TON_Com.Q THEN
+      g_boVoltageEnable := TRUE;
+      TON_Com(IN:=FALSE);
+      iState :=20;
+    END_IF; 
+  20:(*调焦使能至少15ms，关闭调焦使能*)
+      TON_Move(IN:=TRUE,PT:=LREAL_TO_TIME(FUN_MStoS(g_dFocusEnableTime))); 
+      IF TON_Move.Q THEN
+        g_boVoltageEnable := false;
+        TON_Move(IN:=FALSE); 
+        iState := 25;
+      END_IF;
+  25:(*焦点到位*)
+    IF g_bUseVoltageArrivalSignal THEN
+      IF g_biVoltageArrival THEN
+        g_bFocusDone := TRUE;
+        iState:=0;
+      END_IF;
+    ELSE
+      g_bFocusDone := TRUE;
+      iState:=0; 
+    END_IF;
+    FocusTon(IN := TRUE,PT := T#5s);
+    IF FocusTon.Q THEN  (*调焦超时报警*)
+      FocusTon.IN := FALSE;
+      g_bFocusOvertimeAlarm := TRUE;
+      iState := 0;
+    END_IF;
+  30: 
+    TON_Com(IN:=TRUE,PT:= T#10ms);
+    IF TON_Com.Q THEN
+      g_boVoltageEnable := TRUE;
+      TON_Com(IN:=FALSE);
+      iState:=35;
+    END_IF;
+  35:
+    TON_Move(IN:=TRUE,PT:=T#50ms);
+    IF TON_Move.Q THEN
+      g_boVoltageEnable := false;      
+      TON_Move(IN:=FALSE);
+      iState:=0;
+    END_IF;
+END_CASE;
+
+(*坐标反馈*)
+g_dFaxisAnoagePosFb := dFPosFb;
+(*BS06K与普雷头共用报警信号*)  
+ToFAlarm220(IN := g_bFilterAnalogCutAheadAlarm, PT := T#1s);
+IF ToFAlarm220.Q  THEN
+  IF g_bCloseCutAheadAlarm THEN
+    g_Alarm.alarmArray[638] := 0;  
+  ELSE
+    g_Alarm.alarmArray[638] := 1333; 
+  END_IF; 
+ELSE
+  g_Alarm.alarmArray[638] := 0;  
+END_IF;
+dFPosFbLast := dFPosFb;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

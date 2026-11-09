@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_QRLoadCylinder" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_biLoadCylinder1Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCylinder1Done">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biLoadCylinder1Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCylinder1Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCylinder2Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCylinder3Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLengthCheck4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCylinder1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCylinder2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bNoPipeWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biLoadZeroOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Cylinder1UpTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nCylinder2AutoUpDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nCylinder2AutoDownDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="Cylinder2AutoUpDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Cylinder2AutoDownDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nCylinderState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLZeroState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="Cylinder1Delay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Cylinder3Delay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nCylinder1Delay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="Cylinder1Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="CylinderDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nCylinderDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bCheckFirst">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Cylinder1UpTrigger(CLK := g_biLoadCylinder1Up);
+Cylinder1Close(CLK := g_biLoadCylinder1Close);
+R_Trigger1(CLK := g_bPlcStartBuffer);
+R_Trigger2(CLK := g_biLoadZeroOpen);
+
+IF Cylinder1UpTrigger.Q THEN
+  g_boLoadCylinder1Done := FALSE;
+  nCylinderState := 1;
+  bCheckFirst := FALSE;
+END_IF;
+IF Cylinder1Close.Q THEN
+  g_boLoadCylinder1Done := FALSE;
+  nCylinderState := 0;
+END_IF;
+
+IF R_Trigger2.Q THEN
+  nLZeroState := 1;
+END_IF;
+
+CASE nCylinderState OF
+  0:
+    nCylinderState := 0;
+  1:
+    g_boLoadCylinder1 := TRUE;
+    g_boLoadCylinder2 := TRUE;
+    CylinderDelay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nCylinderDelay)));
+    IF CylinderDelay.Q THEN
+      CylinderDelay(IN := FALSE);
+      nCylinderState := 2;
+    END_IF;
+  2:
+    IF g_bLengthCheck4 THEN
+      g_boLoadCylinder1Done := TRUE;
+      nCylinderState := 0;
+    ELSE
+      nCylinderState := 3;
+    END_IF;
+  3:
+    IF bCheckFirst THEN
+      nCylinderState := 20;
+      g_boLoadCylinder1 := FALSE;
+      g_boLoadCylinder2 := FALSE;
+      g_bNoPipeWarn := TRUE;
+    ELSE
+      g_boLoadCylinder1 := FALSE;
+      g_boLoadCylinder2 := FALSE;
+      CylinderDelay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nCylinderDelay)));
+      IF CylinderDelay.Q THEN
+        CylinderDelay(IN := FALSE);
+        nCylinderState := 4;
+        bCheckFirst := TRUE;
+      END_IF;
+    END_IF;
+  4:
+    g_boLoadCylinder1Up := TRUE;
+    Cylinder1Delay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nCylinder1Delay)));
+    IF Cylinder1Delay.Q THEN
+      g_boLoadCylinder1Up := FALSE;
+      Cylinder1Delay(IN := FALSE);
+      nCylinderState := 1;
+    END_IF;   
+  20:
+    IF R_Trigger1.Q THEN
+      nCylinderState := 4;
+    END_IF;
+END_CASE;
+
+CASE nLZeroState OF
+  0:
+    nLZeroState := 0;
+  1:
+    g_boLoadCylinder3Up := TRUE;
+    Cylinder3Delay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nCylinder1Delay)));
+    IF Cylinder3Delay.Q THEN
+      g_boLoadCylinder3Up := FALSE;
+      Cylinder3Delay(IN := FALSE);
+      nLZeroState := 2;
+    END_IF;
+  2:
+    g_boLoadCylinder3Up := FALSE;
+    Cylinder3Delay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nCylinder1Delay)));
+    IF Cylinder3Delay.Q THEN
+      g_boLoadCylinder3Up := FALSE;
+      Cylinder3Delay(IN := FALSE);
+      nLZeroState := 0;
+    END_IF;
+END_CASE;
+
+(*上料气缸2，做循环上下顶升*)
+Cylinder2AutoUpDelay(IN := NOT Cylinder2AutoUpDelay.Q, PT := LREAL_TO_TIME(FUN_MStoS(nCylinder2AutoUpDelay)));
+IF Cylinder2AutoUpDelay.Q THEN
+    Cylinder2AutoUpDelay(IN := FALSE);
+    g_boLoadCylinder2Up := TRUE;
+END_IF;
+
+Cylinder2AutoDownDelay(IN := g_boLoadCylinder2Up, PT := LREAL_TO_TIME(FUN_MStoS(nCylinder2AutoDownDelay)));
+IF Cylinder2AutoDownDelay.Q THEN
+    g_boLoadCylinder2Up := FALSE;
+END_IF;
+
+IF g_bPlcResetBuffer THEN
+  Cylinder2AutoUpDelay(IN := FALSE);
+  Cylinder2AutoDownDelay(IN := FALSE);
+  Cylinder1Delay(IN := FALSE);
+  CylinderDelay(IN := FALSE);
+  g_boLoadCylinder1Up := FALSE;
+  nCylinderState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

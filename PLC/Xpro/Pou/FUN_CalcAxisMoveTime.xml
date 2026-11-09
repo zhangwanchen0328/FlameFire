@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FUN_CalcAxisMoveTime" pouType="function">
+  <interface>
+    <returnType>
+      <LREAL/>
+    </returnType>
+    <inputVars>
+      <variable name="Distance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[移动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="InitialVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[初始速度一般为0]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TargetVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[目标速度-最大速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Acc">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Jerk">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[加加速度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="dv">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="t_plan">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="t1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="t2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="t3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="s_vm">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="s_am">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="a">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="b">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="c">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="p">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="q">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="delta">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="part1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="part2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="a1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="temp">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="temp1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF Distance < 0.000001 THEN
+  FUN_CalcAxisMoveTime := 0.001;
+  RETURN;
+END_IF;
+
+
+dv := Acc * Acc / Jerk;
+IF (TargetVel - InitialVel) > dv THEN
+  t1 := Acc / Jerk;
+  t2 := (TargetVel - InitialVel - dv) / Acc;
+ELSE
+  t1 := SQRT((TargetVel - InitialVel) / Jerk);
+  t2 := 0.0;
+  
+END_IF;
+
+s_vm := (TargetVel + InitialVel) * (2.0*t1 + t2);
+IF Distance >= s_vm THEN
+  t3 := (Distance - s_vm) / TargetVel;
+  t_plan := 4.0*t1 + 2.0*t2 + t3;
+  FUN_CalcAxisMoveTime := t_plan;
+  RETURN;
+END_IF;
+
+
+s_am := 4.0 * InitialVel * Acc / Jerk + 2.0 * Acc * Acc * Acc / Jerk / Jerk;
+
+IF s_am > Distance THEN
+  p := 2.0 * InitialVel *Jerk / 3.0;
+  q := -Distance*Jerk*Jerk/4.0;
+  delta := q * q + p *p*p;
+  part1 := -q + SQRT(delta);
+  part2 := -q - SQRT(delta);
+  IF part1 > 0.0 THEN
+    temp := 1.0;
+  ELSIF part1 = 0.0 THEN
+    temp := 0.0;
+  ELSIF part1 < 0.0 THEN
+    temp := -1.0;
+  END_IF;
+  IF part2 > 0.0 THEN
+    temp1 := 1.0;
+  ELSIF part2 = 0.0 THEN
+    temp1 := 0.0;
+  ELSIF part2 < 0.0 THEN
+    temp1 := -1.0;
+  END_IF;
+  a1 := temp * EXPT(ABS(part1),1.0 / 3.0) + temp1 *EXPT(ABS(part2),1.0/3.0);
+  t_plan := a1;
+ELSE
+  t1 := Acc / Jerk;
+  a := Acc;
+  b := 2.0*InitialVel + Jerk * t1*t1 + 2.0*Acc*t1;
+  c := s_am - Distance;
+  delta := b * b - 4.0*a*c;
+  t2 := (-b + SQRT(ABS(delta))) / (2.0*a);
+  t_plan := 4.0*t1+2.0*t2;
+  
+  
+END_IF;
+IF t_plan < 0.001 THEN
+  t_plan := 0.001;
+END_IF;
+FUN_CalcAxisMoveTime := t_plan;
+  
+  
+
+  
+  
+
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

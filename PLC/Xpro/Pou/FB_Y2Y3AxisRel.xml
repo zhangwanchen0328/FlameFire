@@ -1,0 +1,535 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Y2Y3AxisRel" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Axis_Y3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴结构体]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC暂停全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC复位全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biY3RelExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY3RelExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiY3RelDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动距离引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fY3RelDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiY3RelVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动速度引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fY3RelVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boY3RelDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY3RelDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3MoveRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3MoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bY3RelEXecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bY3RelDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nY3RelState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY3RelDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY3TargetPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动目标位置，用于暂停后开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY3TargetVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动目标速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY3RelVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动目标速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RY3Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="Axis_Y2">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴结构体]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biY2RelExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY2RelExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiY2RelDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动距离引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fY2RelDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiY2RelVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动速度引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fY2RelVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boY2RelDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY2RelDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y2MoveRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y2MoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y2Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bY2RelEXecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bY2RelDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nY2RelState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY2RelDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY2TargetPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动目标位置，用于暂停后开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY2TargetVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动目标速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY2RelVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动目标速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RY2Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bFastInch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dY2AxisSlowVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dY3AxisSlowVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dY2AxisFastVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dY3AxisFastVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RY3Trigger(CLK := g_biY3RelExecute OR bY3RelEXecute OR g_bY3RelExecute);
+
+IF RY3Trigger.Q THEN
+  nY3RelState := 1;
+  g_boY3RelDone := FALSE;
+  g_bY3RelDone := FALSE;
+  bY3RelDone := FALSE;
+  IF g_biY3RelExecute THEN
+    dY3TargetPos := Axis_Y3.NCTOPLC.ActPos + g_fiY3RelDistance; 
+    dY3TargetVel := g_fiY3RelVelocity;
+  ELSIF g_bY3RelExecute THEN
+    dY3TargetPos := Axis_Y3.NCTOPLC.ActPos + g_fY3RelDistance; 
+    dY3TargetVel := g_fY3RelVelocity;
+  ELSE
+    dY3TargetPos := Axis_Y3.NCTOPLC.ActPos + dY3RelDistance; 
+    IF g_bFastInch=0 THEN
+      dY3TargetVel := dY3AxisSlowVel;
+    ELSE
+      dY3TargetVel := dY3AxisFastVel;
+    END_IF;
+  END_IF;
+  IF dY3TargetVel = 0.0 THEN
+    dY3TargetVel := dY3RelVelocity;
+  END_IF;
+END_IF;
+
+IF NOT(g_biY3RelExecute OR bY3RelEXecute OR g_bY3RelExecute) THEN
+  g_boY3RelDone := FALSE;
+  g_bY3RelDone := FALSE;
+  bY3RelDone := FALSE;
+END_IF;
+
+CASE nY3RelState OF
+  0:
+    nY3RelState := 0;
+  1:
+    g_Y3MoveRel.Execute := TRUE;
+    g_Y3MoveRel.Velocity := dY3TargetVel;
+    g_Y3MoveRel.Distance := dY3TargetPos - Axis_Y3.NCTOPLC.ActPos;
+    IF g_Y3MoveRel.Done THEN
+      g_Y3MoveRel.Execute := FALSE;
+      g_boY3RelDone := TRUE;
+      g_bY3RelDone := TRUE;
+      bY3RelDone := TRUE;
+      nY3RelState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nY3RelState := 20;
+    END_IF;
+    IF g_Y3MoveRel.CommandAborted OR g_Y3MoveRel.Error THEN
+      g_Y3MoveRel.Execute := FALSE;
+      nY3RelState := 0;
+    END_IF;
+  20:
+    g_Y3MoveRel.Execute := FALSE;
+    g_Y3MoveStop.Execute := TRUE;
+    IF g_Y3MoveStop.Done AND g_bPlcStartBuffer THEN
+      g_Y3MoveStop.Execute := FALSE;
+      nY3RelState := 1;
+    END_IF;
+    IF g_Y3MoveStop.CommandAborted OR g_Y3MoveStop.Error THEN
+      g_Y3MoveStop.Execute := FALSE;
+      nY3RelState := 0;
+    END_IF;
+END_CASE;
+
+
+RY2Trigger(CLK := g_biY2RelExecute OR bY2RelEXecute OR g_bY2RelExecute);
+
+IF RY2Trigger.Q THEN
+  nY2RelState := 1;
+  g_boY2RelDone := FALSE;
+  g_bY2RelDone := FALSE;
+  bY2RelDone := FALSE;
+  IF g_biY2RelExecute THEN
+    dY2TargetPos := Axis_Y2.NCTOPLC.ActPos + g_fiY2RelDistance; 
+    dY2TargetVel := g_fiY2RelVelocity;
+  ELSIF g_bY2RelExecute THEN
+    dY2TargetPos := Axis_Y2.NCTOPLC.ActPos + g_fY2RelDistance; 
+    dY2TargetVel := g_fY2RelVelocity;
+  ELSE
+    dY2TargetPos := Axis_Y2.NCTOPLC.ActPos + dY2RelDistance; 
+    IF g_bFastInch=0 THEN
+      dY2TargetVel := dY2AxisSlowVel;
+    ELSE
+      dY2TargetVel := dY2AxisFastVel;
+    END_IF;
+  END_IF;
+  IF dY2TargetVel = 0.0 THEN
+    dY2TargetVel := dY2RelVelocity;
+  END_IF;
+END_IF;
+
+IF NOT(g_biY2RelExecute OR bY2RelEXecute OR g_bY2RelExecute) THEN
+  g_boY2RelDone := FALSE;
+  g_bY2RelDone := FALSE;
+  bY2RelDone := FALSE;
+END_IF;
+
+CASE nY2RelState OF
+  0:
+    nY2RelState := 0;
+  1:
+    g_Y2MoveRel.Execute := TRUE;
+    g_Y2MoveRel.Velocity := dY2TargetVel;
+    g_Y2MoveRel.Distance := dY2TargetPos - Axis_Y2.NCTOPLC.ActPos;
+    IF g_Y2MoveRel.Done THEN
+      g_Y2MoveRel.Execute := FALSE;
+      g_boY2RelDone := TRUE;
+      g_bY2RelDone := TRUE;
+      bY2RelDone := TRUE;
+      nY2RelState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nY2RelState := 20;
+    END_IF;
+    IF g_Y2MoveRel.CommandAborted OR g_Y2MoveRel.Error THEN
+      g_Y2MoveRel.Execute := FALSE;
+      nY2RelState := 0;
+    END_IF;
+  20:
+    g_Y2MoveRel.Execute := FALSE;
+    g_Y2MoveStop.Execute := TRUE;
+    IF g_Y2MoveStop.Done AND g_bPlcStartBuffer THEN
+      g_Y2MoveStop.Execute := FALSE;
+      nY2RelState := 1;
+    END_IF;
+    IF g_Y2MoveStop.CommandAborted OR g_Y2MoveStop.Error THEN
+      g_Y2MoveStop.Execute := FALSE;
+      nY2RelState := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nY2RelState := 0;
+  g_Y2MoveRel.Execute := FALSE;
+  g_Y2MoveStop.Execute := FALSE;
+  
+  nY3RelState := 0;
+  g_Y3MoveRel.Execute := FALSE;
+  g_Y3MoveStop.Execute := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[Y2Y3相对运动]]></xhtml:p>
+  </documentation>
+</pou>

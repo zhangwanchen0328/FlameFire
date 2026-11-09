@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Filter" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Ton_Filter">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[延时定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Tof_Filter">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关闭延时定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="FilterTime">
+        <type>
+          <TIME/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="LimitLogic">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[限位逻辑:  1常开  0常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_In">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </inputVars>
+    <outputVars>
+      <variable name="Ton_Out">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </outputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF LimitLogic THEN
+  Ton_Filter(IN := Ton_In,PT := FilterTime);
+  IF Ton_Filter.Q THEN
+    Ton_Out := TRUE;
+  ELSE
+    Ton_Out := FALSE;
+  END_IF;
+ELSE
+  Tof_Filter(IN := Ton_In,PT := FilterTime);
+  IF Tof_Filter.Q THEN
+    Ton_Out := TRUE;
+  ELSE
+    Ton_Out := FALSE;
+  END_IF;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[滤波]]></xhtml:p>
+  </documentation>
+</pou>

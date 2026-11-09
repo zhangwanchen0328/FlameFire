@@ -1,0 +1,3972 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_UnloadSupportCylControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Ton_A1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_A2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_A3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_A4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_A5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_A6">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_A7">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_A8">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_B1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_B2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_B3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_B4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_B5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_B6">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_B7">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_B8">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUp1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUp2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUp3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUp4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUp5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUp6">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUp7">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUp8">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerDown1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerDown2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerDown3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerDown4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerDown5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerDown6">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerDown7">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerDown8">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_AllOpen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nstate">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bCyl1Open">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面点动时发送]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCyl2Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl3Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl4Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl5Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl6Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl7Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl8Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl1Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl2Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl3Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl4Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl5Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl6Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl7Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl8Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bClylinderUpIsPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使用上升到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bClylinderDownIsPosition">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使用下降到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dClylinderUpDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dClylinderDownDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bUnloadSupportcyLinder1StateHMI">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[给界面,TRUE上升到位；FALSE下降到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUnloadSupportcyLinderState1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸控制状态；TRUE上升到位；FALSE下降到位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bUnloadSupportcyLinder1UseUpSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUnloadSupportcyLinder2UseUpSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUnloadSupportcyLinder3UseUpSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUnloadSupportcyLinder4UseUpSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUnloadSupportcyLinder5UseUpSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUnloadSupportcyLinder6UseUpSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUnloadSupportcyLinder7UseUpSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUnloadSupportcyLinder8UseUpSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUnloadSupportcyLinder1UseDownSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUnloadSupportcyLinder2UseDownSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUnloadSupportcyLinder3UseDownSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUnloadSupportcyLinder4UseDownSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUnloadSupportcyLinder5UseDownSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUnloadSupportcyLinder6UseDownSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUnloadSupportcyLinder7UseDownSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUnloadSupportcyLinder8UseDownSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dClylinder1UpDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dClylinder2UpDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dClylinder3UpDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dClylinder4UpDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dClylinder5UpDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dClylinder6UpDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dClylinder7UpDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dClylinder8UpDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dClylinder1DownDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dClylinder2DownDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dClylinder3DownDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dClylinder4DownDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dClylinder5DownDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dClylinder6DownDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dClylinder7DownDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dClylinder8DownDelayTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="bCylUpDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylDownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nUnLoadSupportCyl1State">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nUnLoadSupportCyl1StateM">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nUnLoadSupportCyl2State">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nUnLoadSupportCyl2StateM">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nUnLoadSupportCyl3State">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nUnLoadSupportCyl3StateM">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nUnLoadSupportCyl4State">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nUnLoadSupportCyl4StateM">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nUnLoadSupportCyl5State">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nUnLoadSupportCyl5StateM">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nUnLoadSupportCyl6State">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nUnLoadSupportCyl6StateM">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nUnLoadSupportCyl7State">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nUnLoadSupportCyl7StateM">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nUnLoadSupportCyl8State">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nUnLoadSupportCyl8StateM">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nFollowstate">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dCly1FloatDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCly2FloatDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCly3FloatDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCly4FloatDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCly5FloatDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCly6FloatDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCly7FloatDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCly8FloatDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Rtring_Follow">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nBlankingSupportCylinder1UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingSupportCylinder2UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingSupportCylinder3UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingSupportCylinder4UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingSupportCylinder5UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingSupportCylinder6UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingSupportCylinder7UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingSupportCylinder8UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingSupportCylinder1DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingSupportCylinder2DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingSupportCylinder3DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingSupportCylinder4DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingSupportCylinder5DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingSupportCylinder6DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingSupportCylinder7DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingSupportCylinder8DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="Ton_Down1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Down2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Down3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Down4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Down5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Down6">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Down7">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Down8">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Up1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Up2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Up3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Up4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Up5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Up6">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Up7">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Up8">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="bCyl1UpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl2UpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl3UpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl4UpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl5UpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl6UpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl7UpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl8UpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl1DownNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl2DownNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl3DownNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl4DownNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl5DownNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl6DownNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl7DownNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl8DownNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylDownDoneFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl1UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl2UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl3UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl4UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl5UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl6UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl7UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl8UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCheckFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="UnloadSupportCyl1State">
+        <type>
+          <derived name="FB_CylStateControl"/>
+        </type>
+      </variable>
+      <variable name="UnloadSupportCyl2State">
+        <type>
+          <derived name="FB_CylStateControl"/>
+        </type>
+      </variable>
+      <variable name="UnloadSupportCyl3State">
+        <type>
+          <derived name="FB_CylStateControl"/>
+        </type>
+      </variable>
+      <variable name="UnloadSupportCyl4State">
+        <type>
+          <derived name="FB_CylStateControl"/>
+        </type>
+      </variable>
+      <variable name="UnloadSupportCyl5State">
+        <type>
+          <derived name="FB_CylStateControl"/>
+        </type>
+      </variable>
+      <variable name="UnloadSupportCyl6State">
+        <type>
+          <derived name="FB_CylStateControl"/>
+        </type>
+      </variable>
+      <variable name="UnloadSupportCyl7State">
+        <type>
+          <derived name="FB_CylStateControl"/>
+        </type>
+      </variable>
+      <variable name="UnloadSupportCyl8State">
+        <type>
+          <derived name="FB_CylStateControl"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+(*3组 18个气缸*)
+(*上升*)
+RTriggerUp1(CLK := bCyl1Open);
+RTriggerUp2(CLK := bCyl2Open);
+RTriggerUp3(CLK := bCyl3Open);
+RTriggerUp4(CLK := bCyl4Open);
+RTriggerUp5(CLK := bCyl5Open);
+RTriggerUp6(CLK := bCyl6Open);
+RTriggerUp7(CLK := bCyl7Open);
+RTriggerUp8(CLK := bCyl8Open);
+IF RTriggerUp1.Q THEN
+  nUnLoadSupportCyl1State := 10;
+END_IF;
+IF RTriggerUp2.Q THEN
+  nUnLoadSupportCyl2State := 10;
+END_IF;
+IF RTriggerUp3.Q THEN
+  nUnLoadSupportCyl3State := 10;
+END_IF;
+IF RTriggerUp4.Q THEN
+  nUnLoadSupportCyl4State := 10;
+END_IF;
+IF RTriggerUp5.Q THEN
+  nUnLoadSupportCyl5State := 10;
+END_IF;
+IF RTriggerUp6.Q THEN
+  nUnLoadSupportCyl6State := 10;
+END_IF;
+IF RTriggerUp7.Q THEN
+  nUnLoadSupportCyl7State := 10;
+END_IF;
+IF RTriggerUp8.Q THEN
+  nUnLoadSupportCyl8State := 10;
+END_IF;
+
+
+
+
+(*下降*)
+RTriggerDown1(CLK := bCyl1Close);
+RTriggerDown2(CLK := bCyl2Close);
+RTriggerDown3(CLK := bCyl3Close);
+RTriggerDown4(CLK := bCyl4Close);
+RTriggerDown5(CLK := bCyl5Close);
+RTriggerDown6(CLK := bCyl6Close);
+RTriggerDown7(CLK := bCyl7Close);
+RTriggerDown8(CLK := bCyl8Close);
+
+IF RTriggerDown1.Q THEN
+   nUnLoadSupportCyl1State := 20;
+END_IF;
+IF RTriggerDown2.Q THEN
+  nUnLoadSupportCyl2State := 20;
+END_IF;
+IF RTriggerDown3.Q THEN
+  nUnLoadSupportCyl3State := 20;
+END_IF;
+IF RTriggerDown4.Q THEN
+  nUnLoadSupportCyl4State := 20;
+END_IF;
+IF RTriggerDown5.Q THEN
+  nUnLoadSupportCyl5State := 20;
+END_IF;
+IF RTriggerDown6.Q THEN
+  nUnLoadSupportCyl6State := 20;
+END_IF;
+IF RTriggerDown7.Q THEN
+  nUnLoadSupportCyl7State := 20;
+END_IF;
+IF RTriggerDown8.Q THEN
+  nUnLoadSupportCyl8State := 20;
+END_IF;
+(*气缸1*)
+CASE nUnLoadSupportCyl1State OF
+  0:
+   nUnLoadSupportCyl1State := 0;
+  10:
+    bCyl1Open :=FALSE;
+    Ton_B1(IN :=FALSE);
+    bCyl1DownNoSignalAlarm := FALSE;
+    Ton_Down1(IN := FALSE);
+    g_boUnloadSupportcyLinderUpDone1 :=FALSE;
+    IF g_nUnloadSupportClylinderNum < 1 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+	  g_bFinishedM273_1 := FALSE;
+      nUnLoadSupportCyl1State := 0;
+      g_boUnloadSupportcyLinderUpDone1 :=TRUE;
+      RETURN;
+    END_IF;
+    g_boUnloadSupportCyl1Up := TRUE;
+    g_boUnloadSupportCyl1Down := FALSE;
+    IF NOT bUnloadSupportcyLinder1UseUpSignal THEN(*使用延时*)
+      bCyl1UpNoSignalAlarm := FALSE;
+      Ton_A1(IN :=g_boUnloadSupportCyl1Up,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder1UpDelayTime)));
+      IF Ton_A1.Q THEN
+        Ton_A1(IN :=FALSE);
+        g_bUnloadSupportcyLinder1StateHMI :=TRUE;
+        g_boUnloadSupportcyLinderUpDone1 :=TRUE;
+        nUnLoadSupportCyl1State := 0;
+        IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+		  g_bFinishedM273_1 := FALSE;
+        END_IF;
+        bCyl1UpState := TRUE;
+      END_IF;
+    ELSIF bUnloadSupportcyLinder1UseUpSignal AND g_bUnloadSupportcyLinderUpInplace1 THEN
+      g_bUnloadSupportcyLinder1StateHMI :=TRUE;
+      g_boUnloadSupportcyLinderUpDone1 :=TRUE;
+      nUnLoadSupportCyl1State := 0;
+      IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+        M.ENABLE[273] := 0;
+        g_bExecuteFinishedM273 := FALSE;
+		g_bFinishedM273_1 := FALSE;
+      END_IF;
+      bCyl1UpState := TRUE;
+      bCyl1UpNoSignalAlarm := FALSE;
+      Ton_Up1(IN := FALSE);
+    ELSE
+      IF NOT bCyl1UpState THEN
+        Ton_Up1(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder1UpDelayTime)));
+        IF Ton_Up1.Q THEN
+          bCyl1UpNoSignalAlarm := TRUE;
+          Ton_Up1(IN := FALSE);
+        END_IF;
+      END_IF;
+    END_IF; 
+  20:
+    bCyl1Close :=FALSE;
+    Ton_A1(IN :=FALSE);
+    bCyl1UpNoSignalAlarm := FALSE;
+    Ton_Up1(IN := FALSE);
+    g_boUnloadSupportcyLinderDownDone1 :=FALSE;
+    IF g_nUnloadSupportClylinderNum < 1 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+	  g_bFinishedM273_1 := FALSE;
+      nUnLoadSupportCyl1State := 0;
+      g_boUnloadSupportcyLinderDownDone1 :=TRUE;
+      RETURN;
+    END_IF;
+    g_boUnloadSupportCyl1Up := FALSE;
+    g_boUnloadSupportCyl1Down := TRUE;
+    
+    IF NOT bUnloadSupportcyLinder1UseDownSignal THEN 
+      bCyl1DownNoSignalAlarm := FALSE;
+      Ton_B1(IN :=g_boUnloadSupportCyl1Down,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder1DownDelayTime)));
+      IF Ton_B1.Q THEN
+        Ton_B1(IN :=FALSE);
+        g_bUnloadSupportcyLinder1StateHMI :=FALSE;
+        g_boUnloadSupportcyLinderDownDone1 :=TRUE;
+        nUnLoadSupportCyl1State := 0;
+        IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+		  g_bFinishedM273_1 := FALSE;
+        END_IF;
+        bCyl1UpState := FALSE;
+      END_IF;
+    ELSIF g_bUnloadSupportcyLinderDownInplace1 AND  bUnloadSupportcyLinder1UseDownSignal THEN
+      g_bUnloadSupportcyLinder1StateHMI :=FALSE;
+      g_boUnloadSupportcyLinderDownDone1 :=TRUE;
+      nUnLoadSupportCyl1State := 0;
+      IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+        M.ENABLE[273] := 0;
+        g_bExecuteFinishedM273 := FALSE;
+		g_bFinishedM273_1 := FALSE;
+      END_IF;
+      bCyl1DownNoSignalAlarm := FALSE;
+      Ton_Down1(IN := FALSE);
+      bCyl1UpState := FALSE;
+    ELSE
+      IF bCyl1UpState THEN
+        Ton_Down1(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder1DownDelayTime)));
+        IF Ton_Down1.Q THEN
+           bCyl1DownNoSignalAlarm := TRUE;
+          Ton_Down1(IN := FALSE);
+        END_IF;
+      END_IF;
+    END_IF; 
+END_CASE;
+
+
+(*新加的气缸状态切换,气缸到位超时报警和目前默认到位时间用的一个时间*)
+UnloadSupportCyl1State(
+  bUseUpSignal := bUnloadSupportcyLinder1UseUpSignal,
+  bUseDownSignal := bUnloadSupportcyLinder1UseDownSignal,
+  boCylUp := g_boUnloadSupportCyl1Up,
+  boCylDown := g_boUnloadSupportCyl1Down,
+  bUpInplace := g_bUnloadSupportcyLinderUpInplace1,
+  bDownInplace := g_bUnloadSupportcyLinderDownInplace1,
+  bUpInplaceNoFilter := g_CylAllStateUpDate.BoolArr[48],
+  bDownInplaceNoFilter := g_CylAllStateUpDate.BoolArr[49],
+  dClylinderUpDelayTime := dClylinder1UpDelayTime,
+  dClylinderDownDelayTime := dClylinder1DownDelayTime,
+  dClylinderUpOverDelayTime := dClylinder1UpDelayTime,
+  dClylinderDownOverDelayTime := dClylinder1DownDelayTime,
+  bArrayConfigOutputUp := ArrayConfigOutputNumber[56],
+  bArrayConfigOutputDown := ArrayConfigOutputNumber[57],
+  bCylState  => bCYl1UpState,
+  bCylStateToHMI => g_bUnloadSupportcyLinder1StateHMI,
+  bCylUpNoSignalAlarm => bCyl1UpNoSignalAlarm,
+  bCylDownNoSignalAlarm => bCyl1DownNoSignalAlarm,
+  bCylUpDone => g_boUnloadSupportcyLinderUpDone1,
+  bCylDownDone => g_boUnloadSupportcyLinderDownDone1,
+  bArrayConfigOutputUp_FB => ArrayConfigOutputNumber[56],
+  bArrayConfigOutputDown_FB => ArrayConfigOutputNumber[57]
+);
+
+IF bCyl1UpNoSignalAlarm AND bUnloadSupportcyLinder1UseUpSignal AND ListenBoardInputConfig[129] THEN
+   g_Alarm.alarmArray[520] := 1233;
+ELSE
+   g_Alarm.alarmArray[520] := 0;    
+END_IF; 
+
+IF bCyl1DownNoSignalAlarm AND bUnloadSupportcyLinder1UseDownSignal AND ListenBoardInputConfig[137] THEN
+   g_Alarm.alarmArray[488] := 1201;
+ELSE
+   g_Alarm.alarmArray[488] := 0;    
+END_IF; 
+
+
+(*气缸2*)
+CASE nUnLoadSupportCyl2State OF
+  0:
+   nUnLoadSupportCyl2State := 0;
+  10:
+    bCyl2Open :=FALSE;
+    Ton_B2(IN :=FALSE);
+    bCyl2DownNoSignalAlarm := FALSE;
+    Ton_Down2(IN := FALSE);
+    g_boUnloadSupportcyLinderUpDone2 :=FALSE;
+    IF g_nUnloadSupportClylinderNum < 2 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+	  g_bFinishedM273_2 := FALSE;
+      nUnLoadSupportCyl2State := 0;
+      g_boUnloadSupportcyLinderUpDone2 :=TRUE;
+      RETURN;
+    END_IF;
+    g_boUnloadSupportCyl2Up := TRUE;
+    g_boUnloadSupportCyl2Down := FALSE;
+    IF NOT bUnloadSupportcyLinder2UseUpSignal THEN(*使用延时*)
+      bCyl2UpNoSignalAlarm := FALSE;
+      Ton_A2(IN :=g_boUnloadSupportCyl2Up,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder2UpDelayTime)));
+      IF Ton_A2.Q THEN
+        Ton_A2(IN :=FALSE);
+        g_bUnloadSupportcyLinder2StateHMI :=TRUE;
+        g_boUnloadSupportcyLinderUpDone2 :=TRUE;
+        nUnLoadSupportCyl2State := 0;
+        IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+		  g_bFinishedM273_2 := FALSE;
+        END_IF;
+        bCyl2UpState := TRUE;
+      END_IF;
+    ELSIF bUnloadSupportcyLinder2UseUpSignal AND g_bUnloadSupportcyLinderUpInplace2 THEN
+      g_bUnloadSupportcyLinder2StateHMI :=TRUE;
+      g_boUnloadSupportcyLinderUpDone2 :=TRUE;
+      nUnLoadSupportCyl2State := 0;
+      IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+        M.ENABLE[273] := 0;
+        g_bExecuteFinishedM273 := FALSE;
+	    g_bFinishedM273_2 := FALSE;
+      END_IF;
+      bCyl2UpState := TRUE;
+      bCyl2UpNoSignalAlarm := FALSE;
+      Ton_Up2(IN := FALSE);
+    ELSE
+      IF NOT bCyl2UpState THEN
+        Ton_Up2(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder2UpDelayTime)));
+        IF Ton_Up2.Q THEN
+          bCyl2UpNoSignalAlarm := TRUE;
+          Ton_Up2(IN := FALSE);
+        END_IF;
+      END_IF;
+    END_IF;
+  20:
+    bCyl2Close :=FALSE;
+    Ton_A2(IN :=FALSE);
+    g_boUnloadSupportcyLinderDownDone2 :=FALSE;
+    bCyl2UpNoSignalAlarm := FALSE;
+    Ton_Up2(IN := FALSE);
+    IF g_nUnloadSupportClylinderNum < 2 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+	  g_bFinishedM273_2 := FALSE;
+      nUnLoadSupportCyl2State := 0;
+      g_boUnloadSupportcyLinderDownDone2 :=TRUE;
+      RETURN;
+    END_IF;
+    g_boUnloadSupportCyl2Up := FALSE;
+    g_boUnloadSupportCyl2Down := TRUE;
+    IF NOT bUnloadSupportcyLinder2UseDownSignal THEN 
+      Ton_B2(IN :=g_boUnloadSupportCyl2Down,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder2DownDelayTime)));
+      IF Ton_B2.Q THEN
+        Ton_B2(IN :=FALSE);
+        g_bUnloadSupportcyLinder2StateHMI :=FALSE;
+        g_boUnloadSupportcyLinderDownDone2 :=TRUE;
+        nUnLoadSupportCyl2State := 0;
+        IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+          g_bFinishedM273_2 := FALSE;
+        END_IF;
+        bCyl2UpState := FALSE;
+      END_IF;
+    ELSIF g_bUnloadSupportcyLinderDownInplace2 AND  bUnloadSupportcyLinder2UseDownSignal THEN
+      g_bUnloadSupportcyLinder2StateHMI :=FALSE;
+      g_boUnloadSupportcyLinderDownDone2 :=TRUE;
+      nUnLoadSupportCyl2State := 0;
+      IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+        M.ENABLE[273] := 0;
+        g_bExecuteFinishedM273 := FALSE;
+        g_bFinishedM273_2 := FALSE;
+      END_IF;
+      bCyl2DownNoSignalAlarm := FALSE;
+      Ton_Down2(IN := FALSE);
+      bCyl2UpState := FALSE;
+    ELSE
+      IF bCyl2UpState THEN
+        Ton_Down2(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder2DownDelayTime)));
+        IF Ton_Down2.Q THEN
+           bCyl2DownNoSignalAlarm := TRUE;
+          Ton_Down2(IN := FALSE);
+        END_IF;
+      END_IF;
+    END_IF;
+END_CASE;
+
+(*新加的气缸状态切换,气缸到位超时报警和目前默认到位时间用的一个时间*)
+UnloadSupportCyl2State(
+  bUseUpSignal := bUnloadSupportcyLinder2UseUpSignal,
+  bUseDownSignal := bUnloadSupportcyLinder2UseDownSignal,
+  boCylUp := g_boUnloadSupportCyl2Up,
+  boCylDown := g_boUnloadSupportCyl2Down,
+  bUpInplace := g_bUnloadSupportcyLinderUpInplace2,
+  bDownInplace := g_bUnloadSupportcyLinderDownInplace2,
+  bUpInplaceNoFilter := g_CylAllStateUpDate.BoolArr[50],
+  bDownInplaceNoFilter := g_CylAllStateUpDate.BoolArr[51],
+  bArrayConfigOutputUp := ArrayConfigOutputNumber[58],
+  bArrayConfigOutputDown := ArrayConfigOutputNumber[59],
+  dClylinderUpDelayTime := dClylinder2UpDelayTime,
+  dClylinderDownDelayTime := dClylinder2DownDelayTime,
+  dClylinderUpOverDelayTime := dClylinder2UpDelayTime,
+  dClylinderDownOverDelayTime := dClylinder2DownDelayTime,
+  bCylState  => bCYl2UpState,
+  bCylStateToHMI => g_bUnloadSupportcyLinder2StateHMI,
+  bCylUpNoSignalAlarm => bCyl2UpNoSignalAlarm,
+  bCylDownNoSignalAlarm => bCyl2DownNoSignalAlarm,
+  bCylUpDone => g_boUnloadSupportcyLinderUpDone2,
+  bCylDownDone => g_boUnloadSupportcyLinderDownDone2,
+  bArrayConfigOutputUp_FB => ArrayConfigOutputNumber[58],
+  bArrayConfigOutputDown_FB => ArrayConfigOutputNumber[59]
+);
+
+IF bCyl2UpNoSignalAlarm AND bUnloadSupportcyLinder2UseUpSignal AND ListenBoardInputConfig[130] THEN
+   g_Alarm.alarmArray[521] := 1234;
+ELSE
+   g_Alarm.alarmArray[521] := 0;    
+END_IF; 
+IF bCyl2DownNoSignalAlarm AND bUnloadSupportcyLinder2UseDownSignal AND ListenBoardInputConfig[138] THEN
+   g_Alarm.alarmArray[489] := 1202;
+ELSE
+   g_Alarm.alarmArray[489] := 0;    
+END_IF; 
+
+(*气缸3*)
+CASE nUnLoadSupportCyl3State OF
+  0:
+   nUnLoadSupportCyl3State := 0;
+  10:
+    bCyl3Open :=FALSE;
+    Ton_B3(IN :=FALSE);
+    g_boUnloadSupportcyLinderUpDone3 :=FALSE;
+    IF g_nUnloadSupportClylinderNum < 3 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+	  g_bFinishedM273_3 := FALSE;
+      nUnLoadSupportCyl3State := 0;
+      g_boUnloadSupportcyLinderUpDone3 :=TRUE;
+      RETURN;
+    END_IF;
+    g_boUnloadSupportCyl3Up := TRUE;
+    g_boUnloadSupportCyl3Down := FALSE;
+    bCyl3DownNoSignalAlarm := FALSE;
+    Ton_Down3(IN := FALSE);
+    IF NOT bUnloadSupportcyLinder3UseUpSignal THEN(*使用延时*)
+      Ton_A3(IN :=g_boUnloadSupportCyl3Up,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder3UpDelayTime)));
+      IF Ton_A3.Q THEN
+        Ton_A3(IN :=FALSE);
+        g_bUnloadSupportcyLinder3StateHMI :=TRUE;
+        g_boUnloadSupportcyLinderUpDone3 :=TRUE;
+        nUnLoadSupportCyl3State := 0;
+        IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+          g_bFinishedM273_3 := FALSE;
+        END_IF;
+        bCyl3UpState := TRUE;
+      END_IF;
+    ELSIF bUnloadSupportcyLinder3UseUpSignal AND g_bUnloadSupportcyLinderUpInplace3 THEN
+      g_bUnloadSupportcyLinder3StateHMI :=TRUE;
+      g_boUnloadSupportcyLinderUpDone3 :=TRUE;
+      nUnLoadSupportCyl3State := 0;
+      IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+        M.ENABLE[273] := 0;
+        g_bExecuteFinishedM273 := FALSE;
+        g_bFinishedM273_3 := FALSE;
+      END_IF;
+      bCyl3UpState := TRUE;
+      bCyl3UpNoSignalAlarm := FALSE;
+      Ton_Up3(IN := FALSE);
+    ELSE
+      IF NOT bCyl3UpState THEN
+        Ton_Up3(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder3UpDelayTime)));
+        IF Ton_Up3.Q THEN
+          bCyl3UpNoSignalAlarm := TRUE;
+          Ton_Up3(IN := FALSE);
+        END_IF;
+      END_IF;
+    END_IF;
+  20:
+    bCyl3Close :=FALSE;
+    Ton_A3(IN :=FALSE);
+    bCyl3UpNoSignalAlarm := FALSE;
+    Ton_Up3(IN := FALSE);
+    g_boUnloadSupportcyLinderDownDone3 :=FALSE;
+    IF g_nUnloadSupportClylinderNum < 3 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_3 := FALSE;
+      nUnLoadSupportCyl3State := 0;
+      g_boUnloadSupportcyLinderDownDone3 :=TRUE;
+      RETURN;
+    END_IF;
+    g_boUnloadSupportCyl3Up := FALSE;
+    g_boUnloadSupportCyl3Down := TRUE;
+    IF NOT bUnloadSupportcyLinder3UseDownSignal THEN 
+      Ton_B3(IN :=g_boUnloadSupportCyl3Down,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder3DownDelayTime)));
+      IF Ton_B3.Q THEN
+        Ton_B3(IN :=FALSE);
+        g_bUnloadSupportcyLinder3StateHMI :=FALSE;
+        g_boUnloadSupportcyLinderDownDone3 :=TRUE;
+        nUnLoadSupportCyl3State := 0;
+        IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+          g_bFinishedM273_3 := FALSE;
+        END_IF;
+        bCyl3UpState := FALSE;
+      END_IF;
+    ELSIF g_bUnloadSupportcyLinderDownInplace3 AND  bUnloadSupportcyLinder3UseDownSignal THEN
+      g_bUnloadSupportcyLinder3StateHMI :=FALSE;
+      g_boUnloadSupportcyLinderDownDone3 :=TRUE;
+      nUnLoadSupportCyl3State := 0;
+      IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+          g_bFinishedM273_3 := FALSE;
+        END_IF;
+      bCyl3DownNoSignalAlarm := FALSE;
+      Ton_Down3(IN := FALSE);
+       bCyl3UpState := FALSE;
+    ELSE
+      IF  bCyl3UpState THEN
+        Ton_Down3(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder3DownDelayTime)));
+        IF Ton_Down3.Q THEN
+           bCyl3DownNoSignalAlarm := TRUE;
+          Ton_Down3(IN := FALSE);
+        END_IF;
+      END_IF;
+    END_IF;
+END_CASE;
+
+(*新加的气缸状态切换,气缸到位超时报警和目前默认到位时间用的一个时间*)
+UnloadSupportCyl3State(
+  bUseUpSignal := bUnloadSupportcyLinder3UseUpSignal,
+  bUseDownSignal := bUnloadSupportcyLinder3UseDownSignal,
+  boCylUp := g_boUnloadSupportCyl3Up,
+  boCylDown := g_boUnloadSupportCyl3Down,
+  bUpInplace := g_bUnloadSupportcyLinderUpInplace3,
+  bDownInplace := g_bUnloadSupportcyLinderDownInplace3,
+  bUpInplaceNoFilter := g_CylAllStateUpDate.BoolArr[52],
+  bDownInplaceNoFilter := g_CylAllStateUpDate.BoolArr[53],
+  bArrayConfigOutputUp := ArrayConfigOutputNumber[60],
+  bArrayConfigOutputDown := ArrayConfigOutputNumber[61],
+  dClylinderUpDelayTime := dClylinder3UpDelayTime,
+  dClylinderDownDelayTime := dClylinder3DownDelayTime,
+  dClylinderUpOverDelayTime := dClylinder3UpDelayTime,
+  dClylinderDownOverDelayTime := dClylinder3DownDelayTime,
+  bCylState  => bCYl3UpState,
+  bCylStateToHMI => g_bUnloadSupportcyLinder3StateHMI,
+  bCylUpNoSignalAlarm => bCyl3UpNoSignalAlarm,
+  bCylDownNoSignalAlarm => bCyl3DownNoSignalAlarm,
+  bCylUpDone => g_boUnloadSupportcyLinderUpDone3,
+  bCylDownDone => g_boUnloadSupportcyLinderDownDone3,
+  bArrayConfigOutputUp_FB => ArrayConfigOutputNumber[60],
+  bArrayConfigOutputDown_FB => ArrayConfigOutputNumber[61]
+);
+
+(*下料支撑气缸3上升下降超时报警*)
+IF bCyl3UpNoSignalAlarm AND bUnloadSupportcyLinder3UseUpSignal AND ListenBoardInputConfig[131] THEN
+   g_Alarm.alarmArray[522] := 1235;
+ELSE
+   g_Alarm.alarmArray[522] := 0;    
+END_IF; 
+IF bCyl3DownNoSignalAlarm AND bUnloadSupportcyLinder3UseDownSignal AND ListenBoardInputConfig[139] THEN
+   g_Alarm.alarmArray[490] := 1203;
+ELSE
+   g_Alarm.alarmArray[490] := 0;    
+END_IF; 
+(*气缸4*)
+CASE nUnLoadSupportCyl4State OF
+  0:
+   nUnLoadSupportCyl4State := 0;
+  10:
+    bCyl4Open :=FALSE;
+    Ton_B4(IN :=FALSE);
+    g_boUnloadSupportcyLinderUpDone4 :=FALSE;
+    IF g_nUnloadSupportClylinderNum < 4 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_4 := FALSE;
+      nUnLoadSupportCyl4State := 0;
+      g_boUnloadSupportcyLinderUpDone4 :=TRUE;
+      RETURN;
+    END_IF;
+    g_boUnloadSupportCyl4Up := TRUE;
+    g_boUnloadSupportCyl4Down := FALSE;
+    bCyl4DownNoSignalAlarm := FALSE;
+    Ton_Down4(IN := FALSE);
+    IF NOT bUnloadSupportcyLinder4UseUpSignal THEN(*使用延时*)
+       bCyl4UpNoSignalAlarm := FALSE;
+      Ton_A4(IN :=g_boUnloadSupportCyl4Up,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder4UpDelayTime)));
+      IF Ton_A4.Q THEN
+        Ton_A4(IN :=FALSE);
+        g_bUnloadSupportcyLinder4StateHMI :=TRUE;
+        g_boUnloadSupportcyLinderUpDone4 :=TRUE;
+        nUnLoadSupportCyl4State := 0;
+        IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+          g_bFinishedM273_4 := FALSE;
+        END_IF;
+        bCyl4UpState := TRUE;
+      END_IF;
+    ELSIF bUnloadSupportcyLinder4UseUpSignal AND g_bUnloadSupportcyLinderUpInplace4 THEN
+      g_bUnloadSupportcyLinder4StateHMI :=TRUE;
+      g_boUnloadSupportcyLinderUpDone4 :=TRUE;
+      nUnLoadSupportCyl4State := 0;
+      IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+        M.ENABLE[273] := 0;
+        g_bExecuteFinishedM273 := FALSE;
+        g_bFinishedM273_4 := FALSE;
+      END_IF;
+      bCyl4UpState := TRUE;
+      bCyl4UpNoSignalAlarm := FALSE;
+      Ton_Up4(IN := FALSE);
+    ELSE
+      IF NOT bCyl4UpState THEN
+        Ton_Up4(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder4UpDelayTime)));
+        IF Ton_Up4.Q THEN
+          bCyl4UpNoSignalAlarm := TRUE;
+          Ton_Up4(IN := FALSE);
+        END_IF;
+      END_IF;
+    END_IF;
+  20:
+     bCyl4Close :=FALSE;
+    Ton_A4(IN :=FALSE);
+    bCyl4UpNoSignalAlarm := FALSE;
+    Ton_Up4(IN := FALSE);
+    g_boUnloadSupportcyLinderDownDone4 :=FALSE;
+    IF g_nUnloadSupportClylinderNum < 4 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_4 := FALSE;
+      nUnLoadSupportCyl4State := 0;
+      g_boUnloadSupportcyLinderDownDone4 :=TRUE;
+      RETURN;
+    END_IF;
+    g_boUnloadSupportCyl4Up := FALSE;
+    g_boUnloadSupportCyl4Down := TRUE;
+    IF NOT bUnloadSupportcyLinder4UseDownSignal THEN 
+      Ton_B4(IN :=g_boUnloadSupportCyl4Down,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder4DownDelayTime)));
+      IF Ton_B4.Q THEN
+        Ton_B4(IN :=FALSE);
+        g_bUnloadSupportcyLinder4StateHMI :=FALSE;
+        g_boUnloadSupportcyLinderDownDone4 :=TRUE;
+        nUnLoadSupportCyl4State := 0;
+        IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+		  g_bFinishedM273_4 := FALSE;
+        END_IF;
+        bCyl4UpState := FALSE;
+      END_IF;
+    ELSIF g_bUnloadSupportcyLinderDownInplace4 AND  bUnloadSupportcyLinder4UseDownSignal THEN
+      g_bUnloadSupportcyLinder4StateHMI :=FALSE;
+      g_boUnloadSupportcyLinderDownDone4 :=TRUE;
+      nUnLoadSupportCyl4State := 0;
+      IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+        M.ENABLE[273] := 0;
+        g_bExecuteFinishedM273 := FALSE;
+        g_bFinishedM273_4 := FALSE;
+      END_IF;
+      bCyl4DownNoSignalAlarm := FALSE;
+      Ton_Down4(IN := FALSE);
+      bCyl4UpState := FALSE;
+    ELSE
+      IF bCyl4UpState THEN
+        Ton_Down4(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder4DownDelayTime)));
+        IF Ton_Down4.Q THEN
+           bCyl4DownNoSignalAlarm := TRUE;
+          Ton_Down4(IN := FALSE);
+        END_IF;
+      END_IF;
+    END_IF;
+END_CASE;
+
+(*新加的气缸状态切换,气缸到位超时报警和目前默认到位时间用的一个时间*)
+UnloadSupportCyl4State(
+  bUseUpSignal := bUnloadSupportcyLinder4UseUpSignal,
+  bUseDownSignal := bUnloadSupportcyLinder4UseDownSignal,
+  boCylUp := g_boUnloadSupportCyl4Up,
+  boCylDown := g_boUnloadSupportCyl4Down,
+  bUpInplace := g_bUnloadSupportcyLinderUpInplace4,
+  bDownInplace := g_bUnloadSupportcyLinderDownInplace4,
+  bUpInplaceNoFilter := g_CylAllStateUpDate.BoolArr[54],
+  bDownInplaceNoFilter := g_CylAllStateUpDate.BoolArr[55],
+  bArrayConfigOutputUp := ArrayConfigOutputNumber[62],
+  bArrayConfigOutputDown := ArrayConfigOutputNumber[63],  
+  dClylinderUpDelayTime := dClylinder4UpDelayTime,
+  dClylinderDownDelayTime := dClylinder4DownDelayTime,
+  dClylinderUpOverDelayTime := dClylinder4UpDelayTime,
+  dClylinderDownOverDelayTime := dClylinder4DownDelayTime,
+  bCylState  => bCYl4UpState,
+  bCylStateToHMI => g_bUnloadSupportcyLinder4StateHMI,
+  bCylUpNoSignalAlarm => bCyl4UpNoSignalAlarm,
+  bCylDownNoSignalAlarm => bCyl4DownNoSignalAlarm,
+  bCylUpDone => g_boUnloadSupportcyLinderUpDone4,
+  bCylDownDone => g_boUnloadSupportcyLinderDownDone4,
+  bArrayConfigOutputUp_FB => ArrayConfigOutputNumber[62],
+  bArrayConfigOutputDown_FB => ArrayConfigOutputNumber[63]
+);
+
+IF bCyl4UpNoSignalAlarm AND bUnloadSupportcyLinder4UseUpSignal AND ListenBoardInputConfig[132] THEN
+   g_Alarm.alarmArray[523] := 1236;
+ELSE
+   g_Alarm.alarmArray[523] := 0;    
+END_IF; 
+IF bCyl4DownNoSignalAlarm AND bUnloadSupportcyLinder4UseDownSignal AND ListenBoardInputConfig[140] THEN
+   g_Alarm.alarmArray[491] := 1204;
+ELSE
+   g_Alarm.alarmArray[491] := 0;    
+END_IF; 
+(*气缸5*)
+CASE nUnLoadSupportCyl5State OF
+  0:
+   nUnLoadSupportCyl5State := 0;
+  10:
+    bCyl5Open :=FALSE;
+    Ton_B5(IN :=FALSE);
+    g_boUnloadSupportcyLinderUpDone5 :=FALSE;
+    IF g_nUnloadSupportClylinderNum < 5 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_5 := FALSE;
+      nUnLoadSupportCyl5State := 0;
+      g_boUnloadSupportcyLinderUpDone5 :=TRUE;
+      RETURN;
+    END_IF;
+    g_boUnloadSupportCyl5Up := TRUE;
+    g_boUnloadSupportCyl5Down := FALSE;
+     bCyl5DownNoSignalAlarm := FALSE;
+    Ton_Down5(IN := FALSE);
+    IF NOT bUnloadSupportcyLinder5UseUpSignal THEN(*使用延时*)
+      bCyl5UpNoSignalAlarm := FALSE;
+      Ton_Up5(IN := FALSE);
+      Ton_A5(IN :=g_boUnloadSupportCyl5Up,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder5UpDelayTime)));
+      IF Ton_A5.Q THEN
+        Ton_A5(IN :=FALSE);
+        g_bUnloadSupportcyLinder5StateHMI :=TRUE;
+        g_boUnloadSupportcyLinderUpDone5 :=TRUE;
+        nUnLoadSupportCyl5State := 0;
+        IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+          g_bFinishedM273_5 := FALSE;
+        END_IF;
+        bCyl5UpState := TRUE;
+      END_IF;
+    ELSIF bUnloadSupportcyLinder5UseUpSignal AND g_bUnloadSupportcyLinderUpInplace5 THEN
+      g_bUnloadSupportcyLinder5StateHMI :=TRUE;
+      g_boUnloadSupportcyLinderUpDone5 :=TRUE;
+      nUnLoadSupportCyl5State := 0;
+      IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+        M.ENABLE[273] := 0;
+        g_bExecuteFinishedM273 := FALSE;
+        g_bFinishedM273_5 := FALSE;
+      END_IF;
+      bCyl5UpState := TRUE;
+      bCyl5UpNoSignalAlarm := FALSE;
+      Ton_Up5(IN := FALSE);
+    ELSE
+      IF NOT bCyl5UpState THEN
+        Ton_Up5(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder5UpDelayTime)));
+        IF Ton_Up5.Q THEN
+          bCyl5UpNoSignalAlarm := TRUE;
+          Ton_Up5(IN := FALSE);
+        END_IF;
+      END_IF;
+    END_IF;
+  20:
+     bCyl5Close :=FALSE;
+    Ton_A5(IN :=FALSE);
+    bCyl5UpNoSignalAlarm := FALSE;
+    Ton_Up5(IN := FALSE);
+    g_boUnloadSupportcyLinderDownDone5 :=FALSE;
+    IF g_nUnloadSupportClylinderNum < 5 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_5 := FALSE;
+      nUnLoadSupportCyl5State := 0;
+      g_boUnloadSupportcyLinderDownDone5 :=TRUE;
+      RETURN;
+    END_IF;
+    g_boUnloadSupportCyl5Up := FALSE;
+    g_boUnloadSupportCyl5Down := TRUE;
+    IF NOT bUnloadSupportcyLinder5UseDownSignal THEN 
+      Ton_B5(IN :=g_boUnloadSupportCyl5Down,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder5DownDelayTime)));
+      IF Ton_B5.Q THEN
+        Ton_B5(IN :=FALSE);
+        g_bUnloadSupportcyLinder5StateHMI :=FALSE;
+        g_boUnloadSupportcyLinderDownDone5 :=TRUE;
+        nUnLoadSupportCyl5State := 0;
+        IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+          g_bFinishedM273_5 := FALSE;
+        END_IF;
+        bCyl5UpState := FALSE;
+      END_IF;
+    ELSIF g_bUnloadSupportcyLinderDownInplace5 AND  bUnloadSupportcyLinder5UseDownSignal THEN
+      g_bUnloadSupportcyLinder5StateHMI :=FALSE;
+      g_boUnloadSupportcyLinderDownDone5 :=TRUE;
+      nUnLoadSupportCyl5State := 0;
+      IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+        M.ENABLE[273] := 0;
+        g_bExecuteFinishedM273 := FALSE;
+        g_bFinishedM273_5 := FALSE;
+      END_IF;
+      bCyl5DownNoSignalAlarm := FALSE;
+      Ton_Down5(IN := FALSE);
+      bCyl5UpState := FALSE;
+    ELSE
+      IF bCyl5UpState THEN
+        Ton_Down5(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder5DownDelayTime)));
+        IF Ton_Down5.Q THEN
+           bCyl5DownNoSignalAlarm := TRUE;
+          Ton_Down5(IN := FALSE);
+        END_IF;
+      END_IF;
+    END_IF;
+END_CASE;
+
+(*新加的气缸状态切换,气缸到位超时报警和目前默认到位时间用的一个时间*)
+UnloadSupportCyl5State(
+  bUseUpSignal := bUnloadSupportcyLinder5UseUpSignal,
+  bUseDownSignal := bUnloadSupportcyLinder5UseDownSignal,
+  boCylUp := g_boUnloadSupportCyl5Up,
+  boCylDown := g_boUnloadSupportCyl5Down,
+  bUpInplace := g_bUnloadSupportcyLinderUpInplace5,
+  bDownInplace := g_bUnloadSupportcyLinderDownInplace5,
+  bUpInplaceNoFilter := g_CylAllStateUpDate.BoolArr[56],
+  bDownInplaceNoFilter := g_CylAllStateUpDate.BoolArr[57],
+  bArrayConfigOutputUp := ArrayConfigOutputNumber[64],
+  bArrayConfigOutputDown := ArrayConfigOutputNumber[65],  
+  dClylinderUpDelayTime := dClylinder5UpDelayTime,
+  dClylinderDownDelayTime := dClylinder5DownDelayTime,
+  dClylinderUpOverDelayTime := dClylinder5UpDelayTime,
+  dClylinderDownOverDelayTime := dClylinder5DownDelayTime,
+  bCylState  => bCYl5UpState,
+  bCylStateToHMI => g_bUnloadSupportcyLinder5StateHMI,
+  bCylUpNoSignalAlarm => bCyl5UpNoSignalAlarm,
+  bCylDownNoSignalAlarm => bCyl5DownNoSignalAlarm,
+  bCylUpDone => g_boUnloadSupportcyLinderUpDone5,
+  bCylDownDone => g_boUnloadSupportcyLinderDownDone5,
+  bArrayConfigOutputUp_FB => ArrayConfigOutputNumber[64],
+  bArrayConfigOutputDown_FB => ArrayConfigOutputNumber[65]
+);
+
+IF bCyl5UpNoSignalAlarm AND bUnloadSupportcyLinder5UseUpSignal AND ListenBoardInputConfig[133] THEN
+   g_Alarm.alarmArray[524] := 1237;
+ELSE
+   g_Alarm.alarmArray[524] := 0;    
+END_IF; 
+IF bCyl5DownNoSignalAlarm AND bUnloadSupportcyLinder5UseDownSignal AND ListenBoardInputConfig[141] THEN
+   g_Alarm.alarmArray[492] := 1205;
+ELSE
+   g_Alarm.alarmArray[492] := 0;    
+END_IF; 
+(*气缸6*)
+CASE nUnLoadSupportCyl6State OF
+  0:
+   nUnLoadSupportCyl6State := 0;
+  10:
+    bCyl6Open :=FALSE;
+    Ton_B6(IN :=FALSE);
+    g_boUnloadSupportcyLinderUpDone6 :=FALSE;
+    IF g_nUnloadSupportClylinderNum < 6 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_6 := FALSE;
+      nUnLoadSupportCyl6State := 0;
+      g_boUnloadSupportcyLinderUpDone6 :=TRUE;
+      RETURN;
+    END_IF;
+    g_boUnloadSupportCyl6Up := TRUE;
+    g_boUnloadSupportCyl6Down := FALSE;
+    bCyl6DownNoSignalAlarm := FALSE;
+    Ton_Down6(IN := FALSE);
+    IF NOT bUnloadSupportcyLinder6UseUpSignal THEN(*使用延时*)
+      bCyl6UpNoSignalAlarm := FALSE;
+      Ton_Up6(IN := FALSE);
+      Ton_A6(IN :=g_boUnloadSupportCyl6Up,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder6UpDelayTime)));
+      IF Ton_A6.Q THEN
+        Ton_A6(IN :=FALSE);
+        g_bUnloadSupportcyLinder6StateHMI :=TRUE;
+        g_boUnloadSupportcyLinderUpDone6 :=TRUE;
+        nUnLoadSupportCyl6State := 0;
+        IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+          g_bFinishedM273_6 := FALSE;
+        END_IF;
+        bCyl6UpState := TRUE;
+      END_IF;
+    ELSIF bUnloadSupportcyLinder6UseUpSignal AND g_bUnloadSupportcyLinderUpInplace6 THEN
+      g_bUnloadSupportcyLinder6StateHMI :=TRUE;
+      g_boUnloadSupportcyLinderUpDone6 :=TRUE;
+      nUnLoadSupportCyl6State := 0;
+      IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+        M.ENABLE[273] := 0;
+        g_bExecuteFinishedM273 := FALSE;
+        g_bFinishedM273_6 := FALSE;
+      END_IF;
+      bCyl6UpState := TRUE;
+      bCyl6UpNoSignalAlarm := FALSE;
+      Ton_Up6(IN := FALSE);
+    ELSE
+      IF NOT bCyl6UpState THEN
+        Ton_Up6(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder6UpDelayTime)));
+        IF Ton_Up6.Q THEN
+          bCyl6UpNoSignalAlarm := TRUE;
+          Ton_Up6(IN := FALSE);
+        END_IF;
+      END_IF;
+    END_IF;
+  20:
+     bCyl6Close :=FALSE;
+    Ton_A6(IN :=FALSE);
+    bCyl6UpNoSignalAlarm := FALSE;
+    Ton_Up6(IN := FALSE);
+    g_boUnloadSupportcyLinderDownDone6 :=FALSE;
+    IF g_nUnloadSupportClylinderNum < 6 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_6 := FALSE;
+      nUnLoadSupportCyl6State := 0;
+      g_boUnloadSupportcyLinderDownDone6 :=TRUE;
+      RETURN;
+    END_IF;
+    g_boUnloadSupportCyl6Up := FALSE;
+    g_boUnloadSupportCyl6Down := TRUE;
+    IF NOT bUnloadSupportcyLinder6UseDownSignal THEN 
+      Ton_B6(IN :=g_boUnloadSupportCyl6Down,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder6DownDelayTime)));
+      IF Ton_B6.Q THEN
+        Ton_B6(IN :=FALSE);
+        g_bUnloadSupportcyLinder6StateHMI :=FALSE;
+        g_boUnloadSupportcyLinderDownDone6 :=TRUE;
+        nUnLoadSupportCyl6State := 0;
+        IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+          g_bFinishedM273_6 := FALSE;
+        END_IF;
+        bCyl6UpState := FALSE;
+      END_IF;
+    ELSIF g_bUnloadSupportcyLinderDownInplace6 AND  bUnloadSupportcyLinder6UseDownSignal THEN
+      g_bUnloadSupportcyLinder6StateHMI :=FALSE;
+      g_boUnloadSupportcyLinderDownDone6 :=TRUE;
+      nUnLoadSupportCyl6State := 0;
+      IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+        M.ENABLE[273] := 0;
+        g_bExecuteFinishedM273 := FALSE;
+        g_bFinishedM273_6 := FALSE;
+      END_IF;
+      bCyl6DownNoSignalAlarm := FALSE;
+      Ton_Down6(IN := FALSE);
+      bCyl6UpState := FALSE;
+    ELSE
+      IF bCyl6UpState THEN
+        Ton_Down6(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder6DownDelayTime)));
+        IF Ton_Down6.Q THEN
+           bCyl6DownNoSignalAlarm := TRUE;
+          Ton_Down6(IN := FALSE);
+        END_IF;
+      END_IF;
+    END_IF;
+END_CASE;
+
+(*新加的气缸状态切换,气缸到位超时报警和目前默认到位时间用的一个时间*)
+UnloadSupportCyl6State(
+  bUseUpSignal := bUnloadSupportcyLinder6UseUpSignal,
+  bUseDownSignal := bUnloadSupportcyLinder6UseDownSignal,
+  boCylUp := g_boUnloadSupportCyl6Up,
+  boCylDown := g_boUnloadSupportCyl6Down,
+  bUpInplace := g_bUnloadSupportcyLinderUpInplace6,
+  bDownInplace := g_bUnloadSupportcyLinderDownInplace6,
+  bUpInplaceNoFilter := g_CylAllStateUpDate.BoolArr[58],
+  bDownInplaceNoFilter := g_CylAllStateUpDate.BoolArr[59],
+  bArrayConfigOutputUp := ArrayConfigOutputNumber[66],
+  bArrayConfigOutputDown := ArrayConfigOutputNumber[67],  
+  dClylinderUpDelayTime := dClylinder6UpDelayTime,
+  dClylinderDownDelayTime := dClylinder6DownDelayTime,
+  dClylinderUpOverDelayTime := dClylinder6UpDelayTime,
+  dClylinderDownOverDelayTime := dClylinder6DownDelayTime,
+  bCylState  => bCYl6UpState,
+  bCylStateToHMI => g_bUnloadSupportcyLinder6StateHMI,
+  bCylUpNoSignalAlarm => bCyl6UpNoSignalAlarm,
+  bCylDownNoSignalAlarm => bCyl6DownNoSignalAlarm,
+  bCylUpDone => g_boUnloadSupportcyLinderUpDone6,
+  bCylDownDone => g_boUnloadSupportcyLinderDownDone6,
+  bArrayConfigOutputUp_FB => ArrayConfigOutputNumber[66],
+  bArrayConfigOutputDown_FB => ArrayConfigOutputNumber[67]
+);
+
+IF bCyl6UpNoSignalAlarm AND bUnloadSupportcyLinder6UseUpSignal AND ListenBoardInputConfig[134] THEN
+   g_Alarm.alarmArray[525] := 1238;
+ELSE
+   g_Alarm.alarmArray[525] := 0;    
+END_IF; 
+IF bCyl6DownNoSignalAlarm AND bUnloadSupportcyLinder6UseDownSignal AND ListenBoardInputConfig[142] THEN
+   g_Alarm.alarmArray[493] := 1206;
+ELSE
+   g_Alarm.alarmArray[493] := 0;    
+END_IF; 
+(*气缸7*)
+CASE nUnLoadSupportCyl7State OF
+  0:
+   nUnLoadSupportCyl7State := 0;
+  10:
+    bCyl7Open :=FALSE;
+    Ton_B7(IN :=FALSE);
+    g_boUnloadSupportcyLinderUpDone7 :=FALSE;
+    IF g_nUnloadSupportClylinderNum < 7 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_7 := FALSE;
+      nUnLoadSupportCyl7State := 0;
+      g_boUnloadSupportcyLinderUpDone7 :=TRUE;
+      RETURN;
+    END_IF;
+    g_boUnloadSupportCyl7Up := TRUE;
+    g_boUnloadSupportCyl7Down := FALSE;
+    bCyl7DownNoSignalAlarm := FALSE;
+    Ton_Down7(IN := FALSE);
+    IF NOT bUnloadSupportcyLinder7UseUpSignal THEN(*使用延时*)
+      bCyl7UpNoSignalAlarm := FALSE;
+      Ton_Up7(IN := FALSE);
+      Ton_A7(IN :=g_boUnloadSupportCyl7Up,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder7UpDelayTime)));
+      IF Ton_A7.Q THEN
+        Ton_A7(IN :=FALSE);
+        g_bUnloadSupportcyLinder7StateHMI :=TRUE;
+        g_boUnloadSupportcyLinderUpDone7 :=TRUE;
+        nUnLoadSupportCyl7State := 0;
+        IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+          g_bFinishedM273_7 := FALSE;
+        END_IF;
+        bCyl7UpState := TRUE;
+      END_IF;
+    ELSIF bUnloadSupportcyLinder7UseUpSignal AND g_bUnloadSupportcyLinderUpInplace7 THEN
+      g_bUnloadSupportcyLinder7StateHMI :=TRUE;
+      g_boUnloadSupportcyLinderUpDone7 :=TRUE;
+      nUnLoadSupportCyl7State := 0;
+      IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+        M.ENABLE[273] := 0;
+        g_bExecuteFinishedM273 := FALSE;
+        g_bFinishedM273_7 := FALSE;
+      END_IF;
+      bCyl7UpState := TRUE;
+      bCyl7UpNoSignalAlarm := FALSE;
+      Ton_Up7(IN := FALSE);
+    ELSE
+      IF NOT bCyl7UpState THEN
+        Ton_Up7(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder7UpDelayTime)));
+        IF Ton_Up7.Q THEN
+          bCyl7UpNoSignalAlarm := TRUE;
+          Ton_Up7(IN := FALSE);
+        END_IF;
+      END_IF;
+    END_IF;
+  20:
+     bCyl7Close :=FALSE;
+    Ton_A7(IN :=FALSE);
+    bCyl7UpNoSignalAlarm := FALSE;
+    Ton_Up7(IN := FALSE);
+    g_boUnloadSupportcyLinderDownDone7 :=FALSE;
+    IF g_nUnloadSupportClylinderNum < 7 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_7 := FALSE;
+      nUnLoadSupportCyl7State := 0;
+      g_boUnloadSupportcyLinderDownDone7 :=TRUE;
+      RETURN;
+    END_IF;
+    g_boUnloadSupportCyl7Up := FALSE;
+    g_boUnloadSupportCyl7Down := TRUE;
+    IF NOT bUnloadSupportcyLinder7UseDownSignal THEN 
+      Ton_B7(IN :=g_boUnloadSupportCyl7Down,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder7DownDelayTime)));
+      IF Ton_B7.Q THEN
+        Ton_B7(IN :=FALSE);
+        g_bUnloadSupportcyLinder7StateHMI :=FALSE;
+        g_boUnloadSupportcyLinderDownDone7 :=TRUE;
+        nUnLoadSupportCyl7State := 0;
+        IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+          g_bFinishedM273_7 := FALSE;
+        END_IF;
+        bCyl7UpState := FALSE;
+      END_IF;
+    ELSIF g_bUnloadSupportcyLinderDownInplace7 AND  bUnloadSupportcyLinder7UseDownSignal THEN
+      g_bUnloadSupportcyLinder7StateHMI :=FALSE;
+      g_boUnloadSupportcyLinderDownDone7 :=TRUE;
+      nUnLoadSupportCyl7State := 0;
+      IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+        M.ENABLE[273] := 0;
+        g_bExecuteFinishedM273 := FALSE;
+        g_bFinishedM273_7 := FALSE;
+      END_IF;
+      bCyl7DownNoSignalAlarm := FALSE;
+      Ton_Down7(IN := FALSE);
+      bCyl7UpState := FALSE;
+    ELSE
+      IF bCyl7UpState THEN
+        Ton_Down7(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder7DownDelayTime)));
+        IF Ton_Down7.Q THEN
+           bCyl7DownNoSignalAlarm := TRUE;
+          Ton_Down7(IN := FALSE);
+        END_IF;
+      END_IF;
+    END_IF;
+END_CASE;
+
+(*新加的气缸状态切换,气缸到位超时报警和目前默认到位时间用的一个时间*)
+UnloadSupportCyl7State(
+  bUseUpSignal := bUnloadSupportcyLinder7UseUpSignal,
+  bUseDownSignal := bUnloadSupportcyLinder7UseDownSignal,
+  boCylUp := g_boUnloadSupportCyl7Up,
+  boCylDown := g_boUnloadSupportCyl7Down,
+  bUpInplace := g_bUnloadSupportcyLinderUpInplace7,
+  bDownInplace := g_bUnloadSupportcyLinderDownInplace7,
+  bUpInplaceNoFilter := g_CylAllStateUpDate.BoolArr[60],
+  bDownInplaceNoFilter := g_CylAllStateUpDate.BoolArr[61],
+  bArrayConfigOutputUp := ArrayConfigOutputNumber[68],
+  bArrayConfigOutputDown := ArrayConfigOutputNumber[69],  
+  dClylinderUpDelayTime := dClylinder7UpDelayTime,
+  dClylinderDownDelayTime := dClylinder7DownDelayTime,
+  dClylinderUpOverDelayTime := dClylinder7UpDelayTime,
+  dClylinderDownOverDelayTime := dClylinder7DownDelayTime,
+  bCylState  => bCYl7UpState,
+  bCylStateToHMI => g_bUnloadSupportcyLinder7StateHMI,
+  bCylUpNoSignalAlarm => bCyl7UpNoSignalAlarm,
+  bCylDownNoSignalAlarm => bCyl7DownNoSignalAlarm,
+  bCylUpDone => g_boUnloadSupportcyLinderUpDone7,
+  bCylDownDone => g_boUnloadSupportcyLinderDownDone7,
+  bArrayConfigOutputUp_FB => ArrayConfigOutputNumber[68],
+  bArrayConfigOutputDown_FB => ArrayConfigOutputNumber[69]
+);
+
+IF bCyl7UpNoSignalAlarm AND bUnloadSupportcyLinder7UseUpSignal AND ListenBoardInputConfig[135] THEN
+   g_Alarm.alarmArray[526] := 1239;
+ELSE
+   g_Alarm.alarmArray[526] := 0;    
+END_IF; 
+IF bCyl7DownNoSignalAlarm AND bUnloadSupportcyLinder7UseDownSignal AND ListenBoardInputConfig[143] THEN
+   g_Alarm.alarmArray[494] := 1207;
+ELSE
+   g_Alarm.alarmArray[494] := 0;    
+END_IF; 
+
+
+
+(*气缸8*)
+CASE nUnLoadSupportCyl8State OF
+  0:
+   nUnLoadSupportCyl8State := 0;
+  10:
+    bCyl8Open :=FALSE;
+    Ton_B8(IN :=FALSE);
+    g_boUnloadSupportcyLinderUpDone8 :=FALSE;
+    IF g_nUnloadSupportClylinderNum < 8 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_8 := FALSE;
+      nUnLoadSupportCyl8State := 0;
+      g_boUnloadSupportcyLinderUpDone8 :=TRUE;
+      RETURN;
+    END_IF;
+    g_boUnloadSupportCyl8Up := TRUE;
+    g_boUnloadSupportCyl8Down := FALSE;
+     bCyl8DownNoSignalAlarm := FALSE;
+    Ton_Down8(IN := FALSE);
+    IF NOT bUnloadSupportcyLinder8UseUpSignal THEN(*使用延时*)
+      bCyl8UpNoSignalAlarm := FALSE;
+      Ton_Up8(IN := FALSE);
+      Ton_A8(IN :=g_boUnloadSupportCyl8Up,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder8UpDelayTime)));
+      IF Ton_A8.Q THEN
+        Ton_A8(IN :=FALSE);
+        g_bUnloadSupportcyLinder8StateHMI :=TRUE;
+        g_boUnloadSupportcyLinderUpDone8 :=TRUE;
+        nUnLoadSupportCyl8State := 0;
+        IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+          g_bFinishedM273_8 := FALSE;
+        END_IF;
+        bCyl8UpState := TRUE;
+      END_IF;
+    ELSIF bUnloadSupportcyLinder8UseUpSignal AND g_bUnloadSupportcyLinderUpInplace8 THEN
+      g_bUnloadSupportcyLinder8StateHMI :=TRUE;
+      g_boUnloadSupportcyLinderUpDone8 :=TRUE;
+      nUnLoadSupportCyl8State := 0;
+      IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+        M.ENABLE[273] := 0;
+        g_bExecuteFinishedM273 := FALSE;
+        g_bFinishedM273_8 := FALSE;
+      END_IF;
+      bCyl8UpState := TRUE;
+      bCyl8UpNoSignalAlarm := FALSE;
+      Ton_Up8(IN := FALSE);
+    ELSE
+      IF NOT bCyl8UpState THEN
+        Ton_Up8(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder8UpDelayTime)));
+        IF Ton_Up8.Q THEN
+          bCyl8UpNoSignalAlarm := TRUE;
+          Ton_Up8(IN := FALSE);
+        END_IF;
+      END_IF;
+    END_IF;
+  20:
+     bCyl8Close :=FALSE;
+    Ton_A8(IN :=FALSE);
+    bCyl8UpNoSignalAlarm := FALSE;
+    Ton_Up8(IN := FALSE);
+    g_boUnloadSupportcyLinderDownDone8 :=FALSE;
+    IF g_nUnloadSupportClylinderNum < 8 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_8 := FALSE;
+      nUnLoadSupportCyl8State := 0;
+      g_boUnloadSupportcyLinderDownDone8 :=TRUE;
+      RETURN;
+    END_IF;
+    g_boUnloadSupportCyl8Up := FALSE;
+    g_boUnloadSupportCyl8Down := TRUE;
+    IF NOT bUnloadSupportcyLinder8UseDownSignal THEN 
+      Ton_B8(IN :=g_boUnloadSupportCyl8Down,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder8DownDelayTime)));
+      IF Ton_B8.Q THEN
+        Ton_B8(IN :=FALSE);
+        g_bUnloadSupportcyLinder8StateHMI :=FALSE;
+        g_boUnloadSupportcyLinderDownDone8 :=TRUE;
+        nUnLoadSupportCyl8State := 0;
+        IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+          M.ENABLE[273] := 0;
+          g_bExecuteFinishedM273 := FALSE;
+          g_bFinishedM273_8 := FALSE;
+        END_IF;
+        bCyl8UpState := FALSE;
+      END_IF;
+    ELSIF g_bUnloadSupportcyLinderDownInplace8 AND  bUnloadSupportcyLinder8UseDownSignal THEN
+      g_bUnloadSupportcyLinder8StateHMI :=FALSE;
+      g_boUnloadSupportcyLinderDownDone8 :=TRUE;
+      nUnLoadSupportCyl8State := 0;
+      IF NOT g_bUnLoadSupportCylinderOneKeyFlag THEN
+        M.ENABLE[273] := 0;
+        g_bExecuteFinishedM273 := FALSE;
+        g_bFinishedM273_8 := FALSE;
+      END_IF;
+      bCyl8DownNoSignalAlarm := FALSE;
+      Ton_Down8(IN := FALSE);
+       bCyl8UpState := FALSE;
+    ELSE
+      IF  bCyl8UpState THEN
+        Ton_Down8(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinder8DownDelayTime)));
+        IF Ton_Down8.Q THEN
+           bCyl8DownNoSignalAlarm := TRUE;
+          Ton_Down8(IN := FALSE);
+        END_IF;
+      END_IF;
+    END_IF;
+END_CASE;
+
+(*新加的气缸状态切换,气缸到位超时报警和目前默认到位时间用的一个时间*)
+UnloadSupportCyl8State(
+  bUseUpSignal := bUnloadSupportcyLinder8UseUpSignal,
+  bUseDownSignal := bUnloadSupportcyLinder8UseDownSignal,
+  boCylUp := g_boUnloadSupportCyl8Up,
+  boCylDown := g_boUnloadSupportCyl8Down,
+  bUpInplace := g_bUnloadSupportcyLinderUpInplace8,
+  bDownInplace := g_bUnloadSupportcyLinderDownInplace8,
+  bUpInplaceNoFilter := g_CylAllStateUpDate.BoolArr[62],
+  bDownInplaceNoFilter := g_CylAllStateUpDate.BoolArr[63],
+  bArrayConfigOutputUp := ArrayConfigOutputNumber[70],
+  bArrayConfigOutputDown := ArrayConfigOutputNumber[71],  
+  dClylinderUpDelayTime := dClylinder8UpDelayTime,
+  dClylinderDownDelayTime := dClylinder8DownDelayTime,
+  dClylinderUpOverDelayTime := dClylinder8UpDelayTime,
+  dClylinderDownOverDelayTime := dClylinder8DownDelayTime,
+  bCylState  => bCYl8UpState,
+  bCylStateToHMI => g_bUnloadSupportcyLinder8StateHMI,
+  bCylUpNoSignalAlarm => bCyl8UpNoSignalAlarm,
+  bCylDownNoSignalAlarm => bCyl8DownNoSignalAlarm,
+  bCylUpDone => g_boUnloadSupportcyLinderUpDone8,
+  bCylDownDone => g_boUnloadSupportcyLinderDownDone8,
+  bArrayConfigOutputUp_FB => ArrayConfigOutputNumber[70],
+  bArrayConfigOutputDown_FB => ArrayConfigOutputNumber[71]
+);
+
+IF bCyl8UpNoSignalAlarm AND bUnloadSupportcyLinder8UseUpSignal AND ListenBoardInputConfig[136] THEN
+   g_Alarm.alarmArray[527] := 1240;
+ELSE
+   g_Alarm.alarmArray[527] := 0;    
+END_IF; 
+IF bCyl8DownNoSignalAlarm AND bUnloadSupportcyLinder8UseDownSignal AND ListenBoardInputConfig[144] THEN
+   g_Alarm.alarmArray[495] := 1208;
+ELSE
+   g_Alarm.alarmArray[495] := 0;    
+END_IF; 
+
+
+(*M代码控制气缸升降*)
+Rtring_AllOpen(CLK := g_bUnloadSupportCylControlM);
+IF Rtring_AllOpen.Q THEN
+  g_bUnloadSupportCylControlM := FALSE;
+  
+  IF g_nUnloadSupportClylinderUpDownNumM = 9 THEN
+    g_bUnLoadSupportCylinderOneKeyFlag := TRUE;
+    IF g_nUnloadSupportcyLinderUpDownType = 1 THEN
+      nstate := 10;(*全部上升*)
+    ELSE
+      nstate := 20;(*全部下降*)
+    END_IF;
+  ELSE
+    IF g_nUnloadSupportcyLinderUpDownType = 1 THEN
+      nstate := 100;(*单个上升*)
+    ELSE
+      nstate := 200;(*单个下降*)
+    END_IF;
+  END_IF;
+END_IF;
+CASE nstate OF
+  0:
+  nstate := 0;
+  10:
+    IF g_nUnloadSupportClylinderNum >= 1 THEN
+      nUnLoadSupportCyl1State := 10;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 2 THEN
+      nUnLoadSupportCyl2State := 10;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 3 THEN
+      nUnLoadSupportCyl3State := 10;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 4 THEN
+     nUnLoadSupportCyl4State := 10;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 5 THEN
+      nUnLoadSupportCyl5State := 10;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 6 THEN
+      nUnLoadSupportCyl6State := 10;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 7 THEN
+      nUnLoadSupportCyl7State := 10;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 8 THEN
+      nUnLoadSupportCyl8State := 10;
+    END_IF;
+    nstate := 30;
+   20:
+    IF g_nUnloadSupportClylinderNum >= 1 THEN
+      nUnLoadSupportCyl1State := 20;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 2 THEN
+      nUnLoadSupportCyl2State := 20;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 3 THEN
+      nUnLoadSupportCyl3State := 20;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 4 THEN
+      nUnLoadSupportCyl4State := 20;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 5 THEN
+      nUnLoadSupportCyl5State := 20;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 6 THEN
+      nUnLoadSupportCyl6State := 20;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 7 THEN
+      nUnLoadSupportCyl7State := 20;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 8 THEN
+      nUnLoadSupportCyl8State := 20;
+    END_IF;
+    nstate := 40;
+  30:
+    bCheckFlag := TRUE;
+    g_bExecuteFinishedM273 := TRUE;
+    g_bFinishedM273_9 := TRUE;
+    IF g_nUnloadSupportClylinderNum >= 1 AND NOT g_bUnloadSupportcyLinder1StateHMI THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 2 AND NOT g_bUnloadSupportcyLinder2StateHMI THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 3 AND NOT g_bUnloadSupportcyLinder3StateHMI THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 4 AND NOT g_bUnloadSupportcyLinder4StateHMI THEN
+     bCheckFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 5 AND NOT g_bUnloadSupportcyLinder5StateHMI THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 6 AND NOT g_bUnloadSupportcyLinder6StateHMI THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 7 AND NOT g_bUnloadSupportcyLinder7StateHMI THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 8 AND NOT g_bUnloadSupportcyLinder8StateHMI THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF  bCheckFlag THEN
+      nstate := 50;
+    END_IF;
+  40:
+    bCheckFlag := TRUE;
+    g_bExecuteFinishedM273 := TRUE;
+    g_bFinishedM273_9 := TRUE;
+    IF g_nUnloadSupportClylinderNum >= 1 AND g_bUnloadSupportcyLinder1StateHMI THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 2 AND g_bUnloadSupportcyLinder2StateHMI THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 3 AND g_bUnloadSupportcyLinder3StateHMI THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 4 AND g_bUnloadSupportcyLinder4StateHMI THEN
+     bCheckFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 5 AND g_bUnloadSupportcyLinder5StateHMI THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 6 AND g_bUnloadSupportcyLinder6StateHMI THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 7 AND g_bUnloadSupportcyLinder7StateHMI THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 8 AND g_bUnloadSupportcyLinder8StateHMI THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF  bCheckFlag THEN
+      nstate := 50;
+    END_IF; 
+  50:
+    nstate := 0;   
+    M.ENABLE[273] := 0;
+    g_bExecuteFinishedM273 := FALSE;
+    g_bFinishedM273_9 := FALSE;
+  100:
+    IF g_nUnloadSupportClylinderUpDownNumM = 1 THEN
+        IF g_dBlankingSupportCylinder1WaitBoardInputSignalM = 0.0 THEN
+          nUnLoadSupportCyl1StateM := 10;
+        ELSE
+          nUnLoadSupportCyl1StateM := 100;
+        END_IF;
+        
+    ELSIF g_nUnloadSupportClylinderUpDownNumM = 2 THEN
+      IF g_dBlankingSupportCylinder2WaitBoardInputSignalM = 0.0 THEN
+          nUnLoadSupportCyl2StateM := 10;
+        ELSE
+          nUnLoadSupportCyl2StateM := 100;
+        END_IF;
+    ELSIF g_nUnloadSupportClylinderUpDownNumM = 3 THEN
+      IF g_dBlankingSupportCylinder3WaitBoardInputSignalM = 0.0 THEN
+          nUnLoadSupportCyl3StateM := 10;
+        ELSE
+          nUnLoadSupportCyl3StateM := 100;
+        END_IF;
+    ELSIF g_nUnloadSupportClylinderUpDownNumM = 4 THEN
+      IF g_dBlankingSupportCylinder4WaitBoardInputSignalM = 0.0 THEN
+          nUnLoadSupportCyl4StateM := 10;
+        ELSE
+          nUnLoadSupportCyl4StateM := 100;
+        END_IF;
+        
+    ELSIF g_nUnloadSupportClylinderUpDownNumM = 5 THEN
+      IF g_dBlankingSupportCylinder5WaitBoardInputSignalM = 0.0 THEN
+          nUnLoadSupportCyl5StateM := 10;
+        ELSE
+          nUnLoadSupportCyl5StateM := 100;
+        END_IF;
+        
+    ELSIF g_nUnloadSupportClylinderUpDownNumM = 6 THEN
+      IF g_dBlankingSupportCylinder6WaitBoardInputSignalM = 0.0 THEN
+          nUnLoadSupportCyl6StateM := 10;
+        ELSE
+          nUnLoadSupportCyl6StateM := 100;
+        END_IF;
+        
+    ELSIF g_nUnloadSupportClylinderUpDownNumM = 7 THEN
+      IF g_dBlankingSupportCylinder7WaitBoardInputSignalM = 0.0 THEN
+          nUnLoadSupportCyl7StateM := 10;
+        ELSE
+          nUnLoadSupportCyl7StateM := 100;
+        END_IF;
+    ELSIF g_nUnloadSupportClylinderUpDownNumM = 8 THEN
+      IF g_dBlankingSupportCylinder8WaitBoardInputSignalM = 0.0 THEN
+          nUnLoadSupportCyl8StateM := 10;
+        ELSE
+          nUnLoadSupportCyl8StateM := 100;
+        END_IF;
+    END_IF;
+    nstate := 0;
+  200:
+    IF g_nUnloadSupportClylinderUpDownNumM = 1 THEN
+        IF g_dBlankingSupportCylinder1WaitBoardInputSignalM = 0.0 THEN
+          nUnLoadSupportCyl1StateM := 20;
+        ELSE
+          nUnLoadSupportCyl1StateM := 200;
+        END_IF;
+    ELSIF g_nUnloadSupportClylinderUpDownNumM = 2 THEN
+        IF g_dBlankingSupportCylinder2WaitBoardInputSignalM = 0.0 THEN
+          nUnLoadSupportCyl2StateM := 20;
+        ELSE
+          nUnLoadSupportCyl2StateM := 200;
+        END_IF;
+    ELSIF g_nUnloadSupportClylinderUpDownNumM = 3 THEN
+        IF g_dBlankingSupportCylinder3WaitBoardInputSignalM = 0.0 THEN
+          nUnLoadSupportCyl3StateM := 20;
+        ELSE
+          nUnLoadSupportCyl3StateM := 200;
+        END_IF;
+    ELSIF g_nUnloadSupportClylinderUpDownNumM = 4 THEN
+        IF g_dBlankingSupportCylinder4WaitBoardInputSignalM = 0.0 THEN
+          nUnLoadSupportCyl4StateM := 20;
+        ELSE
+          nUnLoadSupportCyl4StateM := 200;
+        END_IF;
+    ELSIF g_nUnloadSupportClylinderUpDownNumM = 5 THEN
+        IF g_dBlankingSupportCylinder5WaitBoardInputSignalM = 0.0 THEN
+          nUnLoadSupportCyl5StateM := 20;
+        ELSE
+          nUnLoadSupportCyl5StateM := 200;
+        END_IF;
+        
+    ELSIF g_nUnloadSupportClylinderUpDownNumM = 6 THEN
+        IF g_dBlankingSupportCylinder6WaitBoardInputSignalM = 0.0 THEN
+          nUnLoadSupportCyl6StateM := 20;
+        ELSE
+          nUnLoadSupportCyl6StateM := 200;
+        END_IF;
+    ELSIF g_nUnloadSupportClylinderUpDownNumM = 7 THEN
+        IF g_dBlankingSupportCylinder7WaitBoardInputSignalM = 0.0 THEN
+          nUnLoadSupportCyl7StateM := 20;
+        ELSE
+          nUnLoadSupportCyl7StateM := 200;
+        END_IF;
+    ELSIF g_nUnloadSupportClylinderUpDownNumM = 8 THEN
+        IF g_dBlankingSupportCylinder8WaitBoardInputSignalM = 0.0 THEN
+          nUnLoadSupportCyl8StateM := 20;
+        ELSE
+          nUnLoadSupportCyl8StateM := 200;
+        END_IF;
+    END_IF;
+    nstate := 0;
+ END_CASE; 
+ (*气缸1M代码控制逻辑*)
+CASE nUnLoadSupportCyl1StateM OF
+  0:
+    nUnLoadSupportCyl1StateM := 0;
+  10:
+    IF g_dBlankingSupportCylinder1WaitSignalM = 0.0 OR g_dBlankingSupportCylinder1WaitSignalM = 1.0 THEN
+        nUnLoadSupportCyl1State := 10;
+        nUnLoadSupportCyl1StateM := 0;
+    ELSIF g_dBlankingSupportCylinder1WaitSignalM = 2.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_1 := FALSE;
+      IF g_bUnloadSupportcyLinder2StateHMI THEN
+        nUnLoadSupportCyl1State := 10;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder1WaitSignalM = 3.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_1 := FALSE;
+      IF g_bUnloadSupportcyLinder3StateHMI THEN
+        nUnLoadSupportCyl1State := 10;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder1WaitSignalM = 4.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_1 := FALSE;
+      IF g_bUnloadSupportcyLinder4StateHMI THEN
+        nUnLoadSupportCyl1State := 10;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder1WaitSignalM = 5.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_1 := FALSE;
+      IF g_bUnloadSupportcyLinder5StateHMI THEN
+        nUnLoadSupportCyl1State := 10;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder1WaitSignalM = 6.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_1 := FALSE;
+      IF g_bUnloadSupportcyLinder6StateHMI THEN
+        nUnLoadSupportCyl1State := 10;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder1WaitSignalM = 7.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_1 := FALSE;
+      IF g_bUnloadSupportcyLinder7StateHMI THEN
+        nUnLoadSupportCyl1State := 10;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder1WaitSignalM = 8.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_1 := FALSE;
+      IF g_bUnloadSupportcyLinder8StateHMI THEN
+        nUnLoadSupportCyl1State := 10;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    END_IF;  
+  20:
+     IF g_dBlankingSupportCylinder1WaitSignalM = 0.0 OR g_dBlankingSupportCylinder1WaitSignalM = 1.0 THEN
+        nUnLoadSupportCyl1State := 20;
+        nUnLoadSupportCyl1StateM := 0;
+    ELSIF g_dBlankingSupportCylinder1WaitSignalM = 2.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_1 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder2StateHMI THEN
+        nUnLoadSupportCyl1State := 20;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder1WaitSignalM = 3.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_1 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder3StateHMI THEN
+        nUnLoadSupportCyl1State := 20;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder1WaitSignalM = 4.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_1 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder4StateHMI THEN
+        nUnLoadSupportCyl1State := 20;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder1WaitSignalM = 5.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_1 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder5StateHMI THEN
+        nUnLoadSupportCyl1State := 20;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder1WaitSignalM = 6.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_1 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder6StateHMI THEN
+        nUnLoadSupportCyl1State := 20;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder1WaitSignalM = 7.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_1 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder7StateHMI THEN
+        nUnLoadSupportCyl1State := 20;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder1WaitSignalM = 8.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_1 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder8StateHMI THEN
+        nUnLoadSupportCyl1State := 20;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    END_IF;
+  100:
+    nBlankingSupportCylinder1UpIndex :=LREAL_TO_INT(g_dBlankingSupportCylinder1WaitSignalM) - 1;
+    IF g_dBlankingSupportCylinder1WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder1UpIndex] THEN
+        nUnLoadSupportCyl1State := 10;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder1WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder1UpIndex + 24] THEN
+        nUnLoadSupportCyl1State := 10;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder1WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder1UpIndex + 48] THEN
+        nUnLoadSupportCyl1State := 10;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    END_IF;
+  200:
+    nBlankingSupportCylinder1DownIndex :=LREAL_TO_INT(g_dBlankingSupportCylinder1WaitSignalM) - 1;
+    IF g_dBlankingSupportCylinder1WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder1DownIndex] THEN
+        nUnLoadSupportCyl1State := 20;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder1WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder1DownIndex + 24] THEN
+        nUnLoadSupportCyl1State := 20;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder1WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder1DownIndex + 48] THEN
+        nUnLoadSupportCyl1State := 20;
+        nUnLoadSupportCyl1StateM := 0;
+      END_IF;
+    END_IF;
+                                      
+END_CASE; 
+(*气缸2M代码控制逻辑*)
+ CASE nUnLoadSupportCyl2StateM OF
+  0:
+    nUnLoadSupportCyl2StateM := 0;
+  10:
+    IF g_dBlankingSupportCylinder2WaitSignalM = 0.0 OR g_dBlankingSupportCylinder2WaitSignalM = 2.0 THEN
+        nUnLoadSupportCyl2State := 10;
+        nUnLoadSupportCyl2StateM := 0;
+    ELSIF g_dBlankingSupportCylinder2WaitSignalM = 1.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_2 := FALSE;
+      IF g_bUnloadSupportcyLinder1StateHMI THEN
+        nUnLoadSupportCyl2State := 10;
+        nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder2WaitSignalM = 3.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_2 := FALSE;
+      IF g_bUnloadSupportcyLinder3StateHMI THEN
+        nUnLoadSupportCyl2State := 10;
+        nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder2WaitSignalM = 4.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_2 := FALSE;
+      IF g_bUnloadSupportcyLinder4StateHMI THEN
+        nUnLoadSupportCyl2State := 10;
+        nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder2WaitSignalM = 5.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_2 := FALSE;
+      IF g_bUnloadSupportcyLinder5StateHMI THEN
+        nUnLoadSupportCyl2State := 10;
+        nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder2WaitSignalM = 6.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_2 := FALSE;
+      IF g_bUnloadSupportcyLinder6StateHMI THEN
+        nUnLoadSupportCyl2State := 10;
+        nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder2WaitSignalM = 7.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_2 := FALSE;
+      IF g_bUnloadSupportcyLinder7StateHMI THEN
+        nUnLoadSupportCyl2State := 10;
+        nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder2WaitSignalM = 8.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_2 := FALSE;
+      IF g_bUnloadSupportcyLinder8StateHMI THEN
+        nUnLoadSupportCyl2State := 10;
+        nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    END_IF;  
+  20:
+     IF g_dBlankingSupportCylinder2WaitSignalM = 0.0 OR g_dBlankingSupportCylinder2WaitSignalM = 2.0 THEN
+        nUnLoadSupportCyl2State := 20;
+        nUnLoadSupportCyl2StateM := 0;
+    ELSIF g_dBlankingSupportCylinder2WaitSignalM = 1.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_2 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder1StateHMI THEN
+        nUnLoadSupportCyl2State := 20;
+        nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder2WaitSignalM = 3.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_2 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder3StateHMI THEN
+        nUnLoadSupportCyl2State := 20;
+        nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder2WaitSignalM = 4.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_2 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder4StateHMI THEN
+        nUnLoadSupportCyl2State := 20;
+        nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder2WaitSignalM = 5.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_2 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder5StateHMI THEN
+        nUnLoadSupportCyl2State := 20;
+        nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder2WaitSignalM = 6.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_2 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder6StateHMI THEN
+        nUnLoadSupportCyl2State := 20;
+        nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder2WaitSignalM = 7.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_2 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder7StateHMI THEN
+        nUnLoadSupportCyl2State := 20;
+        nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder2WaitSignalM = 8.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_2 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder8StateHMI THEN
+        nUnLoadSupportCyl2State := 20;
+        nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    END_IF;
+  100:
+    nBlankingSupportCylinder2UpIndex :=LREAL_TO_INT(g_dBlankingSupportCylinder2WaitSignalM) - 1;
+    IF g_dBlankingSupportCylinder2WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder2UpIndex] THEN
+        nUnLoadSupportCyl2State := 10;
+         nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder2WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder2UpIndex + 24] THEN
+        nUnLoadSupportCyl2State := 10;
+         nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder2WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder2UpIndex + 48] THEN
+        nUnLoadSupportCyl2State := 10;
+         nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    END_IF;
+  200:
+    nBlankingSupportCylinder2DownIndex :=LREAL_TO_INT(g_dBlankingSupportCylinder2WaitSignalM) - 1;
+    IF g_dBlankingSupportCylinder2WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder2DownIndex] THEN
+        nUnLoadSupportCyl2State := 20;
+         nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder2WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder2DownIndex + 24] THEN
+        nUnLoadSupportCyl2State := 20;
+         nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder2WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder2DownIndex + 48] THEN
+        nUnLoadSupportCyl2State := 20;
+         nUnLoadSupportCyl2StateM := 0;
+      END_IF;
+    END_IF;                                    
+END_CASE; 
+(*气缸3M代码控制逻辑*) 
+ CASE nUnLoadSupportCyl3StateM OF
+  0:
+    nUnLoadSupportCyl3StateM := 0;
+  10:
+    IF g_dBlankingSupportCylinder3WaitSignalM = 0.0 OR g_dBlankingSupportCylinder3WaitSignalM = 3.0 THEN
+        nUnLoadSupportCyl3State := 10;
+        nUnLoadSupportCyl3StateM := 0;
+    ELSIF g_dBlankingSupportCylinder3WaitSignalM = 1.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_3 := FALSE;
+      IF g_bUnloadSupportcyLinder1StateHMI THEN
+        nUnLoadSupportCyl3State := 10;
+        nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder3WaitSignalM = 2.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_3 := FALSE;
+      IF g_bUnloadSupportcyLinder2StateHMI THEN
+        nUnLoadSupportCyl3State := 10;
+        nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder3WaitSignalM = 4.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_3 := FALSE;
+      IF g_bUnloadSupportcyLinder4StateHMI THEN
+        nUnLoadSupportCyl3State := 10;
+        nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder3WaitSignalM = 5.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_3 := FALSE;
+      IF g_bUnloadSupportcyLinder5StateHMI THEN
+        nUnLoadSupportCyl3State := 10;
+        nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder3WaitSignalM = 6.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_3 := FALSE;
+      IF g_bUnloadSupportcyLinder6StateHMI THEN
+        nUnLoadSupportCyl3State := 10;
+        nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder3WaitSignalM = 7.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_3 := FALSE;
+      IF g_bUnloadSupportcyLinder7StateHMI THEN
+        nUnLoadSupportCyl3State := 10;
+        nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder3WaitSignalM = 8.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_3 := FALSE;
+      IF g_bUnloadSupportcyLinder8StateHMI THEN
+        nUnLoadSupportCyl3State := 10;
+        nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    END_IF;  
+  20:
+     IF g_dBlankingSupportCylinder3WaitSignalM = 0.0 OR g_dBlankingSupportCylinder3WaitSignalM = 3.0 THEN
+        nUnLoadSupportCyl3State := 20;
+        nUnLoadSupportCyl3StateM := 0;
+    ELSIF g_dBlankingSupportCylinder3WaitSignalM = 1.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_3 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder1StateHMI THEN
+        nUnLoadSupportCyl3State := 20;
+        nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder3WaitSignalM = 2.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_3 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder2StateHMI THEN
+        nUnLoadSupportCyl3State := 20;
+        nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder3WaitSignalM = 4.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_3 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder4StateHMI THEN
+        nUnLoadSupportCyl3State := 20;
+        nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder3WaitSignalM = 5.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_3 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder5StateHMI THEN
+        nUnLoadSupportCyl3State := 20;
+        nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder3WaitSignalM = 6.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_3 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder6StateHMI THEN
+        nUnLoadSupportCyl3State := 20;
+        nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder3WaitSignalM = 7.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_3 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder7StateHMI THEN
+        nUnLoadSupportCyl3State := 20;
+        nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder3WaitSignalM = 8.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_3 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder8StateHMI THEN
+        nUnLoadSupportCyl3State := 20;
+        nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    END_IF;
+  100:
+    nBlankingSupportCylinder3UpIndex :=LREAL_TO_INT(g_dBlankingSupportCylinder3WaitSignalM) - 1;
+    IF g_dBlankingSupportCylinder3WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder3UpIndex] THEN
+        nUnLoadSupportCyl3State := 10;
+         nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder3WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder3UpIndex + 24] THEN
+        nUnLoadSupportCyl3State := 10;
+         nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder3WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder3UpIndex + 48] THEN
+        nUnLoadSupportCyl3State := 10;
+         nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    END_IF;
+  200:
+    nBlankingSupportCylinder3DownIndex :=LREAL_TO_INT(g_dBlankingSupportCylinder3WaitSignalM) - 1;
+    IF g_dBlankingSupportCylinder3WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder3DownIndex] THEN
+        nUnLoadSupportCyl3State := 20;
+         nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder3WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder3DownIndex + 24] THEN
+        nUnLoadSupportCyl3State := 20;
+         nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder3WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder3DownIndex + 48] THEN
+        nUnLoadSupportCyl3State := 20;
+         nUnLoadSupportCyl3StateM := 0;
+      END_IF;
+    END_IF;                                    
+END_CASE;  
+(*气缸4M代码控制逻辑*) 
+ CASE nUnLoadSupportCyl4StateM OF
+  0:
+    nUnLoadSupportCyl4StateM := 0;
+  10:
+    IF g_dBlankingSupportCylinder4WaitSignalM = 0.0 OR g_dBlankingSupportCylinder4WaitSignalM = 4.0 THEN
+        nUnLoadSupportCyl4State := 10;
+        nUnLoadSupportCyl4StateM := 0;
+    ELSIF g_dBlankingSupportCylinder4WaitSignalM = 1.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_4 := FALSE;
+      IF g_bUnloadSupportcyLinder1StateHMI THEN
+        nUnLoadSupportCyl4State := 10;
+        nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder4WaitSignalM = 2.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_4 := FALSE;
+      IF g_bUnloadSupportcyLinder2StateHMI THEN
+        nUnLoadSupportCyl4State := 10;
+        nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder4WaitSignalM = 3.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_4 := FALSE;
+      IF g_bUnloadSupportcyLinder3StateHMI THEN
+        nUnLoadSupportCyl4State := 10;
+        nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder4WaitSignalM = 5.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_4 := FALSE;
+      IF g_bUnloadSupportcyLinder5StateHMI THEN
+        nUnLoadSupportCyl4State := 10;
+        nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder4WaitSignalM = 6.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_4 := FALSE;
+      IF g_bUnloadSupportcyLinder6StateHMI THEN
+        nUnLoadSupportCyl4State := 10;
+        nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder4WaitSignalM = 7.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_4 := FALSE;
+      IF g_bUnloadSupportcyLinder7StateHMI THEN
+        nUnLoadSupportCyl4State := 10;
+        nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder4WaitSignalM = 8.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_4 := FALSE;
+      IF g_bUnloadSupportcyLinder8StateHMI THEN
+        nUnLoadSupportCyl4State := 10;
+        nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    END_IF;  
+  20:
+     IF g_dBlankingSupportCylinder4WaitSignalM = 0.0 OR g_dBlankingSupportCylinder4WaitSignalM = 4.0 THEN
+        nUnLoadSupportCyl4State := 20;
+        nUnLoadSupportCyl4StateM := 0;
+    ELSIF g_dBlankingSupportCylinder4WaitSignalM = 1.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_4 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder1StateHMI THEN
+        nUnLoadSupportCyl4State := 20;
+        nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder4WaitSignalM = 2.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_4 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder2StateHMI THEN
+        nUnLoadSupportCyl4State := 20;
+        nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder4WaitSignalM = 3.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_4 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder3StateHMI THEN
+        nUnLoadSupportCyl4State := 20;
+        nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder4WaitSignalM = 5.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_4 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder5StateHMI THEN
+        nUnLoadSupportCyl4State := 20;
+        nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder4WaitSignalM = 6.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_4 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder6StateHMI THEN
+        nUnLoadSupportCyl4State := 20;
+        nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder4WaitSignalM = 7.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_4 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder7StateHMI THEN
+        nUnLoadSupportCyl4State := 20;
+        nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder4WaitSignalM = 8.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_4 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder8StateHMI THEN
+        nUnLoadSupportCyl4State := 20;
+        nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    END_IF;
+  100:
+    nBlankingSupportCylinder4UpIndex :=LREAL_TO_INT(g_dBlankingSupportCylinder4WaitSignalM) - 1;
+    IF g_dBlankingSupportCylinder4WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder4UpIndex] THEN
+        nUnLoadSupportCyl4State := 10;
+         nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder4WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder4UpIndex + 24] THEN
+        nUnLoadSupportCyl4State := 10;
+         nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder4WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder4UpIndex + 48] THEN
+        nUnLoadSupportCyl4State := 10;
+         nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    END_IF;
+  200:
+    nBlankingSupportCylinder4DownIndex :=LREAL_TO_INT(g_dBlankingSupportCylinder4WaitSignalM) - 1;
+    IF g_dBlankingSupportCylinder4WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder4DownIndex] THEN
+        nUnLoadSupportCyl4State := 20;
+         nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder4WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder4DownIndex + 24] THEN
+        nUnLoadSupportCyl4State := 20;
+         nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder4WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder4DownIndex + 48] THEN
+        nUnLoadSupportCyl4State := 20;
+         nUnLoadSupportCyl4StateM := 0;
+      END_IF;
+    END_IF;                                    
+END_CASE;
+(*气缸5M代码控制逻辑*) 
+ CASE nUnLoadSupportCyl5StateM OF
+  0:
+    nUnLoadSupportCyl5StateM := 0;
+  10:
+    IF g_dBlankingSupportCylinder5WaitSignalM = 0.0 OR g_dBlankingSupportCylinder5WaitSignalM = 5.0 THEN
+        nUnLoadSupportCyl5State := 10;
+        nUnLoadSupportCyl5StateM := 0;
+    ELSIF g_dBlankingSupportCylinder5WaitSignalM = 1.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_5 := FALSE;
+      IF g_bUnloadSupportcyLinder1StateHMI THEN
+        nUnLoadSupportCyl5State := 10;
+        nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitSignalM = 2.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_5 := FALSE;
+      IF g_bUnloadSupportcyLinder2StateHMI THEN
+        nUnLoadSupportCyl5State := 10;
+        nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitSignalM = 3.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_5 := FALSE;
+      IF g_bUnloadSupportcyLinder3StateHMI THEN
+        nUnLoadSupportCyl5State := 10;
+        nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitSignalM = 4.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_5 := FALSE;
+      IF g_bUnloadSupportcyLinder4StateHMI THEN
+        nUnLoadSupportCyl5State := 10;
+        nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitSignalM = 6.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_5 := FALSE;
+      IF g_bUnloadSupportcyLinder6StateHMI THEN
+        nUnLoadSupportCyl5State := 10;
+        nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitSignalM = 7.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_5 := FALSE;
+      IF g_bUnloadSupportcyLinder7StateHMI THEN
+        nUnLoadSupportCyl5State := 10;
+        nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitSignalM = 8.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_5 := FALSE;
+      IF g_bUnloadSupportcyLinder8StateHMI THEN
+        nUnLoadSupportCyl5State := 10;
+        nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    END_IF;  
+  20:
+     IF g_dBlankingSupportCylinder5WaitSignalM = 0.0 OR g_dBlankingSupportCylinder5WaitSignalM = 5.0 THEN
+        nUnLoadSupportCyl5State := 20;
+        nUnLoadSupportCyl5StateM := 0;
+    ELSIF g_dBlankingSupportCylinder5WaitSignalM = 1.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_5 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder1StateHMI THEN
+        nUnLoadSupportCyl5State := 20;
+        nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitSignalM = 2.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_5 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder2StateHMI THEN
+        nUnLoadSupportCyl5State := 20;
+        nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitSignalM = 3.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_5 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder3StateHMI THEN
+        nUnLoadSupportCyl5State := 20;
+        nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitSignalM = 4.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_5 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder4StateHMI THEN
+        nUnLoadSupportCyl5State := 20;
+        nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitSignalM = 6.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_5 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder6StateHMI THEN
+        nUnLoadSupportCyl5State := 20;
+        nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitSignalM = 7.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_5 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder7StateHMI THEN
+        nUnLoadSupportCyl5State := 20;
+        nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitSignalM = 8.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_5 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder8StateHMI THEN
+        nUnLoadSupportCyl5State := 20;
+        nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    END_IF;
+  100:
+    nBlankingSupportCylinder5UpIndex :=LREAL_TO_INT(g_dBlankingSupportCylinder5WaitSignalM) - 1;
+    IF g_dBlankingSupportCylinder5WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder5UpIndex] THEN
+        nUnLoadSupportCyl5State := 10;
+         nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder5UpIndex + 24] THEN
+        nUnLoadSupportCyl5State := 10;
+         nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder5UpIndex + 48] THEN
+        nUnLoadSupportCyl5State := 10;
+         nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    END_IF;
+  200:
+    nBlankingSupportCylinder5DownIndex :=LREAL_TO_INT(g_dBlankingSupportCylinder5WaitSignalM) - 1;
+    IF g_dBlankingSupportCylinder5WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder5DownIndex] THEN
+        nUnLoadSupportCyl5State := 20;
+         nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder5DownIndex + 24] THEN
+        nUnLoadSupportCyl5State := 20;
+         nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder5DownIndex + 48] THEN
+         nUnLoadSupportCyl5State := 20;
+          nUnLoadSupportCyl5StateM := 0;
+      END_IF;
+    END_IF;                                    
+END_CASE;  
+(*气缸6M代码控制逻辑*) 
+ CASE nUnLoadSupportCyl6StateM OF
+  0:
+    nUnLoadSupportCyl6StateM := 0;
+  10:
+    IF g_dBlankingSupportCylinder6WaitSignalM = 0.0 OR g_dBlankingSupportCylinder6WaitSignalM = 6.0 THEN
+        nUnLoadSupportCyl6State := 10;
+        nUnLoadSupportCyl6StateM := 0;
+    ELSIF g_dBlankingSupportCylinder6WaitSignalM = 1.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_6 := FALSE;
+      IF g_bUnloadSupportcyLinder1StateHMI THEN
+        nUnLoadSupportCyl6State := 10;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder6WaitSignalM = 2.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_6 := FALSE;
+      IF g_bUnloadSupportcyLinder2StateHMI THEN
+        nUnLoadSupportCyl6State := 10;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder6WaitSignalM = 3.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_6 := FALSE;
+      IF g_bUnloadSupportcyLinder3StateHMI THEN
+        nUnLoadSupportCyl6State := 10;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder6WaitSignalM = 4.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_6 := FALSE;
+      IF g_bUnloadSupportcyLinder4StateHMI THEN
+        nUnLoadSupportCyl6State := 10;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder6WaitSignalM = 5.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_6 := FALSE;
+      IF g_bUnloadSupportcyLinder5StateHMI THEN
+        nUnLoadSupportCyl6State := 10;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder6WaitSignalM = 7.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_6 := FALSE;
+      IF g_bUnloadSupportcyLinder7StateHMI THEN
+        nUnLoadSupportCyl6State := 10;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder6WaitSignalM = 8.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_6 := FALSE;
+      IF g_bUnloadSupportcyLinder8StateHMI THEN
+        nUnLoadSupportCyl6State := 10;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    END_IF;  
+  20:
+     IF g_dBlankingSupportCylinder6WaitSignalM = 0.0 OR g_dBlankingSupportCylinder6WaitSignalM = 6.0 THEN
+        nUnLoadSupportCyl6State := 20;
+        nUnLoadSupportCyl6StateM := 0;
+    ELSIF g_dBlankingSupportCylinder6WaitSignalM = 1.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_6 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder1StateHMI THEN
+        nUnLoadSupportCyl6State := 20;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder6WaitSignalM = 2.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_6 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder2StateHMI THEN
+        nUnLoadSupportCyl6State := 20;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder6WaitSignalM = 3.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_6 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder3StateHMI THEN
+        nUnLoadSupportCyl6State := 20;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder6WaitSignalM = 4.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_6 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder4StateHMI THEN
+        nUnLoadSupportCyl6State := 20;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder6WaitSignalM = 5.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_6 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder5StateHMI THEN
+        nUnLoadSupportCyl6State := 20;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder6WaitSignalM = 7.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_6 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder7StateHMI THEN
+        nUnLoadSupportCyl6State := 20;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder6WaitSignalM = 8.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_6 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder8StateHMI THEN
+        nUnLoadSupportCyl6State := 20;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    END_IF;
+  100:
+    nBlankingSupportCylinder6UpIndex :=LREAL_TO_INT(g_dBlankingSupportCylinder6WaitSignalM) - 1;
+    IF g_dBlankingSupportCylinder6WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder6UpIndex] THEN
+        nUnLoadSupportCyl6State := 10;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder6WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder6UpIndex + 24] THEN
+        nUnLoadSupportCyl6State := 10;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder6WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder6UpIndex + 48] THEN
+        nUnLoadSupportCyl6State := 10;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    END_IF;
+  200:
+    nBlankingSupportCylinder6DownIndex :=LREAL_TO_INT(g_dBlankingSupportCylinder6WaitSignalM) - 1;
+    IF g_dBlankingSupportCylinder6WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder6DownIndex] THEN
+        nUnLoadSupportCyl6State := 20;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder6WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder6DownIndex + 24] THEN
+        nUnLoadSupportCyl6State := 20;
+        nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder6WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder6DownIndex + 48] THEN
+         nUnLoadSupportCyl6State := 20;
+         nUnLoadSupportCyl6StateM := 0;
+      END_IF;
+    END_IF;                                    
+END_CASE; 
+(*气缸7M代码控制逻辑*) 
+ CASE nUnLoadSupportCyl7StateM OF
+  0:
+    nUnLoadSupportCyl7StateM := 0;
+  10:
+    IF g_dBlankingSupportCylinder7WaitSignalM = 0.0 OR g_dBlankingSupportCylinder7WaitSignalM = 7.0 THEN
+        nUnLoadSupportCyl7State := 10;
+        nUnLoadSupportCyl7StateM := 0;
+    ELSIF g_dBlankingSupportCylinder7WaitSignalM = 1.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_7 := FALSE;
+      IF g_bUnloadSupportcyLinder1StateHMI THEN
+        nUnLoadSupportCyl7State := 10;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder7WaitSignalM = 2.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_7 := FALSE;
+      IF g_bUnloadSupportcyLinder2StateHMI THEN
+        nUnLoadSupportCyl7State := 10;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder7WaitSignalM = 3.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_7 := FALSE;
+      IF g_bUnloadSupportcyLinder3StateHMI THEN
+        nUnLoadSupportCyl7State := 10;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder7WaitSignalM = 4.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_7 := FALSE;
+      IF g_bUnloadSupportcyLinder4StateHMI THEN
+        nUnLoadSupportCyl7State := 10;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder7WaitSignalM = 5.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_7 := FALSE;
+      IF g_bUnloadSupportcyLinder5StateHMI THEN
+        nUnLoadSupportCyl7State := 10;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder7WaitSignalM = 6.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_7 := FALSE;
+      IF g_bUnloadSupportcyLinder6StateHMI THEN
+        nUnLoadSupportCyl7State := 10;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder7WaitSignalM = 8.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_7 := FALSE;
+      IF g_bUnloadSupportcyLinder8StateHMI THEN
+        nUnLoadSupportCyl7State := 10;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    END_IF;  
+  20:
+     IF g_dBlankingSupportCylinder7WaitSignalM = 0.0 OR g_dBlankingSupportCylinder7WaitSignalM = 7.0 THEN
+        nUnLoadSupportCyl7State := 20;
+        nUnLoadSupportCyl7StateM := 0;
+    ELSIF g_dBlankingSupportCylinder7WaitSignalM = 1.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_7 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder1StateHMI THEN
+        nUnLoadSupportCyl7State := 20;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder7WaitSignalM = 2.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_7 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder2StateHMI THEN
+        nUnLoadSupportCyl7State := 20;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder7WaitSignalM = 3.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_7 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder3StateHMI THEN
+        nUnLoadSupportCyl7State := 20;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder7WaitSignalM = 4.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_7 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder4StateHMI THEN
+        nUnLoadSupportCyl7State := 20;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder7WaitSignalM = 5.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_7 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder5StateHMI THEN
+        nUnLoadSupportCyl7State := 20;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder7WaitSignalM = 6.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_7 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder6StateHMI THEN
+        nUnLoadSupportCyl7State := 20;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder7WaitSignalM = 8.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_7 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder8StateHMI THEN
+        nUnLoadSupportCyl7State := 20;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    END_IF;
+  100:
+    nBlankingSupportCylinder7UpIndex :=LREAL_TO_INT(g_dBlankingSupportCylinder7WaitSignalM) - 1;
+    IF g_dBlankingSupportCylinder7WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder7UpIndex] THEN
+        nUnLoadSupportCyl7State := 10;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder7WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder7UpIndex + 24] THEN
+        nUnLoadSupportCyl7State := 10;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder7WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder7UpIndex + 48] THEN
+        nUnLoadSupportCyl7State := 10;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    END_IF;
+  200:
+    nBlankingSupportCylinder7DownIndex :=LREAL_TO_INT(g_dBlankingSupportCylinder7WaitSignalM) - 1;
+    IF g_dBlankingSupportCylinder7WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder7DownIndex] THEN
+        nUnLoadSupportCyl7State := 20;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder7WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder7DownIndex + 24] THEN
+        nUnLoadSupportCyl7State := 20;
+        nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder7WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder7DownIndex + 48] THEN
+         nUnLoadSupportCyl7State := 20;
+         nUnLoadSupportCyl7StateM := 0;
+      END_IF;
+    END_IF;                                    
+END_CASE; 
+(*气缸8M代码控制逻辑*) 
+ CASE nUnLoadSupportCyl8StateM OF
+  0:
+    nUnLoadSupportCyl8StateM := 0;
+  10:
+    IF g_dBlankingSupportCylinder8WaitSignalM = 0.0 OR g_dBlankingSupportCylinder8WaitSignalM = 8.0 THEN
+        nUnLoadSupportCyl8State := 10;
+        nUnLoadSupportCyl8StateM := 0;
+    ELSIF g_dBlankingSupportCylinder8WaitSignalM = 1.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_8 := FALSE;
+      IF g_bUnloadSupportcyLinder1StateHMI THEN
+        nUnLoadSupportCyl8State := 10;
+        nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder8WaitSignalM = 2.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_8 := FALSE;
+      IF g_bUnloadSupportcyLinder2StateHMI THEN
+        nUnLoadSupportCyl8State := 10;
+        nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder8WaitSignalM = 3.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_8 := FALSE;
+      IF g_bUnloadSupportcyLinder3StateHMI THEN
+        nUnLoadSupportCyl8State := 10;
+        nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder8WaitSignalM = 4.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_8 := FALSE;
+      IF g_bUnloadSupportcyLinder4StateHMI THEN
+        nUnLoadSupportCyl8State := 10;
+        nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder8WaitSignalM = 5.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_8 := FALSE;
+      IF g_bUnloadSupportcyLinder5StateHMI THEN
+        nUnLoadSupportCyl8State := 10;
+        nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder8WaitSignalM = 6.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_8 := FALSE;
+      IF g_bUnloadSupportcyLinder6StateHMI THEN
+        nUnLoadSupportCyl8State := 10;
+        nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder8WaitSignalM = 7.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_8 := FALSE;
+      IF g_bUnloadSupportcyLinder7StateHMI THEN
+        nUnLoadSupportCyl8State := 10;
+        nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    END_IF;  
+  20:
+     IF g_dBlankingSupportCylinder8WaitSignalM = 0.0 OR g_dBlankingSupportCylinder8WaitSignalM = 8.0 THEN
+        nUnLoadSupportCyl8State := 20;
+        nUnLoadSupportCyl8StateM := 0;
+    ELSIF g_dBlankingSupportCylinder8WaitSignalM = 1.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_8 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder1StateHMI THEN
+        nUnLoadSupportCyl8State := 20;
+        nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder8WaitSignalM = 2.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_8 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder2StateHMI THEN
+        nUnLoadSupportCyl8State := 20;
+        nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder8WaitSignalM = 3.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_8 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder3StateHMI THEN
+        nUnLoadSupportCyl8State := 20;
+        nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder8WaitSignalM = 4.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_8 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder4StateHMI THEN
+        nUnLoadSupportCyl8State := 20;
+        nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder8WaitSignalM = 5.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_8 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder5StateHMI THEN
+        nUnLoadSupportCyl8State := 20;
+        nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder8WaitSignalM = 6.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_8 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder6StateHMI THEN
+        nUnLoadSupportCyl8State := 20;
+        nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder5WaitSignalM = 7.0 THEN
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_8 := FALSE;
+      IF NOT g_bUnloadSupportcyLinder7StateHMI THEN
+        nUnLoadSupportCyl8State := 20;
+        nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    END_IF;
+  100:
+    nBlankingSupportCylinder8UpIndex :=LREAL_TO_INT(g_dBlankingSupportCylinder8WaitSignalM) - 1;
+    IF g_dBlankingSupportCylinder8WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder8UpIndex] THEN
+        nUnLoadSupportCyl8State := 10;
+         nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder8WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder8UpIndex + 24] THEN
+        nUnLoadSupportCyl8State := 10;
+         nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder8WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder8UpIndex + 48] THEN
+        nUnLoadSupportCyl8State := 10;
+         nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    END_IF;
+  200:
+    nBlankingSupportCylinder8DownIndex :=LREAL_TO_INT(g_dBlankingSupportCylinder8WaitSignalM) - 1;
+    IF g_dBlankingSupportCylinder5WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder8DownIndex] THEN
+        nUnLoadSupportCyl8State := 20;
+         nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder8WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder8DownIndex + 24] THEN
+        nUnLoadSupportCyl8State := 20;
+         nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    ELSIF g_dBlankingSupportCylinder8WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingSupportCylinder8DownIndex + 48] THEN
+         nUnLoadSupportCyl8State := 20;
+          nUnLoadSupportCyl8StateM := 0;
+      END_IF;
+    END_IF;                                    
+END_CASE;        
+(*浮动*)
+Rtring_Follow(CLK := g_bUnloadSupportcyLinderFollowM);
+IF Rtring_Follow.Q THEN
+  g_bUnloadSupportcyLinderFollowM := FALSE;
+  g_boUnloadSupportcyLinderFollowDone := FALSE;
+  IF g_nUnloadSupportcyLinderUpDownType = 0 THEN (*关浮动,气缸下落*)
+     nFollowstate := 200;
+     IF g_nUnloadSupportClylinderNum = 0 THEN
+        nFollowstate := 500;
+    END_IF;
+  ELSIF g_nUnloadSupportcyLinderUpDownType = 1 THEN
+    IF g_bUnloadSupportClyFloatOpen THEN (*开启浮动*)
+      nFollowstate := 10;
+    ELSE
+      nFollowstate := 500;
+    END_IF;
+  END_IF;  
+  g_dDynamicCoordTemp := g_diYMachineCoordinate;
+END_IF;
+CASE nFollowstate OF
+  0:
+    nFollowstate := 0;
+  10:
+    g_boUnloadSupportcyLinderFollowDone := FALSE; 
+      M.ENABLE[273] := 0;
+      g_bExecuteFinishedM273 := FALSE;
+      g_bFinishedM273_0 := FALSE;
+      IF g_nUnloadSupportClylinderNum >= 1 THEN
+        nFollowstate := 110;
+      ELSE
+        nFollowstate := 0;
+        g_boUnloadSupportcyLinderFollowDone := TRUE;
+        g_bExecuteFinishedM273 := TRUE;
+        g_bFinishedM273_0 := TRUE;
+      END_IF;
+  110:
+        IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= dCly1FloatDistance THEN
+          nUnLoadSupportCyl1State := 10;
+        END_IF;
+        IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= dCly2FloatDistance THEN
+          nUnLoadSupportCyl2State := 10;
+        END_IF;
+        IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= dCly3FloatDistance THEN
+          nUnLoadSupportCyl3State := 10;
+        END_IF;
+        IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= dCly4FloatDistance THEN
+          nUnLoadSupportCyl4State := 10;
+        END_IF;
+        IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= dCly5FloatDistance THEN
+          nUnLoadSupportCyl5State := 10;
+        END_IF;
+         IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= dCly6FloatDistance THEN
+          nUnLoadSupportCyl6State := 10;
+        END_IF;
+         IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= dCly7FloatDistance THEN
+          nUnLoadSupportCyl7State := 10;
+        END_IF;
+         IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= dCly8FloatDistance THEN
+          nUnLoadSupportCyl8State := 10;
+        END_IF;
+  200:
+    IF g_nUnloadSupportClylinderNum >= 1 THEN
+      nUnLoadSupportCyl1State := 20;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 2 THEN
+      nUnLoadSupportCyl2State := 20;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 3 THEN
+      nUnLoadSupportCyl3State := 20;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 4 THEN
+      nUnLoadSupportCyl4State := 20;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 5 THEN
+      nUnLoadSupportCyl5State := 20;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 6 THEN
+      nUnLoadSupportCyl6State := 20;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 7 THEN
+      nUnLoadSupportCyl7State := 20;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 8 THEN
+      nUnLoadSupportCyl8State := 20;
+    END_IF;
+    nFollowstate := 210;
+  210:
+    bCylDownDoneFlag := TRUE;
+    IF g_nUnloadSupportClylinderNum >= 1 AND g_bUnloadSupportcyLinder1StateHMI THEN
+       bCylDownDoneFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 2 AND g_bUnloadSupportcyLinder2StateHMI THEN
+       bCylDownDoneFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 3 AND g_bUnloadSupportcyLinder3StateHMI THEN
+       bCylDownDoneFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 4 AND g_bUnloadSupportcyLinder4StateHMI THEN
+       bCylDownDoneFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 5 AND g_bUnloadSupportcyLinder5StateHMI THEN
+       bCylDownDoneFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 6 AND g_bUnloadSupportcyLinder6StateHMI THEN
+       bCylDownDoneFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 7 AND g_bUnloadSupportcyLinder7StateHMI THEN
+       bCylDownDoneFlag := FALSE;
+    END_IF;
+    IF g_nUnloadSupportClylinderNum >= 8 AND g_bUnloadSupportcyLinder8StateHMI THEN
+       bCylDownDoneFlag := FALSE;
+    END_IF;
+    IF bCylDownDoneFlag THEN
+      nFollowstate := 500;
+    END_IF;
+  500:
+     g_boUnloadSupportcyLinderFollowDone := TRUE;
+     M.ENABLE[273] := 0;
+     g_bExecuteFinishedM273 := FALSE;
+     nFollowstate := 0;
+END_CASE;
+
+(*打开输出口控制 气缸使用延时的状态切换  56-71 下料支撑气缸上升的状态切换*)
+(*IF ArrayConfigOutputNumber[56] AND NOT bUnloadSupportcyLinder1UseUpSignal THEN
+  g_bUnloadSupportcyLinder1StateHMI :=TRUE;
+  g_boUnloadSupportcyLinderUpDone1 :=TRUE;
+  bCyl1UpState := TRUE;
+  ArrayConfigOutputNumber[56] := FALSE;
+END_IF;  
+IF ArrayConfigOutputNumber[58] AND NOT bUnloadSupportcyLinder2UseUpSignal THEN
+  g_bUnloadSupportcyLinder2StateHMI :=TRUE;
+  g_boUnloadSupportcyLinderUpDone2 :=TRUE;
+  bCyl2UpState := TRUE;
+  ArrayConfigOutputNumber[58] := FALSE;
+END_IF;  
+IF ArrayConfigOutputNumber[60] AND NOT bUnloadSupportcyLinder3UseUpSignal THEN
+  g_bUnloadSupportcyLinder3StateHMI :=TRUE;
+  g_boUnloadSupportcyLinderUpDone3 :=TRUE;
+  bCyl3UpState := TRUE;
+  ArrayConfigOutputNumber[60] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[62] AND NOT bUnloadSupportcyLinder4UseUpSignal THEN
+  g_bUnloadSupportcyLinder4StateHMI :=TRUE;
+  g_boUnloadSupportcyLinderUpDone4 :=TRUE;
+  bCyl4UpState := TRUE;
+  ArrayConfigOutputNumber[62] := FALSE;
+END_IF;   
+IF ArrayConfigOutputNumber[64] AND NOT bUnloadSupportcyLinder5UseUpSignal THEN
+  g_bUnloadSupportcyLinder5StateHMI :=TRUE;
+  g_boUnloadSupportcyLinderUpDone5 :=TRUE;
+  bCyl5UpState := TRUE;
+  ArrayConfigOutputNumber[64] := FALSE;
+END_IF;  
+IF ArrayConfigOutputNumber[66] AND NOT bUnloadSupportcyLinder6UseUpSignal THEN
+  g_bUnloadSupportcyLinder6StateHMI :=TRUE;
+  g_boUnloadSupportcyLinderUpDone6 :=TRUE;
+  bCyl6UpState := TRUE;
+  ArrayConfigOutputNumber[66] := FALSE;
+END_IF;  
+IF ArrayConfigOutputNumber[68] AND NOT bUnloadSupportcyLinder7UseUpSignal THEN
+  g_bUnloadSupportcyLinder7StateHMI :=TRUE;
+  g_boUnloadSupportcyLinderUpDone7 :=TRUE;
+  bCyl7UpState := TRUE;
+  ArrayConfigOutputNumber[68] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[70] AND NOT bUnloadSupportcyLinder8UseUpSignal THEN
+  g_bUnloadSupportcyLinder8StateHMI :=TRUE;
+  g_boUnloadSupportcyLinderUpDone8 :=TRUE;
+  bCyl8UpState := TRUE;
+  ArrayConfigOutputNumber[70] := FALSE;
+END_IF;   
+
+IF ArrayConfigOutputNumber[57] AND NOT bUnloadSupportcyLinder1UseDownSignal THEN
+  g_bUnloadSupportcyLinder1StateHMI :=FALSE;
+  g_boUnloadSupportcyLinderDownDone1 :=TRUE;
+  bCyl1UpState := FALSE;
+  ArrayConfigOutputNumber[57] := FALSE;
+END_IF;  
+IF ArrayConfigOutputNumber[59] AND NOT bUnloadSupportcyLinder2UseDownSignal THEN
+  g_bUnloadSupportcyLinder2StateHMI :=FALSE;
+  g_boUnloadSupportcyLinderDownDone2 :=TRUE;
+  bCyl2UpState := FALSE;
+  ArrayConfigOutputNumber[59] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[61] AND NOT bUnloadSupportcyLinder3UseDownSignal THEN
+  g_bUnloadSupportcyLinder3StateHMI :=FALSE;
+  g_boUnloadSupportcyLinderDownDone3 :=TRUE;
+  bCyl3UpState := FALSE;
+  ArrayConfigOutputNumber[61] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[63] AND NOT bUnloadSupportcyLinder4UseDownSignal THEN
+  g_bUnloadSupportcyLinder4StateHMI :=FALSE;
+  g_boUnloadSupportcyLinderDownDone4 :=TRUE;
+  bCyl4UpState := FALSE;
+  ArrayConfigOutputNumber[63] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[65] AND NOT bUnloadSupportcyLinder5UseDownSignal THEN
+  g_bUnloadSupportcyLinder5StateHMI :=FALSE;
+  g_boUnloadSupportcyLinderDownDone5 :=TRUE;
+  bCyl5UpState := FALSE;
+  ArrayConfigOutputNumber[65] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[67] AND NOT bUnloadSupportcyLinder6UseDownSignal THEN
+  g_bUnloadSupportcyLinder6StateHMI :=FALSE;
+  g_boUnloadSupportcyLinderDownDone6 :=TRUE;
+  bCyl6UpState := FALSE;
+  ArrayConfigOutputNumber[67] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[69] AND NOT bUnloadSupportcyLinder7UseDownSignal THEN
+  g_bUnloadSupportcyLinder7StateHMI :=FALSE;
+  g_boUnloadSupportcyLinderDownDone7 :=TRUE;
+  bCyl7UpState := FALSE;
+  ArrayConfigOutputNumber[69] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[71] AND NOT bUnloadSupportcyLinder8UseDownSignal THEN
+  g_bUnloadSupportcyLinder8StateHMI :=FALSE;
+  g_boUnloadSupportcyLinderDownDone8 :=TRUE;
+  bCyl8UpState := FALSE;
+  ArrayConfigOutputNumber[71] := FALSE;
+END_IF; *)
+
+IF g_bPlcResetBuffer OR g_bPlcEndM THEN
+  g_boUnloadSupportcyLinderFollowDone := FALSE;
+  nFollowstate := 0;
+  nstate := 0;
+  g_bExecuteFinishedM273 := FALSE;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

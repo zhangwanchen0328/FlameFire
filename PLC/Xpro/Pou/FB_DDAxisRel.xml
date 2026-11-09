@@ -1,0 +1,343 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DDAxisRel" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="DDAxis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_DDAxisRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="g_DDAxisStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dDDAxisTargetVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDDAxisRelTargetDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDDAxisRelVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bDDAxisRelEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDDAxisRelDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nRelState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="RelRtring">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RelRtring1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RelRtring2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDDAxisRelEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biDDAxisRelEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDDAxisRelDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动完成全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boDDAxisRelDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动输出引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dTargetPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fiDDAxisRelDis">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动距离引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fDDAxisRelDis">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiDDAxisRelVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动速度引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fDDAxisRelVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动速度全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dDDAxisRelDis">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动距离HMI]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fDDAxisVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bFastInch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dDDAxisSlowVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDDAxisFastVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDDAxisAutoVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RelRtring(CLK :=g_bDDAxisRelEnable OR g_biDDAxisRelEnable OR bDDAxisRelEnable OR g_bGeneralAxis3RelMoveM);
+RelRtring1(CLK := g_bAxisStopFlag);
+RelRtring2(CLK := g_bAxisStopFlag_4);
+
+IF RelRtring.Q THEN
+  
+  
+  nRelState :=1;
+  g_bDDAxisRelDone := FALSE;
+  g_boDDAxisRelDone := FALSE;
+  bDDAxisRelDone := FALSE;
+  IF g_biDDAxisRelEnable THEN
+    dTargetPos := DDAxis.NCTOPLC.ActPos + g_fiDDAxisRelDis;
+    dDDAxisTargetVel := g_fiDDAxisRelVel;
+  ELSIF g_bDDAxisRelEnable THEN
+    dTargetPos := DDAxis.NCTOPLC.ActPos + g_fDDAxisRelDis;
+    dDDAxisTargetVel := dDDAxisAutoVel;
+    g_bDDAxisRelEnable := FALSE;
+  ELSIF g_bGeneralAxis3RelMoveM THEN
+    g_bGeneralAxis3RelMoveM := FALSE;
+    dTargetPos := DDAxis.NCTOPLC.ActPos + g_dGeneralAxisMoveDistanceM;
+    dDDAxisTargetVel := dDDAxisAutoVel;
+    IF g_bSetAuxiliaryAxisSpeed THEN
+	  dDDAxisTargetVel := g_nAuxiliaryAxisSpeed;
+      g_bSetAuxiliaryAxisSpeed := FALSE;
+    END_IF;
+  ELSE
+      dTargetPos := DDAxis.NCTOPLC.ActPos + dDDAxisRelDis;
+      IF g_bFastInch=0 THEN
+        dDDAxisTargetVel := dDDAxisSlowVel;
+      ELSE
+        dDDAxisTargetVel := dDDAxisFastVel;
+      END_IF;
+      bDDAxisRelEnable := FALSE; 
+  END_IF;
+  IF dDDAxisTargetVel = 0.0 THEN
+    dDDAxisTargetVel := g_fDDAxisVel;
+  END_IF;
+  
+  (*IF nRelState <> 0  AND nRelState <> 20 AND DDAxis.NCTOPLC.ACTVELO > g_dCheckAxisIsMovingSpeedSet  THEN
+    g_bAxisIsMoveAlarm := TRUE;
+    bDDAxisRelEnable := FALSE;
+    g_bDDAxisRelEnable := FALSE;
+    g_bGeneralAxis3RelMoveM := FALSE;
+  nRelState :=21;
+  END_IF;*)
+END_IF;
+
+IF RelRtring1.Q THEN
+  IF g_nAxisStopP = 4 THEN
+    g_bAxisStopFlag := FALSE;
+    nRelState := 21;
+  END_IF;
+END_IF;
+
+IF RelRtring2.Q THEN
+  IF g_bAxisStopFlag_4 THEN
+    g_bAxisStopFlag_4 := FALSE;
+    nRelState := 21;
+  END_IF;
+END_IF;
+
+IF NOT (g_bDDAxisRelEnable OR g_biDDAxisRelEnable OR bDDAxisRelEnable) THEN
+  g_bDDAxisRelDone := FALSE;
+  g_boDDAxisRelDone := FALSE;
+  bDDAxisRelDone := FALSE;
+END_IF;
+
+CASE nRelState OF
+  0:
+  nRelState := 0;
+  1:
+  g_DDAxisRel.Execute := TRUE;
+  g_DDAxisRel.Velocity := dDDAxisTargetVel;
+  g_DDAxisRel.Distance := dTargetPos - DDAxis.NCTOPLC.ACTPOS;
+  IF g_DDAxisRel.Done THEN
+    g_DDAxisRel.Execute := FALSE;
+    bDDAxisRelDone := TRUE;
+    g_bDDAxisRelDone :=TRUE;
+    g_boDDAxisRelDone := TRUE;
+    g_bUniversalAxis3MoveDoneM320 := TRUE;
+    nRelState := 0;
+    M.ENABLE[274] := 0;
+    g_bExecuteFinishedM274 := FALSE;
+    g_bFinishedM274_3 := FALSE;
+  END_IF;
+  IF g_bPlcPauseBuffer THEN
+    nRelState := 20;
+  END_IF;
+  IF g_DDAxisRel.CommandAborted OR g_DDAxisRel.Error THEN
+    g_DDAxisRel.Execute := FALSE;
+    nRelState := 0;
+    M.ENABLE[274] := 0;
+    g_bExecuteFinishedM274 := FALSE;
+    g_bFinishedM274_3 := FALSE;
+  END_IF;
+  20:
+  g_DDAxisRel.Execute := FALSE;
+  g_DDAxisStop.Execute := TRUE;
+  IF g_DDAxisStop.Done AND g_bPlcStartBuffer THEN
+    g_DDAxisStop.Execute := FALSE;
+    nRelState := 1;
+  END_IF;
+  IF g_DDAxisStop.CommandAborted OR g_DDAxisStop.Error THEN 
+    g_DDAxisStop.Execute := FALSE;
+    nRelState := 0;
+    M.ENABLE[274] := 0;
+    g_bExecuteFinishedM274 := FALSE;
+    g_bFinishedM274_3 := FALSE;
+  END_IF;
+  21:
+  g_DDAxisRel.Execute := FALSE;
+  g_DDAxisStop.Execute := TRUE;
+  IF g_DDAxisStop.Done THEN
+    g_DDAxisStop.Execute := FALSE;
+    g_bFinishedM325_4 := FALSE;
+    M.ENABLE[325] := 0;
+    nRelState := 0;
+    g_bUniversalAxis3MoveDoneM320 := TRUE;
+  END_IF;
+  IF g_DDAxisStop.CommandAborted OR g_DDAxisStop.Error THEN 
+    g_DDAxisStop.Execute := FALSE;
+    g_bFinishedM325_4 := FALSE;
+    M.ENABLE[325] := 0;
+    nRelState := 0;
+    M.ENABLE[274] := 0;
+    g_bExecuteFinishedM274 := FALSE;
+    g_bFinishedM274_3 := FALSE;
+  END_IF;
+END_CASE;
+IF g_bPlcResetBuffer THEN
+  IF g_bRealTimeUpdateParallePLCExecuteFlag AND nRelState <> 0 AND  (g_bExecuteFinishedM274 OR 
+    g_bFinishedM274_3 OR g_bFinishedM325_4 ) THEN
+    ;
+  ELSE
+    nRelState := 0;
+  g_bExecuteFinishedM274 := FALSE;
+  g_bFinishedM274_3 := FALSE;
+  g_bFinishedM325_4 := FALSE;
+  END_IF;
+  
+  g_DDAxisRel.Execute := FALSE;
+  g_DDAxisStop.Execute := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

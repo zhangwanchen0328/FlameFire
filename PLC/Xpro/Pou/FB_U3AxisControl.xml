@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_U3AxisControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBU3AxisAbs">
+        <type>
+          <derived name="FB_U3AxisAbs"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBU3AxisActMotion">
+        <type>
+          <derived name="FB_U3ActMove_Motion"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBU3AxisHome">
+        <type>
+          <derived name="FB_U3AxisHome"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBU3AxisJog">
+        <type>
+          <derived name="FB_U3AxisJog"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBU3AxisRel">
+        <type>
+          <derived name="FB_U3AxisRel"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBU3AxisPower">
+        <type>
+          <derived name="FB_U3AxisPower"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBU3AxisGear">
+        <type>
+          <derived name="FB_U3AxisGear"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_U3Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_CReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_U3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBU3AxisAbs();
+FBU3AxisActMotion();
+FBU3AxisHome();
+FBU3AxisJog();
+FBU3AxisRel();
+FBU3AxisPower();
+FBU3AxisGear();
+
+IF Axis_U3.NCTOPLC.AxisState = 8 THEN
+  g_U3Reset.Execute := FALSE;
+ELSE
+  IF Axis_U3.NCTOPLC.ERRORCODE <>0 AND g_bPlcResetBuffer THEN
+    g_U3Reset.Execute := TRUE;
+  ELSE
+    g_U3Reset.Execute := FALSE;   
+  END_IF;
+END_IF;
+IF Axis_C.NCTOPLC.ERRORCODE <>0 AND g_bPlcResetBuffer THEN
+  g_CReset.Execute := TRUE;
+ELSE
+  g_CReset.Execute := FALSE;   
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[U3轴运动控制模块]]></xhtml:p>
+  </documentation>
+</pou>

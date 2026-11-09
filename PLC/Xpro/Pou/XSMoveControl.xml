@@ -1,0 +1,371 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="XSMoveControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Rtring_start">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[面板启动上升沿信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_back">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[面板回退释放上升沿信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[安全门上升沿信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_finish">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_Rolling">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卷帘门外部按钮下落输入信号]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biPanelStart">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[面板启动按钮输入信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biPanelBack">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[面板回退释放按钮输入信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biRollingDown">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[面板卷帘门手动下落按钮输入信号]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nStart">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[面板自动运行状态HMI用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[面板手动使能状态HMI用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMode">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[面板手动/自动模式状态HMI用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nReset">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[面板清除报警状态HMI用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nEmergency">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[急停处理状态HMI用]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boPusherCylinderUp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[推料气缸前进输出信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boPusherCylinderDown">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[推料气缸后退输出信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biPusherCylUpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[推料气缸前进到位输入信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biPusherCylDownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[推料气缸后退到位输入信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boPanelReadyLight">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[面板就绪按钮灯亮信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAxisEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[面板手动使能按钮输入信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biModeChange">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[面板手动/自动模式切换]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biPanelReady">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[面板自动运行按钮输入信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAlarmReset">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[面板清除按钮按钮输入信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警2]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUserDefineAlarm3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警2]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biRollingUpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卷帘门上升到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biRollingDownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卷帘门下落到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boRollingUp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卷帘门上升信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boRollingDown">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卷帘门下落信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biFinish">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[切割完成信号输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boEmergencyStopOut">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[急停输出信号]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF g_nPlcState<>1 THEN
+  Rtring_start(CLK := g_biPanelStart);(*面板启动按钮-前期准备工作*)
+END_IF;
+
+IF Rtring_start.Q THEN
+  nState := 1;
+END_IF;
+(*切割完成信号*)
+Rtring_finish(CLK := g_biFinish);
+IF Rtring_finish.Q THEN
+  nState := 7;
+END_IF;
+(*面板后退释放*)
+Rtring_back(CLK := g_biPanelBack);
+IF Rtring_back.Q THEN
+  nState := 3;
+END_IF;
+(*面板卷帘门下降按钮*)
+Rtring_Rolling(CLK := g_biRollingDown);
+IF Rtring_Rolling.Q THEN
+  nState := 6;
+END_IF;
+(*面板就绪运行*)
+  nStart := g_biPanelReady;
+(*面板手动使能*)
+  nEnable := g_biAxisEnable;
+(*面板模式切换*)
+nMode := g_biModeChange;
+(*面板复位*)
+nReset := g_biAlarmReset;
+(*急停处理-*)
+IF g_boEmergencyStopOut = FALSE THEN
+  nEmergency := TRUE;
+ELSE
+  nEmergency := FALSE;
+END_IF;
+CASE nState OF
+  0:
+  nState := 0;
+  1:(*卡爪加紧*)
+    g_boClaw1UpDownClampEnable := TRUE;
+    g_boClaw1UpDownLoosenEnable := FALSE;
+    IF g_bUpDownClampedInPlaceClaw1 THEN
+      nState := 2;
+    END_IF;
+  2:(*退料气缸 前进*)
+    g_boPusherCylinderUp := TRUE;
+    g_boPusherCylinderDown := FALSE;
+    IF g_biPusherCylUpInPlace THEN
+      g_boPanelReadyLight := TRUE;
+      nState := 0;
+    END_IF;
+  3:(*卡爪松开*)
+    g_boClaw1UpDownClampEnable := FALSE;
+    g_boClaw1UpDownLoosenEnable := TRUE;
+    IF g_bUpDownLossendInPlaceClaw1 THEN
+      nState := 4;
+    END_IF;
+  4:(*退料气缸后退*)
+    g_boPusherCylinderUp := FALSE;
+    g_boPusherCylinderDown := TRUE;
+    IF g_biPusherCylDownInPlace THEN
+      g_boPanelReadyLight := TRUE;
+      nState := 5;
+    END_IF;
+  5:
+      g_boRollingUp := FALSE;
+      g_boRollingDown := TRUE;
+      IF g_biRollingUpInPlace THEN
+        nState := 0;
+      END_IF;
+  6:(*卷帘门下落*)
+     IF g_biRollingUpInPlace = TRUE THEN
+      g_boRollingDown := FALSE;
+      g_boRollingUp := TRUE;
+    END_IF;
+    IF g_biRollingDownInPlace THEN
+      nState := 0;
+    END_IF;
+  7:(*程序结束*)
+      g_boClaw1UpDownClampEnable := FALSE;
+      g_boClaw1UpDownLoosenEnable := TRUE;
+      IF g_bUpDownLossendInPlaceClaw1 THEN
+        nState := 8;
+      END_IF;
+  8:
+    g_boPusherCylinderUp := FALSE;
+    g_boPusherCylinderDown := TRUE;
+    IF g_biPusherCylDownInPlace THEN
+      nState := 9;
+    END_IF;
+  9:
+    g_boRollingDown := TRUE;
+    g_boRollingUp := FALSE;
+    IF g_biRollingUpInPlace THEN
+      nState := 0;
+    END_IF;
+END_CASE;
+IF g_bPlcResetBuffer THEN
+  nState :=0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,434 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SupportAxisListen" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="nFilterTime_Limit">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="10"/>
+        </initialValue>
+      </variable>
+      <variable name="Index">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="Filter_PosLimit">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <derived name="FB_Filter"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="Filter_NegLimit">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <derived name="FB_Filter"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="FBAxisPower">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <derived name="FB_NCAxisPower"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="FBAxisJog">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <derived name="FB_NCAxisJog"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="FBAxisReset">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <derived name="FB_NCAxisReset"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="FBAxisHome">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <derived name="FB_NCAxisHome"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="FBAxisStop">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <derived name="FB_NCAxisStop"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="FBAxisAbs">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <derived name="FB_NCAxisAbs"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="UpdateAxisStatus">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <derived name="MC_AXISSTATUS"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="FBAxisRel">
+        <type>
+          <array>
+            <dimension lower="0" upper="5"/>
+            <baseType>
+              <derived name="FB_NCAxisRel"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="nFilterTime">
+        <type>
+          <TIME/>
+        </type>
+      </variable>
+      <variable name="bAxisBrake">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="FBSupportAxisMControl">
+        <type>
+          <derived name="FB_SupportAxisMCommand"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBSupportAxisMControl();
+
+
+nFilterTime :=LREAL_TO_TIME(FUN_MSTOS(nFilterTime_Limit));
+FOR Index := 4 TO 9 BY 1 DO
+	CASE Index Of
+		4:
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[0] := g_biSustainS7PosLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[1] := g_biSustainS7NegLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[2] := g_biSusTainS7HomeCal;
+		5:
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[0] := g_biSustainS8PosLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[1] := g_biSustainS8NegLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[2] := g_biSusTainS8HomeCal;
+		6:
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[0] := g_biSustainS9PosLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[1] := g_biSustainS9NegLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[2] := g_biSusTainS9HomeCal;
+		7:
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[0] := g_biSustainS10PosLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[1] := g_biSustainS10NegLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[2] := g_biSusTainS10HomeCal;
+		8:
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[0] := g_biSustainS11PosLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[1] := g_biSustainS11NegLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[2] := g_biSusTainS11HomeCal;
+		9:
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[0] := g_biSustainS12PosLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[1] := g_biSustainS12NegLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[2] := g_biSusTainS12HomeCal;
+	END_CASE;
+    
+  (*对零位信号进行特殊处理：使用限位回零时，将限位转一道当成零位*)
+	IF g_NCMoveData.NCAXISDATA[Index].AxisHomeSignal = 0 THEN
+		g_NCMoveData.NCAXISDATA[Index].AxisZero := FUN_SingalLogic(g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[2],g_NCMoveData.NCAXISDATA[Index].AxisZeroSignalLogic);
+	ELSIF g_NCMoveData.NCAXISDATA[Index].AxisHomeSignal = 1 THEN
+		g_NCMoveData.NCAXISDATA[Index].AxisZero := FUN_SingalLogic(g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[0],g_NCMoveData.NCAXISDATA[Index].AxisPosLimitLogic);
+	ELSE
+		g_NCMoveData.NCAXISDATA[Index].AxisZero := FUN_SingalLogic(g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[1],g_NCMoveData.NCAXISDATA[Index].AxisNegLimitLogic);
+	END_IF;
+  Filter_PosLimit[Index-4](nFilterTime,g_NCMoveData.NCAXISDATA[Index].AxisPosLimitLogic,g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[0] ,g_NCMoveData.NCAXISDATA[Index].Filter_PosLimit); 
+  Filter_NegLimit[Index-4](nFilterTime,g_NCMoveData.NCAXISDATA[Index].AxisNegLimitLogic,g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[1],g_NCMoveData.NCAXISDATA[Index].Filter_NegLimit);
+  
+  g_NCMoveData.NCAXISDATA[Index].AxisPosLimit := FUN_SingalLogic(g_NCMoveData.NCAXISDATA[Index].Filter_PosLimit ,g_NCMoveData.NCAXISDATA[Index].AxisPosLimitLogic);
+  g_NCMoveData.NCAXISDATA[Index].AxisNegLimit := FUN_SingalLogic(g_NCMoveData.NCAXISDATA[Index].Filter_NegLimit ,g_NCMoveData.NCAXISDATA[Index].AxisNegLimitLogic);
+END_FOR;
+
+	
+FOR Index := 4 TO 9 BY 1 DO
+	(*使能*)
+	FBAxisPower[Index-4](
+		AxisName := g_NCMoveData.NCAXISDATA[Index].NCAxisName,
+		ENABLE := g_NCMoveData.NCAXISCMD[Index].NCAxisPower,
+		HomeMode := g_NCMoveData.NCAXISDATA[Index].AxisHomeMode,
+		HomeSignal := g_NCMoveData.NCAXISDATA[Index].AxisHomeSignal,
+		AxisPosLimit := g_NCMoveData.NCAXISDATA[Index].AxisPosLimit,
+		AxisNegLimit := g_NCMoveData.NCAXISDATA[Index].AxisNegLimit,
+		Error => g_NCMoveData.NCAXISDATA[Index].ErrorID[0],
+        OutBrake => bAxisBrake
+	);
+  (*回原*)
+    FBAxisHome[Index-4](
+		NCAxisName := g_NCMoveData.NCAXISDATA[Index].NCAxisName,
+		IndexValue := Index,
+		dHomePosition := g_NCMoveData.NCAXISDATA[Index].NCHomePosition,
+        bAxisZero := g_NCMoveData.NCAXISDATA[Index].AxisZero,
+        dAxisHomeOffset := g_NCMoveData.NCAXISDATA[Index].AxisHomeOffset,
+        nHomingMode := g_NCMoveData.NCAXISDATA[Index].AxisHomeMode,
+        ChangeHomeMode := g_NCMoveData.NCAXISCMD[Index].ChangeHome,
+        bCleanHomed := g_NCMoveData.NCAXISCMD[Index].CleanHomed,
+        HomeMode := g_NCMoveData.NCAXISDATA[Index].AxisChangeHomeMode,
+        bHomeDone => g_NCMoveData.NCAXISDATA[Index].AxisHomeDone,
+        ERRORID =>g_NCMoveData.NCAXISDATA[Index].ErrorID[1]);
+ (*点动*)
+    FBAxisJog[Index-4](
+		NCAxisName := g_NCMoveData.NCAXISDATA[Index].NCAxisName,
+        bJogFast := g_bFastInch,
+        bJogForward := g_NCMoveData.NCAXISCMD[Index].NCAxisJogForward,
+        bBackForward := g_NCMoveData.NCAXISCMD[Index].NCAxisJogBackWard,
+        ERRORID =>g_NCMoveData.NCAXISDATA[Index].ErrorID[2]   
+    );
+    
+    
+     (*复位*)
+    FBAxisReset[Index-4](
+		NCAxisName := g_NCMoveData.NCAXISDATA[Index].NCAxisName,
+        ERRORID =>g_NCMoveData.NCAXISDATA[Index].ErrorID[3]);
+    
+ (*停止*)
+    FBAxisStop[Index-4](
+		NCAxisName := g_NCMoveData.NCAXISDATA[Index].NCAxisName,
+        IndexValue := Index,
+        StopDone := g_NCMoveData.NCAXISDATA[Index].AxisStopDone,
+        ERRORID =>g_NCMoveData.NCAXISDATA[Index].ErrorID[4]);
+        
+       IF g_NCMoveData.NCAXISCMD[Index].NCAxisAbs OR
+         g_NCMoveData.NCAXISCMD[Index].NCAxisRel THEN
+        g_NCMoveData.NCAXISDATA[Index].AxisMoveDone := FALSE;
+       END_IF; 
+   
+	CASE Index OF (*如果超过了避让位置只能降不能升,如果同一个轴运动未完成时又来了指令就报警*)
+		4:
+		g_boSupportAxis7HoldBrake := bAxisBrake;
+        
+        
+        
+        
+		IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY7 - g_fSupAxisDownDis7) THEN
+			IF g_NCMoveData.NCAXISCMD[4].NCAxisAbs AND g_NCMoveData.NCAXISDATA[4].AxisAbsPosition >0.2 THEN
+				g_NCMoveData.NCAXISCMD[4].NCAxisAbs := FALSE;
+				g_NCMoveData.NCAXISDATA[4].AxisAbsMoveDone := TRUE;
+				g_bSustainAxis7MoveDoneM320 := TRUE;
+				M.ENABLE[306] := 0;
+				g_bExecuteFinishedM306 := FALSE;
+				g_bFinishedM306_7 := FALSE;
+			ELSIF  g_NCMoveData.NCAXISCMD[4].NCAxisRel AND Axis_S7.NCTOPLC.ACTPOS + g_NCMoveData.NCAXISDATA[4].AxisRelDistance > Axis_S7.NCTOPLC.ACTPOS  THEN
+                g_NCMoveData.NCAXISCMD[4].NCAxisRel := FALSE;
+                g_NCMoveData.NCAXISDATA[4].AxisRelMoveDone := TRUE;
+				g_bSustainAxis7MoveDoneM320 := TRUE;
+				M.ENABLE[306] := 0;
+				g_bExecuteFinishedM306 := FALSE;
+				g_bFinishedM306_7 := FALSE;
+			END_IF;
+		ELSE
+			IF g_NCMoveData.NCAXISDATA[4].AxisMoveDone THEN
+				g_bSustainAxis7MoveDoneM320 := TRUE;
+				g_bExecuteFinishedM306 := FALSE;
+				g_bFinishedM306_7 := FALSE;
+			END_IF; 
+		END_IF;
+		5:
+           g_boSupportAxis8HoldBrake := bAxisBrake;
+           IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY8 - g_fSupAxisDownDis8) THEN
+			  IF g_NCMoveData.NCAXISCMD[5].NCAxisAbs AND g_NCMoveData.NCAXISDATA[5].AxisAbsPosition >0.2 THEN
+				g_NCMoveData.NCAXISCMD[5].NCAxisAbs := FALSE;
+				g_NCMoveData.NCAXISDATA[5].AxisAbsMoveDone := TRUE;
+				g_bSustainAxis8MoveDoneM320 := TRUE;
+				M.ENABLE[306] := 0;
+				g_bExecuteFinishedM306 := FALSE;
+				g_bFinishedM306_8 := FALSE;
+			ELSIF  g_NCMoveData.NCAXISCMD[5].NCAxisRel AND Axis_S8.NCTOPLC.ACTPOS + g_NCMoveData.NCAXISDATA[5].AxisRelDistance > Axis_S8.NCTOPLC.ACTPOS  THEN
+                g_NCMoveData.NCAXISCMD[5].NCAxisRel := FALSE;
+                g_NCMoveData.NCAXISDATA[5].AxisRelMoveDone := TRUE;
+				g_bSustainAxis8MoveDoneM320 := TRUE;
+				M.ENABLE[306] := 0;
+				g_bExecuteFinishedM306 := FALSE;
+				g_bFinishedM306_8 := FALSE;
+			END_IF;
+			ELSE
+				IF g_NCMoveData.NCAXISDATA[5].AxisMoveDone THEN
+					g_bSustainAxis8MoveDoneM320 := TRUE;
+					g_bExecuteFinishedM306 := FALSE;
+					g_bFinishedM306_8 := FALSE;
+				END_IF;  
+           END_IF; 
+        6:
+           g_boSupportAxis9HoldBrake := bAxisBrake;
+           IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY9 - g_fSupAxisDownDis9) THEN
+			  IF g_NCMoveData.NCAXISCMD[6].NCAxisAbs AND g_NCMoveData.NCAXISDATA[6].AxisAbsPosition >0.2 THEN
+				g_NCMoveData.NCAXISCMD[6].NCAxisAbs := FALSE;
+				g_NCMoveData.NCAXISDATA[6].AxisAbsMoveDone := TRUE;
+				g_bSustainAxis9MoveDoneM320 := TRUE;
+				M.ENABLE[306] := 0;
+				g_bExecuteFinishedM306 := FALSE;
+				g_bFinishedM306_9 := FALSE;
+			ELSIF  g_NCMoveData.NCAXISCMD[6].NCAxisRel AND Axis_S9.NCTOPLC.ACTPOS + g_NCMoveData.NCAXISDATA[6].AxisRelDistance > Axis_S9.NCTOPLC.ACTPOS  THEN
+                g_NCMoveData.NCAXISCMD[6].NCAxisRel := FALSE;
+                g_NCMoveData.NCAXISDATA[6].AxisRelMoveDone := TRUE;
+				g_bSustainAxis9MoveDoneM320 := TRUE;
+				M.ENABLE[306] := 0;
+				g_bExecuteFinishedM306 := FALSE;
+				g_bFinishedM306_9 := FALSE;
+			END_IF;
+			ELSE
+				IF g_NCMoveData.NCAXISDATA[6].AxisMoveDone THEN
+					g_bSustainAxis9MoveDoneM320 := TRUE;
+					g_bExecuteFinishedM306 := FALSE;
+					g_bFinishedM306_9 := FALSE;
+				END_IF;  
+           END_IF;
+        7:
+           g_boSupportAxis10HoldBrake := bAxisBrake;
+           IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY10 - g_fSupAxisDownDis10) THEN
+                IF g_NCMoveData.NCAXISCMD[7].NCAxisAbs AND g_NCMoveData.NCAXISDATA[7].AxisAbsPosition >0.2 THEN
+					g_NCMoveData.NCAXISCMD[7].NCAxisAbs := FALSE;
+					g_NCMoveData.NCAXISDATA[7].AxisAbsMoveDone := TRUE;
+					g_bSustainAxis10MoveDoneM320 := TRUE;
+					M.ENABLE[306] := 0;
+					g_bExecuteFinishedM306 := FALSE;
+					g_bFinishedM306_10 := FALSE;
+				ELSIF  g_NCMoveData.NCAXISCMD[7].NCAxisRel AND Axis_S10.NCTOPLC.ACTPOS + g_NCMoveData.NCAXISDATA[7].AxisRelDistance > Axis_S10.NCTOPLC.ACTPOS  THEN
+					g_NCMoveData.NCAXISCMD[7].NCAxisRel := FALSE;
+					g_NCMoveData.NCAXISDATA[7].AxisRelMoveDone := TRUE;
+					g_bSustainAxis10MoveDoneM320 := TRUE;
+					M.ENABLE[306] := 0;
+					g_bExecuteFinishedM306 := FALSE;
+					g_bFinishedM306_10 := FALSE;
+				END_IF;
+			ELSE
+				IF g_NCMoveData.NCAXISDATA[7].AxisMoveDone THEN
+					g_bSustainAxis10MoveDoneM320 := TRUE;
+					g_bExecuteFinishedM306 := FALSE;
+					g_bFinishedM306_10 := FALSE;
+				END_IF;  
+           END_IF;
+        8:
+           g_boSupportAxis11HoldBrake := bAxisBrake;
+           IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY11 - g_fSupAxisDownDis11) THEN
+			  IF g_NCMoveData.NCAXISCMD[8].NCAxisAbs AND g_NCMoveData.NCAXISDATA[8].AxisAbsPosition >0.2 THEN
+				g_NCMoveData.NCAXISCMD[8].NCAxisAbs := FALSE;
+				g_NCMoveData.NCAXISDATA[8].AxisAbsMoveDone := TRUE;
+				g_bSustainAxis11MoveDoneM320 := TRUE;
+				M.ENABLE[306] := 0;
+				g_bExecuteFinishedM306 := FALSE;
+				g_bFinishedM306_11 := FALSE;
+			ELSIF  g_NCMoveData.NCAXISCMD[8].NCAxisRel AND Axis_S11.NCTOPLC.ACTPOS + g_NCMoveData.NCAXISDATA[8].AxisRelDistance > Axis_S11.NCTOPLC.ACTPOS  THEN
+                g_NCMoveData.NCAXISCMD[8].NCAxisRel := FALSE;
+                g_NCMoveData.NCAXISDATA[8].AxisRelMoveDone := TRUE;
+				g_bSustainAxis11MoveDoneM320 := TRUE;
+				M.ENABLE[306] := 0;
+				g_bExecuteFinishedM306 := FALSE;
+				g_bFinishedM306_11 := FALSE;
+			END_IF;
+			ELSE
+				IF g_NCMoveData.NCAXISDATA[8].AxisMoveDone THEN
+					g_bSustainAxis11MoveDoneM320 := TRUE;
+					g_bExecuteFinishedM306 := FALSE;
+					g_bFinishedM306_11 := FALSE;
+				END_IF;  
+           END_IF;
+        9:
+           g_boSupportAxis12HoldBrake := bAxisBrake;
+           IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY12 - g_fSupAxisDownDis12) THEN
+			 IF g_NCMoveData.NCAXISCMD[9].NCAxisAbs AND g_NCMoveData.NCAXISDATA[9].AxisAbsPosition >0.2 THEN
+				g_NCMoveData.NCAXISCMD[9].NCAxisAbs := FALSE;
+				g_NCMoveData.NCAXISDATA[9].AxisAbsMoveDone := TRUE;
+				g_bSustainAxis12MoveDoneM320 := TRUE;
+				M.ENABLE[306] := 0;
+				g_bExecuteFinishedM306 := FALSE;
+				g_bFinishedM306_12 := FALSE;
+			ELSIF  g_NCMoveData.NCAXISCMD[9].NCAxisRel AND Axis_S12.NCTOPLC.ACTPOS + g_NCMoveData.NCAXISDATA[9].AxisRelDistance > Axis_S12.NCTOPLC.ACTPOS  THEN
+                g_NCMoveData.NCAXISCMD[9].NCAxisRel := FALSE;
+                g_NCMoveData.NCAXISDATA[9].AxisRelMoveDone := TRUE;
+				g_bSustainAxis12MoveDoneM320 := TRUE;
+				M.ENABLE[306] := 0;
+				g_bExecuteFinishedM306 := FALSE;
+				g_bFinishedM306_12 := FALSE;
+			END_IF;
+			ELSE
+				IF g_NCMoveData.NCAXISDATA[9].AxisMoveDone THEN
+					g_bSustainAxis12MoveDoneM320 := TRUE;
+					g_bExecuteFinishedM306 := FALSE;
+					g_bFinishedM306_12 := FALSE;
+				END_IF;  
+           END_IF; 
+    END_CASE; 
+       
+    
+        
+        
+        
+        
+        
+        (*绝对运动*)
+	FBAxisAbs[Index-4](
+		IndexNumber := Index,
+		NCAxisName := g_NCMoveData.NCAXISDATA[Index].NCAxisName,
+		TargetVel := g_NCMoveData.NCAXISDATA[Index].AxisAbsVel,
+		TargetPos := g_NCMoveData.NCAXISDATA[Index].AxisAbsPosition,
+		AbsMoveDone => g_NCMoveData.NCAXISDATA[Index].AxisAbsMoveDone,
+        AxisMoveDone:=g_NCMoveData.NCAXISDATA[Index].AxisMoveDone,
+        ERRORID =>g_NCMoveData.NCAXISDATA[Index].ErrorID[5]);
+        
+        (*相对运动*)
+	FBAxisRel[Index-4](
+		IndexNumber := Index,
+		NCAxisName := g_NCMoveData.NCAXISDATA[Index].NCAxisName,
+		TargetAxisVel := g_NCMoveData.NCAXISDATA[Index].AxisRelVel,
+		RelMoceDistance := g_NCMoveData.NCAXISDATA[Index].AxisRelDistance,
+		TargetPos2 := g_NCMoveData.NCAXISDATA[Index].NCAxisName^.NCTOPLC.ACTPOS,
+		NCAxisRelMoveDone => g_NCMoveData.NCAXISDATA[Index].AxisRelMoveDone,
+        AxisMoveDone :=g_NCMoveData.NCAXISDATA[Index].AxisMoveDone,
+        ERRORID =>g_NCMoveData.NCAXISDATA[Index].ErrorID[6]);
+        
+    (*状态刷新*)
+	UpDateAxisStatus[Index-4](
+		AXIS := g_NCMoveData.NCAXISDATA[Index].NCAxisName^(*AXIS_REF*),
+		OUTAXIS => g_NCMoveData.NCAXISDATA[Index].NCAxisName^(*AXIS_REF*));
+        
+        
+        
+      g_NCMoveData.NCAXISDATA[Index].AxisCurrentPos := g_NCMoveData.NCAXISDATA[Index].NCAxisName^.NCTOPLC.ACTPOS;
+	g_NCMoveData.NCAXISDATA[Index].AxisMoveSpeed := g_NCMoveData.NCAXISDATA[Index].NCAxisName^.NCTOPLC.ACTVELO;  
+	
+END_FOR;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

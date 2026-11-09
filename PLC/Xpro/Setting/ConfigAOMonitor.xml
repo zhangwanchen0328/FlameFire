@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <globalVars>
+    <variable name="g_ConfigMonitorAO_600" address="%IW99.0600">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_601" address="%IW99.0601">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_602" address="%IW99.0602">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_603" address="%IW99.0603">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_604" address="%IW99.0604">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_605" address="%IW99.0605">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_606" address="%IW99.0606">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_607" address="%IW99.0607">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_608" address="%IW99.0608">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_609" address="%IW99.0609">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_610" address="%IW99.0610">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_611" address="%IW99.0611">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_612" address="%IW99.0612">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_613" address="%IW99.0613">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_614" address="%IW99.0614">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_615" address="%IW99.0615">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_616" address="%IW99.0616">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_617" address="%IW99.0617">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_618" address="%IW99.0618">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_619" address="%IW99.0619">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAO_620" address="%IW99.0620">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+  </globalVars>
+</root>

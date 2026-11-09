@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_StatusUpdate" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nPlcState">
+        <type>
+          <UINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[PLC状态：0空闲 1开始 2暂停]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcStartM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcEndM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fHighLowAngle">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[高低面旋转补偿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nPlcState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF (g_bPlcStartBuffer OR g_bPlcStartM) AND NOT g_bFallBackStatusFb THEN
+  g_bPlcStartM := FALSE;
+  nPlcState := 1;
+END_IF;
+
+IF g_bPlcPauseBuffer THEN
+  nPlcState := 2;
+END_IF;
+
+IF g_bPlcResetBuffer OR g_bPlcEndM THEN
+  g_bPlcEndM := FALSE;
+  nPlcState := 0;
+  g_fHighLowAngle :=0.0;
+  g_dRatoteAngleDifference := 0.0;
+END_IF;
+
+
+g_nPlcState := UINT_TO_INT(nPlcState);]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[PLC状态更新模块]]></xhtml:p>
+  </documentation>
+</pou>

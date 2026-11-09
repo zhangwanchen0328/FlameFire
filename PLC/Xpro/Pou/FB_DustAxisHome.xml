@@ -1,0 +1,431 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DustAxisHome" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="D_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="DustHome">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="DustAbsolute">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="DustAxis_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bDustHomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustHomeMode">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dDustHomePos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bDustHomeDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dDustAbsVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDustHomeOffset">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bDustHomeCal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trriger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nHomeState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bChangeHomeMode">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bChangeHomeMode1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nChangeHomeModeState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nChangeHomeModeState1">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bAntiRejection3HomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nHomingState3">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dHomePosition3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nHomingMode3">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dHomeOffset3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dHomeVel3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bCleanD2Homed">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Rtring_DustRecover">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_Dust2Recover">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nRecoverDustDatumMarkState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nRecoverDust2DatumMarkState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trriger(CLK := bDustHomeEnable);
+
+IF R_Trriger.Q THEN
+  g_bDustHomeDone := FALSE;
+  nHomeState := 1;
+  bDustHomeEnable := FALSE;
+END_IF;
+
+CASE nHomeState OF
+  0:
+    nHomeState := 0;
+  1:
+    DustHome.Execute := TRUE;
+    DustHome.Position := dDustHomePos;
+    DustHome.bCalibrationCam := g_bDustHomeCal;
+    DustHome.DISTANCE := dDustHomeOffset;
+    IF bDustHomeMode = 0 THEN
+      DustHome.HomingMode := 0;
+    ELSIF bDustHomeMode = 1 THEN
+      DustHome.HomingMode := 5;
+     ELSIF bDustHomeMode = 3 THEN
+      (*只是去掉回零标志位*)
+      DustHome.HomingMode := 1;
+    END_IF;
+    IF DustHome.Done THEN
+		DustHome.Execute := FALSE;
+		g_bDustHomeDone := TRUE;
+        nHomeState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nHomeState := 20;
+    END_IF;
+    IF DustHome.CommandAborted OR DustHome.Error THEN
+      DustHome.Execute := FALSE;
+      nHomeState := 0;
+    END_IF;
+  20:
+    DustHome.Execute := FALSE;
+    DustAxis_Stop.Execute := TRUE;
+    IF DustAxis_Stop.Done AND g_bPlcStartBuffer THEN
+      DustAxis_Stop.Execute := FALSE;
+      nHomeState := 1;
+    END_IF;
+    IF DustAxis_Stop.CommandAborted OR DustAxis_Stop.Error THEN
+      DustAxis_Stop.Execute := FALSE;
+      nHomeState := 0;
+    END_IF;
+  21:
+    DustHome.Execute := FALSE;
+    DustAxis_Stop.Execute := TRUE;
+    IF DustAxis_Stop.Done AND g_bPlcStartBuffer THEN
+      DustAxis_Stop.Execute := FALSE;
+      nHomeState := 1;
+    END_IF;
+    IF DustAxis_Stop.CommandAborted OR DustAxis_Stop.Error THEN
+      DustAxis_Stop.Execute := FALSE;
+      nHomeState := 0;
+    END_IF;
+END_CASE;
+
+IF bChangeHomeMode THEN
+  bChangeHomeMode := FALSE;
+  nChangeHomeModeState := 1;
+END_IF;
+
+CASE nChangeHomeModeState OF
+  0:
+    nChangeHomeModeState := 0;
+  1:
+    DustHome.Execute := TRUE;
+    IF bDustHomeMode = 0 THEN
+      DustHome.HomingMode := 0;
+    ELSIF bDustHomeMode = 1 THEN
+      DustHome.HomingMode := 5;
+    ELSIF bDustHomeMode = 2 THEN
+      DustHome.HomingMode := 4;
+    END_IF;
+    DustHome.Position := 0.0;
+    DustHome.DISTANCE := 0.0;
+    IF DustHome.Done THEN
+      DustHome.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+    IF DustHome.CommandAborted OR DustHome.Error THEN
+      DustHome.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+END_CASE;
+(***界面上下发了去掉D轴回零标志***)
+IF g_bCleanDHomed THEN
+   DustHome.HomingMode := 1;
+   DustHome.Execute := TRUE; 
+   g_bDustHomeDone := FALSE; 
+   IF DustHome.DONE OR DustHome.ERROR THEN 
+    DustHome.Execute := FALSE; 
+    g_bCleanDHomed := FALSE; 
+   END_IF;
+END_IF;
+
+(*伺服断电恢复基准点*)
+Rtring_DustRecover(CLK := g_bRecoverDustDatumMark);
+IF Rtring_DustRecover.Q THEN
+  g_bRecoverDustDatumMark := FALSE;
+  nRecoverDustDatumMarkState := 1;
+END_IF;
+CASE nRecoverDustDatumMarkState OF
+  1:
+   DustHome.HomingMode := 4;
+   DustHome.Position :=g_dDustDatumMark; (*恢复基准点坐标差值*)
+   DustHome.Execute := TRUE;  
+   IF  DustHome.DONE OR DustHome.ERROR THEN 
+      g_bDustHomeDone := TRUE;
+    DustHome.Execute := FALSE; 
+    nRecoverDustDatumMarkState := 0; 
+   END_IF;
+END_CASE;
+
+(*防甩轴3==抽尘轴2*)
+Rtring3(CLK := g_biAntiRejection3HomeEnable OR bAntiRejection3HomeEnable OR g_bAntiRejection3HomeEnable);
+
+IF Rtring3.Q THEN
+  nHomingState3 :=1;
+  g_boAntiRejection3HomeDone := FALSE;
+  g_bAntiRejection3HomeDone :=FALSE;
+END_IF;
+
+CASE nHomingState3 OF 
+  0:
+  nHomingState3 := 0;
+  1:
+  g_AntiRejection3Home.Execute := TRUE;
+  g_AntiRejection3Home.Position := dHomePosition3;
+  g_AntiRejection3Home.bCalibrationCam := g_boAntiRejection3HomeSignal;
+  g_AntiRejection3Home.DISTANCE := dHomeOffset3;
+  IF nHomingMode3 =0 THEN
+    g_AntiRejection3Home.HomingMode := 0;
+  ELSIF nHomingMode3 = 1 THEN
+    g_AntiRejection3Home.HomingMode := 5;
+  ELSIF nHomingMode3 = 3 THEN
+    (*只是去掉回零标志位*)
+    g_AntiRejection3Home.HomingMode := 1;  
+  END_IF;
+  IF g_AntiRejection3Home.Done THEN
+    g_AntiRejection3Home.Execute := FALSE;
+    g_boAntiRejection3HomeDone := TRUE;
+    g_bAntiRejection3HomeDone := TRUE;
+    nHomingState3 := 0;
+  END_IF;
+  IF g_bPlcPauseBuffer THEN
+    nHomingState3 := 10;
+  END_IF;
+  IF g_AntiRejection3Home.CommandAborted OR g_AntiRejection3Home.error THEN
+    nHomingState3 := 0;
+    g_AntiRejection3Home.Execute := FALSE;
+    g_boAntiRejection3HomeDone := FALSE;
+    g_bAntiRejection3HomeDone := FALSE;
+  END_IF;
+  10:
+  g_AntiRejection3Home.Execute := FALSE;
+  g_AntiRejection3Stop.Execute := TRUE;
+  IF g_AntiRejection3Stop.Done AND g_bPlcStartBuffer THEN
+    g_AntiRejection3Stop.Execute := FALSE;
+    nHomingState3 := 1;
+  END_IF;
+  IF g_AntiRejection3Stop.CommandAborted OR g_AntiRejection3Stop.error THEN
+    g_AntiRejection3Stop.Execute := FALSE;
+    nHomingState3 :=0;
+  END_IF;
+END_CASE;
+
+
+
+IF bChangeHomeMode1 THEN
+  bChangeHomeMode1 := FALSE;
+  nChangeHomeModeState1 := 1;
+END_IF;
+
+CASE nChangeHomeModeState1 OF
+  0:
+    nChangeHomeModeState1 := 0;
+  1:
+    g_AntiRejection3Home.Execute := TRUE;
+    IF nHomingMode3 = 0 THEN
+      g_AntiRejection3Home.HomingMode := 0;
+    ELSIF nHomingMode3 = 1 THEN
+      g_AntiRejection3Home.HomingMode := 5;
+    ELSIF nHomingMode3 = 2 THEN
+      g_AntiRejection3Home.HomingMode := 4;
+    END_IF;
+    IF g_AntiRejection3Home.Done THEN
+      g_AntiRejection3Home.Execute := FALSE;
+      nChangeHomeModeState1 := 0;
+    END_IF;
+    IF g_AntiRejection3Home.CommandAborted OR g_AntiRejection3Home.Error THEN
+      g_AntiRejection3Home.Execute := FALSE;
+      nChangeHomeModeState1 := 0;
+    END_IF;
+END_CASE;
+(***界面上下发了去掉D轴回零标志***)
+IF bCleanD2Homed THEN
+   g_AntiRejection3Home.HomingMode := 1;
+   g_AntiRejection3Home.Execute := TRUE; 
+   g_bAntiRejection3HomeDone := FALSE; 
+   IF g_AntiRejection3Home.DONE OR g_AntiRejection3Home.ERROR THEN 
+    g_AntiRejection3Home.Execute := FALSE; 
+    bCleanD2Homed := FALSE; 
+   END_IF;
+END_IF;
+
+(*伺服断电恢复基准点*)
+Rtring_Dust2Recover(CLK := g_bRecoverDust2DatumMark);
+IF Rtring_Dust2Recover.Q THEN
+  g_bRecoverDust2DatumMark := FALSE;
+  nRecoverDust2DatumMarkState := 1;
+END_IF;
+CASE nRecoverDust2DatumMarkState OF
+  1:
+   g_AntiRejection3Home.HomingMode := 4;
+   g_AntiRejection3Home.Position :=g_dDust2DatumMark; (*恢复基准点坐标差值*)
+   g_AntiRejection3Home.Execute := TRUE;  
+   IF  g_AntiRejection3Home.DONE OR g_AntiRejection3Home.ERROR THEN 
+    g_boAntiRejection3HomeDone := TRUE;
+    g_bAntiRejection3HomeDone := TRUE;
+    g_AntiRejection3Home.Execute := FALSE; 
+    nRecoverDust2DatumMarkState := 0; 
+   END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  DustHome.Execute := FALSE;
+  DustAbsolute.Execute := FALSE;
+  DustAxis_Stop.Execute := FALSE;
+  nHomeState := 0;
+  nChangeHomeModeState := 0;
+  g_bDustHomeDone := TRUE;
+  g_AntiRejection3Home.Execute := FALSE;
+  nHomingState3 :=0;
+  g_AntiRejection3Rel.Execute := FALSE;
+  g_AntiRejection3Stop.Execute := FALSE;
+  g_bAntiRejection3HomeDone := TRUE;
+  g_bRecoverDust2DatumMark := FALSE;
+  g_bRecoverDustDatumMark := FALSE;
+END_IF;
+g_nDHomeMode := bDustHomeMode;
+g_nD2HomeMode := nHomingMode3;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

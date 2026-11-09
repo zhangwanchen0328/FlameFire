@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BKFeedingMachineCtrl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBBKDustAxisZero">
+        <type>
+          <derived name="FB_BKDustAxisZero"/>
+        </type>
+      </variable>
+      <variable name="FBBKFeedingAxisZero">
+        <type>
+          <derived name="FB_BKFeedingAxisZero"/>
+        </type>
+      </variable>
+      <variable name="FBBKFixedLenAxisZero">
+        <type>
+          <derived name="FB_BKFixedLenAixsZero"/>
+        </type>
+      </variable>
+      <variable name="FBBKFeedingControl">
+        <type>
+          <derived name="FB_BKFeedingControl"/>
+        </type>
+      </variable>
+      <variable name="FBBKFixedLenAxisAbs">
+        <type>
+          <derived name="FB_BKFixedLenAixsAbs"/>
+        </type>
+      </variable>
+      <variable name="FBBKDustAxisAbs">
+        <type>
+          <derived name="FB_BKDustAixsAbs"/>
+        </type>
+      </variable>
+      <variable name="FBBKPowerControl">
+        <type>
+          <derived name="FB_BKPowerControl"/>
+        </type>
+      </variable>
+      <variable name="FBBKAdjustFeedingPos">
+        <type>
+          <derived name="FB_BKAdjustFeedingPos"/>
+        </type>
+      </variable>
+      <variable name="FBBKJogControl">
+        <type>
+          <derived name="FB_BKJogControl"/>
+        </type>
+      </variable>
+      <variable name="FBBKRelControl">
+        <type>
+          <derived name="FB_BKRelControl"/>
+        </type>
+      </variable>
+      <variable name="FBBKClawControl">
+        <type>
+          <derived name="FB_BKClawControl"/>
+        </type>
+      </variable>
+      <variable name="FBBKAxisAct">
+        <type>
+          <derived name="FB_BKAxisAct"/>
+        </type>
+      </variable>
+      <variable name="FBBKFeedingCylinder">
+        <type>
+          <derived name="FB_BKFeedingCylinder"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="Feeding_Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="FixedLen_Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="Dust_Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBBKCylinderClawCtrl">
+        <type>
+          <derived name="FB_BKCylinderClawCtrl"/>
+        </type>
+      </variable>
+      <variable name="FBBKFixedBackAdjust">
+        <type>
+          <derived name="FB_BKFixedBackAdjust"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBBKPowerControl();
+FBBKJogControl();
+FBBKRelControl();
+FBBKFeedingAxisZero();
+FBBKDustAxisZero();
+FBBKFixedLenAxisZero();
+FBBKFeedingCylinder();
+FBBKClawControl();
+FBBKFeedingControl();
+FBBKFixedLenAxisAbs();
+FBBKDustAxisAbs();
+FBBKAdjustFeedingPos();
+FBBKAxisAct();
+FBBKCylinderClawCtrl();
+FBBKFixedBackAdjust();
+
+IF Feeding_Axis.NCTOPLC.ERRORCODE <>0 AND g_bPlcResetBuffer THEN
+  Feeding_Reset.Execute := TRUE;
+ELSE
+  Feeding_Reset.Execute := FALSE;   
+END_IF;
+
+IF FixedLen_Axis.NCTOPLC.ERRORCODE <>0 AND g_bPlcResetBuffer THEN
+  FixedLen_Reset.Execute := TRUE;
+ELSE
+  FixedLen_Reset.Execute := FALSE;   
+END_IF;
+
+IF Dust_Axis.NCTOPLC.ERRORCODE <>0 AND g_bPlcResetBuffer THEN
+  Dust_Reset.Execute := TRUE;
+ELSE
+  Dust_Reset.Execute := FALSE;   
+END_IF;
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

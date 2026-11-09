@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_QRLoadSensorPower" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_LoadPower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_SensorPower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="Axis_Load">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sensor">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bLoadPower">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSensorPower">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[g_LoadPower.Enable := bLoadPower;
+g_LoadPower.EnablePosition := TRUE;
+g_LoadPower.EnableNegative := TRUE;
+
+IF g_LoadPower.Error THEN
+  g_LoadPower.Enable := FALSE;
+END_IF;
+
+g_SensorPower.Enable := bSensorPower;
+g_SensorPower.EnablePosition := TRUE;
+g_SensorPower.EnableNegative := TRUE;
+
+IF g_SensorPower.Error THEN
+  g_SensorPower.Enable := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

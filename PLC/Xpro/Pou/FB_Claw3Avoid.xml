@@ -1,0 +1,369 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Claw3Avoid" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZAbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fZAbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fLiftCoord">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bFrontSustainStatus">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnStatus">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZAvoidStatus">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAvoidOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAvoidDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZAxisZero">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Axis_Z">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_bBlankCylinderEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFrontSustainEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinderEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nBlankClylinderCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingStateUp1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingStateUp2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingStateUp3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingStateUp4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingStateUp5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nFrontSusutainCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain4">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain5">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain6">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_nTurnCylNum">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bTurnState1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnState2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnState3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnState4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnState5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnUpDownOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnUpDownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nTurnType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bFrontSustainUpDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nFrontSustainMoveType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bFrontSustainUpDownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_b3ClawZPosError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_b3ClawFrontPosError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_b3ClawTurnPosError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nAvoidState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger(CLK := g_bAvoidOpen);
+
+IF R_Trigger.Q THEN
+  g_bAvoidOpen := FALSE;
+  g_bAvoidDone := FALSE;
+  nAvoidState := 80;
+END_IF;
+
+IF g_bBlankCylinderEnable THEN
+  IF (g_nBlankClylinderCount >= 1 AND g_bBlankingStateUp1) OR 
+     (g_nBlankClylinderCount >= 2 AND g_bBlankingStateUp2) OR
+     (g_nBlankClylinderCount >= 3 AND g_bBlankingStateUp3) OR
+     (g_nBlankClylinderCount >= 4 AND g_bBlankingStateUp4) OR
+     (g_nBlankClylinderCount >= 5 AND g_bBlankingStateUp5) THEN
+    g_bFrontSustainStatus := FALSE;
+  ELSE
+    g_bFrontSustainStatus := TRUE;(*true为下料都下降完成*)
+  END_IF;
+ELSIF g_bFrontSustainEnable THEN
+  IF (g_nFrontSusutainCount >= 1 AND Axis_Sustain4.NCTOPLC.SETPOS >= 0.1) OR
+     (g_nFrontSusutainCount >= 2 AND Axis_Sustain5.NCTOPLC.SETPOS >= 0.1) OR
+     (g_nFrontSusutainCount >= 3 AND Axis_Sustain6.NCTOPLC.SETPOS >= 0.1) THEN
+    g_bFrontSustainStatus := FALSE;
+  ELSE
+    g_bFrontSustainStatus := TRUE;
+  END_IF;
+ELSE
+  g_bFrontSustainStatus := TRUE;
+END_IF;
+
+IF g_bTurnCylinderEnable THEN(*g_bTurnState1 =1是上升到位*)
+  IF (g_nTurnCylNum >= 1 AND g_bTurnState1) OR (g_nTurnCylNum >= 2 AND g_bTurnState2) OR
+     (g_nTurnCylNum >= 3 AND g_bTurnState3) OR (g_nTurnCylNum >= 4 AND g_bTurnState4) OR
+     (g_nTurnCylNum >= 5 AND g_bTurnState5) THEN
+    g_bTurnStatus := FALSE;
+  ELSE
+    g_bTurnStatus := TRUE;(*true为翻转都下降完成*)
+  END_IF;
+ELSE
+  g_bTurnStatus := TRUE;
+END_IF;
+
+IF Axis_Z.NCTOPLC.HOMINGSTATE AND g_bZAxisZero AND Axis_Z.NCTOPLC.ACTPOS >= g_fLiftCoord - 0.1 THEN
+  g_bZAvoidStatus := TRUE;(*true为 回过零并Z轴安全高度及以上*)
+ELSE
+  g_bZAvoidStatus := FALSE;
+END_IF;
+
+CASE nAvoidState OF
+  0:
+    nAvoidState := 0;
+  1:
+    IF g_bFrontSustainStatus AND g_bTurnStatus AND g_bZAvoidStatus THEN
+      nAvoidState := 0;
+      g_bAvoidDone := TRUE;
+    ELSE
+      nAvoidState := 80;
+    END_IF;
+  80: (*如果z回过零,直接调用绝对运动到安全高度,如果没回过零，并且没有压着零位，提示，压着零位，可移动*)
+    IF Axis_Z.NCTOPLC.HOMINGSTATE THEN
+      nAvoidState := 81;
+    ELSE
+      IF g_bZAxisZero THEN(*压着零位*)
+        nAvoidState := 83;
+      ELSE
+        g_b3ClawZPosError := TRUE;
+        nAvoidState := 0;
+      END_IF; 
+    END_IF; 
+  81:(*deng Z zhuangtai wei kongxian*) 
+    IF Axis_Z.NCTOPLC.AxisState = 2 THEN
+      nAvoidState := 82;
+    END_IF;
+  82:(*z绝对运动到安全高度*) 
+    g_fZAbsPosition := g_fLiftCoord;
+    g_bZAbsExecute := TRUE;
+    nAvoidState := 83;
+  83:(*翻转放平*)
+    g_bTurnUpDownOpen := TRUE;
+    g_nTurnType := 0;
+    nAvoidState := 84;
+  84:(*等待翻转放平完成*)  
+    IF g_bTurnUpDownDone THEN
+      nAvoidState := 90;
+    END_IF;
+  90:(*发送下料命令*)
+    g_bFrontSustainUpDown := TRUE;
+    g_nFrontSustainMoveType := 0;
+    nAvoidState := 110;
+  110:
+    IF ((Axis_Z.NCTOPLC.HOMINGSTATE AND g_bZAbsDone) OR (NOT Axis_Z.NCTOPLC.HOMINGSTATE AND g_bZAxisZero)) AND g_bTurnUpDownDone AND g_bFrontSustainUpDownDone THEN
+      g_bZAbsExecute := FALSE;
+      nAvoidState := 140;
+    ELSIF g_bPlcPauseBuffer THEN
+      g_bZAbsExecute := FALSE;
+      nAvoidState := 120;
+    END_IF;
+  120:(*暂停后开始，Z轴上抬完成，直接等待翻转和下料下降完成，Z轴未上抬完成，重新开始*)
+    IF g_bPlcStartBuffer THEN
+      IF Axis_Z.NCTOPLC.ACTPOS > g_fLiftCoord - 0.1 THEN
+        nAvoidState := 130;
+      ELSE
+        nAvoidState := 80;
+      END_IF;
+    END_IF;
+  130:
+    IF g_bTurnUpDownDone AND g_bFrontSustainUpDownDone THEN
+      nAvoidState := 140;
+    END_IF;
+  140:
+    IF g_bFrontSustainStatus AND g_bTurnStatus AND ((Axis_Z.NCTOPLC.HOMINGSTATE AND g_bZAvoidStatus) OR (NOT Axis_Z.NCTOPLC.HOMINGSTATE AND g_bZAxisZero)) THEN
+      g_bAvoidDone := TRUE;
+    ELSE
+      IF NOT g_bFrontSustainStatus THEN
+        g_b3ClawFrontPosError := TRUE;
+      END_IF;
+      IF NOT g_bTurnStatus THEN
+        g_b3ClawTurnPosError := TRUE;
+      END_IF;
+      IF NOT g_bZAvoidStatus THEN
+        g_b3ClawZPosError := TRUE;
+      END_IF;
+    END_IF;
+    nAvoidState := 0;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nAvoidState := 0;
+  g_bZAbsExecute := FALSE;
+  g_bTurnUpDownOpen := FALSE;
+  g_bFrontSustainUpDown := FALSE;
+END_IF;
+g_noClaw3AvoidState := nAvoidState;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[三卡盘 Y2Y3轴运动 Z下料翻转自动避让fb]]></xhtml:p>
+  </documentation>
+</pou>

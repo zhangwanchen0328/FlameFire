@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PRG_CNCUpdate" pouType="program">
+  <interface>
+    <localVars>
+      <variable name="FBgantryControl">
+        <type>
+          <derived name="FB_GantryControl"/>
+        </type>
+      </variable>
+      <variable name="FBCncAxisListen">
+        <type>
+          <derived name="FB_CncAxisListen"/>
+        </type>
+      </variable>
+      <variable name="fbEDS2000Flycut_Micro">
+        <type>
+          <derived name="FB_EDS2000Fly_Micro"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBgantryControl();        (*龙门轴控制*)
+FBCncAxisListen();        (*XABU轴通过PLC引脚转一道*)
+(*EDS2000硬件飞切及微联*)
+fbEDS2000Flycut_Micro(nLayerStartState:=g_nLayerStart);]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

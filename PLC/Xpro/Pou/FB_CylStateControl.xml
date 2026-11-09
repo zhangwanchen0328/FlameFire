@@ -1,0 +1,330 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CylStateControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Ton_Up">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升超时报警定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_UpDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_Down">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降超时报警定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_DownDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="bUseUpSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸使用上升到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUseDownSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸使用下降到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="boCylUp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸：上升信号输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="boCylDown">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸：下降信号输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUpInplace">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸：上升到位信号输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUpInplaceNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸：上升到位信号输入  没有滤波]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDownInplace">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸：下降到位信号输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDownInplaceNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸：下降到位信号输入  没有滤波]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bArrayConfigOutputUp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[打开输出口触发导致状态切换]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bArrayConfigOutputDown">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[打开输出口触发导致状态切换]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dClylinderUpOverDelayTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸上升到位超时报警时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dClylinderUpDelayTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸上升到位默认时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dClylinderDownOverDelayTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸下降到位超时报警时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dClylinderDownDelayTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸下降到位默认时间]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <outputVars>
+      <variable name="bCylState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸状态：true表示处于上升状态  false表示处于下降状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylUpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸使用上升到位信号超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylDownNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸使用下降到位信号超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylStateToHMI">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前状态给到HMI显示]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylUpDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸上升到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCylDownDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸下降到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bArrayConfigOutputUp_FB">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[打开输出口变true后给false]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bArrayConfigOutputDown_FB">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[打开输出口变true后给false]]></xhtml:p>
+        </documentation>
+      </variable>
+    </outputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF bUseUpSignal AND boCylUp AND NOT boCylDown THEN
+  Ton_UpDelay(IN :=FALSE);
+  Ton_Down(IN := FALSE);
+  Ton_DownDelay(IN :=FALSE);
+  IF bUpInplace THEN
+    bCylStateToHMI :=TRUE;
+    bCylDownDone :=FALSE;
+    bCylUpDone :=TRUE;
+    bCylState := TRUE;
+    Ton_Up(IN := FALSE);
+    bCylUpNoSignalAlarm := FALSE;
+  ELSE
+    IF NOT bCylState THEN
+      Ton_Up(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinderUpOverDelayTime)));
+      IF Ton_Up.Q THEN
+        bCylUpNoSignalAlarm := TRUE;
+        Ton_Up(IN := FALSE);
+      END_IF;
+    END_IF;  
+  END_IF;   
+  IF bCylState THEN
+    IF bUpInplaceNoFilter THEN
+      bCylUpNoSignalAlarm := FALSE;
+    ELSE
+      bCylUpNoSignalAlarm := TRUE;
+    END_IF;
+  END_IF;
+ELSE  
+  bCylUpNoSignalAlarm := FALSE;
+  IF boCylUp AND NOT boCylDown THEN
+    Ton_Down(IN := FALSE);
+    Ton_Up(IN := FALSE);
+    Ton_DownDelay(IN :=FALSE);
+    Ton_UpDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinderUpDelayTime)));
+    IF Ton_UpDelay.Q THEN
+      Ton_UpDelay(IN :=FALSE);
+      bCylStateToHMI :=TRUE;
+      bCylUpDone :=TRUE;
+      bCylDownDone :=FALSE;
+      bCylState := TRUE;
+    END_IF;
+  END_IF;
+END_IF;  
+IF bUseDownSignal AND boCylDown AND NOT boCylUp THEN 
+  Ton_Up(IN := FALSE);
+  Ton_DownDelay(IN :=FALSE);
+  Ton_UpDelay(IN :=FALSE);
+  IF bDownInplace THEN
+    bCylStateToHMI :=FALSE;
+    bCylDownDone :=TRUE;
+    bCylUpDone :=FALSE;
+    bCylState := FALSE;
+    Ton_Down(IN := FALSE);
+    bCylDownNoSignalAlarm := FALSE;
+  ELSE
+    IF bCylState THEN
+      Ton_Down(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinderDownOverDelayTime)));
+      IF Ton_Down.Q THEN
+        bCylDownNoSignalAlarm := TRUE;
+        Ton_Down(IN := FALSE);
+      END_IF;
+    END_IF;
+  END_IF;
+  IF NOT bCylState THEN
+    IF bDownInplaceNoFilter THEN
+      bCylDownNoSignalAlarm := FALSE;
+    ELSE
+      bCylDownNoSignalAlarm := TRUE;
+    END_IF;
+  END_IF;
+ELSE  
+  bCylDownNoSignalAlarm := FALSE;
+  IF NOT boCylUp AND boCylDown THEN
+    Ton_Up(IN := FALSE);
+    Ton_Down(IN := FALSE);
+    Ton_UpDelay(IN :=FALSE);
+    Ton_DownDelay(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(dClylinderDownDelayTime)));
+    IF Ton_DownDelay.Q THEN
+      Ton_DownDelay(IN :=FALSE);
+      bCylStateToHMI :=FALSE;
+      bCylUpDone :=FALSE;
+      bCylDownDone :=TRUE;
+      bCylState := FALSE;
+    END_IF;
+  END_IF;
+END_IF; 
+
+
+(*打开输出口控制 气缸使用延时的状态切换 状态*)
+IF bArrayConfigOutputUp AND NOT bUseUpSignal AND boCylUp THEN
+  bCylStateToHMI :=TRUE;
+  bCylUpDone :=TRUE;
+  bCylState := TRUE;
+  bCylDownDone:=FALSE;
+  bArrayConfigOutputUp_FB := FALSE;
+ELSE
+  bArrayConfigOutputUp_FB := FALSE;  
+END_IF;
+IF bArrayConfigOutputDown AND NOT bUseDownSignal AND boCylDown THEN
+  bCylStateToHMI :=FALSE;
+  bCylUpDone :=FALSE;
+  bCylState := FALSE;
+  bCylDownDone:=TRUE;
+  bArrayConfigOutputDown_FB := FALSE;
+ELSE
+  bArrayConfigOutputDown_FB := FALSE;  
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

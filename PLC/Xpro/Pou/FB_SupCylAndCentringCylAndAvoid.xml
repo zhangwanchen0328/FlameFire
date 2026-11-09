@@ -1,0 +1,529 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SupCylAndCentringCylAndAvoid" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_SFSupportUp1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_SFSupportUp2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_SFSupportUp3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_SFSupportUp4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_SFSupportDown1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_SFSupportDown2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_SFSupportDown3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_SFSupportDown4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_noSupCentringSwitch1">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="fUpType">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升类型  0支撑上升   1支撑上升并夹中]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nDownCmdCount1">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降命令次数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nDownCmdCount2">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降命令次数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nDownCmdCount3">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降命令次数]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_SFSupportUp1(CLK := g_bSenFeng_SupUp1);
+R_SFSupportDown1(CLK := g_bSenFeng_SupDown1);
+IF R_SFSupportUp1.Q THEN
+  g_bSenFeng_SupUp1 := FALSE;
+  IF g_bSenF_SupportIsAvoid1 THEN(*开启Y轴避让检查功能，将对上升命令进行屏蔽*)
+    IF g_biAxIsYisHome THEN(*已回零，大于Y避让坐标，不能起来*)
+      IF g_fSup2Cy1InYCoor1-g_fCurrentCoordYBuffer>=g_fSup2CylDownDis1 THEN
+        IF g_fSenFeng_SupCylType1=0.0 THEN(*上升类型  0支撑上升   1支撑上升并夹中*)
+          g_noSupCentringSwitch1 := 30;
+        ELSE
+          g_noSupCentringSwitch1 := 10;
+        END_IF;
+        g_boSenFeng_SupUpDone1 := FALSE;
+        g_boSenFeng_SupDownDone1 := FALSE; 
+        
+      ELSE
+        g_noSupCentringSwitch1 := 0;
+        g_boSenFeng_SupUpDone1 := TRUE;
+        g_boSenFeng_SupDownDone1 := FALSE; 
+        M.ENABLE[271] := 0;
+        RETURN;
+      END_IF;
+    ELSE(*未回零，随意上升*)
+      IF g_fSenFeng_SupCylType1=0.0 THEN
+        g_noSupCentringSwitch1 := 30;
+      ELSE
+        g_noSupCentringSwitch1 := 10;
+      END_IF;
+      g_boSenFeng_SupUpDone1 := FALSE;
+      g_boSenFeng_SupDownDone1 := FALSE; 
+    END_IF;
+  ELSE
+    IF g_fSenFeng_SupCylType1=0.0 THEN
+      g_noSupCentringSwitch1 := 30;
+    ELSE
+      g_noSupCentringSwitch1 := 10;
+    END_IF;
+    g_boSenFeng_SupUpDone1 := FALSE;
+    g_boSenFeng_SupDownDone1 := FALSE; 
+  END_IF;
+  g_nDownCmdCount1 := 0;
+  
+END_IF;
+
+IF R_SFSupportDown1.Q THEN
+  IF g_fSenFeng_SupCylType1=0.0 THEN
+    g_noSupCentringSwitch1 := 80;
+  ELSE
+    g_noSupCentringSwitch1 := 60;
+  END_IF;
+  g_bSenFeng_SupDown1 := FALSE;
+  g_boSenFeng_SupUpDone1 := FALSE;
+  g_boSenFeng_SupDownDone1 := FALSE; 
+END_IF;
+
+(*自动下降，默认夹中松开再下降*)
+(*开启坐标避让，并且回过零，坐标满足下降条件，并且未执行下降命令，则发送下降命令-----避免重复发送下降*)
+IF g_fSup2Cy1InYCoor1-g_fCurrentCoordYBuffer < g_fSup2CylDownDis1 AND g_biAxIsYisHome AND g_bSenF_SupportIsAvoid1 THEN
+  IF g_nDownCmdCount1=0 THEN(*互锁，自动下降命令只发一次，知道收到一个上升命令，才会再次检测是否发出下降命令*)
+	IF g_boSupCyl2Up1 AND NOT g_boSupCyl2Down1 THEN
+		g_bSenFeng_SupDown1 := TRUE;
+		g_fSenFeng_SupCylType1 := 1.0;
+	END_IF;
+    g_nDownCmdCount1 := 1;
+  END_IF;
+
+END_IF;  
+
+CASE g_noSupCentringSwitch1 OF 
+  0:
+    g_noSupCentringSwitch1 := 0;
+  10:(*张开对中气缸*)
+      g_bCentringCyl2Down1 := TRUE;
+      g_noSupCentringSwitch1 := 20;
+  20:
+    IF g_boCentringCyl2Down_Done1 OR g_bSenFeng_SupCentringNoWait1 THEN(*张开和上升同时*)
+      g_noSupCentringSwitch1 := 30;
+    END_IF;
+  30:(*支撑气缸上升*)
+    g_bSupCyl2Up1 := TRUE;
+    g_noSupCentringSwitch1 := 40;
+  40:
+    IF g_boSupCyl2Up_Done1 THEN
+      g_noSupCentringSwitch1 := 0;
+      g_boSenFeng_SupUpDone1 := TRUE;
+      M.ENABLE[271] := 0;
+    END_IF;
+  
+  
+  60:(*张开对中气缸*)
+      g_bCentringCyl2Down1 := TRUE;
+      g_noSupCentringSwitch1 := 70;
+  70:
+    IF g_boCentringCyl2Down_Done1 OR g_bSenFeng_SupCentringNoWait1 THEN(*张开和下降同时*)
+      g_noSupCentringSwitch1 := 80;
+    END_IF;
+  80:(*支撑气缸下降*)
+    g_bSupCyl2Down1 := TRUE;
+    g_noSupCentringSwitch1 := 90;
+  90:
+    IF g_boSupCyl2Down_Done1 THEN
+      g_noSupCentringSwitch1 := 0;
+      g_boSenFeng_SupDownDone1 := TRUE;
+      M.ENABLE[271] := 0;
+    END_IF;
+  
+END_CASE;
+
+
+R_SFSupportUp2(CLK := g_bSenFeng_SupUp2);
+R_SFSupportDown2(CLK := g_bSenFeng_SupDown2);
+IF R_SFSupportUp2.Q THEN
+  g_bSenFeng_SupUp2 := FALSE;
+  IF g_bSenF_SupportIsAvoid2 THEN(*开启Y轴避让检查功能，将对上升命令进行屏蔽*)
+    IF g_biAxIsYisHome THEN(*已回零，大于Y避让坐标，不能起来*)
+      IF g_fSup2Cy1InYCoor2-g_fCurrentCoordYBuffer>=g_fSup2CylDownDis2 THEN
+        IF g_fSenFeng_SupCylType2=0.0 THEN(*上升类型  0支撑上升   1支撑上升并夹中*)
+          g_noSupCentringSwitch2 := 30;
+        ELSE
+          g_noSupCentringSwitch2 := 10;
+        END_IF;
+        g_boSenFeng_SupUpDone2 := FALSE;
+        g_boSenFeng_SupDownDone2 := FALSE; 
+      ELSE
+        g_noSupCentringSwitch2 := 0;
+        g_boSenFeng_SupUpDone2 := TRUE;
+        g_boSenFeng_SupDownDone2 := FALSE; 
+        M.ENABLE[271] := 0;
+        RETURN;
+      END_IF;
+    ELSE(*未回零，随意上升*)
+      IF g_fSenFeng_SupCylType2=0.0 THEN
+        g_noSupCentringSwitch2 := 30;
+      ELSE
+        g_noSupCentringSwitch2 := 10;
+      END_IF;
+      g_boSenFeng_SupUpDone2 := FALSE;
+      g_boSenFeng_SupDownDone2 := FALSE; 
+    END_IF;
+  ELSE
+    IF g_fSenFeng_SupCylType2=0.0 THEN
+      g_noSupCentringSwitch2 := 30;
+    ELSE
+      g_noSupCentringSwitch2 := 10;
+    END_IF;
+    g_boSenFeng_SupUpDone2 := FALSE;
+    g_boSenFeng_SupDownDone2 := FALSE; 
+  END_IF;
+  g_nDownCmdCount2 := 0;
+  
+END_IF;
+
+IF R_SFSupportDown2.Q THEN
+  IF g_fSenFeng_SupCylType2=0.0 THEN
+    g_noSupCentringSwitch2 := 80;
+  ELSE
+    g_noSupCentringSwitch2 := 60;
+  END_IF;
+  g_bSenFeng_SupDown2 := FALSE;
+  g_boSenFeng_SupUpDone2 := FALSE;
+  g_boSenFeng_SupDownDone2 := FALSE; 
+END_IF;
+
+(*自动下降，默认夹中松开再下降*)
+(*开启坐标避让，并且回过零，坐标满足下降条件，并且未执行下降命令，则发送下降命令-----避免重复发送下降*)
+IF g_fSup2Cy1InYCoor2-g_fCurrentCoordYBuffer < g_fSup2CylDownDis2 AND g_biAxIsYisHome AND g_bSenF_SupportIsAvoid2 THEN
+  IF g_nDownCmdCount2=0 THEN(*互锁，自动下降命令只发一次，知道收到一个上升命令，才会再次检测是否发出下降命令*)
+    IF g_boSupCyl2Up2 AND NOT g_boSupCyl2Down2 THEN
+		g_bSenFeng_SupDown2 := TRUE;
+        g_fSenFeng_SupCylType2 := 1.0;
+	END_IF;
+    
+    g_nDownCmdCount2 := 1;
+  END_IF;
+
+END_IF;  
+
+CASE g_noSupCentringSwitch2 OF 
+  0:
+    g_noSupCentringSwitch2 := 0;
+  10:(*张开对中气缸*)
+      g_bCentringCyl2Down2 := TRUE;
+      g_noSupCentringSwitch2 := 20;
+  20:
+    IF g_boCentringCyl2Down_Done2 OR g_bSenFeng_SupCentringNoWait2 THEN(*张开和上升同时*)
+      g_noSupCentringSwitch2 := 30;
+    END_IF;
+  30:(*支撑气缸上升*)
+    g_bSupCyl2Up2 := TRUE;
+    g_noSupCentringSwitch2 := 40;
+  40:
+    IF g_boSupCyl2Up_Done2 THEN
+      g_noSupCentringSwitch2 := 0;
+      g_boSenFeng_SupUpDone2 := TRUE;
+      M.ENABLE[271] := 0;
+    END_IF;
+  
+  
+  60:(*张开对中气缸*)
+      g_bCentringCyl2Down2 := TRUE;
+      g_noSupCentringSwitch2 := 70;
+  70:
+    IF g_boCentringCyl2Down_Done2 OR g_bSenFeng_SupCentringNoWait2 THEN(*张开和下降同时*)
+      g_noSupCentringSwitch2 := 80;
+    END_IF;
+  80:(*支撑气缸下降*)
+    g_bSupCyl2Down2 := TRUE;
+    g_noSupCentringSwitch2 := 90;
+  90:
+    IF g_boSupCyl2Down_Done2 THEN
+      g_noSupCentringSwitch2 := 0;
+      g_boSenFeng_SupDownDone2 := TRUE;
+      M.ENABLE[271] := 0;
+    END_IF;
+  
+END_CASE;
+
+
+R_SFSupportUp3(CLK := g_bSenFeng_SupUp3);
+R_SFSupportDown3(CLK := g_bSenFeng_SupDown3);
+IF R_SFSupportUp3.Q THEN
+  g_bSenFeng_SupUp3 := FALSE;
+  IF g_bSenF_SupportIsAvoid3 THEN(*开启Y轴避让检查功能，将对上升命令进行屏蔽*)
+    IF g_biAxIsYisHome THEN(*已回零，大于Y避让坐标，不能起来*)
+      IF g_fSup2Cy1InYCoor3-g_fCurrentCoordYBuffer>=g_fSup2CylDownDis3 THEN
+        IF g_fSenFeng_SupCylType3=0.0 THEN(*上升类型  0支撑上升   1支撑上升并夹中*)
+          g_noSupCentringSwitch3 := 30;
+        ELSE
+          g_noSupCentringSwitch3 := 10;
+        END_IF;
+        g_boSenFeng_SupUpDone3 := FALSE;
+        g_boSenFeng_SupDownDone3 := FALSE; 
+      ELSE
+        g_noSupCentringSwitch3 := 0;
+        g_boSenFeng_SupUpDone3 := TRUE;
+        g_boSenFeng_SupDownDone3 := FALSE; 
+        M.ENABLE[271] := 0;
+        RETURN;
+      END_IF;
+    ELSE(*未回零，随意上升*)
+      IF g_fSenFeng_SupCylType3=0.0 THEN
+        g_noSupCentringSwitch3 := 30;
+      ELSE
+        g_noSupCentringSwitch3 := 10;
+      END_IF;
+      g_boSenFeng_SupUpDone3 := FALSE;
+      g_boSenFeng_SupDownDone3 := FALSE; 
+    END_IF;
+  ELSE
+    IF g_fSenFeng_SupCylType3=0.0 THEN
+      g_noSupCentringSwitch3 := 30;
+    ELSE
+      g_noSupCentringSwitch3 := 10;
+    END_IF;
+    g_boSenFeng_SupUpDone3 := FALSE;
+    g_boSenFeng_SupDownDone3 := FALSE; 
+  END_IF;
+  g_nDownCmdCount3 := 0;
+  
+END_IF;
+
+IF R_SFSupportDown3.Q THEN
+  IF g_fSenFeng_SupCylType3=0.0 THEN
+    g_noSupCentringSwitch3 := 80;
+  ELSE
+    g_noSupCentringSwitch3 := 60;
+  END_IF;
+  g_bSenFeng_SupDown3 := FALSE;
+  g_boSenFeng_SupUpDone3 := FALSE;
+  g_boSenFeng_SupDownDone3 := FALSE; 
+END_IF;
+
+(*自动下降，默认夹中松开再下降*)
+(*开启坐标避让，并且回过零，坐标满足下降条件，并且未执行下降命令，则发送下降命令-----避免重复发送下降*)
+IF g_fSup2Cy1InYCoor3-g_fCurrentCoordYBuffer < g_fSup2CylDownDis3 AND g_biAxIsYisHome AND g_bSenF_SupportIsAvoid3 THEN
+  IF g_nDownCmdCount3=0 THEN(*互锁，自动下降命令只发一次，知道收到一个上升命令，才会再次检测是否发出下降命令*)
+    IF g_boSupCyl2Up3 AND NOT g_boSupCyl2Down3 THEN
+		g_bSenFeng_SupDown3 := TRUE;
+        g_fSenFeng_SupCylType3 := 1.0;
+	END_IF;
+    g_nDownCmdCount3 := 1;
+  END_IF;
+END_IF;  
+
+CASE g_noSupCentringSwitch3 OF 
+  0:
+    g_noSupCentringSwitch3 := 0;
+  10:(*张开对中气缸*)
+      g_bCentringCyl2Down3 := TRUE;
+      g_noSupCentringSwitch3 := 20;
+  20:
+    IF g_boCentringCyl2Down_Done3 OR g_bSenFeng_SupCentringNoWait3 THEN(*张开和上升同时*)
+      g_noSupCentringSwitch3 := 30;
+    END_IF;
+  30:(*支撑气缸上升*)
+    g_bSupCyl2Up3 := TRUE;
+    g_noSupCentringSwitch3 := 40;
+  40:
+    IF g_boSupCyl2Up_Done3 THEN
+      g_noSupCentringSwitch3 := 0;
+      g_boSenFeng_SupUpDone3 := TRUE;
+      M.ENABLE[271] := 0;
+    END_IF;
+  
+  
+  60:(*张开对中气缸*)
+      g_bCentringCyl2Down3 := TRUE;
+      g_noSupCentringSwitch3 := 70;
+  70:
+    IF g_boCentringCyl2Down_Done3 OR g_bSenFeng_SupCentringNoWait3 THEN(*张开和下降同时*)
+      g_noSupCentringSwitch3 := 80;
+    END_IF;
+  80:(*支撑气缸下降*)
+    g_bSupCyl2Down3 := TRUE;
+    g_noSupCentringSwitch3 := 90;
+  90:
+    IF g_boSupCyl2Down_Done3 THEN
+      g_noSupCentringSwitch3 := 0;
+      g_boSenFeng_SupDownDone3 := TRUE;
+      M.ENABLE[271] := 0;
+    END_IF;
+  
+END_CASE;
+
+
+R_SFSupportUp4(CLK := g_bSenFeng_SupUp4);
+R_SFSupportDown4(CLK := g_bSenFeng_SupDown4);
+IF R_SFSupportUp4.Q THEN
+  g_bSenFeng_SupUp4 := FALSE;
+  IF g_bSenF_SupportIsAvoid4 THEN(*开启Y轴避让检查功能，将对上升命令进行屏蔽*)
+    IF g_biAxIsYisHome THEN(*已回零，大于Y避让坐标，不能起来*)
+      IF g_fSup2Cy1InYCoor4-g_fCurrentCoordYBuffer>=g_fSup2CylDownDis4 THEN
+        IF g_fSenFeng_SupCylType4=0.0 THEN(*上升类型  0支撑上升   1支撑上升并夹中*)
+          g_noSupCentringSwitch4 := 30;
+        ELSE
+          g_noSupCentringSwitch4 := 10;
+        END_IF;
+        g_boSenFeng_SupUpDone4 := FALSE;
+        g_boSenFeng_SupDownDone4 := FALSE; 
+      ELSE
+        g_noSupCentringSwitch4 := 0;
+        g_boSenFeng_SupUpDone4 := TRUE;
+        g_boSenFeng_SupDownDone4 := FALSE; 
+        M.ENABLE[271] := 0;
+        RETURN;
+      END_IF;
+    ELSE(*未回零，随意上升*)
+      IF g_fSenFeng_SupCylType4=0.0 THEN
+        g_noSupCentringSwitch4 := 30;
+      ELSE
+        g_noSupCentringSwitch4 := 10;
+      END_IF;
+      g_boSenFeng_SupUpDone4 := FALSE;
+      g_boSenFeng_SupDownDone4 := FALSE; 
+    END_IF;
+  ELSE
+    IF g_fSenFeng_SupCylType4=0.0 THEN
+      g_noSupCentringSwitch4 := 30;
+    ELSE
+      g_noSupCentringSwitch4 := 10;
+    END_IF;
+    g_boSenFeng_SupUpDone4 := FALSE;
+    g_boSenFeng_SupDownDone4 := FALSE; 
+  END_IF;
+  g_nDownCmdCount4 := 0;
+  
+END_IF;
+
+IF R_SFSupportDown4.Q THEN
+  IF g_fSenFeng_SupCylType4=0.0 THEN
+    g_noSupCentringSwitch4 := 80;
+  ELSE
+    g_noSupCentringSwitch4 := 60;
+  END_IF;
+  g_bSenFeng_SupDown4 := FALSE;
+  g_boSenFeng_SupUpDone4 := FALSE;
+  g_boSenFeng_SupDownDone4 := FALSE; 
+END_IF;
+
+(*自动下降，默认夹中松开再下降*)
+(*开启坐标避让，并且回过零，坐标满足下降条件，并且未执行下降命令，则发送下降命令-----避免重复发送下降*)
+IF g_fSup2Cy1InYCoor4-g_fCurrentCoordYBuffer < g_fSup2CylDownDis4 AND g_biAxIsYisHome AND g_bSenF_SupportIsAvoid4 THEN
+  IF g_nDownCmdCount4=0 THEN(*互锁，自动下降命令只发一次，知道收到一个上升命令，才会再次检测是否发出下降命令*)
+    IF g_boSupCyl2Up4 AND NOT g_boSupCyl2Down4 THEN
+		g_bSenFeng_SupDown4 := TRUE;
+        g_fSenFeng_SupCylType4 := 1.0;
+	END_IF;
+    g_nDownCmdCount4 := 1;
+  END_IF;
+END_IF;  
+
+CASE g_noSupCentringSwitch4 OF 
+  0:
+    g_noSupCentringSwitch4 := 0;
+  10:(*张开对中气缸*)
+      g_bCentringCyl2Down4 := TRUE;
+      g_noSupCentringSwitch4 := 20;
+  20:
+    IF g_boCentringCyl2Down_Done4 OR g_bSenFeng_SupCentringNoWait4 THEN(*张开和上升同时*)
+      g_noSupCentringSwitch4 := 30;
+    END_IF;
+  30:(*支撑气缸上升*)
+    g_bSupCyl2Up4 := TRUE;
+    g_noSupCentringSwitch4 := 40;
+  40:
+    IF g_boSupCyl2Up_Done4 THEN
+      g_noSupCentringSwitch4 := 0;
+      g_boSenFeng_SupUpDone4 := TRUE;
+      M.ENABLE[271] := 0;
+    END_IF;
+  
+  
+  60:(*张开对中气缸*)
+      g_bCentringCyl2Down4 := TRUE;
+      g_noSupCentringSwitch4 := 70;
+  70:
+    IF g_boCentringCyl2Down_Done4 OR g_bSenFeng_SupCentringNoWait4 THEN(*张开和下降同时*)
+      g_noSupCentringSwitch4 := 80;
+    END_IF; 
+  80:(*支撑气缸下降*)
+    g_bSupCyl2Down4 := TRUE;
+    g_noSupCentringSwitch4 := 90;
+  90:
+    IF g_boSupCyl2Down_Done4 THEN
+      g_noSupCentringSwitch4 := 0;
+      g_boSenFeng_SupDownDone4 := TRUE;
+      M.ENABLE[271] := 0;
+    END_IF;
+  
+END_CASE;
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[气缸和夹中组合动作逻辑---森峰]]></xhtml:p>
+  </documentation>
+</pou>

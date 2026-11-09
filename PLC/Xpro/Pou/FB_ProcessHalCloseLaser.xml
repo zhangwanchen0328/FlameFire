@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ProcessHalCloseLaser" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="F_Trigger1">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="F_Trigger2">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nCloseLaserState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger1(CLK := g_biProcessHalCloseLaser);(*关光操作*)
+F_Trigger1(CLK := g_biProcessHalCloseLaser);(*关光操作*)
+
+R_Trigger2(CLK := g_biProcessHalOpenLaser);(*开光操作*)
+F_Trigger2(CLK := g_biProcessHalOpenLaser);(*开光操作*)
+
+IF R_Trigger1.Q THEN
+  nCloseLaserState := 10;
+  g_bProcessHalOpenLaserState:=FALSE;(*外部M代码开关标志位*)
+END_IF;
+IF F_Trigger1.Q THEN
+  (*reset*)
+  g_bProcessHalCloseLaserState:=FALSE;(*外部M代码关光标志记下来，别处用，比如暂停后再开始，随动切割需要该标志位，去关随动*)
+END_IF;
+
+IF R_Trigger2.Q THEN(*开光操作*)
+  nCloseLaserState := 20;
+  IF g_bDryRunEnable OR g_bDebugMode THEN(*调试模式和空运行状态下，引脚开关不生效（关随动或开随动都运行开光）*)
+    nCloseLaserState := 0;
+  END_IF;
+  g_bProcessHalCloseLaserState:=FALSE;(*外部M代码关光标志记下来，别处用，比如暂停后再开始，随动切割需要该标志位，去关随动*)
+END_IF;
+IF F_Trigger2.Q THEN
+  (*reset*)
+  g_bProcessHalOpenLaserState:=FALSE;
+END_IF;
+
+CASE nCloseLaserState OF
+  0:
+    nCloseLaserState:=0;
+  10:(*如果此时正在开光阶段，就关光*)
+    IF g_bLaserCuttingEnable THEN
+      g_bLaserCuttingEnable := FALSE;
+      g_bProcessHalCloseLaserState:=TRUE;(*外部M代码关光标志记下来，别处用，比如暂停后再开始，随动切割需要该标志位，去关随动*)
+    END_IF;
+    nCloseLaserState:=0;
+    
+  20:(*开光操作*)
+    IF NOT g_bLaserCuttingEnable THEN
+      (*随动切割设置过了*)
+      g_nPower := LREAL_TO_UINT(UINT_TO_LREAL(g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.nCutting_Power));
+      g_nPwmFreq := LREAL_TO_UINT(UINT_TO_LREAL(g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.nCutting_Frequency));
+      g_nPwmDuty := LREAL_TO_UINT(UINT_TO_LREAL(g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.nCutting_Duty));
+      (*开光*)
+      g_bLaserCuttingEnable := TRUE;
+      (*如果开启了轮廓开随动不开光，则将该标志位清零*)
+      g_bLayerStartOffLaser:= FALSE;
+      g_bProcessHalOpenLaserState:=TRUE;(*外部M代码开关标志位*)
+    END_IF;
+    nCloseLaserState:=0;
+END_CASE;
+
+
+g_boProcessHalCloseLaserState := g_bProcessHalCloseLaserState;
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[程序时，引脚开关、关光功能]]></xhtml:p>
+  </documentation>
+</pou>

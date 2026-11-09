@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CheckAvoidMode" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_dAvoidFarthestPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[全行程记录的最远坐标（等同避让极限坐标）]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bIsLastPart">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[全行程记录的最远坐标（等同避让极限坐标）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCheckState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="RTring_CheckStart">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检测开始]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*1.如果未开启全行程就不去检测*)
+(*2.开启全行程检测是不是最后一个零件,并且零件长度是否大于设置的最小零件长度*)
+(*2.1.如果零件长度大于设置的最小零件长度就检测零件开始前的坐标和下一个轮廓的最远点是否超过避让相对移动距离的坐标*)
+(*2.2如果零件长度小于设置的最小零件长度基本就可以认为肯定是会超过避让极限坐标的*)
+RTring_CheckStart(CLK := g_bM340CheckStartM);
+IF RTring_CheckStart.Q THEN
+	g_bM340CheckStartM := FALSE;
+	IF g_bAvoidEnable AND g_nAvoidType = 3 AND  g_bAvoidAxisFullTravelCutEnable THEN
+		bIsLastPart :=LREAL_TO_BOOL(M.PARAMETER_P[340]);
+		nCheckState := 10;
+	ELSE
+		g_bIsFullTravelCutModeNeedChange := FALSE;
+		M.ENABLE[340] := 0;
+	END_IF;
+    IF M.PARAMETER_Q[340] = 0.0 THEN
+		g_dFullTravelNodePartYCoord := g_diYMachineCoordinate;
+     ELSIF M.PARAMETER_Q[340] = 1.0 THEN(*0:正常判断1:告诉PLC切换,模式成功*)
+		M.ENABLE[340] := 0;
+		nCheckState := 0;
+        g_bIsFullTravelCutModeChangeDone := TRUE;
+		g_bIsCanClickForwarnOrBackwardState := FALSE;
+      ELSIF M.PARAMETER_Q[340] = 2.0 THEN
+		g_bIsCanClickForwarnOrBackwardState := TRUE;
+        IF g_bBeamAvoidZeroTailEnable THEN
+          g_dBeamAvoidZeroTailChangeMainAxisPos := g_diYMachineCoordinate;
+        END_IF;
+      ELSIF M.PARAMETER_Q[340] = 3.0 THEN
+        g_bBeamAvoidZeroTailCloseSoftWareEnable := TRUE;
+		g_bChangeSecondFlyAndPowerCutCommunicationCycle := TRUE;
+        M.ENABLE[340] := 0;
+		nCheckState := 0;
+        g_bBeamAvoidAxisChangeedCheck := TRUE;
+        IF g_bBeamAvoidZeroTailEnable THEN
+			IF NOT g_bClaw2State THEN
+				M.ENABLE[340] := 1;
+                g_bBeamAvoidAxisCheckClampStateAlarm := TRUE;
+            END_IF;
+          
+        END_IF;
+      ELSIF M.PARAMETER_Q[340] = 4.0 THEN
+			IF g_dFullTravelNodePartYCoord - g_dDistanceFromFrontCardAndCutAhead > g_diYMachineCoordinate + M.PARAMETER_I[340] THEN
+				M.ENABLE[340] := 1;
+				nCheckState := 0;
+                g_bCannotClampPipeAlarm := TRUE;
+            ELSE
+				nCheckState := 0;
+            END_IF;
+      END_IF;
+END_IF;
+
+
+
+CASE nCheckState OF
+  0:
+	nCheckState := 0;
+  10:(*检测开始*)
+	IF g_dCurrentCutPartLength > g_dFullTravelShortPartLengthLimit AND bIsLastPart THEN (*最后一个零件的长度大于零件长度限制*)
+		g_dAvoidFarthestPos := g_diYMachineCoordinate + g_dAvoidRelDistances;
+        g_bIsFullTravelCutModeNeedChange := TRUE;
+    ELSE
+		g_bIsFullTravelCutModeNeedChange := FALSE;
+      
+    END_IF;
+	M.ENABLE[340] := 0;
+    nCheckState := 0;
+  
+END_CASE;
+
+
+
+IF g_bPlcResetBuffer THEN
+	g_bIsFullTravelCutModeNeedChange := FALSE;
+	g_bIsFullTravelCutModeChangeDone := FALSE;
+    g_bBeamAvoidZeroTailCloseSoftWareEnable := FALSE;
+    g_bBeamAvoidAxisChangeedCheck := FALSE;
+	g_bBeamAvoidAxisCheckClampStateAlarm := FALSE;
+END_IF;
+
+
+
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[横梁移动避让分类检测输出避让类型]]></xhtml:p>
+  </documentation>
+</pou>

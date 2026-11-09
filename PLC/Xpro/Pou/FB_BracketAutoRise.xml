@@ -1,0 +1,298 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BracketAutoRise" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="bAllowBracketAutoRise">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[允许支架自动上升]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAutoRise">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[允许支架自动上升]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bIsWaitInputSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[是否等待输入信号判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dAllowBracketAutoRiseCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[允许支架自动上升小于该设置的值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dAllowBracketAutoRisePreCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[允许支架自动上升小于该设置的值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtrigger_AutoRise">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[bAutoRise := g_fCurrentCoordYBuffer <= dAllowBracketAutoRiseCoordinate;
+IF bAllowBracketAutoRise THEN
+  IF bAutoRise AND g_biAxIsYisHome THEN
+    IF g_nClylinderCount >= 1 THEN 
+      IF (g_fCurrentCoordYBuffer < g_fClylinder1CoordY-g_fClylinder1DownDistance) AND (g_nMotionMode=3 OR  g_nMotionMode=5 OR  g_nMotionMode=7 OR NOT g_bSupportCylinder1IsAvoidFlag) THEN
+        IF bIsWaitInputSignal THEN 
+          IF g_bAllowBracketAutoRise THEN
+            g_bSupportcyLinder1Enable := TRUE;
+            g_bSupportCylinder1AutoRiseEnableFlag := TRUE;
+          ELSE
+            g_bSupportCylinder1AutoRiseEnableFlag := FALSE; 
+          END_IF;
+        ELSE
+          g_bSupportcyLinder1Enable := TRUE;
+          g_bSupportCylinder1AutoRiseEnableFlag := TRUE;
+        END_IF;
+      ELSE
+         g_bSupportCylinder1AutoRiseEnableFlag := FALSE;
+      END_IF;
+    END_IF;
+     IF g_nClylinderCount >= 2 THEN 
+      IF (g_fCurrentCoordYBuffer < g_fClylinder2CoordY-g_fClylinder2DownDistance) AND (g_nMotionMode=3 OR  g_nMotionMode=5 OR  g_nMotionMode=7 OR NOT g_bSupportCylinder2IsAvoidFlag) THEN
+        IF bIsWaitInputSignal THEN
+          IF g_bAllowBracketAutoRise THEN
+            g_bSupportcyLinder2Enable := TRUE;
+            g_bSupportCylinder2AutoRiseEnableFlag := TRUE;
+          ELSE
+            g_bSupportCylinder2AutoRiseEnableFlag := FALSE;
+          END_IF;
+        ELSE
+          g_bSupportcyLinder2Enable := TRUE;
+          g_bSupportCylinder2AutoRiseEnableFlag := TRUE;
+        END_IF;
+      ELSE
+         g_bSupportCylinder2AutoRiseEnableFlag := FALSE;
+      END_IF;
+    END_IF;
+     IF g_nClylinderCount >= 3 THEN 
+      IF (g_fCurrentCoordYBuffer < g_fClylinder3CoordY-g_fClylinder3DownDistance) AND (g_nMotionMode=3 OR  g_nMotionMode=5 OR  g_nMotionMode=7 OR NOT g_bSupportCylinder3IsAvoidFlag) THEN
+        IF bIsWaitInputSignal THEN
+          IF g_bAllowBracketAutoRise THEN
+            g_bSupportcyLinder3Enable := TRUE;
+            g_bSupportCylinder3AutoRiseEnableFlag := TRUE;
+          ELSE
+            g_bSupportCylinder3AutoRiseEnableFlag := FALSE;
+          END_IF;
+        ELSE
+          g_bSupportcyLinder3Enable := TRUE;
+          g_bSupportCylinder3AutoRiseEnableFlag := TRUE;
+        END_IF;
+      ELSE
+         g_bSupportCylinder3AutoRiseEnableFlag := FALSE;
+      END_IF;
+    END_IF;
+    IF g_nClylinderCount >= 4 THEN 
+      IF (g_fCurrentCoordYBuffer < g_fClylinder4CoordY-g_fClylinder4DownDistance)  AND (g_nMotionMode=3 OR  g_nMotionMode=5 OR  g_nMotionMode=7 OR NOT g_bSupportCylinder4IsAvoidFlag) THEN
+        IF bIsWaitInputSignal THEN
+          IF g_bAllowBracketAutoRise THEN
+            g_bSupportcyLinder4Enable := TRUE;
+            g_bSupportCylinder4AutoRiseEnableFlag := TRUE;
+          ELSE
+            g_bSupportCylinder4AutoRiseEnableFlag := FALSE;
+          END_IF;
+        ELSE
+          g_bSupportcyLinder4Enable := TRUE;
+          g_bSupportCylinder4AutoRiseEnableFlag := TRUE;
+        END_IF;
+      ELSE
+         g_bSupportCylinder4AutoRiseEnableFlag := FALSE;
+      END_IF;
+    END_IF;
+    IF g_nClylinderCount >= 5 THEN 
+      IF (g_fCurrentCoordYBuffer < g_fClylinder5CoordY-g_fClylinder5DownDistance) AND (g_nMotionMode=3 OR  g_nMotionMode=5 OR  g_nMotionMode=7 OR NOT g_bSupportCylinder5IsAvoidFlag) THEN
+        IF bIsWaitInputSignal THEN
+          IF g_bAllowBracketAutoRise THEN
+            g_bSupportcyLinder5Enable := TRUE;
+            g_bSupportCylinder5AutoRiseEnableFlag := TRUE;
+          ELSE
+            g_bSupportCylinder5AutoRiseEnableFlag := FALSE;
+          END_IF;
+        ELSE
+          g_bSupportcyLinder5Enable := TRUE;
+          g_bSupportCylinder5AutoRiseEnableFlag := TRUE;
+        END_IF;
+      ELSE
+         g_bSupportCylinder5AutoRiseEnableFlag := FALSE;
+      END_IF;
+    END_IF;
+    IF g_nClylinderCount >= 6 THEN 
+      IF (g_fCurrentCoordYBuffer < g_fClylinder6CoordY-g_fClylinder6DownDistance) AND (g_nMotionMode=3 OR  g_nMotionMode=5 OR  g_nMotionMode=7 OR NOT g_bSupportCylinder6IsAvoidFlag) THEN
+        IF bIsWaitInputSignal THEN
+          IF  g_bAllowBracketAutoRise THEN
+            g_bSupportcyLinder6Enable := TRUE;
+            g_bSupportCylinder6AutoRiseEnableFlag := TRUE;
+          ELSE
+            g_bSupportCylinder6AutoRiseEnableFlag := FALSE;
+          END_IF;
+        ELSE
+          g_bSupportcyLinder6Enable := TRUE;
+          g_bSupportCylinder6AutoRiseEnableFlag := TRUE;
+        END_IF;
+      ELSE
+         g_bSupportCylinder6AutoRiseEnableFlag := FALSE;
+      END_IF;
+    END_IF;
+    IF g_nClylinderCount >= 7 THEN 
+      IF (g_fCurrentCoordYBuffer < g_fClylinder7CoordY-g_fClylinder7DownDistance) AND (g_nMotionMode=3 OR  g_nMotionMode=5 OR  g_nMotionMode=7 OR NOT g_bSupportCylinder7IsAvoidFlag) THEN
+        IF bIsWaitInputSignal THEN
+          IF g_bAllowBracketAutoRise THEN
+            g_bSupportcyLinder7Enable := TRUE;
+            g_bSupportCylinder7AutoRiseEnableFlag := TRUE;
+          ELSE
+            g_bSupportCylinder7AutoRiseEnableFlag := FALSE;
+          END_IF;
+        ELSE
+          g_bSupportcyLinder7Enable := TRUE;
+          g_bSupportCylinder7AutoRiseEnableFlag := TRUE;
+        END_IF;
+      ELSE
+         g_bSupportCylinder7AutoRiseEnableFlag := FALSE;
+      END_IF;
+    END_IF;
+    IF g_nClylinderCount >= 8 THEN 
+      IF (g_fCurrentCoordYBuffer < g_fClylinder8CoordY-g_fClylinder8DownDistance) AND (g_nMotionMode=3 OR  g_nMotionMode=5 OR  g_nMotionMode=7 OR NOT g_bSupportCylinder8IsAvoidFlag) THEN
+        IF bIsWaitInputSignal THEN
+          IF g_bAllowBracketAutoRise THEN
+            g_bSupportcyLinder8Enable := TRUE;
+            g_bSupportCylinder8AutoRiseEnableFlag := TRUE;
+          ELSE
+            g_bSupportCylinder8AutoRiseEnableFlag := FALSE;
+          END_IF;
+        ELSE
+          g_bSupportcyLinder8Enable := TRUE;
+          g_bSupportCylinder8AutoRiseEnableFlag := TRUE;
+        END_IF;
+      ELSE
+         g_bSupportCylinder8AutoRiseEnableFlag := FALSE;
+      END_IF;
+    END_IF;
+    
+    IF g_nClylinderCount >= 9 THEN 
+      IF (g_fCurrentCoordYBuffer < g_fClylinder9CoordY-g_fClylinder9DownDistance) AND (g_nMotionMode=3 OR  g_nMotionMode=5 OR  g_nMotionMode=7 OR NOT g_bSupportCylinder9IsAvoidFlag) THEN
+        IF bIsWaitInputSignal THEN
+          IF g_bAllowBracketAutoRise THEN
+            g_bSupportcyLinder9Enable := TRUE;
+            g_bSupportCylinder9AutoRiseEnableFlag := TRUE;
+          ELSE
+            g_bSupportCylinder9AutoRiseEnableFlag := FALSE;
+          END_IF;
+        ELSE
+          g_bSupportcyLinder9Enable := TRUE;
+          g_bSupportCylinder9AutoRiseEnableFlag := TRUE;
+        END_IF;
+      ELSE
+         g_bSupportCylinder9AutoRiseEnableFlag := FALSE;
+      END_IF;
+    END_IF;
+    
+    IF g_nClylinderCount >= 10 THEN 
+      IF (g_fCurrentCoordYBuffer < g_fClylinder10CoordY-g_fClylinder10DownDistance) AND (g_nMotionMode=3 OR  g_nMotionMode=5 OR  g_nMotionMode=7 OR NOT g_bSupportCylinder10IsAvoidFlag) THEN
+        IF bIsWaitInputSignal THEN
+          IF g_bAllowBracketAutoRise THEN
+            g_bSupportcyLinder10Enable := TRUE;
+            g_bSupportCylinder10AutoRiseEnableFlag := TRUE;
+          ELSE
+            g_bSupportCylinder10AutoRiseEnableFlag := FALSE;
+          END_IF;
+        ELSE
+          g_bSupportcyLinder10Enable := TRUE;
+          g_bSupportCylinder10AutoRiseEnableFlag := TRUE;
+        END_IF;
+      ELSE
+         g_bSupportCylinder10AutoRiseEnableFlag := FALSE;
+      END_IF;
+    END_IF;
+    
+    IF g_nClylinderCount >= 11 THEN 
+      IF (g_fCurrentCoordYBuffer < g_fClylinder11CoordY-g_fClylinder11DownDistance) AND (g_nMotionMode=3 OR  g_nMotionMode=5 OR  g_nMotionMode=7 OR NOT g_bSupportCylinder11IsAvoidFlag) THEN
+        IF bIsWaitInputSignal THEN
+          IF g_bAllowBracketAutoRise THEN
+            g_bSupportcyLinder11Enable := TRUE;
+            g_bSupportCylinder11AutoRiseEnableFlag := TRUE;
+          ELSE
+            g_bSupportCylinder11AutoRiseEnableFlag := FALSE;
+          END_IF;
+        ELSE
+          g_bSupportcyLinder11Enable := TRUE;
+          g_bSupportCylinder11AutoRiseEnableFlag := TRUE;
+        END_IF;
+      ELSE
+         g_bSupportCylinder11AutoRiseEnableFlag := FALSE;
+      END_IF;
+    END_IF;
+    
+    IF g_nClylinderCount >= 12 THEN 
+      IF (g_fCurrentCoordYBuffer < g_fClylinder12CoordY-g_fClylinder12DownDistance) AND (g_nMotionMode=3 OR  g_nMotionMode=5 OR  g_nMotionMode=7 OR NOT g_bSupportCylinder12IsAvoidFlag) THEN
+        IF bIsWaitInputSignal THEN
+          IF g_bAllowBracketAutoRise THEN
+            g_bSupportcyLinder12Enable := TRUE;
+            g_bSupportCylinder12AutoRiseEnableFlag := TRUE;
+          ELSE
+            g_bSupportCylinder12AutoRiseEnableFlag := FALSE;
+          END_IF;
+        ELSE
+          g_bSupportcyLinder12Enable := TRUE;
+          g_bSupportCylinder12AutoRiseEnableFlag := TRUE;
+        END_IF;
+      ELSE
+         g_bSupportCylinder12AutoRiseEnableFlag := FALSE;
+      END_IF;
+    END_IF;
+  ELSE
+      g_bSupportCylinder1AutoRiseEnableFlag := FALSE;
+      g_bSupportCylinder2AutoRiseEnableFlag := FALSE;
+      g_bSupportCylinder3AutoRiseEnableFlag := FALSE;
+      g_bSupportCylinder4AutoRiseEnableFlag := FALSE;
+      g_bSupportCylinder5AutoRiseEnableFlag := FALSE;
+      g_bSupportCylinder6AutoRiseEnableFlag := FALSE;
+      g_bSupportCylinder7AutoRiseEnableFlag := FALSE;
+      g_bSupportCylinder8AutoRiseEnableFlag := FALSE;
+      g_bSupportCylinder9AutoRiseEnableFlag := FALSE;
+      g_bSupportCylinder10AutoRiseEnableFlag := FALSE;
+      g_bSupportCylinder11AutoRiseEnableFlag := FALSE;
+      g_bSupportCylinder12AutoRiseEnableFlag := FALSE;
+  END_IF;
+ELSE
+  g_bSupportCylinder1AutoRiseEnableFlag := FALSE;
+  g_bSupportCylinder2AutoRiseEnableFlag := FALSE;
+  g_bSupportCylinder3AutoRiseEnableFlag := FALSE;
+  g_bSupportCylinder4AutoRiseEnableFlag := FALSE;
+  g_bSupportCylinder5AutoRiseEnableFlag := FALSE;
+  g_bSupportCylinder6AutoRiseEnableFlag := FALSE;
+  g_bSupportCylinder7AutoRiseEnableFlag := FALSE;
+  g_bSupportCylinder8AutoRiseEnableFlag := FALSE;
+  g_bSupportCylinder9AutoRiseEnableFlag := FALSE;
+  g_bSupportCylinder10AutoRiseEnableFlag := FALSE;
+  g_bSupportCylinder11AutoRiseEnableFlag := FALSE;
+  g_bSupportCylinder12AutoRiseEnableFlag := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[支架自动上升]]></xhtml:p>
+  </documentation>
+</pou>

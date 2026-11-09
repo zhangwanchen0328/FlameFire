@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ST_NORMAL_PERFORM_CUTTING">
+  <baseType>
+    <struct>
+      <variable name="nNormal_Piercing_Power">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="fNormal_Piercing_Height">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nNormal_Piercing_Time">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nNormal_Piercing_Frequency">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="nNormal_Piercing_Duty">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="fNormal_Piercing_Gas_Pressure">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nNormal_Piercing_Gas">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="bNormal_StopLight_BlowGas">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nNormal_StopLight_BlowGasTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="fNormal_Zoom_Position">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

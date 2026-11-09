@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_OneKeySupCyl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_OneKeySup2Up">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_OneKeySup2Down">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="OneKeySup2CylSwitch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*一键支撑控制在PLC写，界面发送命令是如果是一个一个发，气缸收到命令再动作，不连贯*)
+R_OneKeySup2Up(CLK := g_bOneKeySup2CylUp);
+R_OneKeySup2Down(CLK := g_bOneKeySup2CylDown);
+IF R_OneKeySup2Up.Q THEN
+  OneKeySup2CylSwitch := 10;
+  g_bOneKeySup2CylUp := FALSE;
+  g_boOneKeySup2CylUpDone := FALSE;
+  g_boOneKeySup2CylDownDone := FALSE;
+END_IF;
+
+IF R_OneKeySup2Down.Q THEN
+  OneKeySup2CylSwitch := 50;
+  g_bOneKeySup2CylDown := FALSE;
+  g_boOneKeySup2CylUpDone := FALSE;
+  g_boOneKeySup2CylDownDone := FALSE;
+END_IF;
+
+CASE OneKeySup2CylSwitch OF
+  0:
+    OneKeySup2CylSwitch := 0;
+  10:
+    g_bSupCyl2Up1 := TRUE;
+    g_bSupCyl2Up2 := TRUE;
+    g_bSupCyl2Up3 := TRUE;
+    g_bSupCyl2Up4 := TRUE;
+    OneKeySup2CylSwitch := 20;
+  20:
+    IF g_boSupCyl2Up_Done1 AND g_boSupCyl2Up_Done2 AND g_boSupCyl2Up_Done3 AND g_boSupCyl2Up_Done4 THEN
+      g_boOneKeySup2CylUpDone := TRUE;
+      OneKeySup2CylSwitch := 0;
+      M.ENABLE[268] := 0;
+      g_bExecuteFinishedM268 := FALSE;
+    END_IF;
+  50:
+    g_bSupCyl2Down1 := TRUE;
+    g_bSupCyl2Down2 := TRUE;
+    g_bSupCyl2Down3 := TRUE;
+    g_bSupCyl2Down4 := TRUE;
+    OneKeySup2CylSwitch := 60;
+  60:
+    IF g_boSupCyl2Down_Done1 AND g_boSupCyl2Down_Done2 AND g_boSupCyl2Down_Done3 AND g_boSupCyl2Down_Done4 THEN
+      g_boOneKeySup2CylDownDone := TRUE;
+      OneKeySup2CylSwitch := 0;
+      M.ENABLE[268] := 0;
+      g_bExecuteFinishedM268 := FALSE;
+    END_IF;
+    
+END_CASE;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[一键支撑气缸控制]]></xhtml:p>
+  </documentation>
+</pou>

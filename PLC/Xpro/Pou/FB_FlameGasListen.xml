@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FlameGasListen" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBCombustibleGas">
+        <type>
+          <derived name="FB_CombustibleGas"/>
+        </type>
+      </variable>
+      <variable name="FBOxidizingGas">
+        <type>
+          <derived name="FB_OxidizingGas"/>
+        </type>
+      </variable>
+      <variable name="FBFlameGasShare">
+        <type>
+          <derived name="FB_FlameGasShare"/>
+        </type>
+      </variable>
+      <variable name="FBFlameGasManualCtr">
+        <type>
+          <derived name="FB_FlameGasManualCtr"/>
+        </type>
+      </variable>
+      <variable name="FBFollowgnition">
+        <type>
+          <derived name="FB_FollowIgnition"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBCombustibleGas();
+FBOxidizingGas();
+FBFlameGasShare();
+FBFlameGasManualCtr();
+FBFollowgnition();
+
+IF g_bLaserFlameCutEnable  THEN
+  IF g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.FlameCutEnable THEN
+    g_dOpenFlameTiming := 1;
+  ELSE
+    g_dOpenFlameTiming := 2;
+  END_IF;
+ELSE
+  g_dOpenFlameTiming := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ST_NoninductivePiercing_DATA">
+  <baseType>
+    <struct>
+      <variable name="bOpen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[无感穿孔开启]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dHeightForNoninductivePiercing">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[无感穿孔高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dTimeForNoninductivePiercing">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿刺时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFocusForNoninductivePiercing">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿刺焦点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bNoninductivePiercingLaserAdjust">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光调节]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nNoninductivePiercingPower">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿刺功率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nNoninductivePiercingDuty">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿刺占空比]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nNoninductivePiercingFrequency">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿刺频率]]></xhtml:p>
+        </documentation>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

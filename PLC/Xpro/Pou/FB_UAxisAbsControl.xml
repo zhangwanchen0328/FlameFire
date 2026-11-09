@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_UAxisAbsControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Plc开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Plc暂停]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Plc复位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biUAbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUAbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiUAbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fUAbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiUAbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动速度引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fUAbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UMoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UMoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAbsEXecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始共享内存，一般被HMI使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成共享内存，一般被HMI使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nAbsState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dAbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置共享内存，一般被HMI使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dTargetPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置，中间缓存]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dTargetVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger(CLK := g_biUAbsExecute OR bAbsEXecute OR g_bUAbsExecute);
+
+IF RTrigger.Q THEN
+  nAbsState := 1;
+  g_boUAbsDone := FALSE;
+  g_bUAbsDone := FALSE;
+  bAbsDone := FALSE;
+  IF g_biUAbsExecute THEN
+    dTargetPos := g_fiUAbsPosition; 
+    dTargetVel := g_fiUAbsVelocity;
+  ELSIF bAbsEXecute THEN
+    dTargetPos := dAbsPosition;
+    dTargetVel := 0.0;
+    IF g_bPowerOffMoveToTargetPosSetSpeedFlag THEN
+      dTargetVel := g_dPowerOffMoveRotateSpeed;
+    END_IF;
+  ELSE
+    dTargetPos := g_fUAbsPosition;
+    dTargetVel := g_fUAbsVelocity;
+  END_IF;
+END_IF;
+
+IF NOT(g_biUAbsExecute OR bAbsEXecute OR g_bUAbsExecute) THEN
+  g_boUAbsDone := FALSE;
+  g_bUAbsDone := FALSE;
+  bAbsDone := FALSE;
+END_IF;
+
+CASE nAbsState OF
+  0:
+    nAbsState := 0;
+  1:
+    g_UMoveAbs.Execute := TRUE;
+    g_UMoveAbs.Velocity := dTargetVel;
+    g_UMoveAbs.Position := dTargetPos;
+    IF g_UMoveAbs.Done THEN
+      g_UMoveAbs.Execute := FALSE;
+      g_boUAbsDone := TRUE;
+      g_bUAbsDone := TRUE;
+      bAbsDone := TRUE;
+      nAbsState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nAbsState := 20;
+    END_IF;
+    IF g_UMoveAbs.CommandAborted OR g_UMoveAbs.Error THEN
+      g_UMoveAbs.Execute := FALSE;
+      g_boUAbsDone := FALSE;
+      nAbsState := 0;
+    END_IF;
+  20:
+    g_UMoveAbs.Execute := FALSE;
+    g_UMoveStop.Execute := TRUE;
+    IF g_UMoveStop.Done AND g_bPlcStartBuffer THEN
+      g_UMoveStop.Execute := FALSE;
+      nAbsState := 1;
+    END_IF;
+    IF g_UMoveStop.CommandAborted OR g_UMoveStop.Error THEN
+      g_UMoveStop.Execute := FALSE;
+      nAbsState := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nAbsState := 0;
+  g_UMoveAbs.Execute := FALSE;
+  g_UMoveStop.Execute := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

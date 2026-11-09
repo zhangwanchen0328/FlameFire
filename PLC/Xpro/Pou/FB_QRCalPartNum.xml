@@ -1,0 +1,496 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_QRCalPartNum" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bLengthCheck1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLengthCheck2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLengthCheck3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLengthCheck4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLengthCheck6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biLengthCheckOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biLengthCheckClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLengthCheckDone1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLengthCheckDone2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_foPartNum">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_LoadAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_LoadStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="Axis_Load">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_fPartLenght">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fPipeHead">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fOvershootDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCylinder1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCylinder2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCylinder3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCylinder4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bNoPipeWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biGetPartNum">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_noCalPartTest">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_dLoadMaxLimit">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dLastPipeTail">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dTotalLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dPipeTailLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_foCalPaRTest">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_biLoadCylinder4Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nCalState">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nCalStateLast">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dMoveVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dZCDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTriggerPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dPipeLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nPartNum">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dCylinderPos1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCylinderPos2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCylinderPos3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAvoidDistance1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAvoidDistance2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAvoidDistance3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dLsZDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nCylinderDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="CylinderDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="bFirstFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dLastPartNum">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dLastPipeTail">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="R_Trigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="dLmZDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFixedTailLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dSlitLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger1(CLK := g_biLengthCheckOpen);
+R_Trigger2(CLK := g_biLengthCheckClose);
+R_Trigger3(CLK := g_biLoadCylinder4Close);
+
+IF R_Trigger1.Q THEN
+  nCalState := 1;
+  g_boLengthCheckDone1 := FALSE;
+  g_boLengthCheckDone2 := FALSE;
+END_IF;
+IF R_Trigger2.Q THEN
+  g_boLengthCheckDone1 := FALSE;
+  g_boLengthCheckDone2 := FALSE;
+END_IF;
+
+IF R_Trigger3.Q THEN
+  g_boLoadCylinder4 := FALSE;
+END_IF;
+
+IF Axis_Load.NCTOPLC.ACTPOS >= dCylinderPos1 - dAvoidDistance1 THEN
+  g_boLoadCylinder1 := FALSE;
+END_IF;
+IF Axis_Load.NCTOPLC.ACTPOS >= dCylinderPos2 - dAvoidDistance2 THEN
+  g_boLoadCylinder2 := FALSE;
+END_IF;
+IF Axis_Load.NCTOPLC.ACTPOS >= dCylinderPos3 - dAvoidDistance3 THEN
+  g_boLoadCylinder3 := FALSE;
+END_IF;
+
+CASE nCalState OF
+  0:
+    nCalState := 0;
+  1:
+    IF Axis_Load.NCTOPLC.ACTPOS < dCylinderPos1 - dAvoidDistance1 THEN
+      g_boLoadCylinder1 := TRUE;
+    END_IF;
+    IF Axis_Load.NCTOPLC.ACTPOS < dCylinderPos2 - dAvoidDistance2 THEN
+      g_boLoadCylinder2 := TRUE;
+    END_IF;
+    IF (Axis_Load.NCTOPLC.ACTPOS < dCylinderPos1 - dAvoidDistance1) OR (Axis_Load.NCTOPLC.ACTPOS < dCylinderPos2 - dAvoidDistance2) THEN
+      CylinderDelay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nCylinderDelay)));
+      IF CylinderDelay.Q THEN
+        CylinderDelay(IN := FALSE);
+        nCalState := 2;
+      END_IF;
+    ELSE
+      nCalState := 2;
+    END_IF;
+  2:
+    IF g_bLengthCheck4 THEN
+      nCalState := 3;    
+    ELSE
+      g_boLoadCylinder1 := FALSE;
+      g_boLoadCylinder2 := FALSE;
+      nCalState := 21;
+      g_bNoPipeWarn :=TRUE;
+    END_IF;
+  3:
+    g_LoadAbs.Execute := TRUE;
+    g_LoadAbs.Position := g_dLoadMaxLimit;
+    g_LoadAbs.Velocity := dMoveVel;
+    IF g_bLengthCheck1 OR g_bLengthCheck2 THEN
+      nCalState := 4;
+    END_IF;  
+    IF g_bLengthCheck3 THEN
+      nCalState := 7;
+      dTriggerPos := Axis_Load.NCTOPLC.ACTPOS;
+      IF Axis_Load.NCTOPLC.ACTPOS < dCylinderPos3 - dAvoidDistance3 THEN
+        g_boLoadCylinder3 := TRUE;
+      END_IF;
+    END_IF;
+    IF g_LoadAbs.CommandAborted OR g_LoadAbs.Error THEN
+      g_LoadAbs.Execute := FALSE;
+      nCalState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCalState := 20;
+      nCalStateLast := 3;
+    END_IF;
+  4:
+    g_LoadAbs.Execute := FALSE;
+    g_LoadStop.Execute := TRUE;
+    IF g_LoadStop.Done THEN
+      g_LoadStop.Execute := FALSE;
+      nCalState := 5;
+    END_IF;
+    IF g_LoadStop.Error OR g_LoadStop.CommandAborted THEN
+      g_LoadStop.Execute := FALSE;
+      nCalState := 0;
+    END_IF;
+  5:
+    IF Axis_Load.NCTOPLC.ACTPOS < dCylinderPos3 - dAvoidDistance3 THEN
+      g_boLoadCylinder3 := TRUE;
+      CylinderDelay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nCylinderDelay)));
+      IF CylinderDelay.Q THEN
+        CylinderDelay(IN := FALSE);
+        nCalState := 6;
+      END_IF;
+    ELSE
+      nCalState := 6;
+    END_IF;
+  6:
+    g_LoadAbs.Execute := TRUE;
+    g_LoadAbs.Position := g_dLoadMaxLimit;
+    g_LoadAbs.Velocity := dMoveVel;
+    IF g_bLengthCheck3 THEN
+      nCalState := 7;
+      dTriggerPos := Axis_Load.NCTOPLC.ACTPOS;
+    END_IF;
+    IF g_LoadAbs.CommandAborted OR g_LoadAbs.Error THEN
+      g_LoadAbs.Execute := FALSE;
+      nCalState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCalState := 20;
+      nCalStateLast := 6;
+    END_IF;
+  7:
+    g_LoadAbs.Execute := FALSE;
+    g_LoadStop.Execute := TRUE;
+    IF g_LoadStop.Done THEN
+      g_LoadStop.Execute := FALSE;
+      g_fOvershootDistance := Axis_Load.NCTOPLC.ACTPOS - dTriggerPos;
+      nCalState := 8;
+    END_IF;
+    IF g_LoadStop.Error OR g_LoadStop.CommandAborted THEN
+      g_LoadStop.Execute := FALSE;
+      nCalState := 0;
+    END_IF;
+  8: 
+    dLmZDistance := dLsZDistance - (g_dLoadMaxLimit - g_dTotalLength);
+    nPartNum := TRUNC(((g_dTotalLength - dTriggerPos - dZCDistance - g_fPipeHead - dFixedTailLength)/(g_fPartLenght + g_dSlitLength)));
+    g_dPipeLength := g_dTotalLength - dTriggerPos;
+    g_foPartNum := DINT_TO_LREAL(TRUNC((g_dPipeLength - g_fPipeHead - dLmZDistance)/(g_fPartLenght + g_dSlitLength)));
+    g_boLengthCheckDone1 := TRUE;
+    IF bFirstFlag THEN
+      g_dPipeTailLength := dLastPartNum;
+      dLastPartNum := g_dPipeLength - DINT_TO_LREAL(nPartNum)*(g_fPartLenght + g_dSlitLength) - g_fPipeHead;
+      
+      g_dLastPipeTail := dLastPipeTail;
+      dLastPipeTail := g_dPipeLength - g_fPipeHead - dLmZDistance - g_foPartNum*(g_fPartLenght + g_dSlitLength);
+    ELSE
+      g_dPipeTailLength := g_dPipeLength - DINT_TO_LREAL(nPartNum)*(g_fPartLenght + g_dSlitLength) - g_fPipeHead;
+      dLastPartNum := g_dPipeTailLength;
+      
+      g_dLastPipeTail := g_dPipeLength - g_fPipeHead - dLmZDistance - g_foPartNum*(g_fPartLenght + g_dSlitLength);
+      dLastPipeTail := g_dLastPipeTail;
+      bFirstFlag := TRUE;
+    END_IF;
+    g_foCalPaRTest := g_dLastPipeTail;
+    nCalState := 9;
+  9:
+    IF g_biGetPartNum THEN
+      g_foPartNum := DINT_TO_LREAL(nPartNum) - g_foPartNum;
+      nCalState := 10;
+    END_IF;
+  10:
+    g_boLoadCylinder4 := TRUE;
+    CylinderDelay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nCylinderDelay)));
+    IF CylinderDelay.Q THEN
+      CylinderDelay(IN := FALSE);
+      g_boLengthCheckDone2 := TRUE;   
+      nCalState := 0; 
+    END_IF;
+  20:
+    g_LoadAbs.Execute := FALSE;
+    g_LoadStop.Execute := TRUE;
+    IF g_LoadStop.Done AND g_bPlcStartBuffer THEN
+      g_LoadStop.Execute := FALSE;
+      nCalState := nCalStateLast;
+    END_IF;
+    IF g_LoadStop.CommandAborted OR g_LoadStop.Error THEN
+      g_LoadStop.Execute := FALSE;
+      nCalState := 0;
+    END_IF;
+  21:
+    IF g_bPlcStartBuffer THEN
+      nCalState := 1;
+    END_IF;
+END_CASE;
+g_noCalPartTest := nPartNum;
+IF g_bPlcResetBuffer THEN
+  nCalState := 0;
+  nCalStateLast := 0;
+  g_LoadAbs.Execute := FALSE;
+  g_LoadStop.Execute := FALSE;
+  g_boLoadCylinder1 := FALSE;
+  g_boLoadCylinder2 := FALSE;
+  g_boLoadCylinder3 := FALSE;
+  g_boLoadCylinder4 := FALSE;
+  bFirstFlag := FALSE;
+  CylinderDelay(IN := FALSE);
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

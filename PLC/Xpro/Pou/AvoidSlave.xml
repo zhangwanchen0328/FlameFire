@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AvoidSlave" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Axis1ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="SlaveAct">
+        <type>
+          <derived name="FB_AntiRejectionAct"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+SlaveAct();
+
+
+
+
+
+Axis1ErrorAlarm :=  AntiRejection1.NCTOPLC.POWERPOSWARN OR AntiRejection1.NCTOPLC.POWERNEGWARN 
+     OR AntiRejection1.NCTOPLC.ERRORCODE <>0;
+     
+     
+  IF Axis1ErrorAlarm AND g_bPlcResetBuffer THEN
+    g_AntiRejection1Reset.Execute := TRUE;
+  ELSE
+    g_AntiRejection1Reset.Execute := FALSE;   
+  END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

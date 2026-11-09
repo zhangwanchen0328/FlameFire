@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CutHeadCool" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Tof_CutHeadCool">
+        <type>
+          <derived name="TOF"/>
+        </type>
+      </variable>
+      <variable name="bCutHeadCoolEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="fCutHeadCoolCloseTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fTrigDot">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[bCutHeadCoolEnable := g_TechData.multilTechData[g_nToolNum -1].DIRECUT_CUTTING.bCutHeadCoolEnable;
+fCutHeadCoolCloseTime := g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.fCutHeadCoolCloseTime;
+fTrigDot(CLK := (g_bLaserDotEnable));  (*激光打点PWM关闭差周期,所以这里强制关下,不然会导致出冷却气*)
+IF fTrigDot.Q THEN
+  g_noUPwmDuty := 0;
+END_IF;
+(*切割头吹气冷却:开光出气,关光延时关闭*)
+IF bCutHeadCoolEnable AND Not g_bLaserDotEnable THEN
+  Tof_CutHeadCool(IN := (g_noUPwmDuty<>0 OR g_bLaserCuttingEnable),PT := LREAL_TO_TIME(fCutHeadCoolCloseTime)); 
+  g_boCutHeadCool :=  Tof_CutHeadCool.Q; 
+ELSE
+  g_boCutHeadCool := FALSE;
+  Tof_CutHeadCool(IN := FALSE,PT := T#0s); 
+END_IF;  
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ZAxisLeapFrog" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bZLeapForgEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZLeapForgDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fZLeapDownHeight">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fZLeapUpHeight">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nZLeapState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger1(CLK := g_bZLeapForgEnable);
+
+IF RTrigger1.Q THEN
+  (*无感穿孔蛙跳起始高度,上抬高度,穿孔高度,穿孔时间,切割高度*)
+  g_ZLeapFrog.LEAPHEIGHT := g_fZleapHeight_temp;
+  g_ZLeapFrog.LIFTHEIGHT := g_fZLeapUpHeight;  
+  g_ZLeapFrog.PIERCEHEIGHT := g_fZLeapDownHeight;
+  g_ZLeapFrog.PIERCETIME := g_fZLeapPierceTime/1000.0;
+  g_ZLeapFrog.CUTHEIGHT := g_fZLeapCutHeight;
+  
+  g_bZLeapForgEnable := FALSE;
+  g_bZLeapFrogPierceStart := FALSE;
+  g_bZLeapForgDone := FALSE;
+  g_bZLeapDone := FALSE;
+  g_bZFollowOutDone := FALSE;
+  g_boZFollowOutDone := FALSE;
+  nZLeapState := 1;
+END_IF;
+
+g_ZLeapFrog.CURHEIGHT := g_fZAxisHeight;
+g_ZLeapFrog.REMAINTIME := g_fZLeapTime_rem;
+g_ZLeapFrog.REMAINDISTANCE := g_diMotionDistance; 
+   
+CASE nZLeapState OF
+  1:
+  g_ZLeapFrog.EXECUTE := TRUE;
+  g_ZLeapFrog.PIERCEHEIGHT := g_fZLeapDownHeight;
+  g_ZLeapFrog.CUTHEIGHT := g_fZLeapCutHeight;
+  nZLeapState := 5;
+  5:
+  IF g_ZLeapFrog.LEAPDONE THEN
+    g_bZLeapDone := TRUE;   (*起跳完成*)
+  END_IF;
+  IF g_ZLeapFrog.PIERCESTART THEN
+    g_bZLeapFrogPierceStart := TRUE; (*蛙跳穿孔开始*)
+  END_IF;
+  IF g_ZLeapFrog.PIERCEEND THEN   (*蛙跳穿孔*)
+    g_bZLeapForgDone := TRUE;
+    g_ZLeapFrog.EXECUTE := FALSE;
+    nZLeapState := 0;
+  END_IF;  
+  IF g_ZLeapFrog.ERROR THEN
+    g_ZLeapFrog.EXECUTE := FALSE;
+    nZLeapState := 10;
+  END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nZLeapState := 0;
+  g_ZLeapFrog.Execute := FALSE;
+  g_ZFollowOut.Execute := FALSE;
+  g_bZLeapForgEnable := FALSE;
+  g_bZLeapFrogPierceStart := FALSE;
+  g_bZLeapForgDone := FALSE;
+  g_bZLeapDone := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[无感穿孔蛙跳]]></xhtml:p>
+  </documentation>
+</pou>

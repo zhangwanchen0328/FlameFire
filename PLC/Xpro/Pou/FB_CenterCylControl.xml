@@ -1,0 +1,1143 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CenterCylControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_CentringCylUp1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_CentringCylUp2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_CentringCylUp3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_CentringCylUp4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_CentringCylDown1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_CentringCylDown2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_CentringCylDown3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_CentringCylDown4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bCentringCylUp1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCentringCylUp2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCentringCylUp3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCentringCylUp4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCentringCylDown1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCentringCylDown2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCentringCylDown3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCentringCylDown4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="fDelayTime1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fDelayTime2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fDelayTime3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fDelayTime4">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="DelayTon1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon_Up1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon_Up2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon_Up3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon_Up4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon_Down1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon_Down2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon_Down3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon_Down4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Cyl1FilterTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="Cyl2FilterTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="Cyl3FilterTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="Cyl4FilterTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="Fileter_1">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Fileter_2">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Fileter_3">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Fileter_4">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Fileter_5">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Fileter_6">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Fileter_7">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Fileter_8">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="bCyl1UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl2UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl3UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl4UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl1UpSignalNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl2UpSignalNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl3UpSignalNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl4UpSignalNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl1DownSignalNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl2DownSignalNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl3DownSignalNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl4DownSignalNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCenterCyl1UpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[对中气缸1 上升到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCenterCyl2UpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[对中气缸2 上升到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCenterCyl3UpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[对中气缸3 上升到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCenterCyl4UpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[对中气缸3 上升到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="CentringCyl1State">
+        <type>
+          <derived name="FB_CylStateControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[对中气缸1状态切换]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="CentringCyl2State">
+        <type>
+          <derived name="FB_CylStateControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[对中气缸2状态切换]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="CentringCyl3State">
+        <type>
+          <derived name="FB_CylStateControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[对中气缸3状态切换]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="CentringCyl4State">
+        <type>
+          <derived name="FB_CylStateControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[对中气缸3状态切换]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*余云安-森峰需求：支撑气缸根据零件避让下落，具备夹持中的功能，但是运行过程中不动作，不执行避让*)
+R_CentringCylUp1(CLK :=(g_bCentringCyl2Up1 OR bCentringCylUp1));      (*支撑气缸1上升*)
+R_CentringCylDown1(CLK :=(g_bCentringCyl2Down1 OR bCentringCylDown1));  (*支撑气缸1下降*)
+
+(*------------------------------命令输出部分---------------------------*)
+(*1、命令输出有到位信号，先等到位信号，在使用延时时间，没到位信号，只使用延时时间*)
+(*2、学BC，也不使用界面反馈信号灯了，只管输出*)
+(*3 是否加入滤波，对硬件的输入信号，进行滤波*)
+IF R_CentringCylUp1.Q THEN
+  IF g_boCentringCyl2Up1 AND NOT g_boCentringCyl2Down1 THEN
+    DelayTon1(IN :=FALSE);
+    M.ENABLE[269] := 0; 
+    g_bExecuteFinishedM269 := FALSE;
+	g_bFinishedM269_1 := FALSE;
+      g_boCentringCyl2Up_Done1 := TRUE;  
+      g_boCentringCyl2Down_Done1 := FALSE;
+  ELSE
+    IF g_bUseSup2Centring1 THEN(*使用了这个气缸*)
+      g_noCentringCyl2Switch1 := 10;
+        (*重置输出完成信号*)
+      g_boCentringCyl2Up_Done1 := FALSE;  
+      g_boCentringCyl2Down_Done1 := FALSE;
+    ELSE(*未使用这个气缸，则直接给完成信号*)
+      g_noCentringCyl2Switch1 := 10;
+      M.ENABLE[269] := 0; 
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_1 := FALSE;
+      g_boCentringCyl2Up_Done1 := TRUE;  
+      g_boCentringCyl2Down_Done1 := FALSE;
+    END_IF;
+  END_IF;
+  
+  DelayTon1(IN :=FALSE);
+  bCentringCylUp1 := FALSE;  
+  g_bCentringCyl2Up1 := FALSE;
+  DelayTon_Down1(IN := FALSE);
+  g_bCenterCyl1DownNoSignalAlarm := FALSE;
+
+END_IF; 
+
+IF R_CentringCylDown1.Q THEN
+  IF NOT g_boCentringCyl2Up1 AND g_boCentringCyl2Down1 THEN
+    DelayTon1(IN :=FALSE);
+    M.ENABLE[269] := 0;
+    g_bExecuteFinishedM269 := FALSE;
+	g_bFinishedM269_1 := FALSE;
+      g_boCentringCyl2Up_Done1 := FALSE;  
+      g_boCentringCyl2Down_Done1 := TRUE; 
+  ELSE
+    IF g_bUseSup2Centring1 THEN(*使用了这个气缸*)
+      g_noCentringCyl2Switch1 := 50;
+        (*重置输出完成信号*)
+      g_boCentringCyl2Up_Done1 := FALSE;  
+      g_boCentringCyl2Down_Done1 := FALSE;  
+    ELSE
+      g_noCentringCyl2Switch1 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_1 := FALSE;
+      g_boCentringCyl2Up_Done1 := FALSE;  
+      g_boCentringCyl2Down_Done1 := TRUE;  
+    END_IF;
+  END_IF;
+  DelayTon1(IN :=FALSE);
+  bCentringCylDown1 := FALSE;  
+  g_bCentringCyl2Down1 := FALSE;
+END_IF; 
+
+CASE g_noCentringCyl2Switch1 OF
+  0:
+   g_noCentringCyl2Switch1 := 0;
+  10:(*上升命令输出*)
+    g_boCentringCyl2Up1 := TRUE;
+    g_boCentringCyl2Down1 := FALSE;
+    g_bCenterCyl1DownNoSignalAlarm := FALSE;
+    DelayTon_Down1(IN := FALSE);
+    DelayTon_Up1(IN := FALSE);
+    fDelayTime1 := g_fCentringCyl2Up_DelayTime1;
+    IF g_bCentringCyl2Up_UseINPOS1 THEN(*使用到位信号*)
+      g_noCentringCyl2Switch1 := 20;
+    ELSE(*使用延时信号*)
+      g_noCentringCyl2Switch1 := 30;
+    END_IF;
+  20:(*等待到位信号*)
+    IF g_bCentringCyl2Up_INPOS1 THEN
+      g_boCentringCyl2Up_Done1 := TRUE;
+      g_nCentringCyl2CMD1 := 1;
+      g_bCentringCyl2State1 := TRUE;
+      g_noCentringCyl2Switch1 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_1 := FALSE;
+      bCyl1UpState := TRUE;
+      DelayTon_Up1(IN := FALSE);
+      bCenterCyl1UpNoSignalAlarm := FALSE;
+    ELSE
+      IF NOT bCyl1UpState THEN
+        DelayTon_Up1(IN := TRUE,PT := LREAL_TO_TIME(g_fCentringCyl2Up_DelayTime1/1000.0));
+        IF DelayTon_Up1.Q THEN
+          DelayTon_Up1(IN := FALSE);
+          bCenterCyl1UpNoSignalAlarm := TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+  30:(*延时并输出完成信号*)
+    DelayTon1(IN :=TRUE,PT := LREAL_TO_TIME(fDelayTime1/1000.0));
+    IF DelayTon1.Q THEN
+      g_boCentringCyl2Up_Done1 := TRUE;
+      g_nCentringCyl2CMD1 := 1;
+      g_bCentringCyl2State1 := TRUE;
+      DelayTon1(IN :=FALSE);
+      g_noCentringCyl2Switch1 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_1 := FALSE;
+      bCyl1UpState := TRUE;
+    END_IF;
+    
+  50:(*下降命令输出*)
+    g_boCentringCyl2Up1 := FALSE;
+    g_boCentringCyl2Down1 := TRUE;
+    DelayTon_Up1(IN := FALSE);
+    bCenterCyl1UpNoSignalAlarm := FALSE;
+    fDelayTime1 := g_fCentringCyl2Down_DelayTime1;
+    IF g_bCentringCyl2Down_UseINPOS1 THEN(*使用到位信号*)
+      g_noCentringCyl2Switch1 := 60;
+    ELSE(*使用延时信号*)
+      g_noCentringCyl2Switch1 := 70;
+    END_IF;
+  60: (*等待到位信号*)
+    IF g_bCentringCyl2Down_INPOS1 THEN
+       g_boCentringCyl2Down_Done1 := TRUE;
+      g_nCentringCyl2CMD1 := -1;
+      g_bCentringCyl2State1 := FALSE;
+      g_noCentringCyl2Switch1 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_1 := FALSE;
+      DelayTon_Down1(IN := FALSE);
+      g_bCenterCyl1DownNoSignalAlarm := FALSE;
+      bCyl1UpState := FALSE;
+    ELSE
+      IF bCyl1UpState THEN
+        DelayTon_Down1(IN := TRUE,PT := LREAL_TO_TIME(g_fCentringCyl2Down_DelayTime1/1000.0));
+        IF DelayTon_Down1.Q THEN
+          DelayTon_Down1(IN := FALSE);
+          g_bCenterCyl1DownNoSignalAlarm := TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+  70:(*延时并输出完成信号*)
+    DelayTon1(IN :=TRUE,PT := LREAL_TO_TIME(fDelayTime1/1000.0));
+    IF DelayTon1.Q THEN
+      g_boCentringCyl2Down_Done1 := TRUE;
+      g_nCentringCyl2CMD1 := -1;
+      g_bCentringCyl2State1 := FALSE;
+      DelayTon1(IN :=FALSE);
+      g_noCentringCyl2Switch1 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_1 := FALSE;
+      bCyl1UpState := FALSE;
+    END_IF;
+END_CASE;
+
+(*新加的气缸状态切换,气缸到位超时报警和目前默认到位时间用的一个时间*)
+CentringCyl1State(
+  bUseUpSignal := g_bCentringCyl2Up_UseINPOS1,
+  bUseDownSignal := g_bCentringCyl2Down_UseINPOS1,
+  boCylUp := g_boCentringCyl2Up1,
+  boCylDown := g_boCentringCyl2Down1,
+  bUpInplace := g_bCentringCyl2Up_INPOS1,
+  bDownInplace := g_bCentringCyl2Down_INPOS1,
+  bUpInplaceNoFilter := bCyl1UpSignalNoFilter,
+  bDownInplaceNoFilter := bCyl1DownSignalNoFilter,
+  dClylinderUpDelayTime := LREAL_TO_DINT(g_fCentringCyl2Up_DelayTime1),
+  dClylinderDownDelayTime := LREAL_TO_DINT(g_fCentringCyl2Down_DelayTime1),
+  dClylinderUpOverDelayTime := LREAL_TO_DINT(g_fCentringCyl2Up_DelayTime1),
+  dClylinderDownOverDelayTime := LREAL_TO_DINT(g_fCentringCyl2Down_DelayTime1),
+  bArrayConfigOutputUp := ArrayConfigOutputNumber[130],
+  bArrayConfigOutputDown := ArrayConfigOutputNumber[133],
+  bCylState  => bCyl1UpState,
+  bCylStateToHMI => g_bCentringCyl2State1,
+  bCylUpNoSignalAlarm => bCenterCyl1UpNoSignalAlarm,
+  bCylDownNoSignalAlarm => g_bCenterCyl1DownNoSignalAlarm,
+  bArrayConfigOutputUp_FB => ArrayConfigOutputNumber[130],
+  bArrayConfigOutputDown_FB => ArrayConfigOutputNumber[133]
+);
+
+R_CentringCylUp2(CLK :=(g_bCentringCyl2Up2 OR bCentringCylUp2));      (*支撑气缸2上升*)
+R_CentringCylDown2(CLK :=(g_bCentringCyl2Down2 OR bCentringCylDown2));  (*支撑气缸2下降*)
+
+IF R_CentringCylUp2.Q THEN
+  IF g_boCentringCyl2Up2 AND NOT g_boCentringCyl2Down2 THEN
+    DelayTon2(IN :=FALSE);
+     M.ENABLE[269] := 0;
+     g_bExecuteFinishedM269 := FALSE;
+	 g_bFinishedM269_2 := FALSE;
+      g_boCentringCyl2Up_Done2 := TRUE;  
+      g_boCentringCyl2Down_Done2 := FALSE;
+  ELSE
+    IF g_bUseSup2Centring2 THEN(*使用了这个气缸*)
+      g_noCentringCyl2Switch2 := 10;
+      (*重置输出完成信号*)
+      g_boCentringCyl2Up_Done2 := FALSE;  
+      g_boCentringCyl2Down_Done2 := FALSE;
+    ELSE
+      g_noCentringCyl2Switch2 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_2 := FALSE;
+      g_boCentringCyl2Up_Done2 := TRUE;  
+      g_boCentringCyl2Down_Done2 := FALSE;
+    END_IF;
+  END_IF;
+  DelayTon2(IN :=FALSE);
+  bCentringCylUp2 := FALSE;  
+  g_bCentringCyl2Up2 := FALSE;
+  DelayTon_Down2(IN := FALSE);
+  g_bCenterCyl2DownNoSignalAlarm := FALSE;
+END_IF; 
+
+IF R_CentringCylDown2.Q THEN
+  IF NOT g_boCentringCyl2Up2 AND g_boCentringCyl2Down2 THEN
+    DelayTon2(IN :=FALSE);
+    M.ENABLE[269] := 0;
+    g_bExecuteFinishedM269 := FALSE;
+	g_bFinishedM269_2 := FALSE;
+      g_boCentringCyl2Up_Done2 := FALSE;  
+      g_boCentringCyl2Down_Done2 := TRUE;
+  ELSE
+    IF g_bUseSup2Centring2 THEN(*使用了这个气缸*)
+      g_noCentringCyl2Switch2 := 50;
+      (*重置输出完成信号*)
+      g_boCentringCyl2Up_Done2 := FALSE;  
+      g_boCentringCyl2Down_Done2 := FALSE;  
+    ELSE
+      g_noCentringCyl2Switch2 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_2 := FALSE;
+      g_boCentringCyl2Up_Done2 := FALSE;  
+      g_boCentringCyl2Down_Done2 := TRUE;  
+    END_IF;
+  END_IF;
+  DelayTon2(IN :=FALSE);
+  bCentringCylDown2 := FALSE;  
+  g_bCentringCyl2Down2 := FALSE;
+
+END_IF; 
+
+CASE g_noCentringCyl2Switch2 OF
+  0:
+   g_noCentringCyl2Switch2 := 0;
+  10:(*上升命令输出*)
+    g_boCentringCyl2Up2 := TRUE;
+    g_boCentringCyl2Down2 := FALSE;
+     g_bCenterCyl2DownNoSignalAlarm := FALSE;
+    DelayTon_Down2(IN := FALSE);
+    DelayTon_Up2(IN := FALSE);
+    fDelayTime2 := g_fCentringCyl2Up_DelayTime2;
+    IF g_bCentringCyl2Up_UseINPOS2 THEN(*使用到位信号*)
+      g_noCentringCyl2Switch2 := 20;
+    ELSE(*使用延时信号*)
+      g_noCentringCyl2Switch2 := 30;
+    END_IF;
+  20:(*等待到位信号*)
+    IF g_bCentringCyl2Up_INPOS2 THEN
+       g_boCentringCyl2Up_Done2 := TRUE;
+      g_noCentringCyl2Switch2 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_2 := FALSE;
+      g_bCentringCyl2State2 := TRUE;
+      bCyl2UpState := TRUE;
+      DelayTon_Up2(IN := FALSE);
+      bCenterCyl2UpNoSignalAlarm := FALSE;
+    ELSE
+      IF NOT bCyl2UpState THEN
+        DelayTon_Up2(IN := TRUE,PT := LREAL_TO_TIME(g_fCentringCyl2Up_DelayTime2/1000.0));
+        IF DelayTon_Up2.Q THEN
+          DelayTon_Up2(IN := FALSE);
+          bCenterCyl2UpNoSignalAlarm := TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+  30:(*延时并输出完成信号*)
+    DelayTon2(IN :=TRUE,PT := LREAL_TO_TIME(fDelayTime2/1000.0));
+    IF DelayTon2.Q THEN
+      g_boCentringCyl2Up_Done2 := TRUE;
+      DelayTon2(IN :=FALSE);
+      g_noCentringCyl2Switch2 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_2 := FALSE;
+      g_bCentringCyl2State2 := TRUE;
+      bCyl2UpState := TRUE;
+    END_IF;
+    
+  50:(*下降命令输出*)
+    g_boCentringCyl2Up2 := FALSE;
+    g_boCentringCyl2Down2 := TRUE;
+    DelayTon_Up2(IN := FALSE);
+    bCenterCyl2UpNoSignalAlarm := FALSE;
+    fDelayTime2 := g_fCentringCyl2Down_DelayTime2;
+    IF g_bCentringCyl2Down_UseINPOS2 THEN(*使用到位信号*)
+      g_noCentringCyl2Switch2 := 60;
+    ELSE(*使用延时信号*)
+      g_noCentringCyl2Switch2 := 70;
+    END_IF;
+  60: (*等待到位信号*)
+    IF g_bCentringCyl2Down_INPOS2 THEN
+       g_boCentringCyl2Down_Done2 := TRUE;
+      g_noCentringCyl2Switch2 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_2 := FALSE;
+      g_bCentringCyl2State2 := FALSE;
+       DelayTon_Down2(IN := FALSE);
+       g_bCenterCyl2DownNoSignalAlarm := FALSE;
+       bCyl2UpState := FALSE;
+    ELSE
+      IF bCyl2UpState THEN
+        DelayTon_Down2(IN := TRUE,PT := LREAL_TO_TIME(g_fCentringCyl2Down_DelayTime2/1000.0));
+        IF DelayTon_Down2.Q THEN
+          DelayTon_Down2(IN := FALSE);
+          g_bCenterCyl2DownNoSignalAlarm := TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+  70:(*延时并输出完成信号*)
+    DelayTon2(IN :=TRUE,PT := LREAL_TO_TIME(fDelayTime2/1000.0));
+    IF DelayTon2.Q THEN
+      g_boCentringCyl2Down_Done2 := TRUE;
+      DelayTon2(IN :=FALSE);
+      g_noCentringCyl2Switch2 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_2 := FALSE;
+      g_bCentringCyl2State2 := FALSE;
+      bCyl2UpState := FALSE;
+    END_IF;
+END_CASE;
+
+(*新加的气缸状态切换,气缸到位超时报警和目前默认到位时间用的一个时间*)
+CentringCyl2State(
+  bUseUpSignal := g_bCentringCyl2Up_UseINPOS2,
+  bUseDownSignal := g_bCentringCyl2Down_UseINPOS2,
+  boCylUp := g_boCentringCyl2Up2,
+  boCylDown := g_boCentringCyl2Down2,
+  bUpInplace := g_bCentringCyl2Up_INPOS2,
+  bDownInplace := g_bCentringCyl2Down_INPOS2,
+  bUpInplaceNoFilter := bCyl2UpSignalNoFilter,
+  bDownInplaceNoFilter := bCyl2DownSignalNoFilter,
+  dClylinderUpDelayTime := LREAL_TO_DINT(g_fCentringCyl2Up_DelayTime2),
+  dClylinderDownDelayTime := LREAL_TO_DINT(g_fCentringCyl2Down_DelayTime2),
+  dClylinderUpOverDelayTime := LREAL_TO_DINT(g_fCentringCyl2Up_DelayTime2),
+  dClylinderDownOverDelayTime := LREAL_TO_DINT(g_fCentringCyl2Down_DelayTime2),
+  bArrayConfigOutputUp := ArrayConfigOutputNumber[131],
+  bArrayConfigOutputDown := ArrayConfigOutputNumber[134],
+  bCylState  => bCyl2UpState,
+  bCylStateToHMI => g_bCentringCyl2State2,
+  bCylUpNoSignalAlarm => bCenterCyl2UpNoSignalAlarm,
+  bCylDownNoSignalAlarm => g_bCenterCyl2DownNoSignalAlarm,
+  bArrayConfigOutputUp_FB => ArrayConfigOutputNumber[131],
+  bArrayConfigOutputDown_FB => ArrayConfigOutputNumber[134]
+);
+
+R_CentringCylUp3(CLK :=(g_bCentringCyl2Up3 OR bCentringCylUp3));      (*支撑气缸3上升*)
+R_CentringCylDown3(CLK :=(g_bCentringCyl2Down3 OR bCentringCylDown3));  (*支撑气缸3下降*)
+
+IF R_CentringCylUp3.Q THEN
+  IF g_boCentringCyl2Up3 AND NOT g_boCentringCyl2Down3 THEN
+    DelayTon3(IN :=FALSE);
+    M.ENABLE[269] := 0;
+    g_bExecuteFinishedM269 := FALSE;
+	g_bFinishedM269_3 := FALSE;
+      g_boCentringCyl2Up_Done3 := TRUE;  
+      g_boCentringCyl2Down_Done3 := FALSE;
+  ELSE
+    IF g_bUseSup2Centring3 THEN(*使用了这个气缸*)
+      g_noCentringCyl2Switch3 := 10;
+        (*重置输出完成信号*)
+      g_boCentringCyl2Up_Done3 := FALSE;  
+      g_boCentringCyl2Down_Done3 := FALSE;
+    ELSE
+      g_noCentringCyl2Switch3 := 0;
+      M.ENABLE[269] := 0; 
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_3 := FALSE;
+      g_boCentringCyl2Up_Done3 := TRUE;  
+      g_boCentringCyl2Down_Done3 := FALSE;
+    END_IF;
+  END_IF;
+  DelayTon3(IN :=FALSE);
+  bCentringCylUp3 := FALSE;  
+  g_bCentringCyl2Up3 := FALSE;
+  DelayTon_Down3(IN := FALSE);
+  g_bCenterCyl3DownNoSignalAlarm := FALSE;
+END_IF; 
+
+IF R_CentringCylDown3.Q THEN
+  IF NOT g_boCentringCyl2Up3 AND g_boCentringCyl2Down3 THEN
+    DelayTon3(IN :=FALSE);
+    M.ENABLE[269] := 0;
+    g_bExecuteFinishedM269 := FALSE;
+	g_bFinishedM269_3 := FALSE;
+      g_boCentringCyl2Up_Done3 := FALSE;  
+      g_boCentringCyl2Down_Done3 := TRUE; 
+  ELSE
+    IF g_bUseSup2Centring3 THEN(*使用了这个气缸*)
+      g_noCentringCyl2Switch3 := 50;
+        (*重置输出完成信号*)
+      g_boCentringCyl2Up_Done3 := FALSE;  
+      g_boCentringCyl2Down_Done3 := FALSE; 
+    ELSE
+      g_noCentringCyl2Switch3 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_3 := FALSE;
+      g_boCentringCyl2Up_Done3 := FALSE;  
+      g_boCentringCyl2Down_Done3 := TRUE; 
+    END_IF;
+  END_IF;
+  DelayTon3(IN :=FALSE);
+  bCentringCylDown3 := FALSE;  
+  g_bCentringCyl2Down3 := FALSE;
+ 
+END_IF; 
+
+CASE g_noCentringCyl2Switch3 OF
+  0:
+   g_noCentringCyl2Switch3 := 0;
+  10:(*上升命令输出*)
+    g_boCentringCyl2Up3 := TRUE;
+    g_boCentringCyl2Down3 := FALSE;
+    g_bCenterCyl3DownNoSignalAlarm := FALSE;
+    DelayTon_Down3(IN := FALSE);
+    DelayTon_Up3(IN := FALSE);
+    fDelayTime3 := g_fCentringCyl2Up_DelayTime3;
+    IF g_bCentringCyl2Up_UseINPOS3 THEN(*使用到位信号*)
+      g_noCentringCyl2Switch3 := 20;
+    ELSE(*使用延时信号*)
+      g_noCentringCyl2Switch3 := 30;
+    END_IF;
+  20:(*等待到位信号*)
+    IF g_bCentringCyl2Up_INPOS3 THEN
+      g_boCentringCyl2Up_Done3 := TRUE;
+      g_noCentringCyl2Switch3 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_3 := FALSE;
+      g_bCentringCyl2State3 := TRUE;
+      bCyl3UpState := TRUE;
+      DelayTon_Up3(IN := FALSE);
+      bCenterCyl3UpNoSignalAlarm := FALSE;
+    ELSE
+      IF NOT bCyl3UpState THEN
+        DelayTon_Up3(IN := TRUE,PT := LREAL_TO_TIME(g_fCentringCyl2Up_DelayTime3/1000.0));
+        IF DelayTon_Up3.Q THEN
+          DelayTon_Up3(IN := FALSE);
+          bCenterCyl3UpNoSignalAlarm := TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+  30:(*延时并输出完成信号*)
+    DelayTon3(IN :=TRUE,PT := LREAL_TO_TIME(fDelayTime3/1000.0));
+    IF DelayTon3.Q THEN
+      g_boCentringCyl2Up_Done3 := TRUE;
+      DelayTon3(IN :=FALSE);
+      g_noCentringCyl2Switch3 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_3 := FALSE;
+      g_bCentringCyl2State3 := TRUE;
+      bCyl3UpState := TRUE;
+    END_IF;
+    
+  50:(*下降命令输出*)
+    g_boCentringCyl2Up3 := FALSE;
+    g_boCentringCyl2Down3 := TRUE;
+    DelayTon_Up3(IN := FALSE);
+    bCenterCyl3UpNoSignalAlarm := FALSE;
+    fDelayTime3 := g_fCentringCyl2Down_DelayTime3;
+    IF g_bCentringCyl2Down_UseINPOS3 THEN(*使用到位信号*)
+      g_noCentringCyl2Switch3 := 60;
+    ELSE(*使用延时信号*)
+      g_noCentringCyl2Switch3 := 70;
+    END_IF;
+  60: (*等待到位信号*)
+    IF g_bCentringCyl2Down_INPOS3 THEN
+      g_boCentringCyl2Down_Done3 := TRUE;
+      g_noCentringCyl2Switch3 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_3 := FALSE;
+      g_bCentringCyl2State3 := FALSE;
+      DelayTon_Down3(IN := FALSE);
+      g_bCenterCyl3DownNoSignalAlarm := FALSE;
+      bCyl3UpState := FALSE;
+    ELSE
+      IF bCyl3UpState THEN
+        DelayTon_Down3(IN := TRUE,PT :=LREAL_TO_TIME(g_fCentringCyl2Down_DelayTime3/1000.0));
+        IF DelayTon_Down3.Q THEN
+          DelayTon_Down3(IN := FALSE);
+          g_bCenterCyl3DownNoSignalAlarm := TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+  70:(*延时并输出完成信号*)
+    DelayTon3(IN :=TRUE,PT := LREAL_TO_TIME(fDelayTime3/1000.0));
+    IF DelayTon3.Q THEN
+      g_boCentringCyl2Down_Done3 := TRUE;
+      DelayTon3(IN :=FALSE);
+      g_noCentringCyl2Switch3 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_3 := FALSE;
+      g_bCentringCyl2State3 := FALSE;
+      bCyl3UpState := FALSE;
+    END_IF;
+END_CASE;
+
+
+(*新加的气缸状态切换,气缸到位超时报警和目前默认到位时间用的一个时间*)
+CentringCyl3State(
+  bUseUpSignal := g_bCentringCyl2Up_UseINPOS3,
+  bUseDownSignal := g_bCentringCyl2Down_UseINPOS3,
+  boCylUp := g_boCentringCyl2Up3,
+  boCylDown := g_boCentringCyl2Down3,
+  bUpInplace := g_bCentringCyl2Up_INPOS3,
+  bDownInplace := g_bCentringCyl2Down_INPOS3,
+  bUpInplaceNoFilter := bCyl3UpSignalNoFilter,
+  bDownInplaceNoFilter := bCyl3DownSignalNoFilter,
+  dClylinderUpDelayTime := LREAL_TO_DINT(g_fCentringCyl2Up_DelayTime3),
+  dClylinderDownDelayTime := LREAL_TO_DINT(g_fCentringCyl2Down_DelayTime3),
+  dClylinderUpOverDelayTime := LREAL_TO_DINT(g_fCentringCyl2Up_DelayTime3),
+  dClylinderDownOverDelayTime := LREAL_TO_DINT(g_fCentringCyl2Down_DelayTime3),
+  bArrayConfigOutputUp := ArrayConfigOutputNumber[132],
+  bArrayConfigOutputDown := ArrayConfigOutputNumber[135],
+  bCylState  => bCyl3UpState,
+  bCylStateToHMI => g_bCentringCyl2State3,
+  bCylUpNoSignalAlarm => bCenterCyl3UpNoSignalAlarm,
+  bCylDownNoSignalAlarm => g_bCenterCyl3DownNoSignalAlarm,
+  bArrayConfigOutputUp_FB => ArrayConfigOutputNumber[132],
+  bArrayConfigOutputDown_FB => ArrayConfigOutputNumber[135]
+);
+
+
+
+R_CentringCylUp4(CLK :=(g_bCentringCyl2Up4 OR bCentringCylUp4));      
+R_CentringCylDown4(CLK :=(g_bCentringCyl2Down4 OR bCentringCylDown4));  
+
+IF R_CentringCylUp4.Q THEN
+  IF g_boCentringCyl2Up4 AND NOT g_boCentringCyl2Down4 THEN
+    DelayTon4(IN :=FALSE);
+    M.ENABLE[269] := 0;
+    g_bExecuteFinishedM269 := FALSE;
+	g_bFinishedM269_4 := FALSE;
+      g_boCentringCyl2Up_Done4 := TRUE;  
+      g_boCentringCyl2Down_Done4 := FALSE;
+  ELSE
+    IF g_bUseSup2Centring4 THEN(*使用了这个气缸*)
+      g_noCentringCyl2Switch4 := 10;
+        (*重置输出完成信号*)
+      g_boCentringCyl2Up_Done4 := FALSE;  
+      g_boCentringCyl2Down_Done4 := FALSE;
+    ELSE
+      g_noCentringCyl2Switch4 := 0;
+      M.ENABLE[269] := 0; 
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_4 := FALSE;
+      g_boCentringCyl2Up_Done4 := TRUE;  
+      g_boCentringCyl2Down_Done4 := FALSE;
+    END_IF;
+  END_IF;
+  DelayTon4(IN :=FALSE);
+  bCentringCylUp4 := FALSE;  
+  g_bCentringCyl2Up4 := FALSE;
+  DelayTon_Down4(IN := FALSE);
+  g_bCenterCyl4DownNoSignalAlarm := FALSE;
+END_IF; 
+
+IF R_CentringCylDown4.Q THEN
+  IF NOT g_boCentringCyl2Up4 AND g_boCentringCyl2Down4 THEN
+    DelayTon4(IN :=FALSE);
+    M.ENABLE[269] := 0;
+    g_bExecuteFinishedM269 := FALSE;
+	g_bFinishedM269_4 := FALSE;
+      g_boCentringCyl2Up_Done4 := FALSE;  
+      g_boCentringCyl2Down_Done4 := TRUE; 
+  ELSE
+    IF g_bUseSup2Centring4 THEN(*使用了这个气缸*)
+      g_noCentringCyl2Switch4 := 50;
+        (*重置输出完成信号*)
+      g_boCentringCyl2Up_Done4 := FALSE;  
+      g_boCentringCyl2Down_Done4 := FALSE; 
+    ELSE
+      g_noCentringCyl2Switch4 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_4 := FALSE;
+      g_boCentringCyl2Up_Done4 := FALSE;  
+      g_boCentringCyl2Down_Done4 := TRUE; 
+    END_IF;
+  END_IF;
+  DelayTon4(IN :=FALSE);
+  bCentringCylDown4 := FALSE;  
+  g_bCentringCyl2Down4 := FALSE;
+ 
+END_IF; 
+
+CASE g_noCentringCyl2Switch4 OF
+  0:
+   g_noCentringCyl2Switch4 := 0;
+  10:(*上升命令输出*)
+    g_boCentringCyl2Up4 := TRUE;
+    g_boCentringCyl2Down4 := FALSE;
+    g_bCenterCyl4DownNoSignalAlarm := FALSE;
+    DelayTon_Down4(IN := FALSE);
+    DelayTon_Up4(IN := FALSE);
+    fDelayTime4 := g_fCentringCyl2Up_DelayTime4;
+    IF g_bCentringCyl2Up_UseINPOS4 THEN(*使用到位信号*)
+      g_noCentringCyl2Switch4 := 20;
+    ELSE(*使用延时信号*)
+      g_noCentringCyl2Switch4 := 30;
+    END_IF;
+  20:(*等待到位信号*)
+    IF g_bCentringCyl2Up_INPOS4 THEN
+      g_boCentringCyl2Up_Done4 := TRUE;
+      g_noCentringCyl2Switch4 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_4 := FALSE;
+      g_bCentringCyl2State4 := TRUE;
+      bCyl4UpState := TRUE;
+      DelayTon_Up4(IN := FALSE);
+      bCenterCyl4UpNoSignalAlarm := FALSE;
+    ELSE
+      IF NOT bCyl4UpState THEN
+        DelayTon_Up4(IN := TRUE,PT := LREAL_TO_TIME(g_fCentringCyl2Up_DelayTime4/1000.0));
+        IF DelayTon_Up4.Q THEN
+          DelayTon_Up4(IN := FALSE);
+          bCenterCyl4UpNoSignalAlarm := TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+  30:(*延时并输出完成信号*)
+    DelayTon4(IN :=TRUE,PT := LREAL_TO_TIME(fDelayTime4/1000.0));
+    IF DelayTon4.Q THEN
+      g_boCentringCyl2Up_Done4 := TRUE;
+      DelayTon4(IN :=FALSE);
+      g_noCentringCyl2Switch4 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_4 := FALSE;
+      g_bCentringCyl2State4 := TRUE;
+      bCyl4UpState := TRUE;
+    END_IF;
+    
+  50:(*下降命令输出*)
+    g_boCentringCyl2Up4 := FALSE;
+    g_boCentringCyl2Down4 := TRUE;
+    DelayTon_Up4(IN := FALSE);
+    bCenterCyl4UpNoSignalAlarm := FALSE;
+    fDelayTime4 := g_fCentringCyl2Down_DelayTime4;
+    IF g_bCentringCyl2Down_UseINPOS4 THEN(*使用到位信号*)
+      g_noCentringCyl2Switch4 := 60;
+    ELSE(*使用延时信号*)
+      g_noCentringCyl2Switch4 := 70;
+    END_IF;
+  60: (*等待到位信号*)
+    IF g_bCentringCyl2Down_INPOS4 THEN
+      g_boCentringCyl2Down_Done4 := TRUE;
+      g_noCentringCyl2Switch4 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_4 := FALSE;
+      g_bCentringCyl2State4 := FALSE;
+      DelayTon_Down4(IN := FALSE);
+      g_bCenterCyl4DownNoSignalAlarm := FALSE;
+      bCyl4UpState := FALSE;
+    ELSE
+      IF bCyl4UpState THEN
+        DelayTon_Down4(IN := TRUE,PT :=LREAL_TO_TIME(g_fCentringCyl2Down_DelayTime4/1000.0));
+        IF DelayTon_Down4.Q THEN
+          DelayTon_Down4(IN := FALSE);
+          g_bCenterCyl4DownNoSignalAlarm := TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+  70:(*延时并输出完成信号*)
+    DelayTon4(IN :=TRUE,PT := LREAL_TO_TIME(fDelayTime4/1000.0));
+    IF DelayTon4.Q THEN
+      g_boCentringCyl2Down_Done4 := TRUE;
+      DelayTon4(IN :=FALSE);
+      g_noCentringCyl2Switch4 := 0;
+      M.ENABLE[269] := 0;
+      g_bExecuteFinishedM269 := FALSE;
+	  g_bFinishedM269_4 := FALSE;
+      g_bCentringCyl2State4 := FALSE;
+      bCyl4UpState := FALSE;
+    END_IF;
+END_CASE;
+
+
+(*新加的气缸状态切换,气缸到位超时报警和目前默认到位时间用的一个时间*)
+CentringCyl4State(
+  bUseUpSignal := g_bCentringCyl2Up_UseINPOS4,
+  bUseDownSignal := g_bCentringCyl2Down_UseINPOS4,
+  boCylUp := g_boCentringCyl2Up4,
+  boCylDown := g_boCentringCyl2Down4,
+  bUpInplace := g_bCentringCyl2Up_INPOS4,
+  bDownInplace := g_bCentringCyl2Down_INPOS4,
+  bUpInplaceNoFilter := bCyl4UpSignalNoFilter,
+  bDownInplaceNoFilter := bCyl4DownSignalNoFilter,
+  dClylinderUpDelayTime := LREAL_TO_DINT(g_fCentringCyl2Up_DelayTime4),
+  dClylinderDownDelayTime := LREAL_TO_DINT(g_fCentringCyl2Down_DelayTime4),
+  dClylinderUpOverDelayTime := LREAL_TO_DINT(g_fCentringCyl2Up_DelayTime4),
+  dClylinderDownOverDelayTime := LREAL_TO_DINT(g_fCentringCyl2Down_DelayTime4),
+  bArrayConfigOutputUp := ArrayConfigOutputNumber[188],
+  bArrayConfigOutputDown := ArrayConfigOutputNumber[189],
+  bCylState  => bCyl4UpState,
+  bCylStateToHMI => g_bCentringCyl2State4,
+  bCylUpNoSignalAlarm => bCenterCyl4UpNoSignalAlarm,
+  bCylDownNoSignalAlarm => g_bCenterCyl4DownNoSignalAlarm,
+  bArrayConfigOutputUp_FB => ArrayConfigOutputNumber[188],
+  bArrayConfigOutputDown_FB => ArrayConfigOutputNumber[189]
+);
+(*对中气缸到位信号添加滤波*)
+Fileter_4(LREAL_TO_TIME(FUN_MSTOS(Cyl1FilterTime)),g_bCentringCyl2Up_NONC1,g_biCentringCyl2Up_INPOS1,g_bCentringCyl2Up_INPOS1);
+g_bCentringCyl2Up_INPOS1 := FUN_SingalLogic(g_bCentringCyl2Up_INPOS1,g_bCentringCyl2Up_NONC1);
+Fileter_1(LREAL_TO_TIME(FUN_MSTOS(Cyl1FilterTime)),g_bCentringCyl2Down_NONC1,g_biCentringCyl2Down_INPOS1,g_bCentringCyl2Down_INPOS1);
+g_bCentringCyl2Down_INPOS1 := FUN_SingalLogic(g_bCentringCyl2Down_INPOS1,g_bCentringCyl2Down_NONC1);
+
+bCyl1UpSignalNoFilter := FUN_SingalLogic(g_biCentringCyl2Up_INPOS1,g_bCentringCyl2Up_NONC1);
+bCyl1DownSignalNoFilter := FUN_SingalLogic(g_biCentringCyl2Down_INPOS1,g_bCentringCyl2Down_NONC1);
+
+Fileter_5(LREAL_TO_TIME(FUN_MSTOS(Cyl2FilterTime)),g_bCentringCyl2Up_NONC2,g_biCentringCyl2Up_INPOS2,g_bCentringCyl2Up_INPOS2);
+g_bCentringCyl2Up_INPOS2 := FUN_SingalLogic(g_bCentringCyl2Up_INPOS2,g_bCentringCyl2Up_NONC2);
+Fileter_2(LREAL_TO_TIME(FUN_MSTOS(Cyl2FilterTime)),g_bCentringCyl2Down_NONC2,g_biCentringCyl2Down_INPOS2,g_bCentringCyl2Down_INPOS2);
+g_bCentringCyl2Down_INPOS2 := FUN_SingalLogic(g_bCentringCyl2Down_INPOS2,g_bCentringCyl2Down_NONC2);
+
+bCyl2UpSignalNoFilter := FUN_SingalLogic(g_biCentringCyl2Up_INPOS2,g_bCentringCyl2Up_NONC2);
+bCyl2DownSignalNoFilter := FUN_SingalLogic(g_biCentringCyl2Down_INPOS2,g_bCentringCyl2Down_NONC2);
+
+Fileter_6(LREAL_TO_TIME(FUN_MSTOS(Cyl3FilterTime)),g_bCentringCyl2Up_NONC3,g_biCentringCyl2Up_INPOS3,g_bCentringCyl2Up_INPOS3);
+g_bCentringCyl2Up_INPOS3 := FUN_SingalLogic(g_bCentringCyl2Up_INPOS3,g_bCentringCyl2Up_NONC3);
+Fileter_3(LREAL_TO_TIME(FUN_MSTOS(Cyl3FilterTime)),g_bCentringCyl2Down_NONC3,g_biCentringCyl2Down_INPOS3,g_bCentringCyl2Down_INPOS3);
+g_bCentringCyl2Down_INPOS3 := FUN_SingalLogic(g_bCentringCyl2Down_INPOS3,g_bCentringCyl2Down_NONC3);
+
+bCyl3UpSignalNoFilter := FUN_SingalLogic(g_biCentringCyl2Up_INPOS3,g_bCentringCyl2Up_NONC3);
+bCyl3DownSignalNoFilter := FUN_SingalLogic(g_biCentringCyl2Down_INPOS3,g_bCentringCyl2Down_NONC3);
+
+Fileter_7(LREAL_TO_TIME(FUN_MSTOS(Cyl4FilterTime)),g_bCentringCyl2Up_NONC4,g_biCentringCyl2Up_INPOS4,g_bCentringCyl2Up_INPOS4);
+g_bCentringCyl2Up_INPOS4 := FUN_SingalLogic(g_bCentringCyl2Up_INPOS4,g_bCentringCyl2Up_NONC4);
+Fileter_8(LREAL_TO_TIME(FUN_MSTOS(Cyl4FilterTime)),g_bCentringCyl2Down_NONC4,g_biCentringCyl2Down_INPOS4,g_bCentringCyl2Down_INPOS4);
+g_bCentringCyl2Down_INPOS4 := FUN_SingalLogic(g_bCentringCyl2Down_INPOS4,g_bCentringCyl2Down_NONC4);
+
+bCyl4UpSignalNoFilter := FUN_SingalLogic(g_biCentringCyl2Up_INPOS4,g_bCentringCyl2Up_NONC4);
+bCyl4DownSignalNoFilter := FUN_SingalLogic(g_biCentringCyl2Down_INPOS4,g_bCentringCyl2Down_NONC4);
+
+(*对中气缸上升到位信号超时报警*)
+IF bCenterCyl1UpNoSignalAlarm AND ListenBoardInputConfig[405]  THEN
+  g_Alarm.alarmArray[531] := 1244;
+ELSE
+  g_Alarm.alarmArray[531] := 0;
+END_IF;
+IF bCenterCyl2UpNoSignalAlarm AND ListenBoardInputConfig[406] THEN
+  g_Alarm.alarmArray[532] := 1245;
+ELSE
+  g_Alarm.alarmArray[532] := 0;
+END_IF;
+IF bCenterCyl3UpNoSignalAlarm AND ListenBoardInputConfig[407] THEN
+  g_Alarm.alarmArray[533] := 1246;
+ELSE
+  g_Alarm.alarmArray[533] := 0;
+END_IF;
+IF bCenterCyl4UpNoSignalAlarm AND ListenBoardInputConfig[457] THEN
+  g_Alarm.alarmArray[594] := 1309;
+ELSE
+  g_Alarm.alarmArray[594] := 0;
+END_IF;
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[夹中气缸-森峰]]></xhtml:p>
+  </documentation>
+</pou>

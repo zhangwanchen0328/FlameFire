@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MC_CAMINFODATA">
+  <baseType>
+    <struct>
+      <variable name="ACTUALMASTERAXISPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="ACTUALMASTERCAMPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="ACTUALSLAVEAXISPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="ACTUALSLAVECAMPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="CAMEXCHANGEACTIVATIONMODE">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="CAMEXCHANGEACTIVATIONPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="CAMEXCHANGECAMTABLEID">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="CAMTABLEID">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="CAMTABLEQUEUED">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="FIXEDTABLE">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="MASTERABSOLUTE">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="MASTERAXISCOUPLINGPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MASTERCAMSTARTPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MASTEROFFSET">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MASTERSCALING">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="PERIODIC">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="POINTNUMBER">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="RAWMASTERPERIOD">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="RAWSLAVESTROKE">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SCALINGACTIVATIONMODE">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="SCALINGACTIVATIONPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SCALINGPENDING">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="SLAVEABSOLUTE">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="SLAVEAXISCOUPLINGPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SLAVECAMSTARTPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SLAVEOFFSET">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SLAVESCALING">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SUMOFSLAVESTROKES">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

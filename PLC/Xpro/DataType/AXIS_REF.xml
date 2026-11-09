@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AXIS_REF">
+  <baseType>
+    <struct>
+      <variable name="NCADDR">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="NCTOPLC">
+        <type>
+          <derived name="NCTOPLC_AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="PLCTONC">
+        <type>
+          <derived name="PLCTONC_AXIS_REF"/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

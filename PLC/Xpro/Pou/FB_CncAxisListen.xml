@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CncAxisListen" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBABUAxisCmdOP">
+        <type>
+          <derived name="FB_ABUAxisCmdOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[AB轴命令过PLC转一道]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBABUAxisCmdOP();(***AB轴命令过PLC转一道***)]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

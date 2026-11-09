@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BKFixedBackAdjust" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="FixedLen_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="FixedLenAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="FixedLen_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trriger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nSwitchState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biFixedBackOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFixedBackClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFixedBackDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dFixedLenDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nBKCuttingState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trriger1(CLK := g_biFixedBackOpen);
+R_Trriger2(CLK := g_biFixedBackClose);
+
+IF R_Trriger1.Q THEN
+  g_boFixedBackDone := FALSE;
+  g_nBKCuttingState := 7;
+  nSwitchState := 1;
+END_IF;
+
+IF R_Trriger2.Q THEN
+  g_boFixedBackDone := FALSE;
+END_IF;
+
+
+CASE nSwitchState OF
+  0:
+  nSwitchState := 0;
+  1:
+  FixedLenAbs.Position := FixedLen_Axis.NCTOPLC.SETPOS - dFixedLenDis;
+  FixedLenAbs.Execute := TRUE;
+  FixedLenAbs.Velocity := dVelocity;
+  
+  IF FixedLenAbs.Done THEN
+    FixedLenAbs.Execute := FALSE;
+    g_boFixedBackDone := TRUE;
+    g_nBKCuttingState := 8;
+    nSwitchState := 0;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer THEN
+    nSwitchState := 10;
+  END_IF;
+  IF FixedLenAbs.CommandAborted OR FixedLenAbs.Error THEN
+    g_boFixedBackDone := FALSE;
+    FixedLenAbs.Execute := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  10:
+  FixedLenAbs.Execute := FALSE;
+  FixedLen_Stop.Execute := TRUE;
+  IF FixedLen_Stop.Done AND g_bPlcStartBuffer THEN
+    FixedLen_Stop.Execute := FALSE;
+    nSwitchState := 1;
+  END_IF;
+  
+  IF FixedLen_Stop.CommandAborted OR FixedLen_Stop.Error THEN
+    FixedLen_Stop.Execute := FALSE;
+    nSwitchState := 0;
+  END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  FixedLenAbs.Execute := FALSE;
+  FixedLen_Stop.Execute := FALSE;
+  nSwitchState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

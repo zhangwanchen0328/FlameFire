@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <globalVars>
+    <variable name="g_ConfigMonitorAI_200" address="%IW99.0200">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_201" address="%IW99.0201">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_202" address="%IW99.0202">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_203" address="%IW99.0203">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_204" address="%IW99.0204">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_205" address="%IW99.0205">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_206" address="%IW99.0206">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_207" address="%IW99.0207">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_208" address="%IW99.0208">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_209" address="%IW99.0209">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_210" address="%IW99.0210">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_211" address="%IW99.0211">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_212" address="%IW99.0212">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_213" address="%IW99.0213">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_214" address="%IW99.0214">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_215" address="%IW99.0215">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_216" address="%IW99.0216">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_217" address="%IW99.0217">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_218" address="%IW99.0218">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_219" address="%IW99.0219">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorAI_220" address="%IW99.0220">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ AI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+  </globalVars>
+</root>

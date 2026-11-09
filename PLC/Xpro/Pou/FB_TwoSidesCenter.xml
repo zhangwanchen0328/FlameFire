@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_TwoSidesCenter" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_TringOpen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TringClose">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TringUseValue">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TringCleanValue">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TringSetValue">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TringManula">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bDiffEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bManualHMI">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="ntwosidesstate">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dTwoSidesCompensationA">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTwoSidesCompensationB">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTwoSidesCompensationOffsetA">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTwoSidesCompensationOffsetB">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_TringOpen(CLK := g_bTwoSidesCenterOpenM);
+R_TringClose(CLK := g_bTwoSidesCenterCloseM);
+R_TringSetValue(CLK := g_bFourSidesCenterSetValueM);
+R_TringManula(CLK := bManualHMI);
+IF R_TringOpen.Q THEN
+  g_bTwoSidesCenterOpenM := FALSE;
+  ntwosidesstate := 10;
+  g_dUseSideCenterType := 5.0;
+  g_bExecuteSingeSideOnAFace := FALSE;
+  g_bExecuteSingeSideOnBFace := FALSE;
+  g_bExecuteSingeSideOnCFace := FALSE;
+  g_bExecuteSingeSideOnDFace := FALSE;
+END_IF;
+IF R_TringClose.Q THEN
+  g_bTwoSidesCenterCloseM := FALSE;
+  ntwosidesstate := 20;
+END_IF;
+IF R_TringManula.Q THEN
+  g_dInformHmiUpdateValue := 6.0;
+  bManualHMI := FALSE;
+END_IF;
+
+g_dTwoSidesCompensationValueA := g_dTwoSidesCenterCompensationA; 
+g_dTwoSidesCompensationValueB := g_dTwoSidesCenterCompensationB; 
+CASE ntwosidesstate OF
+  0:
+  ntwosidesstate := 0;
+  10:
+  IF R_TringSetValue.Q THEN
+    IF g_nFourSidesCenterSetValueP = 0 THEN
+      dTwoSidesCompensationA := g_dFourSidesCenterSetValueQ;
+    ELSIF g_nFourSidesCenterSetValueP = 1 THEN
+      dTwoSidesCompensationB := g_dFourSidesCenterSetValueQ;
+    END_IF;
+    g_bFourSidesCenterSetValueM := FALSE;
+  END_IF;
+    IF g_bPlcPauseBuffer THEN
+      ntwosidesstate := 30;
+    END_IF;
+  20:
+    g_dTwoSidesCenterCompensationA := dTwoSidesCompensationA - g_dBeamCenterPos;
+    g_dTwoSidesCenterCompensationB := dTwoSidesCompensationB - g_dBeamCenterPos;
+    g_dInformHmiUpdateValue := 6.0;
+    ntwosidesstate := 0;
+    IF ABS(g_dTwoSidesCenterCompensationA)>g_dCompensationThreshold OR ABS(g_dTwoSidesCenterCompensationB) > g_dCompensationThreshold THEN
+      g_bExcessiveDeviationOfCentringCompensationAlarm := TRUE;
+    END_IF;
+  30:
+    IF g_bPlcStartBuffer THEN
+      ntwosidesstate := 10;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer OR g_bPlcEndM THEN
+  ntwosidesstate := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

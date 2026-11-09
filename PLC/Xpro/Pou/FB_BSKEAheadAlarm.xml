@@ -1,0 +1,480 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BSKEAheadAlarm" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="nBS12KTopProtectiveWindowTemper_100">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[100周期前的上保护镜温度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nBS12KFocusLensTemperature_100">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBS12KBottomProtectiveWindowTemper_100">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBS12KCavityTemperature_100">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="Ton_100ms">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[100周期的定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_1s">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[1s的定时器,为了检查]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm318">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm319">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm320">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm347">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDewPointTemper">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[露点报警温度：露点+露点偏置值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCheckTempUpSpeedSatasBSKE">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检查温升速度报警的状态机 1S钟检查一次]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm1161">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm1162">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm1163">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm1164">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm1165">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm1166">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton1161">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton1162">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton1163">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton1164">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton1165">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton1166">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigge1161">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检查温升速度报警的状态机 1S钟检查一次]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigge1162">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检查温升速度报警的状态机 1S钟检查一次]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigge1163">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检查温升速度报警的状态机 1S钟检查一次]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigge1164">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检查温升速度报警的状态机 1S钟检查一次]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigge1165">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检查温升速度报警的状态机 1S钟检查一次]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigge1166">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检查温升速度报警的状态机 1S钟检查一次]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="StrayLightFilterTime">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0.005"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[杂散光报警滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*上保护镜温度提示*)
+IF  g_niBS12KTopProtectiveWindowTemper > g_niBSKEProtectiveWindowTipsTemper  THEN
+  IF NOT g_bCloseUpProtectWindowAlarm_BS12K  THEN
+    g_Alarm.alarmArray[435] := 0; 
+  ELSE
+    g_Alarm.alarmArray[435] := 1146; 
+  END_IF;  
+ELSE
+  g_Alarm.alarmArray[435] := 0;
+END_IF; 
+
+(*聚焦镜温度提示*)
+IF  g_niBS12KFocusLensTemperature > g_niBSKEProtectiveWindowTipsTemper THEN
+  IF NOT g_bCloseUpProtectWindowAlarm_BS12K  THEN
+    g_Alarm.alarmArray[436] := 0; 
+  ELSE
+    g_Alarm.alarmArray[436] := 1147; 
+  END_IF;  
+ELSE
+  g_Alarm.alarmArray[436] := 0;
+END_IF; 
+
+(*下保护镜温度提示*)
+IF  g_niBS12KBottomProtectiveWindowTemper > g_niBSKEProtectiveWindowTipsTemper THEN
+  IF NOT g_bCloseUpProtectWindowAlarm_BS12K  THEN
+    g_Alarm.alarmArray[437] := 0; 
+  ELSE
+    g_Alarm.alarmArray[437] := 1148; 
+  END_IF;  
+ELSE
+  g_Alarm.alarmArray[437] := 0;
+END_IF; 
+
+(*腔体温度提示*)
+IF  g_niBS12KCavityTemperature >  g_niBSKECavityTipsTemper THEN
+  IF g_bClosedCavityTemperatureAlarm_BS12K  THEN
+    g_Alarm.alarmArray[438] := 0; 
+  ELSE
+    g_Alarm.alarmArray[438] := 1149;  
+  END_IF;  
+ELSE
+  g_Alarm.alarmArray[438] := 0;
+END_IF; 
+
+(*上保护镜温升报警、提示:上保护镜温度-腔体温度*)
+g_nTopProtectiveWindowTemperRise := g_niBS12KTopProtectiveWindowTemper - g_niBS12KCavityTemperature;
+ToFAlarm318(IN := g_nTopProtectiveWindowTemperRise > g_niProtectiveWindowTemperRiseAlarm2, PT := T#1s); 
+IF ToFAlarm318.Q AND g_bCloseUpProtectWindowAlarm_BS12K THEN
+   g_Alarm.alarmArray[439] := 1150;
+ELSIF g_nTopProtectiveWindowTemperRise > g_niProtectiveWindowTemperRiseAlarm1 AND g_bCloseUpProtectWindowAlarm_BS12K THEN
+   g_Alarm.alarmArray[439] := 1151;
+ELSE
+  g_Alarm.alarmArray[439] := 0;
+END_IF;
+(*下保护镜温升报警、提示:下保护镜温度-腔体温度*)
+g_nBottomProtectiveWindowTemperRise := g_niBS12KBottomProtectiveWindowTemper - g_niBS12KCavityTemperature;
+ToFAlarm319(IN := g_nBottomProtectiveWindowTemperRise > g_niProtectiveWindowTemperRiseAlarm2, PT := T#1s); 
+IF ToFAlarm319.Q AND g_bCloseUpProtectWindowAlarm_BS12K THEN
+   g_Alarm.alarmArray[440] := 1152;
+ELSIF g_nBottomProtectiveWindowTemperRise > g_niProtectiveWindowTemperRiseAlarm1 AND g_bCloseUpProtectWindowAlarm_BS12K THEN
+   g_Alarm.alarmArray[440] := 1153;
+ELSE
+  g_Alarm.alarmArray[440] := 0;
+END_IF;
+(*聚焦镜温升报警、提示:聚焦镜温度-腔体温度*)
+g_nFocusLensTemperatureRise := g_niBS12KFocusLensTemperature - g_niBS12KCavityTemperature;
+ToFAlarm320(IN := g_nFocusLensTemperatureRise > g_niProtectiveWindowTemperRiseAlarm2, PT := T#1s);
+IF ToFAlarm320.Q AND g_bCloseUpProtectWindowAlarm_BS12K THEN
+   g_Alarm.alarmArray[441] := 1154;
+ELSIF g_nFocusLensTemperatureRise > g_niProtectiveWindowTemperRiseAlarm1 AND g_bCloseUpProtectWindowAlarm_BS12K THEN
+   g_Alarm.alarmArray[441] := 1155;
+ELSE
+  g_Alarm.alarmArray[441] := 0;
+END_IF;
+
+
+CASE nCheckTempUpSpeedSatasBSKE OF
+  0:(*拿一下当前的值*)
+    nBS12KTopProtectiveWindowTemper_100 := g_niBS12KTopProtectiveWindowTemper;
+    nBS12KFocusLensTemperature_100:= g_niBS12KFocusLensTemperature;
+    nBS12KBottomProtectiveWindowTemper_100:= g_niBS12KBottomProtectiveWindowTemper;
+    nBS12KCavityTemperature_100:= g_niBS12KCavityTemperature;
+    Ton_1s.IN:=FALSE;
+    nCheckTempUpSpeedSatasBSKE:=10;
+    
+  10:(*过1S之后*)
+    Ton_1s(IN := TRUE,PT := T#1000ms);
+    IF Ton_1s.Q  THEN 
+      Ton_1s.IN:=FALSE;     
+      nCheckTempUpSpeedSatasBSKE:=100;
+    END_IF; 
+    
+  100:  
+    (*上保护镜温度上升速度大于3度每秒报警*)
+    g_nTopProtectiveWindowTemperRiseSpeed := (g_niBS12KTopProtectiveWindowTemper - nBS12KTopProtectiveWindowTemper_100)/100;
+    IF  g_nTopProtectiveWindowTemperRiseSpeed > LREAL_TO_INT(g_nProtectiveWindowTemperUpSpeed) THEN
+      IF g_bProtectiveWindowTemperUpSpeed  THEN
+        g_Alarm.alarmArray[442] := 1156; 
+      ELSE
+        g_Alarm.alarmArray[442] := 0;  
+      END_IF; 
+    ELSE
+      g_Alarm.alarmArray[442] := 0; 
+    END_IF; 
+
+    (*聚焦镜温度上升速度大于3度每秒报警*)
+    g_nFocusLensTemperatureRiseSpeed := (g_niBS12KFocusLensTemperature - nBS12KFocusLensTemperature_100)/100;
+    IF g_nFocusLensTemperatureRiseSpeed > LREAL_TO_INT(g_nProtectiveWindowTemperUpSpeed) THEN
+      IF g_bProtectiveWindowTemperUpSpeed  THEN
+        g_Alarm.alarmArray[443] := 1157; 
+      ELSE
+        g_Alarm.alarmArray[443] := 0;  
+      END_IF; 
+    ELSE
+      g_Alarm.alarmArray[443] := 0; 
+    END_IF;
+
+    (*下保护镜温度上升速度大于3度每秒报警*)
+    g_nBottomProtectiveWindowTemperRiseSpeed := (g_niBS12KBottomProtectiveWindowTemper - nBS12KBottomProtectiveWindowTemper_100)/100;
+    IF g_nBottomProtectiveWindowTemperRiseSpeed > LREAL_TO_INT(g_nProtectiveWindowTemperUpSpeed) THEN
+      IF g_bProtectiveWindowTemperUpSpeed  THEN
+        g_Alarm.alarmArray[444] := 1158; 
+      ELSE
+        g_Alarm.alarmArray[444] := 0;  
+      END_IF; 
+    ELSE
+      g_Alarm.alarmArray[444] := 0; 
+    END_IF; 
+
+    Ton_1s.IN:=FALSE;
+    nCheckTempUpSpeedSatasBSKE:=0;
+END_CASE;
+
+(*露点报警,当镜片温度<露点报警温度,会结露*)
+nDewPointTemper := g_niBS12KEHum + g_biDewPointOffset;
+ToFAlarm347(IN:=nDewPointTemper>g_niBS12KTopProtectiveWindowTemper OR nDewPointTemper>g_niBS12KFocusLensTemperature OR nDewPointTemper>g_niBS12KBottomProtectiveWindowTemper,PT:= T#1s);
+IF ToFAlarm347.Q AND g_biDewPointAlarmEnable = 0 THEN
+  g_Alarm.alarmArray[445] := 1159;
+ELSE
+  g_Alarm.alarmArray[445] := 0;
+END_IF;
+
+
+
+IF g_nCutAheadPID = 60184 THEN       (*头子PID识别:BS30KE:EB18=60184*)
+(*上保护镜杂散光:报警,提示*)
+Ton1161(IN := g_ni30KEStrayLightSensor2 > LREAL_TO_UINT(g_dStrayLightAlarmSet) AND g_noUPwmDuty >0, PT :=LREAL_TO_TIME(StrayLightFilterTime)); (*5ms滤波*)
+ToFAlarm1161(IN := Ton1161.Q, PT := T#1s);
+Ton1162(IN := g_ni30KEStrayLightSensor2 > LREAL_TO_UINT(g_dStrayLightTipsSet) AND g_noUPwmDuty >0, PT :=LREAL_TO_TIME(StrayLightFilterTime)); (*5ms滤波*)
+ToFAlarm1162(IN := Ton1162.Q, PT := T#1s);  
+IF ToFAlarm1161.Q AND g_bStrayLightDetectionEnable  AND NOT g_bStrayLightCalEnable THEN
+  g_Alarm.alarmArray[578] := 1290;
+
+ELSIF ToFAlarm1162.Q AND g_bStrayLightDetectionEnable THEN
+  g_Alarm.alarmArray[578] := 1291;
+
+ELSE
+  g_Alarm.alarmArray[578] := 0;
+END_IF;
+(****记录1161报警时上保护杂散光超基础阈值****)
+RTrigge1161(CLK := g_Alarm.alarmArray[578] = 1290);
+IF RTrigge1161.Q THEN
+  g_dStaryLightRecord1161:= UINT_TO_LREAL(g_ni30KEStrayLightSensor2) - g_dStrayLightBaseValue;
+END_IF;
+RTrigge1162(CLK := g_Alarm.alarmArray[578] = 1291);
+IF RTrigge1162.Q THEN
+  g_dStaryLightRecord1162:= UINT_TO_LREAL(g_ni30KEStrayLightSensor2) - g_dStrayLightBaseValue;
+END_IF;
+  
+(*聚焦镜杂散光:报警,提示*)
+Ton1163(IN := g_ni30KEStrayLightSensor3 > LREAL_TO_UINT(g_dStrayLightAlarmSet) AND g_noUPwmDuty >0, PT :=LREAL_TO_TIME(StrayLightFilterTime)); (*5ms滤波*)
+ToFAlarm1163(IN := Ton1163.Q, PT := T#1s);
+Ton1164(IN := g_ni30KEStrayLightSensor3 > LREAL_TO_UINT(g_dStrayLightTipsSet) AND g_noUPwmDuty >0, PT :=LREAL_TO_TIME(StrayLightFilterTime)); (*5ms滤波*)
+ToFAlarm1164(IN := Ton1164.Q, PT := T#1s); 
+IF ToFAlarm1163.Q AND g_bStrayLightDetectionEnable  AND NOT g_bStrayLightCalEnable THEN
+  g_Alarm.alarmArray[579] := 1292;
+
+ELSIF ToFAlarm1164.Q AND g_bStrayLightDetectionEnable THEN
+  g_Alarm.alarmArray[579] := 1293;
+
+ELSE
+  g_Alarm.alarmArray[579] := 0;
+END_IF;
+(****记录1163报警时上保护杂散光超基础阈值****)
+RTrigge1163(CLK := g_Alarm.alarmArray[579] = 1292);
+IF RTrigge1163.Q THEN
+  g_dStaryLightRecord1163:= UINT_TO_LREAL(g_ni30KEStrayLightSensor3) - g_dStrayLightBaseValue;
+END_IF;
+RTrigge1164(CLK := g_Alarm.alarmArray[579] = 1293);
+IF RTrigge1164.Q THEN
+  g_dStaryLightRecord1164:= UINT_TO_LREAL(g_ni30KEStrayLightSensor3) - g_dStrayLightBaseValue;
+END_IF;
+
+(*下保护镜杂散光:报警,提示*)
+Ton1165(IN := g_ni30KEStrayLightSensor4 > LREAL_TO_UINT(g_dStrayLightAlarmSet) AND g_noUPwmDuty >0, PT :=LREAL_TO_TIME(StrayLightFilterTime)); (*5ms滤波*)
+ToFAlarm1165(IN := Ton1165.Q, PT := T#1s);
+Ton1166(IN := g_ni30KEStrayLightSensor4 > LREAL_TO_UINT(g_dStrayLightTipsSet) AND g_noUPwmDuty >0, PT :=LREAL_TO_TIME(StrayLightFilterTime)); (*5ms滤波*)
+ToFAlarm1166(IN := Ton1166.Q, PT := T#1s); 
+IF ToFAlarm1165.Q AND g_bStrayLightDetectionEnable  AND NOT g_bStrayLightCalEnable THEN
+  g_Alarm.alarmArray[580] := 1294;
+
+ELSIF ToFAlarm1166.Q AND g_bStrayLightDetectionEnable  THEN
+  g_Alarm.alarmArray[580] := 1295;
+
+ELSE
+  g_Alarm.alarmArray[580] := 0;
+END_IF;
+(****记录1165报警时上保护杂散光超基础阈值****)
+RTrigge1165(CLK := g_Alarm.alarmArray[580] = 1294);
+IF RTrigge1165.Q THEN
+  g_dStaryLightRecord1165:= UINT_TO_LREAL(g_ni30KEStrayLightSensor4) - g_dStrayLightBaseValue;
+END_IF;
+RTrigge1166(CLK := g_Alarm.alarmArray[580] = 1294);
+IF RTrigge1166.Q THEN
+  g_dStaryLightRecord1166:= UINT_TO_LREAL(g_ni30KEStrayLightSensor4) - g_dStrayLightBaseValue;
+END_IF;
+
+  
+  (*做一个提示 如果有杂散光报警的头子 没有开启杂散光报警 就提示下有炸镜片的风险*)
+  IF g_bStrayLightDetectionEnable THEN
+     g_Alarm.alarmArray[581] := 0;
+  ELSE 
+     g_Alarm.alarmArray[581] := 1296;
+  END_IF;
+END_IF;
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

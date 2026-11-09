@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_GasShareControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="RTrigger_OpenOxy">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger_OpenAir">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger_OpenNirto">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger_CloseGasPower">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bcloseGasPower">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*来了氧气输出的上升沿就开启氧气电源*)
+RTrigger_OpenOxy(CLK := g_boOxygenValve ); 
+IF  RTrigger_OpenOxy.Q THEN
+  g_boOxyProValvePower:=TRUE;
+  g_boAirProValvePower:=FALSE;
+  g_boNirtoProValvePower:=FALSE;
+END_IF;
+(*来了空气输出的上升沿就开启空气电源*)
+RTrigger_OpenAir(CLK := g_boAirValve ); 
+IF  RTrigger_OpenAir.Q THEN
+  g_boAirProValvePower:=TRUE;
+  g_boOxyProValvePower:=FALSE; 
+  g_boNirtoProValvePower:=FALSE;
+END_IF;
+
+(*来了氮气输出的上升沿就开启氮气电源*)
+RTrigger_OpenNirto(CLK := g_boNirtogenValve ); 
+IF  RTrigger_OpenNirto.Q THEN
+  g_boNirtoProValvePower:=TRUE;
+  g_boOxyProValvePower:=FALSE; 
+  g_boAirProValvePower:=FALSE;
+END_IF;
+(*氧气空气合用比例阀的电源*)
+g_boOxyAirProValvePower:=g_boOxyProValvePower OR g_boAirProValvePower;
+(*氧气氮气合用比例阀的电源*)
+g_boOxyNirtoProValvePower:=g_boOxyProValvePower OR g_boNirtoProValvePower;
+(*空气氮气合用比例阀的电源*)
+g_boAirNirtoProValvePower:=g_boNirtoProValvePower OR g_boAirProValvePower;
+(*三气合一阀的电源*)
+g_boMasterProValvePower:=g_boOxyAirProValvePower  OR g_boAirNirtoProValvePower ;
+(*来了程序结束的上升沿就关闭所有电源*)
+
+RTrigger_CloseGasPower(CLK := g_bProcessDone ); 
+IF bcloseGasPower AND  RTrigger_CloseGasPower.Q THEN
+  g_boNirtoProValvePower:=FALSE;
+  g_boOxyProValvePower:=FALSE; 
+  g_boAirProValvePower:=FALSE;
+  g_boMasterProValvePower:=FALSE;
+END_IF;
+
+IF g_boOxygenValve THEN(*出氧气*)
+  g_uoOxyAirPressureOut:=g_uoOxygenPressureOut;
+ELSIF g_boAirValve THEN(*出空气*)
+   g_uoOxyAirPressureOut:=g_uoAirPressureOut;
+ELSE
+   g_uoOxyAirPressureOut:=0;
+END_IF;
+
+IF g_boNirtogenValve  THEN(*出氮气*)
+  g_uoOxyNirtoPressureOut:=g_uoNirtogenPressureOut;
+ELSIF g_boOxygenValve THEN(*出氧气*)
+   g_uoOxyNirtoPressureOut:=g_uoOxygenPressureOut;
+ELSE
+   g_uoOxyNirtoPressureOut:=0;
+END_IF;
+
+IF g_boNirtogenValve  THEN(*出氮气*)
+  g_uoAirNirtoPressureOut:=g_uoNirtogenPressureOut;
+ELSIF g_boAirValve THEN(*出空气*)
+   g_uoAirNirtoPressureOut:=g_uoAirPressureOut;
+ELSE
+   g_uoAirNirtoPressureOut:=0;
+END_IF;
+
+
+
+
+
+
+
+
+
+
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

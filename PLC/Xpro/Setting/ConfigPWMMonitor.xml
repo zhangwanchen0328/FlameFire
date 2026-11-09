@@ -1,0 +1,365 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <globalVars>
+    <variable name="g_ConfigMonitorPWM_Duty_200" address="%ID99.0200">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_201" address="%ID99.0201">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_202" address="%ID99.0202">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_203" address="%ID99.0203">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_204" address="%ID99.0204">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_205" address="%ID99.0205">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_206" address="%ID99.0206">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_207" address="%ID99.0207">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_208" address="%ID99.0208">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_209" address="%ID99.0209">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_210" address="%ID99.0210">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_211" address="%ID99.0211">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_212" address="%ID99.0212">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_213" address="%ID99.0213">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_214" address="%ID99.0214">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_215" address="%ID99.0215">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_216" address="%ID99.0216">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_217" address="%ID99.0217">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_218" address="%ID99.0218">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_219" address="%ID99.0219">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Duty_220" address="%ID99.0220">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Duty ] 监控引脚 地址范围为99_0200 ~ 99_0249]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx">
+      <type>
+        <string/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx0">
+      <type>
+        <string/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx1">
+      <type>
+        <string/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_300" address="%ID99.0300">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_301" address="%ID99.0301">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_302" address="%ID99.0302">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_303" address="%ID99.0303">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_304" address="%ID99.0304">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_305" address="%ID99.0305">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_306" address="%ID99.0306">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_307" address="%ID99.0307">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_308" address="%ID99.0308">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_309" address="%ID99.0309">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_310" address="%ID99.0310">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_311" address="%ID99.0311">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_312" address="%ID99.0312">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_313" address="%ID99.0313">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_314" address="%ID99.0314">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_315" address="%ID99.0315">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_316" address="%ID99.0316">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_317" address="%ID99.0317">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_318" address="%ID99.0318">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_319" address="%ID99.0319">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorPWM_Freq_320" address="%ID99.0320">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ PWM-Freq ] 监控引脚 地址范围为99_0300 ~ 99_0349]]></xhtml:p>
+      </documentation>
+    </variable>
+  </globalVars>
+</root>

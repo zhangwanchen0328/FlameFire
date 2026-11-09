@@ -1,0 +1,633 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FAxisBS12KE" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_noHeart_Beat">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[心跳包，写入0x3A]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noMOTO_PositionSet">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[调焦参数写入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noTemperatureAlarmSet">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警温度设置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMOTO_PositionGet">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[调焦反馈读取引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMOTO_ErrorCode">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[调焦错误ID引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niTemperature">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[BM11X实际温度反馈引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dBM11XTemperature">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[BM11X实际温度摄氏度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niTemperature_ErrorCode">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[温度报警引脚：0正常，1断线，2超温]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 调焦]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dFPosFb">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变焦目标位置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFPosFb2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[没有焦补原始调焦点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FocusTon">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[调焦计时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="RiseState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="FHomeState">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="S12KEFocusStatus1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[智能投运行状态字bit0]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="BSKEAheadAlarm">
+        <type>
+          <derived name="FB_BSKEAheadAlarm"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[BSKE系列的切割头报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bFocusShiftfEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[进行焦漂补偿标志位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bFocusDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[调焦完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm202">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm203">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm204">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm205">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm206">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm207">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm208">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm209">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm210">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm213">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm219">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm223">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm224">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm225">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm294">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm295">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm296">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm297">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger(CLK := g_bF050Home );
+
+(*回零,F轴到0刻度*)
+IF R_Trigger.Q THEN
+  g_bF050Home := false;
+  g_boFHomeDone := false; 
+  FHomeState := 5;   
+END_IF;
+
+CASE FHomeState OF
+  0:(*心跳包，写入0x3A，保证使能*)
+    g_noHeart_Beat := 58; 
+    g_noBS12KEHoming := 0;
+  5:(*关闭调焦使能*)
+    g_noHeart_Beat := 0; 
+    g_noPositionSetFocus := 0;  
+    Ton2(IN :=FALSE,PT :=T#100ms);
+    FHomeState := 10;
+  10:(*开启回零使能*)
+    g_noBS12KEHoming := 58;
+    Ton2(IN :=TRUE,PT :=T#500ms);
+    IF Ton2.Q THEN     
+      FHomeState := 15;
+      Ton2(IN :=FALSE);
+    END_IF;
+  15:
+    IF WORD_TO_BOOL(AND(SHR(UDINT_TO_WORD(g_niBS12KEFocusStatus),5), 1)) THEN
+      g_noBS12KEHoming := 0;
+      g_boFHomeDone := TRUE;
+      FHomeState := 0;     
+    END_IF;             
+END_CASE;
+
+IF g_bFocusEnable THEN
+  dFPosFb := g_dZoomPosition + g_fFocusShiftValue;
+  dFPosFb2 := g_dZoomPosition;
+  g_bFocusEnable := FALSE;
+  nState := 5;
+ELSIF g_bMnualAnalogEnable THEN 
+  dFPosFb := g_dMnualAnalogPosition + g_fFocusShiftValue;
+  dFPosFb2 := g_dMnualAnalogPosition;
+  g_bMnualAnalogEnable := FALSE;
+  nState := 5;
+ELSIF bFocusShiftfEnable AND nState = 0 THEN (*焦漂补偿优先级比调焦低*)
+  dFPosFb := dFPosFb2 + g_fFocusShiftValue;
+  bFocusShiftfEnable := FALSE;
+  nState := 20; 
+END_IF;
+
+(*切割时=500或激光打点,当焦漂超过设定值时,进行焦漂补偿*)
+IF ABS(dFPosFb2 + g_fFocusShiftValue - dFPosFb) > g_fFocusShiftValueHMI AND 
+  g_fFocusShiftEnable THEN  
+  bFocusShiftfEnable := TRUE;
+END_IF;
+
+CASE nState OF
+  0:
+    nState := 0;
+  5:  (*步进电机调焦*)
+    g_noPositionSetFocus := LREAL_TO_DINT(1000.0*dFPosFb);
+    FocusTon(IN := FALSE,PT := T#5s);
+    nState := 10; 
+    bFocusDone := FALSE;     
+  10:(*调焦完成*)
+    IF g_niBS12KActualFocus>g_noPositionSetFocus-50 AND g_niBS12KActualFocus< g_noPositionSetFocus+50 THEN
+      g_bFocusDone := TRUE;
+      bFocusDone := TRUE;
+      nState := 0;
+    END_IF;  
+    FocusTon(IN := TRUE,PT := T#5s);
+    IF FocusTon.Q AND NOT bFocusDone THEN  (*调焦超时报警*)
+      FocusTon.IN := FALSE;
+      g_bFocusOvertimeAlarm := TRUE;
+      nState := 0;
+    END_IF; 
+  20:  
+    g_noPositionSetFocus := LREAL_TO_DINT(1000.0*dFPosFb);
+    FocusTon(IN := FALSE,PT := T#5s);
+    nState := 25;      
+  25:
+    IF g_niBS12KActualFocus>g_noPositionSetFocus-50 AND g_niBS12KActualFocus< g_noPositionSetFocus+50 THEN
+      
+      nState := 0;
+    END_IF;  
+    FocusTon(IN := TRUE,PT := T#5s);
+    IF FocusTon.Q THEN  (*调焦超时报警*)
+      FocusTon.IN := FALSE;
+      g_bFocusOvertimeAlarm := TRUE;
+      nState := 0;
+    END_IF;   
+END_CASE;    
+ 
+         
+(*坐标反馈*)
+g_dFaxisAnoagePosFb := DINT_TO_LREAL(g_niBS12KActualFocus)/1000.0;
+(*切割气体压力*)
+g_nAheadCutGasPressureAct := INT_TO_LREAL(g_niBS12KCuttingGasPressure)/100.0;
+
+
+
+(*调焦头使能警，0异常，1正常*)
+S12KEFocusStatus1 := WORD_TO_BOOL(AND(SHR(UDINT_TO_WORD(g_niBS12KEFocusStatus),0), 1));
+ToFAlarm202(IN := S12KEFocusStatus1 = 0, PT := T#1s); 
+IF g_noHeart_Beat = 58  THEN
+  IF ToFAlarm202.Q THEN
+    IF g_bCloseEnableAlarm_BS12K THEN
+       g_Alarm.alarmArray[357] := 0; 
+    ELSE
+      g_Alarm.alarmArray[357] := 1085;  
+    END_IF;      
+  ELSE
+    g_Alarm.alarmArray[357] := 0;  
+  END_IF;
+END_IF;
+(*上保护镜温度报警*)
+ToFAlarm203(IN := g_biBS12KEErr_Up, PT := T#1s); 
+IF ToFAlarm203.Q THEN
+  IF NOT g_bCloseUpProtectWindowAlarm_BS12K  THEN
+    g_Alarm.alarmArray[358] := 0; 
+  ELSE
+    g_Alarm.alarmArray[358] := 1086;  
+  END_IF;  
+ELSE
+  g_Alarm.alarmArray[358] := 0;
+END_IF;   
+(*腔体温度报警*)
+ToFAlarm204(IN := g_biBS12KEErr_Col, PT := T#1s); 
+IF ToFAlarm204.Q THEN
+  IF  g_bClosedCavityTemperatureAlarm_BS12K THEN
+    g_Alarm.alarmArray[359] := 0; 
+  ELSE
+    g_Alarm.alarmArray[359] := 1087; 
+  END_IF;  
+ELSE
+  g_Alarm.alarmArray[359] := 0; 
+END_IF;
+(*聚焦镜温度报警*)
+ToFAlarm205(IN := g_biBS12KEErr_Fcs, PT := T#1s); 
+IF ToFAlarm205.Q THEN
+  IF  NOT g_bCloseFocusLensAlarm_BS12K THEN
+    g_Alarm.alarmArray[363] := 0; 
+  ELSE
+    g_Alarm.alarmArray[363] := 1091;
+  END_IF;  
+ELSE
+  g_Alarm.alarmArray[363] := 0;  
+END_IF; 
+(*下保护镜温度报警*)
+ToFAlarm206(IN := g_biBS12KEErr_Down, PT := T#1s);   
+IF ToFAlarm206.Q THEN
+  IF  NOT g_bCloseDownProtectWindowAlarm_BS12K THEN
+    g_Alarm.alarmArray[360] := 0; 
+  ELSE
+    g_Alarm.alarmArray[360] := 1088; 
+  END_IF; 
+ELSE
+  g_Alarm.alarmArray[360] := 0;  
+END_IF; 
+(*腔体压力报警*)
+ToFAlarm207(IN := g_biBS12KEErr_Cav, PT := T#1s); 
+IF ToFAlarm207.Q THEN
+  IF  g_bCloseCavityPressureAlarm_BS12K THEN
+    g_Alarm.alarmArray[364] := 0; 
+  ELSE
+    g_Alarm.alarmArray[364] := 1092;
+  END_IF;  
+ELSE
+  g_Alarm.alarmArray[364] := 0;  
+END_IF;
+(*切割气压力报警，*)  
+ToFAlarm208(IN := g_biBS12KEErr_Cut, PT := T#1s); 
+IF ToFAlarm208.Q THEN
+  IF g_bCloseErr_CutAlarm_BS12K THEN
+    g_Alarm.alarmArray[426] := 0;
+  ELSE
+    g_Alarm.alarmArray[426] := 1137;
+  END_IF; 
+ELSE
+  g_Alarm.alarmArray[426] := 0; 
+END_IF; 
+(*下保护镜到位报警信号*)  
+ToFAlarm209(IN := g_biBS12KElense, PT := T#1s); 
+IF ToFAlarm209.Q THEN
+  IF  g_bCloseDownProtectWindowInPosAlarm_BS12K THEN
+    g_Alarm.alarmArray[365] := 0; 
+  ELSE
+    g_Alarm.alarmArray[365] := 1093; 
+  END_IF;
+ELSE
+   g_Alarm.alarmArray[365] := 0;  
+END_IF; 
+(*电机故障代码*)  
+ToFAlarm210(IN := g_niBS12KFocusMotorErrorCode <>0, PT := T#1s); 
+IF ToFAlarm210.Q THEN
+  g_Alarm.alarmArray[361] := 1089;  
+ELSE
+  g_Alarm.alarmArray[361] := 0;  
+END_IF;
+(*调焦头WIFI报警*) 
+ToFAlarm213(IN := g_biBS12KEErr_Rs485, PT := T#1s);  
+IF ToFAlarm213.Q THEN
+  IF g_bCloseWIFIAlarm_BS12K THEN
+    g_Alarm.alarmArray[362] := 0; 
+  ELSE
+    g_Alarm.alarmArray[362] := 1090;  
+  END_IF; 
+ELSE
+  g_Alarm.alarmArray[362] := 0; 
+END_IF;
+(*智能头调焦故障码*) 
+ToFAlarm219(IN := g_niBS12KECoErrCode <>0, PT := T#1s);  
+IF ToFAlarm219.Q AND g_noHeart_Beat = 58 THEN
+  g_Alarm.alarmArray[427] := 1138;
+ELSE
+  g_Alarm.alarmArray[427] := 0;
+END_IF; 
+(*上保护镜传感器连接异常报警信号 *)
+ToFAlarm223(IN := g_biBS12KELink_Up, PT := T#1s);   
+IF ToFAlarm223.Q THEN
+  IF g_bCloseUpProtectWindowAlarm_BS12K  THEN
+    g_Alarm.alarmArray[428] := 0;
+  ELSE
+    g_Alarm.alarmArray[428] := 1139;
+  END_IF;
+ELSE
+  g_Alarm.alarmArray[428] := 0; 
+END_IF;
+(*下保护镜传感器连接异常报警信号 *)  
+ToFAlarm224(IN := g_biBS12KELink_Down, PT := T#1s);
+IF ToFAlarm224.Q THEN
+  IF  g_bCloseDownProtectWindowAlarm_BS12K THEN
+    g_Alarm.alarmArray[429] := 0;
+  ELSE
+    g_Alarm.alarmArray[429] := 1140;
+  END_IF;  
+ELSE
+  g_Alarm.alarmArray[429] := 0; 
+END_IF;
+(*碰撞信号异常*)
+ToFAlarm225(IN := g_biBS12KEbody, PT := T#1s);
+IF ToFAlarm225.Q THEN
+  IF g_bClosebodyAlarm_BS12K THEN
+    g_Alarm.alarmArray[430] := 0;
+  ELSE
+    g_Alarm.alarmArray[430] := 1141;
+  END_IF;
+ELSE
+  g_Alarm.alarmArray[430] := 0;
+END_IF;
+(*聚焦保护镜传感器连接异常报警 *)  
+ToFAlarm294(IN := g_biBS12KELink_Fcs, PT := T#1s);
+IF ToFAlarm294.Q THEN
+  IF  g_bClosedCavityTemperatureAlarm_BS12K THEN
+    g_Alarm.alarmArray[431] := 0;   
+  ELSE
+    g_Alarm.alarmArray[431] := 1142;
+  END_IF;
+ELSE
+  g_Alarm.alarmArray[431] := 0; 
+END_IF;
+(*腔体保护镜传感器连接异常*) 
+ToFAlarm295(IN := g_biBS12KELink_Col, PT := T#1s); 
+IF ToFAlarm295.Q THEN
+  IF g_bClosedCavityTemperatureAlarm_BS12K THEN
+    g_Alarm.alarmArray[432] := 0;
+  ELSE
+    g_Alarm.alarmArray[432] := 1143;
+  END_IF;
+ELSE
+  g_Alarm.alarmArray[432] := 0; 
+END_IF;
+(*腔体气压传感器连接异常*) 
+ToFAlarm296(IN := g_biBS12KELink_Cav, PT := T#1s);  
+IF ToFAlarm296.Q THEN
+  IF  g_bCloseCavityPressureAlarm_BS12K THEN
+    g_Alarm.alarmArray[433] := 0;
+  ELSE
+    g_Alarm.alarmArray[433] := 1144;
+  END_IF;
+ELSE
+  g_Alarm.alarmArray[433] := 0; 
+END_IF;
+(*切割气压传感器连接异常*)  
+ToFAlarm297(IN := g_biBS12KELink_Cut, PT := T#1s); 
+IF ToFAlarm297.Q THEN
+  IF g_bCloseErr_CutAlarm_BS12K THEN
+    g_Alarm.alarmArray[434] := 0;
+  ELSE
+    g_Alarm.alarmArray[434] := 1145;
+  END_IF;
+ELSE
+  g_Alarm.alarmArray[434] := 0; 
+END_IF;
+
+
+BSKEAheadAlarm();
+
+(*g_niBS12KEFocusStatus  智能头运行状态 详见附件文档  
+bit 0 : 调焦/使能
+bit 1 : 手动回零
+bit 2 : 故障报警
+bit 3 : 到位
+bit 4 : 回零中
+bit 5 : 回零完成
+bit 6 : 调焦中
+bit 7 : Init op
+bit 8 : safe op
+bit 9 : pre op
+bit 10 : op
+（以下位代表主控板发生过的瞬间故障）
+bit 11 : 限位开关故障
+bit 12 : 主控板和WIFI板通信故障
+bit 13 : 电机调焦不到位
+bit 14 : 
+bit 15 : *)]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[BS12KE调焦头]]></xhtml:p>
+  </documentation>
+</pou>

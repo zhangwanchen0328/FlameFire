@@ -1,0 +1,1465 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BlankingCylinderControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_boBlankingCyl01Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl11Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl21Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl31Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl41Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl01Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl11Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl21Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl31Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl41Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl01UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl02UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl03UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl04UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl11UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl12UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl13UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl14UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl21UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl22UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl23UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl24UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl31UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl32UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl33UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl34UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl41UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl42UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl43UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl44UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl01DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl02DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl03DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl04DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl11DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl12DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl13DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl14DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl21DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl22DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl23DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl24DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl31DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl32DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl33DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl34DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl41DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl42DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl43DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl44DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay0">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay2">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay3">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay4">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay0">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay2">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay3">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay4">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal0">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal0">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bCylinder1Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder2Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder3Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder4Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder5Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder1Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder2Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder3Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder4Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder5Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="RTrigger1Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger2Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger3Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger4Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger5Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger1Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger2Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger3Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger4Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger5Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bBlankingStateHmi1">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="1"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[给hmi上料机气缸1状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bBlankingStateHmi2">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="1"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[给hmi上料机气缸2状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bBlankingStateHmi3">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="1"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[给hmi上料机气缸3状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bBlankingStateHmi4">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="1"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[给hmi上料机气缸4状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bBlankingStateHmi5">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="1"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[给hmi上料机气缸5状态]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bBlankingStateUp1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料机气缸1上升状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bBlankingStateUp2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料机气缸2上升状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bBlankingStateUp3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料机气缸3上升状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bBlankingStateUp4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料机气缸4上升状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bBlankingStateUp5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料机气缸5上升状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bBlankingStateDown1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料机气缸1下降状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bBlankingStateDown2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料机气缸2下降状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bBlankingStateDown3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料机气缸3下降状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bBlankingStateDown4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料机气缸4下降状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bBlankingStateDown5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料机气缸5下降状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bBlanking1DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlanking2DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlanking3DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlanking4DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlanking5DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="InPlaceDelay0">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="InPlaceDelay1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay5">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bCylinder1Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder2Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder3Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder4Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder5Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder1Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder2Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder3Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder4Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder5Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3CylForbid">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Ton_Cyl1Alarm">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Cyl2Alarm">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Cyl3Alarm">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Cyl4Alarm">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Cyl5Alarm">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="bPreIsUpStateCyl1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸1上次的状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bPreIsUpStateCyl2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸2上次的状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bPreIsUpStateCyl3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸3上次的状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bPreIsUpStateCyl4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸4上次的状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bPreIsUpStateCyl5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸5上次的状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bBlankingCyl1NoUpSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下料气缸1上升到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bBlankingCyl2NoUpSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下料气缸2上升到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bBlankingCyl3NoUpSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下料气缸3上升到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bBlankingCyl4NoUpSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下料气缸4上升到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bBlankingCyl5NoUpSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下料气缸5上升到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger1Open(CLK := bCylinder1Open OR g_bCylinder1Open);
+RTrigger2Open(CLK := bCylinder2Open OR g_bCylinder2Open);
+RTrigger3Open(CLK := bCylinder3Open OR g_bCylinder3Open);
+RTrigger4Open(CLK := bCylinder4Open OR g_bCylinder4Open);
+RTrigger5Open(CLK := bCylinder5Open OR g_bCylinder5Open);
+
+RTrigger1Close(CLK := bCylinder1Close OR g_bCylinder1Close);
+RTrigger2Close(CLK := bCylinder2Close OR g_bCylinder2Close);
+RTrigger3Close(CLK := bCylinder3Close OR g_bCylinder3Close);
+RTrigger4Close(CLK := bCylinder4Close OR g_bCylinder4Close);
+RTrigger5Close(CLK := bCylinder5Close OR g_bCylinder5Close);
+
+IF RTrigger1Open.Q THEN
+  bCylinder1Open:= FALSE;(*资源回收*)
+  g_bCylinder1Open := FALSE;
+  IF NOT g_bClaw3CylForbid THEN
+    g_boBlankingCyl01Up := TRUE;
+    g_boBlankingCyl01Down := FALSE;
+    g_bBlanking1DelayFlag := TRUE;
+  END_IF;
+  Ton_Cyl1Alarm(IN := FALSE);
+  InPlaceDelay0(IN :=FALSE);
+  g_bBlankingCyl1NoDownSignalAlarm := FALSE;
+END_IF;
+IF RTrigger1Close.Q THEN
+  bCylinder1Close:= FALSE;(*资源回收*)
+  g_bCylinder1Close := FALSE;
+  g_boBlankingCyl01Up := FALSE;
+  g_boBlankingCyl01Down := TRUE;
+  g_bBlanking1DelayFlag := TRUE;
+  Ton_Cyl1Alarm(IN := FALSE);
+  bBlankingCyl1NoUpSignalAlarm := FALSE;
+  InPlaceDelay0(IN :=FALSE);
+END_IF;
+(*hmi状态灯显示,自动下料机中也可使用*)
+IF g_bBlankingUpInPlaceSignal0 AND g_boBlankingCyl01Up THEN(*使用到位信号*)
+  InPlaceDelay0(IN :=FALSE);
+  IF NOT bPreIsUpStateCyl1 THEN
+    IF g_bBlankingCyl01UpInPlace AND g_bBlankingCyl02UpInPlace AND g_bBlankingCyl03UpInPlace AND g_bBlankingCyl04UpInPlace THEN
+      bBlankingStateHmi1:= TRUE;
+      g_bBlankingStateUp1 := TRUE;
+      g_bBlankingStateDown1 := FALSE;
+      bPreIsUpStateCyl1 := TRUE;
+      Ton_Cyl1Alarm(IN := FALSE);
+      bBlankingCyl1NoUpSignalAlarm := FALSE;
+    ELSE
+      Ton_Cyl1Alarm(IN := g_boBlankingCyl01Up,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingUpInPlaceDelay0)));
+      IF Ton_Cyl1Alarm.Q  THEN
+        Ton_Cyl1Alarm(IN := FALSE);
+        bBlankingCyl1NoUpSignalAlarm := TRUE;
+      END_IF;
+    END_IF; 
+  ELSE
+    IF g_CylAllStateUpDate.BoolArr[38] THEN
+      bBlankingCyl1NoUpSignalAlarm := FALSE;
+    ELSE
+      bBlankingCyl1NoUpSignalAlarm := TRUE;
+    END_IF;
+  END_IF;
+ELSIF g_bBlankingDownInPlaceSignal0 AND g_boBlankingCyl01Down THEN
+  InPlaceDelay0(IN :=FALSE);
+  IF bPreIsUpStateCyl1 THEN
+    IF g_bBlankingCyl01DownInPlace AND g_bBlankingCyl02DownInPlace AND g_bBlankingCyl03DownInPlace AND g_bBlankingCyl04DownInPlace THEN
+      bBlankingStateHmi1:= FALSE;
+      g_bBlankingStateUp1 := FALSE;
+      g_bBlankingStateDown1 := TRUE;
+      bPreIsUpStateCyl1 := FALSE;
+      Ton_Cyl1Alarm(IN := FALSE);
+      g_bBlankingCyl1NoDownSignalAlarm := FALSE;
+    ELSE
+      Ton_Cyl1Alarm(IN := g_boBlankingCyl01Down,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingDownInPlaceDelay0)));
+      IF Ton_Cyl1Alarm.Q  THEN
+        Ton_Cyl1Alarm(IN := FALSE);
+        g_bBlankingCyl1NoDownSignalAlarm := TRUE;
+      END_IF;
+    END_IF; 
+  ELSE
+    IF g_CylAllStateUpDate.BoolArr[39] THEN
+      g_bBlankingCyl1NoDownSignalAlarm := FALSE;
+    ELSE
+      g_bBlankingCyl1NoDownSignalAlarm := TRUE;
+    END_IF;
+  END_IF;
+ELSE(*使用延时信号*)
+  bBlankingCyl1NoUpSignalAlarm := FALSE;
+  g_bBlankingCyl1NoDownSignalAlarm := FALSE;
+  IF g_bBlanking1DelayFlag THEN
+    IF g_boBlankingCyl01Up THEN
+      InPlaceDelay0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingUpInPlaceDelay0)));
+    ELSE
+      InPlaceDelay0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingDownInPlaceDelay0)));
+    END_IF;
+    IF InPlaceDelay0.Q THEN
+       InPlaceDelay0(IN :=FALSE);
+      IF g_boBlankingCyl01Up AND g_boBlankingCyl01Down=FALSE THEN
+        bBlankingStateHmi1:= TRUE;
+        g_bBlankingStateUp1 := TRUE;
+        g_bBlankingStateDown1 := FALSE;
+        g_bBlanking1DelayFlag := FALSE;
+        bPreIsUpStateCyl1 := TRUE;
+      END_IF;
+      IF g_boBlankingCyl01Down AND g_boBlankingCyl01Up=FALSE THEN
+        bBlankingStateHmi1:= FALSE;
+        g_bBlankingStateUp1 := FALSE;
+        g_bBlankingStateDown1 := TRUE;
+        g_bBlanking1DelayFlag := FALSE;
+        bPreIsUpStateCyl1 := FALSE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF RTrigger2Open.Q THEN
+  bCylinder2Open:= FALSE;
+  g_bCylinder2Open := FALSE;
+  IF NOT g_bClaw3CylForbid THEN
+    g_boBlankingCyl11Up := TRUE;
+    g_boBlankingCyl11Down := FALSE;
+    g_bBlanking2DelayFlag := TRUE;
+  END_IF;
+  Ton_Cyl2Alarm(IN := FALSE);
+  InPlaceDelay1(IN :=FALSE);
+  g_bBlankingCyl2NoDownSignalAlarm := FALSE;
+END_IF;
+IF RTrigger2Close.Q THEN
+  bCylinder2Close:= FALSE;
+  g_bCylinder2Close := FALSE;
+  g_boBlankingCyl11Up := FALSE;
+  g_boBlankingCyl11Down := TRUE;
+  g_bBlanking2DelayFlag := TRUE;
+  Ton_Cyl2Alarm(IN := FALSE);
+  InPlaceDelay1(IN :=FALSE);
+  bBlankingCyl2NoUpSignalAlarm := FALSE;
+END_IF;
+(*hmi状态灯显示,自动下料机中也可使用*)
+IF g_bBlankingUpInPlaceSignal1 AND g_boBlankingCyl11Up THEN(*使用到位信号*)
+  InPlaceDelay1(IN :=FALSE);
+  IF NOT bPreIsUpStateCyl2 THEN
+    IF g_bBlankingCyl11UpInPlace AND g_bBlankingCyl12UpInPlace AND g_bBlankingCyl13UpInPlace AND g_bBlankingCyl14UpInPlace THEN
+      bBlankingStateHmi2:= TRUE;
+      g_bBlankingStateUp2 := TRUE;
+      g_bBlankingStateDown2 := FALSE;
+      bPreIsUpStateCyl2 := TRUE;
+      Ton_Cyl2Alarm(IN := FALSE);
+      bBlankingCyl2NoUpSignalAlarm := FALSE;
+    ELSE
+      Ton_Cyl2Alarm(IN := g_boBlankingCyl11Up,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingUpInPlaceDelay1)));
+      IF Ton_Cyl2Alarm.Q  THEN
+        Ton_Cyl2Alarm(IN := FALSE);
+        bBlankingCyl2NoUpSignalAlarm := TRUE;
+      END_IF;
+    END_IF; 
+  ELSE
+    IF g_CylAllStateUpDate.BoolArr[40] THEN
+      bBlankingCyl2NoUpSignalAlarm := FALSE;
+    ELSE
+      bBlankingCyl2NoUpSignalAlarm := TRUE;
+    END_IF;
+  END_IF;
+ELSIF g_bBlankingDownInPlaceSignal1 AND g_boBlankingCyl11Down THEN
+  InPlaceDelay1(IN :=FALSE);
+  IF bPreIsUpStateCyl2 THEN
+    IF g_bBlankingCyl11DownInPlace AND g_bBlankingCyl12DownInPlace AND g_bBlankingCyl13DownInPlace AND g_bBlankingCyl14DownInPlace THEN
+      bBlankingStateHmi2:= FALSE;
+      g_bBlankingStateUp2 := FALSE;
+      g_bBlankingStateDown2 := TRUE;
+      Ton_Cyl2Alarm(IN := FALSE);
+      g_bBlankingCyl2NoDownSignalAlarm := FALSE;
+      bPreIsUpStateCyl2 := FALSE;
+    ELSE
+      Ton_Cyl2Alarm(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingDownInPlaceDelay1)));
+      IF Ton_Cyl2Alarm.Q THEN
+         Ton_Cyl2Alarm(IN := FALSE);
+        g_bBlankingCyl2NoDownSignalAlarm := TRUE;
+      END_IF;  
+    END_IF;
+  ELSE
+    IF g_CylAllStateUpDate.BoolArr[41] THEN
+      g_bBlankingCyl2NoDownSignalAlarm := FALSE;
+    ELSE
+      g_bBlankingCyl2NoDownSignalAlarm := TRUE;
+    END_IF;
+  END_IF;
+ELSE(*使用延时信号*)
+  g_bBlankingCyl2NoDownSignalAlarm := FALSE;
+  bBlankingCyl2NoUpSignalAlarm := FALSE;
+  IF g_bBlanking2DelayFlag THEN
+    IF g_boBlankingCyl11Up THEN
+      InPlaceDelay1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingUpInPlaceDelay1)));
+    ELSE
+      InPlaceDelay1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingDownInPlaceDelay1)));
+    END_IF;
+    IF InPlaceDelay1.Q THEN
+      
+      InPlaceDelay1(IN :=FALSE);
+      IF g_boBlankingCyl11Up AND g_boBlankingCyl11Down=FALSE THEN
+        bBlankingStateHmi2:= TRUE;
+        g_bBlankingStateUp2 := TRUE;
+        g_bBlankingStateDown2 := FALSE;
+        g_bBlanking2DelayFlag := FALSE;
+        bPreIsUpStateCyl2 := TRUE;
+      END_IF;
+      IF g_boBlankingCyl11Down AND g_boBlankingCyl11Up=FALSE THEN
+        bBlankingStateHmi2:= FALSE;
+        g_bBlankingStateUp2 := FALSE;
+        g_bBlankingStateDown2 := TRUE;
+        g_bBlanking2DelayFlag := FALSE;
+        bPreIsUpStateCyl2 := FALSE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+  
+IF RTrigger3Open.Q THEN
+  bCylinder3Open := FALSE;
+  g_bCylinder3Open := FALSE;
+  IF NOT g_bClaw3CylForbid THEN
+    g_boBlankingCyl21Up := TRUE;
+    g_boBlankingCyl21Down := FALSE;
+    g_bBlanking3DelayFlag := TRUE;
+  END_IF;
+  Ton_Cyl3Alarm(IN := FALSE);
+  InPlaceDelay2(IN :=FALSE);
+  g_bBlankingCyl3NoDownSignalAlarm := FALSE;
+END_IF;
+IF RTrigger3Close.Q THEN
+  bCylinder3Close := FALSE;
+  g_bCylinder3Close := FALSE;
+  g_boBlankingCyl21Up := FALSE;
+  g_boBlankingCyl21Down := TRUE;
+  g_bBlanking3DelayFlag := TRUE;
+  Ton_Cyl3Alarm(IN := FALSE);
+  InPlaceDelay2(IN :=FALSE);
+  bBlankingCyl3NoUpSignalAlarm := FALSE;
+END_IF;
+  
+(*hmi状态灯显示,自动下料机中也可使用*)
+IF g_bBlankingUpInPlaceSignal2 AND g_boBlankingCyl21Up THEN(*使用到位信号*)
+  InPlaceDelay2(IN :=FALSE);
+  IF NOT bPreIsUpStateCyl3 THEN
+    IF g_bBlankingCyl21UpInPlace AND g_bBlankingCyl22UpInPlace AND g_bBlankingCyl23UpInPlace AND g_bBlankingCyl24UpInPlace THEN
+      bBlankingStateHmi3:= TRUE;
+      g_bBlankingStateUp3 := TRUE;
+      g_bBlankingStateDown3 := FALSE;
+      bPreIsUpStateCyl3 := TRUE;
+      Ton_Cyl3Alarm(IN := FALSE);
+      bBlankingCyl3NoUpSignalAlarm := FALSE;
+    ELSE
+      Ton_Cyl3Alarm(IN := g_boBlankingCyl21Up,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingUpInPlaceDelay2)));
+      IF Ton_Cyl3Alarm.Q  THEN
+        Ton_Cyl3Alarm(IN := FALSE);
+        bBlankingCyl3NoUpSignalAlarm := TRUE;
+      END_IF;
+    END_IF; 
+  ELSE
+    IF g_CylAllStateUpDate.BoolArr[42] THEN
+      bBlankingCyl3NoUpSignalAlarm := FALSE;
+    ELSE
+      bBlankingCyl3NoUpSignalAlarm := TRUE;
+    END_IF;
+  END_IF;
+ELSIF g_bBlankingDownInPlaceSignal2 AND g_boBlankingCyl21Down THEN
+  InPlaceDelay2(IN :=FALSE);
+  IF bPreIsUpStateCyl3 THEN
+    IF g_bBlankingCyl21DownInPlace AND g_bBlankingCyl22DownInPlace AND g_bBlankingCyl23DownInPlace AND g_bBlankingCyl24DownInPlace THEN
+      bBlankingStateHmi3:= FALSE;
+      g_bBlankingStateUp3 := FALSE;
+      g_bBlankingStateDown3 := TRUE;
+      Ton_Cyl3Alarm(IN := FALSE);
+      g_bBlankingCyl3NoDownSignalAlarm := FALSE;
+      bPreIsUpStateCyl3 := FALSE;
+    ELSE
+      Ton_Cyl3Alarm(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingDownInPlaceDelay2)));
+      IF Ton_Cyl3Alarm.Q THEN
+        Ton_Cyl3Alarm(IN := FALSE);
+        g_bBlankingCyl3NoDownSignalAlarm := TRUE;
+      END_IF;
+    END_IF;
+  ELSE
+      IF g_CylAllStateUpDate.BoolArr[43] THEN
+        g_bBlankingCyl3NoDownSignalAlarm := FALSE;
+      ELSE
+        g_bBlankingCyl3NoDownSignalAlarm := TRUE;
+      END_IF;
+  END_IF;
+ELSE(*使用延时信号*)
+  bBlankingCyl3NoUpSignalAlarm := FALSE;
+  g_bBlankingCyl3NoDownSignalAlarm := FALSE;
+  IF g_bBlanking3DelayFlag THEN
+    IF g_boBlankingCyl21Up THEN
+      InPlaceDelay2(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingUpInPlaceDelay2)));
+    ELSE
+      InPlaceDelay2(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingDownInPlaceDelay2)));
+    END_IF;
+    IF InPlaceDelay2.Q THEN
+      InPlaceDelay2(IN :=FALSE);
+      IF g_boBlankingCyl21Up AND g_boBlankingCyl21Down=FALSE THEN
+        bBlankingStateHmi3:= TRUE;
+        g_bBlankingStateUp3 := TRUE;
+        g_bBlankingStateDown3 := FALSE;
+        g_bBlanking3DelayFlag := FALSE;
+        bPreIsUpStateCyl3 := TRUE;
+      END_IF;
+      IF g_boBlankingCyl21Down AND g_boBlankingCyl21Up=FALSE THEN
+        bBlankingStateHmi3:= FALSE;
+        g_bBlankingStateUp3 := FALSE;
+        g_bBlankingStateDown3 := TRUE;
+        g_bBlanking3DelayFlag := FALSE;
+        bPreIsUpStateCyl3 := FALSE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;  
+  
+IF RTrigger4Open.Q THEN
+  bCylinder4Open := FALSE;
+  g_bCylinder4Open := FALSE;
+  IF NOT g_bClaw3CylForbid THEN
+    g_boBlankingCyl31Up := TRUE;
+    g_boBlankingCyl31Down := FALSE;
+    g_bBlanking4DelayFlag := TRUE;
+  END_IF;
+  g_bBlankingCyl4NoDownSignalAlarm := FALSE;
+  Ton_Cyl4Alarm(IN := FALSE);
+  InPlaceDelay3(IN :=FALSE);
+END_IF;
+IF RTrigger4Close.Q THEN
+  bCylinder4Close := FALSE;
+  g_bCylinder4Close := FALSE;
+  g_boBlankingCyl31Up := FALSE;
+  g_boBlankingCyl31Down := TRUE; 
+  g_bBlanking4DelayFlag := TRUE;
+  Ton_Cyl4Alarm(IN := FALSE);
+  InPlaceDelay3(IN :=FALSE);
+  bBlankingCyl4NoUpSignalAlarm := FALSE;
+END_IF;
+
+(*hmi状态灯显示,自动下料机中也可使用*)
+IF g_bBlankingUpInPlaceSignal3 AND g_boBlankingCyl31Up THEN(*使用到位信号*)
+  InPlaceDelay3(IN :=FALSE);
+  IF NOT bPreIsUpStateCyl4 THEN
+    IF g_bBlankingCyl31UpInPlace AND g_bBlankingCyl32UpInPlace AND g_bBlankingCyl33UpInPlace AND g_bBlankingCyl34UpInPlace THEN
+      bBlankingStateHmi4:= TRUE;
+      g_bBlankingStateUp4 := TRUE;
+      g_bBlankingStateDown4 := FALSE;
+      bPreIsUpStateCyl4 := TRUE;
+      Ton_Cyl4Alarm(IN := FALSE);
+      bBlankingCyl4NoUpSignalAlarm := FALSE;
+    ELSE
+      Ton_Cyl4Alarm(IN := g_boBlankingCyl21Up,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingUpInPlaceDelay3)));
+      IF Ton_Cyl4Alarm.Q  THEN
+        Ton_Cyl4Alarm(IN := FALSE);
+        bBlankingCyl4NoUpSignalAlarm := TRUE;
+      END_IF;
+    END_IF; 
+  ELSE
+    IF g_CylAllStateUpDate.BoolArr[42] THEN
+      bBlankingCyl4NoUpSignalAlarm := FALSE;
+    ELSE
+      bBlankingCyl4NoUpSignalAlarm := TRUE;
+    END_IF;
+  END_IF;
+ELSIF g_bBlankingDownInPlaceSignal3 AND g_boBlankingCyl31Down THEN
+  InPlaceDelay3(IN :=FALSE);
+  IF  bPreIsUpStateCyl4 THEN
+    IF g_bBlankingCyl31DownInPlace AND g_bBlankingCyl32DownInPlace AND g_bBlankingCyl33DownInPlace AND g_bBlankingCyl34DownInPlace THEN
+      bBlankingStateHmi4:= FALSE;
+      g_bBlankingStateUp4 := FALSE;
+      g_bBlankingStateDown4 := TRUE;
+      Ton_Cyl4Alarm(IN := FALSE);
+      g_bBlankingCyl4NoDownSignalAlarm := FALSE;
+      bPreIsUpStateCyl4 := FALSE;
+    ELSE
+       Ton_Cyl4Alarm(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingDownInPlaceDelay3)));
+      IF Ton_Cyl4Alarm.Q THEN
+        Ton_Cyl4Alarm(IN := FALSE);
+        g_bBlankingCyl4NoDownSignalAlarm := TRUE;
+      END_IF;
+    END_IF;
+  ELSE
+    IF g_CylAllStateUpDate.BoolArr[45] THEN
+      g_bBlankingCyl4NoDownSignalAlarm := FALSE;
+    ELSE
+      g_bBlankingCyl4NoDownSignalAlarm := TRUE;
+    END_IF;
+  END_IF;
+ELSE(*使用延时信号*)
+  bBlankingCyl4NoUpSignalAlarm := FALSE;
+  g_bBlankingCyl4NoDownSignalAlarm := FALSE;
+  IF g_bBlanking4DelayFlag THEN
+    IF g_boBlankingCyl31Up THEN
+      InPlaceDelay3(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingUpInPlaceDelay3)));
+    ELSE
+      InPlaceDelay3(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingDownInPlaceDelay3)));
+    END_IF;
+    IF InPlaceDelay3.Q THEN
+      InPlaceDelay3(IN :=FALSE);
+      IF g_boBlankingCyl31Up AND g_boBlankingCyl31Down=FALSE THEN
+        bBlankingStateHmi4:= TRUE;
+        g_bBlankingStateUp4 := TRUE;
+        g_bBlankingStateDown4 := FALSE;
+        g_bBlanking4DelayFlag := FALSE;
+         bPreIsUpStateCyl4 := TRUE;
+      END_IF;
+      IF g_boBlankingCyl31Down AND g_boBlankingCyl31Up=FALSE THEN
+        bBlankingStateHmi4:= FALSE;
+        g_bBlankingStateUp4 := FALSE;
+        g_bBlankingStateDown4 := TRUE;
+        g_bBlanking4DelayFlag := FALSE;
+         bPreIsUpStateCyl4 := FALSE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;  
+  
+IF RTrigger5Open.Q THEN
+  bCylinder5Open := FALSE;
+  g_bCylinder5Open := FALSE;
+  IF NOT g_bClaw3CylForbid THEN
+    g_boBlankingCyl41Up := TRUE;
+    g_boBlankingCyl41Down := FALSE;
+    g_bBlanking5DelayFlag := TRUE;
+  END_IF;
+  Ton_Cyl5Alarm(IN := FALSE);
+  InPlaceDelay4(IN :=FALSE);
+  g_bBlankingCyl5NoDownSignalAlarm := FALSE;
+END_IF;
+IF RTrigger5Close.Q THEN
+  bCylinder5Close := FALSE;
+  g_bCylinder5Close := FALSE;
+  g_boBlankingCyl41Up := FALSE;
+  g_boBlankingCyl41Down := TRUE;
+  g_bBlanking5DelayFlag := TRUE;
+  Ton_Cyl5Alarm(IN := FALSE);
+  InPlaceDelay4(IN :=FALSE);
+  bBlankingCyl5NoUpSignalAlarm := FALSE;
+END_IF;
+
+(*hmi状态灯显示,自动下料机中也可使用*)
+IF g_bBlankingUpInPlaceSignal4 AND g_boBlankingCyl41Up THEN(*使用到位信号*)
+  InPlaceDelay4(IN :=FALSE);
+  IF NOT bPreIsUpStateCyl5 THEN
+    IF g_bBlankingCyl41UpInPlace AND g_bBlankingCyl42UpInPlace AND g_bBlankingCyl43UpInPlace AND g_bBlankingCyl44UpInPlace THEN
+      bBlankingStateHmi5:= TRUE;
+      g_bBlankingStateUp5 := TRUE;
+      g_bBlankingStateDown5 := FALSE;
+      bPreIsUpStateCyl5 := TRUE;
+      Ton_Cyl5Alarm(IN := FALSE);
+      bBlankingCyl5NoUpSignalAlarm := FALSE;
+    ELSE
+      Ton_Cyl5Alarm(IN := g_boBlankingCyl21Up,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingUpInPlaceDelay4)));
+      IF Ton_Cyl5Alarm.Q  THEN
+        Ton_Cyl5Alarm(IN := FALSE);
+        bBlankingCyl5NoUpSignalAlarm := TRUE;
+      END_IF;
+    END_IF; 
+  ELSE
+    IF g_CylAllStateUpDate.BoolArr[44] THEN
+      bBlankingCyl5NoUpSignalAlarm := FALSE;
+    ELSE
+      bBlankingCyl5NoUpSignalAlarm := TRUE;
+    END_IF;
+  END_IF;
+ELSIF g_bBlankingDownInPlaceSignal4 AND g_boBlankingCyl41Down THEN
+  InPlaceDelay4(IN :=FALSE);
+  IF bPreIsUpStateCyl5 THEN
+    IF g_bBlankingCyl41DownInPlace AND g_bBlankingCyl42DownInPlace AND g_bBlankingCyl43DownInPlace AND g_bBlankingCyl44DownInPlace THEN
+      bBlankingStateHmi5:= FALSE;
+      g_bBlankingStateUp5 := FALSE;
+      g_bBlankingStateDown5 := TRUE;
+       Ton_Cyl5Alarm(IN := FALSE);
+      g_bBlankingCyl5NoDownSignalAlarm := FALSE;
+      bPreIsUpStateCyl5 := FALSE;
+    ELSE
+      Ton_Cyl5Alarm(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingDownInPlaceDelay4)));
+      IF Ton_Cyl5Alarm.Q THEN
+        Ton_Cyl5Alarm(IN := FALSE);
+        g_bBlankingCyl5NoDownSignalAlarm := TRUE;
+      END_IF;
+    END_IF;
+  ELSE
+    IF g_CylAllStateUpDate.BoolArr[47] THEN
+      g_bBlankingCyl5NoDownSignalAlarm := FALSE;
+    ELSE
+      g_bBlankingCyl5NoDownSignalAlarm := TRUE;
+    END_IF;
+  END_IF;
+ELSE(*使用延时信号*)
+  bBlankingCyl5NoUpSignalAlarm := FALSE;
+  g_bBlankingCyl5NoDownSignalAlarm := FALSE;
+  IF g_bBlanking5DelayFlag THEN
+    IF g_boBlankingCyl41Up THEN
+      InPlaceDelay4(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingUpInPlaceDelay4)));
+    ELSE
+      InPlaceDelay4(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nBlankingDownInPlaceDelay4)));
+    END_IF;
+    IF InPlaceDelay4.Q THEN
+      InPlaceDelay4(IN :=FALSE);
+      IF g_boBlankingCyl41Up AND g_boBlankingCyl41Down=FALSE THEN
+        bBlankingStateHmi5:= TRUE;
+        g_bBlankingStateUp5 := TRUE;
+        g_bBlankingStateDown5 := FALSE;
+        g_bBlanking5DelayFlag := FALSE;
+        bPreIsUpStateCyl5 := TRUE;
+      END_IF;
+      IF g_boBlankingCyl41Down AND g_boBlankingCyl41Up=FALSE THEN
+        bBlankingStateHmi5:= FALSE;
+        g_bBlankingStateUp5 := FALSE;
+        g_bBlankingStateDown5 := TRUE;
+        g_bBlanking5DelayFlag := FALSE;
+        bPreIsUpStateCyl5 := FALSE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF; 
+
+(*下料气缸未上升到位报警*)
+IF bBlankingCyl1NoUpSignalAlarm AND ListenBoardInputConfig[89] THEN
+  g_Alarm.alarmArray[512] := 1225;
+ELSE
+  g_Alarm.alarmArray[512] := 0;
+END_IF;
+IF bBlankingCyl2NoUpSignalAlarm AND ListenBoardInputConfig[90]  THEN
+  g_Alarm.alarmArray[513] := 1226;
+ELSE
+   g_Alarm.alarmArray[513] := 0;
+END_IF;
+IF bBlankingCyl3NoUpSignalAlarm AND ListenBoardInputConfig[91] THEN
+  g_Alarm.alarmArray[514] := 1227;
+ELSE
+   g_Alarm.alarmArray[514] := 0;
+END_IF;
+IF bBlankingCyl4NoUpSignalAlarm AND ListenBoardInputConfig[92] THEN
+  g_Alarm.alarmArray[515] := 1228;
+ELSE
+   g_Alarm.alarmArray[515] := 0;
+END_IF;
+IF bBlankingCyl5NoUpSignalAlarm AND ListenBoardInputConfig[93] THEN
+  g_Alarm.alarmArray[516] := 1229;
+ELSE
+   g_Alarm.alarmArray[516] := 0;
+END_IF;
+
+
+(*打开输出口控制 气缸使用延时的状态切换  36-44 零件托举气缸上升的状态切换*)
+IF ArrayConfigOutputNumber[36] AND NOT g_bBlankingUpInPlaceSignal0 THEN
+  bBlankingStateHmi1:= TRUE;
+  g_bBlankingStateUp1 := TRUE;
+  g_bBlankingStateDown1 := FALSE;
+  bPreIsUpStateCyl1 := TRUE;
+  ArrayConfigOutputNumber[36] := FALSE;
+END_IF;  
+IF ArrayConfigOutputNumber[38] AND NOT g_bBlankingUpInPlaceSignal1 THEN
+  bBlankingStateHmi2:= TRUE;
+  g_bBlankingStateUp2 := TRUE;
+  g_bBlankingStateDown2 := FALSE;
+  bPreIsUpStateCyl2 := TRUE;
+  ArrayConfigOutputNumber[38] := FALSE;
+END_IF;  
+IF ArrayConfigOutputNumber[40] AND NOT g_bBlankingUpInPlaceSignal2 THEN
+  bBlankingStateHmi3:= TRUE;
+  g_bBlankingStateUp3 := TRUE;
+  g_bBlankingStateDown3 := FALSE;
+  bPreIsUpStateCyl3 := TRUE;
+  ArrayConfigOutputNumber[40] := FALSE;
+END_IF;   
+IF ArrayConfigOutputNumber[42] AND NOT g_bBlankingUpInPlaceSignal3 THEN
+  bBlankingStateHmi4:= TRUE;
+  g_bBlankingStateUp4 := TRUE;
+  g_bBlankingStateDown4 := FALSE;
+  bPreIsUpStateCyl4 := TRUE;
+  ArrayConfigOutputNumber[42] := FALSE;
+END_IF;   
+IF ArrayConfigOutputNumber[44] AND NOT g_bBlankingUpInPlaceSignal4 THEN
+  bBlankingStateHmi5:= TRUE;
+  g_bBlankingStateUp5 := TRUE;
+  g_bBlankingStateDown5 := FALSE;
+  bPreIsUpStateCyl5 := TRUE;
+  ArrayConfigOutputNumber[44] := FALSE;
+END_IF; 
+(*打开输出口控制 气缸使用延时的状态切换  37-45 零件托举气缸下降的状态切换*)
+IF ArrayConfigOutputNumber[37] AND NOT g_bBlankingDownInPlaceSignal0 THEN
+  bBlankingStateHmi1:= FALSE;
+  g_bBlankingStateUp1 := FALSE;
+  g_bBlankingStateDown1 := TRUE;
+  bPreIsUpStateCyl1 := FALSE;
+  ArrayConfigOutputNumber[37] := FALSE;
+END_IF;  
+IF ArrayConfigOutputNumber[39] AND NOT g_bBlankingDownInPlaceSignal1 THEN
+  bBlankingStateHmi2:= FALSE;
+  g_bBlankingStateUp2 := FALSE;
+  g_bBlankingStateDown2 := TRUE;
+  bPreIsUpStateCyl2 := FALSE;
+  ArrayConfigOutputNumber[39] := FALSE;
+END_IF;   
+IF ArrayConfigOutputNumber[41] AND NOT g_bBlankingDownInPlaceSignal2 THEN
+  bBlankingStateHmi3:= FALSE;
+  g_bBlankingStateUp3 := FALSE;
+  g_bBlankingStateDown3 := TRUE;
+  bPreIsUpStateCyl3 := FALSE;
+  ArrayConfigOutputNumber[41] := FALSE;
+END_IF;   
+IF ArrayConfigOutputNumber[43] AND NOT g_bBlankingDownInPlaceSignal3 THEN
+  bBlankingStateHmi4:= FALSE;
+  g_bBlankingStateUp4 := FALSE;
+  g_bBlankingStateDown4 := TRUE;
+  bPreIsUpStateCyl4 := FALSE;
+  ArrayConfigOutputNumber[43] := FALSE;
+END_IF;     
+IF ArrayConfigOutputNumber[45] AND NOT g_bBlankingDownInPlaceSignal4 THEN
+  bBlankingStateHmi5:= FALSE;
+  g_bBlankingStateUp5 := FALSE;
+  g_bBlankingStateDown5 := TRUE;
+  bPreIsUpStateCyl5 := FALSE;
+  ArrayConfigOutputNumber[45] := FALSE;
+END_IF;    
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[手动控制上料机气缸]]></xhtml:p>
+  </documentation>
+</pou>

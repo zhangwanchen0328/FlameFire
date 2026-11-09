@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ParalleGetZMaxPos" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="rTrig1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="rTrig2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nGetzposState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dCurrentZPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dZMaxPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[z轴最大坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*z轴坐标获取开始  M162开启*)
+rTrig1(CLK := g_bOpenGetZMaxPosM);
+(*z轴坐标获取关闭 去到当前z轴基准值 M187关闭*)
+rTrig2(CLK := g_bCloseGetZMaxPosM);
+
+IF rTrig1.Q THEN
+  (*M156触发的随动到位 如果不用要156 这边要进行优化 这里默认判断随动完成*)
+  dZMaxPos := Axis_Z.NcToPlc.ACTPOS;
+  nGetzposState := 10;
+  g_bOpenGetZMaxPosM := FALSE;
+END_IF;  
+
+
+IF rTrig2.Q THEN
+  (*此处缺少获取值 后续需要获取一下*)
+  nGetzposState:= 0;
+  g_bCloseGetZMaxPosM := FALSE;
+END_IF;  
+
+CASE nGetzposState OF
+  0:
+    nGetzposState:= 0;
+  10:
+    (*对比当前值和基准值取更大的值*) (*为了暂停的时候会不取值*)(*当没做暂停继续 z轴开启随动*)
+    IF g_ZFollowIn.DONE AND Axis_Z.NCTOPLC.AXISSTATE = 9 THEN
+      dCurrentZPos := Axis_Z.NcToPlc.ACTPOS;
+      dZMaxPos := MAX(dZMaxPos,dCurrentZPos);
+    END_IF;  
+END_CASE;  ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

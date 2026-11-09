@@ -1,0 +1,761 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SlaveAxisAct" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="T1SlavePower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="T2SlavePower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="T3SlavePower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="T1Slave">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="T2Slave">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="T3Slave">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="T1SlaveReset">
+        <type>
+          <derived name="MC_RESET2"/>
+        </type>
+      </variable>
+      <variable name="T2SlaveReset">
+        <type>
+          <derived name="MC_RESET2"/>
+        </type>
+      </variable>
+      <variable name="T3SlaveReset">
+        <type>
+          <derived name="MC_RESET2"/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <FBD>
+      <block localId="1" typeName="MC_POWER" instanceName="T1SlavePower" executionOrderId="0" height="140" width="175">
+        <position x="256" y="110"/>
+        <inputVariables>
+          <variable formalParameter="ENABLE">
+            <connectionPointIn>
+              <relPosition x="0" y="30"/>
+              <connection refLocalId="2">
+                <position x="256" y="140"/>
+                <position x="212" y="140"/>
+                <position x="212" y="125"/>
+                <position x="168" y="125"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="ENABLEPOSITION">
+            <connectionPointIn>
+              <relPosition x="0" y="50"/>
+              <connection refLocalId="3">
+                <position x="256" y="160"/>
+                <position x="227" y="160"/>
+                <position x="227" y="167"/>
+                <position x="198" y="167"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="ENABLENEGATIVE">
+            <connectionPointIn>
+              <relPosition x="0" y="70"/>
+              <connection refLocalId="4">
+                <position x="256" y="180"/>
+                <position x="227" y="180"/>
+                <position x="227" y="205"/>
+                <position x="199" y="205"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="AXIS">
+            <connectionPointIn>
+              <relPosition x="0" y="90"/>
+              <connection refLocalId="5">
+                <position x="256" y="200"/>
+                <position x="240" y="200"/>
+                <position x="240" y="245"/>
+                <position x="110" y="245"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="AXIS">
+            <connectionPointOut>
+              <relPosition x="175" y="30"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="STATUS">
+            <connectionPointOut>
+              <relPosition x="175" y="50"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="VALID">
+            <connectionPointOut>
+              <relPosition x="175" y="70"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="175" y="90"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="175" y="110"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTAXIS">
+            <connectionPointOut>
+              <relPosition x="175" y="130"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <inVariable localId="2" executionOrderId="0" height="27" width="139" negated="false">
+        <position x="29" y="112"/>
+        <connectionPointOut>
+          <relPosition x="139" y="13"/>
+        </connectionPointOut>
+        <expression>T1SlavePower.ENABLE</expression>
+      </inVariable>
+      <inVariable localId="3" executionOrderId="0" height="27" width="198" negated="false">
+        <position x="0" y="154"/>
+        <connectionPointOut>
+          <relPosition x="198" y="13"/>
+        </connectionPointOut>
+        <expression>T1SlavePower.ENABLEPOSITION</expression>
+      </inVariable>
+      <inVariable localId="4" executionOrderId="0" height="27" width="199" negated="false">
+        <position x="0" y="192"/>
+        <connectionPointOut>
+          <relPosition x="199" y="13"/>
+        </connectionPointOut>
+        <expression>T1SlavePower.ENABLENEGATIVE</expression>
+      </inVariable>
+      <inVariable localId="5" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="56" y="232"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>T1Slave</expression>
+      </inVariable>
+      <outVariable localId="6" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="480" y="231"/>
+        <connectionPointIn>
+          <relPosition x="0" y="13"/>
+          <connection refLocalId="1" formalParameter="OUTAXIS">
+            <position x="480" y="244"/>
+            <position x="455" y="244"/>
+            <position x="455" y="240"/>
+            <position x="431" y="240"/>
+          </connection>
+        </connectionPointIn>
+        <expression>T1Slave</expression>
+      </outVariable>
+      <block localId="7" typeName="MC_POWER" instanceName="T3SlavePower" executionOrderId="0" height="140" width="175">
+        <position x="279" y="524"/>
+        <inputVariables>
+          <variable formalParameter="ENABLE">
+            <connectionPointIn>
+              <relPosition x="0" y="30"/>
+              <connection refLocalId="15">
+                <position x="279" y="554"/>
+                <position x="250" y="554"/>
+                <position x="250" y="549"/>
+                <position x="222" y="549"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="ENABLEPOSITION">
+            <connectionPointIn>
+              <relPosition x="0" y="50"/>
+              <connection refLocalId="16">
+                <position x="279" y="574"/>
+                <position x="246" y="574"/>
+                <position x="246" y="582"/>
+                <position x="213" y="582"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="ENABLENEGATIVE">
+            <connectionPointIn>
+              <relPosition x="0" y="70"/>
+              <connection refLocalId="17">
+                <position x="279" y="594"/>
+                <position x="252" y="594"/>
+                <position x="252" y="611"/>
+                <position x="225" y="611"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="AXIS">
+            <connectionPointIn>
+              <relPosition x="0" y="90"/>
+              <connection refLocalId="18">
+                <position x="279" y="614"/>
+                <position x="262" y="614"/>
+                <position x="262" y="650"/>
+                <position x="150" y="650"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="AXIS">
+            <connectionPointOut>
+              <relPosition x="175" y="30"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="STATUS">
+            <connectionPointOut>
+              <relPosition x="175" y="50"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="VALID">
+            <connectionPointOut>
+              <relPosition x="175" y="70"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="175" y="90"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="175" y="110"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTAXIS">
+            <connectionPointOut>
+              <relPosition x="175" y="130"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <block localId="8" typeName="MC_POWER" instanceName="T2SlavePower" executionOrderId="0" height="140" width="175">
+        <position x="278" y="316"/>
+        <inputVariables>
+          <variable formalParameter="ENABLE">
+            <connectionPointIn>
+              <relPosition x="0" y="30"/>
+              <connection refLocalId="9">
+                <position x="278" y="346"/>
+                <position x="211" y="346"/>
+                <position x="211" y="329"/>
+                <position x="173" y="329"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="ENABLEPOSITION">
+            <connectionPointIn>
+              <relPosition x="0" y="50"/>
+              <connection refLocalId="10">
+                <position x="278" y="366"/>
+                <position x="231" y="366"/>
+                <position x="231" y="368"/>
+                <position x="203" y="368"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="ENABLENEGATIVE">
+            <connectionPointIn>
+              <relPosition x="0" y="70"/>
+              <connection refLocalId="11">
+                <position x="278" y="386"/>
+                <position x="219" y="386"/>
+                <position x="219" y="400"/>
+                <position x="199" y="400"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="AXIS">
+            <connectionPointIn>
+              <relPosition x="0" y="90"/>
+              <connection refLocalId="12">
+                <position x="278" y="406"/>
+                <position x="255" y="406"/>
+                <position x="255" y="432"/>
+                <position x="233" y="432"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="AXIS">
+            <connectionPointOut>
+              <relPosition x="175" y="30"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="STATUS">
+            <connectionPointOut>
+              <relPosition x="175" y="50"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="VALID">
+            <connectionPointOut>
+              <relPosition x="175" y="70"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="175" y="90"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="175" y="110"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTAXIS">
+            <connectionPointOut>
+              <relPosition x="175" y="130"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <inVariable localId="9" executionOrderId="0" height="27" width="139" negated="false">
+        <position x="34" y="316"/>
+        <connectionPointOut>
+          <relPosition x="139" y="13"/>
+        </connectionPointOut>
+        <expression>T2SlavePower.ENABLE</expression>
+      </inVariable>
+      <inVariable localId="10" executionOrderId="0" height="27" width="198" negated="false">
+        <position x="5" y="355"/>
+        <connectionPointOut>
+          <relPosition x="198" y="13"/>
+        </connectionPointOut>
+        <expression>T2SlavePower.ENABLEPOSITION</expression>
+      </inVariable>
+      <inVariable localId="11" executionOrderId="0" height="27" width="199" negated="false">
+        <position x="0" y="387"/>
+        <connectionPointOut>
+          <relPosition x="199" y="13"/>
+        </connectionPointOut>
+        <expression>T2SlavePower.ENABLENEGATIVE</expression>
+      </inVariable>
+      <inVariable localId="12" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="179" y="419"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>T2Slave</expression>
+      </inVariable>
+      <outVariable localId="13" executionOrderId="0" height="27" width="59" negated="false">
+        <position x="504" y="432"/>
+        <connectionPointIn>
+          <relPosition x="0" y="13"/>
+          <connection refLocalId="8" formalParameter="OUTAXIS">
+            <position x="504" y="445"/>
+            <position x="478" y="445"/>
+            <position x="478" y="446"/>
+            <position x="453" y="446"/>
+          </connection>
+        </connectionPointIn>
+        <expression>T2Slave</expression>
+      </outVariable>
+      <inVariable localId="15" executionOrderId="0" height="27" width="139" negated="false">
+        <position x="83" y="536"/>
+        <connectionPointOut>
+          <relPosition x="139" y="13"/>
+        </connectionPointOut>
+        <expression>T3SlavePower.ENABLE</expression>
+      </inVariable>
+      <inVariable localId="16" executionOrderId="0" height="27" width="198" negated="false">
+        <position x="15" y="569"/>
+        <connectionPointOut>
+          <relPosition x="198" y="13"/>
+        </connectionPointOut>
+        <expression>T3SlavePower.ENABLEPOSITION</expression>
+      </inVariable>
+      <inVariable localId="17" executionOrderId="0" height="27" width="199" negated="false">
+        <position x="26" y="598"/>
+        <connectionPointOut>
+          <relPosition x="199" y="13"/>
+        </connectionPointOut>
+        <expression>T3SlavePower.ENABLENEGATIVE</expression>
+      </inVariable>
+      <inVariable localId="18" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="96" y="637"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>T3Slave</expression>
+      </inVariable>
+      <outVariable localId="19" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="523" y="654"/>
+        <connectionPointIn>
+          <relPosition x="0" y="13"/>
+          <connection refLocalId="7" formalParameter="OUTAXIS">
+            <position x="523" y="667"/>
+            <position x="488" y="667"/>
+            <position x="488" y="654"/>
+            <position x="454" y="654"/>
+          </connection>
+        </connectionPointIn>
+        <expression>T3Slave</expression>
+      </outVariable>
+      <inVariable localId="20" executionOrderId="0" height="27" width="163" negated="false">
+        <position x="107" y="788"/>
+        <connectionPointOut>
+          <relPosition x="163" y="13"/>
+        </connectionPointOut>
+        <expression>T1Slave.NCTOPLC.ACTPOS</expression>
+      </inVariable>
+      <outVariable localId="21" executionOrderId="0" height="27" width="136" negated="false">
+        <position x="385" y="771"/>
+        <connectionPointIn>
+          <relPosition x="0" y="13"/>
+          <connection refLocalId="20">
+            <position x="385" y="784"/>
+            <position x="327" y="784"/>
+            <position x="327" y="801"/>
+            <position x="270" y="801"/>
+          </connection>
+        </connectionPointIn>
+        <expression>g_fT1SlaveCoordinate</expression>
+      </outVariable>
+      <inVariable localId="14" executionOrderId="0" height="27" width="163" negated="false">
+        <position x="109" y="871"/>
+        <connectionPointOut>
+          <relPosition x="163" y="13"/>
+        </connectionPointOut>
+        <expression>T2Slave.NCTOPLC.ACTPOS</expression>
+      </inVariable>
+      <inVariable localId="22" executionOrderId="0" height="27" width="163" negated="false">
+        <position x="115" y="933"/>
+        <connectionPointOut>
+          <relPosition x="163" y="13"/>
+        </connectionPointOut>
+        <expression>T3Slave.NCTOPLC.ACTPOS</expression>
+      </inVariable>
+      <outVariable localId="23" executionOrderId="0" height="27" width="136" negated="false">
+        <position x="366" y="865"/>
+        <connectionPointIn>
+          <relPosition x="0" y="13"/>
+          <connection refLocalId="14">
+            <position x="366" y="878"/>
+            <position x="319" y="878"/>
+            <position x="319" y="884"/>
+            <position x="272" y="884"/>
+          </connection>
+        </connectionPointIn>
+        <expression>g_fT2SlaveCoordinate</expression>
+      </outVariable>
+      <outVariable localId="24" executionOrderId="0" height="27" width="136" negated="false">
+        <position x="369" y="939"/>
+        <connectionPointIn>
+          <relPosition x="0" y="13"/>
+          <connection refLocalId="22">
+            <position x="369" y="952"/>
+            <position x="323" y="952"/>
+            <position x="323" y="946"/>
+            <position x="278" y="946"/>
+          </connection>
+        </connectionPointIn>
+        <expression>g_fT3SlaveCoordinate</expression>
+      </outVariable>
+      <block localId="25" typeName="MC_RESET2" instanceName="T1SlaveReset" executionOrderId="0" height="120" width="160">
+        <position x="331" y="1031"/>
+        <inputVariables>
+          <variable formalParameter="EXECUTE">
+            <connectionPointIn>
+              <relPosition x="0" y="30"/>
+              <connection refLocalId="26">
+                <position x="331" y="1061"/>
+                <position x="271" y="1061"/>
+                <position x="271" y="1044"/>
+                <position x="211" y="1044"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="DECELERATION">
+            <connectionPointIn>
+              <relPosition x="0" y="50"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="JERK">
+            <connectionPointIn>
+              <relPosition x="0" y="70"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="AXIS">
+            <connectionPointIn>
+              <relPosition x="0" y="90"/>
+              <connection refLocalId="27">
+                <position x="331" y="1121"/>
+                <position x="251" y="1121"/>
+                <position x="251" y="1118"/>
+                <position x="171" y="1118"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="DONE">
+            <connectionPointOut>
+              <relPosition x="160" y="30"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="BUSY">
+            <connectionPointOut>
+              <relPosition x="160" y="50"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="160" y="70"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="160" y="90"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTAXIS">
+            <connectionPointOut>
+              <relPosition x="160" y="110"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <inVariable localId="26" executionOrderId="0" height="27" width="142" negated="false">
+        <position x="69" y="1031"/>
+        <connectionPointOut>
+          <relPosition x="142" y="13"/>
+        </connectionPointOut>
+        <expression>T1SlaveReset.EXECUTE</expression>
+      </inVariable>
+      <inVariable localId="27" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="117" y="1105"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>T1Slave</expression>
+      </inVariable>
+      <outVariable localId="28" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="602" y="1123"/>
+        <connectionPointIn>
+          <relPosition x="0" y="13"/>
+          <connection refLocalId="25" formalParameter="OUTAXIS">
+            <position x="602" y="1136"/>
+            <position x="546" y="1136"/>
+            <position x="546" y="1141"/>
+            <position x="491" y="1141"/>
+          </connection>
+        </connectionPointIn>
+        <expression>T1Slave</expression>
+      </outVariable>
+      <block localId="29" typeName="MC_RESET2" instanceName="T2SlaveReset" executionOrderId="0" height="120" width="160">
+        <position x="326" y="1245"/>
+        <inputVariables>
+          <variable formalParameter="EXECUTE">
+            <connectionPointIn>
+              <relPosition x="0" y="30"/>
+              <connection refLocalId="31">
+                <position x="326" y="1275"/>
+                <position x="265" y="1275"/>
+                <position x="265" y="1268"/>
+                <position x="205" y="1268"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="DECELERATION">
+            <connectionPointIn>
+              <relPosition x="0" y="50"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="JERK">
+            <connectionPointIn>
+              <relPosition x="0" y="70"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="AXIS">
+            <connectionPointIn>
+              <relPosition x="0" y="90"/>
+              <connection refLocalId="33">
+                <position x="326" y="1335"/>
+                <position x="232" y="1335"/>
+                <position x="232" y="1328"/>
+                <position x="138" y="1328"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="DONE">
+            <connectionPointOut>
+              <relPosition x="160" y="30"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="BUSY">
+            <connectionPointOut>
+              <relPosition x="160" y="50"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="160" y="70"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="160" y="90"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTAXIS">
+            <connectionPointOut>
+              <relPosition x="160" y="110"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <block localId="30" typeName="MC_RESET2" instanceName="T3SlaveReset" executionOrderId="0" height="120" width="160">
+        <position x="326" y="1435"/>
+        <inputVariables>
+          <variable formalParameter="EXECUTE">
+            <connectionPointIn>
+              <relPosition x="0" y="30"/>
+              <connection refLocalId="32">
+                <position x="326" y="1465"/>
+                <position x="267" y="1465"/>
+                <position x="267" y="1467"/>
+                <position x="209" y="1467"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="DECELERATION">
+            <connectionPointIn>
+              <relPosition x="0" y="50"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="JERK">
+            <connectionPointIn>
+              <relPosition x="0" y="70"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="AXIS">
+            <connectionPointIn>
+              <relPosition x="0" y="90"/>
+              <connection refLocalId="34">
+                <position x="326" y="1525"/>
+                <position x="247" y="1525"/>
+                <position x="247" y="1532"/>
+                <position x="169" y="1532"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="DONE">
+            <connectionPointOut>
+              <relPosition x="160" y="30"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="BUSY">
+            <connectionPointOut>
+              <relPosition x="160" y="50"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="160" y="70"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="160" y="90"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTAXIS">
+            <connectionPointOut>
+              <relPosition x="160" y="110"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <inVariable localId="31" executionOrderId="0" height="27" width="142" negated="false">
+        <position x="63" y="1255"/>
+        <connectionPointOut>
+          <relPosition x="142" y="13"/>
+        </connectionPointOut>
+        <expression>T2SlaveReset.EXECUTE</expression>
+      </inVariable>
+      <inVariable localId="32" executionOrderId="0" height="27" width="142" negated="false">
+        <position x="67" y="1454"/>
+        <connectionPointOut>
+          <relPosition x="142" y="13"/>
+        </connectionPointOut>
+        <expression>T3SlaveReset.EXECUTE</expression>
+      </inVariable>
+      <inVariable localId="33" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="84" y="1315"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>T2Slave</expression>
+      </inVariable>
+      <inVariable localId="34" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="115" y="1519"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>T3Slave</expression>
+      </inVariable>
+      <outVariable localId="35" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="557" y="1335"/>
+        <connectionPointIn>
+          <relPosition x="0" y="13"/>
+          <connection refLocalId="29" formalParameter="OUTAXIS">
+            <position x="557" y="1348"/>
+            <position x="521" y="1348"/>
+            <position x="521" y="1355"/>
+            <position x="486" y="1355"/>
+          </connection>
+        </connectionPointIn>
+        <expression>T2Slave</expression>
+      </outVariable>
+      <outVariable localId="36" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="565" y="1526"/>
+        <connectionPointIn>
+          <relPosition x="0" y="13"/>
+          <connection refLocalId="30" formalParameter="OUTAXIS">
+            <position x="565" y="1539"/>
+            <position x="525" y="1539"/>
+            <position x="525" y="1545"/>
+            <position x="486" y="1545"/>
+          </connection>
+        </connectionPointIn>
+        <expression>T3Slave</expression>
+      </outVariable>
+    </FBD>
+  </body>
+</pou>

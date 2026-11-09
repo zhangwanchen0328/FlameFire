@@ -1,0 +1,1613 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <globalVars>
+    <variable name="g_ConfigMonitorDO_600" address="%IX99.0600">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_601" address="%IX99.0601">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_602" address="%IX99.0602">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_603" address="%IX99.0603">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_604" address="%IX99.0604">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_605" address="%IX99.0605">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_606" address="%IX99.0606">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_607" address="%IX99.0607">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_608" address="%IX99.0608">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_609" address="%IX99.0609">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_610" address="%IX99.0610">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_611" address="%IX99.0611">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_612" address="%IX99.0612">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_613" address="%IX99.0613">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_614" address="%IX99.0614">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_615" address="%IX99.0615">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_616" address="%IX99.0616">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_617" address="%IX99.0617">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_618" address="%IX99.0618">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_619" address="%IX99.0619">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_620" address="%IX99.0620">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_621" address="%IX99.0621">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_622" address="%IX99.0622">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_623" address="%IX99.0623">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_624" address="%IX99.0624">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_625" address="%IX99.0625">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_626" address="%IX99.0626">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_627" address="%IX99.0627">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_628" address="%IX99.0628">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_629" address="%IX99.0629">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_630" address="%IX99.0630">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_631" address="%IX99.0631">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_632" address="%IX99.0632">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_633" address="%IX99.0633">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_634" address="%IX99.0634">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_635" address="%IX99.0635">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_636" address="%IX99.0636">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_637" address="%IX99.0637">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_638" address="%IX99.0638">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_639" address="%IX99.0639">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_640" address="%IX99.0640">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_641" address="%IX99.0641">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_642" address="%IX99.0642">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_643" address="%IX99.0643">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_644" address="%IX99.0644">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_645" address="%IX99.0645">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_646" address="%IX99.0646">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_647" address="%IX99.0647">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_648" address="%IX99.0648">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_649" address="%IX99.0649">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_650" address="%IX99.0650">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_651" address="%IX99.0651">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_652" address="%IX99.0652">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_653" address="%IX99.0653">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_654" address="%IX99.0654">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_655" address="%IX99.0655">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_656" address="%IX99.0656">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_657" address="%IX99.0657">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_658" address="%IX99.0658">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_659" address="%IX99.0659">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_660" address="%IX99.0660">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_661" address="%IX99.0661">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_662" address="%IX99.0662">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_663" address="%IX99.0663">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_664" address="%IX99.0664">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_665" address="%IX99.0665">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_666" address="%IX99.0666">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_667" address="%IX99.0667">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_668" address="%IX99.0668">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_669" address="%IX99.0669">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_670" address="%IX99.0670">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_671" address="%IX99.0671">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_672" address="%IX99.0672">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_673" address="%IX99.0673">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_674" address="%IX99.0674">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_675" address="%IX99.0675">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_676" address="%IX99.0676">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_677" address="%IX99.0677">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_678" address="%IX99.0678">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_679" address="%IX99.0679">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_680" address="%IX99.0680">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_681" address="%IX99.0681">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_682" address="%IX99.0682">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_683" address="%IX99.0683">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_684" address="%IX99.0684">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_685" address="%IX99.0685">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_686" address="%IX99.0686">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_687" address="%IX99.0687">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_688" address="%IX99.0688">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_689" address="%IX99.0689">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_690" address="%IX99.0690">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_691" address="%IX99.0691">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_692" address="%IX99.0692">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_693" address="%IX99.0693">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_694" address="%IX99.0694">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_695" address="%IX99.0695">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_696" address="%IX99.0696">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_697" address="%IX99.0697">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_698" address="%IX99.0698">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_699" address="%IX99.0699">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_700" address="%IX99.0700">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_701" address="%IX99.0701">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_702" address="%IX99.0702">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_703" address="%IX99.0703">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDO_704" address="%IX99.0704">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DO ] 监控引脚 地址范围为99_0600 ~ 99_0800]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_1" address="%QX99.0600">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_2" address="%QX99.0601">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_3" address="%QX99.0602">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_4" address="%QX99.0603">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_5" address="%QX99.0604">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_6" address="%QX99.0605">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_7" address="%QX99.0606">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_8" address="%QX99.0607">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_9" address="%QX99.0608">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_10" address="%QX99.0609">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_11" address="%QX99.0610">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_12" address="%QX99.0611">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_13" address="%QX99.0612">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_14" address="%QX99.0613">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_15" address="%QX99.0614">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_16" address="%QX99.0615">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_17" address="%QX99.0616">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_18" address="%QX99.0617">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_19" address="%QX99.0618">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_20" address="%QX99.0619">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_21" address="%QX99.0620">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_22" address="%QX99.0621">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_23" address="%QX99.0622">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_24" address="%QX99.0623">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_25" address="%QX99.0624">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_26" address="%QX99.0625">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_27" address="%QX99.0626">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_28" address="%QX99.0627">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_29" address="%QX99.0628">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_30" address="%QX99.0629">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_31" address="%QX99.0630">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_32" address="%QX99.0631">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_33" address="%QX99.0632">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_34" address="%QX99.0633">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_35" address="%QX99.0634">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_36" address="%QX99.0635">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_37" address="%QX99.0636">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_38" address="%QX99.0637">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_39" address="%QX99.0638">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_40" address="%QX99.0639">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_41" address="%QX99.0640">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_42" address="%QX99.0641">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_43" address="%QX99.0642">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_44" address="%QX99.0643">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_45" address="%QX99.0644">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_46" address="%QX99.0645">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_47" address="%QX99.0646">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_48" address="%QX99.0647">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_49" address="%QX99.0648">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_50" address="%QX99.0649">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_51" address="%QX99.0650">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_52" address="%QX99.0651">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_53" address="%QX99.0652">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_54" address="%QX99.0653">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_55" address="%QX99.0654">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_56" address="%QX99.0655">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_57" address="%QX99.0656">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_58" address="%QX99.0657">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_59" address="%QX99.0658">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_60" address="%QX99.0659">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_61" address="%QX99.0660">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_62" address="%QX99.0661">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_63" address="%QX99.0662">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_64" address="%QX99.0663">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_65" address="%QX99.0664">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_66" address="%QX99.0665">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_67" address="%QX99.0666">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_68" address="%QX99.0667">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_69" address="%QX99.0668">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_70" address="%QX99.0669">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_71" address="%QX99.0670">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_72" address="%QX99.0671">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_73" address="%QX99.0672">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_74" address="%QX99.0673">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_75" address="%QX99.0674">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_76" address="%QX99.0675">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_77" address="%QX99.0676">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_78" address="%QX99.0677">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_79" address="%QX99.0678">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_80" address="%QX99.0679">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_81" address="%QX99.0680">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_82" address="%QX99.0681">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_83" address="%QX99.0682">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_84" address="%QX99.0683">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_85" address="%QX99.0684">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_86" address="%QX99.0685">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_87" address="%QX99.0686">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_88" address="%QX99.0687">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_89" address="%QX99.0688">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_90" address="%QX99.0689">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_91" address="%QX99.0690">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_92" address="%QX99.0691">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_93" address="%QX99.0692">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_94" address="%QX99.0693">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_95" address="%QX99.0694">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineOutputDo_96" address="%QX99.0695">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用户自定义的输出口输出]]></xhtml:p>
+      </documentation>
+    </variable>
+  </globalVars>
+</root>

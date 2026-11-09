@@ -1,0 +1,1444 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ZAxisCalControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Axis_Z">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴NC结构体]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fZAxisHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴根据标定列表计算出来的当前高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZCalibrateEnableM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定开始信号引脚，一般用于M代码控制标定]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boZCalibrateDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定完成信号引脚，一般用于M代码控制标定]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZCalibrateEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定开始信号全局变量，一般用于HMI和PLC内部控制标定开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZCalibrateDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定完成信号全局变量，一般用于HMI和PLC检查标定是否完成]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bFirstStartFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第一次起界面判断一次电容变化值]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC暂停全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC复位全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bTraLineError">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[TRA线报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bSensorLineError">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传感器线报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niZSensorValue">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[电容值输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZMoveVel">
+        <type>
+          <derived name="MC_MOVEVELOCITY"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴匀速运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZMoveRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴相对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZMoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴绝对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZMoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴停止运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴复位运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nSensorDown">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光头触碰到板面时候的电容值反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="stCalDataList">
+        <type>
+          <derived name="ST_CalibrateData"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定完成后的电容值和高度值数据记录]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bInitScale">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="TRUE"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[88C1电容值列表初始化状态位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLineError">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="FALSE"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[断线报警检测辅助变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCalStart">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="FALSE"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[标定开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCalStop">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="FALSE"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[标定停止]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nZEndSensor">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定完成上台后的电容]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nTraAlarmValue">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[断线报警阀值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHeadBrand">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[切割头类型]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nTraAlarm">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[断线报警检测辅助变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCalibrateState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定的状态机变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCalibratePauseState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定暂停时记录的状态机变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCalibrateError">
+        <type>
+          <USINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定错误]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSensorValue">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[在每个周期开始，记录电容值反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSensorFilterValue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[电容滤波值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nLastSensorValue">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[在每个周期结束，记录电容值反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nLastSensorFilterValue">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[在每个周期结束，记录电容值反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCalibrateDownValue">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定向下电容值跳变值，用于检测激光头是否接触到板面]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSensorDelt">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[在每个周期开始，记录本周期和上周期电容值差值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSensorFilterDelt">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[在每个周期开始，记录本周期和上周期电容值差值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDet">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[高度计算变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nLeft">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[高度计算变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nRight">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[高度计算变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMid">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[高度计算变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCount">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用于记录标定的时候记录的点的个数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCycle">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用于遍历标定数据数组]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCycle">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[nCycle的LREAL类型]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCalibrateVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定速度，数据来源是HMI的配置参数下发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCalibrateHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定高度，数据来源是HMI的配置参数下发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCalibrateLiftPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定完成上抬坐标，数据来源是HMI的配置参数下发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dPosfbDown">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光头触碰到板面时候的位置值反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCurrentPosfb">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[本周期的位置反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dLastPosfb">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上个周期的位置反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="stDataList_Cache">
+        <type>
+          <derived name="ST_CalibrateData"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定数据记录缓存，当标定正确完成之后，将缓存中的数据复制到stCalDataList中]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigge_On">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿检测，标定开始通过上升沿检测]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigge_Off">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Ton1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nCalStatus">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定状态 1表示标定中]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bResetCurHeight">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[重置当前高度命令]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dResetHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[重置当前高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBCtrlPt1">
+        <type>
+          <derived name="FB_CTRL_PT1"/>
+        </type>
+      </variable>
+      <variable name="nCalibrateType">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[切割头标定方式，0：嘉强切割头，1：普雷切割头]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boPresterRequest">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boPresterCal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biPresterCalState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biPresterPanelSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPresterPanelSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_diAnalogValue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[外部输入的模拟量数值]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dCalRelDisMin">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[10mm标定寸动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCalRelDisMax">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[20mm标定寸动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCycleCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dAnalogValue">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dZAxisTargetHeight">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="RTrigger_Prester">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Ton_SignalDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_noCalibrateValue">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="CalOfZToSave">
+        <type>
+          <derived name="SSA"/>
+        </type>
+      </variable>
+      <variable name="bSSAHaveSave">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nOffsetZLiftSensor">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上抬电容偏差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nFirstSensorValue">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上抬电容偏差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Test_nSensorDelt">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上抬电容偏差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSensorState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上抬电容偏差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton4">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上抬电容偏差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton5">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上抬电容偏差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="LastPeriodCapValue">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="Ton_CapCheck">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定检测延时定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Test_nSensorDelt := ABS(g_niZSensorValue-nFirstSensorValue); (*上一周期电容差*)
+nFirstSensorValue := g_niZSensorValue;  (*每个周期开始电容值反馈，记录本周期和上周期电容值差值，Z轴当前高度*)
+(*处理电容值一个周期变大30000且电容值大于本体电容,不采样*)
+CASE nSensorState OF
+  0: 
+    IF Test_nSensorDelt > 30000 AND g_niZSensorValue > g_nZEndSensor THEN 
+      Ton4(IN := FALSE);
+      nSensorState := 20;
+    ELSE
+      nSensorValue := g_niZSensorValue;
+    END_IF;
+  20:
+    Ton4(IN := TRUE,PT := T#100ms);
+    IF g_niZSensorValue < g_nZEndSensor OR Ton4.Q THEN   (*电容值大于本体电容,丢掉异常值,最多丢100ms*)
+      Ton4(IN := FALSE);
+      nSensorValue := g_niZSensorValue;
+      nSensorState := 0;  
+    END_IF;
+END_CASE;
+
+
+
+
+
+(*标定触发，上升沿有效，当触发上升沿时，标定进入标定初始化步骤*)
+RTrigge_On(CLK := g_bZCalibrateEnableM OR g_bZCalibrateEnable OR bCalStart);
+RTrigge_Off(CLK := bCalStop);
+RTrigger_Prester(CLK := g_biPresterPanelSignal);
+
+IF RTrigge_On.Q THEN
+  (*标定触发*)
+  g_bZCalibrateEnableM := FALSE;
+  nCalibrateState := 1;
+  g_nCalStatus := 1;
+  IF g_niZSensorValue <= 0 THEN
+    g_bTraCalibrationCheck := TRUE;(*电容异常报警*)
+    nCalibrateState := 0;
+  ELSE
+    LastPeriodCapValue:=g_niZSensorValue;
+    nCalibrateState := 1;
+  END_IF;
+  g_bResetCurHeight := FALSE;
+  bCalStart := FALSE;
+  IF dCalibrateVel <= 0.0 THEN
+    dCalibrateVel := 5.0;
+  END_IF;
+  g_boZCalibrateDone := FALSE;
+  g_bZCalibrateDone := FALSE;
+  IF g_nFAxisControlType <> 3 THEN(*0:关闭1：F0502：轴控3：普雷4：BM*)
+    nCount := 0;
+    FOR nCycle := 0 TO 20000 BY 1 DO
+      stDataList_Cache.nSensorValue[nCycle] := 8000000 + ncycle;
+      dCycle := UDINT_TO_LREAL(nCycle);
+      stDataList_Cache.dActualHeight[nCycle] := 100.0 + dCycle*0.001;
+    END_FOR;
+  ELSE
+    g_boPresterCal := FALSE; 
+  END_IF;
+  Ton_CapCheck(IN:=false);
+END_IF;  
+IF RTrigge_Off.Q THEN
+  bCalStop := FALSE;
+  nCalibrateState := 21;
+END_IF;
+
+(*IF RTrigger_Prester.Q THEN
+  g_bPresterPanelSignal := TRUE;
+END_IF;*)
+
+nSensorValue := g_niZSensorValue;
+nSensorDelt := UDINT_TO_DINT(nSensorValue) - UDINT_TO_DINT(nLastSensorValue);
+dCurrentPosfb := Axis_Z.NCTOPLC.ACTPOS;
+
+CASE nCalibrateState OF
+    0:
+      (*等待状态*)
+      nCalibrateState := 0;
+      g_nCalStatus := 0;
+    1:
+      (*第一步、轴使用匀速运动模块，持续向负方向运动，直到检测到电容跳变*)
+      IF g_nFAxisControlType = 3 THEN
+        g_boPresterRequest := TRUE;
+      END_IF;
+      g_ZMoveVel.Execute := TRUE;
+      g_ZMoveVel.Velocity := dCalibrateVel;
+      g_ZMoveVel.Direction := 3;
+      g_ZMoveVel.BufferMode := 0;
+      Ton_CapCheck(IN:=true,PT:= LREAL_TO_TIME(FUN_MStoS(g_dTraCalibrationCheckTime)));
+      IF Ton_CapCheck.Q THEN
+         Ton_CapCheck(IN:=false);
+         IF UDINT_TO_DINT(LastPeriodCapValue-g_niZSensorValue) < nCalibrateDownValue/2 AND g_fZVelocity < 0.0 THEN
+          nCalibrateState := 20;
+          g_bTraCalibrationCheck:=TRUE;
+         END_IF;
+         LastPeriodCapValue:=g_niZSensorValue;
+      END_IF; 
+      IF g_nFAxisControlType = 3 THEN
+        IF g_biPresterPanelSignal THEN
+          nCalibrateState := 2;
+        END_IF;
+      ELSE
+        IF -nSensorDelt > nCalibrateDownValue THEN
+          stDataList_Cache.nSensorValue[0] := nSensorValue;
+          stDataList_Cache.dActualHeight[0] := 0.0;
+          g_nSensorDown := g_niZSensorValue;
+          dPosfbDown := Axis_Z.NCTOPLC.ACTPOS;
+          nCalibrateState := 2;
+          (*标定记录到的切割头碰到管面的高度*)
+          g_dZAxisCenterPos := dPosfbDown - g_dCircleRad;
+          g_bReadZAxisPosfbDown := TRUE;
+        END_IF;
+      END_IF;
+      IF g_bPlcPauseBuffer THEN
+        nCalibratePauseState := nCalibrateState;
+        nCalibrateState := 20;
+      END_IF;
+      IF g_ZMoveVel.CommandAborted OR g_ZMoveVel.Error THEN
+        g_ZMoveVel.Execute := FALSE;
+        nCalibrateState := 0;
+      END_IF;
+    2:
+      (*第二步、检测到电容值跳变，调用NC的MoveStop停止轴，停止完成后进入下一步*)
+      g_ZMoveVel.Execute := FALSE;
+      g_ZMoveStop.Execute := TRUE;  
+      IF g_ZMoveStop.Done THEN
+        g_ZMoveStop.Execute := FALSE;
+        nCalibrateState := 3;
+      END_IF;
+      Ton_CapCheck(IN:=false);
+    3:
+      (*延时400ms*)
+      Ton1(IN := TRUE,PT := T#400ms);
+      IF Ton1.Q THEN
+        Ton1(IN := FALSE);
+        IF nHeadBrand = 4 THEN
+          nCalibrateState := 40;
+        ELSE
+          nCalibrateState := 4;
+        END_IF;
+      END_IF;
+      FBCtrlPt1(
+         tCtrlCycleTime := 1.0,
+         tT1 := 2.0,
+         fIn := UDINT_TO_LREAL(nSensorValue),
+         fOut => nSensorFilterValue);
+         nLastSensorFilterValue := LREAL_TO_UDINT(nSensorFilterValue);
+    4:
+      (*第三步、轴调用相对运动模块，缓慢向上运动，并记录电容值和高度值*)
+      FBCtrlPt1(
+         tCtrlCycleTime := 1.0,
+         tT1 := 2.0,
+         fIn := UDINT_TO_LREAL(nSensorValue),
+         fOut => nSensorFilterValue);
+      nSensorFilterDelt := LREAL_TO_DINT(nSensorFilterValue) - UDINT_TO_DINT(nLastSensorFilterValue);
+      g_ZMoveRel.Execute := TRUE;
+      g_ZMoveRel.Distance := dCalibrateHeight;
+      g_ZMoveRel.Velocity := dCalibrateVel;
+      IF g_ZMoveRel.Done THEN
+        g_ZMoveRel.Execute := FALSE;
+        (*此处是判断标定结束，相对运动完成、采集点满20000个，但是目前没有判断标定是否成功，这一部分以后会添加*)
+        nCalibrateState := 6;
+      ELSIF nCount = 20000 THEN
+        IF Axis_Z.NCTOPLC.SETVELO <> 0.0 THEN
+          nCalibrateState := 5;
+        ELSE
+          nCalibrateState := 6;
+        END_IF;
+      ELSIF nSensorFilterDelt >= 0 AND dCurrentPosfb >= dLastPosfb AND dCurrentPosfb >= dPosfbDown AND nSensorValue >= g_nSensorDown THEN
+        nCount := nCount + 1;
+        stDataList_Cache.nSensorValue[nCount] := LREAL_TO_UDINT(nSensorFilterValue);
+        stDataList_Cache.dActualHeight[nCount] := dCurrentPosfb - dPosfbDown;    
+      END_IF;  
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        nCount := 0;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;   
+      IF g_ZMoveRel.CommandAborted OR g_ZMoveRel.Error THEN
+        g_ZMoveRel.Execute := FALSE;
+        nCalibrateState := 0;
+      END_IF;
+      nLastSensorFilterValue := LREAL_TO_UDINT(nSensorFilterValue);
+    5:
+      (*第四步、当检测到不是运动完成而结束了标定动作，就检查是否有速度，如果有速度，就调用Stop模块进行停止*)
+      g_ZMoveRel.Execute := FALSE;
+      g_ZMoveStop.Execute := TRUE;
+      IF g_ZMoveStop.Done THEN
+        g_ZMoveStop.Execute := FALSE;
+        nCalibrateState := 6;
+      END_IF;
+      IF g_ZMoveStop.CommandAborted OR g_ZMoveStop.Error THEN
+        g_ZMoveStop.Execute := FALSE;
+        nCalibrateState := 0;
+      END_IF;
+    6:
+      IF Axis_Z.NCTOPLC.ActPos >= dCalibrateLiftPos THEN
+        nCalibrateState := 8;
+      ELSE
+        nCalibrateState := 7;
+      END_IF;
+    7:
+      g_ZMoveAbs.Execute := TRUE;
+      g_ZMoveAbs.Position := dCalibrateLiftPos;
+      IF g_ZMoveAbs.Done THEN
+        g_ZMoveAbs.Execute := FALSE;
+        nCalibrateState := 8;
+      END_IF;
+      IF g_bPlcPauseBuffer THEN
+        nCalibratePauseState := nCalibrateState - 1;
+        nCalibrateState := 20;
+      END_IF;
+    8:
+      (*标定完成检测，如果最后记录的点的数目过少，那么算这次标定失败*)
+      IF g_nFAxisControlType = 3 THEN
+        g_bZCalibrateDone := TRUE;
+        g_boZCalibrateDone := TRUE;
+        M.ENABLE[155] := 0;
+        g_bIsCalibrateFlag := TRUE;
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        CalOfZToSave(ENABLE := TRUE);(*通知保存标定完成状态到文件*)
+        
+      ELSE
+        IF nCount > 1000 THEN
+          g_bZCalibrateDone := TRUE;
+          g_boZCalibrateDone := TRUE;
+          
+          M.ENABLE[155] := 0;
+          g_bIsCalibrateFlag := TRUE;
+          FOR nCycle := 0 TO 20000 BY 1 DO
+           stCalDataList.nSensorValue[nCycle] := stDataList_Cache.nSensorValue[nCycle];
+           stCalDataList.dActualHeight[nCycle] := stDataList_Cache.dActualHeight[nCycle];
+          END_FOR;
+          g_nZEndSensor := nSensorValue;
+          g_nZLiftSensor := nSensorValue;
+          CalOfZToSave(ENABLE := TRUE);(*标定完成数据保存到文件*)
+          bSSAHaveSave  := TRUE;
+        ELSE
+          g_bZCalibrateDone := FALSE;
+          g_boZCalibrateDone := FALSE;
+        END_IF;
+      END_IF;
+      nCalibrateState := 0;
+      g_nCalStatus := 0;
+      g_nZEndSensor := nSensorValue;
+      g_ZMoveVel.Velocity := 0.0;
+      g_ZMoveAbs.Velocity := 0.0;
+      g_ZMoveRel.Velocity := 0.0;
+    20:
+      g_ZMoveVel.Execute := FALSE;
+      g_ZMoveAbs.Execute := FALSE;
+      g_ZMoveRel.Execute := FALSE;
+      g_ZMoveStop.Execute := TRUE;
+      IF g_ZMoveStop.Done THEN
+        IF g_bPlcStartBuffer THEN
+          nCalibrateState := nCalibratePauseState;
+          g_ZMoveStop.Execute := FALSE;
+        END_IF;
+      END_IF;
+      IF g_ZMoveStop.CommandAborted OR g_ZMoveStop.Error THEN
+        g_ZMoveStop.Execute := FALSE;
+        nCalibrateState := 0;
+      END_IF;
+    21:
+      g_ZMoveVel.Execute := FALSE;
+      g_ZMoveAbs.Execute := FALSE;
+      g_ZMoveRel.Execute := FALSE;
+      g_ZMoveStop.Execute := TRUE;
+      g_boPresterCal := FALSE;
+      g_boPresterRequest := FALSE;
+      IF g_ZMoveStop.Done THEN
+        nCalibrateState := 0;
+        g_ZMoveStop.Execute := FALSE;
+      END_IF;
+      IF g_ZMoveStop.CommandAborted OR g_ZMoveStop.Error THEN
+        g_ZMoveStop.Execute := FALSE;
+        nCalibrateState := 0;
+      END_IF;
+    40:
+      g_ZMoveRel.Execute := TRUE;
+      (*普雷标定高度10mm或者20mm*)
+      g_ZMoveRel.Distance := dCalibrateHeight;
+      g_ZMoveRel.Velocity := dCalibrateVel;
+      IF g_ZMoveRel.Done THEN
+        g_ZMoveRel.Execute := FALSE;
+        g_boPresterCal := TRUE;
+        (*等待切割头到位信号的延时*)
+        nCalibrateState := 100;
+      END_IF;
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;   
+      IF g_ZMoveRel.CommandAborted OR g_ZMoveRel.Error THEN
+        g_ZMoveRel.Execute := FALSE;
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibrateState := 0;
+      END_IF;
+    41:
+    IF g_biPresterCalState THEN
+      g_boPresterCal := FALSE;
+      nCycleCount := 0;
+      dCalRelDisMax := -4.0;
+      dCalRelDisMin := -2.0;
+      nCalibrateState := 42;
+    END_IF;
+    
+    (*如果在上抬过程中暂停，那么就算标定终止*)
+    IF g_bPlcPauseBuffer THEN
+      g_boPresterCal := FALSE;
+      g_boPresterRequest := FALSE;
+      nCalibratePauseState := 1;
+      nCalibrateState := 20;
+    END_IF;
+    42:
+      g_ZMoveRel.Execute := TRUE;
+      (*普雷标定过程中移动距离*)
+      IF dCalibrateHeight = 20.0 THEN
+        g_ZMoveRel.Distance := dCalRelDisMax;
+      ELSIF dCalibrateHeight = 10.0 THEN
+        g_ZMoveRel.Distance := dCalRelDisMin;
+      END_IF;
+      g_ZMoveRel.Velocity := dCalibrateVel;
+      IF g_ZMoveRel.Done THEN
+        g_ZMoveRel.Execute := FALSE;
+        g_boPresterCal := TRUE;
+        nCalibrateState := 101;
+      END_IF;
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;   
+      IF g_ZMoveRel.CommandAborted OR g_ZMoveRel.Error THEN
+        g_ZMoveRel.Execute := FALSE;
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibrateState := 0;
+      END_IF;
+    43:
+      IF g_biPresterCalState THEN
+        g_boPresterCal := FALSE;
+        nCycleCount := 1;
+        dCalRelDisMax := -2.0;
+        dCalRelDisMin := -1.0;
+        nCalibrateState := 42;
+      END_IF;
+      
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;
+    44:
+      IF g_biPresterCalState THEN
+        g_boPresterCal := FALSE;
+        nCycleCount := 2;
+        dCalRelDisMax := -2.0;
+        dCalRelDisMin := -1.0;
+        nCalibrateState := 42;
+      END_IF;
+      
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;
+    45:
+      IF g_biPresterCalState THEN
+        g_boPresterCal := FALSE;
+        nCycleCount := 3;
+        dCalRelDisMax := -2.0;
+        dCalRelDisMin := -1.0;
+        nCalibrateState := 42;
+      END_IF;
+      
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;
+    46:
+      IF g_biPresterCalState THEN
+        g_boPresterCal := FALSE;
+        nCycleCount := 4;
+        dCalRelDisMax := -2.0;
+        dCalRelDisMin := -1.0;
+        nCalibrateState := 42;
+      END_IF;
+      
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;
+    47:
+      IF g_biPresterCalState THEN
+        g_boPresterCal := FALSE;
+        nCycleCount := 5;
+        dCalRelDisMax := -2.0;
+        dCalRelDisMin := -1.0;
+        nCalibrateState := 42;
+      END_IF;
+      
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;
+    48:
+      IF g_biPresterCalState THEN
+        g_boPresterCal := FALSE;
+        nCycleCount := 6;
+        dCalRelDisMax := -1.0;
+        dCalRelDisMin := -0.5;
+        nCalibrateState := 42;
+      END_IF;
+      
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;
+    49:
+      IF g_biPresterCalState THEN
+        g_boPresterCal := FALSE;
+        nCycleCount := 7;
+        dCalRelDisMax := -1.0;
+        dCalRelDisMin := -0.5;
+        nCalibrateState := 42;
+      END_IF;
+      
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;
+    50:
+      IF g_biPresterCalState THEN
+        g_boPresterCal := FALSE;
+        nCycleCount := 8;
+        dCalRelDisMax := -0.4;
+        dCalRelDisMin := -0.2;
+        nCalibrateState := 42;
+      END_IF;
+      
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;
+    51:
+      IF g_biPresterCalState THEN
+        g_boPresterCal := FALSE;
+        nCycleCount := 9;
+        dCalRelDisMax := -0.6;
+        dCalRelDisMin := -0.3;
+        nCalibrateState := 42;
+      END_IF;
+      
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;
+    52:
+      IF g_biPresterCalState THEN
+        g_boPresterCal := FALSE;
+        nCycleCount := 10;
+        dCalRelDisMax := -0.6;
+        dCalRelDisMin := -0.3;
+        nCalibrateState := 42;
+      END_IF;
+      
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;
+    53:
+      IF g_biPresterCalState THEN
+        g_boPresterCal := FALSE;
+        nCycleCount := 11;
+        dCalRelDisMax := -0.4;
+        dCalRelDisMin := -0.2;
+        nCalibrateState := 42;
+      END_IF;
+      
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;
+    54:
+      IF g_biPresterCalState THEN
+        g_boPresterCal := FALSE;
+        nCycleCount := 12;
+        dCalRelDisMax := -0.6;
+        dCalRelDisMin := -0.3;
+        nCalibrateState := 42;
+      END_IF;
+      
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;
+    55:
+      IF g_biPresterCalState THEN
+        g_boPresterCal := FALSE;
+        nCycleCount := 13;
+        dCalRelDisMax := -0.4;
+        dCalRelDisMin := -0.2;
+        nCalibrateState := 42;
+      END_IF;
+      
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;
+    56:
+      IF g_biPresterCalState THEN
+        g_boPresterCal := FALSE;
+        nCycleCount := 0;
+        dCalRelDisMax := -0.6;
+        dCalRelDisMin := -0.3;
+        nCalibrateState := 57;
+      END_IF;
+      
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;
+    57:
+      g_ZMoveRel.Execute := TRUE;
+      (*普雷标定过程中移动距离*)
+      IF dCalibrateHeight = 20.0 THEN
+        g_ZMoveRel.Distance := dCalRelDisMax;
+      ELSIF dCalibrateHeight = 10.0 THEN
+        g_ZMoveRel.Distance := dCalRelDisMin;
+      END_IF;
+      g_ZMoveRel.Velocity := dCalibrateVel;
+      IF g_ZMoveRel.Done THEN
+        g_ZMoveRel.Execute := FALSE;
+        g_boPresterCal := TRUE;
+        nCalibrateState := 102;
+      END_IF;
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;   
+      IF g_ZMoveRel.CommandAborted OR g_ZMoveRel.Error THEN
+        g_ZMoveRel.Execute := FALSE;
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibrateState := 0;
+      END_IF;
+    58:
+      IF g_biPresterCalState THEN
+        g_boPresterCal := FALSE;
+        dCalRelDisMax := 0.0;
+        dCalRelDisMin := 0.0;
+        nCalibrateState := 6;
+      END_IF;
+      
+      (*如果在上抬过程中暂停，那么就算标定终止*)
+      IF g_bPlcPauseBuffer THEN
+        g_boPresterCal := FALSE;
+        g_boPresterRequest := FALSE;
+        nCalibratePauseState := 1;
+        nCalibrateState := 20;
+      END_IF;
+    100:
+      (*延时300ms*)
+      Ton_SignalDelay(IN := TRUE,PT := T#300ms);
+      IF Ton_SignalDelay.Q THEN
+        Ton_SignalDelay(IN := FALSE);
+        nCalibrateState := 41;
+      END_IF;
+    101:
+      (*延时300ms*)
+      Ton_SignalDelay(IN := TRUE,PT := T#300ms);
+      IF Ton_SignalDelay.Q THEN
+        Ton_SignalDelay(IN := FALSE);
+        nCalibrateState := 43 + nCycleCount;
+      END_IF;
+    102:
+      (*延时300ms*)
+      Ton_SignalDelay(IN := TRUE,PT := T#300ms);
+      IF Ton_SignalDelay.Q THEN
+        Ton_SignalDelay(IN := FALSE);
+        nCalibrateState := 58;
+      END_IF;
+END_CASE;
+
+g_noCalibrateValue := nCalibrateState;
+
+IF g_bPlcResetBuffer AND g_nCalStatus=0 THEN
+  nCalibrateState := 0;
+  g_nCalStatus := 0;
+  g_bZCalibrateEnableM := FALSE;
+  g_boPresterRequest := FALSE;
+  g_boPresterCal := FALSE;
+  Ton1(IN := FALSE);
+  g_ZMoveVel.Execute := FALSE;
+  g_ZMoveRel.Execute := FALSE;
+  g_ZMoveStop.Execute := FALSE;
+  g_ZMoveVel.Velocity := 0.0;
+  g_ZMoveAbs.Velocity := 0.0;
+  g_ZMoveRel.Velocity := 0.0;
+END_IF;
+IF g_nCalStatus=1 AND (g_bPlcResetBuffer OR g_bPlcPauseBuffer) THEN
+  nCalibrateState := 21;
+END_IF;
+nLastSensorValue := g_niZSensorValue;
+dLastPosfb := Axis_Z.NCTOPLC.ACTPOS;
+
+(*初始化以及实时高度计算*)
+IF bInitScale THEN
+  bInitScale := FALSE;
+  g_nZEndSensor := 4000000;
+  FOR nCycle := 0 TO 20000 BY 1 DO
+     stCalDataList.nSensorValue[nCycle] := 4000000;
+     stCalDataList.dActualHeight[nCycle] := 50.0;
+  END_FOR;
+END_IF;
+IF g_nFAxisControlType = 3 THEN
+  dAnalogValue := g_diAnalogValue;
+ELSE
+  nDet := -1;
+  nLeft := 0;
+  nRight := 20000;
+  nMid := 0;
+
+  WHILE nLeft <= nRight DO
+    nMid := (nLeft + nRight) / 2;
+    IF stCalDataList.nSensorValue[nMid] < nSensorValue THEN
+      nLeft := nMid + 1;
+    ELSIF stCalDataList.nSensorValue[nMid] > nSensorValue THEN
+      nRight := nMid - 1;
+    ELSE
+      nDet := nMid;
+      EXIT;
+    END_IF;
+  END_WHILE;
+  
+  IF nDet = -1 THEN
+    nDet := nRight;
+  END_IF;
+END_IF;
+
+IF g_bResetCurHeight THEN
+  g_fZAxisHeight := dResetHeight;
+  g_nSensorDown := 0;
+ELSE
+  IF g_nFAxisControlType = 3 THEN
+    (*10mm标定*)
+    IF dCalibrateHeight = 10.0 THEN
+      dZAxisTargetHeight := (dAnalogValue * 10.0) / 32767.0;
+      g_fZAxisHeight := dZAxisTargetHeight;
+    (*20mm标定*)
+    ELSIF dCalibrateHeight = 20.0 THEN
+      dZAxisTargetHeight := (dAnalogValue * 10.0) / 32767.0;
+      g_fZAxisHeight := 2.0 * dZAxisTargetHeight;
+    END_IF;
+  ELSE 
+    g_fZAxisHeight := stCalDataList.dActualHeight[nDet];
+    IF g_bRealTimeCalibrate THEN
+      nOffsetZLiftSensor := UDINT_TO_DINT(g_nZEndSensor) - UDINT_TO_DINT(g_nZLiftSensor);
+      IF nOffsetZLiftSensor > 5000 THEN
+        nOffsetZLiftSensor := 5000;
+      ELSIF nOffsetZLiftSensor < -5000 THEN
+        nOffsetZLiftSensor := -5000;
+      END_IF;
+      g_fZAxisHeight := g_fZAxisHeight * EXPT(2.718281828459,(DINT_TO_LREAL(nOffsetZLiftSensor)/10000.0));
+    END_IF;
+  END_IF;
+END_IF;
+
+(*断线报警检测*)
+IF g_nFAxisControlType=3 THEN
+  nTraAlarm := nTraAlarmValue + g_nZEndSensor;
+ELSE
+  nTraAlarm := 180000 + g_nZEndSensor;
+END_IF;
+
+IF g_niZSensorValue > nTraAlarm THEN
+  Ton5(IN := TRUE,PT := T#20ms);
+  IF Ton5.Q THEN  
+    g_bTraLineError := TRUE;
+  END_IF;
+ELSE
+  Ton5(IN := FALSE);
+END_IF;
+
+IF g_niZSensorValue <= 0 AND (NOT bLineError) THEN
+  bLineError := TRUE;
+END_IF;
+
+IF g_bResetCurHeight THEN(*重置本体电容，断线报警不报*)
+  g_bSensorLineError := FALSE;
+    bLineError := FALSE;
+  Ton2(IN := FALSE);
+ELSE
+  IF g_niZSensorValue <= 0 AND bLineError THEN
+    Ton2(IN := TRUE,PT := T#3000ms);
+    IF Ton2.Q THEN
+      g_bSensorLineError := TRUE;
+      Ton2(IN := FALSE);
+      bLineError := TRUE;
+    END_IF;
+  ELSE
+    bLineError := FALSE;
+    Ton2(IN := FALSE);
+  END_IF;
+END_IF;
+
+
+IF (g_ZFollowIn.EXECUTE AND NOT g_ZFollowIn.DONE) AND Test_nSensorDelt = 0 AND g_fZAxisHeight < 15.0 THEN
+  g_nSensorDeltNum := g_nSensorDeltNum + 1;
+  IF g_nSensorDeltNum >= 100 THEN
+    g_bFollowSenSorNotLineAlarm := TRUE;
+  END_IF;
+ELSE
+  g_nSensorDeltNum := 0;
+  g_bFollowSenSorNotLineAlarm := FALSE;
+END_IF;
+IF bFirstStartFlag THEN
+  IF g_niZSensorValue - LREAL_TO_UDINT(g_dSavedSensorValue)>= 2000 AND g_bIsCalibrateFlag THEN
+    g_bSaveSensorValueErrorAlarm := TRUE;
+  END_IF;
+  bFirstStartFlag:= FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,775 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FrontSustainAbsolute" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Axis_Sustain4">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain5">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain6">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_biSustain4Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biSustain5Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biSustain6Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain4Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain5Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain6Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain4AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain5AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain6AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain4AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain5AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain6AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_Sustain4Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain5Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain6Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain4Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain5Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain6Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain4UpDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain5UpDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain6UpDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bSustain4Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustain5Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustain6Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustain7Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTring_4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nState4">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nState5">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nState6">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nARAbsState2">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="bSustain4AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[前浮动支撑轴1运动完成状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSustain5AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustain6AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dSustain4Position">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[前浮动支撑轴1运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSustain5Position">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSustain6Position">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSustain7Position">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSustain4TargetVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[前浮动支撑轴1目标速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSustain5TargetVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSustain6TargetVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSustain7TargetVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSustain4MoveTargetVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSustain5MoveTargetVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSustain6MoveTargetVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSustain7MoveTargetVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSustain4TargetPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[前浮动支撑轴1目标位置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSustain5TargetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSustain6TargetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSustain7TargetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger1(CLK := g_biSustain4Abs OR bSustain4Abs OR g_bSustain4Abs OR g_bFrontAxis1AbsMoveEnableM);
+R_Trigger2(CLK := g_biSustain5Abs OR bSustain5Abs OR g_bSustain5Abs OR g_bFrontAxis2AbsMoveEnableM);
+R_Trigger3(CLK := g_biSustain6Abs OR bSustain6Abs OR g_bSustain6Abs OR g_bFrontAxis3AbsMoveEnableM);
+R_Trigger4(CLK := g_bAxisStopFlag);
+R_Trigger5(CLK := g_bAxisStopFlag_11 OR g_bAxisStopFlag_12 OR g_bAxisStopFlag_13 OR g_bAxisStopFlag_15 );
+
+IF R_Trigger1.Q THEN
+  nState4 := 1;
+  bSustain4AbsDone := FALSE;
+  g_bSustain4AbsDone := FALSE;
+  dSustain4MoveTargetVel := dSustain4TargetVel;
+  IF g_biSustain4Abs THEN
+    nState4 := 0;
+  ELSIF g_bSustain4Abs THEN
+    dSustain4TargetPos := g_bSustain4AbsPosition;
+    g_bSustain4Abs := FALSE;
+    IF g_bPowerOffMoveToTargetPosSetSpeedFlag THEN
+      dSustain4MoveTargetVel := g_dPowerOffMoveToTargetPosSpeed;
+    END_IF;
+  ELSIF bSustain4Abs THEN
+    dSustain4TargetPos := dSustain4Position;
+     bSustain4Abs := FALSE;
+  ELSIF g_bFrontAxis1AbsMoveEnableM THEN
+    g_bFrontAxis1AbsMoveEnableM := FALSE;
+    dSustain4TargetPos := g_dFrontAxisMovePositionM;
+    IF g_bSetAuxiliaryAxisSpeed THEN
+		dSustain4MoveTargetVel := g_nAuxiliaryAxisSpeed;
+		g_bSetAuxiliaryAxisSpeed := FALSE;
+    END_IF;
+  END_IF;
+  (*IF nState4 <> 0  AND nState4 <> 20 AND Axis_Sustain4.NCTOPLC.ACTVELO > g_dCheckAxisIsMovingSpeedSet THEN
+    g_bAxisIsMoveAlarm := TRUE;
+    bSustain4Abs := FALSE;
+    g_bSustain4Abs := FALSE;
+    g_bFrontAxis1AbsMoveEnableM := FALSE;
+	nState4 := 21;
+  END_IF; *)
+END_IF;
+
+IF R_Trigger2.Q THEN
+  
+  nState5 := 1;
+  bSustain5AbsDone := FALSE;
+  g_bSustain5AbsDone := FALSE;
+  dSustain5MoveTargetVel := dSustain5TargetVel;
+  IF g_biSustain5Abs THEN
+    nState5 := 0;
+  ELSIF g_bSustain5Abs THEN
+    dSustain5TargetPos := g_bSustain5AbsPosition;
+    g_bSustain5Abs := FALSE;
+  ELSIF bSustain5Abs THEN
+    dSustain5TargetPos := dSustain5Position;
+    bSustain5Abs := FALSE;
+    IF g_bPowerOffMoveToTargetPosSetSpeedFlag THEN
+      dSustain5MoveTargetVel := g_dPowerOffMoveToTargetPosSpeed;
+    END_IF;
+  ELSIF g_bFrontAxis2AbsMoveEnableM THEN
+    g_bFrontAxis2AbsMoveEnableM := FALSE;
+    dSustain5TargetPos := g_dFrontAxisMovePositionM;
+    IF g_bSetAuxiliaryAxisSpeed THEN
+      dSustain5MoveTargetVel := g_nAuxiliaryAxisSpeed;
+      g_bSetAuxiliaryAxisSpeed := FALSE;
+    END_IF;
+  END_IF;
+  (*IF nState5 <> 0  AND nState5 <> 20 AND Axis_Sustain5.NCTOPLC.ACTVELO > g_dCheckAxisIsMovingSpeedSet   THEN
+    g_bAxisIsMoveAlarm := TRUE;
+    bSustain5Abs := FALSE;
+    g_bSustain5Abs := FALSE;
+    g_bFrontAxis2AbsMoveEnableM := FALSE;
+	nState5 := 21;
+  END_IF;*)
+END_IF;
+
+IF R_Trigger3.Q THEN
+  nState6 := 1;
+  bSustain6AbsDone := FALSE;
+  g_bSustain6AbsDone := FALSE;
+  dSustain6MoveTargetVel := dSustain6TargetVel;
+  IF g_biSustain6Abs THEN
+    nState6 := 0;
+  ELSIF g_bSustain6Abs THEN
+    dSustain6TargetPos := g_bSustain6AbsPosition;
+    g_bSustain6Abs := FALSE;
+  ELSIF bSustain6Abs THEN
+    dSustain6TargetPos := dSustain6Position;
+    bSustain6Abs := FALSE;
+    IF g_bPowerOffMoveToTargetPosSetSpeedFlag THEN
+      dSustain6MoveTargetVel := g_dPowerOffMoveToTargetPosSpeed;
+    END_IF;
+  ELSIF g_bFrontAxis3AbsMoveEnableM THEN
+    g_bFrontAxis3AbsMoveEnableM := FALSE;
+    dSustain6TargetPos := g_dFrontAxisMovePositionM;
+    IF g_bSetAuxiliaryAxisSpeed THEN
+      dSustain6MoveTargetVel := g_nAuxiliaryAxisSpeed;
+      g_bSetAuxiliaryAxisSpeed := FALSE;
+    END_IF;
+  END_IF;
+   (*IF nState6 <> 0  AND nState6 <> 20 AND Axis_Sustain6.NCTOPLC.ACTVELO > g_dCheckAxisIsMovingSpeedSet   THEN
+    g_bAxisIsMoveAlarm := TRUE;
+    bSustain6Abs := FALSE;
+    g_bSustain6Abs := FALSE;
+    g_bFrontAxis3AbsMoveEnableM := FALSE;
+	nState6 := 21;
+  END_IF;*)
+END_IF;
+
+IF R_Trigger4.Q THEN
+  IF g_nAxisStopP = 11 THEN
+    g_bAxisStopFlag := FALSE;
+    nState4 := 21;
+  ELSIF g_nAxisStopP = 12 THEN
+    g_bAxisStopFlag := FALSE;
+    nState5 := 21;
+  ELSIF g_nAxisStopP = 13 THEN
+    g_bAxisStopFlag := FALSE;
+    nState6 := 21;
+  ELSIF g_nAxisStopP = 15 THEN
+    g_bAxisStopFlag := FALSE;
+    nARAbsState2 := 21;
+  END_IF;
+END_IF;
+
+IF R_Trigger5.Q THEN
+  IF g_bAxisStopFlag_11 THEN
+    g_bAxisStopFlag_11 := FALSE;
+    nState4 := 21;
+  END_IF;
+  IF g_bAxisStopFlag_12 THEN
+    g_bAxisStopFlag_12 := FALSE;
+    nState5 := 21;
+  END_IF;
+  IF g_bAxisStopFlag_13 THEN
+    g_bAxisStopFlag_13 := FALSE;
+    nState6 := 21;
+  END_IF;
+   IF g_bAxisStopFlag_15 THEN
+    g_bAxisStopFlag_15 := FALSE;
+    nARAbsState2 := 21;
+  END_IF;
+END_IF;
+
+CASE nState4 OF
+  0:
+    nState4 := 0;
+  1:
+    g_Sustain4Abs.Execute := TRUE;
+    g_Sustain4Abs.Velocity := dSustain4MoveTargetVel;
+    g_Sustain4Abs.Position := dSustain4TargetPos;
+    IF g_Sustain4Abs.Done THEN
+      g_Sustain4Abs.Execute := FALSE;
+      bSustain4AbsDone := TRUE;
+      g_bSustain4AbsDone := TRUE;
+      g_bFrontAxis1MoveDoneM320 := TRUE;
+      nState4 := 0;
+      M.ENABLE[305] := 0;
+      g_bExecuteFinishedM305 := FALSE;
+      g_bFinishedM305_1 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nState4 := 20;
+    END_IF;
+    IF g_Sustain4Abs.CommandAborted OR g_Sustain4Abs.Error THEN
+      g_Sustain4Abs.Execute := FALSE;
+      nState4 := 0;
+      M.ENABLE[305] := 0;
+      g_bExecuteFinishedM305 := FALSE;
+      g_bFinishedM305_1 := FALSE;
+    END_IF;
+  20:
+    g_Sustain4Abs.Execute := FALSE;
+    g_Sustain4Stop.Execute := TRUE;
+    IF g_Sustain4Stop.Done AND g_bPlcStartBuffer THEN
+      g_Sustain4Stop.Execute := FALSE;
+      nState4 := 1;
+    END_IF;
+    IF g_Sustain4Stop.CommandAborted OR g_Sustain4Stop.Error THEN
+      g_Sustain4Stop.Execute := FALSE;
+      nState4 := 0;
+      M.ENABLE[305] := 0;
+      g_bExecuteFinishedM305 := FALSE;
+      g_bFinishedM305_1 := FALSE;
+    END_IF;
+  21:
+    g_Sustain4Abs.Execute := FALSE;
+    g_Sustain4Stop.Execute := TRUE;
+    IF g_Sustain4Stop.Done THEN
+      g_Sustain4Stop.Execute := FALSE;
+      g_bFinishedM325_11 := FALSE;
+      M.Enable[325] := 0;
+      nState4 := 0;
+      g_bFrontAxis1MoveDoneM320 := TRUE;
+    END_IF;
+    IF g_Sustain4Stop.CommandAborted OR g_Sustain4Stop.Error THEN
+      g_Sustain4Stop.Execute := FALSE;
+      g_bFinishedM325_11 := FALSE;
+      M.Enable[325] := 0;
+      nState4 := 0;
+      M.ENABLE[305] := 0;
+      g_bExecuteFinishedM305 := FALSE;
+      g_bFinishedM305_1 := FALSE;
+    END_IF;
+END_CASE;
+
+CASE nState5 OF
+  0:
+    nState5 := 0;
+  1:
+    g_Sustain5Abs.Execute := TRUE;
+    g_Sustain5Abs.Velocity := dSustain5MoveTargetVel;
+    g_Sustain5Abs.Position := dSustain5TargetPos;
+    IF g_Sustain5Abs.Done THEN
+      g_Sustain5Abs.Execute := FALSE;
+      bSustain5AbsDone := TRUE;
+      g_bSustain5AbsDone := TRUE;
+      g_bFrontAxis2MoveDoneM320 := TRUE;
+      nState5 := 0;
+       M.ENABLE[305] := 0;
+       g_bExecuteFinishedM305 := FALSE;
+      g_bFinishedM305_2 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nState5 := 20;
+    END_IF;
+    IF g_Sustain5Abs.CommandAborted OR g_Sustain5Abs.Error THEN
+      g_Sustain5Abs.Execute := FALSE;
+      nState5 := 0;
+       M.ENABLE[305] := 0;
+       g_bExecuteFinishedM305 := FALSE;
+      g_bFinishedM305_2 := FALSE;
+    END_IF;
+  20:
+    g_Sustain5Abs.Execute := FALSE;
+    g_Sustain5Stop.Execute := TRUE;
+    IF g_Sustain5Stop.Done AND g_bPlcStartBuffer THEN
+      g_Sustain5Stop.Execute := FALSE;
+      nState5 := 1;
+    END_IF;
+    IF g_Sustain5Stop.CommandAborted OR g_Sustain5Stop.Error THEN
+      g_Sustain5Stop.Execute := FALSE;
+      nState5 := 0;
+      M.ENABLE[305] := 0;
+      g_bExecuteFinishedM305 := FALSE;
+      g_bFinishedM305_2 := FALSE;
+    END_IF;
+  21:
+    g_Sustain5Abs.Execute := FALSE;
+    g_Sustain5Stop.Execute := TRUE;
+    IF g_Sustain5Stop.Done THEN
+      g_Sustain5Stop.Execute := FALSE;
+      g_bFinishedM325_12 := FALSE;
+      M.ENABLE[325] := 0;
+      nState5 := 0;
+      g_bFrontAxis2MoveDoneM320 := TRUE;
+    END_IF;
+    IF g_Sustain5Stop.CommandAborted OR g_Sustain5Stop.Error THEN
+      g_Sustain5Stop.Execute := FALSE;
+      g_bFinishedM325_12 := FALSE;
+      M.ENABLE[325] := 0;
+      nState5 := 0;
+      M.ENABLE[305] := 0;
+      g_bExecuteFinishedM305 := FALSE;
+      g_bFinishedM305_2 := FALSE;
+    END_IF;
+END_CASE;
+
+CASE nState6 OF
+  0:
+    nState6 := 0;
+  1:
+    g_Sustain6Abs.Execute := TRUE;
+    g_Sustain6Abs.Velocity := dSustain6MoveTargetVel;
+    g_Sustain6Abs.Position := dSustain6TargetPos;
+    IF g_Sustain6Abs.Done THEN
+      g_Sustain6Abs.Execute := FALSE;
+      bSustain6AbsDone := TRUE;
+      g_bSustain6AbsDone := TRUE;
+      g_bFrontAxis3MoveDoneM320 := TRUE;
+      nState6 := 0;
+      M.ENABLE[305] := 0;
+      g_bExecuteFinishedM305 := FALSE;
+      g_bFinishedM305_3 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nState4 := 20;
+    END_IF;
+    IF g_Sustain6Abs.CommandAborted OR g_Sustain6Abs.Error THEN
+      g_Sustain6Abs.Execute := FALSE;
+      nState6 := 0;
+      M.ENABLE[305] := 0;
+      g_bExecuteFinishedM305 := FALSE;
+      g_bFinishedM305_3 := FALSE;
+    END_IF;
+  20:
+    g_Sustain6Abs.Execute := FALSE;
+    g_Sustain6Stop.Execute := TRUE;
+    IF g_Sustain6Stop.Done AND g_bPlcStartBuffer THEN
+      g_Sustain6Stop.Execute := FALSE;
+      nState6 := 1;
+    END_IF;
+    IF g_Sustain6Stop.CommandAborted OR g_Sustain6Stop.Error THEN
+      g_Sustain6Stop.Execute := FALSE;
+      nState6 := 0;
+      M.ENABLE[305] := 0;
+      g_bExecuteFinishedM305 := FALSE;
+      g_bFinishedM305_3 := FALSE;
+    END_IF;
+  21:
+    g_Sustain6Abs.Execute := FALSE;
+    g_Sustain6Stop.Execute := TRUE;
+    IF g_Sustain6Stop.Done THEN
+      g_Sustain6Stop.Execute := FALSE;
+      g_bFinishedM325_13 := FALSE;
+      M.ENABLE[325] := 0;
+      nState6 := 0;
+      g_bFrontAxis3MoveDoneM320 := TRUE;
+    END_IF;
+    IF g_Sustain6Stop.CommandAborted OR g_Sustain6Stop.Error THEN
+      g_Sustain6Stop.Execute := FALSE;
+      g_bFinishedM325_13 := FALSE;
+      M.ENABLE[325] := 0;
+      nState6 := 0;
+      M.ENABLE[305] := 0;
+      g_bExecuteFinishedM305 := FALSE;
+      g_bFinishedM305_3 := FALSE;
+    END_IF;
+END_CASE;
+
+RTring_4(CLK := g_biAntiRejection2AbsExecute OR bSustain7Abs OR g_bAntiRejection2AbsExecute OR g_bFrontAxis4AbsMoveEnableM );
+
+IF RTring_4.Q THEN
+  
+  nARAbsState2 := 1;
+  g_boAntiRejection2AbsDone := FALSE;
+  g_bAntiRejection2AbsDone := FALSE;
+  dSustain7MoveTargetVel := dSustain7TargetVel;
+  IF g_biAntiRejection2AbsExecute THEN
+    dSustain7TargetPos := g_fiARTargetPos2; 
+  ELSIF bSustain7Abs THEN
+    dSustain7TargetPos := dSustain7Position;
+    bSustain7Abs := FALSE;
+    IF g_bPowerOffMoveToTargetPosSetSpeedFlag THEN
+      dSustain7MoveTargetVel := g_dPowerOffMoveToTargetPosSpeed;
+    END_IF;
+  ELSIF g_bFrontAxis4AbsMoveEnableM THEN
+    g_bFrontAxis4AbsMoveEnableM := FALSE;
+    dSustain7TargetPos := g_dFrontAxisMovePositionM;
+    IF g_bSetAuxiliaryAxisSpeed THEN
+      dSustain7MoveTargetVel := g_nAuxiliaryAxisSpeed;
+      g_bSetAuxiliaryAxisSpeed := FALSE;
+    END_IF;
+  ELSE
+    dSustain7TargetPos := g_fARAbsPosition2;
+    g_bAntiRejection2AbsExecute := FALSE;
+  END_IF;
+  (* IF nARAbsState2 <> 0  AND nARAbsState2 <> 20 AND AntiRejection2.NCTOPLC.ACTVELO > g_dCheckAxisIsMovingSpeedSet THEN
+    g_bAxisIsMoveAlarm := TRUE;
+    bSustain7Abs := FALSE;
+    g_bAntiRejection2AbsExecute := FALSE;
+    g_bFrontAxis4AbsMoveEnableM := FALSE;
+	nARAbsState2 := 21;
+  END_IF;*)
+END_IF;
+
+
+CASE nARAbsState2 OF
+  0:
+    nARAbsState2 := 0;
+  1:
+    g_AntiRejection2Abs.Execute := TRUE;
+    g_AntiRejection2Abs.Velocity := dSustain7MoveTargetVel;
+    g_AntiRejection2Abs.Position := dSustain7TargetPos;
+    IF g_AntiRejection2Abs.Done THEN
+      g_AntiRejection2Abs.Execute := FALSE;
+      g_boAntiRejection2AbsDone := TRUE;
+      g_bAntiRejection2AbsDone := TRUE;
+      nARAbsState2 := 0;
+      g_bFrontAxis4MoveDoneM320 := TRUE;
+       M.ENABLE[305] := 0;
+      g_bExecuteFinishedM305 := FALSE;
+      g_bFinishedM305_4 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nARAbsState2 := 20;
+    END_IF;
+    IF g_AntiRejection2Abs.CommandAborted OR g_AntiRejection2Abs.Error THEN
+      g_AntiRejection2Abs.Execute := FALSE;
+      nARAbsState2 := 0;
+       M.ENABLE[305] := 0;
+      g_bExecuteFinishedM305 := FALSE;
+      g_bFinishedM305_4 := FALSE;
+    END_IF;
+  20:
+    g_AntiRejection2Abs.Execute := FALSE;
+    g_AntiRejection2Stop.Execute := TRUE;
+    IF g_AntiRejection2Stop.Done AND g_bPlcStartBuffer THEN
+      g_AntiRejection2Stop.Execute := FALSE;
+      nARAbsState2 := 1;
+      g_bFinishedM305_4 := FALSE;
+    END_IF;
+    IF g_AntiRejection2Stop.CommandAborted OR g_AntiRejection2Stop.Error THEN
+      g_AntiRejection2Stop.Execute := FALSE;
+      nARAbsState2 := 0;
+       M.ENABLE[305] := 0;
+      g_bExecuteFinishedM305 := FALSE;
+    END_IF;
+  21:
+    g_AntiRejection2Abs.Execute := FALSE;
+    g_AntiRejection2Stop.Execute := TRUE;
+    IF g_AntiRejection2Stop.Done THEN
+      g_AntiRejection2Stop.Execute := FALSE;
+      M.ENABLE[325] := 0;
+      nARAbsState2 := 0;
+      g_bFrontAxis4MoveDoneM320 := TRUE;
+      g_bFinishedM325_15 := FALSE;
+    END_IF;
+    IF g_AntiRejection2Stop.CommandAborted OR g_AntiRejection2Stop.Error THEN
+      g_AntiRejection2Stop.Execute := FALSE;
+      M.ENABLE[325] := 0;
+      nARAbsState2 := 0;
+      g_bExecuteFinishedM305 := FALSE;
+      g_bFinishedM325_15 := FALSE;
+      g_bFinishedM305_4 := FALSE;
+    END_IF;
+END_CASE;
+
+
+
+IF g_bPlcResetBuffer THEN
+  nState4 := 0;
+  nState5 := 0;
+  nState6 := 0;
+  nARAbsState2 := 0;
+  bSustain4AbsDone := FALSE;
+  bSustain5AbsDone := FALSE;
+  bSustain6AbsDone := FALSE;
+  g_Sustain4Abs.Execute := FALSE;
+  g_Sustain5Abs.Execute := FALSE;
+  g_Sustain6Abs.Execute := FALSE;
+  g_AntiRejection2Abs.Execute := FALSE;
+  g_Sustain4Stop.Execute := FALSE;
+  g_Sustain5Stop.Execute := FALSE;
+  g_Sustain6Stop.Execute := FALSE;
+  g_AntiRejection2Stop.Execute := FALSE;
+  g_bExecuteFinishedM305 := FALSE;
+  g_bFinishedM325_11 := FALSE;
+  g_bFinishedM325_12 := FALSE;
+  g_bFinishedM325_13 := FALSE;
+  g_boAntiRejection2AbsDone := FALSE;
+  g_bAntiRejection2AbsDone := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DustAxisPower" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="D_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="DustPower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_bDustAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bDustAxisEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dSuperOverride">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCurOverride">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bAntiRejection3Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="F_PowerOff">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake1">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[F_PowerOff(CLK := g_bDriveEnable);
+IF F_PowerOff.Q THEN
+  bDustAxisEnable := FALSE;
+END_IF;
+
+
+IF DustPower.error THEN
+  DustPower.Enable := FALSE;
+END_IF;
+
+
+AxisPowerBrake(
+	bPower := bDustAxisEnable,
+    AxisRef := REF(D_Axis),
+    HomeSignal := g_nDustHomeSignal,
+    HomeMode := g_nDHomeMode,
+    AxisPosLimit := NOT g_bDustAxisPosLimit,
+    AxisNegLimit := NOT g_bDustAxisNegLimit,
+    AxisPower := REF(DustPower),
+    OutBrake => g_boDustAxis1HoldBrake);
+
+
+
+dSuperOverride := g_diDustAxisSuperOverride;
+IF dSuperOverride<0.00001 THEN
+  dSuperOverride := 0.00001;
+END_IF;
+IF dSuperOverride>1.0 THEN
+  dSuperOverride := 1.0;
+END_IF;
+dCurOverride := dSuperOverride*g_dCurOverride;
+
+DustAxis_Override.Enable := TRUE;
+IF g_nMachineType=10 OR g_nMachineType=15 OR g_nMachineType=17 THEN
+  DustAxis_Override.VelFactor := dCurOverride;
+ELSE
+  DustAxis_Override.VelFactor := g_dCurOverride;
+END_IF;
+IF ABS(D_Axis.NCTOPLC.ACTPOS - D_Axis.NCTOPLC.SETPOS) > g_fDustAxisMaxPosError THEN
+  g_bDustAxisPosErrorAlarm := TRUE;
+ELSE
+  g_bDustAxisPosErrorAlarm := FALSE;
+END_IF;
+
+
+
+(*防甩轴3*)
+
+IF g_AntiRejection3Power.error THEN
+  bAntiRejection3Enable := FALSE;
+END_IF;
+AxisPowerBrake1(
+	bPower := bAntiRejection3Enable,
+    AxisRef := REF(AntiRejection3),
+    HomeSignal := g_AntiRejection3HomeSignal,
+    HomeMode := g_nD2HomeMode,
+    AxisPosLimit := NOT g_bAntiRejection3PosLimit,
+    AxisNegLimit := NOT g_bAntiRejection3NegLimit,
+    AxisPower := REF(g_AntiRejection3Power),
+    OutBrake => g_boDustAxis2HoldBrake);
+g_AntiRejection3SetOverRide.Enable := TRUE;
+g_AntiRejection3SetOverRide.VelFactor := g_dCurOverride;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

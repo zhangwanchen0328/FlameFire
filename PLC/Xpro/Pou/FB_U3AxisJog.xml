@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_U3AxisJog" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_U3MoveJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bJogForwardEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动前进]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogBackwardEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点后退]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogFast">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF bJogFast THEN
+  g_U3MoveJog.Mode := 1;
+ELSE
+  g_U3MoveJog.Mode := 0;
+END_IF;
+
+g_U3MoveJog.JogForward := bJogForwardEnable;
+g_U3MoveJog.JogBackwards := bJogBackwardEnable;
+
+IF g_bPlcResetBuffer THEN
+  bJogForwardEnable := FALSE;
+  bJogBackwardEnable := FALSE;
+END_IF;  ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

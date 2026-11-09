@@ -1,0 +1,367 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DDAxisHome" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC暂停全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC复位全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biDDAxisHomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boDDAxisHomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_DDAxisHome">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bDDAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_DDAxisStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_DDAxisReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_DDAxisAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_DDAxisRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bHomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI归零开始信号]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bDDAxisHomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bHomeError">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零错误]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHomingState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHomingMode">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dHomePosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后位置偏差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dHomeOffset">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后位置偏差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dHomeVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Rtring">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bDDAxisHomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bDDAxisZero">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bChangeHomeMode">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[置零点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nChangeHomeModeState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[置零点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_T3Recover">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nRecoverT3DatumMarkState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring(CLK := g_biDDAxisHomeEnable OR bHomeEnable OR g_bDDAxisHomeEnable);
+
+IF Rtring.Q THEN
+  nHomingState :=1;
+  g_boDDAxisHomeDone := FALSE;
+  g_bDDAxisHomeDone := FALSE;
+END_IF;
+
+CASE nHomingState OF 
+  0:
+  nHomingState := 0;
+  1:
+  g_DDAxisHome.Execute := TRUE;
+  g_DDAxisHome.Position := dHomePosition;
+  g_DDAxisHome.bCalibrationCam := g_bDDAxisZero;
+  g_DDAxisHome.DISTANCE := dHomeOffset;
+  IF nHomingMode =0 THEN
+    g_DDAxisHome.HomingMode := 0;
+  ELSIF nHomingMode = 1 THEN
+    g_DDAxisHome.HomingMode := 5;
+  ELSIF nHomingMode = 3 THEN
+       (*只是去掉回零标志位*)
+    g_DDAxisHome.HomingMode := 1;
+  END_IF;
+  IF g_DDAxisHome.Done THEN
+    g_DDAxishome.Execute := FALSE;
+    g_boDDAxisHomeDone := TRUE;
+    g_bDDAxisHomeDone := TRUE;
+    nHomingState := 0;
+  END_IF;
+  IF g_bPlcPauseBuffer THEN
+    nHomingState := 10;
+  END_IF;
+  IF g_DDAxisHome.CommandAborted OR g_DDAxisHome.error THEN
+    nHomingState := 0;
+    g_DDAxisHome.Execute := FALSE;
+    g_boDDAxisHomeDone := FALSE;
+  END_IF;
+  10:
+  g_DDAxisHome.Execute := FALSE;
+  g_DDAxisStop.Execute := TRUE;
+  IF g_DDAxisStop.Done AND g_bPlcStartBuffer THEN
+    g_DDAxisStop.Execute := FALSE;
+    nHomingState := 1;
+  END_IF;
+  IF g_DDAxisStop.CommandAborted OR g_DDAxisStop.error THEN
+    g_DDAxisStop.Execute := FALSE;
+    nHomingState :=0;
+  END_IF;
+END_CASE;
+
+IF bChangeHomeMode THEN
+  bChangeHomeMode := FALSE;
+  nChangeHomeModeState := 1;
+END_IF;
+(*置零点功能*)
+CASE nChangeHomeModeState OF
+  0:
+    nChangeHomeModeState := 0;
+  1:
+    g_DDAxisHome.Execute := TRUE;
+    IF nHomingMode = 0 THEN
+      g_DDAxisHome.HomingMode := 0;
+    ELSIF nHomingMode = 1 THEN
+      g_DDAxisHome.HomingMode := 5;
+    ELSIF nHomingMode = 2 THEN
+      g_DDAxisHome.HomingMode := 4;
+    END_IF;
+  g_DDAxisHome.Position := 0.0;
+  g_DDAxisHome.DISTANCE := 0.0;
+    IF g_DDAxisHome.Done THEN
+      g_DDAxisHome.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+    IF g_DDAxisHome.CommandAborted OR g_DDAxisHome.Error THEN
+      g_DDAxisHome.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+END_CASE;
+
+(***界面上下发了去掉T3轴回零标志***)
+IF g_bCleanT3Homed THEN
+   g_DDAxisHome.HomingMode := 1;
+   g_DDAxisHome.Execute := TRUE; 
+   g_bDDAxisHomeDone := FALSE; 
+   IF g_DDAxisHome.DONE OR g_DDAxisHome.ERROR THEN 
+    g_DDAxisHome.Execute := FALSE; 
+    g_bCleanT3Homed := FALSE; 
+   END_IF;
+END_IF;
+(*伺服断电恢复基准点*)
+Rtring_T3Recover(CLK := g_bRecoverT3DatumMark);
+IF Rtring_T3Recover.Q THEN
+  g_bRecoverT3DatumMark := FALSE;
+  nRecoverT3DatumMarkState := 1;
+END_IF;
+CASE nRecoverT3DatumMarkState OF
+  1:
+   g_DDAxisHome.HomingMode := 4;
+   g_DDAxisHome.Position :=g_dT3DatumMark; (*恢复基准点坐标差值*)
+   g_DDAxisHome.Execute := TRUE;  
+   IF  g_DDAxisHome.DONE OR g_DDAxisHome.ERROR THEN 
+		g_boDDAxisHomeDone := TRUE;
+		g_bDDAxisHomeDone := TRUE;
+		g_DDAxisHome.Execute := FALSE; 
+		nRecoverT3DatumMarkState := 0; 
+   END_IF;
+END_CASE;
+IF g_bPlcResetBuffer THEN
+  g_DDAxisHome.Execute := FALSE;
+  nHomingState :=0;
+  g_DDAxisRel.Execute := FALSE;
+  g_DDAxisStop.Execute := FALSE;
+  g_bDDAxisHomeDone := TRUE;
+  g_bRecoverT3DatumMark := FALSE;
+END_IF; 
+  
+g_nT3HomeMode := nHomingMode;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

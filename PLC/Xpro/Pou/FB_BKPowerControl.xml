@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BKPowerControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Feeding_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="FixedLen_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Dust_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Feeding_Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="FixedLen_Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="Dust_Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bFeeding_Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFixedLen_Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDust_Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bFeedingPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFeedingNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFixedLenPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFixedLenNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="F_PowerOff">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[F_PowerOff(CLK := g_bDriveEnable);
+IF F_PowerOff.Q THEN
+  bFeeding_Enable := FALSE;
+  bFixedLen_Enable := FALSE;
+  bDust_Enable := FALSE;
+END_IF;
+
+Feeding_Power.Enable := bFeeding_Enable;
+Feeding_Power.EnablePosition := TRUE;
+Feeding_Power.EnableNegative := NOT g_bFeedingNegLimit;
+
+IF Feeding_Power.Error THEN
+  Feeding_Power.Enable := FALSE;
+END_IF;
+
+FixedLen_Power.Enable := bFixedLen_Enable;
+FixedLen_Power.EnablePosition := NOT g_bFixedLenPosLimit;
+FixedLen_Power.EnableNegative := NOT g_bFixedLenNegLimit;
+
+IF FixedLen_Power.Error THEN
+  FixedLen_Power.Enable := FALSE;
+END_IF;
+
+Dust_Power.Enable := bDust_Enable;
+Dust_Power.EnablePosition := NOT g_bDustPosLimit;
+Dust_Power.EnableNegative := NOT g_bDustNegLimit;
+
+IF Dust_Power.Error THEN
+  Dust_Power.Enable := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

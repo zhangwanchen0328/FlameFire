@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Y2Y3AxisPower" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_Y3Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴使能模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Y3PowerEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴使能开启]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bY3AxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[允许正向运动使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY3AxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[允许反向运动使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y2Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴使能模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Y2PowerEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴使能开启]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bY2AxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[允许正向运动使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY2AxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[允许反向运动使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bFrontSustainStatus">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnStatus">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZAvoidStatus">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bY2MovePosEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bY2MoveNegEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bY3MovePosEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bY3MoveNegEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bY2MoveAllow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY2Y3DisError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY1Y2DisError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3YY2Collision">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3Y2Y3Collision">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_Y2Override">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+      </variable>
+      <variable name="g_Y3Override">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+      </variable>
+      <variable name="g_dCurOverride">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_Alarm">
+        <type>
+          <derived name="DT_ALARM"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="F_PowerOff">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF g_bZAvoidStatus AND g_bFrontSustainStatus AND g_bTurnStatus THEN
+  bY2MovePosEnable := NOT g_bY2AxisPosLimit;
+  bY2MoveNegEnable := NOT g_bY2AxisNegLimit;
+  bY3MovePosEnable := NOT g_bY3AxisPosLimit;
+  bY3MoveNegEnable := NOT g_bY3AxisNegLimit;
+  IF g_bY2Y3DisError THEN
+    bY2MovePosEnable := FALSE;
+    bY3MoveNegEnable := FALSE;
+  END_IF;
+  IF g_bY1Y2DisError THEN
+    bY2MoveNegEnable := FALSE;
+  END_IF;
+  IF g_bClaw3YY2Collision THEN
+    bY2MoveNegEnable := FALSE; 
+  END_IF;
+
+  IF g_bClaw3Y2Y3Collision THEN
+    bY2MovePosEnable := FALSE;
+    bY3MoveNegEnable := FALSE;
+  END_IF;
+ELSE
+  bY2MovePosEnable := FALSE;
+  bY2MoveNegEnable := FALSE;
+  bY3MovePosEnable := FALSE;
+  bY3MoveNegEnable := FALSE;
+END_IF;
+(*支撑气缸未下降到位，Y2轴不能负向移动*)
+IF g_Alarm.alarmArray[101]<>0 
+  OR g_Alarm.alarmArray[102]<>0 
+  OR g_Alarm.alarmArray[103]<>0 
+  OR g_Alarm.alarmArray[104]<>0 
+  OR g_Alarm.alarmArray[105]<>0  
+  OR g_Alarm.alarmArray[106]<>0 
+  OR g_Alarm.alarmArray[107]<>0 
+  OR g_Alarm.alarmArray[108]<>0 THEN
+  bY2MoveNegEnable := FALSE;
+END_IF;
+F_PowerOff(CLK := g_bDriveEnable);
+IF F_PowerOff.Q THEN
+  Y2PowerEnable := FALSE;
+  Y3PowerEnable := FALSE;
+END_IF;
+g_Y2Power.Enable := Y2PowerEnable;
+IF g_bY2MoveAllow THEN
+  g_Y2Power.EnablePosition := TRUE;
+  g_Y2Power.EnableNegative := TRUE;
+ELSE
+  g_Y2Power.EnablePosition := bY2MovePosEnable;
+  g_Y2Power.EnableNegative := bY2MoveNegEnable;
+END_IF;
+
+IF g_Y2Power.Error THEN
+  Y2PowerEnable := FALSE;
+END_IF;
+
+g_Y3Power.Enable := Y3PowerEnable;
+g_Y3Power.EnablePosition := bY3MovePosEnable;
+g_Y3Power.EnableNegative := bY3MoveNegEnable;
+
+IF g_Y3Power.Error THEN
+  Y3PowerEnable := FALSE;
+END_IF; 
+ 
+g_Y2Override.Enable := TRUE;
+g_Y2Override.VelFactor := g_dCurOverride;
+ 
+g_Y3Override.Enable := TRUE;
+g_Y3Override.VelFactor := g_dCurOverride;
+IF ABS(Axis_Y2.NCTOPLC.ACTPOS - Axis_Y2.NCTOPLC.SETPOS) > g_fY2AxisMaxPosError THEN
+  g_bY2AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bY2AxisPosErrorAlarm := FALSE;
+END_IF;
+IF ABS(Axis_Y3.NCTOPLC.ACTPOS - Axis_Y3.NCTOPLC.SETPOS)  > g_fY3AxisMaxPosError THEN
+  g_bY3AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bY3AxisPosErrorAlarm := FALSE;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[Y2Y3轴上电]]></xhtml:p>
+  </documentation>
+</pou>

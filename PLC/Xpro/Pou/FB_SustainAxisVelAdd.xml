@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SustainAxisVelAdd" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="fSetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dLastCoord">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[fSetPos := g_fSustainTargetPos;
+
+
+g_Sustain1VelAdd.ENABLE := g_bSustainAxis1VelAddEnable AND NOT g_bSupportPendingFlag;
+g_Sustain1VelAdd.VELADDITIVEMODE := 1;
+g_Sustain1VelAdd.DISTANCE := -(fSetPos - dLastCoord);
+
+
+
+g_Sustain2VelAdd.ENABLE := g_bSustainAxis2VelAddEnable AND NOT g_bSupportPendingFlag;
+g_Sustain2VelAdd.VELADDITIVEMODE := 1;
+g_Sustain2VelAdd.DISTANCE := -(fSetPos - dLastCoord);
+
+g_Sustain3VelAdd.ENABLE := g_bSustainAxis3VelAddEnable AND NOT g_bSupportPendingFlag;
+g_Sustain3VelAdd.VELADDITIVEMODE := 1;
+g_Sustain3VelAdd.DISTANCE := -(fSetPos - dLastCoord);
+
+
+
+g_Sustain7VelAdd.ENABLE := g_bSustainAxis4VelAddEnable AND NOT g_bSupportPendingFlag;
+g_Sustain7VelAdd.VELADDITIVEMODE := 1;
+g_Sustain7VelAdd.DISTANCE := -(fSetPos - dLastCoord);
+
+
+
+g_Sustain8VelAdd.ENABLE := g_bSustainAxis5VelAddEnable AND NOT g_bSupportPendingFlag;
+g_Sustain8VelAdd.VELADDITIVEMODE := 1;
+g_Sustain8VelAdd.DISTANCE := -(fSetPos - dLastCoord);
+
+g_Sustain9VelAdd.ENABLE := g_bSustainAxis6VelAddEnable AND NOT g_bSupportPendingFlag;
+g_Sustain9VelAdd.VELADDITIVEMODE := 1;
+g_Sustain9VelAdd.DISTANCE := -(fSetPos - dLastCoord);
+
+g_AxisS7VelAdd.ENABLE := g_bSustainAxis7VelAddEnable AND NOT g_bSupportPendingFlag;
+g_AxisS7VelAdd.VELADDITIVEMODE := 1;
+g_AxisS7VelAdd.DISTANCE := -(fSetPos - dLastCoord);
+
+g_AxisS8VelAdd.ENABLE := g_bSustainAxis8VelAddEnable AND NOT g_bSupportPendingFlag;
+g_AxisS8VelAdd.VELADDITIVEMODE := 1;
+g_AxisS8VelAdd.DISTANCE := -(fSetPos - dLastCoord);
+
+g_AxisS9VelAdd.ENABLE := g_bSustainAxis9VelAddEnable AND NOT g_bSupportPendingFlag;
+g_AxisS9VelAdd.VELADDITIVEMODE := 1;
+g_AxisS9VelAdd.DISTANCE := -(fSetPos - dLastCoord);
+
+g_AxisS10VelAdd.ENABLE := g_bSustainAxis10VelAddEnable AND NOT g_bSupportPendingFlag;
+g_AxisS10VelAdd.VELADDITIVEMODE := 1;
+g_AxisS10VelAdd.DISTANCE := -(fSetPos - dLastCoord);
+
+g_AxisS11VelAdd.ENABLE := g_bSustainAxis11VelAddEnable AND NOT g_bSupportPendingFlag;
+g_AxisS11VelAdd.VELADDITIVEMODE := 1;
+g_AxisS11VelAdd.DISTANCE := -(fSetPos - dLastCoord);
+
+g_AxisS12VelAdd.ENABLE := g_bSustainAxis12VelAddEnable AND NOT g_bSupportPendingFlag;
+g_AxisS12VelAdd.VELADDITIVEMODE := 1;
+g_AxisS12VelAdd.DISTANCE := -(fSetPos - dLastCoord);
+
+
+dLastCoord := fSetPos;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_YDClawControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_biFeedingClawClamp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFeedingClawLoosen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFeedingClaw">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biRatateClawLoosen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biRatateClawClamp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boRatateClaw">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bRatateClawClamp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bRatateClawLoosen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFeedingClawLoosen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFeedingClawClamp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="R_Trigger0">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bFeedingClawState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bRotateClawState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biFeedingLimitSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFeedingLimitSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bNotMaterialAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger0(CLK := g_biFeedingClawClamp OR bFeedingClawClamp);
+R_Trigger1(CLK := g_biFeedingClawLoosen OR bFeedingClawLoosen);
+R_Trigger2(CLK := g_biRatateClawClamp OR bRatateClawClamp);
+R_Trigger3(CLK := g_biRatateClawLoosen OR bRatateClawLoosen);
+
+IF R_Trigger0.Q THEN
+  g_boFeedingClaw := TRUE;
+  bFeedingClawState := TRUE;
+END_IF;
+
+IF R_Trigger1.Q THEN
+  g_boFeedingClaw := FALSE;
+  bFeedingClawState := FALSE;
+  g_boFeedingLimitSignal := FALSE;
+END_IF;
+
+IF R_Trigger2.Q THEN
+  g_boRatateClaw := TRUE;
+  bRotateClawState := TRUE;
+END_IF;
+
+IF R_Trigger3.Q THEN
+  g_boRatateClaw := FALSE;
+  bRotateClawState := FALSE;
+END_IF;
+
+IF g_boFeedingClaw THEN
+  IF (NOT g_biFeedingLimitSignal) THEN
+    g_boFeedingLimitSignal := TRUE;
+    bNotMaterialAlarm := TRUE;
+  END_IF;
+END_IF;
+
+IF g_bPlcResetBuffer THEN
+  g_boFeedingClaw := FALSE;
+  g_boRatateClaw := FALSE;
+  bFeedingClawState := FALSE;
+  bRotateClawState := FALSE;
+  bNotMaterialAlarm := FALSE;
+  g_boFeedingLimitSignal := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

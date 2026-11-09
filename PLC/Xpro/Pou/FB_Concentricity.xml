@@ -1,0 +1,477 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Concentricity" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bConcentricityEnableM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[四面分中使能控制，引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bConcentricityCloseM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[四面分中完成，引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bFlatNumEnableM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动到位，记录Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R_Trigger0">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nConcentricitySwitch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dZAxisCurPos1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第一个面做随动到1mm的Z轴高度值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dZAxisCurPos2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第二个面做随动到1mm的Z轴高度值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dZAxisCurPos3">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第三个面做随动到1mm的Z轴高度值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dZAxisCurPos4">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第四个面做随动到1mm的Z轴高度值]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fZCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴坐标值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_foConcentricityDiff1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚输出：A面输出补偿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_foConcentricityDiff2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚输出：D面输出补偿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fFlatNumM">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[平面数，引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="PartArray">
+        <type>
+          <array>
+            <dimension lower="0" upper="99"/>
+            <baseType>
+              <INT/>
+            </baseType>
+          </array>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[判断当前零件是否执行四面分中的结构体]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCurrentPartNumber">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前零件号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bIsFourSideHMIOn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[四面分中激活]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_foFourSideCenter">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fComponentNumberM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bNextComponentM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boNextComponent">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="tTon">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcEndM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bPlcEnd">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dCompensate1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCompensate2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bConcenDir">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dFourSideCompensationA">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[四面分中个面补偿：A面补偿 0  界面显示值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dFourSideCompensationB">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[四面分中个面补偿：B面补偿 90]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dFourSideCompensationC">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[四面分中个面补偿：C面补偿 180]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dFourSideCompensationD">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[四面分中个面补偿：D面补偿 270]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dFourSideCompensationOffsetA">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[手动偏移]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFourSideCompensationOffsetB">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFourSideCompensationOffsetC">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFourSideCompensationOffsetD">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bMunalAlterCompensation">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[hmi修改补偿值]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_foConcentricityDiff3">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：C面180输出补偿值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_foConcentricityDiff4">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：B面90输出补偿值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dInformHmiUpdateValue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[通知界面更新四面分中补偿的参数值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCleanFourSideHalValueM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入引脚：控制局部变量bDiffEnable，不输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUseFourSideHalValueM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入引脚：控制局部变量bDiffEnable，输出]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger(CLK := g_bConcentricityEnableM);
+R_Trigger0(CLK := g_bFlatNumEnableM);
+R_Trigger1(CLK := g_bConcentricityCloseM);
+R_Trigger2(CLK := g_bNextComponentM);
+R_Trigger3(CLK := g_bPlcEndM);
+R_Trigger4(CLK := bMunalAlterCompensation);
+
+IF R_Trigger2.Q THEN
+  g_boNextComponent := TRUE;
+  g_bNextComponentM := FALSE;
+END_IF;
+
+IF g_boNextComponent THEN
+  (*延时10ms*)
+  tTon(IN := TRUE,PT := T#10ms);
+  IF tTon.Q THEN
+    tTon(IN := FALSE);
+    g_boNextComponent := FALSE;
+  END_IF;
+END_IF;
+(*获取当前零件号*)
+nCurrentPartNumber := LREAL_TO_INT(g_fComponentNumberM);
+(*判断当前零件是否需要进行四面分中*)
+
+(*进行四面分中*)
+IF R_Trigger.Q THEN
+  g_bConcentricityEnableM := FALSE;
+  nConcentricitySwitch := 1;
+  g_dUseSideCenterType := 1.0;
+  g_bExecuteSingeSideOnAFace := FALSE;
+  g_bExecuteSingeSideOnBFace := FALSE;
+  g_bExecuteSingeSideOnCFace := FALSE;
+  g_bExecuteSingeSideOnDFace := FALSE;
+END_IF;
+
+IF R_Trigger1.Q THEN
+  nConcentricitySwitch := 2;
+  g_bConcentricityCloseM := FALSE;
+END_IF;
+
+IF R_Trigger3.Q THEN
+  bPlcEnd := true;
+END_IF;
+
+IF R_Trigger4.Q THEN
+  nConcentricitySwitch := 30;
+  bMunalAlterCompensation :=FALSE;
+END_IF;
+
+(*当管型为方管并且最近一次使用四面分中时，引脚输出为四面分中的补偿值*)
+g_dConcentricityCompensationValueA := g_dFourSideCompensationA ;
+g_dConcentricityCompensationValueB := g_dFourSideCompensationB;
+g_dConcentricityCompensationValueC := g_dFourSideCompensationC;
+g_dConcentricityCompensationValueD := g_dFourSideCompensationD;
+CASE nConcentricitySwitch OF
+  0:
+  nConcentricitySwitch := 0;
+  1:
+    IF R_Trigger0.Q THEN
+      IF LREAL_TO_INT(g_fFlatNumM) = 1 THEN
+        dZAxisCurPos1 := g_fZCoordinate;
+      ELSIF LREAL_TO_INT(g_fFlatNumM) = 2 THEN
+        dZAxisCurPos2 := g_fZCoordinate;
+      ELSIF LREAL_TO_INT(g_fFlatNumM) = 3 THEN
+        dZAxisCurPos3 := g_fZCoordinate;
+      ELSIF LREAL_TO_INT(g_fFlatNumM) = 4 THEN
+        dZAxisCurPos4 := g_fZCoordinate;
+      END_IF;
+      g_bFlatNumEnableM := FALSE;
+    END_IF;
+    
+    IF g_bPlcPauseBuffer THEN
+      nConcentricitySwitch := 10;
+    END_IF;
+  2:
+  dCompensate1 := (dZAxisCurPos3 - dZAxisCurPos1)/2.0;
+  dCompensate2 := (dZAxisCurPos4 - dZAxisCurPos2)/2.0;
+  
+  (*拿到的补偿值默认取反*)
+  dCompensate1 := dCompensate1*(-1.0);
+  dCompensate2 := dCompensate2*(-1.0);
+  IF bConcenDir THEN(*界面取反相当于取正*)
+    dCompensate1 := dCompensate1*(-1.0);
+    dCompensate2 := dCompensate2*(-1.0);
+  END_IF;
+  g_dFourSideCompensationA := dCompensate2;
+  g_dFourSideCompensationC := dCompensate2*(-1.0);
+  g_dFourSideCompensationB := dCompensate1*(-1.0); 
+  g_dFourSideCompensationD := dCompensate1;
+  g_dInformHmiUpdateValue := 1.0;
+  nConcentricitySwitch := 0;
+  IF ABS(dCompensate1)>g_dCompensationThreshold OR ABS(dCompensate2) > g_dCompensationThreshold THEN
+    g_bExcessiveDeviationOfCentringCompensationAlarm := TRUE;
+  END_IF;
+  10:
+  IF g_bPlcStartBuffer THEN
+    nConcentricitySwitch := 1;
+  END_IF;
+  
+  30:(*手动修改四面分中各个面补偿值参数*)(*目前用于清零*)
+    g_dInformHmiUpdateValue := 1.0;
+    nConcentricitySwitch := 0;
+END_CASE;
+
+IF g_bPlcResetBuffer OR bPlcEnd THEN
+  bPlcEnd := false;
+  nConcentricitySwitch := 0;
+  tTon(IN := FALSE);
+  g_boNextComponent := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[四面分中]]></xhtml:p>
+  </documentation>
+</pou>

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_GasCal" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBAirCal">
+        <type>
+          <derived name="FB_AirCal"/>
+        </type>
+      </variable>
+      <variable name="FBN2Cal">
+        <type>
+          <derived name="FB_N2Cal"/>
+        </type>
+      </variable>
+      <variable name="FBO2Cal">
+        <type>
+          <derived name="FB_O2Cal"/>
+        </type>
+      </variable>
+      <variable name="N">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="5"/>
+        </initialValue>
+      </variable>
+      <variable name="FBGasDiagnosis">
+        <type>
+          <derived name="FB_GasDiagnosis"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*间隔60ms采集N个气压数据,计算平均值方差,*)
+FBCutGasPressure10Date(
+     SaveTime := 60.0(*LREAL*),
+     InValue := g_nAheadCutGasPressureAct(*LREAL*),
+     ValueNum := N,
+     Data => g_STCutPre10Date(*ARRAY*),
+     Sum => g_CutPreSum(*LREAL*),
+     Average => g_CutPreAverage(*LREAL*),
+     Variance => g_CutPreVariance(*LREAL*),
+     StandardDeviation => g_CutPreStandarDeviation); 
+FBAirCal();
+FBN2Cal();
+FBO2Cal();
+FBGasDiagnosis();  (*气路诊断*)]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

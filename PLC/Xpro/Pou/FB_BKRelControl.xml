@@ -1,0 +1,417 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BKRelControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Feeding_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="FixedLen_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Dust_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Feeding_Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="FixedLen_Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="Dust_Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="Feeding_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="FixedLen_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="Dust_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bFeedingRelOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFeedingRelClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFixedLenRelOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFixedLenRelClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustRelOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustRelClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="R_Trriger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger6">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bFeedingRelDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFixedLenRelDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustRelDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nFeedingSwitch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nFixedLenSwitch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nDustSwitch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dFeedingTargetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFixedLenTargetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDustTargetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFeedingRelDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFixedLenRelDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDustRelDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFeedingRelVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFixedLenRelVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDustRelVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFastInch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dFeedingSlowVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFixedLenSlowVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDustSlowVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFeedingFastVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFixedLenFastVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDustFastVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*送料轴寸动*)
+R_Trriger1(CLK := bFeedingRelOpen);
+R_Trriger2(CLK := bFeedingRelClose);
+
+IF R_Trriger1.Q THEN
+  bFeedingRelDone := FALSE;
+  dFeedingTargetPos := Feeding_Axis.NCTOPLC.ActPos + dFeedingRelDis;
+  nFeedingSwitch := 1;
+END_IF;
+
+IF R_Trriger2.Q THEN
+  bFeedingRelDone := FALSE;
+END_IF;
+
+CASE nFeedingSwitch OF
+  0:
+  nFeedingSwitch := 0;
+  1:
+  Feeding_Rel.Execute := TRUE;
+  IF g_bFastInch=0 THEN
+    Feeding_Rel.Velocity := dFeedingSlowVel;
+  ELSE
+    Feeding_Rel.Velocity := dFeedingFastVel;
+  END_IF;
+  Feeding_Rel.Distance := dFeedingTargetPos - Feeding_Axis.NCTOPLC.ActPos;
+  IF Feeding_Rel.Done THEN
+    bFeedingRelDone := TRUE;
+    Feeding_Rel.Execute := FALSE;
+    nFeedingSwitch := 0;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer THEN
+    nFeedingSwitch := 10;
+  END_IF;
+  
+  IF Feeding_Rel.CommandAborted OR Feeding_Rel.Error THEN
+    bFeedingRelDone := FALSE;
+    Feeding_Rel.Execute := FALSE;
+    nFeedingSwitch := 0;
+  END_IF;
+  10:
+  Feeding_Rel.Execute := FALSE;
+  Feeding_Stop.Execute := TRUE;
+  IF Feeding_Stop.Done AND g_bPlcStartBuffer THEN
+    Feeding_Stop.Execute := FALSE;
+    nFeedingSwitch := 1;
+  END_IF;
+  
+  IF Feeding_Stop.CommandAborted OR Feeding_Stop.Error THEN
+    Feeding_Stop.Execute := FALSE;
+    nFeedingSwitch := 0;
+  END_IF;
+END_CASE;
+
+(*定长轴寸动*)
+R_Trriger3(CLK := bFixedLenRelOpen);
+R_Trriger4(CLK := bFixedLenRelClose);
+
+IF R_Trriger3.Q THEN
+  bFixedLenRelDone := FALSE;
+  dFixedLenTargetPos := FixedLen_Axis.NCTOPLC.SETPOS + dFixedLenRelDis;
+  nFixedLenSwitch := 1;
+END_IF;
+
+IF R_Trriger4.Q THEN
+  bFixedLenRelDone := FALSE;
+END_IF;
+
+CASE nFixedLenSwitch OF
+  0:
+  nFixedLenSwitch := 0;
+  1:
+  FixedLen_Rel.Execute := TRUE;
+    IF g_bFastInch=0 THEN
+      FixedLen_Rel.Velocity := dFixedLenSlowVel;
+    ELSE
+      FixedLen_Rel.Velocity := dFixedLenFastVel;
+    END_IF;
+    FixedLen_Rel.Distance := dFixedLenTargetPos - FixedLen_Axis.NCTOPLC.SETPOS;
+    IF FixedLen_Rel.Done THEN
+      FixedLen_Rel.Execute := FALSE;
+      bFixedLenRelDone := TRUE;
+      nFixedLenSwitch := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nFixedLenSwitch := 20;
+    END_IF;
+    IF FixedLen_Rel.CommandAborted OR FixedLen_Rel.Error THEN
+      FixedLen_Rel.Execute := FALSE;
+      bFixedLenRelDone := FALSE;
+      nFixedLenSwitch := 0;
+    END_IF;
+  20:
+    FixedLen_Rel.Execute := FALSE;
+    FixedLen_Stop.Execute := TRUE;
+    IF FixedLen_Stop.Done AND g_bPlcStartBuffer THEN
+      FixedLen_Stop.Execute := FALSE;
+      nFixedLenSwitch := 1;
+    END_IF;
+    IF FixedLen_Stop.CommandAborted OR FixedLen_Stop.Error THEN
+      FixedLen_Stop.Execute := FALSE;
+      nFixedLenSwitch := 0;
+    END_IF;
+END_CASE;
+
+(*抽尘轴寸动*)
+R_Trriger5(CLK := bDustRelOpen);
+R_Trriger6(CLK := bDustRelClose);
+
+IF R_Trriger5.Q THEN
+  bDustRelDone := FALSE;
+  dDustTargetPos := Dust_Axis.NCTOPLC.ActPos + dDustRelDis;
+  nDustSwitch := 1;
+END_IF;
+
+IF R_Trriger6.Q THEN
+  bDustRelDone := FALSE;
+END_IF;
+
+CASE nDustSwitch OF
+  0:
+  nDustSwitch := 0;
+  1:
+  Dust_Rel.Execute := TRUE;
+  IF g_bFastInch=0 THEN
+    Dust_Rel.Velocity := dDustSlowVel;
+  ELSE
+    Dust_Rel.Velocity := dDustFastVel;
+  END_IF;
+  Dust_Rel.Distance := dDustTargetPos - Dust_Axis.NCTOPLC.ActPos;
+  IF Dust_Rel.Done THEN
+    bFeedingRelDone := TRUE;
+    Dust_Rel.Execute := FALSE;
+    nDustSwitch := 0;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer THEN
+    nDustSwitch := 10;
+  END_IF;
+  
+  IF Dust_Rel.CommandAborted OR Dust_Rel.Error THEN
+    bFeedingRelDone := FALSE;
+    Dust_Rel.Execute := FALSE;
+    nDustSwitch := 0;
+  END_IF;
+  10:
+  Dust_Rel.Execute := FALSE;
+  Dust_Stop.Execute := TRUE;
+  IF Dust_Stop.Done AND g_bPlcStartBuffer THEN
+    Dust_Stop.Execute := FALSE;
+    nDustSwitch := 1;
+  END_IF;
+  
+  IF Dust_Stop.CommandAborted OR Dust_Stop.Error THEN
+    Dust_Stop.Execute := FALSE;
+    nDustSwitch := 0;
+  END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nFeedingSwitch := 0;
+  nFixedLenSwitch := 0;
+  nDustSwitch := 0;
+  Feeding_Rel.Execute := FALSE;
+  Feeding_Stop.Execute := FALSE;
+  FixedLen_Rel.Execute := FALSE;
+  FixedLen_Stop.Execute := FALSE;
+  Dust_Rel.Execute := FALSE;
+  Dust_Stop.Execute := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

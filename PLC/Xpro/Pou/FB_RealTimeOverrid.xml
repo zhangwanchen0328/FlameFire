@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_RealTimeOverrid" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="dMaxOverride">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="1.0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[最大倍率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMinOverride">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最小倍率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dActCoordX">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开始降速时X轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSingalOverrid">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单个区间倍率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMoveDis">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前移动长度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSlowSetNum">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="100.0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[设定倍率段数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSlowNum">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前所在倍率区间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="R_Trriger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+R_Trriger(CLK := g_bSlowcutEnableM);
+IF R_Trriger.Q THEN(*记录X坐标*)
+  dActCoordX := g_diXMachineCoordinate;
+  g_bSlowcutEnableM := FALSE;
+  nstate := 10;
+END_IF;
+IF dMaxOverride <= dMinOverride THEN
+  dMaxOverride := dMinOverride +0.01;
+END_IF;                      
+CASE nState OF
+  0:
+    nstate := 0;
+  10:
+    dMoveDis := ABS(g_diXMachineCoordinate - dActCoordX);
+    dSingalOverrid := (dMaxOverride - dMinOverride)/nSlowSetNum ;
+    nSlowNum := Trunc(LREAL_TO_REAL(dMoveDis /(g_dSlowcutLengthM / nSlowSetNum)));
+    IF nSlowNum > LREAL_TO_INT(nSlowSetNum) THEN
+      nSlowNum := LREAL_TO_INT(nSlowSetNum);
+    ELSIF nSlowNum < 0 THEN
+      nSlowNum := 0;
+    END_IF;
+    g_doRealtimeOverrid:=dMaxOverride-dSingalOverrid*INT_TO_LREAL(nSlowNum);
+    IF g_doRealtimeOverrid < dMinOverride THEN
+      g_doRealtimeOverrid:= dMinOverride;
+    END_IF;
+   
+    IF g_nLayerStart =500 THEN
+      g_boSlowcutEnable := TRUE;
+      g_bIsSetSlowCutEnableFlag := TRUE; 
+    ELSE 
+      g_boSlowcutEnable := FALSE;
+    g_bIsSetSlowCutEnableFlag := FALSE; 
+      nstate := 0;
+    END_IF;
+     IF g_bPlcPauseBuffer THEN
+      nstate := 20;
+    END_IF;
+  20:
+    IF g_bPlcStartBuffer THEN
+      nState := 10;
+    END_IF;
+END_CASE;                   
+IF g_bPlcResetBuffer THEN 
+  g_boSlowcutEnable := FALSE;
+  g_bSlowcutEnableM := FALSE;
+  nstate := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

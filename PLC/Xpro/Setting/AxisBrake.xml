@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <globalVars>
+    <variable name="g_boDustAxis1HoldBrake" address="%QX17.064">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[除尘轴1抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boDustAxis2HoldBrake" address="%QX17.065">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[除尘轴2抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boSupportAxis1HoldBrake" address="%QX17.066">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴1抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boSupportAxis2HoldBrake" address="%QX17.067">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴2抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boSupportAxis3HoldBrake" address="%QX17.068">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴3抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boSupportAxis4HoldBrake" address="%QX17.069">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴4抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boSupportAxis5HoldBrake" address="%QX17.070">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴5抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boSupportAxis6HoldBrake" address="%QX17.071">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴6抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boCNCXAxisHoldBrake" address="%QX17.072">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[X抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boCNCYAxisHoldBrake" address="%QX17.073">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Y抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boCNCUAxisHoldBrake" address="%QX17.074">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[U抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boCNCAAxisHoldBrake" address="%QX17.075">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[A抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boFrontSupportAxis1HoldBrake" address="%QX17.076">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴1抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boFrontSupportAxis2HoldBrake" address="%QX17.077">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴2抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boFrontSupportAxis3HoldBrake" address="%QX17.078">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴3抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boFrontSupportAxis4HoldBrake" address="%QX17.079">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴4抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boGeneralAxis1HoldBrake" address="%QX17.080">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴1抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boGeneralAxis2HoldBrake" address="%QX17.081">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴2抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boGeneralAxis3HoldBrake" address="%QX17.082">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴3抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boNcAxisU2HoldBrake" address="%QX17.083">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[U2轴抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boAvoidAxisHoldBrake" address="%QX17.084">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁避让轴抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boMCFeedAxisHoldBrake" address="%QX17.085">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[主卡进给轴抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boMiddleAvoidMoveAxisHoldBrake" address="%QX17.086">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[中卡移动避让轴抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boDualStationAxis1HoldBrake" address="%QX17.087">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[双工位旋转轴1轴抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boDualStationAxis2HoldBrake" address="%QX17.088">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[双工位旋转轴2轴抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boDualStationAxis3HoldBrake" address="%QX17.089">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[双工位旋转轴3轴抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boDualStationAxis4HoldBrake" address="%QX17.090">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[双工位旋转轴4轴抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boSupportAxis7HoldBrake" address="%QX17.091">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴7轴抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boSupportAxis8HoldBrake" address="%QX17.110">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴8轴抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boSupportAxis9HoldBrake" address="%QX17.111">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴9轴抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boSupportAxis10HoldBrake" address="%QX17.112">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴10轴抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boSupportAxis11HoldBrake" address="%QX17.113">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴11轴抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boSupportAxis12HoldBrake" address="%QX17.114">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴12轴抱闸输出]]></xhtml:p>
+      </documentation>
+    </variable>
+  </globalVars>
+</root>

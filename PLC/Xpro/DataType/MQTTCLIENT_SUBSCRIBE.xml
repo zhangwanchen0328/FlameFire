@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MQTTCLIENT_SUBSCRIBE">
+  <baseType>
+    <struct>
+      <variable name="ENABLE">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="EQOS">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+      <variable name="SUBTOPIC">
+        <type>
+          <string/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

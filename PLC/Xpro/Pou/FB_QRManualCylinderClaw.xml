@@ -1,0 +1,496 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_QRManualCylinderClaw" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_boLoadCylinder1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCylinder2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCylinder3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCylinder1Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCylinder2Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCylinder3Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boClawEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportCylinder1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportCylinder2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportCylinder3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportCylinder4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupport1UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupport2UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupport3UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupport4UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupport1DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupport2DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupport3DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupport4DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportInPlaceEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biQRManualLoad3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger6">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger7">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger8">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger9">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger10">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger11">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger12">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="FTrigger1">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bLoadCylinder1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadCylinder2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadCylinder3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadCylinderUp1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadCylinderUp2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadCylinderUp3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bClaw">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCylinder1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCylinder2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCylinder3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCylinder4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bControlEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadCyl1State">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadCyl2State">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadCyl3State">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadCylUp1State">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadCylUp2State">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadCylUp3State">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bClawState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCyl1State">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCyl2State">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCyl3State">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCyl4State">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger1(CLK := bLoadCylinder1);
+RTrigger2(CLK := bLoadCylinder2);
+RTrigger3(CLK := bLoadCylinder3);
+RTrigger4(CLK := bLoadCylinderUp1);
+RTrigger5(CLK := bLoadCylinderUp2);
+RTrigger6(CLK := bLoadCylinderUp3);
+RTrigger7(CLK := bClaw);
+RTrigger8(CLK := bSupportCylinder1);
+RTrigger9(CLK := bSupportCylinder2);
+RTrigger10(CLK := bSupportCylinder3);
+RTrigger11(CLK := bSupportCylinder4);
+RTrigger12(CLK := g_biQRManualLoad3);
+FTrigger1(CLK := g_biQRManualLoad3);
+
+IF RTrigger1.Q THEN
+  IF bControlEnable THEN
+    g_boLoadCylinder1 := TRUE;
+  ELSE
+    g_boLoadCylinder1 := FALSE;
+  END_IF;
+END_IF;
+IF RTrigger2.Q THEN
+  IF bControlEnable THEN
+    g_boLoadCylinder2 := TRUE;
+  ELSE
+    g_boLoadCylinder2 := FALSE;
+  END_IF;
+END_IF;
+IF RTrigger3.Q THEN
+  IF bControlEnable THEN
+    g_boLoadCylinder3 := TRUE;
+  ELSE
+    g_boLoadCylinder3 := FALSE;
+  END_IF;
+END_IF;
+IF RTrigger4.Q THEN
+  IF bControlEnable THEN
+    g_boLoadCylinder1Up := TRUE;
+  ELSE
+    g_boLoadCylinder1Up := FALSE;
+  END_IF;
+END_IF;
+IF RTrigger5.Q THEN
+  IF bControlEnable THEN
+    g_boLoadCylinder2Up := TRUE;
+  ELSE
+    g_boLoadCylinder2Up := FALSE;
+  END_IF;
+END_IF;
+IF RTrigger6.Q THEN
+  IF bControlEnable THEN
+    g_boLoadCylinder3Up := TRUE;
+  ELSE
+    g_boLoadCylinder3Up := FALSE;
+  END_IF;
+END_IF;
+IF RTrigger12.Q THEN
+  g_boLoadCylinder3Up := TRUE;
+END_IF;
+IF FTrigger1.Q THEN
+  g_boLoadCylinder3Up := FALSE;
+END_IF;
+
+IF RTrigger7.Q THEN
+  IF bControlEnable THEN
+    g_boClawEnable := TRUE;
+  ELSE
+    g_boClawEnable := FALSE;
+  END_IF;
+END_IF;
+
+
+IF RTrigger8.Q THEN
+  IF bControlEnable THEN
+    g_boSupportCylinder1 := TRUE;
+  ELSE
+    g_boSupportCylinder1 := FALSE;
+  END_IF;
+END_IF;
+IF RTrigger9.Q THEN
+  IF bControlEnable THEN
+    g_boSupportCylinder2 := TRUE;
+  ELSE
+    g_boSupportCylinder2 := FALSE;
+  END_IF;
+END_IF;
+IF RTrigger10.Q THEN
+  IF bControlEnable THEN
+    g_boSupportCylinder3 := TRUE;
+  ELSE
+    g_boSupportCylinder3 := FALSE;
+  END_IF;
+END_IF;
+IF RTrigger11.Q THEN
+  IF bControlEnable THEN
+    g_boSupportCylinder4 := TRUE;
+  ELSE
+    g_boSupportCylinder4 := FALSE;
+  END_IF;
+END_IF;
+
+IF g_boLoadCylinder1 THEN
+  bLoadCyl1State := TRUE;
+ELSE 
+  bLoadCyl1State := FALSE;
+END_IF;
+
+IF g_boLoadCylinder2 THEN
+  bLoadCyl2State := TRUE;
+ELSE 
+  bLoadCyl2State := FALSE;
+END_IF;
+
+IF g_boLoadCylinder3 THEN
+  bLoadCyl3State := TRUE;
+ELSE 
+  bLoadCyl3State := FALSE;
+END_IF;
+
+IF g_boLoadCylinder1Up THEN
+  bLoadCylUp1State := TRUE;
+ELSE
+  bLoadCylUp1State := FALSE;
+END_IF;
+
+IF g_boLoadCylinder2Up THEN
+  bLoadCylUp2State := TRUE;
+ELSE
+  bLoadCylUp2State := FALSE;
+END_IF;
+
+IF g_boLoadCylinder3Up THEN
+  bLoadCylUp3State := TRUE;
+ELSE
+  bLoadCylUp3State := FALSE;
+END_IF;
+
+
+IF g_boClawEnable THEN
+  bClawState := TRUE;
+ELSE
+  bClawState := FALSE;
+END_IF;
+
+IF g_bSupportInPlaceEnable THEN
+  IF g_bSupport1UpInPlace THEN
+    bSupportCyl1State := TRUE;
+  END_IF;
+  IF g_bSupport1DownInPlace THEN
+    bSupportCyl1State := FALSE;
+  END_IF;
+  
+  IF g_bSupport2UpInPlace THEN
+    bSupportCyl2State := TRUE;
+  END_IF;
+  IF g_bSupport2DownInPlace THEN
+    bSupportCyl2State := FALSE;
+  END_IF;
+  
+  IF g_bSupport3UpInPlace THEN
+    bSupportCyl3State := TRUE;
+  END_IF;
+  IF g_bSupport3DownInPlace THEN
+    bSupportCyl3State := FALSE;
+  END_IF;
+  
+  IF g_bSupport4UpInPlace THEN
+    bSupportCyl4State := TRUE;
+  END_IF;
+  IF g_bSupport4DownInPlace THEN
+    bSupportCyl4State := FALSE;
+  END_IF;
+ELSE
+  IF g_boSupportCylinder1 THEN
+    bSupportCyl1State := TRUE;
+  ELSE
+    bSupportCyl1State := FALSE;
+  END_IF;
+  
+  IF g_boSupportCylinder2 THEN
+    bSupportCyl2State := TRUE;
+  ELSE
+    bSupportCyl2State := FALSE;
+  END_IF;
+  
+  IF g_boSupportCylinder3 THEN
+    bSupportCyl3State := TRUE;
+  ELSE
+    bSupportCyl3State := FALSE;
+  END_IF;
+  
+  IF g_boSupportCylinder4 THEN
+    bSupportCyl4State := TRUE;
+  ELSE
+    bSupportCyl4State := FALSE;
+  END_IF;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

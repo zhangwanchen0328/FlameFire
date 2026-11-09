@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SelfTuning" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="nMoveSelfTuningState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bMoveSelfTuningStart">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*横梁避让轴自整定*)
+CASE nMoveSelfTuningState OF 
+  0:
+    IF bMoveSelfTuningStart THEN
+      nMoveSelfTuningState := 10;
+      bMoveSelfTuningStart := FALSE;
+      g_bBeamAvoidAxisSelfTuningDone := FALSE;
+    END_IF;
+  10:
+    g_BeamAvoidAxisSelfTuning.EXECUTE := TRUE;
+    g_BeamAvoidAxisSelfTuning.DIRECTION :=1;
+    IF g_BeamAvoidAxisSelfTuning.DONE THEN
+      g_BeamAvoidAxisSelfTuning.EXECUTE := FALSE;
+      g_dBeamAvoidAxisSelfTuningCF := g_BeamAvoidAxisSelfTuning.CF_POSITIVE;
+      nMoveSelfTuningState := 0;
+      g_bBeamAvoidAxisSelfTuningDone := TRUE;
+    END_IF;
+    IF g_BeamAvoidAxisSelfTuning.COMMANDABORTED OR g_BeamAvoidAxisSelfTuning.ERROR THEN
+      nMoveSelfTuningState := 20;
+      g_BeamAvoidAxisSelfTuning.EXECUTE := FALSE;
+    END_IF;
+    IF  g_bPlcResetBuffer THEN
+      nMoveSelfTuningState := 20;
+    END_IF;
+    
+  20:
+      g_AntiRejection6Stop.Execute := TRUE;
+      IF g_AntiRejection6Stop.Done  THEN
+        g_AntiRejection6Stop.Execute := FALSE;
+        nMoveSelfTuningState := 0;
+      END_IF;
+      IF g_AntiRejection6Stop.CommandAborted OR g_AntiRejection6Stop.Error THEN
+        g_AntiRejection6Stop.Execute := FALSE;
+        nMoveSelfTuningState := 0;
+      END_IF;
+    IF g_bPlcResetBuffer THEN
+      g_AntiRejection6Stop.Execute := FALSE;
+      nMoveSelfTuningState := 0;
+    END_IF;
+END_CASE;
+IF g_bPlcResetBuffer THEN
+  g_BeamAvoidAxisSelfTuning.EXECUTE := FALSE;
+  g_bBeamAvoidAxisSelfTuningDone := FALSE;
+  g_AntiRejection6Stop.Execute := FALSE;
+  nMoveSelfTuningState := 0;
+  bMoveSelfTuningStart := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

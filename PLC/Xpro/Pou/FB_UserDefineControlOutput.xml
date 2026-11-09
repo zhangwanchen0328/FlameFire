@@ -1,0 +1,3137 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_UserDefineControlOutput" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Rtring_trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_triggerForHMI">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_trigger_1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_trigger_2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_trigger_3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_trigger_4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_trigger_5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_trigger_6">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_trigger_7">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_trigger_8">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_trigger_9">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_trigger_10">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_trigger_11">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_trigger_12">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nOutputState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nArrayIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nDefineOutPutIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nDefineOutPutIndex1">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nDefineOutPutIndex2">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nDefineOutPutIndex3">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nDefineOutPutIndex4">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nDefineOutPutIndex5">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nDefineOutPutIndex6">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nDefineOutPutIndex7">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nDefineOutPutIndex8">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nDefineOutPutIndex9">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nDefineOutPutIndex10">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nDefineOutPutIndex11">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nDefineOutPutIndex12">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nOutPutIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bTempFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTempFlag1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTempFlag2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTempFlag3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTempFlag4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTempFlag5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTempFlag6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTempFlag7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTempFlag8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTempFlag9">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTempFlag10">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTempFlag11">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTempFlag12">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUserDefineControlHMI">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUserDefineControlHMI1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUserDefineControlHMI2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUserDefineControlHMI3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUserDefineControlHMI4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUserDefineControlHMI5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUserDefineControlHMI6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUserDefineControlHMI7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUserDefineControlHMI8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUserDefineControlHMI9">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUserDefineControlHMI10">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUserDefineControlHMI11">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUserDefineControlHMI12">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="ArrayConfigOutputIndex">
+        <type>
+          <array>
+            <dimension lower="0" upper="95"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="FBTempFlagSet_1">
+        <type>
+          <derived name="FB_TempFlagSet"/>
+        </type>
+      </variable>
+      <variable name="FBTempFlagSet_2">
+        <type>
+          <derived name="FB_TempFlagSet"/>
+        </type>
+      </variable>
+      <variable name="FBTempFlagSet_3">
+        <type>
+          <derived name="FB_TempFlagSet"/>
+        </type>
+      </variable>
+      <variable name="FBTempFlagSet_4">
+        <type>
+          <derived name="FB_TempFlagSet"/>
+        </type>
+      </variable>
+      <variable name="FBTempFlagSet_5">
+        <type>
+          <derived name="FB_TempFlagSet"/>
+        </type>
+      </variable>
+      <variable name="FBTempFlagSet_6">
+        <type>
+          <derived name="FB_TempFlagSet"/>
+        </type>
+      </variable>
+      <variable name="FBTempFlagSet_7">
+        <type>
+          <derived name="FB_TempFlagSet"/>
+        </type>
+      </variable>
+      <variable name="FBTempFlagSet_8">
+        <type>
+          <derived name="FB_TempFlagSet"/>
+        </type>
+      </variable>
+      <variable name="FBTempFlagSet_9">
+        <type>
+          <derived name="FB_TempFlagSet"/>
+        </type>
+      </variable>
+      <variable name="FBTempFlagSet_10">
+        <type>
+          <derived name="FB_TempFlagSet"/>
+        </type>
+      </variable>
+      <variable name="FBTempFlagSet_11">
+        <type>
+          <derived name="FB_TempFlagSet"/>
+        </type>
+      </variable>
+      <variable name="FBTempFlagSet_12">
+        <type>
+          <derived name="FB_TempFlagSet"/>
+        </type>
+      </variable>
+      <variable name="bHMIExecuteOutput">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[如果干涉防护中判断了输出口，要先检测下能不能打开]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring_trigger(CLK := g_bUserDefineControlOutputM OR bUserDefineControlHMI);
+IF Rtring_trigger.Q THEN
+  g_bUserDefineControlOutputM := FALSE;
+  bUserDefineControlHMI := FALSE;
+  g_bInterferenceProtectionDetection := TRUE;
+END_IF;
+Rtring_triggerForHMI(CLK := bHMIExecuteOutput);
+IF Rtring_triggerForHMI.Q THEN
+  bHMIExecuteOutput := FALSE;
+  g_bInterferenceProtectionDetection := FALSE;
+  nOutputState := 50;
+  IF g_dUserDefineControlOutputIndexM = 100.0 THEN(*关闭所有输出口*)
+    nOutputState := 500;
+    bTempFlag := FALSE;
+  END_IF;
+END_IF;
+
+
+
+CASE nOutputState OF 
+  0:
+    nOutputState := 0;
+  50:
+    IF g_dUserDefineControlOutputEnableM = 1.0 THEN(*打开输出口*)
+      bTempFlag := TRUE;
+    ELSE
+      bTempFlag := FALSE;
+    END_IF;   
+    nOutputState := 60;
+  60:
+    IF g_dUserDefineControlOutputEnableTypeM = 0.0 THEN
+      nDefineOutPutIndex := LREAL_TO_INT(g_dUserDefineControlOutputIndexM);
+      nOutPutIndex := LREAL_TO_INT(g_dUserDefineControlOutputIndexM);
+    ELSIF g_dUserDefineControlOutputEnableTypeM = 1.0 THEN
+      nDefineOutPutIndex := LREAL_TO_INT(g_dUserDefineControlOutputIndexM) + 16;
+      nOutPutIndex := LREAL_TO_INT(g_dUserDefineControlOutputIndexM) + 16;
+    ELSIF g_dUserDefineControlOutputEnableTypeM = 2.0 THEN
+      nDefineOutPutIndex := LREAL_TO_INT(g_dUserDefineControlOutputIndexM) + 32;
+      nOutPutIndex := LREAL_TO_INT(g_dUserDefineControlOutputIndexM) + 32;
+    ELSIF g_dUserDefineControlOutputEnableTypeM = 3.0 THEN
+      nDefineOutPutIndex := LREAL_TO_INT(g_dUserDefineControlOutputIndexM) + 48;
+      nOutPutIndex := LREAL_TO_INT(g_dUserDefineControlOutputIndexM) + 48;
+    END_IF;
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 0.0 THEN
+      CASE nOutPutIndex OF
+        1:
+          g_UserDefineOutputDo_1 := bTempFlag;
+        2:
+          g_UserDefineOutputDo_2 := bTempFlag;        
+        3:
+          g_UserDefineOutputDo_3 := bTempFlag;
+        4:
+          g_UserDefineOutputDo_4 := bTempFlag;
+        5:
+          g_UserDefineOutputDo_5 := bTempFlag;        
+        6:
+          g_UserDefineOutputDo_6 := bTempFlag; 
+        7:
+          g_UserDefineOutputDo_7 := bTempFlag;
+        8:
+          g_UserDefineOutputDo_8 := bTempFlag;        
+        9:
+          g_UserDefineOutputDo_9 := bTempFlag;
+        10:
+          g_UserDefineOutputDo_10 := bTempFlag;
+        11:
+          g_UserDefineOutputDo_11 := bTempFlag;        
+        12:
+          g_UserDefineOutputDo_12 := bTempFlag;
+        13:
+          g_UserDefineOutputDo_13 := bTempFlag;
+        14:
+          g_UserDefineOutputDo_14 := bTempFlag;        
+        15:
+          g_UserDefineOutputDo_15 := bTempFlag; 
+        16:
+          g_UserDefineOutputDo_16 := bTempFlag;
+        17:
+          g_UserDefineOutputDo_17 := bTempFlag;        
+        18:
+          g_UserDefineOutputDo_18 := bTempFlag; 
+        19:
+          g_UserDefineOutputDo_19 := bTempFlag;
+        20:
+          g_UserDefineOutputDo_20 := bTempFlag;        
+        21:
+          g_UserDefineOutputDo_21 := bTempFlag; 
+        22:
+          g_UserDefineOutputDo_22 := bTempFlag;
+        23:
+          g_UserDefineOutputDo_23 := bTempFlag;        
+        24:
+          g_UserDefineOutputDo_24 := bTempFlag; 
+        25:
+          g_UserDefineOutputDo_25 := bTempFlag;
+        26:
+          g_UserDefineOutputDo_26 := bTempFlag;        
+        27:
+          g_UserDefineOutputDo_27 := bTempFlag;
+        28:
+          g_UserDefineOutputDo_28 := bTempFlag;
+        29:
+          g_UserDefineOutputDo_29 := bTempFlag;        
+        30:
+          g_UserDefineOutputDo_30 := bTempFlag; 
+        31:
+          g_UserDefineOutputDo_31 := bTempFlag;
+        32:
+          g_UserDefineOutputDo_32 := bTempFlag;        
+        33:
+          g_UserDefineOutputDo_33 := bTempFlag;
+        34:
+          g_UserDefineOutputDo_34 := bTempFlag;
+        35:
+          g_UserDefineOutputDo_35 := bTempFlag;        
+        36:
+          g_UserDefineOutputDo_36 := bTempFlag;
+        37:
+          g_UserDefineOutputDo_37 := bTempFlag;
+        38:
+          g_UserDefineOutputDo_38 := bTempFlag;        
+        39:
+          g_UserDefineOutputDo_39 := bTempFlag; 
+        40:
+          g_UserDefineOutputDo_40 := bTempFlag;
+        41:
+          g_UserDefineOutputDo_41 := bTempFlag;        
+        42:
+          g_UserDefineOutputDo_42 := bTempFlag; 
+        43:
+          g_UserDefineOutputDo_43 := bTempFlag;
+        44:
+          g_UserDefineOutputDo_44 := bTempFlag;        
+        45:
+          g_UserDefineOutputDo_45 := bTempFlag; 
+        46:
+          g_UserDefineOutputDo_46 := bTempFlag;
+        47:
+          g_UserDefineOutputDo_47 := bTempFlag;        
+        48:
+          g_UserDefineOutputDo_48 := bTempFlag;
+        49:
+          g_UserDefineOutputDo_49 := bTempFlag;
+        50:
+          g_UserDefineOutputDo_50 := bTempFlag;        
+        51:
+          g_UserDefineOutputDo_51 := bTempFlag;
+        52:
+          g_UserDefineOutputDo_52 := bTempFlag;
+        53:
+          g_UserDefineOutputDo_53 := bTempFlag;        
+        54:
+          g_UserDefineOutputDo_54 := bTempFlag; 
+        55:
+          g_UserDefineOutputDo_55 := bTempFlag;
+        56:
+          g_UserDefineOutputDo_56 := bTempFlag;        
+        57:
+          g_UserDefineOutputDo_57 := bTempFlag;
+        58:
+          g_UserDefineOutputDo_58 := bTempFlag;
+        59:
+          g_UserDefineOutputDo_59 := bTempFlag;        
+        60:
+          g_UserDefineOutputDo_60 := bTempFlag;
+        61:
+          g_UserDefineOutputDo_61 := bTempFlag;
+        62:
+          g_UserDefineOutputDo_62 := bTempFlag;        
+        63:
+          g_UserDefineOutputDo_63 := bTempFlag; 
+        64:
+          g_UserDefineOutputDo_64 := bTempFlag; 
+      END_CASE; 
+    END_IF;  
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 1.0 THEN
+      g_boZaxisHoldBrake := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 2.0 THEN
+      g_boOxygenValve := bTempFlag;
+      g_bControlGasM := bTempFlag;
+      IF bTempFlag THEN
+        g_boNirtogenValve := FALSE;
+        g_boAirValve := FALSE;
+      END_IF;
+    END_IF; 
+     
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 3.0 THEN
+      g_boNirtogenValve := bTempFlag;
+      g_bControlGasM := bTempFlag;
+      IF bTempFlag THEN
+        g_boOxygenValve := FALSE;
+        g_boAirValve := FALSE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 4.0 THEN
+      g_boAirValve := bTempFlag;
+      g_bControlGasM := bTempFlag;
+      IF bTempFlag THEN
+        g_boOxygenValve := FALSE;
+        g_boNirtogenValve := FALSE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 5.0 THEN
+      g_boAirProValvePower := bTempFlag;
+      IF bTempFlag THEN
+         g_boOxyProValvePower := FALSE;
+         g_boNirtoProValvePower := FALSE;
+      END_IF;
+    END_IF;
+    
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 6.0 THEN
+      g_boOxyProValvePower := bTempFlag;
+      IF bTempFlag THEN
+         g_boAirProValvePower := FALSE;
+         g_boNirtoProValvePower := FALSE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 7.0 THEN
+      g_boNirtoProValvePower := bTempFlag;
+      IF bTempFlag THEN
+         g_boAirProValvePower := FALSE;
+         g_boOxyProValvePower := FALSE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 8.0 THEN
+      g_boOxyAirProValvePower := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 9.0 THEN
+      g_boOxyNirtoProValvePower := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 10.0 THEN
+      g_boAirNirtoProValvePower := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 11.0 THEN
+      g_boMasterProValvePower := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 12.0 THEN
+      g_boMasterValve := bTempFlag;
+      g_bControlGasM := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 13.0 THEN
+      g_boLaserEnable := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 14.0 THEN
+      g_bLaserRedLight := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 15.0 THEN
+		g_bLaserPowerOnEnable := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 16.0 THEN
+      g_boMainsOn := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 17.0 THEN
+      g_boExtenIn := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 18.0 THEN
+      g_boLaserReset := bTempFlag;
+    END_IF; 
+     
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 19.0 THEN
+      g_boVoltageEnable := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 20.0 THEN
+      g_boLubri_Output := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 21.0 THEN
+      g_boGrease_OutPut := bTempFlag;
+    END_IF;
+    
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 22.0 THEN
+      g_boYellowLight := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 23.0 THEN
+      g_boGreenLight := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 24.0 THEN
+      g_boRedLight := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 25.0 THEN
+      g_boClaw1UpDownClampEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boClaw1UpDownLoosenEnable := FALSE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 26.0 THEN
+      g_boClaw1UpDownLoosenEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boClaw1UpDownClampEnable := FALSE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 27.0 THEN
+      g_boClaw1LiftRightClampEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boClaw1LiftRightLoosenEnable := FALSE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 28.0 THEN
+      g_boClaw1LiftRightLoosenEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boClaw1LiftRightClampEnable := FALSE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 29.0 THEN
+      g_boClaw2UpDownClampEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boClaw2UpDownLoosenEnable := FALSE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 30.0 THEN
+      g_boClaw2UpDownLoosenEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boClaw2UpDownClampEnable := FALSE;
+      END_IF;
+    END_IF;
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 31.0 THEN
+      g_boClaw2LiftRightClampEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boClaw2LiftRightLoosenEnable := FALSE;
+      END_IF;
+    END_IF;
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 32.0 THEN
+      g_boClaw2LiftRightLoosenEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boClaw2LiftRightClampEnable := FALSE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 33.0 THEN
+      g_boPresterRequest := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 34.0 THEN
+      g_boPresterCal := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 35.0 THEN
+      g_boPresterHome := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 36.0 THEN
+      g_boBlankingCyl01Up := bTempFlag;
+      IF g_boBlankingCyl01Down THEN
+        g_boBlankingCyl01Down := FALSE;
+        ArrayConfigOutputNumber[36] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 37.0 THEN
+      g_boBlankingCyl01Down := bTempFlag;
+      IF g_boBlankingCyl01Up THEN
+        g_boBlankingCyl01Up := FALSE;
+        ArrayConfigOutputNumber[37] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 38.0 THEN
+      g_boBlankingCyl11Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boBlankingCyl11Down := FALSE;
+        ArrayConfigOutputNumber[38] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 39.0 THEN
+      g_boBlankingCyl11Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boBlankingCyl11Up := FALSE;
+        ArrayConfigOutputNumber[39] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 40.0 THEN
+      g_boBlankingCyl21Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boBlankingCyl21Down := FALSE;
+        ArrayConfigOutputNumber[40] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 41.0 THEN
+      g_boBlankingCyl21Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boBlankingCyl21Up := FALSE;
+        ArrayConfigOutputNumber[41] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 42.0 THEN
+      g_boBlankingCyl31Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boBlankingCyl31Down := FALSE;
+        ArrayConfigOutputNumber[42] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 43.0 THEN
+      g_boBlankingCyl31Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boBlankingCyl31Up := FALSE;
+        ArrayConfigOutputNumber[43] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 44.0 THEN
+      g_boBlankingCyl41Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boBlankingCyl41Down := FALSE;
+        ArrayConfigOutputNumber[44] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 45.0 THEN
+      g_boBlankingCyl41Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boBlankingCyl41Up := FALSE;
+        ArrayConfigOutputNumber[45] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 46.0 THEN
+      g_boTurnCyl01Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boTurnCyl01Down := FALSE;
+        ArrayConfigOutputNumber[46] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 47.0 THEN
+      g_boTurnCyl01Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boTurnCyl01Up := FALSE;
+        ArrayConfigOutputNumber[47] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 48.0 THEN
+      g_boTurnCyl11Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boTurnCyl11Down := FALSE;
+        ArrayConfigOutputNumber[48] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 49.0 THEN
+      g_boTurnCyl11Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boTurnCyl11Up := FALSE;
+        ArrayConfigOutputNumber[49] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 50.0 THEN
+      g_boTurnCyl21Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boTurnCyl21Down := FALSE;
+        ArrayConfigOutputNumber[50] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 51.0 THEN
+      g_boTurnCyl21Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boTurnCyl21Up := FALSE;
+        ArrayConfigOutputNumber[51] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 52.0 THEN
+      g_boTurnCyl31Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boTurnCyl31Down := FALSE;
+        ArrayConfigOutputNumber[52] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 53.0 THEN
+      g_boTurnCyl31Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boTurnCyl31Up := FALSE;
+        ArrayConfigOutputNumber[53] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 54.0 THEN
+      g_boTurnCyl41Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boTurnCyl41Down := FALSE;
+        ArrayConfigOutputNumber[54] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 55.0 THEN
+      g_boTurnCyl41Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boTurnCyl41Up := FALSE;
+        ArrayConfigOutputNumber[55] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 56.0 THEN
+      g_boUnloadSupportCyl1Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boUnloadSupportCyl1Down := FALSE;
+        ArrayConfigOutputNumber[56] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 57.0 THEN
+      g_boUnloadSupportCyl1Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boUnloadSupportCyl1Up := FALSE;
+        ArrayConfigOutputNumber[57] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 58.0 THEN
+      g_boUnloadSupportCyl2Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boUnloadSupportCyl2Down := FALSE;
+        ArrayConfigOutputNumber[58] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 59.0 THEN
+      g_boUnloadSupportCyl2Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boUnloadSupportCyl2Up := FALSE;
+        ArrayConfigOutputNumber[59] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 60.0 THEN
+      g_boUnloadSupportCyl3Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boUnloadSupportCyl3Down := FALSE;
+        ArrayConfigOutputNumber[60] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 61.0 THEN
+      g_boUnloadSupportCyl3Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boUnloadSupportCyl3Up := FALSE;
+        ArrayConfigOutputNumber[61] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 62.0 THEN
+      g_boUnloadSupportCyl4Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boUnloadSupportCyl4Down := FALSE;
+        ArrayConfigOutputNumber[62] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 63.0 THEN
+      g_boUnloadSupportCyl4Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boUnloadSupportCyl4Up := FALSE;
+        ArrayConfigOutputNumber[63] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 64.0 THEN
+      g_boUnloadSupportCyl5Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boUnloadSupportCyl5Down := FALSE;
+        ArrayConfigOutputNumber[64] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 65.0 THEN
+      g_boUnloadSupportCyl5Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boUnloadSupportCyl5Up := FALSE;
+        ArrayConfigOutputNumber[65] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 66.0 THEN
+      g_boUnloadSupportCyl6Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boUnloadSupportCyl6Down := FALSE;
+        ArrayConfigOutputNumber[66] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 67.0 THEN
+      g_boUnloadSupportCyl6Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boUnloadSupportCyl6Up := FALSE;
+        ArrayConfigOutputNumber[67] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 68.0 THEN
+      g_boUnloadSupportCyl7Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boUnloadSupportCyl7Down := FALSE;
+        ArrayConfigOutputNumber[68] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 69.0 THEN
+      g_boUnloadSupportCyl7Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boUnloadSupportCyl7Up := FALSE;
+        ArrayConfigOutputNumber[69] :=TRUE;
+      END_IF;  
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 70.0 THEN
+      g_boUnloadSupportCyl8Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boUnloadSupportCyl8Down := FALSE;
+        ArrayConfigOutputNumber[70] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 71.0 THEN
+      g_boUnloadSupportCyl8Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boUnloadSupportCyl8Up := FALSE;
+        ArrayConfigOutputNumber[71] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 72.0 THEN
+      g_bDefineOutputEnableOut1M := bTempFlag;
+      g_bDefineOutputEnableOutOFF1M := NOT bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 73.0 THEN
+       g_bDefineOutputEnableOut2M := bTempFlag;
+      g_bDefineOutputEnableOutOFF2M := NOT bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 74.0 THEN
+       g_bDefineOutputEnableOut3M := bTempFlag;
+      g_bDefineOutputEnableOutOFF3M := NOT bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 75.0 THEN
+       g_bDefineOutputEnableOut4M := bTempFlag;
+      g_bDefineOutputEnableOutOFF4M := NOT bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 76.0 THEN
+       g_bDefineOutputEnableOut5M := bTempFlag;
+      g_bDefineOutputEnableOutOFF5M := NOT bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 77.0 THEN
+       g_bDefineOutputEnableOut6M := bTempFlag;
+      g_bDefineOutputEnableOutOFF6M := NOT bTempFlag;
+    END_IF;    
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 78.0 THEN
+       g_bDefineOutputEnableOut7M := bTempFlag;
+      g_bDefineOutputEnableOutOFF7M := NOT bTempFlag;
+    END_IF; 
+  
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 79.0 THEN
+       g_bDefineOutputEnableOut8M := bTempFlag;
+      g_bDefineOutputEnableOutOFF8M := NOT bTempFlag;
+    END_IF; 
+  
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 80.0 THEN
+       g_bDefineOutputEnableOut9M := bTempFlag;
+      g_bDefineOutputEnableOutOFF9M := NOT bTempFlag;
+    END_IF; 
+  
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 81.0 THEN
+       g_bDefineOutputEnableOut10M := bTempFlag;
+      g_bDefineOutputEnableOutOFF10M := NOT bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 82.0 THEN
+       g_bDefineOutputEnableOut11M := bTempFlag;
+      g_bDefineOutputEnableOutOFF11M := NOT bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 83.0 THEN
+      g_bDefineOutputEnableOut12M := bTempFlag;
+      g_bDefineOutputEnableOutOFF12M := NOT bTempFlag;
+    END_IF; 
+    
+     IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 84.0 THEN
+       g_bDefineOutputEnableOut13M := bTempFlag;
+      g_bDefineOutputEnableOutOFF13M := NOT bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 85.0 THEN
+       g_bDefineOutputEnableOut14M := bTempFlag;
+      g_bDefineOutputEnableOutOFF14M := NOT bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 86.0 THEN
+      g_bDefineOutputEnableOut15M := bTempFlag;
+      g_bDefineOutputEnableOutOFF15M := NOT bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 87.0 THEN
+       g_bDefineOutputEnableOut16M := bTempFlag;
+      g_bDefineOutputEnableOutOFF16M := NOT bTempFlag;
+    END_IF;  
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 88.0 THEN
+      g_boUserDefineIoOut17 := bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 89.0 THEN
+      g_boUserDefineIoOut18 := bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 90.0 THEN
+      g_boUserDefineIoOut19 := bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 91.0 THEN
+      g_boUserDefineIoOut20 := bTempFlag;
+    END_IF;   
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 92.0 THEN
+      g_boUserDefineIoOut21 := bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 93.0 THEN
+      g_boUserDefineIoOut22 := bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 94.0 THEN
+      g_boUserDefineIoOut23 := bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 95.0 THEN
+      g_boUserDefineIoOut24 := bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 96.0 THEN
+      g_boUserDefineIoOut25 := bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 97.0 THEN
+      g_boUserDefineIoOut26 := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 98.0 THEN
+      g_boUserDefineIoOut27 := bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 99.0 THEN
+      g_boUserDefineIoOut28 := bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 100.0 THEN
+      g_boUserDefineIoOut29 := bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 101.0 THEN
+      g_boUserDefineIoOut30 := bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 102.0 THEN
+      g_boUserDefineIoOut31 := bTempFlag;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 103.0 THEN
+      g_boUserDefineIoOut32 := bTempFlag;
+    END_IF;  
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 104.0 THEN
+      g_boClaw3UpDownClampEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boClaw3UpDownLoosenEnable := FALSE;
+      END_IF;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 105.0 THEN
+      g_boClaw3UpDownLoosenEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boClaw3UpDownClampEnable := FALSE;
+      END_IF;
+    END_IF; 
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 106.0 THEN
+      g_boClaw3LiftRightClampEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boClaw3LiftRightLoosenEnable := FALSE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 107.0 THEN
+      g_boClaw3LiftRightLoosenEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boClaw3LiftRightClampEnable := FALSE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 108.0 THEN
+      g_boSupportcyLinder1UpEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder1DownEnable := FALSE;
+        ArrayConfigOutputNumber[108] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 109.0 THEN
+      g_boSupportcyLinder2UpEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder2DownEnable := FALSE;
+        ArrayConfigOutputNumber[109] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 110.0 THEN
+      g_boSupportcyLinder3UpEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder3DownEnable := FALSE;
+        ArrayConfigOutputNumber[110] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 111.0 THEN
+      g_boSupportcyLinder4UpEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder4DownEnable := FALSE;
+        ArrayConfigOutputNumber[111] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 112.0 THEN
+      g_boSupportcyLinder5UpEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder5DownEnable := FALSE;
+        ArrayConfigOutputNumber[112] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 113.0 THEN
+      g_boSupportcyLinder6UpEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder6DownEnable := FALSE;
+        ArrayConfigOutputNumber[113] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 114.0 THEN
+      g_boSupportcyLinder7UpEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder7DownEnable := FALSE;
+        ArrayConfigOutputNumber[114] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 115.0 THEN
+      g_boSupportcyLinder8UpEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder8DownEnable := FALSE;
+        ArrayConfigOutputNumber[115] :=TRUE; 
+      END_IF;  
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 206.0 THEN
+      g_boSupportcyLinder9UpEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder9DownEnable := FALSE;
+        ArrayConfigOutputNumber[206] :=TRUE; 
+      END_IF;  
+    END_IF;
+    
+     IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 210.0 THEN
+      g_boSupportcyLinder10UpEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder10DownEnable := FALSE;
+        ArrayConfigOutputNumber[210] :=TRUE; 
+      END_IF;  
+    END_IF;
+    
+     IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 211.0 THEN
+      g_boSupportcyLinder11UpEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder11DownEnable := FALSE;
+        ArrayConfigOutputNumber[211] :=TRUE; 
+      END_IF;  
+    END_IF;
+    
+     IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 212.0 THEN
+      g_boSupportcyLinder12UpEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder12DownEnable := FALSE;
+        ArrayConfigOutputNumber[212] :=TRUE; 
+      END_IF;  
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 116.0 THEN
+      g_boSupportcyLinder1DownEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder1UpEnable := FALSE;
+        ArrayConfigOutputNumber[116] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 117.0 THEN
+      g_boSupportcyLinder2DownEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder2UpEnable := FALSE;
+        ArrayConfigOutputNumber[117] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 118.0 THEN
+      g_boSupportcyLinder3DownEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder3UpEnable := FALSE;
+        ArrayConfigOutputNumber[118] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 119.0 THEN
+      g_boSupportcyLinder4DownEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder4UpEnable := FALSE;
+        ArrayConfigOutputNumber[119] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 120.0 THEN
+      g_boSupportcyLinder5DownEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder5UpEnable := FALSE;
+        ArrayConfigOutputNumber[120] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 121.0 THEN
+      g_boSupportcyLinder6DownEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder6UpEnable := FALSE;
+        ArrayConfigOutputNumber[121] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 122.0 THEN
+      g_boSupportcyLinder7DownEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder7UpEnable := FALSE;
+        ArrayConfigOutputNumber[122] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 123.0 THEN
+      g_boSupportcyLinder8DownEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder8UpEnable := FALSE;
+        ArrayConfigOutputNumber[123] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 213.0 THEN
+      g_boSupportcyLinder10DownEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder10UpEnable := FALSE;
+        ArrayConfigOutputNumber[213] :=TRUE;
+      END_IF;
+    END_IF;
+    
+     IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 214.0 THEN
+      g_boSupportcyLinder11DownEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder11UpEnable := FALSE;
+        ArrayConfigOutputNumber[214] :=TRUE;
+      END_IF;
+    END_IF;
+     IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 215.0 THEN
+      g_boSupportcyLinder12DownEnable := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupportcyLinder12UpEnable := FALSE;
+        ArrayConfigOutputNumber[215] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 124.0 THEN
+      g_boSupCyl2Up1 := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupCyl2Down1 := FALSE;
+        ArrayConfigOutputNumber[124] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 125.0 THEN
+      g_boSupCyl2Up2 := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupCyl2Down2 := FALSE;
+        ArrayConfigOutputNumber[125] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 126.0 THEN
+      g_boSupCyl2Up3 := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupCyl2Down3 := FALSE;
+        ArrayConfigOutputNumber[126] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 127.0 THEN
+      g_boSupCyl2Down1 := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupCyl2Up1 := FALSE;
+        ArrayConfigOutputNumber[127] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 128.0 THEN
+      g_boSupCyl2Down2 := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupCyl2Up2 := FALSE;
+        ArrayConfigOutputNumber[128] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 129.0 THEN
+      g_boSupCyl2Down3 := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupCyl2Up3 := FALSE;
+        ArrayConfigOutputNumber[129] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 130.0 THEN
+      g_boCentringCyl2Up1 := bTempFlag;
+      IF bTempFlag THEN
+        g_boCentringCyl2Down1 := FALSE;
+        ArrayConfigOutputNumber[130] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 131.0 THEN
+      g_boCentringCyl2Up2 := bTempFlag;
+      IF bTempFlag THEN
+        g_boCentringCyl2Down2 := FALSE;
+        ArrayConfigOutputNumber[131] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 132.0 THEN
+      g_boCentringCyl2Up3 := bTempFlag;
+      IF bTempFlag THEN
+        g_boCentringCyl2Down3 := FALSE;
+        ArrayConfigOutputNumber[132] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 133.0 THEN
+      g_boCentringCyl2Down1 := bTempFlag;
+      IF bTempFlag THEN
+        g_boCentringCyl2Up1 := FALSE;
+        ArrayConfigOutputNumber[133] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 134.0 THEN
+      g_boCentringCyl2Down2 := bTempFlag;
+      IF bTempFlag THEN
+        g_boCentringCyl2Up2 := FALSE;
+        ArrayConfigOutputNumber[134] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 135.0 THEN
+      g_boCentringCyl2Down3 := bTempFlag;
+      IF bTempFlag THEN
+        g_boCentringCyl2Up3 := FALSE;
+        ArrayConfigOutputNumber[135] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 136.0 THEN
+      g_boDustGasValve := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 137.0 THEN
+      g_boGeneralDustCylinderUp := bTempFlag;
+      IF bTempFlag THEN
+        g_boGeneralDustCylinderDown := FALSE;
+        ArrayConfigOutputNumber[137] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 138.0 THEN
+      g_boGeneralDustCylinderDown := bTempFlag;
+      IF bTempFlag THEN
+        g_boGeneralDustCylinderUp := FALSE;
+        ArrayConfigOutputNumber[138] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 139.0 THEN
+      g_boDustCylinder1Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boDustCylinder1Down := FALSE;
+        ArrayConfigOutputNumber[139] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 140.0 THEN
+      g_boDustCylinder1Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boDustCylinder1Up := FALSE;
+        ArrayConfigOutputNumber[140] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 141.0 THEN
+      g_boDustCylinder2Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boDustCylinder2Down := FALSE;
+        ArrayConfigOutputNumber[141] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 142.0 THEN
+      g_boDustCylinder2Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boDustCylinder2Up := FALSE;
+        ArrayConfigOutputNumber[142] :=TRUE;
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 143.0 THEN
+      g_boLoadCyl01Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl01Down := FALSE;
+        ArrayConfigOutputNumber[143] :=TRUE; 
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 144.0 THEN
+      g_boLoadCyl11Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl11Down := FALSE;
+        ArrayConfigOutputNumber[144] :=TRUE; 
+      END_IF;   
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 145.0 THEN
+      g_boLoadCyl21Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl21Down := FALSE;
+      END_IF;
+      ArrayConfigOutputNumber[145] :=TRUE;  
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 146.0 THEN
+      g_boLoadCyl31Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl31Down := FALSE;
+      END_IF;
+      ArrayConfigOutputNumber[146] :=TRUE; 
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 147.0 THEN
+      g_boLoadCyl41Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl41Down := FALSE;
+      END_IF;
+      ArrayConfigOutputNumber[147] :=TRUE; 
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 148.0 THEN
+      g_boLoadCyl51Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl51Down := FALSE;
+      END_IF;
+      ArrayConfigOutputNumber[148] :=TRUE; 
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 149.0 THEN
+      g_boLoadCyl61Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl61Down := FALSE;
+        ArrayConfigOutputNumber[149] :=TRUE; 
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 150.0 THEN
+      g_boLoadCyl71Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl71Down := FALSE;
+        ArrayConfigOutputNumber[150] :=TRUE; 
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 151.0 THEN
+      g_boLoadCyl81Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl81Down := FALSE;
+        ArrayConfigOutputNumber[151] :=TRUE; 
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 152.0 THEN
+      g_boLoadCyl91Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl91Down := FALSE;
+        ArrayConfigOutputNumber[152] :=TRUE; 
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 153.0 THEN
+      g_boLoadCyl101Up := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl101Down := FALSE;
+        ArrayConfigOutputNumber[153] :=TRUE; 
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 154.0 THEN
+      g_boLoadCyl01Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl01Up := FALSE;
+        ArrayConfigOutputNumber[154] :=TRUE; 
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 155.0 THEN
+      g_boLoadCyl11Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl11Up := FALSE;
+        ArrayConfigOutputNumber[155] :=TRUE; 
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 156.0 THEN
+      g_boLoadCyl21Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl21Up := FALSE;
+        ArrayConfigOutputNumber[156] :=TRUE; 
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 157.0 THEN
+      g_boLoadCyl31Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl31Up := FALSE;
+        ArrayConfigOutputNumber[157] :=TRUE; 
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 158.0 THEN
+      g_boLoadCyl41Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl41Up := FALSE;
+        ArrayConfigOutputNumber[158] :=TRUE; 
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 159.0 THEN
+      g_boLoadCyl51Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl51Up := FALSE;
+        ArrayConfigOutputNumber[159] :=TRUE; 
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 160.0 THEN
+      g_boLoadCyl61Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl61Up := FALSE;
+        ArrayConfigOutputNumber[160] :=TRUE; 
+      END_IF; 
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 161.0 THEN
+      g_boLoadCyl71Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl71Up := FALSE;
+        ArrayConfigOutputNumber[161] :=TRUE; 
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 162.0 THEN
+      g_boLoadCyl81Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl81Up := FALSE;
+        ArrayConfigOutputNumber[162] :=TRUE; 
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 163.0 THEN
+      g_boLoadCyl91Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl91Up := FALSE;
+        ArrayConfigOutputNumber[163] :=TRUE; 
+      END_IF;  
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 164.0 THEN
+      g_boLoadCyl101Down := bTempFlag;
+      IF bTempFlag THEN
+        g_boLoadCyl101Up := FALSE;
+        ArrayConfigOutputNumber[164] :=TRUE; 
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 165.0 THEN
+      g_boLoadSinglePutOut1 := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 166.0 THEN
+      g_boLoadSinglePutOut2 := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 167.0 THEN
+      g_boLoadSinglePutOut3 := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 168.0 THEN
+      g_boLoadSinglePutOutCanReset1 := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 169.0 THEN
+      g_boLoadSinglePutOutCanReset2 := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 170.0 THEN
+      g_boLoadSinglePutOutCanReset3 := bTempFlag;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 171.0 THEN
+      g_boMotor1Up := bTempFlag;
+    END_IF;
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 172.0 THEN
+    
+      g_boMotor1Down := bTempFlag;
+    END_IF;
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 174.0 THEN
+		g_boAvoidCylinderUp := bTempFlag;
+        IF bTempFlag THEN
+			g_boAvoidCylinderDown := FALSE;
+            ArrayConfigOutputNumber[174] :=TRUE;
+        END_IF;
+    END_IF;
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 175.0 THEN
+		g_boAvoidCylinderDown:= bTempFlag;
+        IF bTempFlag THEN
+			g_boAvoidCylinderUp := FALSE;
+             ArrayConfigOutputNumber[175] :=TRUE;
+        END_IF;
+    END_IF;
+     
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 176.0 THEN
+      g_boMotor2Up := bTempFlag;
+    END_IF;
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 177.0 THEN
+      g_boMotor2Down := bTempFlag;
+    END_IF;
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 178.0 THEN
+      g_boMotor3Up := bTempFlag;
+    END_IF;
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 179.0 THEN
+      g_boMotor3Down := bTempFlag;
+    END_IF;
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 182.0 THEN
+      g_boMiddleCylinderUp := bTempFlag;
+      IF bTempFlag THEN
+        g_boMiddleCylinderDown := FALSE;
+        ArrayConfigOutputNumber[182] :=TRUE;   
+      END_IF;
+    END_IF;
+    
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 183.0 THEN
+      g_boMiddleCylinderDown := bTempFlag;
+      IF bTempFlag THEN
+        g_boMiddleCylinderUp := FALSE;
+        ArrayConfigOutputNumber[183] :=TRUE; 
+      END_IF;
+    END_IF;
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 186.0 THEN
+      g_boSupCyl2Up4 := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupCyl2Down4 := FALSE;
+        ArrayConfigOutputNumber[186] :=TRUE;
+      END_IF;
+    END_IF;
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 187.0 THEN
+      g_boSupCyl2Down4 := bTempFlag;
+      IF bTempFlag THEN
+        g_boSupCyl2Up4 := FALSE;
+        ArrayConfigOutputNumber[187] :=TRUE;
+      END_IF;
+    END_IF;
+    IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 188.0 THEN
+		g_boCentringCyl2Up4 := bTempFlag;
+		IF bTempFlag THEN
+			g_boCentringCyl2Down4 := FALSE;
+			ArrayConfigOutputNumber[188] :=TRUE;
+		END_IF; 
+	END_IF;
+	IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 189.0 THEN
+		g_boCentringCyl2Down4 := bTempFlag;
+		IF bTempFlag THEN
+			g_boCentringCyl2Up4 := FALSE;
+			ArrayConfigOutputNumber[189] :=TRUE;
+		END_IF; 
+	END_IF;
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 190.0 THEN
+         g_boAntiRejectionCylSingleCmd1:=bTempFlag;
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd1:=FALSE; 
+            g_bAntiRejectionCylClampDone1:=TRUE;
+			g_bAntiRejectionCylLoosenDone1:=FALSE; 
+            g_bKeepCenter1DownState := FALSE;
+            g_bKeepCenter1UpState := TRUE;
+          ELSE
+            g_bKeepCenter1UpState := FALSE;
+          END_IF; 
+      END_IF;
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 191.0 THEN
+         g_boAntiRejectionCylSingleCmd2:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd2:=FALSE;
+            g_bAntiRejectionCylClampDone2:=TRUE; 
+			g_bAntiRejectionCylLoosenDone2:=FALSE; 
+            g_bKeepCenter2DownState := FALSE;
+            g_bKeepCenter2UpState := TRUE;
+          ELSE
+            g_bKeepCenter2UpState := FALSE;
+          END_IF; 
+      END_IF;
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1]= 192.0 THEN
+         g_boAntiRejectionCylSingleCmd3:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd3:=FALSE;
+            g_bAntiRejectionCylClampDone3:=TRUE;
+			g_bAntiRejectionCylLoosenDone3:=FALSE;  
+            g_bKeepCenter3DownState := FALSE;
+            g_bKeepCenter3UpState := TRUE; 
+          ELSE
+            g_bKeepCenter3UpState := FALSE;
+          END_IF; 
+      END_IF;
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 193.0 THEN
+         g_boAntiRejectionCylSingleCmd4:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd4:=FALSE; 
+            g_bAntiRejectionCylClampDone4:=TRUE; 
+			g_bAntiRejectionCylLoosenDone4:=FALSE; 
+            g_bKeepCenter4DownState := FALSE;
+            g_bKeepCenter4UpState := TRUE;
+          ELSE
+            g_bKeepCenter4UpState := FALSE;
+          END_IF; 
+      END_IF;
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 194.0 THEN
+         g_boAntiRejectionCylSingleCmd5:=bTempFlag;
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd5:=FALSE;
+            g_bAntiRejectionCylClampDone5:=TRUE; 
+			g_bAntiRejectionCylLoosenDone5:=FALSE;  
+            g_bKeepCenter5DownState := FALSE;
+            g_bKeepCenter5UpState := TRUE;
+          ELSE
+            g_bKeepCenter5UpState := FALSE;
+          END_IF;  
+      END_IF;
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 195.0 THEN
+         g_boAntiRejectionCylSingleCmd6:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd6:=FALSE; 
+            g_bAntiRejectionCylClampDone6:=TRUE;
+			g_bAntiRejectionCylLoosenDone6:=FALSE;  
+            g_bKeepCenter6DownState := FALSE;
+            g_bKeepCenter6UpState := TRUE;
+          ELSE
+            g_bKeepCenter6UpState := FALSE;
+          END_IF; 
+      END_IF;
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 196.0 THEN
+         g_boAntiRejectionCylSingleCmd7:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd7:=FALSE; 
+            g_bAntiRejectionCylClampDone7:=TRUE; 
+			g_bAntiRejectionCylLoosenDone7:=FALSE; 
+            g_bKeepCenter7DownState := FALSE;
+            g_bKeepCenter7UpState := TRUE;
+          ELSE
+            g_bKeepCenter7UpState := FALSE;
+          END_IF; 
+      END_IF;
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 197.0 THEN
+         g_boAntiRejectionCylSingleCmd8:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd8:=FALSE; 
+            g_bAntiRejectionCylClampDone8:=TRUE;
+			g_bAntiRejectionCylLoosenDone8:=FALSE; 
+            g_bKeepCenter8DownState := FALSE;
+            g_bKeepCenter8UpState := TRUE;
+          ELSE
+            g_bKeepCenter8UpState := FALSE;
+          END_IF; 
+      END_IF;
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 208.0 THEN
+         g_boAntiRejectionCylSingleCmd9:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd9:=FALSE; 
+            g_bAntiRejectionCylClampDone9:=TRUE;
+			g_bAntiRejectionCylLoosenDone9:=FALSE; 
+            g_bKeepCenter9DownState := FALSE;
+            g_bKeepCenter9UpState := TRUE;
+          ELSE
+            g_bKeepCenter9UpState := FALSE;
+          END_IF; 
+      END_IF;
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 198.0 THEN
+          g_boAntiRejectionCylDoubleCmd1:=bTempFlag; 
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd1:=FALSE;
+			g_bAntiRejectionCylLoosenDone1:=TRUE; 
+            g_bAntiRejectionCylClampDone1:=FALSE; 
+            g_bKeepCenter1DownState := TRUE;
+            g_bKeepCenter1UpState := FALSE;
+          ELSE
+            g_bKeepCenter1DownState := FALSE;
+          END_IF;  
+      END_IF;
+       IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 199.0 THEN
+          g_boAntiRejectionCylDoubleCmd2:=bTempFlag; 
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd2:=FALSE; 
+			g_bAntiRejectionCylLoosenDone2:=TRUE;
+            g_bAntiRejectionCylClampDone2:=FALSE; 
+            g_bKeepCenter2DownState := TRUE;
+            g_bKeepCenter2UpState := FALSE;
+          ELSE
+            g_bKeepCenter2DownState := FALSE;
+          END_IF;  
+      END_IF;
+       IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 200.0 THEN
+          g_boAntiRejectionCylDoubleCmd3:=bTempFlag;  
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd3:=FALSE; 
+			g_bAntiRejectionCylLoosenDone3:=TRUE;
+            g_bAntiRejectionCylClampDone3:=FALSE;  
+            g_bKeepCenter3DownState := TRUE;
+            g_bKeepCenter3UpState := FALSE;
+          ELSE
+            g_bKeepCenter3DownState := FALSE;
+          END_IF; 
+      END_IF;
+       IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 201.0 THEN
+          g_boAntiRejectionCylDoubleCmd4:=bTempFlag;
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd4:=FALSE;  
+			g_bAntiRejectionCylLoosenDone4:=TRUE;
+            g_bAntiRejectionCylClampDone4:=FALSE; 
+            g_bKeepCenter4DownState := TRUE;
+            g_bKeepCenter4UpState := FALSE;
+          ELSE
+            g_bKeepCenter4DownState := FALSE;
+          END_IF;   
+      END_IF;
+       IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 202.0 THEN
+          g_boAntiRejectionCylDoubleCmd5:=bTempFlag;
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd5:=FALSE;  
+			g_bAntiRejectionCylLoosenDone5:=TRUE;
+            g_bAntiRejectionCylClampDone5:=FALSE; 
+            g_bKeepCenter5DownState := TRUE;
+            g_bKeepCenter5UpState := FALSE;
+          ELSE
+            g_bKeepCenter5DownState := FALSE;
+          END_IF;   
+      END_IF;
+       IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 203.0 THEN
+          g_boAntiRejectionCylDoubleCmd6:=bTempFlag;  
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd6:=FALSE; 
+			g_bAntiRejectionCylLoosenDone6:=TRUE;
+            g_bAntiRejectionCylClampDone6:=FALSE;  
+            g_bKeepCenter6DownState := TRUE;
+            g_bKeepCenter6UpState := FALSE;
+          ELSE
+            g_bKeepCenter6DownState := FALSE;
+          END_IF; 
+      END_IF;
+       IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 204.0 THEN
+          g_boAntiRejectionCylDoubleCmd7:=bTempFlag; 
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd7:=FALSE;  
+			g_bAntiRejectionCylLoosenDone7:=TRUE;
+            g_bAntiRejectionCylClampDone7:=FALSE; 
+            g_bKeepCenter7DownState := TRUE;
+            g_bKeepCenter7UpState := FALSE;
+          ELSE
+            g_bKeepCenter7DownState := FALSE;
+          END_IF;  
+      END_IF;
+       IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 205.0 THEN
+          g_boAntiRejectionCylDoubleCmd8:=bTempFlag;
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd8:=FALSE; 
+			g_bAntiRejectionCylLoosenDone8:=TRUE;
+            g_bAntiRejectionCylClampDone8:=FALSE; 
+            g_bKeepCenter8DownState := TRUE;
+            g_bKeepCenter8UpState := FALSE;
+          ELSE
+            g_bKeepCenter8DownState := FALSE;
+          END_IF;   
+      END_IF;
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 209.0 THEN
+          g_boAntiRejectionCylDoubleCmd9:=bTempFlag;
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd9:=FALSE; 
+			g_bAntiRejectionCylLoosenDone9:=TRUE;
+            g_bAntiRejectionCylClampDone9:=FALSE; 
+            g_bKeepCenter9DownState := TRUE;
+            g_bKeepCenter9UpState := FALSE;
+          ELSE
+            g_bKeepCenter9DownState := FALSE;
+          END_IF;   
+      END_IF;
+      (*双工位卡盘*)
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 222.0 THEN
+          g_boDualStation1Chuck1ClampOutPut :=bTempFlag;
+          IF bTempFlag THEN
+			g_boDualStation1Chuck1LossenOutPut :=FALSE; 
+			g_bDualStation1Chuck1Status :=TRUE;
+            g_bDualStation1Chuck1ClampDone :=TRUE; 
+            g_bDualStation1Chuck1LossenDone := FALSE;
+          END_IF;   
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 223.0 THEN
+          g_boDualStation1Chuck1LossenOutPut :=bTempFlag;
+          IF bTempFlag THEN
+			g_boDualStation1Chuck1ClampOutPut :=FALSE; 
+			g_bDualStation1Chuck1Status :=FALSE;
+            g_bDualStation1Chuck1ClampDone :=FALSE; 
+            g_bDualStation1Chuck1LossenDone := TRUE;
+          END_IF;   
+      END_IF;
+      
+      
+       IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 224.0 THEN
+          g_boDualStation1Chuck2ClampOutPut :=bTempFlag;
+          IF bTempFlag THEN
+			g_boDualStation1Chuck2LossenOutPut :=FALSE; 
+			g_bDualStation1Chuck2Status :=TRUE;
+            g_bDualStation1Chuck2ClampDone :=TRUE; 
+            g_bDualStation1Chuck2LossenDone := FALSE;
+          END_IF;   
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 225.0 THEN
+          g_boDualStation1Chuck2LossenOutPut :=bTempFlag;
+          IF bTempFlag THEN
+			g_boDualStation1Chuck2ClampOutPut :=FALSE; 
+			g_bDualStation1Chuck2Status :=FALSE;
+            g_bDualStation1Chuck2ClampDone :=FALSE; 
+            g_bDualStation1Chuck2LossenDone := TRUE;
+          END_IF;   
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 226.0 THEN
+          g_boDualStation2Chuck1ClampOutPut :=bTempFlag;
+          IF bTempFlag THEN
+			g_boDualStation2Chuck1LossenOutPut :=FALSE; 
+			g_bDualStation2Chuck1Status :=TRUE;
+            g_bDualStation2Chuck1ClampDone :=TRUE; 
+            g_bDualStation2Chuck1LossenDone := FALSE;
+          END_IF;   
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 227.0 THEN
+          g_boDualStation2Chuck1LossenOutPut :=bTempFlag;
+          IF bTempFlag THEN
+			g_boDualStation2Chuck1ClampOutPut :=FALSE; 
+			g_bDualStation2Chuck1Status :=FALSE;
+            g_bDualStation2Chuck1ClampDone :=FALSE; 
+            g_bDualStation2Chuck1LossenDone := TRUE;
+          END_IF;   
+      END_IF;
+      
+      
+       IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 228.0 THEN
+          g_boDualStation2Chuck2ClampOutPut :=bTempFlag;
+          IF bTempFlag THEN
+			g_boDualStation2Chuck2LossenOutPut :=FALSE; 
+			g_bDualStation2Chuck2Status :=TRUE;
+            g_bDualStation2Chuck2ClampDone :=TRUE; 
+            g_bDualStation2Chuck2LossenDone := FALSE;
+          END_IF;   
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 229.0 THEN
+          g_boDualStation2Chuck2LossenOutPut :=bTempFlag;
+          IF bTempFlag THEN
+			g_boDualStation2Chuck2ClampOutPut :=FALSE; 
+			g_bDualStation2Chuck2Status :=FALSE;
+            g_bDualStation2Chuck2ClampDone :=FALSE; 
+            g_bDualStation2Chuck2LossenDone := TRUE;
+          END_IF;   
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 230.0 THEN
+          g_boCutHeadCool :=bTempFlag; 
+      END_IF;
+      
+    M.ENABLE[304] := 0;
+    nOutputState := 0;
+    g_bExecuteFinishedM304 := FALSE;
+  500:(*关闭所有输出引脚*)
+    g_UserDefineOutputDo_1 := bTempFlag;
+    g_UserDefineOutputDo_2 := bTempFlag;        
+    g_UserDefineOutputDo_3 := bTempFlag;
+    g_UserDefineOutputDo_4 := bTempFlag;
+    g_UserDefineOutputDo_5 := bTempFlag;        
+    g_UserDefineOutputDo_6 := bTempFlag; 
+    g_UserDefineOutputDo_7 := bTempFlag;
+    g_UserDefineOutputDo_8 := bTempFlag;        
+    g_UserDefineOutputDo_9 := bTempFlag;
+    g_UserDefineOutputDo_10 := bTempFlag;
+    g_UserDefineOutputDo_11 := bTempFlag;        
+    g_UserDefineOutputDo_12 := bTempFlag;
+    g_UserDefineOutputDo_13 := bTempFlag;
+    g_UserDefineOutputDo_14 := bTempFlag;        
+    g_UserDefineOutputDo_15 := bTempFlag; 
+    g_UserDefineOutputDo_16 := bTempFlag;
+    g_UserDefineOutputDo_17 := bTempFlag;        
+    g_UserDefineOutputDo_18 := bTempFlag; 
+    g_UserDefineOutputDo_19 := bTempFlag;
+    g_UserDefineOutputDo_20 := bTempFlag;        
+    g_UserDefineOutputDo_21 := bTempFlag; 
+    g_UserDefineOutputDo_22 := bTempFlag;
+    g_UserDefineOutputDo_23 := bTempFlag;        
+    g_UserDefineOutputDo_24 := bTempFlag; 
+    g_UserDefineOutputDo_25 := bTempFlag;
+    g_UserDefineOutputDo_26 := bTempFlag;        
+    g_UserDefineOutputDo_27 := bTempFlag;
+    g_UserDefineOutputDo_28 := bTempFlag;
+    g_UserDefineOutputDo_29 := bTempFlag;        
+    g_UserDefineOutputDo_30 := bTempFlag; 
+    g_UserDefineOutputDo_31 := bTempFlag;
+    g_UserDefineOutputDo_32 := bTempFlag;        
+    g_UserDefineOutputDo_33 := bTempFlag;
+    g_UserDefineOutputDo_34 := bTempFlag;
+    g_UserDefineOutputDo_35 := bTempFlag;        
+    g_UserDefineOutputDo_36 := bTempFlag;
+    g_UserDefineOutputDo_37 := bTempFlag;
+    g_UserDefineOutputDo_38 := bTempFlag;        
+    g_UserDefineOutputDo_39 := bTempFlag; 
+    g_UserDefineOutputDo_40 := bTempFlag;
+    g_UserDefineOutputDo_41 := bTempFlag;        
+    g_UserDefineOutputDo_42 := bTempFlag; 
+    g_UserDefineOutputDo_43 := bTempFlag;
+    g_UserDefineOutputDo_44 := bTempFlag;        
+    g_UserDefineOutputDo_45 := bTempFlag; 
+    g_UserDefineOutputDo_46 := bTempFlag;
+    g_UserDefineOutputDo_47 := bTempFlag;        
+    g_UserDefineOutputDo_48 := bTempFlag;
+    g_UserDefineOutputDo_49 := bTempFlag;
+    g_UserDefineOutputDo_50 := bTempFlag;        
+    g_UserDefineOutputDo_51 := bTempFlag;
+    g_UserDefineOutputDo_52:= bTempFlag;
+    g_UserDefineOutputDo_53 := bTempFlag;        
+    g_UserDefineOutputDo_54 := bTempFlag; 
+    g_UserDefineOutputDo_55 := bTempFlag;
+    g_UserDefineOutputDo_56 := bTempFlag;        
+    g_UserDefineOutputDo_57 := bTempFlag;
+    g_UserDefineOutputDo_58 := bTempFlag;
+    g_UserDefineOutputDo_59 := bTempFlag;        
+    g_UserDefineOutputDo_60 := bTempFlag;
+    g_UserDefineOutputDo_61 := bTempFlag;
+    g_UserDefineOutputDo_62 := bTempFlag;        
+    g_UserDefineOutputDo_63 := bTempFlag; 
+    g_UserDefineOutputDo_64 := bTempFlag;
+    g_UserDefineOutputDo_65 := bTempFlag;        
+    g_UserDefineOutputDo_66 := bTempFlag; 
+    g_UserDefineOutputDo_67 := bTempFlag;
+    g_UserDefineOutputDo_68 := bTempFlag;        
+    g_UserDefineOutputDo_69 := bTempFlag; 
+    g_UserDefineOutputDo_70 := bTempFlag;
+    g_UserDefineOutputDo_71 := bTempFlag;        
+    g_UserDefineOutputDo_72 := bTempFlag; 
+    g_UserDefineOutputDo_73 := bTempFlag;
+    g_UserDefineOutputDo_74 := bTempFlag;        
+    g_UserDefineOutputDo_75 := bTempFlag;
+    g_UserDefineOutputDo_76 := bTempFlag;
+    g_UserDefineOutputDo_77 := bTempFlag;        
+    g_UserDefineOutputDo_78 := bTempFlag; 
+    g_UserDefineOutputDo_79 := bTempFlag;
+    g_UserDefineOutputDo_80 := bTempFlag;        
+    g_UserDefineOutputDo_81 := bTempFlag;
+    g_UserDefineOutputDo_82 := bTempFlag;
+    g_UserDefineOutputDo_83 := bTempFlag;        
+    g_UserDefineOutputDo_84 := bTempFlag;
+    g_UserDefineOutputDo_85 := bTempFlag;
+    g_UserDefineOutputDo_86 := bTempFlag;        
+    g_UserDefineOutputDo_87 := bTempFlag; 
+    g_UserDefineOutputDo_88 := bTempFlag;
+    g_UserDefineOutputDo_89 := bTempFlag;        
+    g_UserDefineOutputDo_90 := bTempFlag; 
+    g_UserDefineOutputDo_91 := bTempFlag;
+    g_UserDefineOutputDo_92 := bTempFlag;        
+    g_UserDefineOutputDo_93 := bTempFlag; 
+    g_UserDefineOutputDo_94 := bTempFlag;
+    g_UserDefineOutputDo_95 := bTempFlag;        
+    g_UserDefineOutputDo_96 := bTempFlag;
+    FOR nArrayIndex := 0 TO 95 BY 1 DO 
+      (*IF ArrayConfigOutputIndex[nArrayIndex] = 1.0 THEN
+        g_boZaxisHoldBrake := bTempFlag;
+      END_IF;*)
+    
+      IF ArrayConfigOutputIndex[nArrayIndex] = 2.0 THEN
+        g_boOxygenValve := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 3.0 THEN
+        g_boNirtogenValve := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 4.0 THEN
+        g_boAirValve := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 5.0 THEN
+        g_boAirProValvePower := bTempFlag;
+      END_IF;
+      
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 6.0 THEN
+        g_boOxyProValvePower := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 7.0 THEN
+        g_boNirtoProValvePower := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 8.0 THEN
+        g_boOxyAirProValvePower := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 9.0 THEN
+        g_boOxyNirtoProValvePower := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 10.0 THEN
+        g_boAirNirtoProValvePower := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 11.0 THEN
+        g_boMasterProValvePower := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 12.0 THEN
+        g_boMasterValve := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 13.0 THEN
+        g_boLaserEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 14.0 THEN
+        g_boLaserRedLight := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 15.0 THEN
+        g_boLaserPowerOn := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 16.0 THEN
+        g_boMainsOn := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 17.0 THEN
+        g_boExtenIn := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 18.0 THEN
+        g_boLaserReset := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 19.0 THEN
+        g_boVoltageEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 20.0 THEN
+        g_boLubri_Output := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 21.0 THEN
+        g_boGrease_OutPut := bTempFlag;
+      END_IF;
+      
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 22.0 THEN
+        g_boYellowLight := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 23.0 THEN
+        g_boGreenLight := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 24.0 THEN
+        g_boRedLight := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 25.0 THEN
+        g_boClaw1UpDownClampEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 26.0 THEN
+        g_boClaw1UpDownLoosenEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 27.0 THEN
+        g_boClaw1LiftRightClampEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 28.0 THEN
+        g_boClaw1LiftRightLoosenEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 29.0 THEN
+        g_boClaw2UpDownClampEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 30.0 THEN
+        g_boClaw2UpDownLoosenEnable := bTempFlag;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 31.0 THEN
+        g_boClaw2LiftRightClampEnable := bTempFlag;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 32.0 THEN
+        g_boClaw2LiftRightLoosenEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 33.0 THEN
+        g_boPresterRequest := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 34.0 THEN
+        g_boPresterCal := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 35.0 THEN
+        g_boPresterHome := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 36.0 THEN
+        g_boBlankingCyl01Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 37.0 THEN
+        g_boBlankingCyl01Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 38.0 THEN
+        g_boBlankingCyl11Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 39.0 THEN
+        g_boBlankingCyl11Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 40.0 THEN
+        g_boBlankingCyl21Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 41.0 THEN
+        g_boBlankingCyl21Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 42.0 THEN
+        g_boBlankingCyl31Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 43.0 THEN
+        g_boBlankingCyl31Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 44.0 THEN
+        g_boBlankingCyl41Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 45.0 THEN
+        g_boBlankingCyl41Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 46.0 THEN
+        g_boTurnCyl01Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 47.0 THEN
+        g_boTurnCyl01Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 48.0 THEN
+        g_boTurnCyl11Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 49.0 THEN
+        g_boTurnCyl11Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 50.0 THEN
+        g_boTurnCyl21Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 51.0 THEN
+        g_boTurnCyl21Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 52.0 THEN
+        g_boTurnCyl31Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 53.0 THEN
+        g_boTurnCyl31Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 54.0 THEN
+        g_boTurnCyl41Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 55.0 THEN
+        g_boTurnCyl41Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 56.0 THEN
+        g_boUnloadSupportCyl1Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 57.0 THEN
+        g_boUnloadSupportCyl1Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 58.0 THEN
+        g_boUnloadSupportCyl2Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 59.0 THEN
+        g_boUnloadSupportCyl2Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 60.0 THEN
+        g_boUnloadSupportCyl3Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 61.0 THEN
+        g_boUnloadSupportCyl3Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 62.0 THEN
+        g_boUnloadSupportCyl4Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 63.0 THEN
+        g_boUnloadSupportCyl4Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 64.0 THEN
+        g_boUnloadSupportCyl5Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 65.0 THEN
+        g_boUnloadSupportCyl5Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 66.0 THEN
+        g_boUnloadSupportCyl6Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 67.0 THEN
+        g_boUnloadSupportCyl6Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 68.0 THEN
+        g_boUnloadSupportCyl7Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 69.0 THEN
+        g_boUnloadSupportCyl7Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 70.0 THEN
+        g_boUnloadSupportCyl8Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 71.0 THEN
+        g_boUnloadSupportCyl8Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 72.0 THEN
+        g_boUserDefineIoOut1 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 73.0 THEN
+        g_boUserDefineIoOut2 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 74.0 THEN
+        g_boUserDefineIoOut3 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 75.0 THEN
+        g_boUserDefineIoOut4 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 76.0 THEN
+        g_boUserDefineIoOut5 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 77.0 THEN
+        g_boUserDefineIoOut6 := bTempFlag;
+      END_IF;    
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 78.0 THEN
+        g_boUserDefineIoOut7 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 79.0 THEN
+        g_boUserDefineIoOut8 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 80.0 THEN
+        g_boUserDefineIoOut9 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 81.0 THEN
+        g_boUserDefineIoOut10 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 82.0 THEN
+        g_boUserDefineIoOut11 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 83.0 THEN
+        g_boUserDefineIoOut12 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 84.0 THEN
+        g_boUserDefineIoOut13 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 85.0 THEN
+        g_boUserDefineIoOut14 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 86.0 THEN
+        g_boUserDefineIoOut15 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 87.0 THEN
+        g_boUserDefineIoOut16 := bTempFlag;
+      END_IF;  
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 88.0 THEN
+        g_boUserDefineIoOut17 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 89.0 THEN
+        g_boUserDefineIoOut18 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 90.0 THEN
+        g_boUserDefineIoOut19 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 91.0 THEN
+        g_boUserDefineIoOut20 := bTempFlag;
+      END_IF;   
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 92.0 THEN
+        g_boUserDefineIoOut21 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 93.0 THEN
+        g_boUserDefineIoOut22 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 94.0 THEN
+        g_boUserDefineIoOut23 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 95.0 THEN
+        g_boUserDefineIoOut24 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 96.0 THEN
+        g_boUserDefineIoOut25 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 97.0 THEN
+        g_boUserDefineIoOut26 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 98.0 THEN
+        g_boUserDefineIoOut27 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 99.0 THEN
+        g_boUserDefineIoOut28 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 100.0 THEN
+        g_boUserDefineIoOut29 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 101.0 THEN
+        g_boUserDefineIoOut30 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 102.0 THEN
+        g_boUserDefineIoOut31 := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 103.0 THEN
+        g_boUserDefineIoOut32 := bTempFlag;
+      END_IF;  
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 104.0 THEN
+        g_boClaw3UpDownClampEnable := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 105.0 THEN
+        g_boClaw3UpDownLoosenEnable := bTempFlag;
+      END_IF; 
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 106.0 THEN
+        g_boClaw3LiftRightClampEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 107.0 THEN
+        g_boClaw3LiftRightLoosenEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 108.0 THEN
+        g_boSupportcyLinder1UpEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 109.0 THEN
+        g_boSupportcyLinder2UpEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 110.0 THEN
+        g_boSupportcyLinder3UpEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 111.0 THEN
+        g_boSupportcyLinder4UpEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 112.0 THEN
+        g_boSupportcyLinder5UpEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 113.0 THEN
+        g_boSupportcyLinder6UpEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 114.0 THEN
+        g_boSupportcyLinder7UpEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 115.0 THEN
+        g_boSupportcyLinder8UpEnable := bTempFlag;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 206.0 THEN
+        g_boSupportcyLinder9UpEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 116.0 THEN
+        g_boSupportcyLinder1DownEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 117.0 THEN
+        g_boSupportcyLinder2DownEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 118.0 THEN
+        g_boSupportcyLinder3DownEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 119.0 THEN
+        g_boSupportcyLinder4DownEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 120.0 THEN
+        g_boSupportcyLinder5DownEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 121.0 THEN
+        g_boSupportcyLinder6DownEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 122.0 THEN
+        g_boSupportcyLinder7DownEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 123.0 THEN
+        g_boSupportcyLinder8DownEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 207.0 THEN
+        g_boSupportcyLinder9DownEnable := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 124.0 THEN
+        g_boSupCyl2Up1 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 125.0 THEN
+        g_boSupCyl2Up2 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 126.0 THEN
+        g_boSupCyl2Up3 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 127.0 THEN
+        g_boSupCyl2Down1 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 128.0 THEN
+        g_boSupCyl2Down2 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 129.0 THEN
+        g_boSupCyl2Down3 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 130.0 THEN
+        g_boCentringCyl2Up1 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 131.0 THEN
+        g_boCentringCyl2Up2 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 132.0 THEN
+        g_boCentringCyl2Up3 := bTempFlag;
+		  IF bTempFlag THEN
+			g_boCentringCyl2Down3 := FALSE;
+			ArrayConfigOutputNumber[132] :=TRUE;
+		  END_IF; 
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 133.0 THEN
+        g_boCentringCyl2Down1 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 134.0 THEN
+        g_boCentringCyl2Down2 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 135.0 THEN
+        g_boCentringCyl2Down3 := bTempFlag;
+		  IF bTempFlag THEN
+			g_boCentringCyl2Up3 := FALSE;
+			ArrayConfigOutputNumber[135] :=TRUE;
+		  END_IF; 
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 136.0 THEN
+        g_boDustGasValve := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 137.0 THEN
+        g_boGeneralDustCylinderUp := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 138.0 THEN
+        g_boGeneralDustCylinderDown := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 139.0 THEN
+        g_boDustCylinder1Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 140.0 THEN
+        g_boDustCylinder1Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 141.0 THEN
+        g_boDustCylinder2Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 142.0 THEN
+        g_boDustCylinder2Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 143.0 THEN
+        g_boLoadCyl01Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 144.0 THEN
+        g_boLoadCyl11Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 145.0 THEN
+        g_boLoadCyl21Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 146.0 THEN
+        g_boLoadCyl31Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 147.0 THEN
+        g_boLoadCyl41Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 148.0 THEN
+        g_boLoadCyl51Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 149.0 THEN
+        g_boLoadCyl61Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 150.0 THEN
+        g_boLoadCyl71Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 151.0 THEN
+        g_boLoadCyl81Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 152.0 THEN
+        g_boLoadCyl91Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 153.0 THEN
+        g_boLoadCyl101Up := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 154.0 THEN
+        g_boLoadCyl01Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 155.0 THEN
+        g_boLoadCyl11Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 156.0 THEN
+        g_boLoadCyl21Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 157.0 THEN
+        g_boLoadCyl31Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 158.0 THEN
+        g_boLoadCyl41Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 159.0 THEN
+        g_boLoadCyl51Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 160.0 THEN
+        g_boLoadCyl61Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 161.0 THEN
+        g_boLoadCyl71Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 162.0 THEN
+        g_boLoadCyl81Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 163.0 THEN
+        g_boLoadCyl91Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 164.0 THEN
+        g_boLoadCyl101Down := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 165.0 THEN
+        g_boLoadSinglePutOut1 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 166.0 THEN
+        g_boLoadSinglePutOut2 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 167.0 THEN
+        g_boLoadSinglePutOut3 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 168.0 THEN
+        g_boLoadSinglePutOutCanReset1 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 169.0 THEN
+        g_boLoadSinglePutOutCanReset2 := bTempFlag;
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 170.0 THEN
+        g_boLoadSinglePutOutCanReset3 := bTempFlag;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 171.0 THEN
+        g_boMotor1Up := bTempFlag;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 172.0 THEN
+        g_boMotor1Down := bTempFlag;
+      END_IF;
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 174.0 THEN
+		g_boAvoidCylinderUp := bTempFlag;
+      END_IF;
+      IF ArrayConfigOutputIndex[nDefineOutPutIndex - 1] = 175.0 THEN
+          g_boAvoidCylinderDown:= bTempFlag;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 176.0 THEN
+        g_boMotor2Up := bTempFlag;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 177.0 THEN
+        g_boMotor2Down := bTempFlag;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 178.0 THEN
+        g_boMotor3Up := bTempFlag;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 179.0 THEN
+        g_boMotor3Down := bTempFlag;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 182.0 THEN
+        g_boMiddleCylinderUp := bTempFlag;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 183.0 THEN
+        g_boMiddleCylinderDown := bTempFlag;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 186.0 THEN
+        g_boSupCyl2Up4 := bTempFlag;
+      END_IF;
+       IF ArrayConfigOutputIndex[nArrayIndex] = 187.0 THEN
+        g_boSupCyl2Down4 := bTempFlag;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 188.0 THEN
+         g_boCentringCyl2Up4 := bTempFlag;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 189.0 THEN
+         g_boCentringCyl2Down4 := bTempFlag; 
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 190.0 THEN
+         g_boAntiRejectionCylSingleCmd1:=bTempFlag; 
+			g_bKeepCenter1UpState := FALSE;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 191.0 THEN
+         g_boAntiRejectionCylSingleCmd2:=bTempFlag;
+			g_bKeepCenter2UpState := FALSE; 
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 192.0 THEN
+         g_boAntiRejectionCylSingleCmd3:=bTempFlag; 
+			g_bKeepCenter3UpState := FALSE;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 193.0 THEN
+         g_boAntiRejectionCylSingleCmd4:=bTempFlag; 
+			g_bKeepCenter4UpState := FALSE;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 194.0 THEN
+         g_boAntiRejectionCylSingleCmd5:=bTempFlag; 
+			g_bKeepCenter5UpState := FALSE;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 195.0 THEN
+         g_boAntiRejectionCylSingleCmd6:=bTempFlag; 
+			g_bKeepCenter6UpState := FALSE;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 196.0 THEN
+         g_boAntiRejectionCylSingleCmd7:=bTempFlag; 
+			g_bKeepCenter7UpState := FALSE;
+      END_IF;
+      IF ArrayConfigOutputIndex[nArrayIndex] = 197.0 THEN
+         g_boAntiRejectionCylSingleCmd8:=bTempFlag; 
+			g_bKeepCenter8UpState := FALSE; 
+      END_IF;
+       IF ArrayConfigOutputIndex[nArrayIndex] = 208.0 THEN
+         g_boAntiRejectionCylSingleCmd9:=bTempFlag; 
+			g_bKeepCenter9UpState := FALSE; 
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 198.0 THEN
+          g_boAntiRejectionCylDoubleCmd1:=bTempFlag;  
+			g_bKeepCenter1DownState := FALSE; 
+      END_IF;
+       IF ArrayConfigOutputIndex[nArrayIndex] = 199.0 THEN
+          g_boAntiRejectionCylDoubleCmd2:=bTempFlag;
+			g_bKeepCenter2DownState := FALSE;   
+      END_IF;
+       IF ArrayConfigOutputIndex[nArrayIndex] = 200.0 THEN
+          g_boAntiRejectionCylDoubleCmd3:=bTempFlag; 
+			g_bKeepCenter3DownState := FALSE;  
+      END_IF;
+       IF ArrayConfigOutputIndex[nArrayIndex] = 201.0 THEN
+          g_boAntiRejectionCylDoubleCmd4:=bTempFlag;  
+			g_bKeepCenter4DownState := FALSE; 
+      END_IF;
+       IF ArrayConfigOutputIndex[nArrayIndex] = 202.0 THEN
+          g_boAntiRejectionCylDoubleCmd5:=bTempFlag; 
+			g_bKeepCenter5DownState := FALSE;  
+      END_IF;
+       IF ArrayConfigOutputIndex[nArrayIndex] = 203.0 THEN
+          g_boAntiRejectionCylDoubleCmd6:=bTempFlag;
+			g_bKeepCenter6DownState := FALSE;   
+      END_IF;
+       IF ArrayConfigOutputIndex[nArrayIndex] = 204.0 THEN
+          g_boAntiRejectionCylDoubleCmd7:=bTempFlag; 
+			g_bKeepCenter7DownState := FALSE;  
+      END_IF;
+       IF ArrayConfigOutputIndex[nArrayIndex] = 205.0 THEN
+          g_boAntiRejectionCylDoubleCmd8:=bTempFlag;
+			g_bKeepCenter8DownState := FALSE;  
+      END_IF;
+       IF ArrayConfigOutputIndex[nArrayIndex] = 209.0 THEN
+          g_boAntiRejectionCylDoubleCmd9:=bTempFlag;
+			g_bKeepCenter9DownState := FALSE;  
+      END_IF;
+      (*双工位卡盘*)
+      IF ArrayConfigOutputIndex[nArrayIndex] = 222.0 THEN
+          g_boDualStation1Chuck1ClampOutPut :=bTempFlag;  
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 223.0 THEN
+          g_boDualStation1Chuck1LossenOutPut :=bTempFlag; 
+      END_IF;
+      
+      
+       IF ArrayConfigOutputIndex[nArrayIndex] = 224.0 THEN
+          g_boDualStation1Chuck2ClampOutPut :=bTempFlag;  
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 225.0 THEN
+          g_boDualStation1Chuck2LossenOutPut :=bTempFlag; 
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 226.0 THEN
+          g_boDualStation2Chuck1ClampOutPut :=bTempFlag;  
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 227.0 THEN
+          g_boDualStation2Chuck1LossenOutPut :=bTempFlag;  
+      END_IF;
+      
+      
+       IF ArrayConfigOutputIndex[nArrayIndex] = 228.0 THEN
+          g_boDualStation2Chuck2ClampOutPut :=bTempFlag;   
+      END_IF;
+      
+      IF ArrayConfigOutputIndex[nArrayIndex] = 229.0 THEN
+          g_boDualStation2Chuck2LossenOutPut :=bTempFlag;   
+      END_IF;
+      
+       IF ArrayConfigOutputIndex[nDefineOutPutIndex- 1] = 230.0 THEN
+          g_boCutHeadCool :=bTempFlag; 
+      END_IF;
+    END_FOR;
+    M.ENABLE[304] := 0;
+    nOutputState := 0;
+    g_bExecuteFinishedM304 := FALSE;
+END_CASE;
+IF g_bPlcResetBuffer THEN
+  g_bControlGasM := FALSE;
+  g_boLaserEnable := FALSE;
+  g_bExecuteFinishedM304 := FALSE;
+END_IF;
+
+Rtring_trigger_1(CLK := bUserDefineControlHMI1);
+IF Rtring_trigger_1.Q THEN
+  bUserDefineControlHMI1 := FALSE;
+  FBTempFlagSet_1(ArrayConfigOutputIndex[nDefineOutPutIndex1-1],nDefineOutPutIndex1,bTempFlag1,1);
+END_IF;
+
+Rtring_trigger_2(CLK := bUserDefineControlHMI2);
+IF Rtring_trigger_2.Q THEN
+  bUserDefineControlHMI2 := FALSE;
+  FBTempFlagSet_2(ArrayConfigOutputIndex[nDefineOutPutIndex2-1],nDefineOutPutIndex2,bTempFlag2,2);
+END_IF;
+
+Rtring_trigger_3(CLK := bUserDefineControlHMI3);
+IF Rtring_trigger_3.Q THEN
+  bUserDefineControlHMI3 := FALSE;
+  FBTempFlagSet_3(ArrayConfigOutputIndex[nDefineOutPutIndex3-1],nDefineOutPutIndex3,bTempFlag3,3);
+END_IF;
+
+Rtring_trigger_4(CLK := bUserDefineControlHMI4);
+IF Rtring_trigger_4.Q THEN
+  bUserDefineControlHMI4 := FALSE;
+  FBTempFlagSet_4(ArrayConfigOutputIndex[nDefineOutPutIndex4-1],nDefineOutPutIndex4,bTempFlag4,4);
+END_IF;
+
+Rtring_trigger_5(CLK := bUserDefineControlHMI5);
+IF Rtring_trigger_5.Q THEN
+  bUserDefineControlHMI5 := FALSE;
+  FBTempFlagSet_5(ArrayConfigOutputIndex[nDefineOutPutIndex5-1],nDefineOutPutIndex5,bTempFlag5,5);
+END_IF;
+
+Rtring_trigger_6(CLK := bUserDefineControlHMI6);
+IF Rtring_trigger_6.Q THEN
+  bUserDefineControlHMI6 := FALSE;
+  FBTempFlagSet_6(ArrayConfigOutputIndex[nDefineOutPutIndex6-1],nDefineOutPutIndex6,bTempFlag6,6);
+END_IF;
+
+Rtring_trigger_7(CLK := bUserDefineControlHMI7);
+IF Rtring_trigger_7.Q THEN
+  bUserDefineControlHMI7 := FALSE;
+  FBTempFlagSet_7(ArrayConfigOutputIndex[nDefineOutPutIndex7-1],nDefineOutPutIndex7,bTempFlag7,7);
+END_IF;
+
+Rtring_trigger_8(CLK := bUserDefineControlHMI8);
+IF Rtring_trigger_8.Q THEN
+  bUserDefineControlHMI8 := FALSE;
+  FBTempFlagSet_8(ArrayConfigOutputIndex[nDefineOutPutIndex8-1],nDefineOutPutIndex8,bTempFlag8,8);
+END_IF;
+
+Rtring_trigger_9(CLK := bUserDefineControlHMI9);
+IF Rtring_trigger_9.Q THEN
+  bUserDefineControlHMI9 := FALSE;
+  FBTempFlagSet_9(ArrayConfigOutputIndex[nDefineOutPutIndex9-1],nDefineOutPutIndex9,bTempFlag9,9);
+END_IF;
+
+Rtring_trigger_10(CLK := bUserDefineControlHMI10);
+IF Rtring_trigger_10.Q THEN
+  bUserDefineControlHMI10 := FALSE;
+  FBTempFlagSet_10(ArrayConfigOutputIndex[nDefineOutPutIndex10-1],nDefineOutPutIndex10,bTempFlag10,10);
+END_IF;	
+Rtring_trigger_11(CLK := bUserDefineControlHMI11);
+IF Rtring_trigger_11.Q THEN
+  bUserDefineControlHMI11 := FALSE;
+  FBTempFlagSet_11(ArrayConfigOutputIndex[nDefineOutPutIndex11-1],nDefineOutPutIndex11,bTempFlag11,11);
+END_IF;	
+
+Rtring_trigger_12(CLK := bUserDefineControlHMI12);
+IF Rtring_trigger_12.Q THEN
+  bUserDefineControlHMI12 := FALSE;
+  FBTempFlagSet_12(ArrayConfigOutputIndex[nDefineOutPutIndex12-1],nDefineOutPutIndex12,bTempFlag12,12);
+END_IF;	
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

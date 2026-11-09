@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PlcDataFromHmi">
+  <baseType>
+    <struct>
+      <variable name="LAYER1">
+        <type>
+          <array>
+            <dimension lower="0" upper="299"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="LAYER2">
+        <type>
+          <array>
+            <dimension lower="0" upper="299"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="LAYER3">
+        <type>
+          <array>
+            <dimension lower="0" upper="299"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="LAYER4">
+        <type>
+          <array>
+            <dimension lower="0" upper="299"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="LAYER5">
+        <type>
+          <array>
+            <dimension lower="0" upper="299"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="LAYER6">
+        <type>
+          <array>
+            <dimension lower="0" upper="299"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="LAYER7">
+        <type>
+          <array>
+            <dimension lower="0" upper="299"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="LAYER8">
+        <type>
+          <array>
+            <dimension lower="0" upper="299"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="LAYER9">
+        <type>
+          <array>
+            <dimension lower="0" upper="299"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="PowerControl0">
+        <type>
+          <derived name="ST_POWER_CONTROL"/>
+        </type>
+      </variable>
+      <variable name="PowerControl1">
+        <type>
+          <derived name="ST_POWER_CONTROL"/>
+        </type>
+      </variable>
+      <variable name="PowerControl2">
+        <type>
+          <derived name="ST_POWER_CONTROL"/>
+        </type>
+      </variable>
+      <variable name="PowerControl3">
+        <type>
+          <derived name="ST_POWER_CONTROL"/>
+        </type>
+      </variable>
+      <variable name="PowerControl4">
+        <type>
+          <derived name="ST_POWER_CONTROL"/>
+        </type>
+      </variable>
+      <variable name="PowerControl5">
+        <type>
+          <derived name="ST_POWER_CONTROL"/>
+        </type>
+      </variable>
+      <variable name="PowerControl6">
+        <type>
+          <derived name="ST_POWER_CONTROL"/>
+        </type>
+      </variable>
+      <variable name="PowerControl7">
+        <type>
+          <derived name="ST_POWER_CONTROL"/>
+        </type>
+      </variable>
+      <variable name="PowerControl8">
+        <type>
+          <derived name="ST_POWER_CONTROL"/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

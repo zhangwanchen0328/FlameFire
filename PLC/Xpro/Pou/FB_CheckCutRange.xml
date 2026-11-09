@@ -1,0 +1,947 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CheckCutRange" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="RtringCheck">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtringCheckClamp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RtringCheckIsClampPipe">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nCheckCutType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCheckCutState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bCNCYPosLimitOpen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[是否开启了Y轴软限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCNCYSecondPoslimitOpen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[是否开启了Y轴第二软限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCNCYPosLimit">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y轴软限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCNCYSecondPosLimit">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y轴第二软限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMaxVoltageValue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传感器最大电压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMinVoltageValue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传感器最小电压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorVoltage">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传感器最小电压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDynamicCoordTemp">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前位置]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nAvoidType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[避让类型]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bShortPartsAllowAvoid">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[短零件允许避让]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dAvoidRelDistances">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[避让相对距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAvoidEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[避让相对距离]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bCNCXSecondPosLimitOpen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使用X第二软限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bOpenPartCutRangeCheck">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开启单零件软限位检测]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCalcValue1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCoordTemp">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCoordTemp1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bIsExecuteAvoid">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="fNextFasterPointM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dPipeRemainingLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bShortPartsAllowAvoidFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dDistanceFromCurrentToNear">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[起刀点到最近点的距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dNearCutYPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轮廓最近点的机床坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDistanceFromFarthestToCurrent">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最远点点到当前点的距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFarthestCutYPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轮廓最远点的机床坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dToleranceValue">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0.2"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[限位检测容差值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dValueTemp">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[限位检测容差值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCalcInteferenceTemp">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计算干涉中间值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bZeroTailModeCloseSecondSoftLimitBYManual">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="True"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[零尾料手动操作Y+轴时关闭第二限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dEffectiveTubeLength">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[有效管长]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bBeamAvoidOverAvoidLimitPos">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轮廓是否超过避让位置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bBeamAvoidOverSecondSoftWarePos">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轮廓是否超过第二软限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="P1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="P2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="P3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bNewCheckTypeFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[组合避让检测切割范围]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAvoidAxisHaveAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[横梁避让报警检测]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RtringCheck(CLK := g_bCheckCutRangeM);
+IF RtringCheck.Q THEN
+  nCheckCutType := g_nCheckCutRangeType;
+  g_bCheckCutRangeM := FALSE;
+  IF nCheckCutType = 0 THEN(*加工前*)
+    IF NOT g_bContinueStatusFb THEN
+      g_dProcessStartYMachineCoord := g_diYMachineCoordinate;
+    END_IF;
+    nCheckCutState := 10;
+    dPipeRemainingLength :=0.0;
+    fNextFasterPointM := 0.0;
+    bNewCheckTypeFlag := FALSE;
+  ELSIF nCheckCutType = 1 THEN
+    nCheckCutState := 100;
+    
+  END_IF;
+END_IF;
+RtringCheckClamp(CLK := g_bCheckSensorIsClampPipeM);
+IF RtringCheckClamp.Q THEN
+  IF M.PARAMETER_P[277] = 0.0 THEN
+	nCheckCutState := 200;
+  ELSIF M.PARAMETER_P[277] = 100.0 THEN
+    nCheckCutState := 210;
+    dDistanceFromCurrentToNear := g_diYMachineCoordinate - M.PARAMETER_Q[277];
+	dDistanceFromFarthestToCurrent := M.PARAMETER_I[277] - g_diYMachineCoordinate;
+  ELSIF M.PARAMETER_P[277] = 10.0 THEN
+    dNearCutYPos := M.PARAMETER_Q[277];
+	dFarthestCutYPos := M.PARAMETER_I[277];
+    dDistanceFromCurrentToNear := g_diYMachineCoordinate - M.PARAMETER_Q[277];
+	dDistanceFromFarthestToCurrent := M.PARAMETER_I[277] - g_diYMachineCoordinate;
+    M.ENABLE[277] := 0;
+  END_IF;
+  g_bCheckSensorIsClampPipeM := FALSE;
+END_IF;
+RtringCheckIsClampPipe(CLK := g_bAvoidJudgeClampRangeM);
+IF RtringCheckIsClampPipe.Q THEN
+  g_bAvoidJudgeClampRangeM := FALSE;
+  IF g_nAvoidJudgeTypeM = 100.0  THEN
+		nCheckCutState := 800;(*用来判断零尾料*)
+    ELSE
+		 nCheckCutState := 500;
+	END_IF;
+ 
+  fNextFasterPointM := M.PARAMETER_K[303];
+  g_bShortPartsAllowAvoidFlag := FALSE;
+END_IF;
+
+
+   
+CASE nCheckCutState OF
+  0:
+    nCheckCutState := 0;
+  10:(*程序切割前判断是否行程完全能切割全部零件,把横梁移动避让单独拎出来*)
+	IF g_nAvoidType = 2 AND  g_bAvoidEnable AND g_bShortPartNotCrossSpanCut  THEN
+		P1 := g_dTotalPartLenth - g_dLastPartLength;(*获取图纸总长-最后一个零件长度*)
+		P2 := g_dAvoidPosFromCutAhead + g_dAvoidRelDistances - g_dDistanceFromFrontCardAndCutAhead;(*计算夹持长度条件避让相对距离+避让位置到切割头距离-中卡到切割头距离*)
+		P3 := g_fAvoidCoordY+g_dAvoidPosFromCutAhead-g_dProcessStartYMachineCoord;(*计算有效管长*)
+		IF P3 - P1 > P2 THEN
+			IF g_fAvoidCoordY - g_dProcessStartYMachineCoord <= P1 THEN
+				g_bNotLastPartNeedAvoidAlarm := TRUE;
+			END_IF;
+		ELSE
+			bNewCheckTypeFlag := TRUE;
+		END_IF;	
+	END_IF;
+    g_boCannotCutCompletelyHint := FALSE;
+    IF g_nAvoidType = 3 AND  g_bAvoidEnable THEN
+		IF  NOT g_bAvoidAxisFullTravelCutEnable AND NOT g_bBeamAvoidZeroTailEnable THEN
+			IF bCNCYSecondPoslimitOpen THEN (*开启了第二软限位*)
+				dCalcValue1 := dCNCYPosLimit + g_dAvoidRelDistances - (dCNCYPosLimit - dCNCYSecondPosLimit);
+				IF g_dProcessStartYMachineCoord + g_dTotalPartLenth >= dCalcValue1 AND NOT bOpenPartCutRangeCheck THEN(*切割零件的总长度超过了Y轴最大行程，提示不能完全切割*)
+					g_bCannotCutCompletelyHint := TRUE;
+                    g_boCNCMoveDisable := TRUE;
+				ELSE
+					g_bCannotCutCompletelyHint := FALSE;
+				END_IF;
+			ELSIF bCNCYPosLimitOpen THEN(*未开启第二软限位使用默认的软限位*)
+				dCalcValue1 := dCNCYPosLimit + g_dAvoidRelDistances;
+				IF g_dProcessStartYMachineCoord + g_dTotalPartLenth >= dCalcValue1 AND NOT bOpenPartCutRangeCheck THEN(*切割零件的总长度超过了Y轴最大行程，提示不能完全切割*)
+					g_bCannotCutCompletelyHint := TRUE;
+                    g_boCNCMoveDisable := TRUE;
+				ELSE
+					g_bCannotCutCompletelyHint := FALSE;
+				END_IF;
+			ELSE
+				g_bCannotCutCompletelyHint := FALSE;
+			END_IF;
+        ELSE(*避让极限坐标加避让位置到切割头距离-容差 - 当前起始位 > 管材长度*)
+			IF g_bBeamAvoidZeroTailEnable THEN
+				dEffectiveTubeLength := g_fAvoidCoordY + g_dAvoidPosFromCutAhead;(*有效管长*)
+				IF dCNCYSecondPosLimit + g_dAvoidRelDistances < g_dProcessStartYMachineCoord + g_dTotalPartLenth AND  g_dProcessStartYMachineCoord + g_dTotalPartLenth < dEffectiveTubeLength THEN
+					g_bBeamAvoidAxisNeedToChangeZeroTailMode := TRUE;(*当前加工的图纸会进零尾料*)
+				ELSE
+					g_bBeamAvoidAxisNeedToChangeZeroTailMode := FALSE;
+				END_IF;
+				IF  g_dTotalPartLenth >= dEffectiveTubeLength-g_dProcessStartYMachineCoord AND NOT bOpenPartCutRangeCheck THEN(*切割零件的总长度超过了Y轴最大行程，提示不能完全切割*)
+					g_bCannotCutCompletelyHint := TRUE;
+                    g_boCNCMoveDisable := TRUE;
+				ELSE
+					g_bCannotCutCompletelyHint := FALSE;
+				END_IF;
+            ELSE
+               dEffectiveTubeLength := g_fAvoidCoordY + g_dAvoidPosFromCutAhead - g_dProcessStartYMachineCoord - g_dAvoidAxisModeChuckThickness;(*有效管长*)
+				IF  g_dTotalPartLenth >= dEffectiveTubeLength AND NOT bOpenPartCutRangeCheck THEN(*切割零件的总长度超过了Y轴最大行程，提示不能完全切割*)
+					g_bCannotCutCompletelyHint := TRUE;
+                    g_boCNCMoveDisable := TRUE;
+				ELSE
+					g_bCannotCutCompletelyHint := FALSE;
+				END_IF;
+            END_IF; 
+        END_IF;
+        (*如果是零尾料避让模式且切割长度超过了第一软限位:切割范围为:切割起始位+零件总长>中卡移动轴最大限位对应的Y轴坐标*)
+    ELSIF g_nAvoidType = 2 AND  g_bAvoidEnable AND g_bOpenZeroTailCutMode THEN
+      dEffectiveTubeLength := g_fAvoidCoordY + g_dAvoidPosFromCutAhead;(*有效管长*)
+      IF g_dProcessStartYMachineCoord + g_dTotalPartLenth >= dEffectiveTubeLength AND NOT bOpenPartCutRangeCheck THEN(*切割零件的总长度超过了Y轴最大行程，提示不能完全切割*)
+			g_bCannotCutCompletelyHint := TRUE;
+                    g_boCNCMoveDisable := TRUE;
+      ELSE
+			g_bCannotCutCompletelyHint := FALSE;
+      END_IF;
+    ELSE
+		IF bNewCheckTypeFlag THEN
+          IF g_dProcessStartYMachineCoord + g_dTotalPartLenth >= g_dNoCrossSpanCutLimit AND NOT bOpenPartCutRangeCheck THEN(*切割零件的总长度超过了Y轴最大行程，提示不能完全切割*)
+				g_bCannotCutCompletelyHint := TRUE;
+						g_boCNCMoveDisable := TRUE;
+			  ELSE
+				g_bCannotCutCompletelyHint := FALSE;
+			  END_IF;
+        ELSE
+			IF bCNCYSecondPoslimitOpen THEN (*开启了第二软限位*)
+			  IF g_dProcessStartYMachineCoord + g_dTotalPartLenth >= dCNCYSecondPosLimit AND NOT bOpenPartCutRangeCheck THEN(*切割零件的总长度超过了Y轴最大行程，提示不能完全切割*)
+				g_bCannotCutCompletelyHint := TRUE;
+						g_boCNCMoveDisable := TRUE;
+			  ELSE
+				g_bCannotCutCompletelyHint := FALSE;
+			  END_IF;
+			ELSIF bCNCYPosLimitOpen THEN(*未开启第二软限位使用默认的软限位*)
+			  IF g_dProcessStartYMachineCoord + g_dTotalPartLenth >= dCNCYPosLimit AND NOT bOpenPartCutRangeCheck THEN(*切割零件的总长度超过了Y轴最大行程，提示不能完全切割*)
+				g_bCannotCutCompletelyHint := TRUE;
+						g_boCNCMoveDisable := TRUE;
+			  ELSE
+				g_bCannotCutCompletelyHint := FALSE;
+			  END_IF;
+			ELSE
+			  g_bCannotCutCompletelyHint := FALSE;
+			END_IF;
+        END_IF;
+    END_IF;
+    nCheckCutState := 0;
+    M.ENABLE[276] := 0;
+  100:(*切割前判断下一个零件是否超过软限位或者第二软限位*)
+  (*横梁移动避让检测方式不同,软限位在避让坐标前面*)
+	IF g_nAvoidType = 3 AND  g_bAvoidEnable THEN
+		IF g_bAvoidAxisFullTravelCutEnable  THEN
+				IF  g_dNextPartCutWorkCoord >= dEffectiveTubeLength THEN
+					g_bCannotContinueCutAlarm := TRUE;
+					g_boCannotCutCompletelyHint := TRUE;
+				ELSE
+					g_bCannotContinueCutAlarm := FALSE;
+					g_boCannotCutCompletelyHint := FALSE;
+				END_IF;
+        ELSIF g_bBeamAvoidZeroTailEnable THEN
+          (*判断当前零件是否会产生避让*)
+           g_bCannotContinueCutAlarm := FALSE;
+			g_boCannotCutCompletelyHint := FALSE;
+			M.ENABLE[276] := 0;   
+		ELSE
+			IF g_boIsExecuteAvoidFlag  THEN (*已经避让过了,判断是否开启第二软限位*)
+				IF bCNCYSecondPoslimitOpen THEN 
+					IF g_diYMachineCoordinate  + g_dCurrentCutPartLength >= dCNCYSecondPosLimit THEN
+						g_bCannotContinueCutAlarm := TRUE;
+						g_boCannotCutCompletelyHint := TRUE;
+					ELSE
+						g_bCannotContinueCutAlarm := FALSE;
+						g_boCannotCutCompletelyHint := FALSE;
+					END_IF;
+                ELSIF  bCNCYPosLimitOpen  THEN
+						IF g_diYMachineCoordinate  + g_dCurrentCutPartLength >= dCNCYPosLimit THEN
+							g_bCannotContinueCutAlarm := TRUE;
+							g_boCannotCutCompletelyHint := TRUE;
+						ELSE
+							g_bCannotContinueCutAlarm := FALSE;
+							g_boCannotCutCompletelyHint := FALSE;
+						END_IF;
+                  
+				END_IF;
+			ELSE (*没有避让过应该是判断是否当前切割的零件长度超过避让位置程序要避让,如果是就不要检测否则再检测*)
+				IF  bCNCYPosLimitOpen  THEN
+					IF g_diYMachineCoordinate  + g_dCurrentCutPartLength < g_fAvoidCoordY THEN
+						IF g_diYMachineCoordinate  + g_dCurrentCutPartLength >= dCNCYPosLimit THEN
+							g_bCannotContinueCutAlarm := TRUE;
+							g_boCannotCutCompletelyHint := TRUE;
+						ELSE
+							g_bCannotContinueCutAlarm := FALSE;
+							g_boCannotCutCompletelyHint := FALSE;
+						END_IF;
+					END_IF;
+				END_IF;
+			END_IF;
+          END_IF;
+        M.ENABLE[276] := 0;
+    ELSIF g_nAvoidType = 2 AND  g_bAvoidEnable AND g_bOpenZeroTailCutMode THEN  (*开启了零尾料切割模式*)
+		 (*判断剩余管材长度够不够切当前零件的”)
+		(*剩余管材长度=当前位置到避让位置的长度+避让位置到切割的距离是否大于要切割的季件长度*)
+        (*并且不是刚开始切割*)
+      dPipeRemainingLength :=  g_dAvoidPosFromCutAhead + g_fAvoidCoordY - (g_dCurrentCuttedPartLength -g_dProcessStartYMachineCoord);
+      IF g_dCurrentCutPartLength < dPipeRemainingLength THEN
+        g_bCannotContinueCutAlarm := FALSE;
+		g_boCannotCutCompletelyHint := FALSE;
+      ELSE
+        g_bCannotContinueCutAlarm := TRUE;
+		g_boCannotCutCompletelyHint := TRUE;
+        (*不知道为什么第一个零件不报警*)
+       (* IF g_dM202KValue = 1.0 THEN
+			g_bCannotContinueCutAlarm := FALSE;
+			g_boCannotCutCompletelyHint := FALSE;  
+        END_IF;*)
+      END_IF;
+      M.ENABLE[276] := 0;
+      (*零件开始前判断是否已经进入零尾料模式,是就直接报警*)
+      IF g_diYMachineCoordinate >= dCNCYPosLimit AND NOT g_bClaw1State THEN
+				g_bCannotClampPipeAlarm := TRUE;
+                g_boCNCMoveDisable := TRUE;
+				nCheckCutState := 0;
+                M.ENABLE[276] := 1;
+      END_IF;
+	ELSE
+		IF g_dCheckCutRangeJudgeType = 0.0 THEN
+			IF bNewCheckTypeFlag THEN
+				IF g_dProcessStartYMachineCoord  + g_dNextPartCutWorkCoord >= g_dNoCrossSpanCutLimit THEN
+					g_bCannotContinueCutAlarm := TRUE;
+					g_boCannotCutCompletelyHint := TRUE;
+				ELSE
+					g_bCannotContinueCutAlarm := FALSE;
+					g_boCannotCutCompletelyHint := FALSE;
+				END_IF;
+            ELSE
+				IF  bCNCYPosLimitOpen THEN
+					IF bCNCYSecondPoslimitOpen THEN
+						IF g_dProcessStartYMachineCoord  + g_dNextPartCutWorkCoord >= dCNCYSecondPosLimit THEN
+							g_bCannotContinueCutAlarm := TRUE;
+							g_boCannotCutCompletelyHint := TRUE;
+						ELSE
+							g_bCannotContinueCutAlarm := FALSE;
+							g_boCannotCutCompletelyHint := FALSE;
+						END_IF;
+					ELSIF bCNCYPosLimitOpen THEN
+						IF g_dProcessStartYMachineCoord  + g_dNextPartCutWorkCoord >= dCNCYPosLimit THEN
+							g_bCannotContinueCutAlarm := TRUE;
+							g_boCannotCutCompletelyHint := TRUE;
+						ELSE
+							g_bCannotContinueCutAlarm := FALSE;
+							g_boCannotCutCompletelyHint := FALSE;
+						END_IF;
+					END_IF;
+				ELSE
+					g_bCannotContinueCutAlarm := FALSE;
+					g_boCannotCutCompletelyHint := FALSE;
+				END_IF;
+            END_IF;
+		ELSE
+			IF bNewCheckTypeFlag THEN
+				IF g_bFindEageCoord  + g_dNextPartCutWorkCoord >= g_dNoCrossSpanCutLimit THEN
+					g_bCannotContinueCutAlarm := TRUE;
+					g_boCannotCutCompletelyHint := TRUE;
+				ELSE
+					g_bCannotContinueCutAlarm := FALSE;
+					g_boCannotCutCompletelyHint := FALSE;
+				END_IF;
+            ELSE
+				IF  bCNCYPosLimitOpen THEN
+					IF bCNCYSecondPoslimitOpen THEN
+						IF g_bFindEageCoord  + g_dNextPartCutWorkCoord >= dCNCYSecondPosLimit THEN
+							g_bCannotContinueCutAlarm := TRUE;
+							g_boCannotCutCompletelyHint := TRUE;
+						ELSE
+							g_bCannotContinueCutAlarm := FALSE;
+							g_boCannotCutCompletelyHint := FALSE;
+						END_IF;
+					ELSIF bCNCYPosLimitOpen THEN
+						IF g_bFindEageCoord  + g_dNextPartCutWorkCoord >= dCNCYPosLimit THEN
+							g_bCannotContinueCutAlarm := TRUE;
+							g_boCannotCutCompletelyHint := TRUE;
+						ELSE
+							g_bCannotContinueCutAlarm := FALSE;
+							g_boCannotCutCompletelyHint := FALSE;
+						END_IF;
+					END_IF;
+				ELSE
+					g_bCannotContinueCutAlarm := FALSE;
+					g_boCannotCutCompletelyHint := FALSE;
+				END_IF;
+            END_IF;
+		END_IF;
+        M.ENABLE[276] := 0;
+	END_IF;
+   nCheckCutState := 0;
+   200:
+     dMonitorVoltage := UINT_TO_LREAL(g_niSensorMonitor)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+    IF dMonitorVoltage >= dMinVoltageValue AND dMonitorVoltage <= dMaxVoltageValue THEN
+      g_bCheckSensorIsClampPipeAlarm := FALSE;
+    ELSE
+      g_bCheckSensorIsClampPipeAlarm := TRUE;
+    END_IF;
+  210:(*零尾料切割时判断将要切割的轮廓是否会超过中卡轴的正限位和回退位置小于移动相对距离*)
+	bAvoidAxisHaveAlarm := FALSE;
+	IF g_bOpenZeroTailCutMode AND g_bAvoidEnable AND g_nAvoidType = 2 AND g_diYMachineCoordinate >= dCNCYPosLimit THEN
+		IF g_dAntiRejection5Coordinate + dDistanceFromFarthestToCurrent >= g_dZeroTailPosSoftLimit+dToleranceValue OR g_dAntiRejection5Coordinate - dDistanceFromCurrentToNear <= g_dAvoidRelDistances-dToleranceValue THEN
+			g_bCurrentContourCannotCutAlarm := TRUE;
+			g_boCNCMoveDisable := TRUE;
+			nCheckCutState := 0;
+			bAvoidAxisHaveAlarm := TRUE;
+          END_IF;
+	ELSIF  g_bAvoidEnable AND g_nAvoidType = 3  AND AntiRejection6.NCTOPLC.AxisState = 8 THEN
+		IF g_bBeamAvoidZeroTailEnable THEN
+			IF g_dAntiRejection6Coordinate+g_dAvoidRelDistances+dDistanceFromFarthestToCurrent >= g_dBeamAvoidAxisPosSoftLimit + dToleranceValue OR g_dAntiRejection6Coordinate+g_dAvoidRelDistances-dDistanceFromCurrentToNear <=  g_dAvoidRelDistances-dToleranceValue THEN
+				g_bBeamAvoidAxisOverPosSoftLimitAlarm := TRUE;
+				g_boCNCMoveDisable := TRUE;
+				nCheckCutState := 0;
+				bAvoidAxisHaveAlarm := TRUE;
+			END_IF;
+              
+		ELSIF g_bAvoidAxisFullTravelCutEnable THEN
+			IF g_dAntiRejection6Coordinate+dDistanceFromFarthestToCurrent >= g_dBeamAvoidAxisPosSoftLimit + dToleranceValue OR g_dAntiRejection6Coordinate-dDistanceFromCurrentToNear <=  g_dAvoidRelDistances-dToleranceValue THEN
+				g_bBeamAvoidAxisOverPosSoftLimitAlarm := TRUE;
+				g_boCNCMoveDisable := TRUE;
+				nCheckCutState := 0;
+				bAvoidAxisHaveAlarm := TRUE;
+			END_IF;
+		END_IF;
+	END_IF;
+	IF NOT bAvoidAxisHaveAlarm THEN
+		g_bCurrentContourCannotCutAlarm := FALSE;
+		M.ENABLE[277] := 0;
+		nCheckCutState := 0;
+	END_IF;
+  500:
+  (*开启短零件允许避让:是最后一个零件且剩余管材长度大于输入值计算后的数值才能夹着切，否则就松开中卡切割,
+  不是最后一个零件就松开中卡切割*)
+  (*不开启短零件允许避让:是最后一个零件且剩余管材长度大于输入值计算后的数值才能夹着切，否则都报脱管*)
+		bIsExecuteAvoid := fNextFasterPointM - g_diYWorkCoordinate + g_diYMachineCoordinate >= g_fAvoidCoordY;
+      IF bIsExecuteAvoid THEN
+        dPipeRemainingLength :=  g_diYMachineCoordinate-g_dCurrentCuttedPartLength + g_dAvoidPosFromCutAhead + (g_fAvoidCoordY - g_diYMachineCoordinate);
+      END_IF;
+	IF g_nAvoidType >= 2 AND NOT g_boIsExecuteAvoidFlag AND g_bAvoidEnable THEN
+		IF bShortPartsAllowAvoid THEN (*开启短零件允许避让*)
+			IF g_bIsLastPart THEN
+				IF bIsExecuteAvoid AND dPipeRemainingLength  > g_dAvoidPosFromCutAhead  + g_dAvoidRelDistances- g_dDistanceFromFrontCardAndCutAhead THEN
+					g_bShortPartsAllowAvoidFlag := FALSE;
+                ELSE
+                  (*才能松开中卡*)
+					g_bShortPartsAllowAvoidFlag := TRUE;
+                END_IF;
+            ELSE
+				IF bIsExecuteAvoid THEN
+                  (*才能松开中卡*)
+                  g_bShortPartsAllowAvoidFlag := TRUE;
+                END_IF;
+            END_IF;
+        ELSE
+			IF bIsExecuteAvoid THEN 
+				IF g_bIsLastPart AND dPipeRemainingLength  > g_dAvoidPosFromCutAhead  + g_dAvoidRelDistances- g_dDistanceFromFrontCardAndCutAhead THEN
+					g_bShortPartsAllowAvoidFlag := FALSE;
+                ELSE
+                  g_bCannotClampPipeAlarm := TRUE;
+                  g_boCNCMoveDisable := TRUE;
+                END_IF;
+            END_IF;
+        END_IF;
+	END_IF;
+     nCheckCutState := 0;
+    
+  800:
+	(*零尾料切割轮廓切割结束判断下个轮廓的机床坐标
+    1.如果不超避让坐标直接跳过
+    2.如果要超过了避让坐标但不超过极限坐标1.下个轮廓要避让,避让后判断轮廓切割会不会脱管
+    3.如果超过了避让坐标有超过了极限坐标:要切换成真正的零尾料,要判断轮廓切割会不会是否小于避让相对距离的坐标和避让轴的正限位,是报警不可点动Y*)
+	IF g_bOpenZeroTailCutMode AND g_bAvoidEnable AND g_nAvoidType = 2 THEN
+		dCoordTemp := fNextFasterPointM - g_diYWorkCoordinate + g_diYMachineCoordinate;(*判断的就是最远点*)
+        IF g_diYMachineCoordinate < dCNCYPosLimit THEN
+			IF dCoordTemp >= g_fAvoidCoordY AND NOT g_boIsExecuteAvoidFlag THEN
+				IF 	dCoordTemp < dCNCYPosLimit THEN
+					(*是否脱管*)
+					IF g_bIsLastPart THEN
+					  (*如果是零件结束后的判断,已切割长度要清零*)
+						dPipeRemainingLength := 0.0;
+					ELSE
+						dPipeRemainingLength :=  g_diYMachineCoordinate-g_dCurrentCuttedPartLength;
+					END_IF;
+					(*不开启短零件避让,如果下个轮廓移动到起刀点的距离小于相对移动距离,则报脱管*)
+					IF NOT bShortPartsAllowAvoid THEN (*开启短零件允许避让*)
+						IF  dPipeRemainingLength+g_doLeapfrogNesttingDistance >  g_dAvoidRelDistances THEN
+							bShortPartsAllowAvoidFlag := FALSE;
+						ELSE
+							g_bCannotClampPipeAlarm := TRUE;
+							g_boCNCMoveDisable := TRUE;
+							nCheckCutState := 0;
+						END_IF;
+					END_IF; 
+                    M.ENABLE[303] := 0;
+					nCheckCutState := 0;  
+				ELSE
+					IF dNearCutYPos >= dCNCYPosLimit  THEN
+						IF g_bIsLastPart THEN
+							dPipeRemainingLength  := dCNCYPosLimit -  g_diYMachineCoordinate;
+						ELSE
+							dPipeRemainingLength :=  g_diYMachineCoordinate-g_dCurrentCuttedPartLength+dCNCYPosLimit -  g_diYMachineCoordinate;
+						END_IF;
+						IF NOT bShortPartsAllowAvoid THEN (*开启短零件允许避让*)
+							IF  dPipeRemainingLength >  g_dAvoidRelDistances THEN
+								bShortPartsAllowAvoidFlag := FALSE;
+							ELSE
+								g_bCannotClampPipeAlarm := TRUE;
+								g_boCNCMoveDisable := TRUE;
+								nCheckCutState := 0;
+							END_IF;
+                        ELSE
+							dPipeRemainingLength :=  g_diYMachineCoordinate-g_dCurrentCuttedPartLength + g_dAvoidPosFromCutAhead + (g_fAvoidCoordY - g_diYMachineCoordinate);
+							IF dPipeRemainingLength < g_dAvoidPosFromCutAhead  + g_dAvoidRelDistances- g_dDistanceFromFrontCardAndCutAhead THEN
+								g_bCannotClampPipeAlarm := TRUE;
+								g_boCNCMoveDisable := TRUE;
+								nCheckCutState := 0;
+							END_IF;
+                  
+						END_IF;
+                        
+                        dValueTemp := g_diYMachineCoordinate + g_doLeapfrogNesttingDistance - dCNCYPosLimit;
+                        IF g_dAvoidRelDistances+dValueTemp > g_dZeroTailPosSoftLimit+dToleranceValue OR  g_dAvoidRelDistances+dValueTemp <= g_dAvoidRelDistances-dToleranceValue THEN
+							  g_bCurrentContourCannotCutAlarm := TRUE;
+							  g_boCNCMoveDisable := TRUE;
+							  nCheckCutState := 0;
+						END_IF; 
+					ELSIF dNearCutYPos < dCNCYPosLimit THEN
+						IF g_bIsLastPart THEN
+							dPipeRemainingLength := g_doLeapfrogNesttingDistance;
+						ELSE
+							dPipeRemainingLength :=  g_diYMachineCoordinate-g_dCurrentCuttedPartLength+g_doLeapfrogNesttingDistance;
+						END_IF;
+						dValueTemp := g_diYMachineCoordinate + g_doLeapfrogNesttingDistance - dNearCutYPos;
+						IF NOT bShortPartsAllowAvoid THEN (*开启短零件允许避让*)
+							IF  dPipeRemainingLength >  g_dAvoidRelDistances+dValueTemp THEN
+								bShortPartsAllowAvoidFlag := FALSE;
+							ELSE
+								g_bCannotClampPipeAlarm := TRUE;
+								g_boCNCMoveDisable := TRUE;
+								nCheckCutState := 0;
+							END_IF;
+                          
+						END_IF; 
+						IF g_dAvoidRelDistances+dValueTemp > g_dZeroTailPosSoftLimit+dToleranceValue OR  g_dAvoidRelDistances+dValueTemp <= g_dAvoidRelDistances-dToleranceValue THEN
+							  g_bCurrentContourCannotCutAlarm := TRUE;
+							  g_boCNCMoveDisable := TRUE;
+							  nCheckCutState := 0;
+						END_IF;
+                        (*IF (g_diYMachineCoordinate + g_doLeapfrogNesttingDistance = dNearCutYPos) AND (g_dAvoidRelDistances+dValueTemp + (dFarthestCutYPos-dNearCutYPos) > g_dZeroTailPosSoftLimit+dToleranceValue OR  g_dAvoidRelDistances+dValueTemp <= g_dAvoidRelDistances-dToleranceValue) THEN
+							  g_bCurrentContourCannotCutAlarm := TRUE;
+							  g_boCNCMoveDisable := TRUE;
+							  nCheckCutState := 0;
+						END_IF;*)
+                        IF dFarthestCutYPos - (g_diYMachineCoordinate + g_doLeapfrogNesttingDistance) + g_dAvoidRelDistances+dValueTemp > g_dZeroTailPosSoftLimit+dToleranceValue THEN
+                              g_bCurrentContourCannotCutAlarm := TRUE;
+							  g_boCNCMoveDisable := TRUE;
+							  nCheckCutState := 0;
+                        END_IF;
+                        
+                        
+                    END_IF;
+						M.ENABLE[303] := 0;
+						nCheckCutState := 0;
+						
+                END_IF;
+            ELSE
+				(*只判断是否会脱管*)
+                (*已经避让过了,下个轮廓最远点坐标又小于了避让位置,那就是又切前面的轮廓了即回拉了*)
+                IF g_boIsExecuteAvoidFlag AND dCoordTemp < g_fAvoidCoordY  THEN
+					dValueTemp := g_diYMachineCoordinate-g_dCurrentCuttedPartLength - (g_dAvoidRelDistances - g_dDistanceFromFrontCardAndCutAhead);
+					IF g_doLeapfrogNesttingDistance >= dValueTemp AND g_bClaw2State THEN
+						g_bCannotClampPipeAlarm := TRUE;
+                        g_boCNCMoveDisable := TRUE;
+                        nCheckCutState := 0;
+                    ELSE
+						M.ENABLE[303] := 0;
+						nCheckCutState := 0;
+                    END_IF;
+                ELSE
+					M.ENABLE[303] := 0;
+					nCheckCutState := 0;
+                END_IF;
+                (*如果零尾料避让后,剩余零件的长度不能夹持切割直接报警*)
+                IF g_boIsExecuteAvoidFlag AND dCoordTemp >= dCNCYPosLimit AND NOT g_bClaw2State THEN
+					g_bCannotClampPipeAlarm := TRUE;
+                    g_boCNCMoveDisable := TRUE;
+                    M.ENABLE[303] := 1;
+                    nCheckCutState := 0;
+                END_IF;
+			END_IF;
+        ELSE(*已经零尾料了,只需要判断是否超限位或者小于相对移动距离即可*)
+			IF g_dAntiRejection5Coordinate + dDistanceFromFarthestToCurrent >= g_dZeroTailPosSoftLimit+dToleranceValue OR g_dAntiRejection5Coordinate - dDistanceFromCurrentToNear <= g_dAvoidRelDistances-dToleranceValue THEN
+				  g_bCurrentContourCannotCutAlarm := TRUE;
+				  g_boCNCMoveDisable := TRUE;
+				  nCheckCutState := 0;
+            ELSE
+				M.ENABLE[303] := 0;
+				nCheckCutState := 0;
+                g_bCurrentContourCannotCutAlarm := FALSE;
+            END_IF;	   
+        END_IF;  
+    ELSIF g_bAvoidEnable AND g_nAvoidType = 3 THEN(*横梁移动避让开启了全行程*)
+		dCoordTemp := fNextFasterPointM - g_diYWorkCoordinate + g_diYMachineCoordinate;(*判断的就是最远点坐标*)
+		IF g_bAvoidAxisFullTravelCutEnable THEN(*如果开启了全行程切割要判断下个轮廓会不会超过当前主卡停靠位,超过就报警*)
+			IF g_bIsFullTravelCutModeChangeDone AND AntiRejection6.NCTOPLC.AxisState = 8 THEN
+				dCalcInteferenceTemp := g_fAvoidCoordY + g_dAvoidPosFromCutAhead - g_dAvoidRelDistances -g_dAvoidAxisModeChuckThickness;
+				IF  dCoordTemp   >= dCalcInteferenceTemp THEN
+					g_bFullTravelChuckWillInterferenceAlarm := TRUE;
+				ELSE
+					g_bFullTravelChuckWillInterferenceAlarm := FALSE;
+					M.ENABLE[303] := 0;
+					nCheckCutState := 0;
+				END_IF;
+			ELSE
+				M.ENABLE[303] := 0;
+				nCheckCutState := 0;
+			END_IF; 
+        ELSIF g_bBeamAvoidZeroTailEnable THEN(*有效管长-已经切割完成的零件长度*)
+			dPipeRemainingLength :=  dEffectiveTubeLength - (g_dCurrentCuttedPartLength -g_dProcessStartYMachineCoord);
+            IF g_bBeamAvoidAxisNeedToChangeZeroTailMode THEN
+				IF g_bBeamAvoidAxisChangeedCheck THEN
+					g_bBeamAvoidZeroTailCloseSoftWareEnable := TRUE;
+                    IF g_bIsLastPart  AND dPipeRemainingLength > g_dAvoidPosFromCutAhead + g_dAvoidRelDistances - g_dDistanceFromFrontCardAndCutAhead THEN
+						M.ENABLE[303] := 0;
+						nCheckCutState := 0;
+					ELSE
+						g_bBeamAvoidAxisZeroScrapCutCannotPerformedAlarm := TRUE;
+						g_boCNCMoveDisable := TRUE;
+						nCheckCutState := 0;
+					END_IF;
+                    g_bBeamAvoidAxisChangeedCheck := FALSE;
+                ELSE
+                    M.ENABLE[303] := 0;
+					nCheckCutState := 0;
+                END_IF;	
+            ELSE
+				M.ENABLE[303] := 0;
+				nCheckCutState := 0;
+            END_IF;  
+        ELSE
+           M.ENABLE[303] := 0;
+			nCheckCutState := 0;
+        END_IF; 
+    ELSE
+      M.ENABLE[303] := 0;
+      nCheckCutState := 0;
+    END_IF;
+	
+END_CASE;
+
+IF g_bAvoidEnable THEN
+  IF bCNCYSecondPoslimitOpen  AND (g_nMotionMode=2 OR g_nMotionMode=4 OR g_nMotionMode=7 ) THEN
+    IF g_nAvoidType = 3 THEN(*横梁移动避让方式,未触发避让之前都是第一软限位生效,当下一个轮廓要超过避让坐标时或者是已经避让过了要开启*)
+      IF g_boIsExecuteAvoidFlag AND NOT g_bBeamAvoidZeroTailCloseSoftWareEnable THEN
+		g_boYSetSecondSoftLimit := TRUE;
+      ELSE
+		dCoordTemp := fNextFasterPointM - g_diYWorkCoordinate + g_diYMachineCoordinate;(*下一个轮廓的机械坐标*)
+        IF dCoordTemp < g_fAvoidCoordY THEN
+          g_boYSetSecondSoftLimit := FALSE; 
+        END_IF;
+      END_IF;
+    ELSIF g_nAvoidType = 2 AND g_bOpenZeroTailCutMode THEN
+      g_boYSetSecondSoftLimit := bZeroTailModeCloseSecondSoftLimitBYManual;
+    ELSE
+      g_boYSetSecondSoftLimit := TRUE; 
+    END_IF; 
+  ELSE
+    g_boYSetSecondSoftLimit := FALSE;
+  END_IF;
+  
+  IF bCNCXSecondPoslimitOpen AND g_fCurrentCoordYBuffer >= g_fAvoidCoordY THEN
+    g_boXSetSecondSoftLimit := TRUE;
+  ELSE
+    g_boXSetSecondSoftLimit := FALSE;
+  END_IF;
+ELSE
+  g_boXSetSecondSoftLimit := FALSE;
+  g_boYSetSecondSoftLimit := FALSE;
+END_IF;
+
+IF g_bAvoidEnable THEN
+  IF g_nAvoidType = 3 THEN
+	IF ABS(g_dAntiRejection6Coordinate) >= 0.3 THEN
+		g_bAvoidResetIsMoveXAxis := TRUE;
+    ELSE
+		g_bAvoidResetIsMoveXAxis := FALSE;
+    END_IF;
+    
+  ELSIF g_nAvoidType = 2 THEN
+	IF g_bIsConfigMiddleAvoidAxis2 THEN  (*配置了中卡移动轴*)
+		IF ABS(g_dAntiRejection5Coordinate) >= 0.3 THEN
+          g_bAvoidResetIsMoveXAxis := TRUE;
+        ELSE
+          g_bAvoidResetIsMoveXAxis := FALSE;
+        END_IF;
+    ELSE (*中卡移动气缸*)
+		IF g_bAvoidCylinderStateHmi THEN
+          g_bAvoidResetIsMoveXAxis := TRUE;
+        ELSE
+          g_bAvoidResetIsMoveXAxis := FALSE;
+        END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF g_nAvoidType = 3 AND  g_boIsExecuteAvoidFlag THEN
+  g_dTailMaterialLength := g_dAvoidPosFromCutAhead + (g_fAvoidCoordY - g_diYMachineCoordinate)- g_dAvoidRelDistances;
+ELSE
+  g_dTailMaterialLength := g_dAvoidPosFromCutAhead + (g_fAvoidCoordY - g_diYMachineCoordinate); 
+END_IF;  
+
+
+
+IF g_bPlcResetBuffer THEN
+  nCheckCutState := 0;
+  g_bCheckCutRangeM := FALSE;
+  g_bCannotCutCompletelyHint := FALSE;
+  g_bCannotContinueCutAlarm := FALSE;
+  nCheckCutState := 0;
+  g_bCheckSensorIsClampPipeAlarm := FALSE;
+  g_bAvoidJudgeClampRangeM := FALSE;
+  g_bCannotClampPipeAlarm := FALSE;
+  g_bCurrentContourCannotCutAlarm := FALSE;
+  bZeroTailModeCloseSecondSoftLimitBYManual := TRUE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

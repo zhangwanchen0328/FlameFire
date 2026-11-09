@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BoardInputSignalConfig" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="BoardInputSignalConfig">
+        <type>
+          <array>
+            <dimension lower="0" upper="95"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="index">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="index1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*ListenBoardInputConfig:0-31:自定义报警*)
+
+FOR index := 0 TO 95 BY 1 DO
+  index1 := BoardInputSignalConfig[index];
+	IF index1 <> 0.0 THEN
+		ListenBoardInputConfig[LREAL_TO_INT(index1-1.0)] := TRUE;
+	END_IF; 
+    
+END_FOR;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[板卡点位配置信息]]></xhtml:p>
+  </documentation>
+</pou>

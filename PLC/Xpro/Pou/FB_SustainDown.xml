@@ -1,0 +1,2211 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SustainDown" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bSustainUpDownM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fSustainMoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainUpDownDoneM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSustainUpDownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainUpDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainUpDownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nSustainMoveType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trriger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bDownSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bSupportcyLinderDownInPlace1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderUpInPlace1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderUpInPlace2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderUpInPlace3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderUpInPlace4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderUpInPlace5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderUpInPlace6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderUpInPlace7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderUpInPlace8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinder1Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinder2Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinder3Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinder4Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinder5Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinder6Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinder7Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinder8Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinder1Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinder2Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinder3Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinder4Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinder5Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinder6Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinder7Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinder8Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClylinderIsPosition">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClylinderDownIsPosition">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain1ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain2ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain3ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain7ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain8ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain9ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_nPipeType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_dCircleRadius">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dSquareLenght">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dSquareWidth">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain1">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain2">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain7">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain8">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain9">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_bSustain1Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain2Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain3Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain7Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain8Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain9Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain1AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain2AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain3AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain7AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain8AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain9AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain1AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain2AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain3AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain7AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain8AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain9AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_nSusutainCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bSustainEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nClylinderCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bClylinderEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_Alarm">
+        <type>
+          <derived name="DT_ALARM"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nSupportCylUpDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nSupportCylDownDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_bSustainAxis1UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainAxis2UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainAxis3UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainAxis7UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainAxis8UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainAxis9UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Ton_CylDelay1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_CylDelay2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_CylDelay3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_CylDelay4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_CylDelay5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_CylDelay6">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_CylDelay7">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_CylDelay8">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_CylDelay9">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_CylDelay10">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_CylDelay11">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_CylDelay12">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nSwitchState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bCheckFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nMoveType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dPipeMaxHeight">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bCylinder1Switch">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[是否开启程序开始时支撑气缸下降]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bCylinder2Switch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder3Switch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder4Switch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder5Switch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder6Switch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder7Switch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylinder8Switch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bBackToCenterFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回中气缸上升标志]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSupportCyl1AvoidState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCyl2AvoidState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCyl3AvoidState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCyl4AvoidState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCyl5AvoidState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCyl6AvoidState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCyl7AvoidState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCyl8AvoidState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCyl9AvoidState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCyl10AvoidState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCyl11AvoidState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupportCyl12AvoidState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxesFloatUp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trriger1(CLK := g_bSustainUpDownM OR g_bSustainUpDown);
+R_Trriger2(CLK := g_bSustainUpDownDoneM);
+
+IF R_Trriger1.Q THEN
+  g_boSustainUpDownDone := FALSE;
+  g_bSustainUpDownDone := FALSE;
+  Ton_CylDelay1(IN := FALSE);
+  Ton_CylDelay2(IN := FALSE);
+  Ton_CylDelay3(IN := FALSE);
+  Ton_CylDelay4(IN := FALSE);
+  Ton_CylDelay5(IN := FALSE);
+  Ton_CylDelay6(IN := FALSE);
+  Ton_CylDelay7(IN := FALSE);
+  Ton_CylDelay8(IN := FALSE);
+  Ton_CylDelay9(IN := FALSE);
+  Ton_CylDelay10(IN := FALSE);
+  Ton_CylDelay11(IN := FALSE);
+  Ton_CylDelay12(IN := FALSE);
+  nSwitchState := 1;
+  IF g_bSustainUpDownM THEN
+    nMoveType := LREAL_TO_INT(g_fSustainMoveTypeM);
+    g_bSustainUpDownM := FALSE;
+  ELSIF g_bSustainUpDown THEN
+    nMoveType := g_nSustainMoveType;
+  END_IF;
+  g_bSustainUpDown := FALSE;
+END_IF;
+
+IF R_Trriger2.Q THEN
+  g_boSustainUpDownDone := FALSE;
+  g_bSustainUpDownDone := FALSE;
+  g_bSustainUpDownDoneM := FALSE;
+  nSwitchState := 0;
+END_IF;
+
+bSupportCyl1AvoidState :=  g_fCurrentCoordYBuffer>=g_fClylinder1CoordY-g_fClylinder1DownDistance AND NOT g_bSupportCylinder1ShieldFlag; 
+bSupportCyl2AvoidState := g_fCurrentCoordYBuffer>=g_fClylinder2CoordY-g_fClylinder2DownDistance AND NOT g_bSupportCylinder2ShieldFlag; 
+bSupportCyl3AvoidState := g_fCurrentCoordYBuffer>=g_fClylinder3CoordY-g_fClylinder3DownDistance AND NOT g_bSupportCylinder3ShieldFlag; 
+bSupportCyl4AvoidState := g_fCurrentCoordYBuffer>=g_fClylinder4CoordY-g_fClylinder4DownDistance AND NOT g_bSupportCylinder4ShieldFlag; 
+bSupportCyl5AvoidState := g_fCurrentCoordYBuffer>=g_fClylinder5CoordY-g_fClylinder5DownDistance AND NOT g_bSupportCylinder5ShieldFlag; 
+bSupportCyl6AvoidState := g_fCurrentCoordYBuffer>=g_fClylinder6CoordY-g_fClylinder6DownDistance AND NOT g_bSupportCylinder6ShieldFlag; 
+bSupportCyl7AvoidState := g_fCurrentCoordYBuffer>=g_fClylinder7CoordY-g_fClylinder7DownDistance AND NOT g_bSupportCylinder7ShieldFlag; 
+bSupportCyl8AvoidState := g_fCurrentCoordYBuffer>=g_fClylinder8CoordY-g_fClylinder8DownDistance AND NOT g_bSupportCylinder8ShieldFlag; 
+bSupportCyl9AvoidState := g_fCurrentCoordYBuffer>=g_fClylinder9CoordY-g_fClylinder9DownDistance AND NOT g_bSupportCylinder9ShieldFlag; 
+bSupportCyl10AvoidState := g_fCurrentCoordYBuffer>=g_fClylinder10CoordY-g_fClylinder10DownDistance AND NOT g_bSupportCylinder10ShieldFlag; 
+bSupportCyl11AvoidState := g_fCurrentCoordYBuffer>=g_fClylinder11CoordY-g_fClylinder11DownDistance AND NOT g_bSupportCylinder11ShieldFlag; 
+bSupportCyl12AvoidState := g_fCurrentCoordYBuffer>=g_fClylinder12CoordY-g_fClylinder12DownDistance AND NOT g_bSupportCylinder12ShieldFlag; 
+
+
+IF g_bOnlyUseOneKeySupCylFun THEN(*混用浮动时，支撑轴通过浮动上升，不能使用当前入口上升，避免撞到，所以该入口只控制气缸*)
+  CASE nSwitchState OF
+    0: 
+      nSwitchState := 0;
+    1:
+      IF nMoveType = 0 THEN
+        nSwitchState := 10;
+      ELSIF nMoveType = 1 THEN
+        nSwitchState := 20;
+      ELSIF nMoveType = 2 THEN
+        nSwitchState := 50;
+      END_IF;
+      IF g_nClylinderCount = 0 THEN
+        g_boSustainUpDownDone := TRUE;
+        g_bSustainUpDownDone := TRUE;
+        nSwitchState := 0;
+        M.ENABLE[177] := 0;
+        g_bExecuteFinishedM177 := FALSE;
+      END_IF;
+    10:
+      IF g_nClylinderCount >= 1 THEN
+        g_bSupportcyLinder1Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 2 THEN
+        g_bSupportcyLinder2Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 3 THEN
+        g_bSupportcyLinder3Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 4 THEN
+        g_bSupportcyLinder4Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 5 THEN
+        g_bSupportcyLinder5Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 6 THEN
+        g_bSupportcyLinder6Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 7 THEN
+        g_bSupportcyLinder7Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 8 THEN
+        g_bSupportcyLinder8Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 9 THEN
+        g_bSupportcyLinder9Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 10 THEN
+        g_bSupportcyLinder10Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 11 THEN
+        g_bSupportcyLinder11Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 12 THEN
+        g_bSupportcyLinder12Down := TRUE;
+      END_IF;
+      nSwitchState := 11;
+    11:
+      bCheckFlag := TRUE;
+      IF g_nClylinderCount >= 1 AND g_bClylinder1State THEN
+        bCheckFlag := FALSE; 
+      END_IF;
+      IF g_nClylinderCount >= 2 AND g_bClylinder2State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 3 AND g_bClylinder3State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 4 AND g_bClylinder4State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 5 AND g_bClylinder5State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 6 AND g_bClylinder6State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 7 AND g_bClylinder7State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 8 AND g_bClylinder8State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 9 AND g_bClylinder9State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 10 AND g_bClylinder10State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 11 AND g_bClylinder11State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 12 AND g_bClylinder12State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF bCheckFlag THEN
+        nSwitchState := 40;
+      END_IF;
+    20:
+      IF g_nClylinderCount >= 1 THEN
+        g_bSupportcyLinder1Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 2 THEN
+        g_bSupportcyLinder2Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 3 THEN
+        g_bSupportcyLinder3Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 4 THEN
+        g_bSupportcyLinder4Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 5 THEN
+        g_bSupportcyLinder5Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 6 THEN
+        g_bSupportcyLinder6Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 7 THEN
+        g_bSupportcyLinder7Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 8 THEN
+        g_bSupportcyLinder8Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 9 THEN
+        g_bSupportcyLinder9Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 10 THEN
+        g_bSupportcyLinder10Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 11 THEN
+        g_bSupportcyLinder11Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 12 THEN
+        g_bSupportcyLinder12Enable := TRUE;
+      END_IF;
+      nSwitchState := 21;
+    21:
+      bCheckFlag := TRUE;
+      IF g_nClylinderCount >= 1 AND (NOT g_bClylinder1State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 2 AND (NOT g_bClylinder2State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 3 AND (NOT g_bClylinder3State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 4 AND (NOT g_bClylinder4State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 5 AND (NOT g_bClylinder5State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 6 AND (NOT g_bClylinder6State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 7 AND (NOT g_bClylinder7State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 8 AND (NOT g_bClylinder8State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+       IF g_nClylinderCount >= 9 AND (NOT g_bClylinder9State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+       IF g_nClylinderCount >= 10 AND (NOT g_bClylinder10State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+       IF g_nClylinderCount >= 11 AND (NOT g_bClylinder11State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+       IF g_nClylinderCount >= 12 AND (NOT g_bClylinder12State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF bCheckFlag THEN
+        nSwitchState := 40;
+      END_IF;
+    50:(*判断回中气缸开启和程序开始气缸下降*)
+       IF g_bBackToCenterStatusFb THEN (*回中气缸开启避让后直接跳过*)
+        IF bBackToCenterFlag THEN
+           IF g_nClylinderCount >= 1 THEN
+              g_bSupportcyLinder1Enable := TRUE;
+           END_IF;
+          IF g_nClylinderCount >= 2 THEN
+            g_bSupportcyLinder2Enable := TRUE;
+          END_IF;
+          IF g_nClylinderCount >= 3 THEN
+            g_bSupportcyLinder3Enable := TRUE;
+          END_IF;
+          IF g_nClylinderCount >= 4 THEN
+            g_bSupportcyLinder4Enable := TRUE;
+          END_IF;
+          IF g_nClylinderCount >= 5  THEN
+            g_bSupportcyLinder5Enable := TRUE;
+          END_IF;
+          IF g_nClylinderCount >= 6 THEN
+            g_bSupportcyLinder6Enable := TRUE;
+          END_IF;
+          IF g_nClylinderCount >= 7 THEN
+            g_bSupportcyLinder7Enable := TRUE;
+          END_IF;
+          IF g_nClylinderCount >= 8 THEN
+            g_bSupportcyLinder8Enable := TRUE;
+          END_IF;
+           IF g_nClylinderCount >= 9 THEN
+            g_bSupportcyLinder9Enable := TRUE;
+          END_IF;
+           IF g_nClylinderCount >= 10 THEN
+            g_bSupportcyLinder10Enable := TRUE;
+          END_IF;
+           IF g_nClylinderCount >= 11 THEN
+            g_bSupportcyLinder11Enable := TRUE;
+          END_IF;
+           IF g_nClylinderCount >= 12 THEN
+            g_bSupportcyLinder12Enable := TRUE;
+          END_IF;
+           nSwitchState := 51;
+        ELSE
+          nSwitchState := 40;
+        END_IF; 
+      END_IF;
+     
+    51:
+    bCheckFlag := TRUE;
+    IF g_bBackToCenterStatusFb THEN
+      IF (g_nClylinderCount >= 1 AND (NOT g_bClylinder1State) AND NOT bSupportCyl1AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 2 AND (NOT g_bClylinder2State) AND NOT bSupportCyl2AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 3 AND (NOT g_bClylinder3State) AND NOT bSupportCyl3AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 4 AND (NOT g_bClylinder4State) AND NOT bSupportCyl4AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 5 AND (NOT g_bClylinder5State) AND NOT bSupportCyl5AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 6 AND (NOT g_bClylinder6State) AND NOT bSupportCyl6AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 7 AND (NOT g_bClylinder7State) AND NOT bSupportCyl7AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 8 AND (NOT g_bClylinder8State) AND NOT bSupportCyl8AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 9 AND (NOT g_bClylinder9State) AND NOT bSupportCyl9AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 10 AND (NOT g_bClylinder10State) AND NOT bSupportCyl10AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 11 AND (NOT g_bClylinder11State) AND NOT bSupportCyl11AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 12 AND (NOT g_bClylinder12State) AND NOT bSupportCyl12AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+    END_IF;
+      IF bCheckFlag THEN
+        nSwitchState := 40;
+      END_IF;
+     31:(*等待支撑气缸下降到位*)
+      IF g_nClylinderCount >= 1 AND g_bSupportcyLinderDownInPlace1 AND g_fCurrentCoordYBuffer >= (g_fClylinder1CoordY - g_fClylinder1SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 2 AND g_bSupportcyLinderDownInPlace2 AND g_fCurrentCoordYBuffer >= (g_fClylinder2CoordY - g_fClylinder2SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 3 AND g_bSupportcyLinderDownInPlace3 AND g_fCurrentCoordYBuffer >= (g_fClylinder3CoordY - g_fClylinder3SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 4 AND g_bSupportcyLinderDownInPlace4 AND g_fCurrentCoordYBuffer >= (g_fClylinder4CoordY - g_fClylinder4SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 5 AND g_bSupportcyLinderDownInPlace5 AND g_fCurrentCoordYBuffer >= (g_fClylinder5CoordY - g_fClylinder5SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 6 AND g_bSupportcyLinderDownInPlace6 AND g_fCurrentCoordYBuffer >= (g_fClylinder6CoordY - g_fClylinder6SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 7 AND g_bSupportcyLinderDownInPlace7 AND g_fCurrentCoordYBuffer >= (g_fClylinder7CoordY - g_fClylinder7SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 8 AND g_bSupportcyLinderDownInPlace8 AND g_fCurrentCoordYBuffer >= (g_fClylinder8CoordY - g_fClylinder8SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 9 AND g_bSupportcyLinderDownInPlace9 AND g_fCurrentCoordYBuffer >= (g_fClylinder9CoordY - g_fClylinder9SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 10 AND g_bSupportcyLinderDownInPlace10 AND g_fCurrentCoordYBuffer >= (g_fClylinder10CoordY - g_fClylinder10SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 11 AND g_bSupportcyLinderDownInPlace11 AND g_fCurrentCoordYBuffer >= (g_fClylinder11CoordY - g_fClylinder11SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 12 AND g_bSupportcyLinderDownInPlace12 AND g_fCurrentCoordYBuffer >= (g_fClylinder12CoordY - g_fClylinder12SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+    40:
+      g_bSupportcyLinder1Enable := FALSE;
+      g_bSupportcyLinder2Enable := FALSE;
+      g_bSupportcyLinder3Enable := FALSE;
+      g_bSupportcyLinder4Enable := FALSE;
+      g_bSupportcyLinder5Enable := FALSE;
+      g_bSupportcyLinder6Enable := FALSE;
+      g_bSupportcyLinder7Enable := FALSE;
+      g_bSupportcyLinder8Enable := FALSE;
+      g_bSupportcyLinder9Enable := FALSE;
+      g_bSupportcyLinder10Enable := FALSE;
+      g_bSupportcyLinder11Enable := FALSE;
+      g_bSupportcyLinder12Enable := FALSE;
+      g_bSupportcyLinder1Down := FALSE;
+      g_bSupportcyLinder2Down := FALSE;
+      g_bSupportcyLinder3Down := FALSE;
+      g_bSupportcyLinder4Down := FALSE;
+      g_bSupportcyLinder5Down := FALSE;
+      g_bSupportcyLinder6Down := FALSE;
+      g_bSupportcyLinder7Down := FALSE;
+      g_bSupportcyLinder8Down := FALSE;
+      g_bSupportcyLinder9Down := FALSE;
+      g_bSupportcyLinder10Down := FALSE;
+      g_bSupportcyLinder11Down := FALSE;
+      g_bSupportcyLinder12Down := FALSE;
+      g_boSustainUpDownDone := TRUE;
+      g_bSustainUpDownDone := TRUE;
+      nSwitchState := 0;
+      M.ENABLE[177] := 0;
+      g_bExecuteFinishedM177 := FALSE;
+      IF nMoveType = 0 THEN
+        g_bFinishedM177_0 := FALSE;
+      ELSIF nMoveType = 1 THEN
+        g_bFinishedM177_1 := FALSE;
+      END_IF;
+  END_CASE;
+ELSIF g_bClylinderEnable AND g_bSustainEnable THEN(*混用*)
+  CASE nSwitchState OF
+    0: 
+      nSwitchState := 0;
+    1: (*上升或下降*)
+      IF nMoveType = 0 THEN(*下降*)
+        nSwitchState := 3;
+      ELSIF nMoveType = 1 THEN(*上升*)
+        nSwitchState := 50;
+        IF g_nPipeType = 1 THEN
+          dPipeMaxHeight := g_dCircleRadius;
+        ELSIF g_nPipeType = 2 OR g_nPipeType = 10 OR g_nPipeType = 11 THEN
+          dPipeMaxHeight := SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+        END_IF;
+      END_IF;
+    3:(*如果有轴就先关轴的浮动*)
+      IF g_nSusutainCount >= 1 THEN
+        g_bSustainAxis1VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 2 THEN
+        g_bSustainAxis2VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 3 THEN
+        g_bSustainAxis3VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 4 THEN
+        g_bSustainAxis4VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 5 THEN
+        g_bSustainAxis5VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 6 THEN
+        g_bSustainAxis6VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 7 THEN
+        g_bSustainAxis7VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 8 THEN
+        g_bSustainAxis8VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 9 THEN
+        g_bSustainAxis9VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 10 THEN
+        g_bSustainAxis10VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 11 THEN
+        g_bSustainAxis11VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 12 THEN
+        g_bSustainAxis12VelAddEnable := FALSE;
+      END_IF;
+      nSwitchState := 10;
+    10:(*发送下降命令（使用的就发）*)
+      IF g_nClylinderCount >= 1 THEN
+        Ton_CylDelay1(IN := FALSE);
+        g_bSupportcyLinder1Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 2 THEN
+        g_bSupportcyLinder2Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 3 THEN
+        g_bSupportcyLinder3Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 4 THEN
+        g_bSupportcyLinder4Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 5 THEN
+        g_bSupportcyLinder5Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 6 THEN
+        g_bSupportcyLinder6Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 7 THEN
+        g_bSupportcyLinder7Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 8 THEN
+        g_bSupportcyLinder8Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 9 THEN
+        g_bSupportcyLinder9Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 10 THEN
+        g_bSupportcyLinder10Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 11 THEN
+        g_bSupportcyLinder11Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 12 THEN
+        g_bSupportcyLinder12Down := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 1 THEN
+        g_bSustain1Abs := TRUE;
+        g_bSustain1AbsPosition := MIN(Axis_Sustain1.NCTOPLC.SETPOS,0.0);(*下降目标位置小于零时，则以当前点为运动位置，确保不会上升；大于零时，以零点为下降目标位置*)
+      END_IF;
+      IF g_nSusutainCount >= 2 THEN
+        g_bSustain2Abs := TRUE;
+        g_bSustain2AbsPosition := MIN(Axis_Sustain2.NCTOPLC.SETPOS,0.0);
+      END_IF;
+      IF g_nSusutainCount >= 3 THEN
+        g_bSustain3Abs := TRUE;
+        g_bSustain3AbsPosition := MIN(Axis_Sustain3.NCTOPLC.SETPOS,0.0);
+      END_IF;
+      IF g_nSusutainCount >= 4 THEN
+        g_bSustain7Abs := TRUE;
+        g_bSustain7AbsPosition := MIN(Axis_Sustain7.NCTOPLC.SETPOS,0.0);
+      END_IF;
+      IF g_nSusutainCount >= 5 THEN
+        g_bSustain8Abs := TRUE;
+        g_bSustain8AbsPosition := MIN(Axis_Sustain8.NCTOPLC.SETPOS,0.0);
+      END_IF;
+      IF g_nSusutainCount >= 6 THEN
+        g_bSustain9Abs := TRUE;
+        g_bSustain9AbsPosition := MIN(Axis_Sustain9.NCTOPLC.SETPOS,0.0);
+      END_IF;
+      IF g_nSusutainCount >= 7 THEN
+        g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := MIN(Axis_S7.NCTOPLC.SETPOS,0.0);
+       g_NCMoveData.NCAXISCMD[4].NCAxisAbs := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 8 THEN
+        g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := MIN(Axis_S8.NCTOPLC.SETPOS,0.0);
+       g_NCMoveData.NCAXISCMD[5].NCAxisAbs := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 9 THEN
+        g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := MIN(Axis_S9.NCTOPLC.SETPOS,0.0);
+       g_NCMoveData.NCAXISCMD[6].NCAxisAbs := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 10 THEN
+        g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := MIN(Axis_S10.NCTOPLC.SETPOS,0.0);
+       g_NCMoveData.NCAXISCMD[7].NCAxisAbs := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 11 THEN
+        g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := MIN(Axis_S11.NCTOPLC.SETPOS,0.0);
+       g_NCMoveData.NCAXISCMD[8].NCAxisAbs := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 12 THEN
+        g_NCMoveData.NCAXISDATA[9].AxisAbsPosition := MIN(Axis_S12.NCTOPLC.SETPOS,0.0);
+       g_NCMoveData.NCAXISCMD[9].NCAxisAbs := TRUE;
+      END_IF;
+      nSwitchState := 20;
+    20:(*等待所有支撑下降到位*)
+      (*等待气缸下降到位*)
+      bCheckFlag := TRUE;
+      IF g_nClylinderCount >= 1 AND g_boSupportcyLinder1DownEnable AND g_bClylinder1State THEN
+        bCheckFlag := FALSE; 
+      END_IF;
+      IF g_nClylinderCount >= 2 AND g_boSupportcyLinder2DownEnable AND g_bClylinder2State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 3 AND g_boSupportcyLinder3DownEnable AND g_bClylinder3State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 4 AND g_boSupportcyLinder4DownEnable AND g_bClylinder4State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 5 AND g_boSupportcyLinder5DownEnable AND g_bClylinder5State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 6 AND g_boSupportcyLinder6DownEnable AND g_bClylinder6State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 7 AND g_boSupportcyLinder7DownEnable AND g_bClylinder7State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 8 AND g_boSupportcyLinder8DownEnable AND g_bClylinder8State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+       IF g_nClylinderCount >= 9 AND g_boSupportcyLinder9DownEnable AND g_bClylinder9State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+       IF g_nClylinderCount >= 10 AND g_boSupportcyLinder10DownEnable AND g_bClylinder10State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+       IF g_nClylinderCount >= 11 AND g_boSupportcyLinder11DownEnable AND g_bClylinder11State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+       IF g_nClylinderCount >= 12 AND g_boSupportcyLinder12DownEnable AND g_bClylinder12State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      (*等轴到位*)
+      IF (g_nSusutainCount >= 1 AND g_bSustainAxis1UpFeedSafe) AND NOT(g_bSustain1AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 2 AND g_bSustainAxis2UpFeedSafe) AND NOT(g_bSustain2AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 3 AND g_bSustainAxis3UpFeedSafe) AND NOT(g_bSustain3AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 4 AND g_bSustainAxis7UpFeedSafe) AND NOT(g_bSustain7AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 5 AND g_bSustainAxis8UpFeedSafe) AND NOT(g_bSustain8AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 6 AND g_bSustainAxis9UpFeedSafe) AND NOT(g_bSustain9AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 7 AND g_bSustainAxisS7UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[4].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 8 AND g_bSustainAxisS8UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[5].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 9 AND g_bSustainAxisS9UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[6].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 10 AND g_bSustainAxisS10UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[7].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 11 AND g_bSustainAxisS11UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[8].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 12 AND g_bSustainAxisS12UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[9].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      
+      IF bCheckFlag THEN
+        nSwitchState := 100;
+      END_IF;
+    50:(*发送上升命令（使用的就发）*)
+      (*气缸*)
+      IF g_nClylinderCount >= 1 THEN
+        g_bSupportcyLinder1Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 2 THEN
+        g_bSupportcyLinder2Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 3 THEN
+        g_bSupportcyLinder3Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 4 THEN
+        g_bSupportcyLinder4Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 5 THEN
+        g_bSupportcyLinder5Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 6 THEN
+        g_bSupportcyLinder6Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 7 THEN
+        g_bSupportcyLinder7Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 8 THEN
+        g_bSupportcyLinder8Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 9 THEN
+        g_bSupportcyLinder9Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 10 THEN
+        g_bSupportcyLinder10Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 11 THEN
+        g_bSupportcyLinder11Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 12 THEN
+        g_bSupportcyLinder12Enable := TRUE;
+      END_IF;
+      (*轴*)
+      IF g_nSusutainCount >= 1 AND g_bSustainAxis1UpFeedSafe THEN
+        g_bSustain1Abs := TRUE;
+        g_bSustain1AbsPosition := g_fSustain1ToChuckDist - g_fSustainTargetPos;
+        g_bSustainAxis1VelAddEnable := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 2 AND g_bSustainAxis2UpFeedSafe THEN
+        g_bSustain2Abs := TRUE;
+        g_bSustain2AbsPosition := g_fSustain2ToChuckDist - g_fSustainTargetPos;
+        g_bSustainAxis2VelAddEnable := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 3 AND g_bSustainAxis3UpFeedSafe THEN
+        g_bSustain3Abs := TRUE;
+        g_bSustain3AbsPosition := g_fSustain3ToChuckDist - g_fSustainTargetPos;
+        g_bSustainAxis3VelAddEnable := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 4 AND g_bSustainAxis7UpFeedSafe THEN
+        g_bSustain7Abs := TRUE;
+        g_bSustain7AbsPosition := g_fSustain7ToChuckDist - g_fSustainTargetPos;
+        g_bSustainAxis4VelAddEnable := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 5 AND g_bSustainAxis8UpFeedSafe THEN
+        g_bSustain8Abs := TRUE;
+        g_bSustain8AbsPosition := g_fSustain8ToChuckDist - g_fSustainTargetPos;
+        g_bSustainAxis5VelAddEnable := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 6 AND g_bSustainAxis9UpFeedSafe THEN
+        g_bSustain9Abs := TRUE;
+        g_bSustain9AbsPosition := g_fSustain9ToChuckDist - g_fSustainTargetPos;
+        g_bSustainAxis6VelAddEnable := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 7 AND g_bSustainAxisS7UpFeedSafe THEN
+        g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := g_fSustainS7ToChuckDist - g_fSustainTargetPos;
+		g_NCMoveData.NCAXISCMD[4].NCAxisAbs := TRUE;
+        g_bSustainAxis7VelAddEnable := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 8 AND g_bSustainAxisS8UpFeedSafe THEN
+        g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := g_fSustainS8ToChuckDist - g_fSustainTargetPos;
+		g_NCMoveData.NCAXISCMD[5].NCAxisAbs := TRUE;
+        g_bSustainAxis8VelAddEnable := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 9 AND g_bSustainAxisS9UpFeedSafe THEN
+        g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := g_fSustainS9ToChuckDist - g_fSustainTargetPos;
+		g_NCMoveData.NCAXISCMD[6].NCAxisAbs := TRUE;
+        g_bSustainAxis9VelAddEnable := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 10 AND g_bSustainAxisS10UpFeedSafe THEN
+        g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := g_fSustainS10ToChuckDist - g_fSustainTargetPos;
+		g_NCMoveData.NCAXISCMD[7].NCAxisAbs := TRUE;
+        g_bSustainAxis10VelAddEnable := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 11 AND g_bSustainAxisS11UpFeedSafe THEN
+        g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := g_fSustainS11ToChuckDist - g_fSustainTargetPos;
+		g_NCMoveData.NCAXISCMD[8].NCAxisAbs := TRUE;
+        g_bSustainAxis11VelAddEnable := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 12 AND g_bSustainAxisS12UpFeedSafe THEN
+        g_NCMoveData.NCAXISDATA[9].AxisAbsPosition := g_fSustainS12ToChuckDist - g_fSustainTargetPos;
+		g_NCMoveData.NCAXISCMD[9].NCAxisAbs := TRUE;
+        g_bSustainAxis12VelAddEnable := TRUE;
+      END_IF;
+      nSwitchState := 60;
+      
+    60:(*等待上升完成*)
+      bCheckFlag := TRUE;
+      (*气缸*)
+      IF g_nClylinderCount >= 1 AND g_boSupportcyLinder1UpEnable AND (NOT g_bClylinder1State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 2 AND g_boSupportcyLinder2UpEnable AND (NOT g_bClylinder2State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 3 AND g_boSupportcyLinder3UpEnable AND (NOT g_bClylinder3State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 4 AND g_boSupportcyLinder4UpEnable AND (NOT g_bClylinder4State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 5 AND g_boSupportcyLinder5UpEnable AND (NOT g_bClylinder5State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 6 AND g_boSupportcyLinder6UpEnable AND (NOT g_bClylinder6State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 7 AND g_boSupportcyLinder7UpEnable AND (NOT g_bClylinder7State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 8 AND g_boSupportcyLinder8UpEnable AND (NOT g_bClylinder8State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 9 AND g_boSupportcyLinder9UpEnable AND (NOT g_bClylinder9State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 10 AND g_boSupportcyLinder10UpEnable AND (NOT g_bClylinder10State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 11 AND g_boSupportcyLinder11UpEnable AND (NOT g_bClylinder11State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 12 AND g_boSupportcyLinder12UpEnable AND (NOT g_bClylinder12State) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      (*轴*)
+      IF (g_nSusutainCount >= 1 AND g_bSustainAxis1UpFeedSafe) AND NOT(g_bSustain1AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 2 AND g_bSustainAxis2UpFeedSafe) AND NOT(g_bSustain2AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 3 AND g_bSustainAxis3UpFeedSafe) AND NOT(g_bSustain3AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 4 AND g_bSustainAxis7UpFeedSafe) AND NOT(g_bSustain7AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 5 AND g_bSustainAxis8UpFeedSafe) AND NOT(g_bSustain8AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 6 AND g_bSustainAxis9UpFeedSafe) AND NOT(g_bSustain9AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 7 AND g_bSustainAxisS7UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[4].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 8 AND g_bSustainAxisS8UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[5].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 9 AND g_bSustainAxisS9UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[6].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 10 AND g_bSustainAxisS10UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[7].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 11 AND g_bSustainAxisS11UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[8].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 12 AND g_bSustainAxisS12UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[9].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      
+      IF bCheckFlag THEN
+        nSwitchState := 100;
+      END_IF;
+    100:(*完成*)
+      IF g_nClylinderCount<>0 THEN
+        g_bSupportcyLinder1Enable := FALSE;
+        g_bSupportcyLinder2Enable := FALSE;
+        g_bSupportcyLinder3Enable := FALSE;
+        g_bSupportcyLinder4Enable := FALSE;
+        g_bSupportcyLinder5Enable := FALSE;
+        g_bSupportcyLinder6Enable := FALSE;
+        g_bSupportcyLinder7Enable := FALSE;
+        g_bSupportcyLinder8Enable := FALSE;
+        g_bSupportcyLinder9Enable := FALSE;
+        g_bSupportcyLinder10Enable := FALSE;
+        g_bSupportcyLinder11Enable := FALSE;
+        g_bSupportcyLinder12Enable := FALSE;
+        g_bSupportcyLinder1Down := FALSE;
+        g_bSupportcyLinder2Down := FALSE;
+        g_bSupportcyLinder3Down := FALSE;
+        g_bSupportcyLinder4Down := FALSE;
+        g_bSupportcyLinder5Down := FALSE;
+        g_bSupportcyLinder6Down := FALSE;
+        g_bSupportcyLinder7Down := FALSE;
+        g_bSupportcyLinder8Down := FALSE;
+        g_bSupportcyLinder9Down := FALSE;
+        g_bSupportcyLinder10Down := FALSE;
+        g_bSupportcyLinder11Down := FALSE;
+        g_bSupportcyLinder12Down := FALSE;
+      END_IF;
+      g_boSustainUpDownDone := TRUE;
+      g_bSustainUpDownDone := TRUE;
+      g_boSustainFollowDone := TRUE;
+      nSwitchState := 0;
+      M.ENABLE[177] := 0;
+      g_bExecuteFinishedM177 := FALSE;
+      IF nMoveType = 0 THEN
+        g_bFinishedM177_0 := FALSE;
+      ELSIF nMoveType = 1 THEN
+        g_bFinishedM177_1 := FALSE;
+      END_IF;
+  END_CASE;
+ELSIF g_bClylinderEnable THEN(*气缸*)
+  CASE nSwitchState OF
+    0: 
+      nSwitchState := 0;
+    1:
+      IF nMoveType = 0 THEN
+        nSwitchState := 10;
+      ELSIF nMoveType = 1 THEN
+        nSwitchState := 20;
+      ELSIF nMoveType = 2 THEN
+        nSwitchState := 50;
+      END_IF;
+      IF g_nClylinderCount = 0 THEN
+        g_boSustainUpDownDone := TRUE;
+        g_bSustainUpDownDone := TRUE;
+        nSwitchState := 0;
+        M.ENABLE[177] := 0;
+        g_bExecuteFinishedM177 := FALSE;
+      END_IF;
+    10:
+      IF g_nClylinderCount >= 1 THEN
+        g_bSupportcyLinder1Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 2 THEN
+        g_bSupportcyLinder2Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 3 THEN
+        g_bSupportcyLinder3Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 4 THEN
+        g_bSupportcyLinder4Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 5 THEN
+        g_bSupportcyLinder5Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 6 THEN
+        g_bSupportcyLinder6Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 7 THEN
+        g_bSupportcyLinder7Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 8 THEN
+        g_bSupportcyLinder8Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 9 THEN
+        g_bSupportcyLinder9Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 10 THEN
+        g_bSupportcyLinder10Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 11 THEN
+        g_bSupportcyLinder11Down := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 12 THEN
+        g_bSupportcyLinder12Down := TRUE;
+      END_IF;
+      nSwitchState := 11;
+    11:
+      bCheckFlag := TRUE;
+      IF g_nClylinderCount >= 1 AND g_boSupportcyLinder1DownEnable AND g_bClylinder1State THEN
+        bCheckFlag := FALSE; 
+      END_IF;
+      IF g_nClylinderCount >= 2 AND g_boSupportcyLinder2DownEnable AND g_bClylinder2State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 3 AND g_boSupportcyLinder3DownEnable AND g_bClylinder3State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 4 AND g_boSupportcyLinder4DownEnable AND g_bClylinder4State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 5 AND g_boSupportcyLinder5DownEnable AND g_bClylinder5State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 6 AND g_boSupportcyLinder6DownEnable AND g_bClylinder6State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 7 AND g_boSupportcyLinder7DownEnable AND g_bClylinder7State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 8 AND g_boSupportcyLinder8DownEnable AND g_bClylinder8State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 9 AND g_boSupportcyLinder9DownEnable AND g_bClylinder9State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 10 AND g_boSupportcyLinder10DownEnable AND g_bClylinder10State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 11 AND g_boSupportcyLinder11DownEnable AND g_bClylinder11State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 12 AND g_boSupportcyLinder12DownEnable AND g_bClylinder12State THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF bCheckFlag THEN
+        nSwitchState := 40;
+      END_IF;
+    20:
+      IF g_nClylinderCount >= 1  THEN
+        g_bSupportcyLinder1Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 2  THEN
+        g_bSupportcyLinder2Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 3  THEN
+        g_bSupportcyLinder3Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 4 THEN
+        g_bSupportcyLinder4Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 5 THEN
+        g_bSupportcyLinder5Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 6 THEN
+        g_bSupportcyLinder6Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 7 THEN
+        g_bSupportcyLinder7Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 8 THEN
+        g_bSupportcyLinder8Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 9 THEN
+        g_bSupportcyLinder9Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 10 THEN
+        g_bSupportcyLinder10Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 11 THEN
+        g_bSupportcyLinder11Enable := TRUE;
+      END_IF;
+      IF g_nClylinderCount >= 12 THEN
+        g_bSupportcyLinder12Enable := TRUE;
+      END_IF;
+      nSwitchState := 21;
+    21:
+      bCheckFlag := TRUE;
+      IF g_nClylinderCount >= 1 AND g_boSupportcyLinder1UpEnable AND (NOT g_bClylinder1State) AND NOT bSupportCyl1AvoidState THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 2 AND g_boSupportcyLinder2UpEnable AND (NOT g_bClylinder2State) AND NOT bSupportCyl2AvoidState THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 3 AND g_boSupportcyLinder3UpEnable AND (NOT g_bClylinder3State) AND NOT bSupportCyl3AvoidState THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 4 AND g_boSupportcyLinder4UpEnable AND (NOT g_bClylinder4State) AND NOT bSupportCyl4AvoidState THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 5 AND g_boSupportcyLinder5UpEnable AND (NOT g_bClylinder5State) AND NOT bSupportCyl5AvoidState THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 6 AND g_boSupportcyLinder6UpEnable AND (NOT g_bClylinder6State) AND NOT bSupportCyl6AvoidState THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 7 AND g_boSupportcyLinder7UpEnable AND (NOT g_bClylinder7State) AND NOT bSupportCyl7AvoidState THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 8 AND g_boSupportcyLinder8UpEnable AND (NOT g_bClylinder8State) AND NOT bSupportCyl8AvoidState THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 9 AND g_boSupportcyLinder9UpEnable AND (NOT g_bClylinder9State) AND NOT bSupportCyl9AvoidState THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 10 AND g_boSupportcyLinder10UpEnable AND (NOT g_bClylinder10State) AND NOT bSupportCyl10AvoidState THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 11 AND g_boSupportcyLinder11UpEnable AND (NOT g_bClylinder11State) AND NOT bSupportCyl11AvoidState THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nClylinderCount >= 12 AND g_boSupportcyLinder12UpEnable AND (NOT g_bClylinder12State) AND NOT bSupportCyl12AvoidState THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF bCheckFlag THEN
+        nSwitchState := 40;
+      END_IF;
+    50:(*判断回中气缸开启*)
+      IF g_bBackToCenterStatusFb THEN (*回中气缸开启避让后直接跳过*)
+        IF bBackToCenterFlag THEN
+           IF g_nClylinderCount >= 1 THEN
+              g_bSupportcyLinder1Enable := TRUE;
+           END_IF;
+          IF g_nClylinderCount >= 2 THEN
+            g_bSupportcyLinder2Enable := TRUE;
+          END_IF;
+          IF g_nClylinderCount >= 3 THEN
+            g_bSupportcyLinder3Enable := TRUE;
+          END_IF;
+          IF g_nClylinderCount >= 4 THEN
+            g_bSupportcyLinder4Enable := TRUE;
+          END_IF;
+          IF g_nClylinderCount >= 5  THEN
+            g_bSupportcyLinder5Enable := TRUE;
+          END_IF;
+          IF g_nClylinderCount >= 6 THEN
+            g_bSupportcyLinder6Enable := TRUE;
+          END_IF;
+          IF g_nClylinderCount >= 7 THEN
+            g_bSupportcyLinder7Enable := TRUE;
+          END_IF;
+          IF g_nClylinderCount >= 8 THEN
+            g_bSupportcyLinder8Enable := TRUE;
+          END_IF;
+          IF g_nClylinderCount >= 9 THEN
+            g_bSupportcyLinder9Enable := TRUE;
+          END_IF;
+          IF g_nClylinderCount >= 10 THEN
+            g_bSupportcyLinder10Enable := TRUE;
+          END_IF;
+          IF g_nClylinderCount >= 11 THEN
+            g_bSupportcyLinder11Enable := TRUE;
+          END_IF;
+          IF g_nClylinderCount >= 12 THEN
+            g_bSupportcyLinder12Enable := TRUE;
+          END_IF;
+           nSwitchState := 51;
+        ELSE
+          nSwitchState := 40;
+        END_IF; 
+      END_IF;
+     
+    51:
+    bCheckFlag := TRUE;
+    IF g_bBackToCenterStatusFb THEN
+      IF (g_nClylinderCount >= 1 AND (NOT g_bClylinder1State) AND NOT bSupportCyl1AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 2 AND (NOT g_bClylinder2State) AND NOT bSupportCyl2AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 3 AND (NOT g_bClylinder3State) AND NOT bSupportCyl3AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 4 AND (NOT g_bClylinder4State) AND NOT bSupportCyl4AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 5 AND (NOT g_bClylinder5State) AND NOT bSupportCyl5AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 6 AND (NOT g_bClylinder6State) AND NOT bSupportCyl6AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 7 AND (NOT g_bClylinder7State) AND NOT bSupportCyl7AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 8 AND (NOT g_bClylinder8State) AND NOT bSupportCyl8AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 9 AND (NOT g_bClylinder9State) AND NOT bSupportCyl9AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 10 AND (NOT g_bClylinder10State) AND NOT bSupportCyl10AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 11 AND (NOT g_bClylinder11State) AND NOT bSupportCyl11AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nClylinderCount >= 12 AND (NOT g_bClylinder12State) AND NOT bSupportCyl12AvoidState) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+    END_IF;
+      IF bCheckFlag THEN
+        nSwitchState := 40;
+      END_IF;
+     31:(*等待支撑气缸下降到位*)
+      IF g_nClylinderCount >= 1 AND g_bSupportcyLinderDownInPlace1 AND g_fCurrentCoordYBuffer >= (g_fClylinder1CoordY - g_fClylinder1SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 2 AND g_bSupportcyLinderDownInPlace2 AND g_fCurrentCoordYBuffer >= (g_fClylinder2CoordY - g_fClylinder2SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 3 AND g_bSupportcyLinderDownInPlace3 AND g_fCurrentCoordYBuffer >= (g_fClylinder3CoordY - g_fClylinder3SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 4 AND g_bSupportcyLinderDownInPlace4 AND g_fCurrentCoordYBuffer >= (g_fClylinder4CoordY - g_fClylinder4SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 5 AND g_bSupportcyLinderDownInPlace5 AND g_fCurrentCoordYBuffer >= (g_fClylinder5CoordY - g_fClylinder5SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 6 AND g_bSupportcyLinderDownInPlace6 AND g_fCurrentCoordYBuffer >= (g_fClylinder6CoordY - g_fClylinder6SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 7 AND g_bSupportcyLinderDownInPlace7 AND g_fCurrentCoordYBuffer >= (g_fClylinder7CoordY - g_fClylinder7SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 8 AND g_bSupportcyLinderDownInPlace8 AND g_fCurrentCoordYBuffer >= (g_fClylinder8CoordY - g_fClylinder8SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 9 AND g_bSupportcyLinderDownInPlace9 AND g_fCurrentCoordYBuffer >= (g_fClylinder9CoordY - g_fClylinder9SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 10 AND g_bSupportcyLinderDownInPlace10 AND g_fCurrentCoordYBuffer >= (g_fClylinder10CoordY - g_fClylinder10SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 11 AND g_bSupportcyLinderDownInPlace11 AND g_fCurrentCoordYBuffer >= (g_fClylinder11CoordY - g_fClylinder11SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+      IF g_nClylinderCount >= 12 AND g_bSupportcyLinderDownInPlace12 AND g_fCurrentCoordYBuffer >= (g_fClylinder12CoordY - g_fClylinder12SafeDistance) THEN
+        nSwitchState := 40;
+      END_IF;
+    40:
+      g_bSupportcyLinder1Enable := FALSE;
+      g_bSupportcyLinder2Enable := FALSE;
+      g_bSupportcyLinder3Enable := FALSE;
+      g_bSupportcyLinder4Enable := FALSE;
+      g_bSupportcyLinder5Enable := FALSE;
+      g_bSupportcyLinder6Enable := FALSE;
+      g_bSupportcyLinder7Enable := FALSE;
+      g_bSupportcyLinder8Enable := FALSE;
+      g_bSupportcyLinder9Enable := FALSE;
+      g_bSupportcyLinder10Enable := FALSE;
+      g_bSupportcyLinder11Enable := FALSE;
+      g_bSupportcyLinder12Enable := FALSE;
+      g_bSupportcyLinder1Down := FALSE;
+      g_bSupportcyLinder2Down := FALSE;
+      g_bSupportcyLinder3Down := FALSE;
+      g_bSupportcyLinder4Down := FALSE;
+      g_bSupportcyLinder5Down := FALSE;
+      g_bSupportcyLinder6Down := FALSE;
+      g_bSupportcyLinder7Down := FALSE;
+      g_bSupportcyLinder8Down := FALSE;
+      g_bSupportcyLinder9Down := FALSE;
+      g_bSupportcyLinder10Down := FALSE;
+      g_bSupportcyLinder11Down := FALSE;
+      g_bSupportcyLinder12Down := FALSE;
+      g_boSustainUpDownDone := TRUE;
+      g_bSustainUpDownDone := TRUE;
+      nSwitchState := 0;
+      M.ENABLE[177] := 0;
+      g_bExecuteFinishedM177 := FALSE;
+      IF nMoveType = 0 THEN
+        g_bFinishedM177_0 := FALSE;
+      ELSIF nMoveType = 1 THEN
+        g_bFinishedM177_1 := FALSE;
+      ELSIF nMoveType = 2 THEN
+        g_bFinishedM177_2 := FALSE;
+      END_IF;
+  END_CASE;
+ELSIF g_bSustainEnable THEN(*轴*)
+  CASE nSwitchState OF
+    0:
+      nSwitchState := 0;
+    1:
+      IF nMoveType = 0 THEN
+        nSwitchState := 3;
+      ELSIF nMoveType = 1 THEN
+        nSwitchState := 20;
+        IF g_nPipeType = 1 THEN
+          dPipeMaxHeight := g_dCircleRadius;
+        ELSIF g_nPipeType = 2 OR g_nPipeType = 10 OR g_nPipeType = 11 THEN
+          dPipeMaxHeight := SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+        END_IF;
+      END_IF;
+      IF g_nSusutainCount = 0 THEN
+        g_boSustainUpDownDone := TRUE;
+        g_bSustainUpDownDone := TRUE;
+        nSwitchState := 0;
+        M.ENABLE[177] := 0;
+        g_bExecuteFinishedM177 := FALSE;
+      END_IF;
+    3:(*轴就先关浮动再下降*)
+      IF g_nSusutainCount >= 1 THEN
+        g_bSustainAxis1VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 2 THEN
+        g_bSustainAxis2VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 3 THEN
+        g_bSustainAxis3VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 4 THEN
+        g_bSustainAxis4VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 5 THEN
+        g_bSustainAxis5VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 6 THEN
+        g_bSustainAxis6VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 7 THEN
+        g_bSustainAxis7VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 8 THEN
+        g_bSustainAxis8VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 9 THEN
+        g_bSustainAxis9VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 10 THEN
+        g_bSustainAxis10VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 11 THEN
+        g_bSustainAxis11VelAddEnable := FALSE;
+      END_IF;
+      IF g_nSusutainCount >= 12 THEN
+        g_bSustainAxis12VelAddEnable := FALSE;
+      END_IF;
+      nSwitchState := 10;
+    10:
+      IF g_nSusutainCount >= 1 THEN
+        g_bSustain1Abs := TRUE;
+        IF Axis_Sustain1.NCTOPLC.SETPOS <= 0.0 THEN
+          g_bSustain1AbsPosition := Axis_Sustain1.NCTOPLC.SETPOS;
+        ELSE
+          g_bSustain1AbsPosition := 0.0;
+        END_IF;
+      END_IF;
+      IF g_nSusutainCount >= 2 THEN
+        g_bSustain2Abs := TRUE;
+        IF Axis_Sustain2.NCTOPLC.SETPOS <= 0.0 THEN
+          g_bSustain2AbsPosition := Axis_Sustain2.NCTOPLC.SETPOS;
+        ELSE
+          g_bSustain2AbsPosition := 0.0;
+        END_IF;
+      END_IF;
+      IF g_nSusutainCount >= 3 THEN
+        g_bSustain3Abs := TRUE;
+        IF Axis_Sustain3.NCTOPLC.SETPOS <= 0.0 THEN
+          g_bSustain3AbsPosition := Axis_Sustain3.NCTOPLC.SETPOS;
+        ELSE
+          g_bSustain3AbsPosition := 0.0;
+        END_IF;
+      END_IF;
+      IF g_nSusutainCount >= 4 THEN
+        g_bSustain7Abs := TRUE;
+        IF Axis_Sustain7.NCTOPLC.SETPOS <= 0.0 THEN
+          g_bSustain7AbsPosition := Axis_Sustain7.NCTOPLC.SETPOS;
+        ELSE
+          g_bSustain7AbsPosition := 0.0;
+        END_IF;
+      END_IF;
+      IF g_nSusutainCount >= 5 THEN
+        g_bSustain8Abs := TRUE;
+        IF Axis_Sustain8.NCTOPLC.SETPOS <= 0.0 THEN
+          g_bSustain8AbsPosition := Axis_Sustain8.NCTOPLC.SETPOS;
+        ELSE
+          g_bSustain8AbsPosition := 0.0;
+        END_IF;
+      END_IF;
+      IF g_nSusutainCount >= 6 THEN
+        g_bSustain9Abs := TRUE;
+        IF Axis_Sustain9.NCTOPLC.SETPOS <= 0.0 THEN
+          g_bSustain9AbsPosition := Axis_Sustain9.NCTOPLC.SETPOS;
+        ELSE
+          g_bSustain9AbsPosition := 0.0;
+        END_IF;
+      END_IF;
+      IF g_nSusutainCount >= 7 THEN
+        IF Axis_S7.NCTOPLC.SETPOS <= 0.0 THEN
+          g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := Axis_S7.NCTOPLC.SETPOS;
+        ELSE
+          g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := 0.0;
+        END_IF;
+        g_NCMoveData.NCAXISCMD[4].NCAxisAbs := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 8 THEN
+        IF Axis_S8.NCTOPLC.SETPOS <= 0.0 THEN
+          g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := Axis_S8.NCTOPLC.SETPOS;
+        ELSE
+          g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := 0.0;
+        END_IF;
+        g_NCMoveData.NCAXISCMD[5].NCAxisAbs := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 9 THEN
+        IF Axis_S9.NCTOPLC.SETPOS <= 0.0 THEN
+          g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := Axis_S9.NCTOPLC.SETPOS;
+        ELSE
+          g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := 0.0;
+        END_IF;
+        g_NCMoveData.NCAXISCMD[6].NCAxisAbs := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 10 THEN
+        IF Axis_S10.NCTOPLC.SETPOS <= 0.0 THEN
+          g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := Axis_S10.NCTOPLC.SETPOS;
+        ELSE
+          g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := 0.0;
+        END_IF;
+        g_NCMoveData.NCAXISCMD[7].NCAxisAbs := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 11 THEN
+        IF Axis_S11.NCTOPLC.SETPOS <= 0.0 THEN
+          g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := Axis_S11.NCTOPLC.SETPOS;
+        ELSE
+          g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := 0.0;
+        END_IF;
+        g_NCMoveData.NCAXISCMD[8].NCAxisAbs := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 12 THEN
+        IF Axis_S12.NCTOPLC.SETPOS <= 0.0 THEN
+          g_NCMoveData.NCAXISDATA[9].AxisAbsPosition := Axis_S12.NCTOPLC.SETPOS;
+        ELSE
+          g_NCMoveData.NCAXISDATA[9].AxisAbsPosition := 0.0;
+        END_IF;
+        g_NCMoveData.NCAXISCMD[9].NCAxisAbs := TRUE;
+      END_IF;
+      nSwitchState := 15;
+    15:
+      bCheckFlag := TRUE;
+      IF (g_nSusutainCount >= 1 AND g_bSustainAxis1UpFeedSafe) AND NOT(g_bSustain1AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 2 AND g_bSustainAxis2UpFeedSafe) AND NOT(g_bSustain2AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 3 AND g_bSustainAxis3UpFeedSafe) AND NOT(g_bSustain3AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 4 AND g_bSustainAxis7UpFeedSafe) AND NOT(g_bSustain7AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 5 AND g_bSustainAxis8UpFeedSafe) AND NOT(g_bSustain8AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 6 AND g_bSustainAxis9UpFeedSafe) AND NOT(g_bSustain9AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 7 AND g_bSustainAxisS7UpFeedSafe) AND NOT( g_NCMoveData.NCAXISDATA[4].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 8 AND g_bSustainAxisS8UpFeedSafe) AND NOT( g_NCMoveData.NCAXISDATA[5].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 9 AND g_bSustainAxisS9UpFeedSafe) AND NOT( g_NCMoveData.NCAXISDATA[6].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 10 AND g_bSustainAxisS10UpFeedSafe) AND NOT( g_NCMoveData.NCAXISDATA[7].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 11 AND g_bSustainAxisS11UpFeedSafe) AND NOT( g_NCMoveData.NCAXISDATA[8].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 12 AND g_bSustainAxisS12UpFeedSafe) AND NOT( g_NCMoveData.NCAXISDATA[9].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF bCheckFlag THEN
+        g_boSustainUpDownDone := TRUE;
+        g_bSustainUpDownDone := TRUE;
+        g_boSustainFollowDone := TRUE;
+        nSwitchState := 0;
+        M.ENABLE[177] := 0;
+        g_bExecuteFinishedM177 := FALSE;
+        IF nMoveType = 0 THEN
+          g_bFinishedM177_0 := FALSE;
+        ELSIF nMoveType = 1 THEN
+          g_bFinishedM177_1 := FALSE;
+        END_IF;
+      END_IF;
+    20:
+      IF g_nSusutainCount >= 1 AND g_bSustainAxis1UpFeedSafe THEN
+        g_bSustain1Abs := TRUE;
+        g_bSustain1AbsPosition := g_fSustain1ToChuckDist - g_fSustainTargetPos;
+        g_bSustainAxis1VelAddEnable:=TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 2 AND g_bSustainAxis2UpFeedSafe THEN
+        g_bSustain2Abs := TRUE;
+        g_bSustain2AbsPosition := g_fSustain2ToChuckDist - g_fSustainTargetPos;
+        g_bSustainAxis2VelAddEnable:=TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 3 AND g_bSustainAxis3UpFeedSafe THEN
+        g_bSustain3Abs := TRUE;
+        g_bSustain3AbsPosition := g_fSustain3ToChuckDist - g_fSustainTargetPos;
+        g_bSustainAxis3VelAddEnable:=TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 4 AND g_bSustainAxis7UpFeedSafe THEN
+        g_bSustain7Abs := TRUE;
+        g_bSustain7AbsPosition := g_fSustain7ToChuckDist - g_fSustainTargetPos;
+        g_bSustainAxis4VelAddEnable:=TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 5 AND g_bSustainAxis8UpFeedSafe THEN
+        g_bSustain8Abs := TRUE;
+        g_bSustain8AbsPosition := g_fSustain8ToChuckDist - g_fSustainTargetPos;
+        g_bSustainAxis5VelAddEnable:=TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 6 AND g_bSustainAxis9UpFeedSafe THEN
+        g_bSustain9Abs := TRUE;
+        g_bSustain9AbsPosition := g_fSustain9ToChuckDist - g_fSustainTargetPos;
+        g_bSustainAxis6VelAddEnable:=TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 7 AND g_bSustainAxisS7UpFeedSafe THEN
+        g_bSustainAxis7VelAddEnable:=TRUE;
+         g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := g_fSustainS7ToChuckDist - g_fSustainTargetPos;
+        g_NCMoveData.NCAXISCMD[4].NCAxisAbs := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 8 AND g_bSustainAxisS8UpFeedSafe THEN
+        g_bSustainAxis8VelAddEnable:=TRUE;
+         g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := g_fSustainS8ToChuckDist - g_fSustainTargetPos;
+        g_NCMoveData.NCAXISCMD[5].NCAxisAbs := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 9 AND g_bSustainAxisS9UpFeedSafe THEN
+        g_bSustainAxis9VelAddEnable:=TRUE;
+         g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := g_fSustainS9ToChuckDist - g_fSustainTargetPos;
+        g_NCMoveData.NCAXISCMD[6].NCAxisAbs := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 10 AND g_bSustainAxisS10UpFeedSafe THEN
+        g_bSustainAxis10VelAddEnable:=TRUE;
+         g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := g_fSustainS10ToChuckDist - g_fSustainTargetPos;
+        g_NCMoveData.NCAXISCMD[7].NCAxisAbs := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 11 AND g_bSustainAxisS11UpFeedSafe THEN
+        g_bSustainAxis11VelAddEnable:=TRUE;
+         g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := g_fSustainS11ToChuckDist - g_fSustainTargetPos;
+        g_NCMoveData.NCAXISCMD[8].NCAxisAbs := TRUE;
+      END_IF;
+      IF g_nSusutainCount >= 12 AND g_bSustainAxisS12UpFeedSafe THEN
+        g_bSustainAxis12VelAddEnable:=TRUE;
+         g_NCMoveData.NCAXISDATA[9].AxisAbsPosition := g_fSustainS12ToChuckDist - g_fSustainTargetPos;
+        g_NCMoveData.NCAXISCMD[9].NCAxisAbs := TRUE;
+      END_IF;
+      nSwitchState := 30;
+    30:
+      bCheckFlag := TRUE;
+      IF (g_nSusutainCount >= 1 AND g_bSustainAxis1UpFeedSafe) AND NOT(g_bSustain1AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 2 AND g_bSustainAxis2UpFeedSafe) AND NOT(g_bSustain2AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 3 AND g_bSustainAxis3UpFeedSafe) AND NOT(g_bSustain3AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 4 AND g_bSustainAxis7UpFeedSafe) AND NOT(g_bSustain7AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 5 AND g_bSustainAxis8UpFeedSafe) AND NOT(g_bSustain8AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 6 AND g_bSustainAxis9UpFeedSafe) AND NOT(g_bSustain9AbsDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 7 AND g_bSustainAxisS7UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[4].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 8 AND g_bSustainAxisS8UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[5].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 9 AND g_bSustainAxisS9UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[6].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 10 AND g_bSustainAxisS10UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[7].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 11 AND g_bSustainAxisS11UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[8].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF (g_nSusutainCount >= 12 AND g_bSustainAxisS12UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[9].AxisAbsMoveDone) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF bCheckFlag THEN
+        g_boSustainUpDownDone := TRUE;
+        g_bSustainUpDownDone := TRUE;
+        g_boSustainFollowDone := TRUE;
+        nSwitchState := 0;
+        M.ENABLE[177] := 0;
+        g_bExecuteFinishedM177 := FALSE;
+        IF nMoveType = 0 THEN
+          g_bFinishedM177_0 := FALSE;
+        ELSIF nMoveType = 1 THEN
+          g_bFinishedM177_1 := FALSE;
+        END_IF;
+      END_IF;
+  END_CASE;
+ELSE(*关闭*)
+  g_boSustainUpDownDone := TRUE;
+  g_bSustainUpDownDone := TRUE;
+  g_boSustainFollowDone := TRUE;
+  nSwitchState := 0;
+  M.ENABLE[177] := 0;
+  g_bExecuteFinishedM177 := FALSE;
+  IF nMoveType = 0 THEN
+    g_bFinishedM177_0 := FALSE;
+  ELSIF nMoveType = 1 THEN
+    g_bFinishedM177_1 := FALSE;
+  END_IF;
+END_IF;
+
+IF g_bPlcResetBuffer THEN
+  g_bSustainUpDown := FALSE;
+  g_bSustain1Abs := FALSE;
+  g_bSustain2Abs := FALSE;
+  g_bSustain3Abs := FALSE;
+  g_bSustain7Abs := FALSE;
+  g_bSustain8Abs := FALSE;
+  g_bSustain9Abs := FALSE;
+  Ton_CylDelay1(IN := FALSE);
+  Ton_CylDelay2(IN := FALSE);
+  Ton_CylDelay3(IN := FALSE);
+  Ton_CylDelay4(IN := FALSE);
+  Ton_CylDelay5(IN := FALSE);
+  Ton_CylDelay6(IN := FALSE);
+  Ton_CylDelay7(IN := FALSE);
+  Ton_CylDelay8(IN := FALSE);
+  Ton_CylDelay9(IN := FALSE);
+  Ton_CylDelay10(IN := FALSE);
+  Ton_CylDelay11(IN := FALSE);
+  Ton_CylDelay12(IN := FALSE);
+  g_bExecuteFinishedM177 := FALSE;
+  g_bFinishedM177_0 := FALSE;
+  g_bFinishedM177_1 := FALSE;
+  nSwitchState := 0;
+END_IF;
+
+g_noOneKeySupSwitchState:= nSwitchState;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[支撑一键上升下降控制]]></xhtml:p>
+  </documentation>
+</pou>

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ABUAxisCmdOP" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="newVar1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[g_doAaxisPosCmd:=g_diAaxisPosCmd;(***A轴的命令从PLC转一道 保证和XYZ一起输出 保证命令和反馈延时一致***)
+g_doBaxisPosCmd:=g_diBaxisPosCmd;(***B轴的命令从PLC转一道 保证和XYZ一起输出 保证命令和反馈延时一致***)
+g_doUaxisPosCmd:=g_diUaxisPosCmd;(***U轴的命令从PLC转一道 保证和XYZ一起输出 保证命令和反馈延时一致***)
+
+
+g_doAaxisPosFb:=g_diAaxisPosFb;(***A轴的反馈从PLC转一道 保证和XYZ一起输出 保证命令和反馈延时一致***)
+g_doBaxisPosFb:=g_diBaxisPosFb;(***B轴的反馈从PLC转一道 保证和XYZ一起输出 保证命令和反馈延时一致***)
+g_doUaxisPosFb:=g_diUaxisPosFb;(***U轴的反馈从PLC转一道 保证和XYZ一起输出 保证命令和反馈延时一致***)
+
+
+
+
+
+
+IF g_bDriveEnable THEN
+  
+  ;
+ELSE
+  g_doUaxisPosCmd := g_diUaxisPosFb;
+  g_doBaxisPosFb := g_diBaxisPosFb;
+  g_doAaxisPosFb := g_diAaxisPosFb;
+  
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,4470 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_UserDefinedIOOutput" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="bTriggerOut1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第1个用户自定义输出io类型   0：保持 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第1个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第1个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器  用来捕捉触发类型io的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer1">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第2个用户自定义输出io类型   0：保持 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第2个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第2个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer2">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第3个用户自定义输出io类型   0：保持 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第3个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第3个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer3">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第4个用户自定义输出io类型   0：保持 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第4个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第4个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer4">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第5个用户自定义输出io类型   0：保持 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第5个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第5个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer5">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第6个用户自定义输出io类型   0：保持 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第6个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第6个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut6">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer6">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第7个用户自定义输出io类型   0：保持 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第7个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第7个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut7">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer7">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第8个用户自定义输出io类型   0：保持 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第8个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第8个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut8">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer8">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第9个用户自定义输出io类型   0：保持 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第9个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第9个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut9">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer9">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第10个用户自定义输出io类型   0：保持 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第10个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第10个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut10">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer10">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第11个用户自定义输出io类型   0：保持 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第11个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第11个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut11">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer11">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第12个用户自定义输出io类型   0：保持 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第12个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第12个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut12">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer12">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut13">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第13个用户自定义输出io类型   0：保持 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut13">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第13个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut13">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第13个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut13">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer13">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut14">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第14个用户自定义输出io类型   0：保持 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut14">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第14个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut14">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第14个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut14">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer14">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut15">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第15个用户自定义输出io类型   0：保持 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut15">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第15个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut15">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第15个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut15">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FTriggerUserDefineIoOut1">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FTriggerUserDefineIoOut2">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FTriggerUserDefineIoOut3">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FTriggerUserDefineIoOut4">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FTriggerUserDefineIoOut5">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FTriggerUserDefineIoOut6">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FTriggerUserDefineIoOut7">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FTriggerUserDefineIoOut8">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FTriggerUserDefineIoOut9">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FTriggerUserDefineIoOut10">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FTriggerUserDefineIoOut11">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FTriggerUserDefineIoOut12">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FTriggerUserDefineIoOut13">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FTriggerUserDefineIoOut14">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FTriggerUserDefineIoOut15">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer15">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut17">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut18">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut19">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut20">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut21">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut22">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut23">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut24">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut25">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut26">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut27">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut28">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut29">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut30">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut31">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut32">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut17">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUserDefineIoOut18">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUserDefineIoOut19">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUserDefineIoOut20">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUserDefineIoOut21">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUserDefineIoOut22">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUserDefineIoOut23">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUserDefineIoOut24">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUserDefineIoOut25">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUserDefineIoOut26">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUserDefineIoOut27">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUserDefineIoOut28">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUserDefineIoOut29">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUserDefineIoOut30">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUserDefineIoOut31">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUserDefineIoOut32">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut17">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOut18">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOut19">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOut20">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOut21">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOut22">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOut23">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOut24">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOut25">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOut26">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOut27">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOut28">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOut29">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOut30">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOut31">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOut32">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut17">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut18">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut19">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut20">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut21">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut22">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut23">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut24">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut25">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut26">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut27">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut28">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut29">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut30">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut31">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOut32">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer17">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer18">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer19">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer20">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer21">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer22">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer23">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer24">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer25">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer26">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer27">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer28">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer29">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer30">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer31">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="UserDefineIoOuttimer32">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTriggerOut16">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第16个用户自定义输出io类型   0：保持 1：触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineIoOut1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第1个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineIoOut2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第2个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineIoOut3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第3个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineIoOut4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第4个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineIoOut5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第5个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineIoOut6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第6个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineIoOut7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第7个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineIoOut8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第8个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineIoOut9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第9个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineIoOut10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第10个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineIoOut11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第11个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineIoOut12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第12个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineIoOut13">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第13个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineIoOut14">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第14个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineIoOut15">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第15个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bUserDefineIoOut16">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第16个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boUserDefineIoOut16">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第16个用户自定义io输出信号引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bEnableOut16">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第16个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOutOFF1">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第1个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOutOFF2">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第2个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOutOFF3">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第3个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOutOFF4">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第4个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOutOFF5">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第5个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOutOFF6">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第6个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOutOFF7">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第7个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOutOFF8">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第8个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOutOFF9">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第9个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOutOFF10">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第10个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOutOFF11">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第11个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOutOFF12">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第12个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOutOFF13">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第13个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOutOFF14">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第14个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOutOFF15">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第15个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnableOutOFF16">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[HMI是否输出第16个用户自定义io]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bDefineOutputEnableOut16M">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDefineOutputEnableOutOFF16M">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDefineOutputEnableOut16">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDefineOutputEnableOutOFF16">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="RTriggerUserDefineIoOut16">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发器 用来捕捉触发类型io的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF6">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF7">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF8">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF9">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF10">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF11">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF12">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF13">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF14">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF15">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF16">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerUserDefineIoOutOFF18">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="FTriggerUserDefineIoOut16">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="UserDefineIoOuttimer16">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计时器 当io输出类型为触发型时，500ms后停止输出 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nUserDefineState1">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nUserDefineState2">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nUserDefineState3">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nUserDefineState4">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nUserDefineState5">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nUserDefineState6">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nUserDefineState7">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nUserDefineState8">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nUserDefineState9">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nUserDefineState10">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nUserDefineState11">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nUserDefineState12">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nUserDefineState13">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nUserDefineState14">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nUserDefineState15">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nUserDefineState16">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="nUserDefineTriggerWay1">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警1 触发方式 1人为触发 2自动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nUserDefineTriggerWay2">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警2 触发方式 1人为触发 2自动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nUserDefineTriggerWay3">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警3 触发方式 1人为触发 2自动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nUserDefineTriggerWay4">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警4 触发方式 1人为触发 2自动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nUserDefineTriggerWay5">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警5 触发方式 1人为触发 2自动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nUserDefineTriggerWay6">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警6 触发方式 1人为触发 2自动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nUserDefineTriggerWay7">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警7 触发方式 1人为触发 2自动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nUserDefineTriggerWay8">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警8 触发方式 1人为触发 2自动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nUserDefineTriggerWay9">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警9 触发方式 1人为触发 2自动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nUserDefineTriggerWay10">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警10 触发方式 1人为触发 2自动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nUserDefineTriggerWay11">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警11 触发方式 1人为触发 2自动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nUserDefineTriggerWay12">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警12 触发方式 1人为触发 2自动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nUserDefineTriggerWay13">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警13 触发方式 1人为触发 2自动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nUserDefineTriggerWay14">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警14 触发方式 1人为触发 2自动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nUserDefineTriggerWay15">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警15 触发方式 1人为触发 2自动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nUserDefineTriggerWay16">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自定义报警16 触发方式 1人为触发 2自动触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nMachineType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nUserDefineIoOutIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*第17个用户自定义io输出*)
+RTriggerUserDefineIoOut17(CLK:=bEnableOut17);
+IF bEnableOut17 THEN
+  IF bTriggerOut17 THEN
+    IF RTriggerUserDefineIoOut17.Q THEN
+      g_boUserDefineIoOut17 :=TRUE;
+    END_IF;  
+     UserDefineIoOuttimer17(IN:=TRUE,PT:=T#500ms);
+     IF UserDefineIoOuttimer17.Q THEN
+        UserDefineIoOuttimer17(IN:=FALSE);
+        g_boUserDefineIoOut17 :=FALSE;
+        bEnableOut17:=FALSE;
+     END_IF;      
+  ELSE      
+     g_boUserDefineIoOut17 :=TRUE;
+  END_IF;  
+ELSE
+  UserDefineIoOuttimer17(IN:=FALSE);
+ g_boUserDefineIoOut17 := FALSE;  
+END_IF; 
+
+(*第18个用户自定义io输出*)
+RTriggerUserDefineIoOut18(CLK:=bEnableOut18);
+IF bEnableOut18 THEN
+  IF bTriggerOut18 THEN
+    IF RTriggerUserDefineIoOut18.Q THEN
+      g_boUserDefineIoOut18 :=TRUE;
+    END_IF;  
+     UserDefineIoOuttimer18(IN:=TRUE,PT:=T#500ms);
+     IF UserDefineIoOuttimer18.Q THEN
+        UserDefineIoOuttimer18(IN:=FALSE);
+        g_boUserDefineIoOut18 :=FALSE;
+        bEnableOut18:=FALSE;
+     END_IF;      
+  ELSE      
+     g_boUserDefineIoOut18 :=TRUE;
+  END_IF;  
+ELSE
+  UserDefineIoOuttimer18(IN:=FALSE);
+ g_boUserDefineIoOut18 := FALSE;  
+END_IF; 
+
+(*第19个用户自定义io输出*)
+RTriggerUserDefineIoOut19(CLK:=bEnableOut19);
+IF bEnableOut19 THEN
+  IF bTriggerOut19 THEN
+    IF RTriggerUserDefineIoOut19.Q THEN
+      g_boUserDefineIoOut19 :=TRUE;
+    END_IF;  
+     UserDefineIoOuttimer19(IN:=TRUE,PT:=T#500ms);
+     IF UserDefineIoOuttimer19.Q THEN
+        UserDefineIoOuttimer19(IN:=FALSE);
+        g_boUserDefineIoOut19 :=FALSE;
+        bEnableOut19:=FALSE;
+     END_IF;      
+  ELSE      
+     g_boUserDefineIoOut19 :=TRUE;
+  END_IF;  
+ELSE
+  UserDefineIoOuttimer19(IN:=FALSE);
+ g_boUserDefineIoOut19 := FALSE;  
+END_IF; 
+
+(*第20个用户自定义io输出*)
+RTriggerUserDefineIoOut20(CLK:=bEnableOut20);
+IF bEnableOut20 THEN
+  IF bTriggerOut20 THEN
+    IF RTriggerUserDefineIoOut20.Q THEN
+      g_boUserDefineIoOut20 :=TRUE;
+    END_IF;  
+     UserDefineIoOuttimer20(IN:=TRUE,PT:=T#500ms);
+     IF UserDefineIoOuttimer20.Q THEN
+        UserDefineIoOuttimer20(IN:=FALSE);
+        g_boUserDefineIoOut20 :=FALSE;
+        bEnableOut20:=FALSE;
+     END_IF;      
+  ELSE      
+     g_boUserDefineIoOut20 :=TRUE;
+  END_IF;  
+ELSE
+  UserDefineIoOuttimer20(IN:=FALSE);
+ g_boUserDefineIoOut20 := FALSE;  
+END_IF; 
+
+(*第21个用户自定义io输出*)
+RTriggerUserDefineIoOut21(CLK:=bEnableOut21);
+IF bEnableOut21 THEN
+  IF bTriggerOut21 THEN
+    IF RTriggerUserDefineIoOut21.Q THEN
+      g_boUserDefineIoOut21 :=TRUE;
+    END_IF;  
+     UserDefineIoOuttimer21(IN:=TRUE,PT:=T#500ms);
+     IF UserDefineIoOuttimer21.Q THEN
+        UserDefineIoOuttimer21(IN:=FALSE);
+        g_boUserDefineIoOut21 :=FALSE;
+        bEnableOut21:=FALSE;
+     END_IF;      
+  ELSE      
+     g_boUserDefineIoOut21 :=TRUE;
+  END_IF;  
+ELSE
+  UserDefineIoOuttimer21(IN:=FALSE);
+ g_boUserDefineIoOut21 := FALSE;  
+END_IF; 
+
+(*第22个用户自定义io输出*)
+RTriggerUserDefineIoOut22(CLK:=bEnableOut22);
+IF bEnableOut22 THEN
+  IF bTriggerOut22 THEN
+    IF RTriggerUserDefineIoOut22.Q THEN
+      g_boUserDefineIoOut22 :=TRUE;
+    END_IF;  
+     UserDefineIoOuttimer22(IN:=TRUE,PT:=T#500ms);
+     IF UserDefineIoOuttimer22.Q THEN
+        UserDefineIoOuttimer22(IN:=FALSE);
+        g_boUserDefineIoOut22 :=FALSE;
+        bEnableOut22:=FALSE;
+     END_IF;      
+  ELSE      
+     g_boUserDefineIoOut22 :=TRUE;
+  END_IF;  
+ELSE
+  UserDefineIoOuttimer22(IN:=FALSE);
+ g_boUserDefineIoOut22 := FALSE;  
+END_IF; 
+
+
+(*第23个用户自定义io输出*)
+RTriggerUserDefineIoOut23(CLK:=bEnableOut23);
+IF bEnableOut23 THEN
+  IF bTriggerOut23 THEN
+    IF RTriggerUserDefineIoOut23.Q THEN
+      g_boUserDefineIoOut23 :=TRUE;
+    END_IF;  
+     UserDefineIoOuttimer23(IN:=TRUE,PT:=T#500ms);
+     IF UserDefineIoOuttimer23.Q THEN
+        UserDefineIoOuttimer23(IN:=FALSE);
+        g_boUserDefineIoOut23 :=FALSE;
+        bEnableOut23:=FALSE;
+     END_IF;      
+  ELSE      
+     g_boUserDefineIoOut23 :=TRUE;
+  END_IF;  
+ELSE
+  UserDefineIoOuttimer23(IN:=FALSE);
+  g_boUserDefineIoOut23 := FALSE;  
+END_IF; 
+
+(*第24个用户自定义io输出*)
+RTriggerUserDefineIoOut24(CLK:=bEnableOut24);
+IF bEnableOut24 THEN
+  IF bTriggerOut24 THEN
+    IF RTriggerUserDefineIoOut24.Q THEN
+      g_boUserDefineIoOut24 :=TRUE;
+    END_IF;  
+     UserDefineIoOuttimer24(IN:=TRUE,PT:=T#500ms);
+     IF UserDefineIoOuttimer24.Q THEN
+        UserDefineIoOuttimer24(IN:=FALSE);
+        g_boUserDefineIoOut24 :=FALSE;
+        bEnableOut24:=FALSE;
+     END_IF;      
+  ELSE      
+     g_boUserDefineIoOut24 :=TRUE;
+  END_IF;  
+ELSE
+  UserDefineIoOuttimer24(IN:=FALSE);
+ g_boUserDefineIoOut24 := FALSE;  
+END_IF; 
+
+(*第25个用户自定义io输出*)
+RTriggerUserDefineIoOut25(CLK:=bEnableOut25);
+IF bEnableOut25 THEN
+  IF bTriggerOut25 THEN
+    IF RTriggerUserDefineIoOut25.Q THEN
+      g_boUserDefineIoOut25 :=TRUE;
+    END_IF;  
+     UserDefineIoOuttimer25(IN:=TRUE,PT:=T#500ms);
+     IF UserDefineIoOuttimer25.Q THEN
+        UserDefineIoOuttimer25(IN:=FALSE);
+        g_boUserDefineIoOut25 :=FALSE;
+        bEnableOut25:=FALSE;
+     END_IF;      
+  ELSE      
+     g_boUserDefineIoOut25 :=TRUE;
+  END_IF;  
+ELSE
+  UserDefineIoOuttimer25(IN:=FALSE);
+ g_boUserDefineIoOut25 := FALSE;  
+END_IF; 
+
+
+(*第26个用户自定义io输出*)
+RTriggerUserDefineIoOut26(CLK:=bEnableOut26);
+IF bEnableOut26 THEN
+  IF bTriggerOut26 THEN
+    IF RTriggerUserDefineIoOut26.Q THEN
+      g_boUserDefineIoOut26 :=TRUE;
+    END_IF;  
+     UserDefineIoOuttimer26(IN:=TRUE,PT:=T#500ms);
+     IF UserDefineIoOuttimer26.Q THEN
+        UserDefineIoOuttimer26(IN:=FALSE);
+        g_boUserDefineIoOut26 :=FALSE;
+        bEnableOut26:=FALSE;
+     END_IF;      
+  ELSE      
+     g_boUserDefineIoOut26 :=TRUE;
+  END_IF;  
+ELSE
+  UserDefineIoOuttimer26(IN:=FALSE);
+ g_boUserDefineIoOut26 := FALSE;  
+END_IF; 
+
+(*第27个用户自定义io输出*)
+RTriggerUserDefineIoOut27(CLK:=bEnableOut27);
+IF bEnableOut27 THEN
+  IF bTriggerOut27 THEN
+    IF RTriggerUserDefineIoOut27.Q THEN
+      g_boUserDefineIoOut27 :=TRUE;
+    END_IF;  
+     UserDefineIoOuttimer27(IN:=TRUE,PT:=T#500ms);
+     IF UserDefineIoOuttimer27.Q THEN
+        UserDefineIoOuttimer27(IN:=FALSE);
+        g_boUserDefineIoOut27 :=FALSE;
+        bEnableOut27:=FALSE;
+     END_IF;      
+  ELSE      
+     g_boUserDefineIoOut27 :=TRUE;
+  END_IF;  
+ELSE
+  UserDefineIoOuttimer27(IN:=FALSE);
+ g_boUserDefineIoOut27 := FALSE;  
+END_IF; 
+
+(*第28个用户自定义io输出*)
+RTriggerUserDefineIoOut28(CLK:=bEnableOut28);
+IF bEnableOut28 THEN
+  IF bTriggerOut28 THEN
+    IF RTriggerUserDefineIoOut28.Q THEN
+      g_boUserDefineIoOut28 :=TRUE;
+    END_IF;  
+     UserDefineIoOuttimer28(IN:=TRUE,PT:=T#500ms);
+     IF UserDefineIoOuttimer28.Q THEN
+        UserDefineIoOuttimer28(IN:=FALSE);
+        g_boUserDefineIoOut28 :=FALSE;
+        bEnableOut28:=FALSE;
+     END_IF;      
+  ELSE      
+     g_boUserDefineIoOut28 :=TRUE;
+  END_IF;  
+ELSE
+  UserDefineIoOuttimer28(IN:=FALSE);
+ g_boUserDefineIoOut28 := FALSE;  
+END_IF; 
+
+
+(*第29个用户自定义io输出*)
+RTriggerUserDefineIoOut29(CLK:=bEnableOut29);
+IF bEnableOut29 THEN
+  IF bTriggerOut29 THEN
+    IF RTriggerUserDefineIoOut29.Q THEN
+      g_boUserDefineIoOut29 :=TRUE;
+    END_IF;  
+     UserDefineIoOuttimer29(IN:=TRUE,PT:=T#500ms);
+     IF UserDefineIoOuttimer29.Q THEN
+        UserDefineIoOuttimer29(IN:=FALSE);
+        g_boUserDefineIoOut29 :=FALSE;
+        bEnableOut29:=FALSE;
+     END_IF;      
+  ELSE      
+     g_boUserDefineIoOut29 :=TRUE;
+  END_IF;  
+ELSE
+  UserDefineIoOuttimer29(IN:=FALSE);
+  g_boUserDefineIoOut29 := FALSE;  
+END_IF; 
+
+(*第30个用户自定义io输出*)
+RTriggerUserDefineIoOut30(CLK:=bEnableOut30);
+IF bEnableOut30 THEN
+  IF bTriggerOut30 THEN
+    IF RTriggerUserDefineIoOut30.Q THEN
+      g_boUserDefineIoOut30 :=TRUE;
+    END_IF;  
+     UserDefineIoOuttimer30(IN:=TRUE,PT:=T#500ms);
+     IF UserDefineIoOuttimer30.Q THEN
+        UserDefineIoOuttimer30(IN:=FALSE);
+        g_boUserDefineIoOut30 :=FALSE;
+        bEnableOut30:=FALSE;
+     END_IF;      
+  ELSE      
+     g_boUserDefineIoOut30 :=TRUE;
+  END_IF;  
+ELSE
+  UserDefineIoOuttimer30(IN:=FALSE);
+  g_boUserDefineIoOut30 := FALSE;  
+END_IF; 
+
+(*第31个用户自定义io输出*)
+RTriggerUserDefineIoOut31(CLK:=bEnableOut31);
+IF bEnableOut31 THEN
+  IF bTriggerOut31 THEN
+    IF RTriggerUserDefineIoOut31.Q THEN
+      g_boUserDefineIoOut31 :=TRUE;
+    END_IF;  
+     UserDefineIoOuttimer31(IN:=TRUE,PT:=T#500ms);
+     IF UserDefineIoOuttimer31.Q THEN
+        UserDefineIoOuttimer31(IN:=FALSE);
+        g_boUserDefineIoOut31 :=FALSE;
+        bEnableOut31:=FALSE;
+     END_IF;      
+  ELSE      
+     g_boUserDefineIoOut31 :=TRUE;
+  END_IF;  
+ELSE
+  UserDefineIoOuttimer31(IN:=FALSE);
+  g_boUserDefineIoOut31 := FALSE;  
+END_IF; 
+
+(*第32个用户自定义io输出*)
+RTriggerUserDefineIoOut32(CLK:=bEnableOut32);
+IF bEnableOut32 THEN
+  IF bTriggerOut32 THEN
+    IF RTriggerUserDefineIoOut32.Q THEN
+      g_boUserDefineIoOut32 :=TRUE;
+    END_IF;  
+     UserDefineIoOuttimer32(IN:=TRUE,PT:=T#500ms);
+     IF UserDefineIoOuttimer32.Q THEN
+        UserDefineIoOuttimer32(IN:=FALSE);
+        g_boUserDefineIoOut32 :=FALSE;
+        bEnableOut32:=FALSE;
+     END_IF;      
+  ELSE      
+     g_boUserDefineIoOut32 :=TRUE;
+  END_IF;  
+ELSE
+  UserDefineIoOuttimer32(IN:=FALSE);
+ g_boUserDefineIoOut32 := FALSE;  
+END_IF; 
+
+(*第1个用户自定义io输出
+状态机10:M代码触发自定义输出 并判断是否等待板卡输入信号到位后输出
+状态机50:手动输出自定义输出
+状态机30:M代码触发自定义输出关闭 并判断是否等待板卡输入信号到位后关闭输出
+状态机60:手动触发自定义输出关闭*)(*目前不能相互控制*)
+RTriggerUserDefineIoOut1(CLK:= (bEnableOut1  OR g_bDefineOutputEnableOut1M));
+RTriggerUserDefineIoOutOFF1(CLK:= (g_bDefineOutputEnableOutOFF1M));
+
+
+IF RTriggerUserDefineIoOut1.Q THEN
+  IF bEnableOut1 THEN
+      UserDefineIoOuttimer1(IN:=FALSE);
+      nUserDefineState1:=50;
+  ELSE
+    nUserDefineState1:=10;
+  END_IF;
+  g_bDefineOutputEnableOut1:=FALSE;
+  g_bDefineOutputEnableOutOFF1:=FALSE;
+  g_bDefineOutputEnableOut1M:=FALSE;
+END_IF;  
+
+
+IF RTriggerUserDefineIoOutOFF1.Q THEN
+  nUserDefineState1:=30;
+  g_bDefineOutputEnableOutOFF1:=FALSE;
+  g_bDefineOutputEnableOut1:=FALSE;
+  g_bDefineOutputEnableOutOFF1M:=FALSE;
+END_IF;   
+
+
+CASE nUserDefineState1 OF
+  0:(*准备状态*)
+    nUserDefineState1:=0;
+  10:(*m代码控制开启*)
+    IF g_dUserDefineIoOut1WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState1 := 15;
+    ELSE
+      nUserDefineState1 := 20;
+    END_IF; 
+  15:
+    bUserDefineIoOut1 :=TRUE;
+    g_boUserDefineIoOut1 :=TRUE;
+    M.ENABLE[204] := 0;
+    nUserDefineState1:=0;
+  20:  
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut1WaitSignalM) - 1;
+    IF g_dUserDefineIoOut1WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState1 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState1 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut1WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState1 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState1 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut1WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState1 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState1 := 0;    
+      END_IF;
+    END_IF;  
+  30:(*m代码控制关闭*)
+    IF g_dUserDefineIoOut1WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState1 := 35;
+    ELSE
+      nUserDefineState1 := 40;
+    END_IF; 
+  35:  
+    bUserDefineIoOut1 :=FALSE;
+    g_boUserDefineIoOut1 :=FALSE;
+    M.ENABLE[204] := 0;
+    nUserDefineState1:=0;
+  40:
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut1WaitSignalM) - 1;
+    IF g_dUserDefineIoOut1WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState1 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState1 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut1WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState1 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState1 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut1WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState1 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState1 := 0;    
+      END_IF;
+    END_IF;  
+  50:(*手动控制开启*)
+    IF bTriggerOut1 THEN
+      bUserDefineIoOut1 :=TRUE; 
+      g_boUserDefineIoOut1 :=TRUE;
+        UserDefineIoOuttimer1(IN:=TRUE,PT:=T#500ms);
+        IF UserDefineIoOuttimer1.Q THEN
+          IF NOT bEnableOut1 THEN
+            UserDefineIoOuttimer1(IN:=FALSE);
+            bUserDefineIoOut1 :=FALSE;
+            g_boUserDefineIoOut1 :=FALSE;
+            nUserDefineState1:=0; 
+          END_IF;   
+        END_IF; 
+    ELSE      
+     bUserDefineIoOut1 :=bEnableOut1;
+     g_boUserDefineIoOut1 :=bEnableOut1;
+    END_IF;  
+END_CASE;
+
+(*第2个用户自定义io输出
+状态机10:M代码触发自定义输出 并判断是否等待板卡输入信号到位后输出
+状态机50:手动输出自定义输出
+状态机30:M代码触发自定义输出关闭 并判断是否等待板卡输入信号到位后关闭输出
+状态机60:手动触发自定义输出关闭*)(*目前不能相互控制*)
+RTriggerUserDefineIoOut2(CLK:= (bEnableOut2  OR g_bDefineOutputEnableOut2M));
+RTriggerUserDefineIoOutOFF2(CLK:= (g_bDefineOutputEnableOutOFF2M));
+
+
+IF RTriggerUserDefineIoOut2.Q THEN
+  IF bEnableOut2 THEN
+      UserDefineIoOuttimer2(IN:=FALSE);
+      nUserDefineState2:=50;
+  ELSE
+    nUserDefineState2:=10;
+  END_IF;
+  g_bDefineOutputEnableOut2:=FALSE;
+  g_bDefineOutputEnableOutOFF2:=FALSE;
+  g_bDefineOutputEnableOut2M:=FALSE;
+END_IF;  
+
+
+IF RTriggerUserDefineIoOutOFF2.Q THEN
+  nUserDefineState2:=30;
+  g_bDefineOutputEnableOutOFF2:=FALSE;
+  g_bDefineOutputEnableOut2:=FALSE;
+  g_bDefineOutputEnableOutOFF2M:=FALSE;
+END_IF;   
+
+
+CASE nUserDefineState2 OF
+  0:(*准备状态*)
+    nUserDefineState2:=0;
+  10:(*m代码控制开启*)
+    IF g_dUserDefineIoOut2WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState2 := 15;
+    ELSE
+      nUserDefineState2 := 20;
+    END_IF; 
+  15:
+    bUserDefineIoOut2 :=TRUE;
+    g_boUserDefineIoOut2 :=TRUE;
+    M.ENABLE[204] := 0;
+    nUserDefineState2:=0;
+  20:  
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut2WaitSignalM) - 1;
+    IF g_dUserDefineIoOut2WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState2 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState2 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut2WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState2 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState2 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut2WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState2 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState2 := 0;    
+      END_IF;
+    END_IF;  
+  30:(*m代码控制关闭*)
+    IF g_dUserDefineIoOut2WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState2 := 35;
+    ELSE
+      nUserDefineState2 := 40;
+    END_IF; 
+  35:  
+    bUserDefineIoOut2 :=FALSE;
+    g_boUserDefineIoOut2 :=FALSE;
+    M.ENABLE[204] := 0;
+    nUserDefineState2:=0;
+  40:
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut2WaitSignalM) - 1;
+    IF g_dUserDefineIoOut2WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState2 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState2 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut2WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState2 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState2 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut2WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState2 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState2 := 0;    
+      END_IF;
+    END_IF;  
+  50:(*手动控制开启*)
+    IF bTriggerOut2 THEN
+      bUserDefineIoOut2 :=TRUE; 
+      g_boUserDefineIoOut2 :=TRUE;
+        UserDefineIoOuttimer2(IN:=TRUE,PT:=T#500ms);
+        IF UserDefineIoOuttimer2.Q THEN
+          IF NOT bEnableOut2 THEN
+            UserDefineIoOuttimer2(IN:=FALSE);
+            bUserDefineIoOut2 :=FALSE;
+            g_boUserDefineIoOut2 :=FALSE;
+            nUserDefineState2:=0; 
+          END_IF;   
+        END_IF; 
+    ELSE      
+     bUserDefineIoOut2 :=bEnableOut2;
+     g_boUserDefineIoOut2 :=bEnableOut2;
+    END_IF;  
+END_CASE;
+
+(*第3个用户自定义io输出
+状态机10:M代码触发自定义输出 并判断是否等待板卡输入信号到位后输出
+状态机50:手动输出自定义输出
+状态机30:M代码触发自定义输出关闭 并判断是否等待板卡输入信号到位后关闭输出
+状态机60:手动触发自定义输出关闭*)(*目前不能相互控制*)
+RTriggerUserDefineIoOut3(CLK:= (bEnableOut3  OR g_bDefineOutputEnableOut3M));
+RTriggerUserDefineIoOutOFF3(CLK:= (g_bDefineOutputEnableOutOFF3M));
+
+
+IF RTriggerUserDefineIoOut3.Q THEN
+  IF bEnableOut3 THEN
+      UserDefineIoOuttimer3(IN:=FALSE);
+      nUserDefineState3:=50;
+  ELSE
+    nUserDefineState3:=10;
+  END_IF;
+  g_bDefineOutputEnableOut3:=FALSE;
+  g_bDefineOutputEnableOutOFF3:=FALSE;
+  g_bDefineOutputEnableOut3M:=FALSE;
+END_IF;  
+
+
+IF RTriggerUserDefineIoOutOFF3.Q THEN
+  nUserDefineState3:=30;
+  g_bDefineOutputEnableOutOFF3:=FALSE;
+  g_bDefineOutputEnableOut3:=FALSE;
+  g_bDefineOutputEnableOutOFF3M:=FALSE;
+END_IF;   
+
+
+CASE nUserDefineState3 OF
+  0:(*准备状态*)
+    nUserDefineState3:=0;
+  10:(*m代码控制开启*)
+    IF g_dUserDefineIoOut3WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState3 := 15;
+    ELSE
+      nUserDefineState3 := 20;
+    END_IF; 
+  15:
+    bUserDefineIoOut3 :=TRUE;
+    g_boUserDefineIoOut3 :=TRUE;
+    M.ENABLE[204] := 0;
+    nUserDefineState3:=0;
+  20:  
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut3WaitSignalM) - 1;
+    IF g_dUserDefineIoOut3WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState3 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState3 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut3WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState3 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState3 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut3WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState3 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState3 := 0;    
+      END_IF;
+    END_IF;  
+  30:(*m代码控制关闭*)
+    IF g_dUserDefineIoOut3WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState3 := 35;
+    ELSE
+      nUserDefineState3 := 40;
+    END_IF; 
+  35:  
+    bUserDefineIoOut3 :=FALSE;
+    g_boUserDefineIoOut3 :=FALSE;
+    M.ENABLE[204] := 0;
+    nUserDefineState3:=0;
+  40:
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut3WaitSignalM) - 1;
+    IF g_dUserDefineIoOut3WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState3 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState3 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut3WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState3 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState3 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut3WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState3 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState3 := 0;    
+      END_IF;
+    END_IF;  
+  50:(*手动控制开启*)
+    IF bTriggerOut3 THEN
+      bUserDefineIoOut3 :=TRUE; 
+      g_boUserDefineIoOut3 :=TRUE;
+        UserDefineIoOuttimer3(IN:=TRUE,PT:=T#500ms);
+        IF UserDefineIoOuttimer3.Q THEN
+          IF NOT bEnableOut3 THEN
+            UserDefineIoOuttimer3(IN:=FALSE);
+            bUserDefineIoOut3 :=FALSE;
+            g_boUserDefineIoOut3 :=FALSE;
+            nUserDefineState3:=0;  
+          END_IF;
+        END_IF; 
+    ELSE      
+     bUserDefineIoOut3 :=bEnableOut3;
+     g_boUserDefineIoOut3 :=bEnableOut3;
+    END_IF;  
+END_CASE;
+
+
+(*第4个用户自定义io输出
+状态机10:M代码触发自定义输出 并判断是否等待板卡输入信号到位后输出
+状态机50:手动输出自定义输出
+状态机30:M代码触发自定义输出关闭 并判断是否等待板卡输入信号到位后关闭输出
+状态机60:手动触发自定义输出关闭*)(*目前不能相互控制*)
+RTriggerUserDefineIoOut4(CLK:= (bEnableOut4  OR g_bDefineOutputEnableOut4M));
+RTriggerUserDefineIoOutOFF4(CLK:= (g_bDefineOutputEnableOutOFF4M));
+
+
+IF RTriggerUserDefineIoOut4.Q THEN
+  IF bEnableOut4 THEN
+      UserDefineIoOuttimer4(IN:=FALSE);
+      nUserDefineState4:=50;
+  ELSE
+    nUserDefineState4:=10;
+  END_IF;
+  g_bDefineOutputEnableOut4:=FALSE;
+  g_bDefineOutputEnableOutOFF4:=FALSE;
+  g_bDefineOutputEnableOut4M:=FALSE;
+END_IF;  
+
+
+IF RTriggerUserDefineIoOutOFF4.Q THEN
+  nUserDefineState4:=30;
+  g_bDefineOutputEnableOutOFF4:=FALSE;
+  g_bDefineOutputEnableOut4:=FALSE;
+  g_bDefineOutputEnableOutOFF4M:=FALSE;
+END_IF;   
+
+
+CASE nUserDefineState4 OF
+  0:(*准备状态*)
+    nUserDefineState4:=0;
+  10:(*m代码控制开启*)
+    IF g_dUserDefineIoOut4WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState4 := 15;
+    ELSE
+      nUserDefineState4 := 20;
+    END_IF; 
+  15:
+    bUserDefineIoOut4 :=TRUE;
+    g_boUserDefineIoOut4 :=TRUE;
+    M.ENABLE[204] := 0;
+    nUserDefineState4:=0;
+  20:  
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut4WaitSignalM) - 1;
+    IF g_dUserDefineIoOut4WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState4 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState4 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut4WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState4 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState4 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut4WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState4 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState4 := 0;    
+      END_IF;
+    END_IF;  
+  30:(*m代码控制关闭*)
+    IF g_dUserDefineIoOut4WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState4 := 35;
+    ELSE
+      nUserDefineState4 := 40;
+    END_IF; 
+  35:  
+    bUserDefineIoOut4 :=FALSE;
+    g_boUserDefineIoOut4 :=FALSE;
+    M.ENABLE[204] := 0;
+    nUserDefineState4:=0;
+  40:
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut4WaitSignalM) - 1;
+    IF g_dUserDefineIoOut4WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState4 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState4 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut4WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState4 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState4 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut4WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState4 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState4 := 0;    
+      END_IF;
+    END_IF;  
+  50:(*手动控制开启*)
+    IF bTriggerOut4 THEN
+      bUserDefineIoOut4 :=TRUE; 
+      g_boUserDefineIoOut4 :=TRUE;
+        UserDefineIoOuttimer4(IN:=TRUE,PT:=T#500ms);
+        IF UserDefineIoOuttimer4.Q THEN
+          IF NOT bEnableOut4 THEN
+            UserDefineIoOuttimer4(IN:=FALSE);
+            bUserDefineIoOut4 :=FALSE;
+            g_boUserDefineIoOut4 :=FALSE;
+            nUserDefineState4:=0;  
+          END_IF;  
+        END_IF; 
+    ELSE      
+     bUserDefineIoOut4 :=bEnableOut4;
+     g_boUserDefineIoOut4 :=bEnableOut4;
+    END_IF;  
+END_CASE;
+
+(*第5个用户自定义io输出
+状态机10:M代码触发自定义输出 并判断是否等待板卡输入信号到位后输出
+状态机50:手动输出自定义输出
+状态机30:M代码触发自定义输出关闭 并判断是否等待板卡输入信号到位后关闭输出
+状态机60:手动触发自定义输出关闭*)(*目前不能相互控制*)
+RTriggerUserDefineIoOut5(CLK:= (bEnableOut5  OR g_bDefineOutputEnableOut5M));
+RTriggerUserDefineIoOutOFF5(CLK:= (g_bDefineOutputEnableOutOFF5M));
+
+
+IF RTriggerUserDefineIoOut5.Q THEN
+  IF bEnableOut5 THEN
+      UserDefineIoOuttimer5(IN:=FALSE);
+      nUserDefineState5:=50;
+  ELSE
+    nUserDefineState5:=10;
+  END_IF;
+  g_bDefineOutputEnableOut5:=FALSE;
+  g_bDefineOutputEnableOutOFF5:=FALSE;
+  g_bDefineOutputEnableOut5M:=FALSE;
+END_IF;  
+
+IF RTriggerUserDefineIoOutOFF5.Q THEN
+  nUserDefineState5:=30;
+  g_bDefineOutputEnableOutOFF5:=FALSE;
+  g_bDefineOutputEnableOut5:=FALSE;
+  g_bDefineOutputEnableOutOFF5M:=FALSE;
+END_IF;   
+
+
+CASE nUserDefineState5 OF
+  0:(*准备状态*)
+    nUserDefineState5:=0;
+  10:(*m代码控制开启*)
+    IF g_dUserDefineIoOut5WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState5 := 15;
+    ELSE
+      nUserDefineState5 := 20;
+    END_IF; 
+  15:
+    bUserDefineIoOut5 :=TRUE;
+    g_boUserDefineIoOut5 :=TRUE;
+    M.ENABLE[204] := 0;
+    nUserDefineState5:=0;
+  20:  
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut5WaitSignalM) - 1;
+    IF g_dUserDefineIoOut5WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState5 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState5 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut5WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState5 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState5 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut5WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState5 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState5 := 0;    
+      END_IF;
+    END_IF;  
+  30:(*m代码控制关闭*)
+    IF g_dUserDefineIoOut5WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState5 := 35;
+    ELSE
+      nUserDefineState5 := 40;
+    END_IF; 
+  35:  
+    bUserDefineIoOut5 :=FALSE;
+    g_boUserDefineIoOut5 :=FALSE;
+    M.ENABLE[204] := 0;
+    nUserDefineState5:=0;
+  40:
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut5WaitSignalM) - 1;
+    IF g_dUserDefineIoOut5WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState5 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState5 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut5WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState5 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState5 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut5WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState5 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState5 := 0;    
+      END_IF;
+    END_IF;  
+  50:(*手动控制开启*)
+    IF bTriggerOut5 THEN
+      bUserDefineIoOut5 :=TRUE; 
+      g_boUserDefineIoOut5 :=TRUE;
+        UserDefineIoOuttimer5(IN:=TRUE,PT:=T#500ms);
+        IF UserDefineIoOuttimer5.Q THEN
+          IF NOT bEnableOut5 THEN
+            UserDefineIoOuttimer5(IN:=FALSE);
+            bUserDefineIoOut5 :=FALSE;
+            g_boUserDefineIoOut5 :=FALSE;
+            nUserDefineState5:=0; 
+          END_IF;    
+        END_IF; 
+    ELSE      
+     bUserDefineIoOut5 :=bEnableOut5;
+     g_boUserDefineIoOut5 :=bEnableOut5;
+    END_IF;  
+END_CASE;
+
+(*第6个用户自定义io输出
+状态机10:M代码触发自定义输出 并判断是否等待板卡输入信号到位后输出
+状态机50:手动输出自定义输出
+状态机30:M代码触发自定义输出关闭 并判断是否等待板卡输入信号到位后关闭输出
+状态机60:手动触发自定义输出关闭*)(*目前不能相互控制*)
+RTriggerUserDefineIoOut6(CLK:= (bEnableOut6  OR g_bDefineOutputEnableOut6M));
+RTriggerUserDefineIoOutOFF6(CLK:= (g_bDefineOutputEnableOutOFF6M));
+
+
+IF RTriggerUserDefineIoOut6.Q THEN
+  IF bEnableOut6 THEN
+      UserDefineIoOuttimer6(IN:=FALSE);
+      nUserDefineState6:=50;
+  ELSE
+    nUserDefineState6:=10;
+  END_IF;
+  g_bDefineOutputEnableOut6:=FALSE;
+  g_bDefineOutputEnableOutOFF6:=FALSE;
+  g_bDefineOutputEnableOut6M:=FALSE;
+END_IF;  
+
+IF RTriggerUserDefineIoOutOFF6.Q THEN
+  nUserDefineState6:=30;
+  g_bDefineOutputEnableOutOFF6:=FALSE;
+  g_bDefineOutputEnableOut6:=FALSE;
+  g_bDefineOutputEnableOutOFF6M:=FALSE;
+END_IF;   
+
+
+CASE nUserDefineState6 OF
+  0:(*准备状态*)
+    nUserDefineState6:=0;
+  10:(*m代码控制开启*)
+    IF g_dUserDefineIoOut6WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState6 := 15;
+    ELSE
+      nUserDefineState6 := 20;
+    END_IF; 
+  15:
+    bUserDefineIoOut6 :=TRUE;
+    g_boUserDefineIoOut6 :=TRUE;
+    M.ENABLE[204] := 0;
+    nUserDefineState6:=0;
+  20:  
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut6WaitSignalM) - 1;
+    IF g_dUserDefineIoOut6WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState6 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState6 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut6WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState6 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState6 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut6WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState6 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState6 := 0;    
+      END_IF;
+    END_IF;  
+  30:(*m代码控制关闭*)
+    IF g_dUserDefineIoOut6WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState6 := 35;
+    ELSE
+      nUserDefineState6 := 40;
+    END_IF; 
+  35:  
+    bUserDefineIoOut6 :=FALSE;
+    g_boUserDefineIoOut6 :=FALSE;
+    M.ENABLE[204] := 0;
+    nUserDefineState6:=0;
+  40:
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut6WaitSignalM) - 1;
+    IF g_dUserDefineIoOut6WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState6 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState6 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut6WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState6 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState6 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut6WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState6 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState6 := 0;    
+      END_IF;
+    END_IF;  
+  50:(*手动控制开启*)
+    IF bTriggerOut6 THEN
+      bUserDefineIoOut6 :=TRUE; 
+      g_boUserDefineIoOut6 :=TRUE;
+        UserDefineIoOuttimer6(IN:=TRUE,PT:=T#500ms);
+        IF UserDefineIoOuttimer6.Q THEN
+          IF NOT bEnableOut6 THEN
+            UserDefineIoOuttimer6(IN:=FALSE);
+            bUserDefineIoOut6 :=FALSE;
+            g_boUserDefineIoOut6 :=FALSE;
+            nUserDefineState6:=0;  
+          END_IF;  
+        END_IF; 
+    ELSE      
+     bUserDefineIoOut6 :=bEnableOut6;
+     g_boUserDefineIoOut6 :=bEnableOut6;
+    END_IF;  
+END_CASE;
+
+(*第7个用户自定义io输出
+状态机10:M代码触发自定义输出 并判断是否等待板卡输入信号到位后输出
+状态机50:手动输出自定义输出
+状态机30:M代码触发自定义输出关闭 并判断是否等待板卡输入信号到位后关闭输出
+状态机60:手动触发自定义输出关闭*)(*目前不能相互控制*)
+RTriggerUserDefineIoOut7(CLK:= (bEnableOut7  OR g_bDefineOutputEnableOut7M));
+RTriggerUserDefineIoOutOFF7(CLK:= (g_bDefineOutputEnableOutOFF7M));
+
+
+IF RTriggerUserDefineIoOut7.Q THEN
+  IF bEnableOut7 THEN
+      UserDefineIoOuttimer7(IN:=FALSE);
+      nUserDefineState7:=50;
+  ELSE
+    nUserDefineState7:=10;
+  END_IF;
+  g_bDefineOutputEnableOut7:=FALSE;
+  g_bDefineOutputEnableOutOFF7:=FALSE;
+  g_bDefineOutputEnableOut7M:=FALSE;
+END_IF;  
+
+IF RTriggerUserDefineIoOutOFF7.Q THEN
+  nUserDefineState7:=30;
+  g_bDefineOutputEnableOutOFF7:=FALSE;
+  g_bDefineOutputEnableOut7:=FALSE;
+  g_bDefineOutputEnableOutOFF7M:=FALSE;
+END_IF;   
+
+
+CASE nUserDefineState7 OF
+  0:(*准备状态*)
+    nUserDefineState7:=0;
+  10:(*m代码控制开启*)
+    IF g_dUserDefineIoOut7WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState7 := 15;
+    ELSE
+      nUserDefineState7 := 20;
+    END_IF; 
+  15:
+    bUserDefineIoOut7 :=TRUE;
+    g_boUserDefineIoOut7 :=TRUE;
+    M.ENABLE[204] := 0;
+    nUserDefineState7:=0;
+  20:  
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut7WaitSignalM) - 1;
+    IF g_dUserDefineIoOut7WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState7 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState7 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut7WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState7 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState7 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut7WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState7 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState7 := 0;    
+      END_IF;
+    END_IF;  
+  30:(*m代码控制关闭*)
+    IF g_dUserDefineIoOut7WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState7 := 35;
+    ELSE
+      nUserDefineState7 := 40;
+    END_IF; 
+  35:  
+    bUserDefineIoOut7 :=FALSE;
+    g_boUserDefineIoOut7 :=FALSE;
+    M.ENABLE[204] := 0;
+    nUserDefineState7:=0;
+  40:
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut7WaitSignalM) - 1;
+    IF g_dUserDefineIoOut7WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState7 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState7 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut7WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState7 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState7 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut7WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState7 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState7 := 0;    
+      END_IF;
+    END_IF;  
+  50:(*手动控制开启*)
+    IF bTriggerOut7 THEN
+      bUserDefineIoOut7 :=TRUE; 
+      g_boUserDefineIoOut7 :=TRUE;
+        UserDefineIoOuttimer7(IN:=TRUE,PT:=T#500ms);
+        IF UserDefineIoOuttimer7.Q THEN
+          IF NOT bEnableOut7 THEN
+            UserDefineIoOuttimer7(IN:=FALSE);
+            bUserDefineIoOut7 :=FALSE;
+            g_boUserDefineIoOut7 :=FALSE;
+            nUserDefineState7:=0;  
+          END_IF;  
+        END_IF; 
+    ELSE      
+     bUserDefineIoOut7 :=bEnableOut7;
+     g_boUserDefineIoOut7 :=bEnableOut7;
+    END_IF;  
+END_CASE;
+
+(*第8个用户自定义io输出
+状态机10:M代码触发自定义输出 并判断是否等待板卡输入信号到位后输出
+状态机50:手动输出自定义输出
+状态机30:M代码触发自定义输出关闭 并判断是否等待板卡输入信号到位后关闭输出
+状态机60:手动触发自定义输出关闭*)(*目前不能相互控制*)
+RTriggerUserDefineIoOut8(CLK:= (bEnableOut8  OR g_bDefineOutputEnableOut8M));
+RTriggerUserDefineIoOutOFF8(CLK:= (g_bDefineOutputEnableOutOFF8M));
+
+
+IF RTriggerUserDefineIoOut8.Q THEN
+  IF bEnableOut8 THEN
+      UserDefineIoOuttimer8(IN:=FALSE);
+      nUserDefineState8:=50;
+  ELSE
+    nUserDefineState8:=10;
+  END_IF;
+  g_bDefineOutputEnableOut8:=FALSE;
+  g_bDefineOutputEnableOutOFF8:=FALSE;
+  g_bDefineOutputEnableOut8M:=FALSE;
+END_IF;  
+
+IF RTriggerUserDefineIoOutOFF8.Q THEN
+  nUserDefineState8:=30;
+  g_bDefineOutputEnableOutOFF8:=FALSE;
+  g_bDefineOutputEnableOut8:=FALSE;
+  g_bDefineOutputEnableOutOFF8M:=FALSE;
+END_IF;   
+
+
+CASE nUserDefineState8 OF
+  0:(*准备状态*)
+    nUserDefineState8:=0;
+  10:(*m代码控制开启*)
+    IF g_dUserDefineIoOut8WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState8 := 15;
+    ELSE
+      nUserDefineState8 := 20;
+    END_IF; 
+  15:
+    bUserDefineIoOut8 :=TRUE;
+    g_boUserDefineIoOut8 :=TRUE;
+    M.ENABLE[204] := 0;
+    nUserDefineState8:=0;
+  20:  
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut8WaitSignalM) - 1;
+    IF g_dUserDefineIoOut8WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState8 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState8 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut8WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState8 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState8 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut8WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState8 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState8 := 0;    
+      END_IF;
+    END_IF;  
+  30:(*m代码控制关闭*)
+    IF g_dUserDefineIoOut8WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState8 := 35;
+    ELSE
+      nUserDefineState8 := 40;
+    END_IF; 
+  35:  
+    bUserDefineIoOut8 :=FALSE;
+    g_boUserDefineIoOut8 :=FALSE;
+    M.ENABLE[204] := 0;
+    nUserDefineState8:=0;
+  40:
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut8WaitSignalM) - 1;
+    IF g_dUserDefineIoOut8WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState8 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState8 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut8WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState8 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState8 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut8WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState8 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState8 := 0;    
+      END_IF;
+    END_IF;  
+  50:(*手动控制开启*)
+    IF bTriggerOut8 THEN
+      bUserDefineIoOut8 :=TRUE; 
+      g_boUserDefineIoOut8 :=TRUE;
+        UserDefineIoOuttimer8(IN:=TRUE,PT:=T#500ms);
+        IF UserDefineIoOuttimer8.Q THEN
+          IF NOT bEnableOut8 THEN
+            UserDefineIoOuttimer8(IN:=FALSE);
+            bUserDefineIoOut8 :=FALSE;
+            g_boUserDefineIoOut8 :=FALSE;
+            nUserDefineState8:=0;  
+          END_IF;   
+        END_IF; 
+    ELSE      
+     bUserDefineIoOut8 :=bEnableOut8;
+     g_boUserDefineIoOut8 :=bEnableOut8;
+    END_IF;  
+END_CASE;
+
+
+(*第9个用户自定义io输出
+状态机10:M代码触发自定义输出 并判断是否等待板卡输入信号到位后输出
+状态机50:手动输出自定义输出
+状态机30:M代码触发自定义输出关闭 并判断是否等待板卡输入信号到位后关闭输出
+状态机60:手动触发自定义输出关闭*)(*目前不能相互控制*)
+RTriggerUserDefineIoOut9(CLK:= (bEnableOut9  OR g_bDefineOutputEnableOut9M));
+RTriggerUserDefineIoOutOFF9(CLK:= (g_bDefineOutputEnableOutOFF9M));
+
+
+IF RTriggerUserDefineIoOut9.Q THEN
+  IF bEnableOut9 THEN
+      UserDefineIoOuttimer9(IN:=FALSE);
+      nUserDefineState9:=50;
+  ELSE
+    nUserDefineState9:=10;
+  END_IF;
+  g_bDefineOutputEnableOut9:=FALSE;
+  g_bDefineOutputEnableOutOFF9:=FALSE;
+  g_bDefineOutputEnableOut9M:=FALSE;
+END_IF;  
+
+IF RTriggerUserDefineIoOutOFF9.Q THEN
+  nUserDefineState9:=30;
+  g_bDefineOutputEnableOutOFF9:=FALSE;
+  g_bDefineOutputEnableOut9:=FALSE;
+  g_bDefineOutputEnableOutOFF9M:=FALSE;
+END_IF; 
+ 
+
+CASE nUserDefineState9 OF
+  0:(*准备状态*)
+    nUserDefineState9:=0;
+  10:(*m代码控制开启*)
+    IF g_dUserDefineIoOut9WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState9 := 15;
+    ELSE
+      nUserDefineState9 := 20;
+    END_IF; 
+  15:
+    bUserDefineIoOut9 :=TRUE;
+    g_boUserDefineIoOut9 :=TRUE;
+    M.ENABLE[204] := 0;
+    nUserDefineState9:=0;
+  20:  
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut9WaitSignalM) - 1;
+    IF g_dUserDefineIoOut9WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState9 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState9 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut9WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState9 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState9 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut9WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState9 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState9 := 0;    
+      END_IF;
+    END_IF;  
+  30:(*m代码控制关闭*)
+    IF g_dUserDefineIoOut9WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState9 := 35;
+    ELSE
+      nUserDefineState9 := 40;
+    END_IF; 
+  35:  
+    bUserDefineIoOut9 :=FALSE;
+    g_boUserDefineIoOut9 :=FALSE;
+    M.ENABLE[204] := 0;
+    nUserDefineState9:=0;
+  40:
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut9WaitSignalM) - 1;
+    IF g_dUserDefineIoOut9WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState9 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState9 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut9WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState9 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState9 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut9WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState9 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState9 := 0;    
+      END_IF;
+    END_IF;  
+  50:(*手动控制开启*)
+    IF bTriggerOut9 THEN
+      bUserDefineIoOut9 :=TRUE; 
+      g_boUserDefineIoOut9 :=TRUE;
+        UserDefineIoOuttimer9(IN:=TRUE,PT:=T#500ms);
+        IF UserDefineIoOuttimer9.Q THEN
+          IF NOT bEnableOut9 THEN
+            UserDefineIoOuttimer9(IN:=FALSE);
+            bUserDefineIoOut9 :=FALSE;
+            g_boUserDefineIoOut9 :=FALSE;
+            nUserDefineState9:=0;  
+          END_IF; 
+        END_IF; 
+    ELSE      
+     bUserDefineIoOut9 :=bEnableOut9;
+     g_boUserDefineIoOut9 :=bEnableOut9;
+    END_IF;  
+END_CASE;
+
+(*第10个用户自定义io输出
+状态机10:M代码触发自定义输出 并判断是否等待板卡输入信号到位后输出
+状态机50:手动输出自定义输出
+状态机30:M代码触发自定义输出关闭 并判断是否等待板卡输入信号到位后关闭输出
+状态机60:手动触发自定义输出关闭*)(*目前不能相互控制*)
+RTriggerUserDefineIoOut10(CLK:= (bEnableOut10  OR g_bDefineOutputEnableOut10M));
+RTriggerUserDefineIoOutOFF10(CLK:= (g_bDefineOutputEnableOutOFF10M));
+
+
+IF RTriggerUserDefineIoOut10.Q THEN
+  IF bEnableOut10 THEN
+      UserDefineIoOuttimer10(IN:=FALSE);
+      nUserDefineState10:=50;
+  ELSE
+    nUserDefineState10:=10;
+  END_IF;
+  g_bDefineOutputEnableOut10:=FALSE;
+  g_bDefineOutputEnableOutOFF10:=FALSE;
+  g_bDefineOutputEnableOut10M:=FALSE;
+END_IF;  
+
+IF RTriggerUserDefineIoOutOFF10.Q THEN
+  nUserDefineState10:=30;
+  g_bDefineOutputEnableOutOFF10:=FALSE;
+  g_bDefineOutputEnableOut10:=FALSE;
+  g_bDefineOutputEnableOutOFF10M:=FALSE;
+END_IF;  
+ 
+
+CASE nUserDefineState10 OF
+  0:(*准备状态*)
+    nUserDefineState10:=0;
+  10:(*m代码控制开启*)
+    IF g_dUserDefineIoOut10WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState10 := 15;
+    ELSE
+      nUserDefineState10 := 20;
+    END_IF; 
+  15:
+    bUserDefineIoOut10 :=TRUE;
+    g_boUserDefineIoOut10 :=TRUE;
+    M.ENABLE[204] := 0;
+    nUserDefineState10:=0;
+  20:  
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut10WaitSignalM) - 1;
+    IF g_dUserDefineIoOut10WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState10 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState10 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut10WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState10 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState10 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut10WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState10 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState10 := 0;    
+      END_IF;
+    END_IF;  
+  30:(*m代码控制关闭*)
+    IF g_dUserDefineIoOut10WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState10 := 35;
+    ELSE
+      nUserDefineState10 := 40;
+    END_IF; 
+  35:  
+    bUserDefineIoOut10 :=FALSE;
+    g_boUserDefineIoOut10 :=FALSE;
+    M.ENABLE[204] := 0;
+    nUserDefineState12:=0;
+  40:
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut10WaitSignalM) - 1;
+    IF g_dUserDefineIoOut10WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState10 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState10 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut10WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState10 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState10 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut10WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState10 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState10 := 0;   
+      END_IF;
+    END_IF;  
+  50:(*手动控制开启*)
+    IF bTriggerOut10 THEN
+      bUserDefineIoOut10 :=TRUE; 
+      g_boUserDefineIoOut10 :=TRUE;
+        UserDefineIoOuttimer10(IN:=TRUE,PT:=T#500ms);
+        IF UserDefineIoOuttimer10.Q THEN
+          IF NOT bEnableOut10 THEN
+            UserDefineIoOuttimer10(IN:=FALSE);
+            bUserDefineIoOut10 :=FALSE;
+            g_boUserDefineIoOut10 :=FALSE;
+            nUserDefineState10:=0; 
+          END_IF;    
+        END_IF; 
+    ELSE      
+     bUserDefineIoOut10 :=bEnableOut10;
+     g_boUserDefineIoOut10 :=bEnableOut10;
+    END_IF;  
+END_CASE;
+
+(*第11个用户自定义io输出
+状态机10:M代码触发自定义输出 并判断是否等待板卡输入信号到位后输出
+状态机50:手动输出自定义输出
+状态机30:M代码触发自定义输出关闭 并判断是否等待板卡输入信号到位后关闭输出
+状态机60:手动触发自定义输出关闭*)(*目前不能相互控制*)
+RTriggerUserDefineIoOut11(CLK:= (bEnableOut11  OR g_bDefineOutputEnableOut11M));
+RTriggerUserDefineIoOutOFF11(CLK:= (g_bDefineOutputEnableOutOFF11M));
+
+
+IF RTriggerUserDefineIoOut11.Q THEN
+  IF bEnableOut11 THEN
+      UserDefineIoOuttimer11(IN:=FALSE);
+      nUserDefineState11:=50;
+  ELSE
+    nUserDefineState11:=10;
+  END_IF;
+  g_bDefineOutputEnableOut11:=FALSE;
+  g_bDefineOutputEnableOutOFF11:=FALSE;
+  g_bDefineOutputEnableOut11M:=FALSE;
+END_IF;  
+
+IF RTriggerUserDefineIoOutOFF11.Q THEN
+  nUserDefineState11:=30;
+  g_bDefineOutputEnableOutOFF11:=FALSE;
+  g_bDefineOutputEnableOut11:=FALSE;
+  g_bDefineOutputEnableOutOFF11M:=FALSE;
+END_IF;   
+
+CASE nUserDefineState11 OF
+  0:(*准备状态*)
+    nUserDefineState11:=0;
+  10:(*m代码控制开启*)
+    IF g_dUserDefineIoOut11WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState11 := 15;
+    ELSE
+      nUserDefineState11 := 20;
+    END_IF; 
+  15:
+    bUserDefineIoOut11 :=TRUE;
+    g_boUserDefineIoOut11 :=TRUE;
+    M.ENABLE[204] := 0;
+    nUserDefineState11:=0;
+  20:  
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut11WaitSignalM) - 1;
+    IF g_dUserDefineIoOut11WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState11 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState11 := 0;   
+      END_IF;
+    ELSIF g_dUserDefineIoOut11WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState11 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState11 := 0;   
+      END_IF;
+    ELSIF g_dUserDefineIoOut11WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState11 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState11 := 0;   
+      END_IF;
+    END_IF;  
+  30:(*m代码控制关闭*)
+    IF g_dUserDefineIoOut11WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState11 := 35;
+    ELSE
+      nUserDefineState11 := 40;
+    END_IF; 
+  35:  
+    bUserDefineIoOut11 :=FALSE;
+    g_boUserDefineIoOut11 :=FALSE;
+    M.ENABLE[204] := 0;
+    nUserDefineState11:=0;
+  40:
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut11WaitSignalM) - 1;
+    IF g_dUserDefineIoOut11WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState11 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState11 := 0;   
+      END_IF;
+    ELSIF g_dUserDefineIoOut11WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState11 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState11 := 0;   
+      END_IF;
+    ELSIF g_dUserDefineIoOut11WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState11 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState11 := 0;  
+      END_IF;
+    END_IF;  
+  50:(*手动控制开启*)
+    IF bTriggerOut11 THEN
+      bUserDefineIoOut11 :=TRUE; 
+      g_boUserDefineIoOut11 :=TRUE;
+        UserDefineIoOuttimer11(IN:=TRUE,PT:=T#500ms);
+        IF UserDefineIoOuttimer11.Q THEN
+          IF NOT bEnableOut11 THEN
+            UserDefineIoOuttimer11(IN:=FALSE);
+            bUserDefineIoOut11 :=FALSE;
+            g_boUserDefineIoOut11 :=FALSE;
+            nUserDefineState11:=0; 
+          END_IF;  
+        END_IF; 
+    ELSE      
+     bUserDefineIoOut11 :=bEnableOut11;
+     g_boUserDefineIoOut11 :=bEnableOut11;
+    END_IF;  
+END_CASE;
+
+(*第12个用户自定义io输出
+状态机10:M代码触发自定义输出 并判断是否等待板卡输入信号到位后输出
+状态机50:手动输出自定义输出
+状态机30:M代码触发自定义输出关闭 并判断是否等待板卡输入信号到位后关闭输出
+状态机60:手动触发自定义输出关闭*)(*目前不能相互控制*)
+RTriggerUserDefineIoOut12(CLK:= (bEnableOut12  OR g_bDefineOutputEnableOut12M));
+RTriggerUserDefineIoOutOFF12(CLK:= (g_bDefineOutputEnableOutOFF12M));
+
+
+IF RTriggerUserDefineIoOut12.Q THEN
+  IF bEnableOut12 THEN
+      UserDefineIoOuttimer12(IN:=FALSE);
+      nUserDefineState12:=50;
+  ELSE
+    nUserDefineState12:=10;
+  END_IF;
+  g_bDefineOutputEnableOut12:=FALSE;
+  g_bDefineOutputEnableOutOFF12:=FALSE;
+  g_bDefineOutputEnableOut12M:=FALSE;
+END_IF;  
+
+IF RTriggerUserDefineIoOutOFF12.Q THEN
+  nUserDefineState12:=30;
+  g_bDefineOutputEnableOutOFF12:=FALSE;
+  g_bDefineOutputEnableOut12:=FALSE;
+  g_bDefineOutputEnableOutOFF12M:=FALSE;
+END_IF; 
+
+CASE nUserDefineState12 OF
+  0:(*准备状态*)
+    nUserDefineState12:=0;
+  10:(*m代码控制开启*)
+    IF g_dUserDefineIoOut12WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState12 := 15;
+    ELSE
+      nUserDefineState12 := 20;
+    END_IF; 
+  15:
+    bUserDefineIoOut12 :=TRUE;
+    g_boUserDefineIoOut12 :=TRUE;
+    M.ENABLE[204] := 0;
+    nUserDefineState12:=0;
+  20:  
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut12WaitSignalM) - 1;
+    IF g_dUserDefineIoOut12WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState12 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState12 := 0;  
+      END_IF;
+    ELSIF g_dUserDefineIoOut12WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState12 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState12 := 0;  
+      END_IF;
+    ELSIF g_dUserDefineIoOut12WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState12 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState12 := 0;    
+      END_IF;
+    END_IF;  
+  30:(*m代码控制关闭*)
+    IF g_dUserDefineIoOut12WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState12 := 35;
+    ELSE
+      nUserDefineState12 := 40;
+    END_IF; 
+  35:  
+    bUserDefineIoOut12 :=FALSE;
+    g_boUserDefineIoOut12 :=FALSE;
+    M.ENABLE[204] := 0;
+    nUserDefineState12:=0;
+  40:
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut12WaitSignalM) - 1;
+    IF g_dUserDefineIoOut12WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState12 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState12:= 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut12WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState12 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState12 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut12WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState12 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState12 := 0;    
+      END_IF;
+    END_IF;  
+  50:(*手动控制开启*)
+    IF bTriggerOut12 THEN
+      bUserDefineIoOut12 :=TRUE; 
+      g_boUserDefineIoOut12 :=TRUE;
+        UserDefineIoOuttimer12(IN:=TRUE,PT:=T#500ms);
+        IF UserDefineIoOuttimer12.Q THEN
+          IF NOT bEnableOut12 THEN
+            UserDefineIoOuttimer12(IN:=FALSE);
+            bUserDefineIoOut12 :=FALSE;
+            g_boUserDefineIoOut12 :=FALSE;
+            nUserDefineState12:=0; 
+          END_IF;    
+        END_IF; 
+    ELSE      
+     bUserDefineIoOut12 :=bEnableOut12;
+     g_boUserDefineIoOut12 :=bEnableOut12;
+    END_IF;  
+END_CASE;
+
+(*第13个用户自定义io输出
+状态机10:M代码触发自定义输出 并判断是否等待板卡输入信号到位后输出
+状态机50:手动输出自定义输出
+状态机30:M代码触发自定义输出关闭 并判断是否等待板卡输入信号到位后关闭输出
+状态机60:手动触发自定义输出关闭*)(*目前不能相互控制*)
+RTriggerUserDefineIoOut13(CLK:= (bEnableOut13  OR g_bDefineOutputEnableOut13M));
+RTriggerUserDefineIoOutOFF13(CLK:= (g_bDefineOutputEnableOutOFF13M));
+
+
+IF RTriggerUserDefineIoOut13.Q THEN
+  IF bEnableOut13 THEN
+      UserDefineIoOuttimer13(IN:=FALSE);
+      nUserDefineState13:=50;
+  ELSE
+    nUserDefineState13:=10;
+  END_IF;
+  g_bDefineOutputEnableOut13:=FALSE;
+  g_bDefineOutputEnableOutOFF13:=FALSE;
+  g_bDefineOutputEnableOut13M:=FALSE;
+END_IF;  
+
+
+IF RTriggerUserDefineIoOutOFF13.Q THEN
+  nUserDefineState13:=30;
+  g_bDefineOutputEnableOutOFF13:=FALSE;
+  g_bDefineOutputEnableOut13:=FALSE;
+  g_bDefineOutputEnableOutOFF13M :=FALSE;
+END_IF; 
+
+CASE nUserDefineState13 OF
+  0:(*准备状态*)
+    nUserDefineState13:=0;
+  10:(*m代码控制开启*)
+    IF g_dUserDefineIoOut13WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState13 := 15;
+    ELSE
+      nUserDefineState13 := 20;
+    END_IF; 
+  15:
+    bUserDefineIoOut13 :=TRUE;
+    g_boUserDefineIoOut13 :=TRUE;
+    M.ENABLE[204] := 0;
+    nUserDefineState13:=0;
+  20:  
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut13WaitSignalM) - 1;
+    IF g_dUserDefineIoOut13WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState13 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState13 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut13WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState13 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState13 := 0;   
+     END_IF;
+    ELSIF g_dUserDefineIoOut13WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState13 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState13 := 0;  
+      END_IF;
+    END_IF;  
+  30:(*m代码控制关闭*)
+    IF g_dUserDefineIoOut13WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState13 := 35;
+    ELSE
+      nUserDefineState13 := 40;
+    END_IF; 
+  35:  
+    bUserDefineIoOut13 :=FALSE;
+    g_boUserDefineIoOut13 :=FALSE;
+    M.ENABLE[204] := 0;
+    nUserDefineState13:=0;
+  40:
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut13WaitSignalM) - 1;
+    IF g_dUserDefineIoOut13WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState13 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState13 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut13WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState13 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState13 := 0;    
+      END_IF;
+    ELSIF g_dUserDefineIoOut13WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState13 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState13 := 0;   
+      END_IF;
+    END_IF;  
+  50:(*手动控制开启*)
+    IF bTriggerOut13 THEN
+      bUserDefineIoOut13 :=TRUE; 
+      g_boUserDefineIoOut13 :=TRUE;
+        UserDefineIoOuttimer13(IN:=TRUE,PT:=T#500ms);
+        IF UserDefineIoOuttimer13.Q THEN
+          IF NOT bEnableOut13 THEN
+            UserDefineIoOuttimer13(IN:=FALSE);
+            bUserDefineIoOut13 :=FALSE;
+            g_boUserDefineIoOut13 :=FALSE;
+            nUserDefineState13:=0; 
+          END_IF;  
+        END_IF; 
+    ELSE      
+     bUserDefineIoOut13 :=bEnableOut13;
+     g_boUserDefineIoOut13 :=bEnableOut13;
+    END_IF;  
+END_CASE;
+
+(*第14个用户自定义io输出
+状态机10:M代码触发自定义输出 并判断是否等待板卡输入信号到位后输出
+状态机50:手动输出自定义输出
+状态机30:M代码触发自定义输出关闭 并判断是否等待板卡输入信号到位后关闭输出
+状态机60:手动触发自定义输出关闭*)(*目前不能相互控制*)
+RTriggerUserDefineIoOut14(CLK:= (bEnableOut14  OR g_bDefineOutputEnableOut14M));
+RTriggerUserDefineIoOutOFF14(CLK:= (g_bDefineOutputEnableOutOFF14M));
+
+
+IF RTriggerUserDefineIoOut14.Q THEN
+  IF bEnableOut14 THEN
+      UserDefineIoOuttimer14(IN:=FALSE);
+      nUserDefineState14:=50;
+  ELSE
+    nUserDefineState14:=10;
+  END_IF;
+  g_bDefineOutputEnableOut14:=FALSE;
+  g_bDefineOutputEnableOutOFF14:=FALSE;
+  g_bDefineOutputEnableOut14M:=FALSE;
+END_IF;  
+
+IF RTriggerUserDefineIoOutOFF14.Q THEN
+  nUserDefineState14:=30;
+  g_bDefineOutputEnableOutOFF14:=FALSE;
+  g_bDefineOutputEnableOut14:=FALSE;
+  g_bDefineOutputEnableOutOFF14M:=FALSE;
+END_IF; 
+
+CASE nUserDefineState14 OF
+  0:(*准备状态*)
+    nUserDefineState14:=0;
+  10:(*m代码控制开启*)
+    IF g_dUserDefineIoOut14WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState14 := 15;
+    ELSE
+      nUserDefineState14 := 20;
+    END_IF; 
+  15:
+    bUserDefineIoOut14 :=TRUE;
+    g_boUserDefineIoOut14 :=TRUE;
+    M.ENABLE[204] := 0;
+    nUserDefineState14:=0;
+  20:  
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut14WaitSignalM) - 1;
+    IF g_dUserDefineIoOut14WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState14 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState14 := 0;      
+      END_IF;
+    ELSIF g_dUserDefineIoOut14WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState14 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState14 := 0;      
+      END_IF;
+    ELSIF g_dUserDefineIoOut14WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState14 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState14 := 0;      
+      END_IF;
+    END_IF;  
+  30:(*m代码控制关闭*)
+    IF g_dUserDefineIoOut14WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState14 := 35;
+    ELSE
+      nUserDefineState14 := 40;
+    END_IF; 
+  35:  
+    bUserDefineIoOut14 :=FALSE;
+    g_boUserDefineIoOut14 :=FALSE;
+    M.ENABLE[204] := 0;
+    nUserDefineState14:=0;
+  40:
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut14WaitSignalM) - 1;
+    IF g_dUserDefineIoOut14WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState14 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState14 := 0;      
+      END_IF;
+    ELSIF g_dUserDefineIoOut14WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState14 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState14 := 0;      
+      END_IF;
+    ELSIF g_dUserDefineIoOut14WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState14 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState14 := 0;     
+      END_IF;
+    END_IF;  
+  50:(*手动控制开启*)
+    IF bTriggerOut14 THEN
+      bUserDefineIoOut14 :=TRUE; 
+      g_boUserDefineIoOut14 :=TRUE;
+        UserDefineIoOuttimer14(IN:=TRUE,PT:=T#500ms);
+        IF UserDefineIoOuttimer14.Q THEN
+          IF NOT bEnableOut14 THEN
+            UserDefineIoOuttimer14(IN:=FALSE);
+            bUserDefineIoOut14 :=FALSE;
+            g_boUserDefineIoOut14 :=FALSE;
+            nUserDefineState14:=0; 
+          END_IF;   
+        END_IF; 
+    ELSE      
+     bUserDefineIoOut14 :=bEnableOut14;
+     g_boUserDefineIoOut14 :=bEnableOut14;
+    END_IF;  
+END_CASE;
+
+
+(*第15个用户自定义io输出
+状态机10:M代码触发自定义输出 并判断是否等待板卡输入信号到位后输出
+状态机50:手动输出自定义输出
+状态机30:M代码触发自定义输出关闭 并判断是否等待板卡输入信号到位后关闭输出
+状态机60:手动触发自定义输出关闭*)(*目前不能相互控制*)
+RTriggerUserDefineIoOut15(CLK:= (bEnableOut15  OR g_bDefineOutputEnableOut15M));
+RTriggerUserDefineIoOutOFF15(CLK:= (g_bDefineOutputEnableOutOFF15M));
+
+
+IF RTriggerUserDefineIoOut15.Q THEN
+  IF bEnableOut15 THEN
+      UserDefineIoOuttimer15(IN:=FALSE);
+      nUserDefineState15:=50;
+  ELSE
+    nUserDefineState15:=10;
+  END_IF;
+  g_bDefineOutputEnableOut15:=FALSE;
+  g_bDefineOutputEnableOutOFF15:=FALSE;
+  g_bDefineOutputEnableOut15M:=FALSE;
+END_IF;  
+
+IF RTriggerUserDefineIoOutOFF15.Q THEN
+  nUserDefineState15:=30;
+  g_bDefineOutputEnableOutOFF15:=FALSE;
+  g_bDefineOutputEnableOut15:=FALSE;
+  g_bDefineOutputEnableOutOFF15M:=FALSE;
+END_IF;   
+
+CASE nUserDefineState15 OF
+  0:(*准备状态*)
+    nUserDefineState15:=0;
+  10:(*m代码控制开启*)
+    IF g_dUserDefineIoOut15WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState15 := 15;
+    ELSE
+      nUserDefineState15 := 20;
+    END_IF; 
+  15:
+    bUserDefineIoOut15 :=TRUE;
+    g_boUserDefineIoOut15 :=TRUE;
+    M.ENABLE[204] := 0;
+    nUserDefineState15:=0;
+  20:  
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut15WaitSignalM) - 1;
+    IF g_dUserDefineIoOut15WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState15 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState15 := 0;     
+      END_IF;
+    ELSIF g_dUserDefineIoOut15WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState15 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState15 := 0;     
+      END_IF;
+    ELSIF g_dUserDefineIoOut15WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState15 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState15 := 0;     
+      END_IF;
+    END_IF;  
+  30:(*m代码控制关闭*)
+    IF g_dUserDefineIoOut15WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState15 := 35;
+    ELSE
+      nUserDefineState15 := 40;
+    END_IF; 
+  35:  
+    bUserDefineIoOut15 :=FALSE;
+    g_boUserDefineIoOut15 :=FALSE;
+    M.ENABLE[204] := 0;
+    nUserDefineState15:=0;
+  40:
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut15WaitSignalM) - 1;
+    IF g_dUserDefineIoOut15WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState15 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState15 := 0; 
+      END_IF;
+    ELSIF g_dUserDefineIoOut15WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState15 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState15 := 0;   
+      END_IF;
+    ELSIF g_dUserDefineIoOut15WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState15 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState15 := 0;   
+      END_IF;
+    END_IF;  
+  50:(*手动控制开启*)
+    IF bTriggerOut15 THEN
+      bUserDefineIoOut15 :=TRUE; 
+      g_boUserDefineIoOut15 :=TRUE;
+        UserDefineIoOuttimer15(IN:=TRUE,PT:=T#500ms);
+        IF UserDefineIoOuttimer15.Q THEN
+          IF NOT bEnableOut15 THEN
+            UserDefineIoOuttimer15(IN:=FALSE);
+            bUserDefineIoOut15 :=FALSE;
+            bEnableOut15:=FALSE;
+            g_boUserDefineIoOut15 :=FALSE;
+            nUserDefineState15:=0;  
+          END_IF; 
+        END_IF; 
+    ELSE      
+     bUserDefineIoOut15 :=bEnableOut15;
+     g_boUserDefineIoOut15 :=bEnableOut15;
+    END_IF;  
+END_CASE;
+
+(*第16个用户自定义io输出
+状态机10:M代码触发自定义输出 并判断是否等待板卡输入信号到位后输出
+状态机50:手动输出自定义输出
+状态机30:M代码触发自定义输出关闭 并判断是否等待板卡输入信号到位后关闭输出
+状态机60:手动触发自定义输出关闭*)(*目前不能相互控制*)
+RTriggerUserDefineIoOut16(CLK:= (bEnableOut16  OR g_bDefineOutputEnableOut16 OR g_bDefineOutputEnableOut16M));
+RTriggerUserDefineIoOutOFF16(CLK:= (g_bDefineOutputEnableOutOFF16M OR g_bDefineOutputEnableOutOFF16));
+
+
+IF RTriggerUserDefineIoOut16.Q THEN
+  IF bEnableOut16 THEN
+      UserDefineIoOuttimer16(IN:=FALSE);
+      nUserDefineState16:=50;
+      nUserDefineTriggerWay16:=1;
+  ELSE
+    nUserDefineState16:=10;
+    nUserDefineTriggerWay16:=2;
+  END_IF;
+  g_bDefineOutputEnableOut16:=FALSE;
+  g_bDefineOutputEnableOutOFF16:=FALSE;
+  g_bDefineOutputEnableOut16M:=FALSE;
+END_IF;  
+
+IF RTriggerUserDefineIoOutOFF16.Q THEN
+  nUserDefineState16:=30;
+  nUserDefineTriggerWay16:=2;
+  g_bDefineOutputEnableOutOFF16:=FALSE;
+  g_bDefineOutputEnableOut16:=FALSE;
+  g_bDefineOutputEnableOutOFF16M:=FALSE;
+END_IF;   
+
+CASE nUserDefineState16 OF
+  0:(*准备状态*)
+    nUserDefineState16:=0;
+  10:(*m代码控制开启*)
+    IF g_dUserDefineIoOut16WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState16 := 15;
+    ELSE
+      nUserDefineState16 := 20;
+    END_IF; 
+  15:
+    bUserDefineIoOut16 :=TRUE;
+    g_boUserDefineIoOut16 :=TRUE;
+    M.ENABLE[204] := 0;
+    nUserDefineState16:=0;
+  20:  
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut16WaitSignalM) - 1;
+    IF g_dUserDefineIoOut16WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState16 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState16 := 0;     
+      END_IF;
+    ELSIF g_dUserDefineIoOut16WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState16 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState16 := 0;     
+      END_IF;
+    ELSIF g_dUserDefineIoOut16WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState16 := 15;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState16 := 0;     
+      END_IF;
+    END_IF;  
+  30:(*m代码控制关闭*)
+    IF g_dUserDefineIoOut16WaitBoardInputSignalM = 0.0 THEN
+      nUserDefineState16 := 35;
+    ELSE
+      nUserDefineState16 := 40;
+    END_IF; 
+  35:  
+    bUserDefineIoOut16 :=FALSE;
+    g_boUserDefineIoOut16 :=FALSE;
+    M.ENABLE[204] := 0;
+    nUserDefineState16:=0;
+  40:
+    nUserDefineIoOutIndex :=LREAL_TO_INT(g_dUserDefineIoOut16WaitSignalM) - 1;
+    IF g_dUserDefineIoOut16WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex] THEN
+        nUserDefineState16 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState16 := 0; 
+      END_IF;
+    ELSIF g_dUserDefineIoOut16WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 24] THEN
+        nUserDefineState16 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState16 := 0;   
+      END_IF;
+    ELSIF g_dUserDefineIoOut16WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nUserDefineIoOutIndex + 48] THEN
+        nUserDefineState16 := 35;
+      ELSE
+        M.ENABLE[204] := 0;
+        nUserDefineState16 := 0;   
+      END_IF;
+    END_IF;  
+  50:(*手动控制开启*)
+    IF bTriggerOut16 THEN
+      bUserDefineIoOut16 :=TRUE; 
+      g_boUserDefineIoOut16 :=TRUE;
+        UserDefineIoOuttimer16(IN:=TRUE,PT:=T#500ms);
+        IF UserDefineIoOuttimer16.Q THEN
+          IF NOT bEnableOut16 THEN
+            UserDefineIoOuttimer16(IN:=FALSE);
+            bUserDefineIoOut16 :=FALSE;
+            bEnableOut16:=FALSE;
+            g_boUserDefineIoOut16 :=FALSE;
+            nUserDefineState16:=0;  
+          END_IF; 
+        END_IF; 
+    ELSE      
+     bUserDefineIoOut16 :=bEnableOut16;
+     g_boUserDefineIoOut16 :=bEnableOut16;
+    END_IF;  
+END_CASE;
+
+
+IF g_nMachineType=4 OR g_nMachineType=5 THEN
+  IF g_bPlcResetBuffer THEN
+    bUserDefineIoOut16:= false;
+    g_boUserDefineIoOut16:= false;
+    UserDefineIoOuttimer16(IN:=FALSE);
+  END_IF;
+END_IF;
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[自定义16个io输出]]></xhtml:p>
+  </documentation>
+</pou>

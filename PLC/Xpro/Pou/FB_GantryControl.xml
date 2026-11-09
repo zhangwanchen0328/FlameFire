@@ -1,0 +1,617 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_GantryControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_fiMasterPosFb">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主轴位置反馈，引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiSlavePosFb">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[从轴位置反馈，引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiMotionPosCmd">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主轴命令，引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dMasterPosFb">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主轴位置反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dXAxisMasterPosFb">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[X轴主轴位置反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMasterPosCmd">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主轴命令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dXMasterPosCmd">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主轴命令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dXAxisMasterPosCmd">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[X轴主轴命令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSlavePosFb">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[从轴位置反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dXAxisSlavePosFb">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[X轴从轴位置反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSlavePosCmd">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[从轴命令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dXAxisSlavePosCmd">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[X轴从轴命令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dNegCalPosFbError">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[负向校准主从误差值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dXAxisNegCalPosFbError">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[x轴负向校准主从误差值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dPosCalPosFbError">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[正向校准主从误差值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dXAxisPosCalPosFbError">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[正向校准主从误差值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dGantryPosFbError">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主从轴偏差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dXAxisGantryPosFbError">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[X轴主从轴偏差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dLastMasterPosCmd">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上一次的主轴命令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dLastXAxisMasterPosCmd">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上一次X轴的主轴命令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dLastSlavePosCmd">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上一次的从轴命令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dLastXAxisSlavePosCmd">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上一次X轴的从轴命令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMasterPosFbError">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主轴误差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dXAxisMasterPosFbError">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[X轴主轴误差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSlavePosFbError">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[从轴误差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dXAxisSlavePosFbError">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[X轴从轴误差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMotionPosFb">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主轴的反馈给Motion]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dXAxisMotionPosFb">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[X轴主轴的反馈给Motion]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dGantryAxisServoError">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[龙门轴误差值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dXGantryAxisServoError">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[龙门X轴误差值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSameDirection">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bXAxisSameDirection">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bGantryCalEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bGantryXAxisCalEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_foMotionPosFb">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[反馈给Motion的位置反馈，引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_foMasterPosCmd">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主轴命令，引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_foSlavePosCmd">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[从轴命令，引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_foMasterPosFbError">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主轴误差，引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_foSlavePosFbError">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[从轴误差，引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Rtring">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dYAxisOutPut_Scale">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y轴传动比]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dXAxisOutPut_Scale">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[X轴传动比]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TonYAxisStopPosError">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonXAxisStopPosError">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonYY1AxisStopPosError">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonXX1AxisStopPosError">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonYY1AxisStopPosError1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonXX1AxisStopPosError1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="dposDelt">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dposDelt1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+
+g_foMasterPosCmd := g_fiMotionPosCmd;
+IF g_foMasterPosCmd > 2147483647.0 THEN
+  g_foMasterPosCmd := g_foMasterPosCmd - 4294967296.0;
+ELSIF g_foMasterPosCmd < -2147483648.0 THEN
+  g_foMasterPosCmd := g_foMasterPosCmd + 4294967296.0;
+END_IF;
+(*Motion实际位置反馈输出控制命令*)
+g_foMotionPosFb := g_fiMasterPosFb * g_fYMasterEncoderDirection; (*位置反馈*编码器方向*)
+(*输出位置控制命令给伺服目标位置参数*)
+IF g_bDriveEnable THEN
+;
+ELSE
+  (*不上使能的时候,主轴位置命令等于反馈*)
+  g_foMasterPosCmd := g_fiMasterPosFb * g_fYMasterEncoderDirection;
+END_IF;
+
+
+IF g_fiMotionPosCmd - dMasterPosCmd <= -2147483648.0 THEN
+	dposDelt := (g_fiMotionPosCmd - dMasterPosCmd)+4294967296.0;
+ELSIF g_fiMotionPosCmd - dMasterPosCmd >=  2147483648.0 THEN
+	dposDelt := (g_fiMotionPosCmd - dMasterPosCmd)-4294967296.0;
+ELSE
+  dposDelt := (g_fiMotionPosCmd - dMasterPosCmd);
+END_IF;
+
+dMasterPosCmd := g_fiMotionPosCmd;
+IF bSameDirection THEN
+  g_foSlavePosCmd := dLastSlavePosCmd + dposDelt;
+ELSE
+  g_foSlavePosCmd := dLastSlavePosCmd - dposDelt;
+END_IF;
+
+
+
+IF g_foSlavePosCmd > 2147483647.0 THEN
+  g_foSlavePosCmd := g_foSlavePosCmd - 4294967296.0;
+ELSIF g_foSlavePosCmd < -2147483648.0 THEN
+  g_foSlavePosCmd := g_foSlavePosCmd + 4294967296.0;
+END_IF;
+dLastSlavePosCmd := g_foSlavePosCmd;
+
+
+(*输出位置控制命令给伺服目标位置参数*)
+IF g_bDriveEnable THEN
+ ;
+ELSE
+  (*不上使能的时候,从轴位置命令等于反馈*)
+  g_foSlavePosCmd := g_fiSlavePosFb *g_fYSlaveEncoderDirection;  (*位置反馈*编码器方向*)
+  dLastSlavePosCmd:=g_fiSlavePosFb *g_fYSlaveEncoderDirection;
+END_IF;
+
+IF g_foMasterPosCmd - g_fiMasterPosFb *g_fYMasterEncoderDirection <= -2147483648.0 THEN
+	g_MasterServoError := (g_foMasterPosCmd - g_fiMasterPosFb *g_fYMasterEncoderDirection)+4294967296.0;
+ELSIF g_foMasterPosCmd - g_fiMasterPosFb *g_fYMasterEncoderDirection >=  2147483648.0 THEN
+	g_MasterServoError := (g_foMasterPosCmd - g_fiMasterPosFb *g_fYMasterEncoderDirection)-4294967296.0;
+ELSE
+	g_MasterServoError := (g_foMasterPosCmd - g_fiMasterPosFb *g_fYMasterEncoderDirection);
+END_IF;
+
+IF g_foSlavePosCmd - g_fiSlavePosFb *g_fYSlaveEncoderDirection <= -2147483648.0 THEN
+	g_SlaveServoError := (g_foSlavePosCmd - g_fiSlavePosFb *g_fYSlaveEncoderDirection)+4294967296.0;
+ELSIF g_foSlavePosCmd - g_fiSlavePosFb *g_fYSlaveEncoderDirection >=  2147483648.0 THEN
+	g_SlaveServoError := (g_foSlavePosCmd - g_fiSlavePosFb *g_fYSlaveEncoderDirection)-4294967296.0;
+ELSE
+	g_SlaveServoError := (g_foSlavePosCmd - g_fiSlavePosFb *g_fYSlaveEncoderDirection);
+END_IF;
+
+
+
+IF g_bDriveEnable THEN
+  IF bSameDirection THEN
+    dGantryAxisServoError := g_MasterServoError - g_SlaveServoError;
+  ELSE
+    dGantryAxisServoError := g_MasterServoError + g_SlaveServoError;
+  END_IF;
+ELSE
+  dGantryAxisServoError := 0.0;
+END_IF;
+g_SlaveFollowError := g_SlaveServoError*dYAxisOutPut_Scale;
+
+g_dGantryAxisJointErr := dGantryAxisServoError * dYAxisOutPut_Scale;
+
+
+
+
+(*X龙门*)
+g_foXAxisPosCmd := g_fiXAxisPosCmd;
+IF g_foXAxisPosCmd > 2147483647.0 THEN	
+  g_foXAxisPosCmd := g_foXAxisPosCmd - 4294967296.0;
+ELSIF g_foXAxisPosCmd < -2147483648.0 THEN
+  g_foXAxisPosCmd := g_foXAxisPosCmd + 4294967296.0;
+END_IF;
+(*Motion实际位置反馈输出控制命令*)
+g_foXAxisPosFb := g_fiXAxisPosFb * g_fXMasterEncoderDirection; (*位置反馈*编码器方向*)
+(*输出位置控制命令给伺服目标位置参数*)
+IF g_bDriveEnable THEN
+;
+ELSE
+  (*不上使能的时候,主轴位置命令等于反馈*)
+  g_foXAxisPosCmd := g_fiXAxisPosFb * g_fXMasterEncoderDirection;
+END_IF;
+
+
+IF g_fiXAxisPosCmd - dXMasterPosCmd <= -2147483648.0 THEN
+	dposDelt1 := (g_fiXAxisPosCmd - dXMasterPosCmd)+4294967296.0;
+ELSIF g_fiXAxisPosCmd - dMasterPosCmd >=  2147483648.0 THEN
+	dposDelt1 := (g_fiXAxisPosCmd - dXMasterPosCmd)-4294967296.0;
+ELSE
+  dposDelt1 := (g_fiXAxisPosCmd - dXMasterPosCmd);
+END_IF;
+
+dXMasterPosCmd := g_fiXAxisPosCmd;
+IF bXAxisSameDirection THEN
+  g_foXAxisSlavePosCmd := dLastXAxisSlavePosCmd + dposDelt1;
+ELSE
+  g_foXAxisSlavePosCmd := dLastXAxisSlavePosCmd - dposDelt1;
+END_IF;
+
+
+
+IF g_foXAxisSlavePosCmd > 2147483647.0 THEN
+  g_foXAxisSlavePosCmd := g_foXAxisSlavePosCmd - 4294967296.0;
+ELSIF g_foXAxisSlavePosCmd < -2147483648.0 THEN
+  g_foXAxisSlavePosCmd := g_foXAxisSlavePosCmd + 4294967296.0;
+END_IF;
+dLastXAxisSlavePosCmd := g_foXAxisSlavePosCmd;
+
+
+(*输出位置控制命令给伺服目标位置参数*)
+IF g_bDriveEnable THEN
+ ;
+ELSE
+  (*不上使能的时候,从轴位置命令等于反馈*)
+  g_foXAxisSlavePosCmd := g_fiXAxisSlavePosFb *g_fXSlaveEncoderDirection;  (*位置反馈*编码器方向*)
+  dLastXAxisSlavePosCmd:=g_fiXAxisSlavePosFb *g_fXSlaveEncoderDirection;
+END_IF;
+
+IF g_foXAxisPosCmd - g_fiXAxisPosFb *g_fXMasterEncoderDirection <= -2147483648.0 THEN
+	g_XMasterServoError := (g_foXAxisPosCmd - g_fiXAxisPosFb *g_fXMasterEncoderDirection)+4294967296.0;
+ELSIF g_foXAxisPosCmd - g_fiXAxisPosFb *g_fXMasterEncoderDirection >=  2147483648.0 THEN
+	g_XMasterServoError := (g_foXAxisPosCmd - g_fiXAxisPosFb *g_fXMasterEncoderDirection)-4294967296.0;
+ELSE
+	g_XMasterServoError := (g_foXAxisPosCmd - g_fiXAxisPosFb *g_fXMasterEncoderDirection);
+END_IF;
+
+IF g_foXAxisSlavePosCmd - g_fiXAxisSlavePosFb *g_fXSlaveEncoderDirection <= -2147483648.0 THEN
+	g_XSlaveServoError := (g_foXAxisSlavePosCmd - g_fiXAxisSlavePosFb *g_fXSlaveEncoderDirection)+4294967296.0;
+ELSIF g_foXAxisSlavePosCmd - g_fiXAxisSlavePosFb *g_fXSlaveEncoderDirection >=  2147483648.0 THEN
+	g_XSlaveServoError := (g_foXAxisSlavePosCmd - g_fiXAxisSlavePosFb *g_fXSlaveEncoderDirection)-4294967296.0;
+ELSE
+	g_XSlaveServoError := (g_foXAxisSlavePosCmd - g_fiXAxisSlavePosFb *g_fXSlaveEncoderDirection);
+END_IF;
+
+
+
+IF g_bDriveEnable THEN
+  IF bXAxisSameDirection THEN
+    dXGantryAxisServoError := g_XMasterServoError - g_XSlaveServoError;
+  ELSE
+    dXGantryAxisServoError := g_XMasterServoError + g_XSlaveServoError;
+  END_IF;
+ELSE
+  dXGantryAxisServoError := 0.0;
+END_IF;
+g_XSlaveFollowError := g_XSlaveServoError*dXAxisOutPut_Scale;
+
+g_dXGantryAxisJointErr := dXGantryAxisServoError * dXAxisOutPut_Scale;
+
+
+
+
+(*龙门轴误差报警*)
+IF ABS(g_dGantryAxisJointErr) >= g_dGantryAxisJointErrorSet AND g_bGantryCalEnable AND g_bDriveEnable THEN
+  TonYAxisStopPosError(IN := TRUE,PT := LREAL_TO_TIME(FUN_MSTOS(g_dYAllowGantryFollowErrorTime)));
+  IF TonYAxisStopPosError.Q THEN
+    g_bYY1FollowErrorAlarm := TRUE;
+    TonYAxisStopPosError(IN := FALSE);
+  END_IF;
+ELSE
+  g_bYY1FollowErrorAlarm := FALSE;
+   TonYAxisStopPosError(IN := FALSE);
+END_IF;
+(*X龙门轴误差报警*)
+IF ABS(g_dXGantryAxisJointErr) >= g_dXGantryAxisJointErrorSet AND g_bXGantryCalEnable AND g_bDriveEnable THEN
+  TonXAxisStopPosError(IN := TRUE,PT := LREAL_TO_TIME(FUN_MSTOS(g_dXAllowGantryFollowErrorTime)));
+  IF TonXAxisStopPosError.Q THEN
+	g_bXX1FollowErrorAlarm := TRUE;
+    TonXAxisStopPosError(IN := FALSE);
+  END_IF;
+ELSE
+  g_bXX1FollowErrorAlarm := FALSE;
+   TonXAxisStopPosError(IN := FALSE);
+END_IF;
+(*龙门轴静止时误差报警*)
+IF ABS(g_MasterServoError*dYaxisOutput_Scale)>g_dYY1AxisStopPosErrorSet AND g_fiXYUCurrentSpeed<=0.01 AND g_bGantryCalEnable THEN
+  TonYY1AxisStopPosError(IN := TRUE, PT := LREAL_TO_TIME(FUN_MSTOS(g_dYAllowGantryFollowErrorTime)));
+  IF TonYY1AxisStopPosError.Q THEN
+    g_bYAxisStopPosErrorAlarm := TRUE;
+  END_IF;
+ELSE
+  g_bYAxisStopPosErrorAlarm := FALSE;
+  TonYY1AxisStopPosError(IN := FALSE);
+END_IF;
+
+IF g_bGantryCalEnable AND ABS(g_SlaveServoError*dYaxisOutput_Scale)>g_dYY1AxisStopPosErrorSet AND g_fiXYUCurrentSpeed<=0.01 THEN
+  TonYY1AxisStopPosError1(IN := TRUE, PT := LREAL_TO_TIME(FUN_MSTOS(g_dYAllowGantryFollowErrorTime)));
+  IF TonYY1AxisStopPosError1.Q THEN
+    g_bY1AxisStopPosErrorAlarm := TRUE;
+  END_IF;
+ELSE
+  g_bY1AxisStopPosErrorAlarm := FALSE;
+  TonYY1AxisStopPosError1(IN := FALSE);
+END_IF;
+
+IF ABS(g_XMasterServoError*dXaxisOutput_Scale)>g_dXX1AxisStopPosErrorSet AND g_fiXYUCurrentSpeed<=0.01 AND g_bXGantryCalEnable THEN
+  TonXX1AxisStopPosError(IN := TRUE, PT := LREAL_TO_TIME(FUN_MSTOS(g_dXAllowGantryFollowErrorTime)));
+  IF TonXX1AxisStopPosError.Q THEN
+    g_bXAxisStopPosErrorAlarm := TRUE;
+  END_IF;
+ELSE
+  g_bXAxisStopPosErrorAlarm := FALSE;
+  TonXX1AxisStopPosError(IN := FALSE);
+END_IF;
+
+IF g_bXGantryCalEnable AND ABS(g_XSlaveServoError*dXaxisOutput_Scale)>g_dXX1AxisStopPosErrorSet AND g_fiXYUCurrentSpeed<=0.01 THEN
+  TonXX1AxisStopPosError1(IN := TRUE, PT := LREAL_TO_TIME(FUN_MSTOS(g_dXAllowGantryFollowErrorTime)));
+  IF TonXX1AxisStopPosError1.Q THEN
+    g_bX1AxisStopPosErrorAlarm := TRUE;
+  END_IF;
+ELSE
+  g_bX1AxisStopPosErrorAlarm := FALSE;
+  TonXX1AxisStopPosError1(IN := FALSE);
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

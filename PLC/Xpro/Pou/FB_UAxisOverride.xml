@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_UAxisOverride" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_UOverride">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+      </variable>
+      <variable name="g_biUOverEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_niUOverFactor">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dCurOverride">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_boUOverDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bOverEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nOverFactor">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="1.0"/>
+        </initialValue>
+      </variable>
+      <variable name="bOverDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[g_UOverride.Enable := TRUE;
+g_UOverride.VelFactor := g_dCurOverride;
+(*IF bOverEnable THEN
+  g_UOverride.Enable := bOverEnable;
+  g_UOverride.VelFactor := nOverFactor;
+  bOverDone := g_UOverride.Enabled;
+ELSIF g_biUOverEnable THEN
+  g_UOverride.Enable := g_biUOverEnable;
+  g_UOverride.VelFactor := g_niUOverFactor;
+  g_boUOverDone := g_UOverride.Enabled;
+END_IF;
+
+IF NOT bOverEnable THEN
+  bOverDone := FALSE;
+END_IF;
+
+IF NOT g_biUOverEnable THEN
+  g_boUOverDone := FALSE;
+END_IF;*)]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ClearNCAlarm" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_ZReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Axis_Z">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nClearState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bClearAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nCycle">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="bClearNcOrPlcAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[0:只清PLC报警 1:全部清掉]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger(CLK := bClearAlarm);
+
+IF R_Trigger.Q THEN
+  nClearState := 3;
+END_IF;
+
+CASE nClearState OF
+  0:
+    nClearState := 0;
+  3:
+    IF bClearNcOrPlcAlarm THEN
+      FOR nCycle := 0 TO 999 BY 1 DO 
+        g_Alarm.alarmArray[nCycle] := 0;
+        g_NcAlarm.alarmArray[nCycle]:= 0;
+      END_FOR;
+      g_boCNCMoveDisable := FALSE;
+    ELSE
+      FOR nCycle := 0 TO 999 BY 1 DO 
+        g_Alarm.alarmArray[nCycle] := 0;
+      END_FOR;
+      g_boCNCMoveDisable := FALSE;
+    END_IF;
+    nClearState := 4;
+  4:
+    nClearState := 0;  
+    bClearAlarm := FALSE;
+END_CASE;
+    ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

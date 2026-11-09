@@ -1,0 +1,306 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SustainPower" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_Sustain1Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain2Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain3Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain7Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain8Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain9Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bSustainsPower1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainsPower2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainsPower3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainsPower7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainsPower8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainsPower9">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bSustainAxis1UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainAxis2UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainAxis3UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainAxis7UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainAxis8UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainAxis9UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="F_PowerOff">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake1">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake2">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake3">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake4">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake5">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake6">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[F_PowerOff(CLK := g_bDriveEnable);
+IF F_PowerOff.Q THEN
+  bSustainsPower1 := FALSE;
+  bSustainsPower2 := FALSE;
+  bSustainsPower3 := FALSE;
+  bSustainsPower7 := FALSE;
+  bSustainsPower8 := FALSE;
+  bSustainsPower9 := FALSE;
+END_IF;
+
+
+
+IF g_Sustain1Power.Error THEN
+  bSustainsPower1:= FALSE;
+END_IF;
+
+AxisPowerBrake(
+	bPower := bSustainsPower1,
+    AxisRef := REF(Axis_Sustain1),
+    HomeSignal := g_nSustainHomeSignal1,
+    HomeMode := g_nS1HomeMode,
+    AxisPosLimit := NOT g_bSustain1PosLimit,
+    AxisNegLimit := NOT g_bSustain1NegLimit,
+    AxisPower := REF(g_Sustain1Power),
+    OutBrake => g_boSupportAxis1HoldBrake);
+
+
+IF g_Sustain2Power.Error THEN
+  bSustainsPower2 := FALSE;
+END_IF;
+AxisPowerBrake1(
+	bPower := bSustainsPower2,
+    AxisRef := REF(Axis_Sustain2),
+    HomeSignal := g_nSustainHomeSignal2,
+    HomeMode := g_nS2HomeMode,
+    AxisPosLimit := NOT g_bSustain2PosLimit,
+    AxisNegLimit := NOT g_bSustain2NegLimit,
+    AxisPower := REF(g_Sustain2Power),
+    OutBrake => g_boSupportAxis2HoldBrake);
+
+
+IF g_Sustain3Power.Error THEN
+  bSustainsPower3 := FALSE;
+END_IF;
+AxisPowerBrake2(
+	bPower := bSustainsPower3,
+    AxisRef := REF(Axis_Sustain3),
+    HomeSignal := g_nSustainHomeSignal3,
+    HomeMode := g_nS3HomeMode,
+    AxisPosLimit := NOT g_bSustain3PosLimit,
+    AxisNegLimit := NOT g_bSustain3NegLimit,
+    AxisPower := REF(g_Sustain3Power),
+    OutBrake => g_boSupportAxis3HoldBrake);
+
+
+IF g_Sustain7Power.Error THEN
+  bSustainsPower7 := FALSE;
+END_IF;
+AxisPowerBrake3(
+	bPower := bSustainsPower7,
+    AxisRef := REF(Axis_Sustain7),
+    HomeSignal := g_nSustainHomeSignal7,
+    HomeMode := g_nS4HomeMode,
+    AxisPosLimit := NOT g_bSustain7PosLimit,
+    AxisNegLimit := NOT g_bSustain7NegLimit,
+    AxisPower := REF(g_Sustain7Power),
+    OutBrake => g_boSupportAxis4HoldBrake);
+
+
+IF g_Sustain8Power.Error THEN
+  bSustainsPower8 := FALSE;
+END_IF;
+AxisPowerBrake4(
+	bPower := bSustainsPower8,
+    AxisRef := REF(Axis_Sustain8),
+    HomeSignal := g_nSustainHomeSignal8,
+    HomeMode := g_nS5HomeMode,
+    AxisPosLimit := NOT g_bSustain8PosLimit,
+    AxisNegLimit := NOT g_bSustain8NegLimit,
+    AxisPower := REF(g_Sustain8Power),
+    OutBrake => g_boSupportAxis5HoldBrake);
+
+
+IF g_Sustain9Power.Error THEN
+  bSustainsPower9 := FALSE;
+END_IF;
+
+AxisPowerBrake5(
+	bPower := bSustainsPower9,
+    AxisRef := REF(Axis_Sustain9),
+    HomeSignal := g_nSustainHomeSignal9,
+    HomeMode := g_nS6HomeMode,
+    AxisPosLimit := NOT g_bSustain9PosLimit,
+    AxisNegLimit := NOT g_bSustain9NegLimit,
+    AxisPower := REF(g_Sustain9Power),
+    OutBrake => g_boSupportAxis6HoldBrake);
+  
+
+
+IF ABS(Axis_Sustain1.NCTOPLC.ACTPOS - Axis_Sustain1.NCTOPLC.SETPOS) > g_fS1AxisMaxPosError THEN
+  g_bS1AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bS1AxisPosErrorAlarm := FALSE;
+END_IF;
+IF ABS(Axis_Sustain2.NCTOPLC.ACTPOS - Axis_Sustain2.NCTOPLC.SETPOS) > g_fS2AxisMaxPosError THEN
+  g_bS2AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bS2AxisPosErrorAlarm := FALSE;
+END_IF;
+IF ABS(Axis_Sustain3.NCTOPLC.ACTPOS - Axis_Sustain3.NCTOPLC.SETPOS) > g_fS3AxisMaxPosError THEN
+  g_bS3AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bS3AxisPosErrorAlarm := FALSE;
+END_IF;
+IF ABS(Axis_Sustain7.NCTOPLC.ACTPOS - Axis_Sustain7.NCTOPLC.SETPOS) > g_fS4AxisMaxPosError THEN
+  g_bS4AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bS4AxisPosErrorAlarm := FALSE;
+END_IF;
+IF ABS(Axis_Sustain8.NCTOPLC.ACTPOS - Axis_Sustain8.NCTOPLC.SETPOS) > g_fS5AxisMaxPosError THEN
+  g_bS5AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bS5AxisPosErrorAlarm := FALSE;
+END_IF;
+IF ABS(Axis_Sustain9.NCTOPLC.ACTPOS - Axis_Sustain9.NCTOPLC.SETPOS) > g_fS6AxisMaxPosError THEN
+  g_bS6AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bS6AxisPosErrorAlarm := FALSE;
+END_IF;
+IF ABS(Axis_S7.NCTOPLC.ACTPOS - Axis_S7.NCTOPLC.SETPOS) > g_fS7AxisMaxPosError THEN
+  g_bS7AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bS7AxisPosErrorAlarm := FALSE;
+END_IF;
+IF ABS(Axis_S8.NCTOPLC.ACTPOS - Axis_S8.NCTOPLC.SETPOS) > g_fS8AxisMaxPosError THEN
+  g_bS8AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bS8AxisPosErrorAlarm := FALSE;
+END_IF;
+IF ABS(Axis_S9.NCTOPLC.ACTPOS - Axis_S9.NCTOPLC.SETPOS) > g_fS9AxisMaxPosError THEN
+  g_bS9AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bS9AxisPosErrorAlarm := FALSE;
+END_IF;
+IF ABS(Axis_S10.NCTOPLC.ACTPOS - Axis_S10.NCTOPLC.SETPOS) > g_fS10AxisMaxPosError THEN
+  g_bS10AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bS10AxisPosErrorAlarm := FALSE;
+END_IF;
+IF ABS(Axis_S11.NCTOPLC.ACTPOS - Axis_S11.NCTOPLC.SETPOS) > g_fS11AxisMaxPosError THEN
+  g_bS11AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bS11AxisPosErrorAlarm := FALSE;
+END_IF;
+IF ABS(Axis_S12.NCTOPLC.ACTPOS - Axis_S12.NCTOPLC.SETPOS) > g_fS12AxisMaxPosError THEN
+  g_bS12AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bS12AxisPosErrorAlarm := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

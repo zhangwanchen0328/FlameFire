@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_EmergencyStop" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bControlPanelEmergencyStop">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[急停]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boEmergencyStopOut">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boCNCMoveDisable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLaserCuttingEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bgas_enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="AxisNum">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF g_bControlPanelEmergencyStop THEN
+  g_boEmergencyStopOut := FALSE;
+  g_boCNCMoveDisable := TRUE;
+  g_bLaserCuttingEnable := FALSE;
+  g_bgas_enable := FALSE;
+  g_bLaserDotEnable := FALSE;
+  g_bLaserPowerOnEnable := FALSE;
+   (*关火,可燃气,助燃气*)
+   g_bIgnitionDone := FALSE;
+   g_bCombustibleGas_enable := FALSE;
+   g_bOxidizingGas_enable := FALSE;
+  IF g_nMotionMode=3 OR g_nMotionMode = 5 THEN
+    g_boCNCMoveDisable := TRUE;
+  END_IF; 
+ELSE
+  g_boEmergencyStopOut := TRUE;
+END_IF;
+
+
+
+
+FOR AxisNum := 0 TO g_nAxisNumber BY 1 DO
+  IF g_Alarm.alarmArray[19+AxisNum] <> 0 THEN
+    g_boEmergencyStopOut := FALSE;
+  END_IF;
+END_FOR;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FAxisMotionCtrl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_nFAxisControlType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变焦轴类型 1：轴控制 0 :模拟量控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bFAxisEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAnalogEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_dZoomPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dAnalogPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dLastZoomPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bFAbsoluteEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBFAxisAnalogControl">
+        <type>
+          <derived name="FB_FAxisAnalogControl"/>
+        </type>
+      </variable>
+      <variable name="FBFAxisBM11XCtl">
+        <type>
+          <derived name="FB_FAxisBM11XControl"/>
+        </type>
+      </variable>
+      <variable name="FBFAxisBS12KCtl">
+        <type>
+          <derived name="FB_FAxisBS12K"/>
+        </type>
+      </variable>
+      <variable name="FBFAxisBM115ECtl">
+        <type>
+          <derived name="FB_FAxisBM115EControl"/>
+        </type>
+      </variable>
+      <variable name="FBFAxisBM111ECtl">
+        <type>
+          <derived name="FB_FAxisBM111EControl"/>
+        </type>
+      </variable>
+      <variable name="FBFAxisBM114ECtl">
+        <type>
+          <derived name="FB_FAxisBM114EControl"/>
+        </type>
+      </variable>
+      <variable name="FBFAxisBS12KE">
+        <type>
+          <derived name="FB_FAxisBS12KE"/>
+        </type>
+      </variable>
+      <variable name="FBFAxisBS04K">
+        <type>
+          <derived name="FB_FAxisBS04K"/>
+        </type>
+      </variable>
+      <variable name="FBFAxisBS06K">
+        <type>
+          <derived name="FB_FAxisBS06K"/>
+        </type>
+      </variable>
+      <variable name="FBBS06CAT">
+        <type>
+          <derived name="FB_BS06CAT"/>
+        </type>
+      </variable>
+      <variable name="FBBS03CAT">
+        <type>
+          <derived name="FB_BS03CATEB17"/>
+        </type>
+      </variable>
+      <variable name="FBPresterAutoFocusControl">
+        <type>
+          <derived name="FB_PresterAutoFocusControl"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF g_nFAxisControlType = 0 THEN
+  g_bFocusDone := TRUE;
+  RETURN;
+END_IF;
+   
+   (*变焦轴类型 0 :手动头关闭 1 ：F050 2 轴控制BM109,110,111,114S,115,BM06K 3: 普雷斯特 4:BM11X 5:BS12K,BS06K总线 5:BS12K  6:BM115E 7.BM116E 8.BM111E 9.BM114E 
+  10.BS04K,BS06K,BS08K,BS12K,BS20K,BS30K模拟量 11:BS04K总线 12.BS04KE,BS06KE,BS08KE,BS12KE,BS15KE,BS20KE,BS25KE,BS30KE*)
+CASE g_nFAxisControlType OF
+  1:  
+    IF g_dZoomPosition <> dLastZoomPosition THEN(*调焦坐标变化时，触发模拟量调焦*)
+      g_bAnalogEnable := TRUE;      
+      g_dAnalogPosition := g_dZoomPosition;        
+    END_IF;
+    g_bFocusDone := TRUE;
+    FBFAxisAnalogControl();
+    g_nFAxisControl := 1;
+  2:  
+    IF g_boFHomeDone THEN         
+      g_dAnalogPosition := g_dZoomPosition; 
+      g_bFAbsoluteEnable := g_bFocusEnable; 
+    END_IF;
+    g_nFAxisControl := 2;
+  3:
+	g_bAnalogEnable := g_bFocusEnable;      
+    g_dAnalogPosition := g_dZoomPosition; 
+    FBPresterAutoFocusControl(); 
+    g_nFAxisControl := 1;
+  4: 
+    g_dAnalogPosition := g_dZoomPosition; 
+    g_bFBM11XEnable := g_bFocusEnable;   (*去BM11X控制调焦*)   
+    FBFAxisBM11XCtl();
+    g_nFAxisControl := 3;
+  5: 
+    g_dAnalogPosition := g_dZoomPosition; 
+    g_bFBS12KEnable := g_bFocusEnable;   (*去BS12K控制调焦*)   
+    FBFAxisBS12KCtl(); 
+    g_nFAxisControl := 3;
+  6:
+    g_dAnalogPosition := g_dZoomPosition; 
+    g_bFBM115EEnable := g_bFocusEnable;   (*去BM115E控制调焦*)    
+    FBFAxisBM115ECtl(); 
+    g_nFAxisControl := 3;
+  7:(*BM116E*)
+    g_dAnalogPosition := g_dZoomPosition;
+    g_nFAxisControl := 3;
+  8: 
+    g_dAnalogPosition := g_dZoomPosition; 
+    g_bFBM111EEnable := g_bFocusEnable;   (*去BM111E控制调焦*)   
+    FBFAxisBM111ECtl(); 
+    g_nFAxisControl := 3;
+  9:
+    g_dAnalogPosition := g_dZoomPosition; 
+    g_bFBM114EEnable := g_bFocusEnable;   (*去BM114E控制调焦*)   
+    FBFAxisBM114ECtl();
+    g_nFAxisControl := 3;
+  10:
+    g_bAnalogEnable := g_bFocusEnable; 
+    g_dAnalogPosition := g_dZoomPosition;   
+    FBFAxisBS06K();
+    g_nFAxisControl := 1;
+  11: (*BS04K没有聚焦镜温度，需屏蔽*)
+    g_dAnalogPosition := g_dZoomPosition; 
+    g_bBS04KEnable := g_bFocusEnable;   
+    FBFAxisBS04K();
+    g_nFAxisControl := 3;
+  12:
+    FBFAxisBS12KE();
+    g_nFAxisControl := 3;
+  13,15:  
+    IF g_boFHomeDone THEN         
+      g_dAnalogPosition := g_dZoomPosition; 
+      g_bFAbsoluteEnable := g_bFocusEnable;   (*去轴控绝对运动调焦*)   
+    END_IF;
+    FBBS03CAT();
+    g_nFAxisControl := 2;
+  14:  
+    IF g_boFHomeDone THEN         
+      g_dAnalogPosition := g_dZoomPosition; 
+      g_bFAbsoluteEnable := g_bFocusEnable;   (*去轴控绝对运动调焦*)   
+    END_IF;
+    FBBS06CAT();
+    g_nFAxisControl := 2;
+END_CASE;
+
+dLastZoomPosition := g_dZoomPosition;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

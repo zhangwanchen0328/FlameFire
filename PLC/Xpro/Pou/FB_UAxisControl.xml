@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_UAxisControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBUAxisAbs">
+        <type>
+          <derived name="FB_UAxisAbsControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBUAxisActMotion">
+        <type>
+          <derived name="FB_UActMove_Motion"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBUAxisHome">
+        <type>
+          <derived name="FB_UAxisHomeControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBUAxisJog">
+        <type>
+          <derived name="FB_UAxisJogControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBUAxisRel">
+        <type>
+          <derived name="FB_UAxisRelControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBUAxisPower">
+        <type>
+          <derived name="FB_UAxisPowerControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBUAxisOverride">
+        <type>
+          <derived name="FB_UAxisOverride"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[进给倍率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FBUAxisGear">
+        <type>
+          <derived name="FB_UAxisGearControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Axis_U">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_UReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_CReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBReadMasterAxisStatus">
+        <type>
+          <derived name="MC_AXISSTATUS"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAxis1ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBUAxisAbs();
+FBUAxisActMotion();
+FBUAxisHome();
+FBUAxisJog();
+FBUAxisRel();
+FBUAxisPower();
+FBUAxisOverride();
+FBUAxisGear();
+
+bAxis1ErrorAlarm :=  Axis_U.NCTOPLC.POWERPOSWARN OR Axis_U.NCTOPLC.POWERNEGWARN
+     OR Axis_U.NCTOPLC.ERRORCODE <>0;
+
+IF Axis_U.NCTOPLC.AxisState = 8 THEN
+  g_UReset.Execute := FALSE;
+ELSE
+  IF bAxis1ErrorAlarm AND g_bPlcResetBuffer THEN
+    g_UReset.Execute := TRUE;
+  ELSE
+    g_UReset.Execute := FALSE;   
+  END_IF;
+END_IF;
+IF Axis_C.NCTOPLC.ERRORCODE <>0 AND g_bPlcResetBuffer THEN
+  g_CReset.Execute := TRUE;
+ELSE
+  g_CReset.Execute := FALSE;   
+END_IF;
+(*刷新主轴状态*)
+FBReadMasterAxisStatus(
+AXIS := Axis_C);]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[U轴运动控制模块]]></xhtml:p>
+  </documentation>
+</pou>

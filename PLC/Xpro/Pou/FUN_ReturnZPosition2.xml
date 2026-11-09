@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FUN_ReturnZPosition2" pouType="function">
+  <interface>
+    <returnType>
+      <LREAL/>
+    </returnType>
+    <inputVars>
+      <variable name="dPendulumZeroPoint">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[摆轴角度为0时的切割高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dPendulumAngle">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[摆轴的角度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSetAngel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[设置的角度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSetAngel_Height">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[设置的角度对应的设定高度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="a">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="b">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="c">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dReturnValue">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[a := dPendulumZeroPoint;
+c := 1.5707963267949;
+IF dPendulumZeroPoint <= dSetAngel_Height + 0.01 OR ABS(dSetAngel) < 2.0 THEN
+  b := 0.0;
+ELSE
+  b := (ASIN(dSetAngel_Height / dPendulumZeroPoint) - c)/ABS(dSetAngel);
+END_IF;
+dReturnValue := a*SIN(b*dPendulumAngle + c);
+FUN_ReturnZPosition2 := dReturnValue;
+IF dReturnValue < 0.1 OR dReturnValue > dPendulumZeroPoint THEN
+  FUN_ReturnZPosition2 := dPendulumZeroPoint;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[摆轴计算Z轴随动新高度]]></xhtml:p>
+  </documentation>
+</pou>

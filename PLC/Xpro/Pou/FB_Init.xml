@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Init" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[确保整个程序只在上电时进入一次Init模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_Alarm">
+        <type>
+          <derived name="DT_ALARM"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="i">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Trigger(CLK := true);
+
+IF Trigger.Q THEN
+  (*在此添加数据初始化*)
+   g_bAnalogEnable := TRUE;
+  g_dAnalogPosition := 0.0;  (*调焦初始化*)
+  FOR i := 0 TO 99 BY 1 DO
+    g_Alarm.alarmArray[i] := 0;
+  END_FOR;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[初始化模块]]></xhtml:p>
+  </documentation>
+</pou>

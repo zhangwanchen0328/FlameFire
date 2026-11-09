@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ST_PROGRESS_PERFORM_CUTTING">
+  <baseType>
+    <struct>
+      <variable name="nMove_Piercing_Power">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="fMove_Piercing_Height">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nMove_Piercing_Time">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nMove_Piercing_Frequency">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="nMove_Piercing_Duty">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="fMove_Piercing_Gas_Pressure">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nMove_Piercing_Gas">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="bMove_Piercing_Open_Gas">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nMove_Piercing_Open_Gas_time">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="fStart_Zoom_Position">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fEnd_Zoom_Position">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bBurstingHole_Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nBurstingHole_Power">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="nBurstingHole_Height">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[爆孔高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fBurstingHole_Time">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nBurstingHole_Frequency">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="nBurstingHole_Duty">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="fBurstingHole_gas_pressure">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nBurstingHole_gas">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="bBurstingHole_open_gas">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nBurstingHole_open_gas_time">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="fBurstingHole_zoom_position">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

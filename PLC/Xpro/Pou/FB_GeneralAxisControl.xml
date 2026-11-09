@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_GeneralAxisControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBGeneralAxisABS">
+        <type>
+          <derived name="FB_GeneralAxisABS"/>
+        </type>
+      </variable>
+      <variable name="FBGeneralAxisAct">
+        <type>
+          <derived name="FB_GeneralAxisAct"/>
+        </type>
+      </variable>
+      <variable name="FBGeneralAxisRel">
+        <type>
+          <derived name="FB_GeneralAxisRel"/>
+        </type>
+      </variable>
+      <variable name="FBGeneralJogControl">
+        <type>
+          <derived name="FB_GeneralJogControl"/>
+        </type>
+      </variable>
+      <variable name="FBGeneralPowerControl">
+        <type>
+          <derived name="FB_GeneralPowerControl"/>
+        </type>
+      </variable>
+      <variable name="FBGeneralAxisHome">
+        <type>
+          <derived name="FB_GeneralAxisHome"/>
+        </type>
+      </variable>
+      <variable name="FBYDTopMaterialAdjust">
+        <type>
+          <derived name="FB_YDTopMaterialAdjust"/>
+        </type>
+      </variable>
+      <variable name="FBYDFeedingAbsAdjust">
+        <type>
+          <derived name="FB_YDFeedingAbsAdjust"/>
+        </type>
+      </variable>
+      <variable name="FBYDClawControl">
+        <type>
+          <derived name="FB_YDClawControl"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_General1_Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biBNDLoadAxisMove">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nbuttonStatus">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_CReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBGeneralAxis1Gear">
+        <type>
+          <derived name="FB_General1AxisGear"/>
+        </type>
+      </variable>
+      <variable name="FBGeneralAxisVel">
+        <type>
+          <derived name="FB_GerneralAxisVel"/>
+        </type>
+      </variable>
+      <variable name="bAxis1ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis2ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="FBSlaveControl">
+        <type>
+          <derived name="FB_GeneralSlaveAxis"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBGeneralAxisABS();
+FBGeneralAxisAct();
+FBGeneralAxisRel();
+FBGeneralJogControl();
+FBGeneralPowerControl();
+FBGeneralAxisHome();
+FBGeneralAxis1Gear();
+FBGeneralAxisVel();
+FBSlaveControl();
+
+g_doGeneral1Coordinate :=g_dGeneral1Coordinate;
+g_doGeneral2Coordinate :=g_dGeneral2Coordinate;
+IF g_nMachineType = 0 OR g_nMachineType = 9 THEN
+    nbuttonStatus := g_biBNDLoadAxisMove;
+END_IF;
+
+
+
+bAxis1ErrorAlarm :=  g_General1_Axis.NCTOPLC.POWERPOSWARN OR g_General1_Axis.NCTOPLC.POWERNEGWARN 
+     OR g_General1_Axis.NCTOPLC.ERRORCODE <>0;
+
+bAxis2ErrorAlarm :=  g_General2_Axis.NCTOPLC.POWERPOSWARN OR g_General2_Axis.NCTOPLC.POWERNEGWARN 
+     OR g_General2_Axis.NCTOPLC.ERRORCODE <>0;
+
+IF bAxis1ErrorAlarm AND g_bPlcResetBuffer THEN
+  g_General1_Reset.Execute := TRUE;
+ELSE
+  g_General1_Reset.Execute := FALSE;   
+END_IF;
+
+IF bAxis2ErrorAlarm AND g_bPlcResetBuffer THEN
+  g_General2_Reset.Execute := TRUE;
+ELSE
+  g_General2_Reset.Execute := FALSE;   
+END_IF;
+
+IF Axis_C.NCTOPLC.ERRORCODE <>0 AND g_bPlcResetBuffer THEN
+  g_CReset.Execute := TRUE;
+ELSE
+  g_CReset.Execute := FALSE;   
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

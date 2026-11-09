@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FUN_AITOPressure" pouType="function">
+  <interface>
+    <returnType>
+      <LREAL/>
+    </returnType>
+    <inputVars>
+      <variable name="uiAI">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[反馈模拟信号]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="AI">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[转换成电压值]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="dimaxPressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最大反馈气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="diminPressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最小反馈气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dimaxV">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最大反馈电压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="diminV">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最小反馈电压]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*比例阀:电压型DC0～10V控制,反馈出DC1～5V*)
+AI := DINT_TO_LREAL(uiAI)*10.0/32767.0;
+
+IF AI >= dimaxV THEN
+  FUN_AITOPressure := dimaxPressure;
+ELSIF AI <=diminV THEN
+  FUN_AITOPressure := diminPressure;
+ELSE
+  FUN_AITOPressure := (AI-diminV) *dimaxPressure/(dimaxV-diminV);
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[将电压模拟信号转化成气压:]]></xhtml:p>
+  </documentation>
+</pou>

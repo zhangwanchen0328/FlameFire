@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_QRLoadSensorJog" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_LoadJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_SensorJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bLoadJogForward">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动前进]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSensorJogForward">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动前进]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLoadJogBackward">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点后退]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSensorJogBackward">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点后退]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogFast">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF bJogFast THEN
+  g_LoadJog.Mode := 1;
+ELSE
+  g_LoadJog.Mode := 0;
+END_IF;
+
+g_LoadJog.JogForward := bLoadJogForward;
+g_LoadJog.JogBackwards := bLoadJogBackward;
+
+IF bJogFast THEN
+  g_SensorJog.Mode := 1;
+ELSE
+  g_SensorJog.Mode := 0;
+END_IF;
+
+g_SensorJog.JogForward := bSensorJogForward;
+g_SensorJog.JogBackwards := bSensorJogBackward;
+
+IF g_bPlcResetBuffer THEN
+  bSensorJogForward := FALSE;
+  bSensorJogBackward := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

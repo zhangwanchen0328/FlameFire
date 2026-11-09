@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_NCAxisDataSet" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="newVar1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*把轴放到结构体里面*)
+g_NCMoveData.NCAXISDATA[0].NCAxisName := REF(DualAxis1);
+g_NCMoveData.NCAXISDATA[1].NCAxisName := REF(DualAxis2);
+g_NCMoveData.NCAXISDATA[2].NCAxisName := REF(DualAxis3);
+g_NCMoveData.NCAXISDATA[3].NCAxisName := REF(DualAxis4);
+g_NCMoveData.NCAXISDATA[4].NCAxisName := REF(Axis_S7);
+g_NCMoveData.NCAXISDATA[5].NCAxisName := REF(Axis_S8);
+g_NCMoveData.NCAXISDATA[6].NCAxisName := REF(Axis_S9);
+g_NCMoveData.NCAXISDATA[7].NCAxisName := REF(Axis_S10);
+g_NCMoveData.NCAXISDATA[8].NCAxisName := REF(Axis_S11);
+g_NCMoveData.NCAXISDATA[9].NCAxisName := REF(Axis_S12);]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

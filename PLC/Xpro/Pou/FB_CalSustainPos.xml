@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CalSustainPos" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_fUWorkCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fCornerRadius">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dSquareLenght">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dSquareWidth">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dCircleRadius">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustainTargetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_nPipeType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBRectangleTubeCurve">
+        <type>
+          <derived name="FB_RectangleTubeCurve"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF g_nPipeType = 1 THEN
+  g_fSustainTargetPos := g_dCircleRadius;
+ELSIF g_nPipeType = 2 OR g_nPipeType = 10 OR g_nPipeType = 11 THEN
+  FBRectangleTubeCurve(
+       fCornerRadius := g_fCornerRadius,
+       dSquareLenght := g_dSquareLenght,
+       dSquareWidth := g_dSquareWidth,
+       fRotationAngle := g_fUWorkCoordinate,
+       fCurrentPos => g_fSustainTargetPos);
+ELSIF g_nPipeType = 4 OR g_nPipeType = 3 THEN
+  FBRectangleTubeCurve(
+       fCornerRadius := 0.0,
+       dSquareLenght := g_dSquareLenght,
+       dSquareWidth := g_dSquareWidth,
+       fRotationAngle := g_fUWorkCoordinate,
+       fCurrentPos => g_fSustainTargetPos); 
+ELSIF g_nPipeType = 12 THEN
+  FBRectangleTubeCurve(
+       fCornerRadius := 0.0,
+       dSquareLenght := g_dBoundRectangleWidth,
+       dSquareWidth := g_dBoundRectangleheight,
+       fRotationAngle := g_fUWorkCoordinate,
+       fCurrentPos => g_fSustainTargetPos);     
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

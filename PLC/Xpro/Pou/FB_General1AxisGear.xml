@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_General1AxisGear" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_General1_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[通用轴1结构体]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_General1_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[通用轴1结构体]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="RTring_GearIn">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTring_GearOut">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[解耦合上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGearIn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合局部变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGearOut">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[解耦合局部变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGearDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[解耦合局部变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGearChuck">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[是否检测耦合误差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nGearstate">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[解耦合状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCoordDiff">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合成功时U和U2的坐标差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCoordMaxDiff">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U和U2最大的的坐标差]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTring_GearIn(CLK := g_bGeneralAxis1GearInM OR g_bGeneralAxis1GearIn OR bGearIn);
+RTring_GearOut(CLK := g_bGeneralAxis1GearOutM OR g_bGeneralAxis1GearOut OR bGearOut);
+
+IF RTring_GearIn.Q THEN
+  bGearIn := FALSE;
+  g_bGeneralAxis1GearInM := FALSE;
+  IF g_General1_Axis.NCTOPLC.AXISSTATE <> 8 THEN
+    nGearstate := 1;
+    g_boGeneralAxis1GearDone := FALSE;
+    g_bGeneralAxis1GearDone := FALSE;
+    bGearDone := FALSE;
+  END_IF;
+END_IF;
+IF RTring_GearOut.Q THEN
+  bGearOut := FALSE;
+  g_bGeneralAxis1GearOutM := FALSE;
+  IF g_General1_Axis.NCTOPLC.AXISSTATE = 8 THEN
+    nGearstate := 2;
+     g_boGeneralAxis1GearDone := FALSE;
+    g_bGeneralAxis1GearDone := FALSE;
+    bGearDone := FALSE;
+  END_IF;
+END_IF;
+CASE nGearstate OF
+  0:
+  nGearstate := 0;
+  1:
+  g_T1GearIn.Execute := TRUE;
+  g_T1GearIn.RatioNumerator := 1.0;
+  g_T1GearIn.RatioDenominator := 1;
+  IF g_T1GearIn.InGear THEN
+    g_boGeneralAxis1GearDone := TRUE;
+    g_bGeneralAxis1GearDone := TRUE;
+    bGearDone := TRUE;
+    bGearChuck := TRUE;
+    nGearstate := 20;
+    dCoordDiff := ABS(g_fiUCncCoord - g_General1_Axis.NCTOPLC.ACTPOS);
+  END_IF;
+  IF g_T1GearIn.ERROR OR g_T1GearIn.COMMANDABORTED THEN
+    g_T1GearIn.Execute := FALSE;
+    g_bGeneralAxis1GearInError := TRUE;
+    nGearstate := 0;
+  END_IF;
+  2:
+  g_T1GearOut.EXECUTE := TRUE;
+  g_T1GearIn.EXECUTE := FALSE;
+  IF g_T1GearOut.DONE THEN
+    g_T1GearOut.EXECUTE := FALSE;
+    IF g_General1_Axis.NCTOPLC.AXISSTATE = 2 THEN
+      nGearstate := 0;
+    ELSE
+      nGearstate := 3;
+    END_IF;
+  END_IF;
+  IF g_T1GearOut.ERROR THEN
+    g_T1GearOut.EXECUTE := FALSE;
+    g_bGeneralAxis1GearInError := TRUE;
+      nGearState := 0;
+      bGearChuck := FALSE;
+    END_IF;
+  3:
+  g_General1_Stop.EXECUTE := TRUE;
+  IF g_General1_Stop.DONE THEN
+    g_General1_Stop.EXECUTE := FALSE;
+    nGearstate := 0;
+  END_IF;
+  IF g_General1_Stop.COMMANDABORTED OR g_General1_Stop.ERROR THEN
+    g_General1_Stop.EXECUTE := FALSE;
+    nGearstate := 0;
+  END_IF;
+  20:
+  IF g_General1_Axis.NCTOPLC.AXISSTATE = 8 THEN
+    IF ABS(ABS(g_fiUCncCoord - g_General1_Axis.NCTOPLC.ACTPOS) - dCoordDiff) > dCoordMaxDiff AND g_General1_Axis.NCTOPLC.AXISSTATE = 8 THEN
+      g_bGeneralAxis1GearInError := TRUE;
+    END_IF;
+  END_IF;
+END_CASE;
+    
+    ]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[通用轴1耦合]]></xhtml:p>
+  </documentation>
+</pou>

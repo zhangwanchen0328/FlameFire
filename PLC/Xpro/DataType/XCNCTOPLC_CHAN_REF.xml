@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="XCNCTOPLC_CHAN_REF">
+  <baseType>
+    <struct>
+      <variable name="ACTUALPOSITION">
+        <type>
+          <derived name="XCNC_POSE"/>
+        </type>
+      </variable>
+      <variable name="AUTOBREAKPOINTFLAG">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="CHANID">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="CNC_VERSION">
+        <type>
+          <string/>
+        </type>
+      </variable>
+      <variable name="CURRENTLINE">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="CURRENT_VEL">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="DTG">
+        <type>
+          <derived name="XCNC_POSE"/>
+        </type>
+      </variable>
+      <variable name="EXECSTATE">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="FILE">
+        <type>
+          <string/>
+        </type>
+      </variable>
+      <variable name="INPOS">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="INTERPSTATE">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="MODE">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="MOTIONLINE">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="N_NUMBER">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="POSITION">
+        <type>
+          <derived name="XCNC_POSE"/>
+        </type>
+      </variable>
+      <variable name="PROBEDPOSITION">
+        <type>
+          <derived name="XCNC_POSE"/>
+        </type>
+      </variable>
+      <variable name="QUEUE">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="RAPID_SCALE">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="READLINE">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="SCALE">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="STATE">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="TRAG_MODE">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

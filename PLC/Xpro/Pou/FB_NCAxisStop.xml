@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_NCAxisStop" pouType="functionBlock">
+  <interface>
+    <inputVars>
+      <variable name="NCAxisName">
+        <type>
+          <derived name="REF_TO AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="IndexValue">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="NCAxisStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="Rtring_Stop">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nStopState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <inOutVars>
+      <variable name="StopDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </inOutVars>
+    <outputVars>
+      <variable name="ERRORID">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+    </outputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring_Stop(CLK := g_NCMoveData.NCAXISCMD[IndexValue].NCAxisStop);
+IF Rtring_Stop.Q THEN
+	nStopState := 10;
+    StopDone:=FALSE;
+END_IF;
+CASE nStopState OF
+  0:
+	nStopState := 0;
+  10:
+	NCAxisStop(
+     EXECUTE := g_NCMoveData.NCAXISCMD[IndexValue].NCAxisStop(*BOOL*),
+     AXIS :=NCAxisName^(*AXIS_REF*),
+     OUTAXIS =>NCAxisName^ (*AXIS_REF*));
+     IF NCAxisStop.Done  THEN
+		g_NCMoveData.NCAXISCMD[IndexValue].NCAxisStop:= FALSE;
+        StopDone:=TRUE;
+    END_IF;
+    IF NCAxisStop.CommandAborted OR NCAxisStop.Error THEN
+      g_NCMoveData.NCAXISCMD[IndexValue].NCAxisStop := FALSE;
+    END_IF;
+  
+  
+END_CASE;
+ 
+ERRORID := NCAxisStop.ERRORID;
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

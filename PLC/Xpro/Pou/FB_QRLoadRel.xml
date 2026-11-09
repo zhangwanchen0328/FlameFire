@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_QRLoadRel" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Plc开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Plc暂停]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Plc复位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bLoadAbsOpen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLoadAbsClose">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLoadAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_LoadAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_LoadStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_LoadReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_Load">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nLoadRelState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dTargetVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="dDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bFastInch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dLoadAxisSlowVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dLoadAxisFastVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger1(CLK := bLoadAbsOpen);
+RTrigger2(CLK := bLoadAbsClose);
+
+IF RTrigger1.Q THEN
+  nLoadRelState := 1;
+  bLoadAbsDone := FALSE;
+END_IF;
+IF RTrigger2.Q THEN
+  bLoadAbsDone := FALSE;
+END_IF;
+
+CASE nLoadRelState OF
+  0:
+    nLoadRelState := 0;
+  1:
+    g_LoadAbs.Execute := TRUE;
+    IF g_bFastInch=0 THEN
+      g_LoadAbs.Velocity := dLoadAxisSlowVel;
+    ELSE
+      g_LoadAbs.Velocity := dLoadAxisFastVel;
+    END_IF;
+    g_LoadAbs.Position := Axis_Load.NCTOPLC.SETPOS + dDistance;
+    IF g_LoadAbs.Done THEN
+      g_LoadAbs.Execute := FALSE;
+      bLoadAbsDone := TRUE;
+      nLoadRelState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nLoadRelState := 20;
+    END_IF;
+    IF g_LoadAbs.CommandAborted OR g_LoadAbs.Error THEN
+      g_LoadAbs.Execute := FALSE;
+      bLoadAbsDone := FALSE;
+      nLoadRelState := 0;
+    END_IF;
+  20:
+    g_LoadAbs.Execute := FALSE;
+    g_LoadStop.Execute := TRUE;
+    IF g_LoadStop.Done AND g_bPlcStartBuffer THEN
+      g_LoadStop.Execute := FALSE;
+      nLoadRelState := 1;
+    END_IF;
+    IF g_LoadStop.CommandAborted OR g_LoadStop.Error THEN
+      g_LoadStop.Execute := FALSE;
+      nLoadRelState := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nLoadRelState := 0;
+  g_LoadAbs.Execute := FALSE;
+  g_LoadStop.Execute := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

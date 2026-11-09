@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ZAxisPowerControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_ZPower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴使能模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="PowerEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴使能开启]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bZAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[允许正向运动使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[允许反向运动使能]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nZOperationMode">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴控制模式（8：位置环，9：速度环）]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_noZOperationMode">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴控制模式引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nZaxisPowerReady">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="nZaxisPowerSwitchOn">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="nZaxisPowerOpeartion">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="nZaxisnDefault">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="nZaxisnDefault0">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="nBrakeCaseId">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nPowerId">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bDefalut">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="TonPowerOFF">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonDelayBrakeOpen">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="FTrrigerPowerOff">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrrigerPowerON">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="byteFlag1">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="byteFlag2">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="byteFlag3">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="bFirstOK">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSecondOK">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bThridOK">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+
+
+IF g_ZPower.Error THEN
+ g_ZPower.Enable := FALSE;
+END_IF;  
+AxisPowerBrake(
+	bPower := g_bDriveEnable,
+    AxisRef := REF(Axis_Z),
+    HomeSignal := g_nZAxisHomeSignal,
+    HomeMode := g_nZHomeMode,
+    AxisPosLimit := NOT g_bZAxisPosLimit,
+    AxisNegLimit := NOT g_bZAxisNegLimit,
+    AxisPower := REF(g_ZPower),
+    OutBrake => g_boZaxisHoldBrake);
+    
+ 
+g_noZOperationMode := nZOperationMode;
+IF ABS(Axis_Z.NCTOPLC.ACTPOS - Axis_Z.NCTOPLC.SETPOS) > g_fZAxisMaxPosError THEN
+  g_bZAxisPosErrorAlarm := TRUE;
+ELSE
+  g_bZAxisPosErrorAlarm := FALSE;
+END_IF;
+
+
+IF g_bIsZaxiSimulateConfig THEN
+   g_boZaxisHoldBrake := FALSE;  (*Z轴没配置或者虚拟轴配置的时候,就不输出抱闸信号,防止调试的时候把Z轴掉下去了*)
+END_IF;
+  
+(*添加板卡总线抱闸输出，第0位为1则是输出解抱闸信号，为0则取消输出*)
+if g_boZaxisHoldBrake THEN
+ g_bEDS2000ZaxisBrake := BYTE_TO_UDINT(OR(UDINT_TO_BYTE(g_bEDS2000ZaxisBrake),16#01));
+ELSE
+  g_bEDS2000ZaxisBrake :=  BYTE_TO_UDINT(AND(UDINT_TO_BYTE(g_bEDS2000ZaxisBrake),16#FE));
+end_if;  
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

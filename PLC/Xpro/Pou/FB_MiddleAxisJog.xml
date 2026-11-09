@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_MiddleAxisJog" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="bfast4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[快速标志]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bfast5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[快速标志]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_AntiRejection4Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection5Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAntiRejection4Forward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAntiRejection5Forward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAntiRejection4Backward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAntiRejection5Backward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+  (*防甩轴4*)
+IF bfast4 THEN
+  g_AntiRejection4Jog.Mode := 1;
+ELSE
+  g_AntiRejection4Jog.Mode := 0;
+END_IF;
+
+  g_AntiRejection4Jog.JogForward := bAntiRejection4Forward;
+  g_AntiRejection4Jog.JogBackwards := bAntiRejection4Backward;
+  (*防甩轴5*)
+IF bfast5 THEN
+  g_AntiRejection5Jog.Mode := 1;
+ELSE
+  g_AntiRejection5Jog.Mode := 0;
+END_IF;
+
+  g_AntiRejection5Jog.JogForward := bAntiRejection5Forward;
+  g_AntiRejection5Jog.JogBackwards := bAntiRejection5Backward;
+ ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

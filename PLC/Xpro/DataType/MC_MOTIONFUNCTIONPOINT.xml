@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MC_MOTIONFUNCTIONPOINT">
+  <baseType>
+    <struct>
+      <variable name="FUNCTIONTYPE">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="MASTERPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="POINTINDEX">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="POINTTYPE">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="RELINDEXNEXTPOINT">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="SLAVEACC">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SLAVEJERK">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SLAVEPOS">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="SLAVEVEL">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

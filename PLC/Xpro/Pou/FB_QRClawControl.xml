@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_QRClawControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_biClawClamp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biClawLoosen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boClawEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="ClampTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="LoosenTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[ClampTrigger(CLK := g_biClawClamp);
+LoosenTrigger(CLK := g_biClawLoosen);
+
+IF LoosenTrigger.Q THEN
+  g_boClawEnable := FALSE;
+ELSIF ClampTrigger.Q THEN
+  g_boClawEnable := TRUE;
+END_IF;
+
+IF g_bPlcResetBuffer THEN
+  g_boClawEnable := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SustainControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBSustainPower">
+        <type>
+          <derived name="FB_SustainPower"/>
+        </type>
+      </variable>
+      <variable name="FBSustainJogControl">
+        <type>
+          <derived name="FB_SustainJogControl"/>
+        </type>
+      </variable>
+      <variable name="FBSustainAct">
+        <type>
+          <derived name="FB_SustainAct"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_Sustain1Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain2Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain3Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain7Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain8Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain9Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBSustainInchControl">
+        <type>
+          <derived name="FB_SustainInchControl"/>
+        </type>
+      </variable>
+      <variable name="FBSustainFollowControlExt">
+        <type>
+          <derived name="FB_SustainFollowControlExt"/>
+        </type>
+      </variable>
+      <variable name="FBSustainFollowControl">
+        <type>
+          <derived name="FB_SustainFollowControl"/>
+        </type>
+      </variable>
+      <variable name="FBSustainAbsolute">
+        <type>
+          <derived name="FB_SustainAbsolute"/>
+        </type>
+      </variable>
+      <variable name="FBSustainHome">
+        <type>
+          <derived name="FB_SustainHome"/>
+        </type>
+      </variable>
+      <variable name="FBSustainDown">
+        <type>
+          <derived name="FB_SustainDown"/>
+        </type>
+      </variable>
+      <variable name="FBSustainVelAdd">
+        <type>
+          <derived name="FB_SustainAxisVelAdd"/>
+        </type>
+      </variable>
+      <variable name="FBNewSupport">
+        <type>
+          <derived name="FB_SupportAxisListen"/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis1ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis2ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis3ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis4ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis5ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis6ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF g_bSustainEnable THEN
+  FBSustainPower();
+  FBNewSupport();
+  FBSustainJogControl();
+  FBSustainFollowControl();
+  FBSustainAct();
+  FBSustainInchControl();
+  FBSustainAbsolute();
+  FBSustainHome();
+  FBSustainVelAdd();
+  bSustainAxis1ErrorAlarm :=  Axis_Sustain1.NCTOPLC.POWERPOSWARN OR Axis_Sustain1.NCTOPLC.POWERNEGWARN 
+     OR Axis_Sustain1.NCTOPLC.ERRORCODE <>0;
+     
+  bSustainAxis2ErrorAlarm :=  Axis_Sustain2.NCTOPLC.POWERPOSWARN OR Axis_Sustain2.NCTOPLC.POWERNEGWARN 
+     OR Axis_Sustain2.NCTOPLC.ERRORCODE <>0;
+  
+  bSustainAxis3ErrorAlarm :=  Axis_Sustain3.NCTOPLC.POWERPOSWARN OR Axis_Sustain3.NCTOPLC.POWERNEGWARN 
+     OR Axis_Sustain3.NCTOPLC.ERRORCODE <>0;
+     
+  bSustainAxis4ErrorAlarm :=  Axis_Sustain7.NCTOPLC.POWERPOSWARN OR Axis_Sustain7.NCTOPLC.POWERNEGWARN 
+     OR Axis_Sustain7.NCTOPLC.ERRORCODE <>0;
+     
+  bSustainAxis5ErrorAlarm :=  Axis_Sustain8.NCTOPLC.POWERPOSWARN OR Axis_Sustain8.NCTOPLC.POWERNEGWARN 
+     OR Axis_Sustain8.NCTOPLC.ERRORCODE <>0;
+     
+  bSustainAxis6ErrorAlarm :=  Axis_Sustain9.NCTOPLC.POWERPOSWARN OR Axis_Sustain9.NCTOPLC.POWERNEGWARN 
+     OR Axis_Sustain9.NCTOPLC.ERRORCODE <>0;
+ 
+  
+  
+  
+  IF bSustainAxis1ErrorAlarm AND g_bPlcResetBuffer THEN
+    g_Sustain1Reset.Execute := TRUE;
+  ELSE
+    g_Sustain1Reset.Execute := FALSE;   
+  END_IF;
+  IF bSustainAxis2ErrorAlarm AND g_bPlcResetBuffer THEN
+    g_Sustain2Reset.Execute := TRUE;
+  ELSE
+    g_Sustain2Reset.Execute := FALSE;   
+  END_IF;
+  IF bSustainAxis3ErrorAlarm AND g_bPlcResetBuffer THEN
+    g_Sustain3Reset.Execute := TRUE;
+  ELSE
+    g_Sustain3Reset.Execute := FALSE;   
+  END_IF;
+  IF bSustainAxis4ErrorAlarm AND g_bPlcResetBuffer THEN
+    g_Sustain7Reset.Execute := TRUE;
+  ELSE
+    g_Sustain7Reset.Execute := FALSE;   
+  END_IF;
+  IF bSustainAxis5ErrorAlarm AND g_bPlcResetBuffer THEN
+    g_Sustain8Reset.Execute := TRUE;
+  ELSE
+    g_Sustain8Reset.Execute := FALSE;   
+  END_IF;
+  IF bSustainAxis6ErrorAlarm AND g_bPlcResetBuffer THEN
+    g_Sustain9Reset.Execute := TRUE;
+  ELSE
+    g_Sustain9Reset.Execute := FALSE;   
+  END_IF;
+
+END_IF;
+FBSustainFollowControlExt();
+FBSustainDown();
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

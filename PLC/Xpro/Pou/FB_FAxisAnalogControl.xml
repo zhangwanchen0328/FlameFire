@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FAxisAnalogControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_dAnalogPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dMaxVoltage">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dMinVoltage">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dZeroPositionVoltage">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dMaxPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dMinPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bAnalogEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dAnalogPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bAnalogEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dSlope">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dIntercept">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dVoltage">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFPosFb">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变焦距离]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_noVoltageValue">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[电压模拟量输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biVoltageArrival">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变焦轴电压控制到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boVoltageEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变焦轴电压控制使能]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trriger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bAnalogFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="R_VoltageArrival">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="TON_VoltageEnable">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*R_Trriger(CLK := bAnalogEnable OR g_bAnalogEnable);*)(*上升沿触*)
+
+IF g_bMnualAnalogEnable THEN
+    dFPosFb := g_dMnualAnalogPosition;    
+    nState:=10; 
+    g_bMnualAnalogEnable := FALSE;
+    (*dLastZoomPosition := dAnalogPosition;*)
+ELSIF g_bAnalogEnable THEN
+    dFPosFb := g_dAnalogPosition;
+    g_bAnalogEnable:=FALSE;
+    nState:=10;       
+END_IF;  
+  
+  
+CASE nState OF
+  0:
+  nState:=0;
+  10:
+    TON_VoltageEnable(IN:=FALSE,PT:= T#0.2s);  
+    g_boVoltageEnable := TRUE;
+  
+    IF dFPosFb >= dMinPosition AND dFPosFb < 0.0 THEN
+      IF dMinPosition > -0.01 AND dMinPosition < 0.01 THEN
+        return;
+      ELSE
+        dSlope := dMaxVoltage - dZeroPositionVoltage;
+        dSlope := dSlope / dMinPosition;
+        dIntercept := dZeroPositionVoltage;
+        dVoltage :=  dSlope * dFPosFb + dIntercept;
+      END_IF;
+    ELSIF dFPosFb >= 0.0 AND dFPosFb <= dMaxPosition THEN
+      IF dMaxPosition > -0.01 AND dMaxPosition < 0.01 THEN
+        return;
+      ELSE
+        dSlope := dMinVoltage - dZeroPositionVoltage;
+        dSlope := dSlope / dMaxPosition;
+        dIntercept := dZeroPositionVoltage;
+        dVoltage :=  dSlope * dFPosFb + dIntercept;
+      END_IF;
+    END_IF;
+    g_noVoltageValue := FUN_FAxisVoltageToAnalog(dVoltage);
+    nState:=20;
+  20:
+      TON_VoltageEnable(IN:=TRUE,PT:= T#0.2s); 
+      IF g_nCurCutState = 1 AND TON_VoltageEnable.Q THEN 
+         TON_VoltageEnable(IN:=FALSE);
+        g_boVoltageEnable := false;
+        nState := 0;
+      END_IF;
+END_CASE;
+
+(*坐标反馈*)
+g_dFaxisAnoagePosFb := dFPosFb;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

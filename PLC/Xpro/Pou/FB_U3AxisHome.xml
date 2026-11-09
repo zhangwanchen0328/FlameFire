@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_U3AxisHome" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC暂停全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC复位全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biU3HomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boU3HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bU3AxisZero">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零零位信号引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3Home">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3MoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3MoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bHomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始，一般被HMI控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bHomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="1"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bHomeError">
+        <type>
+          <USINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零错误]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHomeState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零状态机变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHomingMode">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dHomePosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后位置偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dHomeOffset">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dHomeVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="RTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bChangeHomeMode">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nChangeHomeModeState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger(CLK := g_biU3HomeEnable OR bHomeEnable);
+IF bChangeHomeMode THEN
+  bChangeHomeMode := FALSE;
+  nChangeHomeModeState := 1;
+END_IF;
+IF RTrigger.Q THEN
+    nHomeState := 1;
+    g_boU3HomeDone := FALSE;
+    bHomeDone := FALSE;
+END_IF;
+
+CASE nHomeState OF
+  0:
+    nHomeState := 0;
+  1:
+    g_U3Home.Execute := TRUE;
+    IF nHomingMode = 0 THEN
+      g_U3Home.HomingMode := 0;
+      g_U3Home.Position := dHomePosition;
+    ELSIF nHomingMode = 1 THEN
+      g_U3Home.HomingMode := 5;
+      g_U3Home.Position := 0.0;
+    ELSIF nHomingMode = 2 THEN
+      g_U3Home.HomingMode := 4;
+      g_U3Home.Position := 0.0;
+    ELSIF nHomingMode = 3 THEN
+      (*只是去掉回零标志位*)
+      g_U3Home.HomingMode := 1; 
+    END_IF;
+    g_U3Home.bCalibrationCam := g_bU3AxisZero;
+    IF g_U3Home.Done THEN
+      g_U3Home.Execute := FALSE;
+       IF nHomingMode = 3 THEN
+        nHomeState := 0;
+      ELSE
+        nHomeState := 2;
+      END_IF;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nHomeState := 20;
+    END_IF;
+    IF g_U3Home.CommandAborted OR g_U3Home.Error THEN
+      g_U3Home.Execute := FALSE;
+      nHomeState := 0;
+    END_IF;
+  2:
+    g_U3MoveAbs.Execute := TRUE;
+    g_U3MoveAbs.Position := dHomeOffset;
+    g_U3MoveAbs.Velocity := dHomeVel;
+    IF g_U3MoveAbs.Done THEN
+      g_U3MoveAbs.Execute := FALSE;
+      bHomeDone := TRUE;
+      g_boU3HomeDone := TRUE;
+      nHomeState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nHomeState := 21;
+    END_IF;
+  20:
+    g_U3Home.Execute := FALSE;
+    g_U3MoveStop.Execute := TRUE;
+    IF g_U3MoveStop.Done AND g_bPlcStartBuffer THEN
+      g_U3MoveStop.Execute := FALSE;
+      nHomeState := 1;
+    END_IF;
+    IF g_U3MoveStop.CommandAborted OR g_U3MoveStop.Error THEN
+      g_U3MoveStop.Execute := FALSE;
+      nHomeState := 0;
+    END_IF;
+  21:
+    g_U3Home.Execute := FALSE;
+    g_U3MoveStop.Execute := TRUE;
+    IF g_U3MoveStop.Done AND g_bPlcStartBuffer THEN
+      g_U3MoveStop.Execute := FALSE;
+      nHomeState := 2;
+    END_IF;
+    IF g_U3MoveStop.CommandAborted OR g_U3MoveStop.Error THEN
+      g_U3MoveStop.Execute := FALSE;
+      nHomeState := 0;
+    END_IF;
+END_CASE;
+
+CASE nChangeHomeModeState OF
+  0:
+    nChangeHomeModeState := 0;
+  1:
+    g_U3Home.Execute := TRUE;
+    IF nHomingMode = 0 THEN
+      g_U3Home.HomingMode := 0;
+    ELSIF nHomingMode = 1 THEN
+      g_U3Home.HomingMode := 5;
+    ELSIF nHomingMode = 2 THEN
+      g_U3Home.HomingMode := 4;
+    END_IF;
+    IF g_U3Home.Done THEN
+      g_U3Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+    IF g_U3Home.CommandAborted OR g_U3Home.Error THEN
+      g_U3Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nHomeState := 0;
+  nChangeHomeModeState := 0;
+  g_boU3HomeDone := TRUE;
+  g_U3MoveStop.Execute := FALSE;
+  g_U3Home.Execute := FALSE;
+  bHomeDone := TRUE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

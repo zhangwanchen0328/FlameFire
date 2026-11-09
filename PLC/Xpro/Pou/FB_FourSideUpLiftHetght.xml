@@ -1,0 +1,241 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FourSideUpLiftHetght" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Axis_Z">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trriger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bFourSideUpLiftM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFourSideUpLift">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZRelExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZRelDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fZRelVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fZRelDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fLiftCoord">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dSquareLenght">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dSquareWidth">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dSquareLenght">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSquareLenghtMunal">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[手动执行四面分中时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSquareWidth">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSquareWidthMunal">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dUpLiftheight">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dMaxHeight">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dLiftVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDistanceTemp">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bZUpLift">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nZUpLiftState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dFourSidesSquareLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFourSidesSquareWidth">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTwoSidesSquareLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTwoSidesSquareWidth">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFollowheight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前执行动作的随动高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dUpLiftCompen">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="10.0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[上抬高度补偿]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trriger(CLK := g_bFourSideUpLiftM);
+
+IF R_Trriger.Q THEN
+  g_boFourSideUpLift := FALSE;
+  g_bFourSideUpLiftM := FALSE;
+  bZUpLift := TRUE;
+  dSquareLenght:= g_dSquareLenght;
+  dSquareWidth:=g_dSquareWidth;
+  dFollowheight := M.PARAMETER_P[176];
+  nZUpLiftState := 10;
+END_IF;
+
+CASE nZUpLiftState OF
+  0:
+    nZUpLiftState := 0;
+  10:
+   dMaxHeight := SQRT(dSquareLenght*dSquareLenght/4.0 + dSquareWidth*dSquareWidth/4.0) - dFollowheight;
+    IF (Axis_Z.NCTOPLC.ACTPOS + dUpLiftCompen + dMaxHeight) <= g_fLiftCoord THEN
+      dDistanceTemp := dUpLiftCompen + dMaxHeight;
+    ELSIF (Axis_Z.NCTOPLC.ACTPOS + dUpLiftCompen + dMaxHeight) > g_fLiftCoord AND (Axis_Z.NCTOPLC.ACTPOS + dMaxHeight) < g_fLiftCoord THEN
+      dDistanceTemp := g_fLiftCoord - Axis_Z.NCTOPLC.ACTPOS;
+    ELSIF (Axis_Z.NCTOPLC.ACTPOS + dMaxHeight) >= g_fLiftCoord THEN
+      dDistanceTemp := dMaxHeight;
+    END_IF;
+    dDistanceTemp := Axis_Z.NcToPlc.ACTPOS + dDistanceTemp;
+    IF dDistanceTemp >= g_fLiftCoord THEN
+      dDistanceTemp := g_fLiftCoord;
+    END_IF;
+    nZUpLiftState := 15;
+    g_bZRelDone := FALSE;
+    g_bZRelExecute := FALSE;
+  15:
+    IF Axis_Z.NcToPlc.AXISSTATE = 2 THEN
+      nZUpLiftState := 20;
+    END_IF;
+  20:
+    g_fZRelDistance := dDistanceTemp - Axis_Z.NcToPlc.ACTPOS;
+    g_fZRelVelocity := dLiftVelocity;
+    g_bZRelExecute := TRUE;
+    g_bZRelDone := FALSE;
+     nZUpLiftState := 21;
+  21:
+  IF g_bZRelDone THEN
+      g_bZRelExecute := FALSE;
+      g_boFourSideUpLift := TRUE;
+      bZUpLift := FALSE;
+      M.ENABLE[176] := 0;
+      nZUpLiftState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nZUpLiftState := 200;
+    END_IF;
+  200:
+    g_bZRelExecute := FALSE;
+    IF g_bPlcStartBuffer THEN
+      nZUpLiftState := 15;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  bZUpLift := FALSE;
+  nZUpLiftState := 0;
+  g_bZRelExecute := FALSE;
+  g_boFourSideUpLift := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[四面分中上抬]]></xhtml:p>
+  </documentation>
+</pou>

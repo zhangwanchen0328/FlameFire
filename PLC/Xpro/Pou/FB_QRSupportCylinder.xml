@@ -1,0 +1,302 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_QRSupportCylinder" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Axis_Sensor">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_fCurrentCoordYBuffer">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportCylinder1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportCylinder2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportCylinder3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportCylinder4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biSupportCylinderOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biSupportCylinderClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportCylinderDone1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportCylinderDone2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupport1UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupport2UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupport3UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupport4UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupport1DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupport2DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupport3DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupport4DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportInPlaceEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_dSupportInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_fPartLenght">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_biSupport2Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bQRCyl1Warn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bQRCyl2Warn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bQRCyl3Warn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bCutStickEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nSupportState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dCyl1PartLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCyl1SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCyl1AvoidDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dZCDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="R_TriggerOpen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TriggerClose">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Delay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_TriggerOpen(CLK := g_biSupportCylinderOpen);
+R_TriggerClose(CLK := g_biSupportCylinderClose);
+
+IF R_TriggerOpen.Q THEN
+  nSupportState := 1;
+  g_boSupportCylinderDone1 := FALSE;
+  g_boSupportCylinderDone2 := FALSE;
+END_IF;
+
+IF R_TriggerClose.Q THEN
+  g_boSupportCylinderDone1 := FALSE;
+  IF nSupportState = 30 THEN
+    nSupportState := 40;
+  ELSE
+    nSupportState := 0;
+    g_boSupportCylinderDone2 := TRUE;
+  END_IF;
+END_IF;
+
+
+CASE nSupportState OF
+  0:
+    nSupportState := 0;
+  1:
+    IF g_fPartLenght > dCyl1PartLength THEN
+      g_boSupportCylinder1 := TRUE;
+      nSupportState := 10;
+    ELSE
+      nSupportState := 20;
+    END_IF;
+  10:
+    IF g_bSupportInPlaceEnable THEN
+      IF g_bSupport1UpInPlace THEN
+        nSupportState := 20;
+      END_IF;
+    ELSE
+      Delay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_dSupportInPlaceDelay)));
+      IF Delay.Q THEN
+        Delay(IN :=FALSE);
+        nSupportState := 20;
+      END_IF;
+    END_IF;
+  20:
+    IF bCutStickEnable THEN
+      g_boSupportCylinder2 := TRUE;
+      IF g_bSupportInPlaceEnable THEN
+        IF g_bSupport2UpInPlace THEN
+          nSupportState := 30;
+        END_IF;
+      ELSE
+        Delay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_dSupportInPlaceDelay)));
+        IF Delay.Q THEN
+          Delay(IN :=FALSE);
+          nSupportState := 30;
+        END_IF;
+      END_IF;
+    ELSE
+      nSupportState := 30;
+    END_IF;
+  30:
+    g_boSupportCylinderDone1 := TRUE;
+  40:
+    nSupportState := 60;
+    IF g_fPartLenght > dCyl1PartLength THEN
+      g_boSupportCylinder1 := FALSE;
+      nSupportState := 50;
+    END_IF;
+    IF bCutStickEnable THEN
+      g_boSupportCylinder2 := FALSE;
+      nSupportState := 50;
+    END_IF;
+  50:
+    IF g_bSupportInPlaceEnable THEN
+      IF NOT ((g_fPartLenght > dCyl1PartLength AND (NOT g_bSupport1DownInPlace)) OR
+         (bCutStickEnable AND (NOT g_bSupport2DownInPlace))) THEN
+        nSupportState := 60;
+      END_IF;
+    ELSE
+      Delay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_dSupportInPlaceDelay)));
+      IF Delay.Q THEN
+        Delay(IN :=FALSE);
+        nSupportState := 60;
+      END_IF;
+    END_IF;
+  60:
+    g_boSupportCylinderDone2 := TRUE;
+    nSupportState := 0;
+END_CASE;
+
+IF (Axis_Sensor.NCTOPLC.ACTPOS + dZCDistance) <= dCyl1AvoidDistance THEN
+  g_boSupportCylinder1 := FALSE;
+END_IF;
+
+IF (Axis_Sensor.NCTOPLC.ACTPOS + dZCDistance) <= dCyl1SafeDistance THEN
+  IF g_bSupportInPlaceEnable THEN
+    IF NOT g_bSupport1DownInPlace THEN
+      g_bQRCyl1Warn := TRUE;
+    END_IF;
+  ELSE
+    IF g_boSupportCylinder1 THEN
+      g_bQRCyl1Warn := TRUE;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF g_bPlcResetBuffer THEN
+  g_boSupportCylinder1 := FALSE;
+  g_boSupportCylinder2 := FALSE;
+  g_boSupportCylinder3 := FALSE;
+  g_boSupportCylinder4 := FALSE;
+  g_boSupportCylinderDone1 := FALSE;
+  g_boSupportCylinderDone2 := FALSE;
+  nSupportState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

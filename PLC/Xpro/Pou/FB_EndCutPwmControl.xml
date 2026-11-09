@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_EndCutPwmControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="dCurrentPwmFreq">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前的PWM频率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCurrentPwmDuty">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前的PWM占空比]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFinallyPwmFreq">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最终的PWM频率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFinallyPwmDuty">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最终的PWM占空比]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSlope">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单位距离下的PWM变化率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dEndCutDis">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单位距离下的PWM变化率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPerfectKRType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dPerfectEndCutDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nCutting_Frequency">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="nCutting_Duty">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nPrefectEndCutFrequency">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="dPrefectEndCutDuty">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[nPerfectKRType :=  g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.dPerfectKRType;
+dPerfectEndCutDis := g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.dPerfectEndCutDis;
+nCutting_Frequency := g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.nCutting_Frequency;
+nCutting_Duty := UINT_TO_LREAL(g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.nCutting_Duty);
+nPrefectEndCutFrequency := DINT_TO_UINT(g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.nPrefectEndCutFrequency);
+dPrefectEndCutDuty  :=  g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.dPrefectEndCutDuty;
+  CASE nPerfectKRType OF
+    1:(*方式1：直接把PWM拉成0*)
+      g_nPwmFreq := 0;
+      g_nPwmDuty :=0;
+    
+    2:(*方式2：PWM缓降到另一个PWM*)
+       dEndCutDis:=dPerfectEndCutDis;
+      IF dEndCutDis <0.0 THEN(**防止除零***)
+        dEndCutDis:=0.1;
+      END_IF;
+      dCurrentPwmFreq:= UINT_TO_UDINT(nCutting_Frequency);
+      dCurrentPwmDuty:=  LREAL_TO_UDINT(nCutting_Duty);
+      dFinallyPwmFreq:= UINT_TO_UDINT(nPrefectEndCutFrequency);
+      dFinallyPwmDuty:= LREAL_TO_UDINT(dPrefectEndCutDuty);
+      
+      g_dGoneDist := g_dGoneDist + g_fiXYCurrentSpeedBuff*0.001;(**速度乘以周期就是移动的距离**)  
+      dSlope := UDINT_TO_LREAL(dFinallyPwmFreq) -  UDINT_TO_LREAL(dCurrentPwmFreq);     
+      dSlope := dSlope / dEndCutDis;
+      IF g_dGoneDist < dEndCutDis THEN(*只有不为0的时候才输出*)  
+          IF dSlope > 0.0 THEN       
+            g_nPwmFreq   := LREAL_TO_UINT(UDINT_TO_LREAL(dCurrentPwmFreq)) + LREAL_TO_UINT((ABS(dSlope)*g_dGoneDist));
+          ELSE 
+            g_nPwmFreq   := LREAL_TO_UINT(UDINT_TO_LREAL(dCurrentPwmFreq)) - LREAL_TO_UINT((ABS(dSlope)*g_dGoneDist));
+          END_IF;
+      END_IF;
+      
+      dSlope := UDINT_TO_LREAL(dFinallyPwmDuty)-UDINT_TO_LREAL(dCurrentPwmDuty);
+      dSlope := dSlope / dEndCutDis; 
+      IF g_dGoneDist < dEndCutDis THEN (*只有不为0的时候才输出*)  
+          IF dSlope > 0.0 THEN 
+            g_nPwmDuty   := LREAL_TO_UINT(nCutting_Duty + (ABS(dSlope)*g_dGoneDist));  
+          ELSE 
+            g_nPwmDuty   := LREAL_TO_UINT(nCutting_Duty - (ABS(dSlope)*g_dGoneDist)); 
+          END_IF;
+      END_IF;
+      IF g_nPwmFreq > 20000 THEN
+        g_nPwmFreq :=20000;
+      END_IF;
+      IF g_nPwmDuty > 100 THEN
+        g_nPwmDuty :=100;
+      END_IF;
+      
+      IF g_nPwmFreq < 0 THEN
+        g_nPwmFreq :=0;
+      END_IF;
+      IF g_nPwmDuty < 0 THEN
+        g_nPwmDuty :=0;
+      END_IF;    
+    
+    3:(*方式3：PWM突变到另一个PWM*) 
+      g_nPwmFreq   :=nPrefectEndCutFrequency;
+      g_nPwmDuty   :=LREAL_TO_UINT(dPrefectEndCutDuty); 
+  END_CASE;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

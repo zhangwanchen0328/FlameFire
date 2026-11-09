@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Y1AxisHome" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC暂停全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC复位全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biY1HomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boY1HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY1AxisZero">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零零位信号引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y1Home">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y1MoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y1Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y1MoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bY1HomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始，一般被HMI控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bY1HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="1"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bY1HomeError">
+        <type>
+          <USINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零错误]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nY1HomeState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零状态机变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nY1HomingMode">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY1HomePosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后位置偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY1HomeOffset">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dY1HomeVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="RY1Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RY1Trigger(CLK := g_biY1HomeEnable OR bY1HomeEnable);
+
+IF RY1Trigger.Q THEN
+    nY1HomeState := 1;
+    g_boY1HomeDone := FALSE;
+    bY1HomeDone := FALSE;
+END_IF;
+
+CASE nY1HomeState OF
+  0:
+    nY1HomeState := 0;
+  1:
+    g_Y1Home.Execute := TRUE;
+    IF nY1HomingMode = 0 THEN
+      g_Y1Home.HomingMode := 0;
+      g_Y1Home.Position := dY1HomePosition;
+    ELSIF nY1HomingMode = 1 THEN
+      g_Y1Home.HomingMode := 5;
+      g_Y1Home.Position := 0.0;
+    END_IF;
+    g_Y1Home.bCalibrationCam := g_bY1AxisZero;
+    IF g_Y1Home.Done THEN
+      g_Y1Home.Execute := FALSE;
+      nY1HomeState := 2;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nY1HomeState := 20;
+    END_IF;
+    IF g_Y1Home.CommandAborted OR g_Y1Home.Error THEN
+      g_Y1Home.Execute := FALSE;
+      nY1HomeState := 0;
+    END_IF;
+  2:
+    g_Y1MoveAbs.Execute := TRUE;
+    g_Y1MoveAbs.Position := dY1HomeOffset;
+    g_Y1MoveAbs.Velocity := dY1HomeVel;
+    IF g_Y1MoveAbs.Done THEN
+      g_Y1MoveAbs.Execute := FALSE;
+      bY1HomeDone := TRUE;
+      g_boY1HomeDone := TRUE;
+      nY1HomeState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nY1HomeState := 21;
+    END_IF;
+  20:
+    g_Y1Home.Execute := FALSE;
+    g_Y1MoveStop.Execute := TRUE;
+    IF g_Y1MoveStop.Done AND g_bPlcStartBuffer THEN
+      g_Y1MoveStop.Execute := FALSE;
+      nY1HomeState := 1;
+    END_IF;
+    IF g_Y1MoveStop.CommandAborted OR g_Y1MoveStop.Error THEN
+      g_Y1MoveStop.Execute := FALSE;
+      nY1HomeState := 0;
+    END_IF;
+  21:
+    g_Y1Home.Execute := FALSE;
+    g_Y1MoveStop.Execute := TRUE;
+    IF g_Y1MoveStop.Done AND g_bPlcStartBuffer THEN
+      g_Y1MoveStop.Execute := FALSE;
+      nY1HomeState := 2;
+    END_IF;
+    IF g_Y1MoveStop.CommandAborted OR g_Y1MoveStop.Error THEN
+      g_Y1MoveStop.Execute := FALSE;
+      nY1HomeState := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nY1HomeState := 0;
+  g_Y1MoveStop.Execute := FALSE;
+  g_Y1Home.Execute := FALSE;
+  bY1HomeDone := TRUE;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[Y1轴回零]]></xhtml:p>
+  </documentation>
+</pou>

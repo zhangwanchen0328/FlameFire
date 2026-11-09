@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FAxisBM11XControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_noHeart_Beat">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[心跳包，写入0x3A]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noMOTO_PositionSet">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[调焦参数写入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noTemperatureAlarmSet">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警温度设置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMOTO_PositionGet">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[调焦反馈读取引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMOTO_ErrorCode">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[调焦错误ID引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niTemperature">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[BM11X实际温度反馈引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niTemperature_ErrorCode">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[温度报警引脚：0正常，1断线，2超温]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 调焦]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dZeroFActPosion">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[0输入时F轴对应实际刻度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dFPosFb">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变焦目标位置]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*心跳包，写入0x3A，保证使能*)
+g_noHeart_Beat := 58;
+
+R_Trigger(CLK := g_bF050Home );
+(*R_Trigger1(CLK := g_bFBM11XEnable OR g_bMnualAnalogEnable);*)
+
+(*回零,F轴到0刻度*)
+IF R_Trigger.Q THEN
+  g_bF050Home := false;
+  g_noMOTO_PositionSet := LREAL_TO_UINT(1000.0*g_dZeroFActPosion);
+END_IF;
+
+IF g_bFBM11XEnable THEN
+  dFPosFb := g_dAnalogPosition;
+  g_bFBM11XEnable := FALSE;
+  g_bFocusEnable := FALSE;
+  nState := 5;
+ELSIF g_bMnualAnalogEnable THEN
+  dFPosFb := g_dMnualAnalogPosition;
+  g_bMnualAnalogEnable := FALSE;
+  nState := 5;
+END_IF;
+  
+CASE nState OF
+  0:
+    nState := 0;  
+  5:  (*调焦*)
+    g_dMOTO_PositionSet := 1000.0*g_dZeroFActPosion - 1000.0*dFPosFb;
+    g_noMOTO_PositionSet := LREAL_TO_UINT(g_dMOTO_PositionSet);
+    nState := 10;
+  10:(*调焦完成*)
+    IF g_niMOTO_PositionGet>g_noMOTO_PositionSet-50 AND g_niMOTO_PositionGet< g_noMOTO_PositionSet+50 THEN
+      g_bFocusDone := TRUE;
+      nState := 0;
+    END_IF;
+END_CASE;    
+  
+(*温度转换1:0.01°*)
+g_dBM11XTemperature := UINT_TO_LREAL(g_niTemperature/100);
+(*坐标反馈*)
+g_dFaxisAnoagePosFb := dFPosFb;
+
+  ]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[BM11X调焦]]></xhtml:p>
+  </documentation>
+</pou>

@@ -1,0 +1,1863 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_MotorControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_TringgerMotor">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nMotorMoveType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotorMoveType1">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotorMoveType2">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotorMoveState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotorMoveState1">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotorMoveState2">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotorMovePreState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotorMovePreState1">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotorMovePreState2">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotorUpType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotorUpType1">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotorUpType2">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotorDownType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotorDownType1">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotorDownType2">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotorDownType3">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="TMotorStopTimeToDown">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TMotorStopTimeToDown1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TMotorStopTimeToDown2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TMotorWaitTimeToClose">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TMotorWaitTimeToClose1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TMotorWaitTimeToClose2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TMotorWaitTimeToClose3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TMotorWaitTimeToClose4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TMotorWaitTimeToClose5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TMotorWaitTimeToClose6">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TMotorWaitTimeToClose7">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TMotorWaitTimeToClose8">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TMotorWaitTimeToClose9">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="bMotorMoveDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1 到位 用于所有变频器控制结束M301]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotorMoveDone1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2 到位 用于所有变频器控制结束M301]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotorMoveDone2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3 到位 用于所有变频器控制结束M301]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMotorMoveUpDoneDelay">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1 超时报警时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMotorMoveUpDoneDelay1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2 超时报警时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMotorMoveUpDoneDelay2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3 超时报警时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMotorMoveDownDoneDelay">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1 超时报警时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMotorMoveDownDoneDelay1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2 超时报警时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMotorMoveDownDoneDelay2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3 超时报警时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TON_Alarm">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1 超时报警定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TON_Alarm1">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2 超时报警定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TON_Alarm2">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3 超时报警定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor1UpSignalDoneTimeoutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1 正转超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor1UpSignalDoneTimeoutTip">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1 正转超时提示]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor2UpSignalDoneTimeoutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2 正转超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor2UpSignalDoneTimeoutTip">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2 正转超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor3UpSignalDoneTimeoutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3 正转超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor3UpSignalDoneTimeoutTip">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3 正转超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor1DownSignalDoneTimeoutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1 反转超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor1DownSignalDoneTimeoutTip">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1 反转超时提示]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor2DownSignalDoneTimeoutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2 反转超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor2DownSignalDoneTimeoutTip">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2 反转超时提示]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor3DownSignalDoneTimeoutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3 反转超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor3DownSignalDoneTimeoutTip">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3 反转超时提示]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotorMoveControlFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[一键控制变频器的标志]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_Motor1ManualUp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ftring_Motor1ManualUp">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ftring_Motor1ManualDown">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ftring_Motor2ManualUp">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ftring_Motor2ManualDown">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ftring_Motor3ManualUp">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ftring_Motor3ManualDown">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_Motor1ManualDown">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动反转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_Motor2ManualUp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2手动正转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_Motor2ManualDown">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2手动反转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_Motor3ManualUp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3手动正转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_Motor3ManualDown">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3手动反转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_AllMotorStop">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3手动反转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor1ManualUp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor1ManualDown">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor2ManualUp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor2ManualDown">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor3ManualUp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor3ManualDown">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAllMotorStop">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor1ManualState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor2ManualState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor3ManualState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1手动正转触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_Motor1Move">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Motor2Move">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Motor3Move">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nMotor1StopSignalIndex1">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1额外配置的第1个正转停止信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor1StopSignalIndex2">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotor1StopSignalIndex3">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nMotor1StopSignalIndex4">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1额外配置的第1个反转停止信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor1StopSignalIndex5">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1变频器1额外配置的第2个反转停止信号额外配置的第5个停止信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor1StopSignalIndex6">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1额外配置的第3个反转停止信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor2StopSignalIndex1">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2额外配置的第1个正转停止信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor2StopSignalIndex2">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2额外配置的第2个正转停止信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor2StopSignalIndex3">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2额外配置的第3个正转停止信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor2StopSignalIndex4">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2额外配置的第1个反转停止信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor2StopSignalIndex5">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2额外配置的第2个反转停止信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor2StopSignalIndex6">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2额外配置的第3个反转停止信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor3StopSignalIndex1">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3额外配置的第1个正转停止信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor3StopSignalIndex2">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3额外配置的第2个正转停止信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor3StopSignalIndex3">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3额外配置的第3个正转停止信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor3StopSignalIndex4">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3额外配置的第1个反转停止信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor3StopSignalIndex5">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3额外配置的第2个反转停止信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMotor3StopSignalIndex6">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3额外配置的第3个反转停止信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor1OtherStopSignalCheckUp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1额外配置的停止信号触发正转停止状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor1OtherStopSignalCheckDown">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器1额外配置的停止信号触发反转停止状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor2OtherStopSignalCheckUp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2额外配置的停止信号触发正转状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor2OtherStopSignalCheckDown">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器2额外配置的停止信号触发反转状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor3OtherStopSignalCheckUp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3额外配置的停止信号触发正转状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMotor3OtherStopSignalCheckDown">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[变频器3额外配置的停止信号触发反转状态]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[bMotor1OtherStopSignalCheckUp := FALSE;
+bMotor2OtherStopSignalCheckUp := FALSE;
+bMotor3OtherStopSignalCheckUp := FALSE;
+bMotor1OtherStopSignalCheckDown := FALSE;
+bMotor2OtherStopSignalCheckDown := FALSE;
+bMotor3OtherStopSignalCheckDown := FALSE;
+
+
+
+
+IF nMotor1StopSignalIndex1 <> 0 THEN
+  bMotor1OtherStopSignalCheckUp := BoardInPutArray.BoolArr[nMotor1StopSignalIndex1 - 1];
+END_IF;
+IF nMotor1StopSignalIndex2 <> 0 THEN
+  bMotor1OtherStopSignalCheckUp := BoardInPutArray.BoolArr[nMotor1StopSignalIndex2 - 1];
+END_IF;
+IF nMotor1StopSignalIndex3 <> 0 THEN
+  bMotor1OtherStopSignalCheckUp := BoardInPutArray.BoolArr[nMotor1StopSignalIndex3 - 1];
+END_IF;
+IF nMotor1StopSignalIndex4 <> 0 THEN
+  bMotor1OtherStopSignalCheckDown := BoardInPutArray.BoolArr[nMotor1StopSignalIndex4 - 1];
+END_IF;
+IF nMotor1StopSignalIndex5 <> 0 THEN
+  bMotor1OtherStopSignalCheckDown := BoardInPutArray.BoolArr[nMotor1StopSignalIndex5 - 1];
+END_IF;
+IF nMotor1StopSignalIndex6 <> 0 THEN
+  bMotor1OtherStopSignalCheckDown := BoardInPutArray.BoolArr[nMotor1StopSignalIndex6 - 1];
+END_IF;
+
+
+IF nMotor2StopSignalIndex1 <> 0 THEN
+  bMotor2OtherStopSignalCheckUp := BoardInPutArray.BoolArr[nMotor2StopSignalIndex1 - 1];
+END_IF;
+IF nMotor2StopSignalIndex2 <> 0 THEN
+  bMotor2OtherStopSignalCheckUp := BoardInPutArray.BoolArr[nMotor2StopSignalIndex2 - 1];
+END_IF;
+IF nMotor2StopSignalIndex3 <> 0 THEN
+  bMotor2OtherStopSignalCheckUp := BoardInPutArray.BoolArr[nMotor2StopSignalIndex3 - 1];
+END_IF;
+IF nMotor2StopSignalIndex4 <> 0 THEN
+  bMotor2OtherStopSignalCheckDown := BoardInPutArray.BoolArr[nMotor2StopSignalIndex4 - 1];
+END_IF;
+IF nMotor2StopSignalIndex5 <> 0 THEN
+  bMotor2OtherStopSignalCheckDown := BoardInPutArray.BoolArr[nMotor2StopSignalIndex5 - 1];
+END_IF;
+IF nMotor2StopSignalIndex6 <> 0 THEN
+  bMotor2OtherStopSignalCheckDown := BoardInPutArray.BoolArr[nMotor2StopSignalIndex6 - 1];
+END_IF;
+
+IF nMotor3StopSignalIndex1 <> 0 THEN
+  bMotor3OtherStopSignalCheckUp := BoardInPutArray.BoolArr[nMotor3StopSignalIndex1 - 1];
+END_IF;
+IF nMotor3StopSignalIndex2 <> 0 THEN
+  bMotor3OtherStopSignalCheckUp := BoardInPutArray.BoolArr[nMotor3StopSignalIndex2 - 1];
+END_IF;
+IF nMotor3StopSignalIndex3 <> 0 THEN
+  bMotor3OtherStopSignalCheckUp := BoardInPutArray.BoolArr[nMotor3StopSignalIndex3 - 1];
+END_IF;
+IF nMotor3StopSignalIndex4 <> 0 THEN
+  bMotor3OtherStopSignalCheckDown := BoardInPutArray.BoolArr[nMotor3StopSignalIndex4 - 1];
+END_IF;
+IF nMotor3StopSignalIndex5 <> 0 THEN
+  bMotor3OtherStopSignalCheckDown := BoardInPutArray.BoolArr[nMotor3StopSignalIndex5 - 1];
+END_IF;
+IF nMotor3StopSignalIndex6 <> 0 THEN
+  bMotor3OtherStopSignalCheckDown := BoardInPutArray.BoolArr[nMotor3StopSignalIndex6 - 1];
+END_IF;
+
+
+
+
+
+
+
+R_TringgerMotor(CLK := g_bMotorControlM);
+IF R_TringgerMotor.Q THEN
+  g_bMotorControlM := FALSE;
+  bMotorMoveDone:= FALSE;
+  bMotorMoveDone1:= FALSE;
+  bMotorMoveDone2:= FALSE;
+  TON_Alarm(IN :=FALSE);
+  TON_Alarm1(IN :=FALSE);
+  TON_Alarm2(IN :=FALSE);
+  IF g_dMotorControlNumberM=1.0 THEN(*变频器1控制*)
+    bMotorMoveControlFlag := FALSE;
+    IF g_nConvertState = 100 THEN
+      nMotorMoveState := 100;
+    ELSIF g_nConvertState = 1 THEN (*正转*)
+      nMotorMoveState := 10;
+	  IF g_dMotorControlWaitSignalOutTimeAlarmType = 2.0 THEN
+        Ton_Motor1Move(IN := FALSE);
+        nMotorMoveState := 110;
+      END_IF;
+    ELSIF g_nConvertState = 0 THEN(*反转*)
+       nMotorMoveState := 25;  
+	   IF g_dMotorControlWaitSignalOutTimeAlarmType = 3.0 THEN
+        Ton_Motor1Move(IN := FALSE);
+        nMotorMoveState := 120;
+      END_IF;
+    END_IF;
+  ELSIF g_dMotorControlNumberM=2.0 THEN (*变频器2控制*)
+    bMotorMoveControlFlag := FALSE;
+    IF g_nConvertState = 100 THEN
+      TMotorWaitTimeToClose6(IN := FALSE);
+      nMotorMoveState1 := 100;
+    ELSIF g_nConvertState = 1 THEN (*正转*)
+      nMotorMoveState1 := 10;
+	  IF g_dMotorControlWaitSignalOutTimeAlarmType = 2.0 THEN
+        Ton_Motor2Move(IN := FALSE);
+        nMotorMoveState1 := 110;
+      END_IF;
+    ELSIF g_nConvertState = 0 THEN(*反转*)
+       nMotorMoveState1 := 25;  
+	   IF g_dMotorControlWaitSignalOutTimeAlarmType = 3.0 THEN
+        Ton_Motor2Move(IN := FALSE);
+        nMotorMoveState1 := 120;
+      END_IF;
+    END_IF;
+  ELSIF g_dMotorControlNumberM=3.0 THEN (*变频器3控制*)
+    bMotorMoveControlFlag := FALSE;
+    IF g_nConvertState = 100 THEN
+      TMotorWaitTimeToClose9(IN := FALSE);
+      nMotorMoveState2 := 100;
+    ELSIF g_nConvertState = 1 THEN (*正转*)
+      nMotorMoveState2 := 10;
+	  IF g_dMotorControlWaitSignalOutTimeAlarmType = 2.0 THEN
+        Ton_Motor3Move(IN := FALSE);
+        nMotorMoveState2 := 110;
+      END_IF;
+    ELSIF g_nConvertState = 0 THEN(*反转*)
+       nMotorMoveState2 := 25;  
+	   IF g_dMotorControlWaitSignalOutTimeAlarmType = 3.0 THEN
+        Ton_Motor3Move(IN := FALSE);
+        nMotorMoveState2 := 120;
+      END_IF;
+    END_IF;
+  ELSE(*所有变频器控制*)
+    bMotorMoveControlFlag := TRUE;
+    IF g_nConvertState = 100 THEN
+      TMotorWaitTimeToClose2(IN := FALSE);
+      nMotorMoveState := 100;
+      TMotorWaitTimeToClose6(IN := FALSE);
+      nMotorMoveState1 := 100;
+      TMotorWaitTimeToClose9(IN := FALSE);
+      nMotorMoveState2 := 100;
+    ELSIF g_nConvertState = 1 THEN (*正转*)
+      nMotorMoveState := 10;
+      nMotorMoveState1 := 10;
+      nMotorMoveState2 := 10;
+    ELSIF g_nConvertState = 0 THEN(*反转*)
+       nMotorMoveState := 25; 
+       nMotorMoveState1 := 25; 
+       nMotorMoveState2 := 25;  
+    END_IF;  
+  END_IF;
+END_IF;
+
+
+
+
+CASE nMotorMoveState OF
+  0:
+    nMotorMovePreState := 0;
+    nMotorMoveState := 0;
+  10:
+    nMotorMovePreState := nMotorMoveState;
+    g_boMotor1Up := TRUE;
+    g_boMotor1Down := FALSE;
+    IF g_bMotorUpLimit OR BoardInPutArray.BoolArr[LREAL_TO_INT(g_dMotorControlWaitSignalIndex) - 1] OR bMotor1OtherStopSignalCheckUp  THEN
+      TON_Alarm(IN :=FALSE);
+      IF g_bMotorUpLimit THEN
+		g_boMotor1Up := FALSE;
+		g_boMotor1Down := FALSE;
+		nMotorMoveState := 0;
+		bMotorMoveDone:= TRUE;
+		IF NOT bMotorMoveControlFlag THEN
+			M.ENABLE[301] := 0;
+			g_bExecuteFinishedM301 := FALSE;
+            g_bFinishedM301_1 := FALSE;
+		END_IF;
+      ELSE
+        IF g_dConvertUpTime <> 0.0 THEN
+			nMotorMoveState := 15;
+		ELSE
+			g_boMotor1Up := FALSE;
+			g_boMotor1Down := FALSE;
+			nMotorMoveState := 0;
+			bMotorMoveDone:= TRUE;
+			IF NOT bMotorMoveControlFlag THEN
+			  M.ENABLE[301] := 0;
+			  g_bExecuteFinishedM301 := FALSE;
+              g_bFinishedM301_1 := FALSE;
+			END_IF;
+		END_IF;
+      END_IF;
+      
+    ELSE
+      TON_Alarm(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(dMotorMoveUpDoneDelay))));
+      IF TON_Alarm.Q THEN
+        TON_Alarm(IN :=FALSE);
+        IF g_dMotorControlWaitSignalOutTimeAlarmType =0.0 THEN
+          bMotor1UpSignalDoneTimeoutAlarm :=TRUE;
+          g_boMotor1Up := FALSE;
+        ELSE
+        IF NOT bMotorMoveControlFlag THEN
+          M.ENABLE[301] := 0;
+          g_bExecuteFinishedM301 := FALSE;
+          g_bFinishedM301_1 := FALSE;
+        END_IF;
+        bMotor1UpSignalDoneTimeoutTip :=TRUE;
+        END_IF;
+        nMotorMoveState := 0;
+      END_IF;   
+    END_IF;
+  15:
+  nMotorMovePreState := nMotorMoveState;
+   TMotorWaitTimeToClose(IN := TRUE,PT:= LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(g_dConvertUpTime))));
+    IF TMotorWaitTimeToClose.Q THEN
+      TMotorWaitTimeToClose(IN := FALSE);
+      g_boMotor1Up := FALSE;
+      nMotorMoveState := 0;
+      bMotorMoveDone:= TRUE;
+      IF NOT bMotorMoveControlFlag THEN
+        M.ENABLE[301] := 0;
+        g_bExecuteFinishedM301 := FALSE;
+        g_bFinishedM301_1 := FALSE;
+      END_IF;
+    END_IF;
+      nMotorDownType1 := nMotorDownType1 +1;
+  20:
+    nMotorMovePreState := nMotorMoveState;
+    TMotorStopTimeToDown(IN := TRUE,PT := T#200ms);
+    IF TMotorStopTimeToDown.Q THEN
+      TMotorStopTimeToDown(IN := FALSE);
+      nMotorMoveState := 25;
+    END_IF;
+    
+  25:
+    g_boMotor1Up := FALSE;
+    g_boMotor1Down := TRUE;
+    nMotorMovePreState := nMotorMoveState;
+    IF g_bMotorDownLimit OR BoardInPutArray.BoolArr[LREAL_TO_INT(g_dMotorControlWaitSignalIndex) - 1] OR  bMotor1OtherStopSignalCheckDown THEN
+      TON_Alarm(IN :=FALSE);
+      IF g_bMotorDownLimit THEN
+        g_boMotor1Up := FALSE;
+        g_boMotor1Down := FALSE;
+        nMotorMoveState := 0;
+        bMotorMoveDone:= TRUE;
+        IF NOT bMotorMoveControlFlag THEN
+          M.ENABLE[301] := 0;
+          g_bExecuteFinishedM301 := FALSE;
+          g_bFinishedM301_1 := FALSE;
+        END_IF;
+      ELSE
+        IF g_dConvertDownTime<> 0.0 THEN
+         nMotorMoveState := 35;
+		ELSE
+			g_boMotor1Up := FALSE;
+			g_boMotor1Down := FALSE;
+			nMotorMoveState := 0;
+			bMotorMoveDone:= TRUE;
+			IF NOT bMotorMoveControlFlag THEN
+			  M.ENABLE[301] := 0;
+			  g_bExecuteFinishedM301 := FALSE;
+              g_bFinishedM301_1 := FALSE;
+			END_IF;
+		END_IF;
+      END_IF;
+    ELSE
+      TON_Alarm(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(dMotorMoveDownDoneDelay))));
+      IF TON_Alarm.Q THEN
+        TON_Alarm(IN :=FALSE);
+        IF g_dMotorControlWaitSignalOutTimeAlarmType =0.0 THEN
+          bMotor1DownSignalDoneTimeoutAlarm:=TRUE;
+          g_boMotor1Down := FALSE;
+        ELSE
+          IF NOT bMotorMoveControlFlag THEN
+            M.ENABLE[301] := 0;
+            g_bExecuteFinishedM301 := FALSE;
+            g_bFinishedM301_1 := FALSE;
+          END_IF;
+          bMotor1DownSignalDoneTimeoutTip :=TRUE;
+        END_IF;
+        nMotorMoveState := 0;
+      END_IF;  
+    END_IF;
+  35:
+  nMotorMovePreState := nMotorMoveState;
+   TMotorWaitTimeToClose1(IN := TRUE,PT:= LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(g_dConvertDownTime))));
+    IF TMotorWaitTimeToClose1.Q THEN
+      TMotorWaitTimeToClose1(IN := FALSE);
+      g_boMotor1Down := FALSE;
+      nMotorMoveState := 0;
+      bMotorMoveDone:= TRUE;
+      IF NOT bMotorMoveControlFlag THEN
+        M.ENABLE[301] := 0;
+        g_bExecuteFinishedM301 := FALSE;
+        g_bFinishedM301_1 := FALSE;
+      END_IF;
+    END_IF;
+  50:
+    IF g_bPlcStartBuffer AND nMotorMovePreState <> 0 THEN
+       nMotorMoveState := nMotorMovePreState;
+    END_IF;
+  100:
+  nMotorMovePreState := nMotorMoveState;
+   TMotorWaitTimeToClose2(IN := TRUE,PT:= LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(g_dConvertDownTime))));
+   IF TMotorWaitTimeToClose2.Q THEN
+    TMotorWaitTimeToClose2(IN := FALSE);
+    g_boMotor1Up := FALSE;
+    g_boMotor1Down := FALSE;
+    nMotorMoveState := 0;
+    bMotorMoveDone:= TRUE;
+    IF NOT bMotorMoveControlFlag THEN
+      M.ENABLE[301] := 0;
+      g_bExecuteFinishedM301 := FALSE;
+      g_bFinishedM301_1 := FALSE;
+    END_IF;
+  END_IF;
+  110:(*新指令:正转有限时时间,时间到了自动停止,限时时间内触发了限位或者等待信号延时关闭,停止运动*)
+	nMotorMovePreState := nMotorMoveState;
+    g_boMotor1Up := TRUE;
+     g_boMotor1Down := FALSE;
+	Ton_Motor1Move(IN := TRUE,PT:= LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(g_dConvertUpTime))));
+    IF Ton_Motor1Move.Q THEN
+      Ton_Motor1Move(IN := FALSE);
+      g_boMotor1Up := FALSE;
+      g_boMotor1Down := FALSE;
+      M.ENABLE[301] := 0;
+      g_bExecuteFinishedM301 := FALSE;
+      nMotorMoveState := 0;
+      bMotorMoveDone:= TRUE;
+      g_bFinishedM301_1 := FALSE;
+    END_IF;
+    IF g_bMotorUpLimit OR BoardInPutArray.BoolArr[LREAL_TO_INT(g_dMotorControlWaitSignalIndex) - 1] OR bMotor1OtherStopSignalCheckUp THEN
+		Ton_Motor1Move(IN := FALSE);
+		g_boMotor1Up := FALSE;
+		g_boMotor1Down := FALSE;
+		nMotorMoveState := 0;
+		bMotorMoveDone:= TRUE;
+        M.ENABLE[301] := 0;
+        g_bExecuteFinishedM301 := FALSE;
+        g_bFinishedM301_1 := FALSE;
+    END_IF;
+  120:(*新指令:正转有限时时间,时间到了自动停止,限时时间内触发了限位或者等待信号延时关闭,停止运动*)
+  nMotorMovePreState := nMotorMoveState;
+  g_boMotor1Down := TRUE;
+   g_boMotor1Up := FALSE;
+	Ton_Motor1Move(IN := TRUE,PT:= LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(g_dConvertDownTime))));
+    IF Ton_Motor1Move.Q THEN
+      Ton_Motor1Move(IN := FALSE);
+      g_boMotor1Up := FALSE;
+      g_boMotor1Down := FALSE;
+      M.ENABLE[301] := 0;
+      g_bExecuteFinishedM301 := FALSE;
+      g_bFinishedM301_1 := FALSE;
+      nMotorMoveState := 0;
+      bMotorMoveDone:= TRUE;
+    END_IF;
+    IF g_bMotorDownLimit OR BoardInPutArray.BoolArr[LREAL_TO_INT(g_dMotorControlWaitSignalIndex) - 1] OR bMotor1OtherStopSignalCheckDown THEN
+		Ton_Motor1Move(IN := FALSE);
+		g_boMotor1Up := FALSE;
+		g_boMotor1Down := FALSE;
+		nMotorMoveState := 0;
+		bMotorMoveDone:= TRUE;
+        M.ENABLE[301] := 0;
+        g_bExecuteFinishedM301 := FALSE;
+        g_bFinishedM301_1 := FALSE;
+    END_IF;
+  
+END_CASE;
+
+CASE nMotorMoveState1 OF
+  0:
+    nMotorMovePreState1 := 0;
+    nMotorMoveState1 := 0;
+  10:
+    nMotorMovePreState1 := nMotorMoveState1;
+    g_boMotor2Up := TRUE;
+    g_boMotor2Down := FALSE;
+    IF g_bMotorUpLimit1 OR BoardInPutArray.BoolArr[LREAL_TO_INT(g_dMotorControlWaitSignalIndex) - 1] OR bMotor2OtherStopSignalCheckUp THEN
+      TON_Alarm1(IN :=FALSE);
+      IF g_bMotorUpLimit1 THEN
+        g_boMotor2Up := FALSE;
+        g_boMotor2Down := FALSE;
+        nMotorMoveState1 := 0;
+        bMotorMoveDone1:= TRUE;
+        IF NOT bMotorMoveControlFlag THEN
+          M.ENABLE[301] := 0;
+          g_bExecuteFinishedM301 := FALSE;
+          g_bFinishedM301_2 := FALSE;
+        END_IF;
+        
+      ELSE
+         IF g_dConvertUpTime <> 0.0 THEN
+			TMotorWaitTimeToClose4(IN := FALSE);
+			nMotorMoveState1 := 15;
+		ELSE
+			g_boMotor2Up := FALSE;
+			g_boMotor2Down := FALSE;
+			nMotorMoveState1 := 0;
+			bMotorMoveDone1:= TRUE;
+			IF NOT bMotorMoveControlFlag THEN
+			  M.ENABLE[301] := 0;
+			  g_bExecuteFinishedM301 := FALSE;
+              g_bFinishedM301_2 := FALSE;
+			END_IF;
+		  END_IF; 
+      END_IF;
+    ELSE
+      TON_Alarm1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(dMotorMoveUpDoneDelay1))));
+      IF TON_Alarm1.Q THEN
+        TON_Alarm1(IN :=FALSE);
+        IF g_dMotorControlWaitSignalOutTimeAlarmType =0.0 THEN
+          bMotor2UpSignalDoneTimeoutAlarm:=TRUE;
+          g_boMotor2Up := FALSE;
+        ELSE
+          IF NOT bMotorMoveControlFlag THEN
+            M.ENABLE[301] := 0;
+            g_bExecuteFinishedM301 := FALSE;
+            g_bFinishedM301_2 := FALSE;
+          END_IF;
+          bMotor2UpSignalDoneTimeoutTip := TRUE;
+        END_IF;
+        nMotorMoveState1 := 0;
+      END_IF;   
+    END_IF;
+  15:
+  nMotorMovePreState1 := nMotorMoveState1;
+   TMotorWaitTimeToClose4(IN := TRUE,PT:= LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(g_dConvertUpTime))));
+    IF TMotorWaitTimeToClose4.Q THEN
+      TMotorWaitTimeToClose4(IN := FALSE);
+      g_boMotor2Up := FALSE;
+      nMotorMoveState1 := 0;
+      bMotorMoveDone1:= TRUE;
+      IF NOT bMotorMoveControlFlag THEN
+        M.ENABLE[301] := 0;
+        g_bExecuteFinishedM301 := FALSE;
+        g_bFinishedM301_2 := FALSE;
+      END_IF;
+    END_IF;
+      nMotorDownType1 := nMotorDownType1 +1;
+  20:
+    nMotorMovePreState1 := nMotorMoveState1;
+    TMotorStopTimeToDown1(IN := TRUE,PT := T#200ms);
+    IF TMotorStopTimeToDown1.Q THEN
+      TMotorStopTimeToDown1(IN := FALSE);
+      nMotorMoveState1 := 25;
+    END_IF;
+    
+  25:
+    g_boMotor2Up := FALSE;
+    g_boMotor2Down := TRUE;
+    nMotorMovePreState1 := nMotorMoveState1;
+    IF g_bMotorDownLimit1 OR BoardInPutArray.BoolArr[LREAL_TO_INT(g_dMotorControlWaitSignalIndex) - 1] OR bMotor2OtherStopSignalCheckDown THEN
+      TON_Alarm1(IN :=FALSE);
+      IF g_bMotorDownLimit1 THEN
+        g_boMotor2Up := FALSE;
+        g_boMotor2Down := FALSE;
+        nMotorMoveState1 := 0;
+        bMotorMoveDone1:= TRUE;
+        IF NOT bMotorMoveControlFlag THEN
+          M.ENABLE[301] := 0;
+          g_bExecuteFinishedM301 := FALSE;
+          g_bFinishedM301_2 := FALSE;
+        END_IF; 
+      ELSE
+        IF g_dConvertDownTime<> 0.0 THEN
+			TMotorWaitTimeToClose5(IN := FALSE);
+			nMotorMoveState1 := 35;
+		ELSE
+			g_boMotor2Up := FALSE;
+			g_boMotor2Down := FALSE;
+			nMotorMoveState1 := 0;
+			bMotorMoveDone1:= TRUE;
+			IF NOT bMotorMoveControlFlag THEN
+			  M.ENABLE[301] := 0;
+			  g_bExecuteFinishedM301 := FALSE;
+              g_bFinishedM301_2 := FALSE;
+			END_IF;
+		END_IF;
+        
+      END_IF;
+      
+    ELSE
+      TON_Alarm1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(dMotorMoveDownDoneDelay1))));
+      IF TON_Alarm1.Q THEN
+        TON_Alarm1(IN :=FALSE);
+        IF g_dMotorControlWaitSignalOutTimeAlarmType =0.0 THEN
+          bMotor2DownSignalDoneTimeoutAlarm:=TRUE;
+          g_boMotor2Down := FALSE;
+        ELSE
+          IF NOT bMotorMoveControlFlag THEN
+            M.ENABLE[301] := 0;
+            g_bExecuteFinishedM301 := FALSE;
+            g_bFinishedM301_2 := FALSE;
+          END_IF;
+          bMotor2DownSignalDoneTimeoutTip := TRUE;
+        END_IF;
+        nMotorMoveState1 := 0;
+      END_IF;    
+    END_IF;
+  35:
+   nMotorMovePreState1 := nMotorMoveState1;
+   TMotorWaitTimeToClose5(IN := TRUE,PT:= LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(g_dConvertDownTime))));
+    IF TMotorWaitTimeToClose5.Q THEN
+      TMotorWaitTimeToClose5(IN := FALSE);
+      g_boMotor2Down := FALSE;
+      nMotorMoveState1 := 0;
+      bMotorMoveDone1:= TRUE;
+      IF NOT bMotorMoveControlFlag THEN
+        M.ENABLE[301] := 0;
+        g_bExecuteFinishedM301 := FALSE;
+        g_bFinishedM301_2 := FALSE;
+      END_IF;
+    END_IF;
+  50:
+    IF g_bPlcStartBuffer AND nMotorMovePreState1 <> 0 THEN
+       nMotorMoveState2 := nMotorMovePreState1;
+    END_IF;
+  100:
+   nMotorMovePreState1 := nMotorMoveState1;
+   TMotorWaitTimeToClose6(IN := TRUE,PT:= LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(g_dConvertDownTime))));
+   IF TMotorWaitTimeToClose6.Q THEN
+    TMotorWaitTimeToClose6(IN := FALSE);
+    g_boMotor2Up := FALSE;
+    g_boMotor2Down := FALSE;
+    nMotorMoveState1 := 0;
+    bMotorMoveDone1:= TRUE;
+    IF NOT bMotorMoveControlFlag THEN
+      M.ENABLE[301] := 0;
+      g_bExecuteFinishedM301 := FALSE;
+      g_bFinishedM301_2 := FALSE;
+    END_IF;
+  END_IF; 
+	110:(*新指令:正转有限时时间,时间到了自动停止,限时时间内触发了限位或者等待信号延时关闭,停止运动*)
+	 nMotorMovePreState1 := nMotorMoveState1;
+    g_boMotor2Up := TRUE;
+     g_boMotor2Down := FALSE;
+	Ton_Motor2Move(IN := TRUE,PT:= LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(g_dConvertUpTime))));
+    IF Ton_Motor2Move.Q THEN
+      Ton_Motor2Move(IN := FALSE);
+      g_boMotor2Up := FALSE;
+      g_boMotor2Down := FALSE;
+      M.ENABLE[301] := 0;
+      g_bExecuteFinishedM301 := FALSE;
+      g_bFinishedM301_2 := FALSE;
+      nMotorMoveState1 := 0;
+      bMotorMoveDone:= TRUE;
+    END_IF;
+    IF g_bMotorUpLimit1 OR BoardInPutArray.BoolArr[LREAL_TO_INT(g_dMotorControlWaitSignalIndex) - 1] OR  bMotor2OtherStopSignalCheckUp THEN
+		Ton_Motor1Move(IN := FALSE);
+		g_boMotor1Up := FALSE;
+		g_boMotor1Down := FALSE;
+		nMotorMoveState1 := 0;
+		bMotorMoveDone:= TRUE;
+        M.ENABLE[301] := 0;
+        g_bExecuteFinishedM301 := FALSE;
+        g_bFinishedM301_2 := FALSE;
+    END_IF;
+  120:(*新指令:正转有限时时间,时间到了自动停止,限时时间内触发了限位或者等待信号延时关闭,停止运动*)
+   nMotorMovePreState1 := nMotorMoveState1;
+  g_boMotor2Down := TRUE;
+  g_boMotor2Up := FALSE;
+	Ton_Motor2Move(IN := TRUE,PT:= LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(g_dConvertDownTime))));
+    IF Ton_Motor2Move.Q THEN
+      Ton_Motor2Move(IN := FALSE);
+      g_boMotor2Up := FALSE;
+      g_boMotor2Down := FALSE;
+      M.ENABLE[301] := 0;
+      g_bExecuteFinishedM301 := FALSE;
+      g_bFinishedM301_2 := FALSE;
+      nMotorMoveState1 := 0;
+      bMotorMoveDone:= TRUE;
+    END_IF;
+    IF g_bMotorDownLimit1 OR BoardInPutArray.BoolArr[LREAL_TO_INT(g_dMotorControlWaitSignalIndex) - 1] OR  bMotor2OtherStopSignalCheckDown THEN
+		Ton_Motor2Move(IN := FALSE);
+		g_boMotor2Up := FALSE;
+		g_boMotor2Down := FALSE;
+		nMotorMoveState1 := 0;
+		bMotorMoveDone:= TRUE;
+        M.ENABLE[301] := 0;
+        g_bExecuteFinishedM301 := FALSE;
+        g_bFinishedM301_2 := FALSE;
+    END_IF;
+  
+END_CASE;
+
+
+CASE nMotorMoveState2 OF
+  0:
+    nMotorMovePreState2 := 0;
+    nMotorMoveState2 := 0;
+  10:
+    nMotorMovePreState2 := nMotorMoveState2;
+    g_boMotor3Up := TRUE;
+    g_boMotor3Down := FALSE;
+    IF g_bMotorUpLimit2 OR BoardInPutArray.BoolArr[LREAL_TO_INT(g_dMotorControlWaitSignalIndex) - 1] OR bMotor3OtherStopSignalCheckUp THEN
+      TON_Alarm2(IN :=FALSE);
+      IF g_bMotorUpLimit2 THEN
+         g_boMotor3Up := FALSE;
+			g_boMotor3Down := FALSE;
+			nMotorMoveState2 := 0;
+			bMotorMoveDone2:= TRUE;
+			IF NOT bMotorMoveControlFlag THEN
+			  M.ENABLE[301] := 0;
+			  g_bExecuteFinishedM301 := FALSE;
+              g_bFinishedM301_3 := FALSE;
+			END_IF;
+        
+        
+      ELSE
+        IF g_dConvertUpTime <> 0.0 THEN
+			TMotorWaitTimeToClose7(IN := FALSE);
+			nMotorMoveState2 := 15;
+		ELSE
+			g_boMotor3Up := FALSE;
+			g_boMotor3Down := FALSE;
+			nMotorMoveState2 := 0;
+			bMotorMoveDone2:= TRUE;
+			IF NOT bMotorMoveControlFlag THEN
+			  M.ENABLE[301] := 0;
+			  g_bExecuteFinishedM301 := FALSE;
+              g_bFinishedM301_3 := FALSE;
+			END_IF;
+		END_IF;
+        
+      END_IF;
+      
+    ELSE
+      TON_Alarm2(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(dMotorMoveUpDoneDelay2))));
+      IF TON_Alarm2.Q THEN
+        TON_Alarm2(IN :=FALSE);
+        IF g_dMotorControlWaitSignalOutTimeAlarmType =0.0 THEN
+          bMotor3UpSignalDoneTimeoutAlarm:=TRUE;
+          g_boMotor3Up := FALSE;
+        ELSE
+          IF NOT bMotorMoveControlFlag THEN
+            M.ENABLE[301] := 0;
+            g_bExecuteFinishedM301 := FALSE;
+            g_bFinishedM301_3 := FALSE;
+          END_IF;
+          bMotor3UpSignalDoneTimeoutTip := TRUE;
+        END_IF;
+        nMotorMoveState2 := 0;
+      END_IF;     
+    END_IF;
+  15:
+   nMotorMovePreState2 := nMotorMoveState2;
+   TMotorWaitTimeToClose7(IN := TRUE,PT:= LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(g_dConvertUpTime))));
+    IF TMotorWaitTimeToClose7.Q THEN
+      TMotorWaitTimeToClose7(IN := FALSE);
+      g_boMotor3Up := FALSE;
+      nMotorMoveState2 := 0;
+      bMotorMoveDone2:= TRUE;
+      IF NOT bMotorMoveControlFlag THEN
+        M.ENABLE[301] := 0;
+        g_bExecuteFinishedM301 := FALSE;
+        g_bFinishedM301_3 := FALSE;
+      END_IF;
+    END_IF;
+      nMotorDownType2 := nMotorDownType2 +1;
+  20:
+    nMotorMovePreState2 := nMotorMoveState2;
+    TMotorStopTimeToDown2(IN := TRUE,PT := T#200ms);
+    IF TMotorStopTimeToDown2.Q THEN
+      TMotorStopTimeToDown2(IN := FALSE);
+      nMotorMoveState2 := 25;
+    END_IF;
+    
+  25:
+    g_boMotor3Up := FALSE;
+    g_boMotor3Down := TRUE;
+    nMotorMovePreState2 := nMotorMoveState2;
+    IF g_bMotorDownLimit2 OR BoardInPutArray.BoolArr[LREAL_TO_INT(g_dMotorControlWaitSignalIndex) - 1] OR bMotor3OtherStopSignalCheckDown THEN
+      TON_Alarm2(IN :=FALSE);
+      IF g_bMotorDownLimit2 THEN
+        g_boMotor3Up := FALSE;
+        g_boMotor3Down := FALSE;
+        nMotorMoveState2 := 0;
+        bMotorMoveDone2:= TRUE;
+        IF NOT bMotorMoveControlFlag THEN
+          M.ENABLE[301] := 0;
+          g_bExecuteFinishedM301 := FALSE;
+          g_bFinishedM301_3 := FALSE;
+        END_IF;
+        
+      ELSE
+        IF g_dConvertDownTime<> 0.0 THEN
+        TMotorWaitTimeToClose8(IN := FALSE);
+        nMotorMoveState2 := 35;
+      ELSE
+        g_boMotor3Up := FALSE;
+        g_boMotor3Down := FALSE;
+        nMotorMoveState2 := 0;
+        bMotorMoveDone2:= TRUE;
+        IF NOT bMotorMoveControlFlag THEN
+          M.ENABLE[301] := 0;
+          g_bExecuteFinishedM301 := FALSE;
+          g_bFinishedM301_3 := FALSE;
+        END_IF;
+      END_IF;
+        
+      END_IF;
+      
+    ELSE
+      TON_Alarm2(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(dMotorMoveDownDoneDelay2))));
+      IF TON_Alarm2.Q THEN
+        TON_Alarm2(IN :=FALSE);
+        IF g_dMotorControlWaitSignalOutTimeAlarmType =0.0 THEN
+          bMotor3DownSignalDoneTimeoutAlarm:=TRUE;
+          g_boMotor3Down := FALSE;
+        ELSE
+          IF NOT bMotorMoveControlFlag THEN
+            M.ENABLE[301] := 0;
+            g_bExecuteFinishedM301 := FALSE;
+            g_bFinishedM301_3 := FALSE;
+          END_IF;
+          bMotor3DownSignalDoneTimeoutTip :=TRUE;
+        END_IF;
+        nMotorMoveState2 := 0;
+      END_IF;  
+    END_IF;
+  35:
+   nMotorMovePreState2 := nMotorMoveState2;
+   TMotorWaitTimeToClose8(IN := TRUE,PT:= LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(g_dConvertDownTime))));
+    IF TMotorWaitTimeToClose8.Q THEN
+      TMotorWaitTimeToClose8(IN := FALSE);
+      g_boMotor3Down := FALSE;
+      nMotorMoveState2 := 0;
+      bMotorMoveDone2:= TRUE;
+      IF NOT bMotorMoveControlFlag THEN
+        M.ENABLE[301] := 0;
+        g_bExecuteFinishedM301 := FALSE;
+        g_bFinishedM301_3 := FALSE;
+      END_IF;
+    END_IF;
+  50:
+    IF g_bPlcStartBuffer AND nMotorMovePreState2 <> 0 THEN
+       nMotorMoveState2 := nMotorMovePreState2;
+    END_IF;
+  100:
+   nMotorMovePreState2 := nMotorMoveState2;
+   TMotorWaitTimeToClose9(IN := TRUE,PT:= LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(g_dConvertDownTime))));
+   IF TMotorWaitTimeToClose9.Q THEN
+    TMotorWaitTimeToClose9(IN := FALSE);
+    g_boMotor3Up := FALSE;
+    g_boMotor3Down := FALSE;
+    nMotorMoveState2 := 0;
+    bMotorMoveDone2:= TRUE;
+    IF NOT bMotorMoveControlFlag THEN
+      M.ENABLE[301] := 0;
+      g_bExecuteFinishedM301 := FALSE;
+      g_bFinishedM301_3 := FALSE;
+    END_IF;
+  END_IF;
+  110:(*新指令:正转有限时时间,时间到了自动停止,限时时间内触发了限位或者等待信号延时关闭,停止运动*)
+   nMotorMovePreState2 := nMotorMoveState2;
+  g_boMotor3Up := TRUE;
+  g_boMotor3Down := FALSE;
+	Ton_Motor3Move(IN := TRUE,PT:= LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(g_dConvertUpTime))));
+    IF Ton_Motor3Move.Q THEN
+      Ton_Motor3Move(IN := FALSE);
+      g_boMotor3Up := FALSE;
+      g_boMotor3Down := FALSE;
+      M.ENABLE[301] := 0;
+      g_bExecuteFinishedM301 := FALSE;
+      g_bFinishedM301_3 := FALSE;
+      nMotorMoveState2 := 0;
+      bMotorMoveDone:= TRUE;
+    END_IF;
+    IF g_bMotorUpLimit2 OR BoardInPutArray.BoolArr[LREAL_TO_INT(g_dMotorControlWaitSignalIndex) - 1] OR bMotor3OtherStopSignalCheckUp THEN
+		Ton_Motor3Move(IN := FALSE);
+		g_boMotor3Up := FALSE;
+		g_boMotor3Down := FALSE;
+		nMotorMoveState2 := 0;
+		bMotorMoveDone:= TRUE;
+        M.ENABLE[301] := 0;
+        g_bExecuteFinishedM301 := FALSE;
+        g_bFinishedM301_3 := FALSE;
+    END_IF;
+  120:(*新指令:正转有限时时间,时间到了自动停止,限时时间内触发了限位或者等待信号延时关闭,停止运动*)
+   nMotorMovePreState2 := nMotorMoveState2;
+  g_boMotor3Down := TRUE;
+  g_boMotor3Up := FALSE;
+	Ton_Motor3Move(IN := TRUE,PT:= LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(g_dConvertDownTime))));
+    IF Ton_Motor3Move.Q THEN
+      Ton_Motor3Move(IN := FALSE);
+      g_boMotor3Up := FALSE;
+      g_boMotor3Down := FALSE;
+      M.ENABLE[301] := 0;
+      g_bExecuteFinishedM301 := FALSE;
+      g_bFinishedM301_3 := FALSE;
+      nMotorMoveState2 := 0;
+      bMotorMoveDone:= TRUE;
+    END_IF;
+    IF g_bMotorDownLimit2 OR BoardInPutArray.BoolArr[LREAL_TO_INT(g_dMotorControlWaitSignalIndex) - 1] OR  bMotor3OtherStopSignalCheckDown THEN
+		Ton_Motor3Move(IN := FALSE);
+		g_boMotor3Up := FALSE;
+		g_boMotor3Down := FALSE;
+		nMotorMoveState2 := 0;
+		bMotorMoveDone:= TRUE;
+        M.ENABLE[301] := 0;
+        g_bExecuteFinishedM301 := FALSE;
+        g_bFinishedM301_3 := FALSE;
+    END_IF;                                                                 
+
+	
+  
+END_CASE;
+(*用于一键动作变频器使用*)
+IF bMotorMoveDone2 AND bMotorMoveDone1 AND bMotorMoveDone AND bMotorMoveControlFlag THEN
+  bMotorMoveDone2:= FALSE;
+  bMotorMoveDone1:= FALSE;
+  bMotorMoveDone:= FALSE;
+  bMotorMoveControlFlag := FALSE;
+  M.ENABLE[301] := 0;
+  g_bExecuteFinishedM301 := FALSE;
+  g_bFinishedM301_1 := FALSE;
+  g_bFinishedM301_2 := FALSE;
+  g_bFinishedM301_3 := FALSE;
+END_IF;
+
+IF g_bMotorUpLimit OR bMotor1UpSignalDoneTimeoutAlarm THEN
+  g_boMotor1Up:=FALSE;
+END_IF;
+IF g_bMotorUpLimit1 OR bMotor2UpSignalDoneTimeoutAlarm THEN
+  g_boMotor2Up:=FALSE;
+END_IF;
+IF g_bMotorUpLimit2 OR bMotor3UpSignalDoneTimeoutAlarm THEN
+  g_boMotor3Up:=FALSE;
+END_IF;
+IF g_bMotorDownLimit OR bMotor1DownSignalDoneTimeoutAlarm THEN
+  g_boMotor1Down:=FALSE;
+END_IF;   
+IF g_bMotorDownLimit1 OR bMotor2DownSignalDoneTimeoutAlarm THEN
+  g_boMotor2Down:=FALSE;
+END_IF;   
+IF g_bMotorDownLimit2 OR bMotor3DownSignalDoneTimeoutAlarm THEN
+  g_boMotor3Down:=FALSE;
+END_IF;    
+(*防止避让或者分中暂停 停掉变频器*)
+IF g_bPlcPauseBuffer AND NOT g_bPlcAbnormalPause THEN
+  nMotorMoveState := 50;
+  g_boMotor1Up := FALSE;
+  g_boMotor1Down := FALSE;
+  nMotorMoveState1 := 50;
+  g_boMotor2Up := FALSE;
+  g_boMotor2Down := FALSE;
+  nMotorMoveState2 := 50;
+  g_boMotor3Up := FALSE;
+  g_boMotor3Down := FALSE;
+  TON_Alarm(IN :=FALSE);
+  TON_Alarm1(IN :=FALSE);
+  TON_Alarm2(IN :=FALSE);
+  Ton_Motor1Move(IN := FALSE);
+  Ton_Motor2Move(IN := FALSE);
+  Ton_Motor3Move(IN := FALSE);
+  TMotorWaitTimeToClose2(IN := FALSE);
+  TMotorWaitTimeToClose1(IN := FALSE);
+  TMotorWaitTimeToClose(IN := FALSE);
+  TMotorWaitTimeToClose3(IN := FALSE);
+  TMotorWaitTimeToClose4(IN := FALSE);
+  TMotorWaitTimeToClose5(IN := FALSE);
+  TMotorWaitTimeToClose6(IN := FALSE);
+  TMotorWaitTimeToClose7(IN := FALSE);
+  TMotorWaitTimeToClose8(IN := FALSE);
+  TMotorWaitTimeToClose9(IN := FALSE);
+END_IF;
+
+
+
+IF g_bPlcResetBuffer OR g_bPlcEndM THEN
+  g_bPlcAbnormalPause := FALSE;
+  g_boMotor1Up := FALSE;
+  g_boMotor1Down := FALSE;
+  TON_Alarm(IN :=FALSE);
+  TON_Alarm1(IN :=FALSE);
+  TON_Alarm2(IN :=FALSE);
+  bMotor1UpSignalDoneTimeoutAlarm := FALSE;
+  bMotor2UpSignalDoneTimeoutAlarm := FALSE;
+  bMotor3UpSignalDoneTimeoutAlarm := FALSE;
+  TMotorWaitTimeToClose2(IN := FALSE);
+  TMotorWaitTimeToClose1(IN := FALSE);
+  TMotorWaitTimeToClose(IN := FALSE);
+  nMotorMoveState := 0;
+  g_bExecuteFinishedM301 := FALSE;
+  g_bFinishedM301_1 := FALSE;
+  g_bFinishedM301_2 := FALSE;
+  g_bFinishedM301_3 := FALSE;
+  g_boMotor2Up := FALSE;
+  g_boMotor2Down := FALSE;
+  TMotorWaitTimeToClose3(IN := FALSE);
+  TMotorWaitTimeToClose4(IN := FALSE);
+  TMotorWaitTimeToClose5(IN := FALSE);
+	Ton_Motor1Move(IN := FALSE);
+  Ton_Motor2Move(IN := FALSE);
+  Ton_Motor3Move(IN := FALSE);
+  g_boMotor3Up := FALSE;
+  g_boMotor3Down := FALSE;
+  TMotorWaitTimeToClose6(IN := FALSE);
+  TMotorWaitTimeToClose7(IN := FALSE);
+  TMotorWaitTimeToClose8(IN := FALSE);
+  TMotorWaitTimeToClose9(IN := FALSE);
+  nMotorMoveState1 := 0;
+  nMotorMoveState2 := 0;
+  bMotorMoveDone := FALSE;
+  bMotorMoveDone1 := FALSE;
+  bMotorMoveDone2 := FALSE;
+  bMotorMoveControlFlag := FALSE;
+END_IF;
+
+IF bMotor1UpSignalDoneTimeoutAlarm THEN
+  g_Alarm.alarmArray[501] := 1214;
+  bMotor1UpSignalDoneTimeoutAlarm:= FALSE;
+END_IF;
+
+IF bMotor2UpSignalDoneTimeoutAlarm THEN
+  g_Alarm.alarmArray[502] := 1215;
+  bMotor2UpSignalDoneTimeoutAlarm:= FALSE;
+END_IF;
+
+IF bMotor3UpSignalDoneTimeoutAlarm THEN
+  g_Alarm.alarmArray[503] := 1216;
+  bMotor3UpSignalDoneTimeoutAlarm:= FALSE;
+END_IF;
+
+IF bMotor1DownSignalDoneTimeoutAlarm THEN
+  g_Alarm.alarmArray[504] := 1217;
+  bMotor1DownSignalDoneTimeoutAlarm:= FALSE;
+END_IF;
+
+IF bMotor2DownSignalDoneTimeoutAlarm THEN
+  g_Alarm.alarmArray[505] := 1218;
+  bMotor2DownSignalDoneTimeoutAlarm:= FALSE;
+END_IF;
+
+IF bMotor3DownSignalDoneTimeoutAlarm THEN
+  g_Alarm.alarmArray[506] := 1219;
+  bMotor3DownSignalDoneTimeoutAlarm:= FALSE;
+END_IF;
+
+
+IF bMotor1UpSignalDoneTimeoutTip THEN
+  g_Alarm.alarmArray[558] := 1271;
+  bMotor1UpSignalDoneTimeoutTip := FALSE;
+END_IF;
+IF bMotor2UpSignalDoneTimeoutTip THEN
+  g_Alarm.alarmArray[559] := 1272;
+  bMotor2UpSignalDoneTimeoutTip := FALSE;
+END_IF;
+IF bMotor3UpSignalDoneTimeoutTip THEN
+  g_Alarm.alarmArray[560] := 1273;
+  bMotor3UpSignalDoneTimeoutTip := FALSE;
+END_IF;
+IF bMotor1DownSignalDoneTimeoutTip THEN
+  g_Alarm.alarmArray[561] := 1274;
+  bMotor1DownSignalDoneTimeoutTip := FALSE;
+END_IF;
+IF bMotor2DownSignalDoneTimeoutTip THEN
+  g_Alarm.alarmArray[562] := 1275;
+  bMotor2DownSignalDoneTimeoutTip := FALSE;
+END_IF;
+IF bMotor3DownSignalDoneTimeoutTip THEN
+  g_Alarm.alarmArray[563] := 1276;
+  bMotor3DownSignalDoneTimeoutTip := FALSE;
+END_IF;
+(*手动控制*)
+Rtring_Motor1ManualUp(CLK := bMotor1ManualUp);
+Ftring_Motor1ManualUp(CLK := bMotor1ManualUp);
+Rtring_Motor1ManualDown(CLK := bMotor1ManualDown);
+Ftring_Motor1ManualDown(CLK := bMotor1ManualDown);
+IF Rtring_Motor1ManualUp.Q THEN
+  nMotor1ManualState := 10;
+END_IF;
+IF Ftring_Motor1ManualUp.Q THEN
+  nMotor1ManualState := 20;
+END_IF;
+IF Rtring_Motor1ManualDown.Q THEN
+  nMotor1ManualState := 30;
+END_IF;
+IF Ftring_Motor1ManualDown.Q THEN
+  nMotor1ManualState := 40;
+END_IF;
+
+
+CASE nMotor1ManualState OF
+  0:
+	nMotor1ManualState := 0;
+  10:
+	g_boMotor1Up := TRUE;
+    g_boMotor1Down := FALSE;
+	IF g_bMotorUpLimit OR bMotor1OtherStopSignalCheckUp THEN
+		g_boMotor1Up := FALSE;
+        nMotor1ManualState := 0;
+	END_IF;
+  20:
+	g_boMotor1Up := FALSE;
+    nMotor1ManualState := 0;
+  30:
+    g_boMotor1Up := FALSE;
+    g_boMotor1Down := TRUE;
+	IF g_bMotorDownLimit OR bMotor1OtherStopSignalCheckDown THEN
+		g_boMotor1Down := FALSE;
+        nMotor1ManualState := 0;
+	END_IF; 
+  40:
+	g_boMotor1Down := FALSE;
+    nMotor1ManualState := 0;
+END_CASE;
+
+
+Rtring_Motor2ManualUp(CLK := bMotor2ManualUp);
+Ftring_Motor2ManualUp(CLK := bMotor2ManualUp);
+Rtring_Motor2ManualDown(CLK := bMotor2ManualDown);
+Ftring_Motor2ManualDown(CLK := bMotor2ManualDown);
+IF Rtring_Motor2ManualUp.Q THEN
+  nMotor2ManualState := 10;
+END_IF;
+IF Ftring_Motor2ManualUp.Q THEN
+  nMotor2ManualState := 20;
+END_IF;
+IF Rtring_Motor2ManualDown.Q THEN
+  nMotor2ManualState := 30;
+END_IF;
+IF Ftring_Motor2ManualDown.Q THEN
+  nMotor2ManualState := 40;
+END_IF;
+
+
+CASE nMotor2ManualState OF
+  0:
+	nMotor2ManualState := 0;
+  10:
+	g_boMotor2Up := TRUE;
+    g_boMotor2Down := FALSE;
+	IF g_bMotorUpLimit1 OR bMotor2OtherStopSignalCheckUp THEN
+		g_boMotor2Up := FALSE;
+        nMotor2ManualState := 0;
+	END_IF;
+  20:
+	g_boMotor2Up := FALSE;
+    nMotor2ManualState := 0;
+  30:
+    g_boMotor2Up := FALSE;
+    g_boMotor2Down := TRUE;
+	IF g_bMotorDownLimit1 OR bMotor2OtherStopSignalCheckDown THEN
+		g_boMotor1Down := FALSE;
+        nMotor2ManualState := 0;
+	END_IF; 
+  40:
+	g_boMotor2Down := FALSE;
+    nMotor2ManualState := 0;
+END_CASE;
+
+Rtring_Motor3ManualUp(CLK := bMotor3ManualUp);
+Ftring_Motor3ManualUp(CLK := bMotor3ManualUp);
+Rtring_Motor3ManualDown(CLK := bMotor3ManualDown);
+Ftring_Motor3ManualDown(CLK := bMotor3ManualDown);
+IF Rtring_Motor3ManualUp.Q THEN
+  nMotor3ManualState := 10;
+END_IF;
+IF Ftring_Motor3ManualUp.Q THEN
+  nMotor3ManualState := 20;
+END_IF;
+IF Rtring_Motor3ManualDown.Q THEN
+  nMotor3ManualState := 30;
+END_IF;
+IF Ftring_Motor3ManualDown.Q THEN
+  nMotor3ManualState := 40;
+END_IF;
+
+
+CASE nMotor3ManualState OF
+  0:
+	nMotor3ManualState := 0;
+  10:
+	g_boMotor3Up := TRUE;
+    g_boMotor3Down := FALSE;
+	IF g_bMotorUpLimit2 OR bMotor3OtherStopSignalCheckUp THEN
+		g_boMotor3Up := FALSE;
+        nMotor3ManualState := 0;
+	END_IF;
+  20:
+	g_boMotor3Up := FALSE;
+    nMotor3ManualState := 0;
+  30:
+    g_boMotor3Up := FALSE;
+    g_boMotor3Down := TRUE;
+	IF g_bMotorDownLimit2 OR bMotor3OtherStopSignalCheckDown THEN
+		g_boMotor3Down := FALSE;
+        nMotor3ManualState := 0;
+	END_IF; 
+  40:
+	g_boMotor3Down := FALSE;
+    nMotor3ManualState := 0;
+END_CASE;
+Rtring_AllMotorStop(CLK := bAllMotorStop);
+IF Rtring_AllMotorStop.Q THEN
+  bAllMotorStop := FALSE;
+  g_boMotor3Up := FALSE;
+  g_boMotor3Down := FALSE;
+  g_boMotor2Up := FALSE;
+  g_boMotor2Down := FALSE;
+  g_boMotor1Up := FALSE;
+  g_boMotor1Down := FALSE;
+  bMotor3ManualUp := FALSE;
+  bMotor3ManualDown := FALSE;
+  bMotor2ManualUp := FALSE;
+  bMotor2ManualDown := FALSE;
+  bMotor1ManualUp := FALSE;
+  bMotor1ManualDown := FALSE;
+  nMotor1ManualState := 0;
+  nMotor2ManualState := 0;
+  nMotor3ManualState := 0;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

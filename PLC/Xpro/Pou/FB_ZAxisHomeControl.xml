@@ -1,0 +1,306 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ZAxisHomeControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC暂停全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC复位全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biZHomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boZHomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZAxisZero">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零零位信号引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZHome">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZMoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZMoveRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZMoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bHomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始，一般被HMI控制]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bZHomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bHomeError">
+        <type>
+          <USINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零错误]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHomeState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零状态机变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHomingMode">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dHomePosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后坐标偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dHomeOffset">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后实际位置偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dHomeVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后实际位置偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bChangeHomeMode">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[至零点触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nRecoverZDatumMarkState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger(CLK := bHomeEnable);
+
+IF RTrigger.Q THEN
+  nHomeState := 1;
+  g_bZHomeDone := FALSE;
+  bHomeEnable := FALSE;  
+END_IF;
+
+
+CASE nHomeState OF
+  0:
+    nHomeState := 0;
+  1:
+    g_ZHome.Position :=dHomePosition;
+    g_ZHome.DISTANCE := dHomeOffset;
+    g_ZHome.bCalibrationCam := g_bZAxisZero;
+    IF nHomingMode = 0 THEN
+      g_ZHome.HomingMode := 0;
+    ELSIF nHomingMode = 1 THEN
+      g_ZHome.HomingMode := 5;
+    ELSIF nHomingMode = 2 THEN
+      g_ZHome.HomingMode := 4;
+    END_IF;
+    g_ZHome.Execute := TRUE;
+    
+    IF g_ZHome.Done THEN
+      g_ZHome.Execute := FALSE;
+      nHomeState := 0;
+      g_bZHomeDone := TRUE;     
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nHomeState := 20;
+    END_IF;
+    IF g_ZHome.CommandAborted OR g_ZHome.Error THEN
+      g_ZHome.Execute := FALSE;
+      nHomeState := 0;
+    END_IF;
+  20:
+    g_ZHome.Execute := FALSE;
+    g_ZMoveAbs.Execute := FALSE;
+    g_ZMoveStop.Execute := TRUE;
+    IF g_ZMoveStop.Done  THEN
+      g_ZMoveStop.Execute := FALSE;
+      nHomeState := 0;
+    END_IF;
+    IF g_ZMoveStop.CommandAborted OR g_ZMoveStop.Error THEN
+      g_ZMoveStop.Execute := FALSE;
+      nHomeState := 0;
+    END_IF;
+  END_CASE;
+
+
+g_nZHomeState:=nHomeState;(*Z轴回零状态机监控*)
+
+(***界面上按了Z轴置零点按钮***)
+IF g_bSetZZeroPos THEN
+   g_ZHome.HomingMode := 4;
+   g_ZHome.Position := 0.0;
+   g_ZHome.DISTANCE := 0.0;
+   g_ZHome.Execute := TRUE;  
+   IF g_ZHome.DONE OR g_ZHome.ERROR THEN 
+    g_bZHomeDone := TRUE;
+    g_ZHome.Execute := FALSE; 
+    g_bSetZZeroPos := FALSE; 
+   END_IF;
+END_IF;
+
+(***界面上下发了去掉Z轴回零标志***)
+IF g_bCleanZHomed THEN
+   g_ZHome.HomingMode := 1;
+   g_ZHome.Execute := TRUE; 
+   g_bZHomeDone := FALSE; 
+   IF g_ZHome.DONE OR g_ZHome.ERROR THEN 
+    g_ZHome.Execute := FALSE; 
+    g_bCleanZHomed := FALSE; 
+   END_IF;
+END_IF;
+
+
+(*伺服断电恢复基准点*)
+RTrigger2(CLK := g_bRecoverZDatumMark);
+IF RTrigger2.Q THEN
+  g_bRecoverZDatumMark := FALSE;
+  nRecoverZDatumMarkState := 1;
+END_IF;
+CASE nRecoverZDatumMarkState OF
+  1:
+   g_ZHome.HomingMode := 4;
+   g_ZHome.Position :=g_ZDatumMark1; (*恢复基准点坐标差值*)
+   g_ZHome.Execute := TRUE;  
+   IF  g_ZHome.DONE OR g_ZHome.ERROR THEN 
+    g_bZHomeDone := TRUE;
+    g_ZHome.Execute := FALSE; 
+    g_bSetZZeroPos := FALSE;
+    nRecoverZDatumMarkState := 0; 
+   END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nHomeState := 0;
+  g_bZHomeDone := TRUE;
+  g_ZMoveStop.Execute := FALSE;
+  g_ZHome.Execute := FALSE;
+  g_ZMoveAbs.Execute := FALSE;
+  g_bSetZZeroPos := FALSE;
+  g_bCleanZHomed := FALSE; 
+END_IF;
+g_nZHomeMode := nHomingMode;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,487 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_GeneralAxisRel" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_General1_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_General1_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_General1_Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dGeneral1RelDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dGeneral2RelDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dGeneral1RelVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dGeneral2RelVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dGeneral1RelTargetDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dGeneral2RelTargetDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bGeneral1RelEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bGeneral2RelEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bGeneral1RelDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bGeneral2RelDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nRelState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nRelState1">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="R_Trriger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger6">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger7">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biGeneral1RelOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biGeneral2RelOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boGeneral1RelDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boGeneral2RelDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biGeneral1RelClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biGeneral2RelClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFastInch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dGeneral1AxisSlowVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dGeneral2AxisSlowVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dGeneral1AxisFastVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dGeneral2AxisFastVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dGeneral1AxisAutoVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dGeneral2AxisAutoVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trriger(CLK := bGeneral1RelEnable OR g_biGeneral1RelOpen OR g_bGeneralAxis1RelMoveM);
+R_Trriger1(CLK := g_biGeneral1RelClose);
+R_Trriger2(CLK := bGeneral2RelEnable OR g_biGeneral2RelOpen OR g_bGeneralAxis2RelMoveM);
+R_Trriger3(CLK := g_biGeneral2RelClose);
+R_Trriger4(CLK := g_biG1Rel_ActDone);
+R_Trriger5(CLK := g_biG2Rel_ActDone);
+R_Trriger6(CLK := g_bAxisStopFlag);
+R_Trriger7(CLK := g_bAxisStopFlag_2 OR g_bAxisStopFlag_3);
+
+IF R_Trriger.Q THEN
+  nRelState := 1;
+  bGeneral1RelDone := FALSE;
+  dGeneral1RelTargetDis := g_General1_Axis.NcToPlc.SETPOS + dGeneral1RelDis;
+  IF bGeneral1RelEnable THEN
+    IF g_bFastInch=0 THEN
+      g_General1_Rel.Velocity := dGeneral1AxisSlowVel;
+    ELSE
+      g_General1_Rel.Velocity := dGeneral1AxisFastVel;
+    END_IF;
+    bGeneral1RelEnable := FALSE;
+  ELSIF g_biGeneral1RelOpen THEN
+    g_General1_Rel.Velocity := dGeneral1AxisAutoVel;
+  ELSIF g_bGeneralAxis1RelMoveM THEN
+    dGeneral1RelTargetDis := g_General1_Axis.NcToPlc.SETPOS + g_dGeneralAxisMoveDistanceM;
+    g_bGeneralAxis1RelMoveM := FALSE;
+    IF g_bSetAuxiliaryAxisSpeed THEN
+      g_General1_Rel.Velocity := g_nAuxiliaryAxisSpeed;
+      g_bSetAuxiliaryAxisSpeed := FALSE;
+    ELSE
+      g_General1_Rel.Velocity := dGeneral1AxisAutoVel;
+    END_IF;
+  END_IF;
+(* IF nRelState <> 0  AND nRelState <> 20 AND g_General1_Axis.NCTOPLC.ACTVELO > g_dCheckAxisIsMovingSpeedSet  THEN
+    g_bAxisIsMoveAlarm := TRUE;
+    bGeneral1RelEnable := FALSE;
+    g_bGeneralAxis1RelMoveM := FALSE;
+     nRelState := 40;
+  END_IF;*)
+  
+  
+END_IF;
+
+IF R_Trriger1.Q THEN
+   bGeneral1RelDone := FALSE;
+   g_boGeneral1RelDone := FALSE;
+   g_boG1Rel_ActBck :=FALSE;
+END_IF;
+
+IF R_Trriger2.Q THEN
+  nRelState1 := 1;
+  bGeneral2RelDone := FALSE;
+  dGeneral2RelTargetDis := g_General2_Axis.NCTOPLC.SETPOS + dGeneral2RelDis;
+  IF bGeneral2RelEnable THEN
+    IF g_bFastInch=0 THEN
+      g_General2_Rel.Velocity := dGeneral2AxisSlowVel;
+    ELSE
+      g_General2_Rel.Velocity := dGeneral2AxisFastVel;
+    END_IF;
+    bGeneral2RelEnable := FALSE;
+  ELSIF g_biGeneral1RelOpen THEN
+    g_General2_Rel.Velocity := dGeneral2AxisAutoVel;
+  ELSIF g_bGeneralAxis2RelMoveM THEN
+    dGeneral2RelTargetDis := g_General2_Axis.NcToPlc.SETPOS + g_dGeneralAxisMoveDistanceM;
+    g_bGeneralAxis2RelMoveM := FALSE;
+    IF g_bSetAuxiliaryAxisSpeed THEN
+      g_General2_Rel.Velocity := g_nAuxiliaryAxisSpeed;
+      g_bSetAuxiliaryAxisSpeed := FALSE;
+    ELSE
+      g_General2_Rel.Velocity := dGeneral2AxisAutoVel;
+    END_IF;
+  END_IF;
+  
+ (*IF nRelState1 <> 0  AND nRelState1 <> 20 AND g_General1_Axis.NCTOPLC.ACTVELO > g_dCheckAxisIsMovingSpeedSet THEN
+    g_bAxisIsMoveAlarm := TRUE;
+    bGeneral2RelEnable := FALSE;
+    g_bGeneralAxis2RelMoveM := FALSE;
+	nRelState1 :=40;
+  END_IF;*)
+END_IF;
+
+IF R_Trriger3.Q THEN
+   bGeneral2RelDone := FALSE;
+   g_boGeneral2RelDone := FALSE;
+   g_boG2Rel_ActBck :=FALSE;
+END_IF;
+
+IF R_Trriger4.Q THEN
+  g_boG1Rel_ActBck :=FALSE;
+  nRelState :=40;
+END_IF;
+
+IF R_Trriger5.Q THEN
+  g_boG2Rel_ActBck :=FALSE;
+  nRelState1 :=40;
+END_IF;
+
+IF R_Trriger6.Q THEN
+  IF g_nAxisStopP = 2 THEN
+    g_bAxisStopFlag := FALSE;
+    nRelState := 40;
+  ELSIF g_nAxisStopP = 3 THEN
+    g_bAxisStopFlag :=FALSE;
+    nRelState1 := 40;
+  END_IF;
+END_IF;
+
+IF R_Trriger7.Q THEN
+  IF g_bAxisStopFlag_2 THEN
+    g_bAxisStopFlag_2 := FALSE;
+    nRelState := 40;
+  END_IF;
+  IF g_bAxisStopFlag_3 THEN
+    g_bAxisStopFlag_3 :=FALSE;
+    nRelState1 := 40;
+  END_IF;
+END_IF;
+
+CASE nRelState OF(*送料轴*)
+  0:
+    nRelState := 0;
+  1:
+    g_General1_Rel.Execute := TRUE;
+    g_General1_Rel.Distance := dGeneral1RelTargetDis - g_General1_Axis.NCTOPLC.SETPOS;
+    IF g_General1_Rel.Done THEN
+      g_General1_Rel.Execute := FALSE;
+      bGeneral1RelDone := TRUE;
+      g_bUniversalAxis1MoveDoneM320 := TRUE;
+      nRelState := 0;
+      M.ENABLE[274] := 0;
+      g_bExecuteFinishedM274 := FALSE;
+      g_bFinishedM274_1 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nRelState := 20;
+    END_IF;
+    IF g_General1_Rel.CommandAborted OR g_General1_Rel.Error THEN
+      g_General1_Rel.Execute := FALSE;
+      bGeneral1RelDone := FALSE;
+      nRelState := 0;
+      M.ENABLE[274] := 0;
+      g_bExecuteFinishedM274 := FALSE;
+      g_bFinishedM274_1 := FALSE;
+    END_IF;
+  20:
+    g_General1_Rel.Execute := FALSE;
+    g_General1_Stop.Execute := TRUE;
+    IF g_General1_Stop.Done AND g_bPlcStartBuffer THEN
+      g_General1_Stop.Execute := FALSE;
+      nRelState := 1;
+    END_IF;
+    IF g_General1_Stop.CommandAborted OR g_General1_Stop.Error THEN
+      g_General1_Stop.Execute := FALSE;
+      nRelState := 0;
+      M.ENABLE[274] := 0;
+      g_bExecuteFinishedM274 := FALSE;
+      g_bFinishedM274_1 := FALSE;
+    END_IF;
+  40:
+    g_General1_Rel.Execute := FALSE;
+    g_General1_Stop.Execute := TRUE;
+    IF g_General1_Stop.Done THEN
+      g_General1_Stop.Execute := FALSE;
+      g_boG1Rel_ActBck :=TRUE;
+      g_bFinishedM325_2 := FALSE;
+      M.ENABLE[325] := 0;
+      nRelState := 0;
+      g_bUniversalAxis1MoveDoneM320 := TRUE;
+    END_IF;
+    IF g_General1_Stop.CommandAborted OR g_General1_Stop.Error THEN
+      g_General1_Stop.Execute := FALSE;
+      g_bFinishedM325_2 := FALSE;
+      M.ENABLE[325] := 0;
+      nRelState := 0;
+    END_IF;
+END_CASE;
+
+CASE nRelState1 OF(*顶料轴*)
+  0:
+    nRelState1 := 0;
+  1:
+    g_General2_Rel.Execute := TRUE;
+    g_General2_Rel.Distance := dGeneral2RelTargetDis - g_General2_Axis.NCTOPLC.SETPOS;
+    IF g_General2_Rel.Done THEN
+      g_General2_Rel.Execute := FALSE;
+      bGeneral2RelDone := TRUE;
+      g_bUniversalAxis2MoveDoneM320 := TRUE;
+      nRelState1 := 0;
+      M.ENABLE[274] := 0;
+      g_bExecuteFinishedM274 := FALSE;
+      g_bFinishedM274_2 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nRelState1 := 20;
+    END_IF;
+    IF g_General2_Rel.CommandAborted OR g_General2_Rel.Error THEN
+      g_General2_Rel.Execute := FALSE;
+      bGeneral2RelDone := FALSE;
+      nRelState1 := 0;
+      M.ENABLE[274] := 0;
+      g_bExecuteFinishedM274 := FALSE;
+      g_bFinishedM274_2 := FALSE;
+    END_IF;
+  20:
+    g_General2_Rel.Execute := FALSE;
+    g_General2_Stop.Execute := TRUE;
+    IF g_General2_Stop.Done AND g_bPlcStartBuffer THEN
+      g_General2_Stop.Execute := FALSE;
+      nRelState1 := 1;
+    END_IF;
+    IF g_General2_Stop.CommandAborted OR g_General2_Stop.Error THEN
+      g_General2_Stop.Execute := FALSE;
+      nRelState1 := 0;
+      M.ENABLE[274] := 0;
+      g_bExecuteFinishedM274 := FALSE;
+      g_bFinishedM274_2 := FALSE;
+    END_IF;
+  40:
+    g_General2_Rel.Execute := FALSE;
+    g_General2_Stop.Execute := TRUE;
+    IF g_General2_Stop.Done THEN
+      g_boG2Rel_ActBck :=TRUE;
+      g_bFinishedM325_3 := FALSE;
+      M.ENABLE[325] := 0;
+      g_General2_Stop.Execute := FALSE;
+      nRelState1 := 0;
+      g_bUniversalAxis2MoveDoneM320 := TRUE;
+    END_IF;
+    IF g_General2_Stop.CommandAborted OR g_General2_Stop.Error THEN
+      g_General2_Stop.Execute := FALSE;
+      g_bFinishedM325_3 := FALSE;
+      M.ENABLE[325] := 0;
+      nRelState1 := 0;
+    END_IF;
+END_CASE;
+
+
+
+IF g_bPlcResetBuffer THEN
+  IF g_bRealTimeUpdateParallePLCExecuteFlag AND nRelState <> 0 AND  (g_bExecuteFinishedM274 OR 
+    g_bFinishedM274_1 OR g_bFinishedM325_2 ) THEN
+    ;
+  ELSE
+	nRelState := 0; 
+	  g_bExecuteFinishedM274 := FALSE;
+	  g_bFinishedM325_2 := FALSE;
+  END_IF;
+  g_General1_Rel.Execute := FALSE;
+  g_General1_Stop.Execute := FALSE;
+  
+  IF g_bRealTimeUpdateParallePLCExecuteFlag AND nRelState1 <> 0 AND  (g_bExecuteFinishedM274 OR 
+    g_bFinishedM274_2 OR g_bFinishedM325_3 ) THEN
+    ;
+  ELSE
+	nRelState1 := 0; 
+	  g_bExecuteFinishedM274 := FALSE;
+	  g_bFinishedM325_3 := FALSE;
+  END_IF;
+  g_General2_Rel.Execute := FALSE;
+  g_General2_Stop.Execute := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

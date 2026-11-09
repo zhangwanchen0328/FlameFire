@@ -1,0 +1,479 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Y2Y3AxisAbs" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Plc开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Plc暂停]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Plc复位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biY3AbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY3AbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiY3AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fY3AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiY3AbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动速度引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fY3AbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boY3AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY3AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3MoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3MoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bY3AbsEXecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始共享内存，一般被HMI使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bY3AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成共享内存，一般被HMI使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nY3AbsState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY3AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置共享内存，一般被HMI使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY3TargetPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置，中间缓存]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY3TargetVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY3AbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="RY3Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biY2AbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY2AbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiY2AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fY2AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiY2AbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动速度引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fY2AbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boY2AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY2AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y2MoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y2MoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y2Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bY2AbsEXecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始共享内存，一般被HMI使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bY2AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成共享内存，一般被HMI使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nY2AbsState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY2AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置共享内存，一般被HMI使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY2TargetPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置，中间缓存]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY2TargetVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY2AbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="RY2Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RY2Trigger(CLK := g_biY2AbsExecute OR bY2AbsEXecute OR g_bY2AbsExecute);
+
+IF RY2Trigger.Q THEN
+  nY2AbsState := 1;
+  g_boY2AbsDone := FALSE;
+  g_bY2AbsDone := FALSE;
+  bY2AbsDone := FALSE;
+  IF g_biY2AbsExecute THEN
+    dY2TargetPos := g_fiY2AbsPosition; 
+    dY2TargetVel := g_fiY2AbsVelocity;
+  ELSIF bY2AbsEXecute THEN
+    dY2TargetPos := dY2AbsPosition;
+    dY2TargetVel := 0.0;
+  ELSE
+    dY2TargetPos := g_fY2AbsPosition;
+    dY2TargetVel := g_fY2AbsVelocity;
+  END_IF;
+  IF dY2TargetVel = 0.0 THEN
+    dY2TargetVel := dY2AbsVelocity;
+  END_IF;
+END_IF;
+
+IF NOT(g_biY2AbsExecute OR bY2AbsEXecute OR g_bY2AbsExecute) THEN
+  g_boY2AbsDone := FALSE;
+  g_bY2AbsDone := FALSE;
+  bY2AbsDone := FALSE;
+END_IF;
+
+CASE nY2AbsState OF
+  0:
+    nY2AbsState := 0;
+  1:
+    g_Y2MoveAbs.Execute := TRUE;
+    g_Y2MoveAbs.Velocity := dY2TargetVel;
+    g_Y2MoveAbs.Position := dY2TargetPos;
+    IF g_Y2MoveAbs.Done THEN
+      g_Y2MoveAbs.Execute := FALSE;
+      g_boY2AbsDone := TRUE;
+      g_bY2AbsDone := TRUE;
+      bY2AbsDone := TRUE;
+      nY2AbsState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nY2AbsState := 20;
+    END_IF;
+    IF g_Y2MoveAbs.CommandAborted OR g_Y2MoveAbs.Error THEN
+      g_Y2MoveAbs.Execute := FALSE;
+      g_boY2AbsDone := FALSE;
+      nY2AbsState := 0;
+    END_IF;
+  20:
+    g_Y2MoveAbs.Execute := FALSE;
+    g_Y2MoveStop.Execute := TRUE;
+    IF g_Y2MoveStop.Done AND g_bPlcStartBuffer THEN
+      g_Y2MoveStop.Execute := FALSE;
+      nY2AbsState := 1;
+    END_IF;
+    IF g_Y2MoveStop.CommandAborted OR g_Y2MoveStop.Error THEN
+      g_Y2MoveStop.Execute := FALSE;
+      nY2AbsState := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nY2AbsState := 0;
+  g_Y2MoveAbs.Execute := FALSE;
+  g_Y2MoveStop.Execute := FALSE;
+  
+  nY3AbsState := 0;
+  g_Y3MoveAbs.Execute := FALSE;
+  g_Y3MoveStop.Execute := FALSE;
+END_IF;
+
+
+RY3Trigger(CLK := g_biY3AbsExecute OR bY3AbsEXecute OR g_bY3AbsExecute);
+
+IF RY3Trigger.Q THEN
+  nY3AbsState := 1;
+  g_boY3AbsDone := FALSE;
+  g_bY3AbsDone := FALSE;
+  bY3AbsDone := FALSE;
+  IF g_biY3AbsExecute THEN
+    dY3TargetPos := g_fiY3AbsPosition; 
+    dY3TargetVel := g_fiY3AbsVelocity;
+  ELSIF bY3AbsEXecute THEN
+    dY3TargetPos := dY3AbsPosition;
+    dY3TargetVel := 0.0;
+  ELSE
+    dY3TargetPos := g_fY3AbsPosition;
+    dY3TargetVel := g_fY3AbsVelocity;
+  END_IF;
+  IF dY3TargetVel = 0.0 THEN
+    dY3TargetVel := dY3AbsVelocity;
+  END_IF;
+END_IF;
+
+IF NOT(g_biY3AbsExecute OR bY3AbsEXecute OR g_bY3AbsExecute) THEN
+  g_boY3AbsDone := FALSE;
+  g_bY3AbsDone := FALSE;
+  bY3AbsDone := FALSE;
+END_IF;
+
+CASE nY3AbsState OF
+  0:
+    nY3AbsState := 0;
+  1:
+    g_Y3MoveAbs.Execute := TRUE;
+    g_Y3MoveAbs.Velocity := dY3TargetVel;
+    g_Y3MoveAbs.Position := dY3TargetPos;
+    IF g_Y3MoveAbs.Done THEN
+      g_Y3MoveAbs.Execute := FALSE;
+      g_boY3AbsDone := TRUE;
+      g_bY3AbsDone := TRUE;
+      bY3AbsDone := TRUE;
+      nY3AbsState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nY3AbsState := 20;
+    END_IF;
+    IF g_Y3MoveAbs.CommandAborted OR g_Y3MoveAbs.Error THEN
+      g_Y3MoveAbs.Execute := FALSE;
+      g_boY3AbsDone := FALSE;
+      nY3AbsState := 0;
+    END_IF;
+  20:
+    g_Y3MoveAbs.Execute := FALSE;
+    g_Y3MoveStop.Execute := TRUE;
+    IF g_Y3MoveStop.Done AND g_bPlcStartBuffer THEN
+      g_Y3MoveStop.Execute := FALSE;
+      nY3AbsState := 1;
+    END_IF;
+    IF g_Y3MoveStop.CommandAborted OR g_Y3MoveStop.Error THEN
+      g_Y3MoveStop.Execute := FALSE;
+      nY3AbsState := 0;
+    END_IF;
+END_CASE;
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[Y2Y3轴绝对运动模块]]></xhtml:p>
+  </documentation>
+</pou>

@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AvoidAxisHome" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="bHomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Rtring_Axis">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nHomingState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nHomingMode">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dHomePosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dHomeOffset">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dHomeVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bCleanHomed">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bChangeHomeMode">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nChangeHomeModeState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="Rtring_AvoidAxisRecover">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nRecoverAvoidAxisDatumMarkState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+Rtring_Axis(CLK := bHomeEnable);
+
+IF Rtring_Axis.Q THEN
+  nHomingState :=1;
+  g_boAntiRejection6HomeDone := FALSE;
+  bHomeEnable := FALSE;
+  g_bAvoidAxisHomedDone := FALSE;
+END_IF;
+
+CASE nHomingState OF 
+  0:
+  nHomingState := 0;
+  1:
+  g_AntiRejection6Home.Execute := TRUE;
+  g_AntiRejection6Home.Position := dHomePosition;
+  g_AntiRejection6Home.bCalibrationCam := g_boAntiRejection6HomeSignal;
+  g_AntiRejection6Home.DISTANCE := dHomeOffset; (*和回原方向相反的数值*)
+  IF nHomingMode =0 THEN
+    g_AntiRejection6Home.HomingMode := 0;
+  ELSIF nHomingMode = 1 THEN
+    g_AntiRejection6Home.HomingMode := 5;
+  ELSIF nHomingMode = 3 THEN
+       (*只是去掉回零标志位*)
+      g_AntiRejection6Home.HomingMode := 1;
+  END_IF;
+  IF g_AntiRejection6Home.Done THEN
+		g_AntiRejection6Home.Execute := FALSE;
+		g_boAntiRejection6HomeDone := TRUE;
+		nHomingState := 0;
+       g_bAvoidAxisHomedDone := TRUE;
+  END_IF;
+  IF g_bPlcPauseBuffer THEN
+    nHomingState := 10;
+  END_IF;
+  IF g_AntiRejection6Home.CommandAborted OR g_AntiRejection6Home.error THEN
+    nHomingState := 0;
+    g_AntiRejection6Home.Execute := FALSE;
+    g_boAntiRejection6HomeDone := FALSE;
+  END_IF;
+  
+  10:
+  g_AntiRejection6Home.Execute := FALSE;
+  g_AntiRejection6Stop.Execute := TRUE;
+  IF g_AntiRejection6Stop.Done AND g_bPlcStartBuffer THEN
+    g_AntiRejection6Stop.Execute := FALSE;
+    nHomingState := 1;
+  END_IF;
+  IF g_AntiRejection6Stop.CommandAborted OR g_AntiRejection6Stop.error THEN
+    g_AntiRejection6Stop.Execute := FALSE;
+    nHomingState :=0;
+  END_IF;
+	
+END_CASE;
+
+
+(***界面上下发了去掉轴回零标志***)
+IF bCleanHomed THEN
+   g_AntiRejection6Home.HomingMode := 1;
+   g_AntiRejection6Home.Execute := TRUE;
+   IF g_AntiRejection6Home.DONE OR g_AntiRejection6Home.ERROR THEN 
+    g_AntiRejection6Home.Execute := FALSE; 
+    bCleanHomed := FALSE; 
+   END_IF;
+END_IF;
+IF bChangeHomeMode THEN
+  bChangeHomeMode := FALSE;
+  nChangeHomeModeState := 1;
+END_IF;
+(*置零点功能*)
+CASE nChangeHomeModeState OF
+  0:
+    nChangeHomeModeState := 0;
+  1:
+    g_AntiRejection6Home.Execute := TRUE;
+    IF nHomingMode = 0 THEN
+      g_AntiRejection6Home.HomingMode := 0;
+    ELSIF nHomingMode = 1 THEN
+      g_AntiRejection6Home.HomingMode := 5;
+    ELSIF nHomingMode = 2 THEN
+      g_AntiRejection6Home.HomingMode := 4;
+    END_IF;
+  g_AntiRejection6Home.Position := 0.0;
+  g_AntiRejection6Home.DISTANCE := 0.0;
+    IF g_AntiRejection6Home.Done THEN
+      g_AntiRejection6Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+    IF g_AntiRejection6Home.CommandAborted OR g_AntiRejection6Home.Error THEN
+      g_AntiRejection6Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+END_CASE;
+
+
+(*伺服断电恢复基准点*)
+Rtring_AvoidAxisRecover(CLK := g_bRecoverAvoidAxisDatumMark);
+IF Rtring_AvoidAxisRecover.Q THEN
+  g_bRecoverAvoidAxisDatumMark := FALSE;
+  nRecoverAvoidAxisDatumMarkState := 1;
+END_IF;
+CASE nRecoverAvoidAxisDatumMarkState OF
+  1:
+   g_AntiRejection6Home.HomingMode := 4;
+   g_AntiRejection6Home.Position :=g_dAvoidAxisDatumMark; (*恢复基准点坐标差值*)
+   g_AntiRejection6Home.Execute := TRUE;  
+   IF  g_AntiRejection6Home.DONE OR g_AntiRejection6Home.ERROR THEN 
+		g_boAntiRejection6HomeDone := TRUE;
+		g_bAvoidAxisHomedDone := TRUE;
+		g_AntiRejection6Home.Execute := FALSE; 
+		nRecoverAvoidAxisDatumMarkState := 0; 
+   END_IF;
+END_CASE;
+
+
+IF g_bPlcResetBuffer THEN
+  g_AntiRejection6Home.Execute := FALSE;
+  nHomingState :=0;
+  g_AntiRejection6Rel.Execute := FALSE;
+  g_AntiRejection6Stop.Execute := FALSE;
+  g_bAvoidAxisHomedDone := TRUE;
+  g_bRecoverAvoidAxisDatumMark := FALSE;
+END_IF; 
+g_nAvoidAxisHomeMode := nHomingMode;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

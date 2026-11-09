@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CalibrateLevel" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_fMarkPointIdM">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第几个点 M代码]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="fMarkXPoint1Value">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第1个X轴坐标值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fMarkXPoint2Value">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第2个X轴坐标值]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fMarkXPointValueM">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[X轴坐标值  M代码]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="MarkpointRtrig">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标记点上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="M315Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[M]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bMarkPointM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[M315触发上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fZCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="fMarkZPoint1Value">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第1个Z轴坐标值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fMarkZPoint2Value">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第2个Z轴坐标值]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_foAngle">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出校水平得到的角度 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dAngle">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[校水平得到的角度 ]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bCalibrateLevelDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[校水平完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nLevelSwitchOn">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_diUMachineCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dMoveDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[定长移动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dUWordCoord">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bM315Trigger">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[MarkpointRtrig(CLK :=g_bMarkPointM); 
+M315Trigger(CLK := g_bM315TriggerEnable);
+
+dUWordCoord := FUN_FMOD(g_fUWorkCoordinate,FALSE);
+IF dUWordCoord < 0.0 THEN
+  dUWordCoord := dUWordCoord + 360.0;
+END_IF;
+IF M315Trigger.Q THEN
+  g_bM315TriggerEnable := TRUE;
+  (*对取余后的坐标值进行判断*)
+  IF (dUWordCoord >=0.0 AND dUWordCoord <= 0.5) OR (dUWordCoord >=359.5 AND dUWordCoord <= 360.5) THEN
+    g_noCurrentAngleOnSurface := 0.0;
+  ELSIF  (dUWordCoord >=89.5 AND dUWordCoord <= 90.5) THEN
+    g_noCurrentAngleOnSurface := 90.0;
+  ELSIF  (dUWordCoord >=179.5 AND dUWordCoord <= 180.5) THEN
+    g_noCurrentAngleOnSurface := 180.0; 
+  ELSIF  (dUWordCoord >=269.5 AND dUWordCoord <= 270.5) THEN
+    g_noCurrentAngleOnSurface := 270.0;
+  END_IF;
+  IF M.PARAMETER_P[315] = 1.0 THEN
+    bM315Trigger := TRUE;
+  ELSIF M.PARAMETER_P[315] = 2.0 THEN
+    bM315Trigger := FALSE;
+  END_IF;
+END_IF;
+
+IF MarkpointRtrig.Q THEN  
+  g_bMarkPointM := FALSE;
+  IF M.PARAMETER_J[166] = 0.0 THEN
+    nLevelSwitchOn := 1; 
+  ELSE
+    IF M.PARAMETER_K[166] =0.0 THEN
+      nLevelSwitchOn := 10;
+    ELSE
+      nLevelSwitchOn := 20;
+    END_IF;
+  END_IF; 
+  bCalibrateLevelDone := FALSE;
+END_IF;
+
+CASE nLevelSwitchOn OF
+  0:
+  nLevelSwitchOn := 0;
+  1:
+  IF LREAL_TO_INT(g_fMarkPointIdM) =1 THEN
+    fMarkXPoint1Value := g_fMarkXPointValueM;      
+    fMarkZPoint1Value := g_fZCoordinate; 
+    dMoveDistance := M.PARAMETER_I[166];      
+  ELSIF LREAL_TO_INT(g_fMarkPointIdM) =2 THEN
+    fMarkXPoint2Value := g_fMarkXPointValueM;
+    fMarkZPoint2Value := g_fZCoordinate;  
+    g_foAngle :=ATAN((fMarkZPoint2Value-fMarkZPoint1Value)/(fMarkXPoint2Value-fMarkXPoint1Value))/3.14159*180.0;
+     IF g_bFivePointsCenterEnable=FALSE AND g_bFourSideCenterStatusFb=FALSE AND bM315Trigger=FALSE THEN
+      g_dAngle := g_diUMachineCoordinate - g_foAngle;
+    END_IF;
+    bCalibrateLevelDone := TRUE;
+  END_IF; 
+  nLevelSwitchOn := 0;
+  10:
+    g_foAngle := ATAN((fMarkZPoint1Value - fMarkZPoint2Value)/(2.0*dMoveDistance))/3.14159*180.0;
+    nLevelSwitchOn := 0;
+  20:
+    g_foAngle := ATAN((fMarkZPoint1Value - fMarkZPoint2Value)*2.0/M.PARAMETER_K[166])/3.14159*180.0;
+    nLevelSwitchOn := 0;
+END_CASE;
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[校水平]]></xhtml:p>
+  </documentation>
+</pou>

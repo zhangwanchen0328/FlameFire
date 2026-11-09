@@ -1,0 +1,440 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SupportAxisMCommand" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Trigged_M">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Trigged_M(CLK := g_bSustainAxisMControlTrigged);
+IF Trigged_M.Q THEN
+	g_bSustainAxisMControlTrigged := FALSE;
+	g_dSustainAxisMoveDistanceM := M.PARAMETER_Q[306];  
+  IF M.PARAMETER_P[306] = 1.0 THEN
+		IF g_bSustainAxis1VelAddEnable THEN
+		  g_Alarm.alarmArray[586] := 1301;
+		  g_bSustainAxisAbsInFollowAlarm := TRUE;
+		ELSE
+		  g_bSustainAxis1MoveDoneM320 := FALSE;
+            g_bSustain1AbsDone := FALSE;
+		  IF M.PARAMETER_I[306] = 0.0 THEN
+			g_bSustainAxis1AbsMoveEnableM := true;
+		  ELSE
+			g_bSustainAxis1RelMoveEnableM := TRUE;
+		  END_IF;
+          nState := 5;
+		END_IF;
+		IF g_nSusutainCount < 1 THEN
+			  g_bSustain1AbsDone := TRUE;
+			  g_bSustainAxis1MoveDoneM320 := TRUE;
+			  M.ENABLE[306] := 0;
+			  g_bExecuteFinishedM306 := FALSE;
+			  g_bFinishedM306_1 := FALSE;
+			  g_bSustainAxis1AbsMoveEnableM := FALSE;
+			  g_bSustainAxis1RelMoveEnableM := FALSE;
+              nState := 0;
+		  END_IF;
+  ELSIF M.PARAMETER_P[306] = 2.0 THEN
+    IF g_bSustainAxis2VelAddEnable THEN
+      g_Alarm.alarmArray[586] := 1301;
+      g_bSustainAxisAbsInFollowAlarm := TRUE;
+    ELSE
+      g_bSustainAxis2MoveDoneM320 := FALSE;
+            g_bSustain2AbsDone := FALSE;
+      IF M.PARAMETER_I[306] = 0.0 THEN
+        g_bSustainAxis2AbsMoveEnableM := true;
+      ELSE
+        g_bSustainAxis2RelMoveEnableM := TRUE;
+      END_IF;
+          nState := 10;
+    END_IF;
+    IF g_nSusutainCount < 2 THEN
+          g_bSustain2AbsDone := TRUE;
+		  g_bSustainAxis2MoveDoneM320 := TRUE;
+		  M.ENABLE[306] := 0;
+		  g_bExecuteFinishedM306 := FALSE;
+		  g_bFinishedM306_2 := FALSE;
+          g_bSustainAxis2AbsMoveEnableM := FALSE;
+          g_bSustainAxis2RelMoveEnableM := FALSE;
+          nState := 0;
+      END_IF;
+  ELSIF M.PARAMETER_P[306] = 3.0 THEN
+    IF g_bSustainAxis3VelAddEnable THEN
+      g_Alarm.alarmArray[586] := 1301;
+      g_bSustainAxisAbsInFollowAlarm := TRUE;
+    ELSE
+      g_bSustainAxis3MoveDoneM320 := FALSE;
+            g_bSustain3AbsDone := FALSE;
+      IF M.PARAMETER_I[306] = 0.0 THEN
+        g_bSustainAxis3AbsMoveEnableM := true;
+      ELSE
+        g_bSustainAxis3RelMoveEnableM := TRUE;
+      END_IF;
+          nState := 15;
+    END_IF;
+    IF g_nSusutainCount < 3 THEN
+          g_bSustain3AbsDone := TRUE;
+		  g_bSustainAxis3MoveDoneM320 := TRUE;
+		  M.ENABLE[306] := 0;
+		  g_bExecuteFinishedM306 := FALSE;
+		  g_bFinishedM306_3 := FALSE;
+          g_bSustainAxis3AbsMoveEnableM := FALSE;
+          g_bSustainAxis3RelMoveEnableM := FALSE;
+              nState := 0;
+      END_IF;
+  ELSIF M.PARAMETER_P[306] = 4.0 THEN
+    IF g_bSustainAxis4VelAddEnable THEN
+      g_Alarm.alarmArray[586] := 1301;
+      g_bSustainAxisAbsInFollowAlarm := TRUE;
+    ELSE
+      g_bSustainAxis4MoveDoneM320 := FALSE;
+            g_bSustain7AbsDone := FALSE;
+      IF M.PARAMETER_I[306] = 0.0 THEN
+        g_bSustainAxis4AbsMoveEnableM := true;
+      ELSE
+        g_bSustainAxis4RelMoveEnableM := TRUE;
+      END_IF;
+          nState := 20;
+    END_IF;
+    IF g_nSusutainCount < 4 THEN
+          g_bSustain7AbsDone := TRUE;
+		  g_bSustainAxis4MoveDoneM320 := TRUE;
+		  M.ENABLE[306] := 0;
+		  g_bExecuteFinishedM306 := FALSE;
+		  g_bFinishedM306_4 := FALSE;
+          g_bSustainAxis4AbsMoveEnableM := FALSE;
+          g_bSustainAxis4RelMoveEnableM := FALSE;
+              nState := 0;
+      END_IF;
+  ELSIF M.PARAMETER_P[306] = 5.0 THEN
+    IF g_bSustainAxis5VelAddEnable THEN
+      g_Alarm.alarmArray[586] := 1301;
+      g_bSustainAxisAbsInFollowAlarm := TRUE;
+    ELSE
+      g_bSustainAxis5MoveDoneM320 := FALSE;
+            g_bSustain8AbsDone := FALSE;
+      IF M.PARAMETER_I[306] = 0.0 THEN
+        g_bSustainAxis5AbsMoveEnableM := true;
+      ELSE
+        g_bSustainAxis5RelMoveEnableM := TRUE;
+      END_IF;
+          nState := 25;
+    END_IF;
+    IF g_nSusutainCount < 5 THEN
+          g_bSustain8AbsDone := TRUE;
+		  g_bSustainAxis5MoveDoneM320 := TRUE;
+		  M.ENABLE[306] := 0;
+		  g_bExecuteFinishedM306 := FALSE;
+		  g_bFinishedM306_5 := FALSE;
+          g_bSustainAxis5AbsMoveEnableM := FALSE;
+          g_bSustainAxis5RelMoveEnableM := FALSE;
+              nState := 0;
+      END_IF;
+  ELSIF M.PARAMETER_P[306] = 6.0 THEN
+    IF g_bSustainAxis6VelAddEnable THEN
+      g_Alarm.alarmArray[586] := 1301;
+      g_bSustainAxisAbsInFollowAlarm := TRUE;
+    ELSE
+      g_bSustainAxis6MoveDoneM320 := FALSE;
+            g_bSustain9AbsDone := FALSE;
+      IF M.PARAMETER_I[306] = 0.0 THEN
+        g_bSustainAxis6AbsMoveEnableM := true;
+      ELSE
+        g_bSustainAxis6RelMoveEnableM := TRUE;
+      END_IF;
+          nState := 30;
+    END_IF;
+    IF g_nSusutainCount < 6 THEN
+          g_bSustain9AbsDone := TRUE;
+		  g_bSustainAxis6MoveDoneM320 := TRUE;
+		  M.ENABLE[306] := 0;
+		  g_bExecuteFinishedM306 := FALSE;
+		  g_bFinishedM306_6 := FALSE;
+          g_bSustainAxis6AbsMoveEnableM := FALSE;
+          g_bSustainAxis6RelMoveEnableM := FALSE;
+              nState := 0;
+      END_IF;
+  ELSIF M.PARAMETER_P[306] = 7.0 THEN
+    IF g_bSustainAxis7VelAddEnable THEN
+      g_Alarm.alarmArray[586] := 1301;
+      g_bSustainAxisAbsInFollowAlarm := TRUE;
+    ELSE
+      g_bSustainAxis7MoveDoneM320 := FALSE;
+      IF M.PARAMETER_I[306] = 0.0 THEN
+        g_NCMoveData.NCAXISDATA[4].AxisAbsMoveDone := FALSE;
+        g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := g_dSustainAxisMoveDistanceM;
+        g_NCMoveData.NCAXISCMD[4].NCAxisAbs := TRUE;
+          nState := 35;
+      ELSE
+        g_NCMoveData.NCAXISDATA[4].AxisRelMoveDone := FALSE;
+        g_NCMoveData.NCAXISDATA[4].AxisRelDistance := g_dSustainAxisMoveDistanceM;
+        g_NCMoveData.NCAXISCMD[4].NCAxisRel := TRUE;
+          nState := 40;
+      END_IF;
+    END_IF;
+    IF g_nSusutainCount < 7 THEN
+          g_NCMoveData.NCAXISDATA[4].AxisAbsMoveDone := TRUE;
+         g_NCMoveData.NCAXISDATA[4].AxisRelMoveDone := TRUE;
+		  g_bSustainAxis7MoveDoneM320 := TRUE;
+		  M.ENABLE[306] := 0;
+		  g_bExecuteFinishedM306 := FALSE;
+		  g_bFinishedM306_7 := FALSE;
+          g_NCMoveData.NCAXISCMD[4].NCAxisAbs := FALSE;
+          g_NCMoveData.NCAXISCMD[4].NCAxisRel := FALSE;
+              nState := 0;
+    END_IF;
+  ELSIF M.PARAMETER_P[306] = 8.0 THEN
+    IF g_bSustainAxis8VelAddEnable THEN
+      g_Alarm.alarmArray[586] := 1301;
+      g_bSustainAxisAbsInFollowAlarm := TRUE;
+    ELSE
+      g_bSustainAxis8MoveDoneM320 := FALSE;
+      IF M.PARAMETER_I[306] = 0.0 THEN
+        g_NCMoveData.NCAXISDATA[5].AxisAbsMoveDone := FALSE;
+        g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := g_dSustainAxisMoveDistanceM;
+        g_NCMoveData.NCAXISCMD[5].NCAxisAbs := TRUE;
+          nState := 45;
+      ELSE
+        g_NCMoveData.NCAXISDATA[5].AxisRelMoveDone := FALSE;
+        g_NCMoveData.NCAXISDATA[5].AxisRelDistance := g_dSustainAxisMoveDistanceM;
+        g_NCMoveData.NCAXISCMD[5].NCAxisRel := TRUE;
+          nState := 50;
+      END_IF;
+    END_IF;
+    IF g_nSusutainCount < 8 THEN
+          g_NCMoveData.NCAXISDATA[5].AxisAbsMoveDone := TRUE;
+        g_NCMoveData.NCAXISDATA[5].AxisRelMoveDone := TRUE;
+		  g_bSustainAxis8MoveDoneM320 := TRUE;
+		  M.ENABLE[306] := 0;
+		  g_bExecuteFinishedM306 := FALSE;
+		  g_bFinishedM306_8 := FALSE;
+          g_NCMoveData.NCAXISCMD[5].NCAxisAbs := FALSE;
+          g_NCMoveData.NCAXISCMD[5].NCAxisRel := FALSE;
+              nState := 0;
+    END_IF;
+  ELSIF M.PARAMETER_P[306] = 9.0 THEN
+    IF g_bSustainAxis9VelAddEnable THEN
+      g_Alarm.alarmArray[586] := 1301;
+      g_bSustainAxisAbsInFollowAlarm := TRUE;
+    ELSE
+      g_bSustainAxis9MoveDoneM320 := FALSE;
+      IF M.PARAMETER_I[306] = 0.0 THEN
+        g_NCMoveData.NCAXISDATA[6].AxisAbsMoveDone := FALSE;
+        g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := g_dSustainAxisMoveDistanceM;
+        g_NCMoveData.NCAXISCMD[6].NCAxisAbs := TRUE;
+          nState := 55;
+      ELSE
+        g_NCMoveData.NCAXISDATA[6].AxisRelMoveDone := FALSE;
+        g_NCMoveData.NCAXISDATA[6].AxisRelDistance := g_dSustainAxisMoveDistanceM;
+        g_NCMoveData.NCAXISCMD[6].NCAxisRel := TRUE;
+          nState := 60;
+      END_IF;
+    END_IF;
+    IF g_nSusutainCount < 9 THEN
+          g_NCMoveData.NCAXISDATA[6].AxisAbsMoveDone := TRUE;
+        g_NCMoveData.NCAXISDATA[6].AxisRelMoveDone := TRUE;
+		  g_bSustainAxis9MoveDoneM320 := TRUE;
+		  M.ENABLE[306] := 0;
+		  g_bExecuteFinishedM306 := FALSE;
+		  g_bFinishedM306_9 := FALSE;
+          g_NCMoveData.NCAXISCMD[6].NCAxisAbs := FALSE;
+          g_NCMoveData.NCAXISCMD[6].NCAxisRel := FALSE;
+              nState := 0;
+    END_IF;
+  ELSIF M.PARAMETER_P[306] = 10.0 THEN
+    IF g_bSustainAxis10VelAddEnable THEN
+      g_Alarm.alarmArray[586] := 1301;
+      g_bSustainAxisAbsInFollowAlarm := TRUE;
+    ELSE
+      g_bSustainAxis10MoveDoneM320 := FALSE;
+      IF M.PARAMETER_I[306] = 0.0 THEN
+        g_NCMoveData.NCAXISDATA[7].AxisAbsMoveDone := FALSE;
+        g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := g_dSustainAxisMoveDistanceM;
+        g_NCMoveData.NCAXISCMD[7].NCAxisAbs := TRUE;
+          nState := 65;
+      ELSE
+        g_NCMoveData.NCAXISDATA[7].AxisRelMoveDone := FALSE;
+        g_NCMoveData.NCAXISDATA[7].AxisRelDistance := g_dSustainAxisMoveDistanceM;
+        g_NCMoveData.NCAXISCMD[7].NCAxisRel := TRUE;
+          nState := 70;
+      END_IF;
+    END_IF;
+    IF g_nSusutainCount < 10 THEN
+          g_NCMoveData.NCAXISDATA[7].AxisAbsMoveDone := TRUE;
+        g_NCMoveData.NCAXISDATA[7].AxisRelMoveDone := TRUE;
+		  g_bSustainAxis10MoveDoneM320 := TRUE;
+		  M.ENABLE[306] := 0;
+		  g_bExecuteFinishedM306 := FALSE;
+		  g_bFinishedM306_10 := FALSE;
+          g_NCMoveData.NCAXISCMD[7].NCAxisAbs := FALSE;
+          g_NCMoveData.NCAXISCMD[7].NCAxisRel := FALSE;
+              nState := 0;
+    END_IF;
+  ELSIF M.PARAMETER_P[306] = 11.0 THEN
+    IF g_bSustainAxis11VelAddEnable THEN
+      g_Alarm.alarmArray[586] := 1301;
+      g_bSustainAxisAbsInFollowAlarm := TRUE;
+    ELSE
+      g_bSustainAxis11MoveDoneM320 := FALSE;
+      IF M.PARAMETER_I[306] = 0.0 THEN
+        g_NCMoveData.NCAXISDATA[8].AxisAbsMoveDone := FALSE;
+        g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := g_dSustainAxisMoveDistanceM;
+        g_NCMoveData.NCAXISCMD[8].NCAxisAbs := TRUE;
+          nState := 75;
+      ELSE
+        g_NCMoveData.NCAXISDATA[8].AxisRelMoveDone := FALSE;
+        g_NCMoveData.NCAXISDATA[8].AxisRelDistance := g_dSustainAxisMoveDistanceM;
+        g_NCMoveData.NCAXISCMD[8].NCAxisRel := TRUE;
+          nState := 80;
+      END_IF;
+    END_IF;
+    IF g_nSusutainCount < 11 THEN
+          g_NCMoveData.NCAXISDATA[8].AxisAbsMoveDone := TRUE;
+        g_NCMoveData.NCAXISDATA[8].AxisRelMoveDone := TRUE;
+		  g_bSustainAxis11MoveDoneM320 := TRUE;
+		  M.ENABLE[306] := 0;
+		  g_bExecuteFinishedM306 := FALSE;
+		  g_bFinishedM306_11 := FALSE;
+          g_NCMoveData.NCAXISCMD[8].NCAxisAbs := FALSE;
+          g_NCMoveData.NCAXISCMD[8].NCAxisRel := FALSE;
+              nState := 0;
+    END_IF;
+  ELSIF M.PARAMETER_P[306] = 12.0 THEN
+    IF g_bSustainAxis12VelAddEnable THEN
+      g_Alarm.alarmArray[586] := 1301;
+      g_bSustainAxisAbsInFollowAlarm := TRUE;
+    ELSE
+      g_bSustainAxis12MoveDoneM320 := FALSE;
+      IF M.PARAMETER_I[306] = 0.0 THEN
+        g_NCMoveData.NCAXISDATA[9].AxisAbsMoveDone := FALSE;
+        g_NCMoveData.NCAXISDATA[9].AxisAbsPosition := g_dSustainAxisMoveDistanceM;
+        g_NCMoveData.NCAXISCMD[9].NCAxisAbs := TRUE;
+          nState := 85;
+      ELSE
+        g_NCMoveData.NCAXISDATA[9].AxisRelMoveDone := FALSE;
+        g_NCMoveData.NCAXISDATA[9].AxisRelDistance := g_dSustainAxisMoveDistanceM;
+        g_NCMoveData.NCAXISCMD[9].NCAxisRel := TRUE;
+          nState := 90;
+      END_IF;
+    END_IF;
+    IF g_nSusutainCount < 12 THEN
+          g_NCMoveData.NCAXISDATA[9].AxisAbsMoveDone := TRUE;
+          g_NCMoveData.NCAXISDATA[9].AxisRelMoveDone := TRUE;
+		  g_bSustainAxis12MoveDoneM320 := TRUE;
+		  M.ENABLE[306] := 0;
+		  g_bExecuteFinishedM306 := FALSE;
+		  g_bFinishedM306_12 := FALSE;
+          g_NCMoveData.NCAXISCMD[9].NCAxisAbs := FALSE;
+          g_NCMoveData.NCAXISCMD[9].NCAxisRel := FALSE;
+          nState := 0;
+    END_IF;
+  END_IF;
+END_IF;
+  
+  
+CASE nState OF
+	5:(*支撑轴1绝对运动完成*)
+		IF g_bSustain1AbsDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	10:(*支撑轴2绝对运动完成*)
+		IF g_bSustain2AbsDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	15:(*支撑轴3绝对运动完成*)
+		IF g_bSustain3AbsDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	20:(*支撑轴4绝对运动完成*)
+		IF g_bSustain7AbsDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	25:(*支撑轴5绝对运动完成*)
+		IF g_bSustain8AbsDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	30:(*支撑轴6绝对运动完成*)
+		IF g_bSustain9AbsDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	35:(*支撑轴7绝对运动完成*)
+		IF g_NCMoveData.NCAXISDATA[4].AxisAbsMoveDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	40:(*支撑轴7相对运动完成*)
+		IF g_NCMoveData.NCAXISDATA[4].AxisRelMoveDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	45:(*支撑轴8绝对运动完成*)
+		IF g_NCMoveData.NCAXISDATA[5].AxisAbsMoveDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	50:(*支撑轴8相对运动完成*)
+		IF g_NCMoveData.NCAXISDATA[5].AxisRelMoveDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	55:(*支撑轴9绝对运动完成*)
+		IF g_NCMoveData.NCAXISDATA[6].AxisAbsMoveDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	60:(*支撑轴9相对运动完成*)
+		IF g_NCMoveData.NCAXISDATA[6].AxisRelMoveDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	65:(*支撑轴10绝对运动完成*)
+		IF g_NCMoveData.NCAXISDATA[7].AxisAbsMoveDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	70:(*支撑轴10相对运动完成*)
+		IF g_NCMoveData.NCAXISDATA[7].AxisRelMoveDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	75:(*支撑轴11绝对运动完成*)
+		IF g_NCMoveData.NCAXISDATA[8].AxisAbsMoveDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	80:(*支撑轴11相对运动完成*)
+		IF g_NCMoveData.NCAXISDATA[8].AxisRelMoveDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	85:(*支撑轴12绝对运动完成*)
+		IF g_NCMoveData.NCAXISDATA[9].AxisAbsMoveDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+	90:(*支撑轴12相对运动完成*)
+		IF g_NCMoveData.NCAXISDATA[9].AxisRelMoveDone THEN
+          M.ENABLE[306] := 0;
+          nState :=0;
+        END_IF;
+  
+END_CASE;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

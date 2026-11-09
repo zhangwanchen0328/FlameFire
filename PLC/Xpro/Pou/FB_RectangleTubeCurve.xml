@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_RectangleTubeCurve" pouType="functionBlock">
+  <interface>
+    <inputVars>
+      <variable name="fCornerRadius">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[全局变量：拐角半径]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSquareLenght">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[方管长]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSquareWidth">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[方管宽]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fRotationAngle">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U工件坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <outputVars>
+      <variable name="fCurrentPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </outputVars>
+    <localVars>
+      <variable name="nTurns">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="fRotationAngleSingleTurn">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fRotationRadSingleTurn">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fTubeHeight">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fTubeWidth">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fCriticalLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fCriticalAngle">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="PI">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fbCTRL_PT1">
+        <type>
+          <derived name="FB_CTRL_PT1"/>
+        </type>
+      </variable>
+      <variable name="fCurrentPosIn">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[PI := 3.1415926;
+
+fTubeHeight := dSquareWidth;
+fTubeWidth := dSquareLenght;
+IF fTubeWidth = 0.0 OR fTubeHeight = 0.0 THEN
+  RETURN;
+ELSE
+  fCriticalLength := SQRT(fTubeWidth * fTubeWidth + fTubeHeight * fTubeHeight) / 2.0;
+  fCriticalAngle := ATAN(fTubeHeight / fTubeWidth);
+END_IF;
+
+nTurns := LREAL_TO_DINT(ABS(fRotationAngle)) / 360;
+IF ABS(fRotationAngle) > 360.0 THEN
+  fRotationAngleSingleTurn := ABS(fRotationAngle) - DINT_TO_LREAL(nTurns * 360);
+ELSE
+  fRotationAngleSingleTurn := ABS(fRotationAngle);
+END_IF;
+fRotationRadSingleTurn := ABS(fRotationAngleSingleTurn) * PI / 180.0;
+
+IF fRotationRadSingleTurn >= 0.0 AND fRotationRadSingleTurn < PI / 2.0 THEN
+  fCurrentPos := fCriticalLength * SIN(fRotationRadSingleTurn + fCriticalAngle);
+ELSIF fRotationRadSingleTurn >= PI / 2.0 AND fRotationRadSingleTurn < PI THEN
+  fCurrentPos := fCriticalLength * SIN(fRotationRadSingleTurn - fCriticalAngle);
+ELSIF fRotationRadSingleTurn >= PI AND fRotationRadSingleTurn < PI * 3.0 / 2.0 THEN
+  fCurrentPos := fCriticalLength * SIN(fRotationRadSingleTurn + fCriticalAngle - PI);
+ELSIF fRotationRadSingleTurn >= PI * 3.0 / 2.0 AND fRotationRadSingleTurn <= PI * 2.0 THEN
+  fCurrentPos := fCriticalLength * SIN(fRotationRadSingleTurn - fCriticalAngle - PI);
+END_IF;
+
+(*对曲线输出增加滤波*)
+fCurrentPosIn := fCurrentPos;
+fbCTRL_PT1(
+     tCtrlCycleTime := 1.0,
+     tT1 := 20.0,
+     fIn := fCurrentPosIn,
+     fOut => fCurrentPos);
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

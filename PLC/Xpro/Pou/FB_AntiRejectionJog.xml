@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AntiRejectionJog" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="bfast1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[快速标志]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_AntiRejection1Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAntiRejection1Forward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAntiRejection1Backward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*防甩轴1*)
+IF bfast1 THEN
+  g_AntiRejection1Jog.Mode := 1;
+ELSE
+  g_AntiRejection1Jog.Mode := 0;
+END_IF;
+
+  g_AntiRejection1Jog.JogForward := bAntiRejection1Forward;
+  g_AntiRejection1Jog.JogBackwards := bAntiRejection1Backward;
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

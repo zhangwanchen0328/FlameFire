@@ -1,0 +1,1024 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ServoControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="AxisNumber">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴数目]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴复位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niStatusWord0">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态字引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niStatusWord1">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_niStatusWord2">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_niStatusWord3">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_niStatusWord4">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_niStatusWord5">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_niStatusWord6">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_niStatusWord7">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_niStatusWord8">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_niStatusWord9">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_noControlWord0">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[控制字引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noControlWord1">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_noControlWord2">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_noControlWord3">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_noControlWord4">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_noControlWord5">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_noControlWord6">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_noControlWord7">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_noControlWord8">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="g_noControlWord9">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bDriveEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使能命令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveReset">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位命令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveReset0">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位命令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿触发判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Drive_RTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bPowerReady">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使能运行状态判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bPowerOpeartion">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使能运行状态判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bPowerSwitchOn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使能运行状态判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPowerReady">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[位移操作变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPowerReady0">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[位操作变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPowerSwitchOn">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[位移操作变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPowerSwitchOn0">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[位操作变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPowerOpeartion">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[位移操作变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPowerOpeartion0">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[位操作变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDefault">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器的报警判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bResetDefault">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警判断变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDelayTime">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDefault">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[类型转换变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDefault0">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[类型转换变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nControlWord">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[控制字]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nControlWord0">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[位移操作变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nControlWord1">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[类型转换变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nStatusWord">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态字]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nStatusWord0">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[类型转换变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AxisNum">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前轴数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDriveStatus">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器状态反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDriveStatus0">
+        <type>
+          <DWORD/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[位移操作变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDriveStatus1">
+        <type>
+          <DWORD/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[类型转换变量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nDriveStatus">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[所有驱动器状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bDriveEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bDriveControl">
+        <type>
+          <array>
+            <dimension lower="0" upper="9"/>
+            <baseType>
+              <BOOL/>
+            </baseType>
+          </array>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="i">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="ServoEnableControl_0">
+        <type>
+          <derived name="FB_ServoEnableControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能状态控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ServoEnableControl_1">
+        <type>
+          <derived name="FB_ServoEnableControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能状态控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ServoEnableControl_2">
+        <type>
+          <derived name="FB_ServoEnableControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能状态控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ServoEnableControl_3">
+        <type>
+          <derived name="FB_ServoEnableControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能状态控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ServoEnableControl_4">
+        <type>
+          <derived name="FB_ServoEnableControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能状态控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ServoEnableControl_5">
+        <type>
+          <derived name="FB_ServoEnableControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能状态控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ServoEnableControl_6">
+        <type>
+          <derived name="FB_ServoEnableControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能状态控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ServoEnableControl_7">
+        <type>
+          <derived name="FB_ServoEnableControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能状态控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ServoEnableControl_8">
+        <type>
+          <derived name="FB_ServoEnableControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能状态控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ServoEnableControl_9">
+        <type>
+          <derived name="FB_ServoEnableControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能状态控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveError0">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveError1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveError2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveError3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveError4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveError5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveError6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveError7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveError8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveError9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveEnableStatus0">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态字返回的使能状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveEnableStatus1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态字返回的使能状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveEnableStatus2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态字返回的使能状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveEnableStatus3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态字返回的使能状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveEnableStatus4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态字返回的使能状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveEnableStatus5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态字返回的使能状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveEnableStatus6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态字返回的使能状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveEnableStatus7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态字返回的使能状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveEnableStatus8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态字返回的使能状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDriveEnableStatus9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态字返回的使能状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_timeCheckEnable">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="CNCAxisConfig">
+        <type>
+          <array>
+            <dimension lower="0" upper="9"/>
+            <baseType>
+              <INT/>
+            </baseType>
+          </array>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[1:X2:X13:Y 4:Y1 5:U 6:平面Y7:平面Y18:A(摆轴)]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrrigerPowerON">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="FTrrigerPowerOff">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="TonDelayBrakeOpen">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nPowerId">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FOR i := 0 TO 9 BY 1 DO
+    bDriveControl[i] := g_bDriveEnable;
+END_FOR;
+(*初始化给个值,未配置的轴不报警*)
+bDriveEnableStatus0 := TRUE;
+bDriveEnableStatus1 := TRUE;
+bDriveEnableStatus2 := TRUE;
+bDriveEnableStatus3 := TRUE;
+bDriveEnableStatus4 := TRUE;
+bDriveEnableStatus5 := TRUE;
+bDriveEnableStatus6 := TRUE;
+bDriveEnableStatus7 := TRUE;
+bDriveEnableStatus8 := TRUE;
+bDriveEnableStatus9 := TRUE;
+
+IF AxisNumber >= 0 THEN
+  ServoEnableControl_0(
+       bDriveReset := g_bplcHardwareResetBuffer,
+       bEnable := bDriveControl[0],
+       nStatusWord := g_niStatusWord0,
+       nControlWord => g_noControlWord0,
+       bDriveError => bDriveError0,
+       bAxisEnableStatus => bDriveEnableStatus0 );
+	  IF(bDriveError0) THEN
+		g_Alarm.alarmArray[19] := 719;
+      END_IF;
+END_IF;
+IF AxisNumber >= 1 THEN
+  ServoEnableControl_1(
+       bDriveReset := g_bplcHardwareResetBuffer,
+       bEnable := bDriveControl[1],
+       nStatusWord := g_niStatusWord1,
+       nControlWord => g_noControlWord1,
+       bDriveError => bDriveError1,
+       bAxisEnableStatus => bDriveEnableStatus1 );
+       
+      IF(bDriveError1) THEN
+		g_Alarm.alarmArray[20] := 720;
+      END_IF;
+
+END_IF;
+IF AxisNumber >= 2 THEN
+  
+ServoEnableControl_2(
+       bDriveReset := g_bplcHardwareResetBuffer,
+       bEnable := bDriveControl[2],
+       nStatusWord := g_niStatusWord2,
+       nControlWord => g_noControlWord2,
+       bDriveError => bDriveError2,
+       bAxisEnableStatus => bDriveEnableStatus2 );
+       IF (bDriveError2) THEN
+          g_Alarm.alarmArray[21] := 721;
+		END_IF;
+       
+       
+END_IF;
+IF AxisNumber >= 3 THEN
+  ServoEnableControl_3(
+       bDriveReset := g_bplcHardwareResetBuffer,
+       bEnable := bDriveControl[3],
+       nStatusWord := g_niStatusWord3,
+       nControlWord => g_noControlWord3,
+       bDriveError => bDriveError3,
+       bAxisEnableStatus => bDriveEnableStatus3 );
+       IF(bDriveError3) THEN
+		g_Alarm.alarmArray[22] := 722;
+		END_IF;
+END_IF;
+IF AxisNumber >= 4 THEN
+  ServoEnableControl_4(
+       bDriveReset := g_bplcHardwareResetBuffer,
+       bEnable := bDriveControl[4],
+       nStatusWord := g_niStatusWord4,
+       nControlWord => g_noControlWord4,
+       bDriveError => bDriveError4,
+       bAxisEnableStatus => bDriveEnableStatus4 );
+       
+		IF(bDriveError4) THEN
+		g_Alarm.alarmArray[23] := 723;
+		END_IF;
+END_IF;
+IF AxisNumber >= 5 THEN
+  ServoEnableControl_5(
+       bDriveReset := g_bplcHardwareResetBuffer,
+       bEnable := bDriveControl[5],
+       nStatusWord := g_niStatusWord5,
+       nControlWord => g_noControlWord5,
+       bDriveError => bDriveError5,
+       bAxisEnableStatus => bDriveEnableStatus5 );
+       IF(bDriveError5) THEN
+		g_Alarm.alarmArray[24] := 724;
+		END_IF;
+END_IF;
+IF AxisNumber >= 6 THEN
+  ServoEnableControl_6(
+       bDriveReset := g_bplcHardwareResetBuffer,
+       bEnable := bDriveControl[6],
+       nStatusWord := g_niStatusWord6,
+       nControlWord => g_noControlWord6,
+       bDriveError => bDriveError6,
+       bAxisEnableStatus => bDriveEnableStatus6 );
+       IF(bDriveError6) THEN
+		g_Alarm.alarmArray[25] := 725;
+		END_IF;
+END_IF;
+IF AxisNumber >= 7 THEN
+  ServoEnableControl_7(
+       bDriveReset := g_bplcHardwareResetBuffer,
+       bEnable := bDriveControl[7],
+       nStatusWord := g_niStatusWord7,
+       nControlWord => g_noControlWord7,
+       bDriveError => bDriveError7,
+       bAxisEnableStatus => bDriveEnableStatus7 );
+       IF(bDriveError7) THEN
+		g_Alarm.alarmArray[26] := 726;
+		END_IF;
+END_IF;
+IF AxisNumber >= 8 THEN
+  ServoEnableControl_8(
+       bDriveReset := g_bplcHardwareResetBuffer,
+       bEnable := bDriveControl[8],
+       nStatusWord := g_niStatusWord8,
+       nControlWord => g_noControlWord8,
+       bDriveError => bDriveError8,
+       bAxisEnableStatus => bDriveEnableStatus8 );
+       IF(bDriveError8) THEN
+			g_Alarm.alarmArray[27] := 727;
+		END_IF;
+END_IF;
+IF AxisNumber >= 9 THEN
+  ServoEnableControl_9(
+       bDriveReset := g_bplcHardwareResetBuffer,
+       bEnable := bDriveControl[9],
+       nStatusWord := g_niStatusWord9,
+       nControlWord => g_noControlWord9,
+       bDriveError => bDriveError9,
+       bAxisEnableStatus => bDriveEnableStatus9 );
+       
+	IF(bDriveError9) THEN
+		g_Alarm.alarmArray[28] := 728;
+	END_IF;
+END_IF;
+
+(*只要上了使能就把抱闸都打开,不用就不配*)
+FTrrigerPowerOff(CLK := g_bDriveEnable);
+ RTrrigerPowerON(CLK := g_bDriveEnable);
+
+IF RTrrigerPowerON.Q THEN
+  nPowerId := 100;
+  TonDelayBrakeOpen(IN := FALSE);
+ELSIF FTrrigerPowerOff.Q THEN
+  TonDelayBrakeOpen(IN := FALSE);
+  nPowerId := 200;
+END_IF;
+  (*轴下使能逻辑：先抱闸,延时100s，下使能*)
+case nPowerId OF
+      0:
+      ;
+    100:
+      TonDelayBrakeOpen(IN := TRUE, PT := T#800ms);   
+      IF TonDelayBrakeOpen.Q THEN
+        g_boCNCAAxisHoldBrake := TRUE;(*只要驱动器上使能了，就解除抱闸*)
+        g_boCNCXAxisHoldBrake := TRUE;
+        g_boCNCYAxisHoldBrake := TRUE;
+        g_boCNCUAxisHoldBrake := TRUE;
+        nPowerId := 0;
+        TonDelayBrakeOpen(IN:=FALSE);
+      END_IF;    
+    200:
+         g_boCNCXAxisHoldBrake := FALSE;
+        g_boCNCYAxisHoldBrake := FALSE;
+        g_boCNCUAxisHoldBrake := FALSE;
+        g_boCNCAAxisHoldBrake := FALSE;
+           nPowerId := 0;
+END_CASE;
+
+
+
+
+
+
+
+Ton_timeCheckEnable(IN := TRUE,PT := T#400ms);
+IF Ton_timeCheckEnable.Q THEN
+	Ton_timeCheckEnable(IN := FALSE);
+	IF NOT bDriveEnableStatus0 THEN
+	  g_Alarm.alarmArray[152] := 855;
+      IF CNCAxisConfig[0] = 1 THEN
+			g_boCNCXAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[0] = 3 THEN
+			g_boCNCYAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[0] = 5 THEN
+        g_boCNCUAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[0] = 8 THEN
+        g_boCNCAAxisHoldBrake := FALSE;
+      END_IF;
+	ELSE
+	  g_Alarm.alarmArray[152] := 0;
+	END_IF;
+    
+   IF NOT bDriveEnableStatus1 THEN
+	  g_Alarm.alarmArray[153] := 856;
+      IF CNCAxisConfig[1] = 1 THEN
+			g_boCNCXAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[1] = 3 THEN
+			g_boCNCYAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[1] = 5 THEN
+        g_boCNCUAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[1] = 8 THEN
+        g_boCNCAAxisHoldBrake := FALSE;
+      END_IF;
+	ELSE
+	  g_Alarm.alarmArray[153] := 0;
+	END_IF;
+    
+   IF NOT bDriveEnableStatus2 THEN
+	  g_Alarm.alarmArray[154] := 857;
+      IF CNCAxisConfig[2] = 1 THEN
+			g_boCNCXAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[2] = 3 THEN
+			g_boCNCYAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[2] = 5 THEN
+        g_boCNCUAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[2] = 8 THEN
+        g_boCNCAAxisHoldBrake := FALSE;
+      END_IF;
+	ELSE
+	  g_Alarm.alarmArray[154] := 0;
+	END_IF;
+    
+   IF NOT bDriveEnableStatus3 THEN
+	  g_Alarm.alarmArray[155] := 858;
+      IF CNCAxisConfig[3] = 1 THEN
+			g_boCNCXAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[3] = 3 THEN
+			g_boCNCYAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[3] = 5 THEN
+        g_boCNCUAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[3] = 8 THEN
+        g_boCNCAAxisHoldBrake := FALSE;
+      END_IF;
+	ELSE
+	  g_Alarm.alarmArray[155] := 0;
+	END_IF;
+    
+   IF NOT bDriveEnableStatus4 THEN
+	  g_Alarm.alarmArray[156] := 859;
+      IF CNCAxisConfig[4] = 1 THEN
+			g_boCNCXAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[4] = 3 THEN
+			g_boCNCYAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[4] = 5 THEN
+        g_boCNCUAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[4] = 8 THEN
+        g_boCNCAAxisHoldBrake := FALSE;
+      END_IF;
+	ELSE
+	  g_Alarm.alarmArray[156] := 0;
+	END_IF;
+   
+   IF NOT bDriveEnableStatus5 THEN
+	  g_Alarm.alarmArray[157] := 860;
+      IF CNCAxisConfig[5] = 1 THEN
+			g_boCNCXAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[5] = 3 THEN
+			g_boCNCYAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[5] = 5 THEN
+        g_boCNCUAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[5] = 8 THEN
+        g_boCNCAAxisHoldBrake := FALSE;
+      END_IF;
+	ELSE
+	  g_Alarm.alarmArray[157] := 0;
+	END_IF;
+   
+   IF NOT bDriveEnableStatus6 THEN
+	  g_Alarm.alarmArray[158] := 861;
+      IF CNCAxisConfig[6] = 1 THEN
+			g_boCNCXAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[6] = 3 THEN
+			g_boCNCYAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[6] = 5 THEN
+        g_boCNCUAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[6] = 8 THEN
+        g_boCNCAAxisHoldBrake := FALSE;
+      END_IF;
+	ELSE
+	  g_Alarm.alarmArray[158] := 0;
+	END_IF;
+    	
+    IF NOT bDriveEnableStatus7 THEN
+	  g_Alarm.alarmArray[159] := 862;
+      IF CNCAxisConfig[7] = 1 THEN
+			g_boCNCXAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[7] = 3 THEN
+			g_boCNCYAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[7] = 5 THEN
+        g_boCNCUAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[7] = 8 THEN
+        g_boCNCAAxisHoldBrake := FALSE;
+      END_IF;
+	ELSE
+	  g_Alarm.alarmArray[159] := 0;
+	END_IF;
+    
+    IF NOT bDriveEnableStatus8 THEN
+	  g_Alarm.alarmArray[160] := 863;
+      IF CNCAxisConfig[8] = 1 THEN
+			g_boCNCXAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[8] = 3 THEN
+			g_boCNCYAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[8] = 5 THEN
+        g_boCNCUAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[8] = 8 THEN
+        g_boCNCAAxisHoldBrake := FALSE;
+      END_IF;
+	ELSE
+	  g_Alarm.alarmArray[160] := 0;
+	END_IF;
+    
+    IF NOT bDriveEnableStatus9 THEN
+	  g_Alarm.alarmArray[161] := 864;
+      IF CNCAxisConfig[9] = 1 THEN
+			g_boCNCXAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[9] = 3 THEN
+			g_boCNCYAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[9] = 5 THEN
+        g_boCNCUAxisHoldBrake := FALSE;
+      ELSIF CNCAxisConfig[9] = 8 THEN
+        g_boCNCAAxisHoldBrake := FALSE;
+      END_IF;
+	ELSE
+	  g_Alarm.alarmArray[161] := 0;
+	END_IF;
+   
+END_IF;
+
+
+  
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,585 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ChuckAvoidance" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="nAvoidType">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nAvoidState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nAvoidState1">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_no2AvoidState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_biChunkAviodHardSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[避让位置输入信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biChunkSafeHardSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[安全位置输入信号]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bChunkAvoidLogic">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[常开常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bChunkSafeLogic">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[常开常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bChunkAvoidStatus">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[0:表示没信号 1：表示有信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bChunkSafeStatus">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[0:表示没信号 1：表示有信号]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bClaw1State">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw2State">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡爪2状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bChunkAvoidError">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡盘避让报错]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[暂停]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bClaw2EnableOff">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="fAvoidTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boCNCMoveDisable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Timer1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nMotionMode">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[2：自动 3：手动 4：MDI 5:回零]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAxIsYisHome">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y是否已回零]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="RTrigger_AvoidStart">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fCurrentCoordYBuffer">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前实际Y轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fAvoidCoordY">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[避让坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="fAvoidProtectCoordY">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[安全剩余距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Timer2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Timer3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nPlcState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_b2ClawAvoidCheckM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bo2ClawAvoidCheckDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw1EnableOff">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boClaw1Done">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boClaw2Done">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClylinderIsPosition">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw2Check">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fNextFasterPointM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_diYWorkCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_diYMachineCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger_ProcessEnd">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="dCoordTemp">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dYAvoidCoord1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCutPosition1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAvoidDistance1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dYMaxLimit1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nClawOnOffDealy">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nClawTon">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="bManualPause">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Rtring_M266">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger_AviodAboutMotion">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[bChunkAvoidStatus := FUN_SingalLogic(g_biChunkAviodHardSignal,bChunkAvoidLogic);
+bChunkSafeStatus := FUN_SingalLogic(g_biChunkSafeHardSignal,bChunkSafeLogic);
+RTrigger_AvoidStart(CLK := g_bChunkAvoidStartM);
+R_Trigger(CLK := g_b2ClawAvoidCheckM);
+RTrigger_ProcessEnd(CLK := g_bPlcEndM);
+RTrigger_AviodAboutMotion(CLK := g_bClawAviodAboutMotionM);
+IF RTrigger_ProcessEnd.Q THEN
+  nAvoidState := 0;
+  Timer1(IN := FALSE);
+  Timer2(IN := FALSE);
+  Timer3(IN := FALSE);
+  g_boCNCMoveDisable := FALSE;
+  nClawTon(IN := FALSE);
+END_IF;
+
+IF RTrigger_AvoidStart.Q THEN
+  g_bChunkAvoidStartM := FALSE;
+  g_bClaw2Aoiding := FALSE;
+  IF nAvoidType = 1 THEN
+    nAvoidState := 10;
+    g_bo2ClawAvoidCheckDone := TRUE;
+    M.ENABLE[225] := 0;
+  ELSIF nAvoidType = 2 THEN
+    nAvoidState := 20;
+    g_bo2ClawAvoidCheckDone := TRUE;
+    M.ENABLE[225] := 0;
+  ELSIF nAvoidType = 3 THEN
+    nAvoidState := 200;
+    g_bo2ClawAvoidCheckDone := FALSE;
+  ELSE
+    nAvoidState := 0;
+    g_bo2ClawAvoidCheckDone := TRUE;
+    M.ENABLE[225] := 0;
+  END_IF;
+END_IF;
+
+IF RTrigger_AviodAboutMotion.Q THEN
+  g_bClawAviodAboutMotionM := FALSE;
+  g_boCNCMoveDisable := TRUE;
+  nAvoidState := 205;
+END_IF;
+
+IF nAvoidType = 1 THEN
+  IF bChunkSafeStatus AND g_bClaw2State THEN
+    g_bChunkAvoidError := TRUE;
+    nAvoidState := 0;
+  END_IF;
+END_IF;
+IF nAvoidType <> 3 THEN(*此处用于避免使用过避让后关闭避让卡住的问题*)
+  IF g_b2ClawAvoidCheckM THEN
+    g_b2ClawAvoidCheckM:=FALSE;
+    M.ENABLE[225] := 0;
+  END_IF;
+END_IF;
+
+
+IF g_nMotionMode=2 OR g_nMotionMode=4 THEN
+  CASE nAvoidState OF
+    0:
+      nAvoidState := 0;
+    10:
+      IF bChunkAvoidStatus THEN
+        g_bPlcPauseBuffer := TRUE;
+        g_bClaw2EnableOff := TRUE;
+        IF g_nLayerStart = 0 AND g_nLayerEnd = 0 THEN
+          g_boCNCMoveDisable := TRUE;
+        END_IF;
+        nAvoidState := 30;
+      END_IF; 
+    20:
+      IF g_fCurrentCoordYBuffer > g_fAvoidCoordY THEN
+        g_bPlcPauseBuffer := TRUE;
+        g_bClaw2EnableOff := TRUE;
+        IF g_nLayerStart = 0 AND g_nLayerEnd = 0 THEN
+          g_boCNCMoveDisable := TRUE;
+        END_IF;
+        nAvoidState := 30;
+      END_IF;
+    30:
+      Timer2(IN := TRUE,PT := T#5MS);
+      IF Timer2.Q THEN
+        g_bPlcPauseBuffer := FALSE;
+        Timer2(IN := FALSE);
+        nAvoidState := 40;
+      END_IF;
+    40:
+      Timer1(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(fAvoidTime)));
+      IF Timer1.Q THEN
+        Timer1(IN := FALSE);
+        nAvoidState := 50;
+      END_IF;
+    50:
+      g_bPlcStartBuffer := TRUE;
+      IF g_nLayerStart = 0 AND g_nLayerEnd = 0 THEN
+        g_boCNCMoveDisable := FALSE;
+      END_IF;
+      nAvoidState := 60;
+    60:
+      Timer3(IN := TRUE,PT := T#5MS);
+      IF Timer3.Q THEN
+        Timer3(IN := FALSE);
+        nAvoidState := 0;
+      END_IF;
+    200:(*需要将卡盘移动到避让位置再松开*)
+      (*等待检测信号，如果不避让，直接置Done为true，否则进入避让状态机*)
+      IF R_Trigger.Q THEN   (*P0到了位置只改变的g_bClaw2Aoiding的值，到位置避让在卡盘避让子程序里面做*)
+        g_b2ClawAvoidCheckM := FALSE;
+        g_bo2ClawAvoidCheckDone := FALSE;
+           dCoordTemp := g_fNextFasterPointM - g_diYWorkCoordinate + g_diYMachineCoordinate;(*下一个轮廓的机械坐标*)
+          IF dCoordTemp >= g_fAvoidCoordY THEN
+            g_boCNCMoveDisable := TRUE;
+            g_bClaw2Aoiding := TRUE;
+            g_bCloseGasInAdvance := TRUE;
+            IF g_dM225AvoidType = 1.0 THEN
+              nAvoidState := 205;
+            ELSE
+              nAvoidState := 204;(*啥都不做，只给g_bClaw2Aoiding置为true，避让不蛙跳*)
+            END_IF;
+          ELSE
+            g_bo2ClawAvoidCheckDone := TRUE;
+            M.ENABLE[225] := 0;
+          END_IF;
+      END_IF;
+    204:
+        g_boCNCMoveDisable := FALSE;
+        M.ENABLE[225] := 0;
+        IF g_bChunkAvoidStartM THEN
+          g_bChunkAvoidStartM := FALSE;
+        END_IF;
+        nAvoidState := 200;
+    205:
+      IF g_nChuckOpenCheckType = 2 THEN
+        nAvoidState := 215;(*外部传感器检测：断点-回中-等到信号-推出断点*)
+      ELSE
+        IF g_nAvoidType >= 2 THEN
+          IF g_nChuckOpenCheckType = 0 THEN(*不使用：指使用卡盘到位信号和延时*)
+            nAvoidState := 215;
+          ELSIF g_nChuckOpenCheckType = 1 THEN(*使用人文检测卡盘是否松开*)
+            g_bClaw2Check:=TRUE;
+            nAvoidState := 225;
+          END_IF;
+        ELSE
+          IF g_nChuckOpenCheckType = 0 THEN(*不使用：指使用卡盘到位信号和延时*)
+            g_bClaw2EnableOff:=TRUE;
+            nAvoidState := 210;
+          ELSIF g_nChuckOpenCheckType = 1 THEN(*使用人文检测卡盘是否松开*)
+            g_bClaw2Check:=TRUE;
+            g_bClaw2EnableOff:=TRUE;
+            nAvoidState := 225;
+          END_IF;
+        END_IF;
+      END_IF;
+    210:
+      IF g_nChuckOpenCheckType = 0 THEN(*不使用：指使用卡盘到位信号和延时*)
+        IF g_boClaw2Done THEN(*卡爪张开完成*)
+          nAvoidState := 220;
+        END_IF;
+      ELSIF g_nChuckOpenCheckType = 1 THEN(*使用人文检测卡盘是否松开*)
+        g_bClaw2Check:=TRUE;
+        nAvoidState := 225;
+      END_IF;
+    215:(*全程等上位机完成操作*)
+      nAvoidState := 215;
+    217:(*全程等上位机完成操作*)
+      nAvoidState := 230;
+      g_boCNCMoveDisable := FALSE;
+    220:(*延时*)
+      nClawTon(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nClawOnOffDealy)));
+      IF nClawTon.Q THEN
+        nClawTon(IN := FALSE);
+        nAvoidState := 230;
+        g_boCNCMoveDisable := FALSE;
+      END_IF;
+    225:(*此等待用于避免,当暂停未下发下来,就已经接着运动的问题*)
+      IF g_nPlcState=2 THEN
+        nAvoidState := 230;
+      END_IF;
+    230:
+      IF g_b2ClawAvoidCheckM THEN(*避让完成后，下个零件位置依然会传进来，而此时g_b2ClawAvoidCheckM需要被回收，避免下次开始拿不到上升沿*)
+        g_b2ClawAvoidCheckM:=FALSE;
+      END_IF;
+      g_bo2ClawAvoidCheckDone := TRUE;
+      g_bExecuteAvoidanceFB := TRUE;
+      g_boIsExecuteAvoidFlag := TRUE;
+      M.ENABLE[225] := 0;
+      IF M.ENABLE[310]=1 THEN
+        M.ENABLE[310] := 0; 
+        nAvoidState := 200;
+      END_IF;  
+  END_CASE;
+ELSIF g_nMotionMode=3 OR g_nMotionMode = 5 THEN
+  (*IF bChunkAvoidStatus AND nAvoidType = 1 AND g_bClaw2State AND g_nAvoidType <= 1 THEN
+    g_bClaw2EnableOff := TRUE;
+  END_IF;
+  IF g_fCurrentCoordYBuffer > g_fAvoidCoordY AND (nAvoidType = 2 OR nAvoidType = 3) AND g_bClaw2State THEN
+    g_dChuckmanualIsLoosenFb := 1.0;
+    IF bManualPause THEN
+      nAvoidState1 := 20;
+    ELSE
+      nAvoidState1 := 10;
+    END_IF;
+  END_IF;   *)
+  nAvoidState := 0;
+END_IF;
+CASE nAvoidState1 OF
+  0:
+  nAvoidState1 := 0;
+  10:
+      g_bClaw2EnableOff := TRUE;
+      g_boCNCMoveDisable := TRUE;
+      nClawTon(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nClawOnOffDealy)));
+      IF nClawTon.Q THEN
+        nClawTon(IN := FALSE);
+        g_boCNCMoveDisable := FALSE;
+        g_dChuckmanualIsLoosenFb := 2.0;
+        nAvoidState1 := 0;
+      END_IF;
+  20:
+  g_bClaw2EnableOff := TRUE;
+  g_boCNCMoveDisable := TRUE;
+  Timer2(IN := TRUE,PT := T#5MS);
+  IF Timer2.Q THEN
+    g_boCNCMoveDisable := FALSE;
+    Timer2(IN := FALSE);
+    g_dChuckmanualIsLoosenFb := 0.0;
+    nAvoidState1 := 0; 
+  END_IF;
+  
+END_CASE;
+IF g_bPlcResetBuffer THEN
+  nAvoidState := 0;
+  nAvoidState1 := 0;
+  Timer1(IN := FALSE);
+  Timer2(IN := FALSE);
+  Timer3(IN := FALSE);
+  g_boCNCMoveDisable := FALSE;
+  g_dChuckmanualIsLoosenFb := 0.0;
+  nClawTon(IN := FALSE);
+  g_bClaw2Aoiding := FALSE;
+  g_boIsExecuteAvoidFlag := FALSE;
+  g_bExecuteAvoidanceFB := FALSE;
+END_IF;
+
+g_no2AvoidState:=nAvoidState;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[卡盘避让]]></xhtml:p>
+  </documentation>
+</pou>

@@ -1,0 +1,1705 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BlankingControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_boBlankingCyl01Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl11Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl21Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl31Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl41Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl01Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl11Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl21Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl31Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl41Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl01UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl02UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl03UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl04UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl11UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl12UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl13UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl14UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl21UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl22UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl23UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl24UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl31UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl32UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl33UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl34UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl41UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl42UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl43UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl44UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl01DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl02DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl03DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl04DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl11DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl12DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl13DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl14DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl21DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl22DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl23DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl24DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl31DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl32DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl33DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl34DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl41DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl42DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl43DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl44DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl0DownOpenM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl1DownOpenM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl2DownOpenM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl3DownOpenM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl4DownOpenM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl0DownCloseM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl1DownCloseM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl2DownCloseM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl3DownCloseM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingCyl4DownCloseM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl0DownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl1DownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl2DownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl3DownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBlankingCyl4DownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fBlankingCyl0MoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fBlankingCyl1MoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fBlankingCyl2MoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fBlankingCyl3MoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fBlankingCyl4MoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay0">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay2">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay3">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay4">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay0">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay2">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay3">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay4">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal0">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal0">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingUpInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlankingDownInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingUpInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankingDownInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_bBlanking1DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlanking2DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlanking3DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlanking4DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBlanking5DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3CylForbid">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="InPlaceDelay0">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl01">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl11">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl02">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl12">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl21">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl22">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl31">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl32">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl41">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl42">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nCyl0DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl1DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl2DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl3DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl4DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bUpTemp1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUpTemp2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUpTemp3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUpTemp4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUpTemp5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDownTemp1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDownTemp2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDownTemp3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDownTemp4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDownTemp5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nPreCyl0DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nPreCyl1DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nPreCyl2DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nPreCyl3DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nPreCyl4DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingCyl1UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingCyl2UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingCyl3UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingCyl4UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingCyl5UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingCyl1DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingCyl2DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingCyl3DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingCyl4DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBlankingCyl5DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTriggerCyl01(CLK := g_bBlankingCyl0DownOpenM);
+RTriggerCyl02(CLK := g_bBlankingCyl0DownCloseM);
+
+RTriggerCyl11(CLK := g_bBlankingCyl1DownOpenM);
+RTriggerCyl12(CLK := g_bBlankingCyl1DownCloseM);
+
+RTriggerCyl21(CLK := g_bBlankingCyl2DownOpenM);
+RTriggerCyl22(CLK := g_bBlankingCyl2DownCloseM);
+
+RTriggerCyl31(CLK := g_bBlankingCyl3DownOpenM);
+RTriggerCyl32(CLK := g_bBlankingCyl3DownCloseM);
+
+RTriggerCyl41(CLK := g_bBlankingCyl4DownOpenM);
+RTriggerCyl42(CLK := g_bBlankingCyl4DownCloseM);
+
+(*第零组气缸*)
+IF RTriggerCyl01.Q THEN
+  nCyl0DownState := 1;
+  g_boBlankingCyl0DownDone := FALSE;
+  g_bBlankingCyl0DownOpenM := FALSE;
+  g_bBlanking1DelayFlag := TRUE;
+END_IF;
+
+IF RTriggerCyl02.Q THEN
+  g_boBlankingCyl0DownDone := FALSE;
+  g_bBlankingCyl0DownCloseM := FALSE;
+  nCyl0DownState := 0;
+  g_bBlanking1DelayFlag := TRUE;
+END_IF;
+
+CASE nCyl0DownState OF
+  0:
+    nCyl0DownState := 0;
+    nPreCyl0DownState := 0;
+  1:
+    IF LREAL_TO_INT(g_fBlankingCyl0MoveTypeM) = 0 THEN
+      nCyl0DownState := 2; (*下降*)
+    ELSIF LREAL_TO_INT(g_fBlankingCyl0MoveTypeM) = 1 AND (NOT g_bClaw3CylForbid) THEN
+      nCyl0DownState := 3;(*上升*)
+    END_IF;
+  2:
+    IF g_dBlankingCylinder1WaitBoardInputSignalM = 0.0 THEN
+      nCyl0DownState := 10;
+    ELSE
+      M.ENABLE[206] := 0;
+      nCyl0DownState := 15;
+      g_bExecuteFinishedM206 := FALSE;
+	  g_bFinishedM206_0 := FALSE;
+    END_IF;
+  10:
+    nPreCyl0DownState := nCyl0DownState;
+    IF g_dBlankingCylinder1WaitSignalM = 0.0 OR g_dBlankingCylinder1WaitSignalM = 1.0 THEN
+         nCyl0DownState := 20;
+      ELSIF g_dBlankingCylinder1WaitSignalM = 2.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_0 := FALSE;
+        IF NOT g_bBlankingStateUp2 THEN
+          nCyl0DownState := 20;
+        END_IF;
+      ELSIF g_dBlankingCylinder1WaitSignalM = 3.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_0 := FALSE;
+        IF NOT g_bBlankingStateUp3 THEN
+          nCyl0DownState := 20;
+        END_IF;
+      ELSIF g_dBlankingCylinder1WaitSignalM = 4.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_0 := FALSE;
+        IF NOT g_bBlankingStateUp4 THEN
+          nCyl0DownState := 20;
+        END_IF;
+      ELSIF g_dBlankingCylinder1WaitSignalM = 5.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_0 := FALSE;
+        IF NOT g_bBlankingStateUp5 THEN
+          nCyl0DownState := 20;
+        END_IF;
+      END_IF; 
+    IF g_bPlcPauseBuffer THEN
+      nCyl0DownState := 12;
+    END_IF;
+  15:
+    nPreCyl0DownState := nCyl0DownState;
+    nBlankingCyl1UpIndex :=LREAL_TO_INT(g_dBlankingCylinder1WaitSignalM) - 1;
+    IF g_dBlankingCylinder1WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl1UpIndex] THEN
+        nCyl0DownState := 20;
+      END_IF;
+    ELSIF g_dBlankingCylinder1WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl1UpIndex + 24] THEN
+        nCyl0DownState := 20;
+      END_IF;
+    ELSIF g_dBlankingCylinder1WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl1UpIndex + 48] THEN
+        nCyl0DownState := 20;
+      END_IF;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl0DownState := 12;
+    END_IF;
+  20:
+    nPreCyl0DownState := nCyl0DownState;
+    g_boBlankingCyl01Up := FALSE;
+    g_boBlankingCyl01Down := TRUE;
+    IF NOT g_bBlankingStateUp1 THEN
+        g_boBlankingCyl0DownDone := TRUE;
+        nCyl0DownState := 0;
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_0 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl0DownState := 12;
+    END_IF;
+  3:
+    IF g_dBlankingCylinder1WaitBoardInputSignalM = 0.0 THEN
+      nCyl0DownState := 30;
+    ELSE
+      M.ENABLE[206] := 0;
+      nCyl0DownState := 35;
+    END_IF;
+  30:
+    nPreCyl0DownState := nCyl0DownState;
+    IF g_dBlankingCylinder1WaitSignalM = 0.0 OR g_dBlankingCylinder1WaitSignalM = 1.0 THEN
+         nCyl0DownState := 40;
+      ELSIF g_dBlankingCylinder1WaitSignalM = 2.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_0 := FALSE;
+        IF  g_bBlankingStateUp2 THEN
+          nCyl0DownState := 40;
+        END_IF;
+      ELSIF g_dBlankingCylinder1WaitSignalM = 3.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_0 := FALSE;
+        IF  g_bBlankingStateUp3 THEN
+          nCyl0DownState := 40;
+        END_IF;
+      ELSIF g_dBlankingCylinder1WaitSignalM = 4.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_0 := FALSE;
+        IF  g_bBlankingStateUp4 THEN
+          nCyl0DownState := 40;
+        END_IF;
+      ELSIF g_dBlankingCylinder1WaitSignalM = 5.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_0 := FALSE;
+        IF  g_bBlankingStateUp5 THEN
+          nCyl0DownState := 40;
+        END_IF;
+      END_IF; 
+      IF g_bPlcPauseBuffer THEN
+      nCyl0DownState := 12;
+    END_IF;
+  35:
+    nPreCyl0DownState := nCyl0DownState;
+    nBlankingCyl1DownIndex :=LREAL_TO_INT(g_dBlankingCylinder1WaitSignalM) - 1;
+    IF g_dBlankingCylinder1WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl1DownIndex] THEN
+        nCyl0DownState := 40;
+      END_IF;
+    ELSIF g_dBlankingCylinder1WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl1DownIndex + 24] THEN
+        nCyl0DownState := 40;
+      END_IF;
+    ELSIF g_dBlankingCylinder1WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl1DownIndex + 48] THEN
+        nCyl0DownState := 40;
+      END_IF;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl0DownState := 12;
+    END_IF;
+  40:
+    nPreCyl0DownState := nCyl0DownState;
+    g_boBlankingCyl01Up := TRUE;
+    g_boBlankingCyl01Down := FALSE;
+    IF g_bBlankingStateUp1 THEN
+        g_boBlankingCyl0DownDone := TRUE;
+        nCyl0DownState := 0;
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_0 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl0DownState := 12;
+    END_IF;
+  12:
+    IF g_bPlcStartBuffer OR g_bPlcStartM THEN
+      nCyl0DownState := nPreCyl0DownState;
+    END_IF;
+      
+END_CASE;
+
+(*第一组气缸*)
+IF RTriggerCyl11.Q THEN
+  nCyl1DownState := 1;
+  g_boBlankingCyl1DownDone := FALSE;
+  g_bBlankingCyl1DownOpenM := FALSE;
+  g_bBlanking2DelayFlag := TRUE;
+END_IF;
+
+IF RTriggerCyl12.Q THEN
+  g_boBlankingCyl1DownDone := FALSE;
+  g_bBlankingCyl1DownCloseM := FALSE;
+  nCyl1DownState := 0;
+  g_bBlanking2DelayFlag := TRUE;
+END_IF;
+
+CASE nCyl1DownState OF
+  0:
+    nCyl1DownState := 0;
+  1:
+    IF LREAL_TO_INT(g_fBlankingCyl1MoveTypeM) = 0 THEN
+      nCyl1DownState := 2; (*下降*)
+    ELSIF LREAL_TO_INT(g_fBlankingCyl1MoveTypeM) = 1 AND (NOT g_bClaw3CylForbid) THEN
+      nCyl1DownState := 3;(*上升*)
+    END_IF;
+  2:
+    IF g_dBlankingCylinder2WaitBoardInputSignalM = 0.0 THEN
+      nCyl1DownState := 10;
+    ELSE
+      M.ENABLE[206] := 0;
+      nCyl1DownState := 15;
+      g_bExecuteFinishedM206 := FALSE;
+	  g_bFinishedM206_1 := FALSE;
+    END_IF;
+  10:
+    nPreCyl1DownState := nCyl1DownState;
+    IF g_dBlankingCylinder2WaitSignalM = 0.0 OR g_dBlankingCylinder2WaitSignalM = 2.0 THEN
+         nCyl1DownState := 20;
+      ELSIF g_dBlankingCylinder2WaitSignalM = 1.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_1 := FALSE;
+        IF NOT g_bBlankingStateUp1 THEN
+          nCyl1DownState := 20;
+        END_IF;
+      ELSIF g_dBlankingCylinder2WaitSignalM = 3.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_1 := FALSE;
+        IF NOT g_bBlankingStateUp3 THEN
+          nCyl1DownState := 20;
+        END_IF;
+      ELSIF g_dBlankingCylinder2WaitSignalM = 4.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_1 := FALSE;
+        IF NOT g_bBlankingStateUp4 THEN
+          nCyl1DownState := 20;
+        END_IF;
+      ELSIF g_dBlankingCylinder2WaitSignalM = 5.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_1 := FALSE;
+        IF NOT g_bBlankingStateUp5 THEN
+          nCyl1DownState := 20;
+        END_IF;
+      END_IF; 
+    IF g_bPlcPauseBuffer THEN
+      nCyl1DownState := 12;
+    END_IF;
+  15:
+    nPreCyl1DownState := nCyl1DownState;
+    nBlankingCyl2UpIndex :=LREAL_TO_INT(g_dBlankingCylinder2WaitSignalM) - 1;
+    IF g_dBlankingCylinder2WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl2UpIndex] THEN
+        nCyl1DownState := 20;
+      END_IF;
+    ELSIF g_dBlankingCylinder2WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl2UpIndex + 24] THEN
+        nCyl1DownState := 20;
+      END_IF;
+    ELSIF g_dBlankingCylinder2WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl2UpIndex + 48] THEN
+        nCyl1DownState := 20;
+      END_IF;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl1DownState := 12;
+    END_IF;
+  20:
+    nPreCyl1DownState := nCyl1DownState;
+    g_boBlankingCyl11Up := FALSE;
+    g_boBlankingCyl11Down := TRUE;
+    IF NOT g_bBlankingStateUp2 THEN
+        g_boBlankingCyl1DownDone := TRUE;
+        nCyl1DownState := 0;
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_1 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl1DownState := 12;
+    END_IF;
+  3:
+    IF g_dBlankingCylinder2WaitBoardInputSignalM = 0.0 THEN
+      nCyl1DownState := 30;
+    ELSE
+      M.ENABLE[206] := 0;
+      nCyl1DownState := 35;
+      g_bExecuteFinishedM206 := FALSE;
+	  g_bFinishedM206_1 := FALSE;
+    END_IF;
+  30:
+    nPreCyl1DownState := nCyl1DownState;
+    IF g_dBlankingCylinder2WaitSignalM = 0.0 OR g_dBlankingCylinder2WaitSignalM = 2.0 THEN
+         nCyl1DownState := 40;
+      ELSIF g_dBlankingCylinder2WaitSignalM = 1.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_1 := FALSE;
+        IF  g_bBlankingStateUp1 THEN
+          nCyl1DownState := 40;
+        END_IF;
+      ELSIF g_dBlankingCylinder2WaitSignalM = 3.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_1 := FALSE;
+        IF  g_bBlankingStateUp3 THEN
+          nCyl1DownState := 40;
+        END_IF;
+      ELSIF g_dBlankingCylinder2WaitSignalM = 4.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_1 := FALSE;
+        IF  g_bBlankingStateUp4 THEN
+          nCyl1DownState := 40;
+        END_IF;
+      ELSIF g_dBlankingCylinder2WaitSignalM = 5.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_1 := FALSE;
+        IF  g_bBlankingStateUp5 THEN
+          nCyl1DownState := 40;
+        END_IF;
+      END_IF; 
+      IF g_bPlcPauseBuffer THEN
+      nCyl1DownState := 12;
+    END_IF;
+  35:
+    nPreCyl1DownState := nCyl1DownState;
+    nBlankingCyl2DownIndex :=LREAL_TO_INT(g_dBlankingCylinder2WaitSignalM) - 1;
+    IF g_dBlankingCylinder2WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl2DownIndex] THEN
+        nCyl1DownState := 40;
+      END_IF;
+    ELSIF g_dBlankingCylinder2WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl2DownIndex + 24] THEN
+        nCyl1DownState := 40;
+      END_IF;
+    ELSIF g_dBlankingCylinder2WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl2DownIndex + 48] THEN
+        nCyl1DownState := 40;
+      END_IF;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl1DownState := 12;
+    END_IF;
+  40:
+    nPreCyl1DownState := nCyl1DownState;
+    g_boBlankingCyl11Up := TRUE;
+    g_boBlankingCyl11Down := FALSE;
+    IF g_bBlankingStateUp2 THEN
+        g_boBlankingCyl1DownDone := TRUE;
+        nCyl1DownState := 0;
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_1 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl1DownState := 12;
+    END_IF;
+  12:
+    IF g_bPlcStartBuffer OR g_bPlcStartM THEN
+      nCyl1DownState := nPreCyl1DownState;
+    END_IF;
+END_CASE;
+
+
+(*第二组气缸*)
+IF RTriggerCyl21.Q THEN
+  nCyl2DownState := 1;
+  g_boBlankingCyl2DownDone := FALSE;
+  g_bBlankingCyl2DownOpenM := FALSE;
+  g_bBlanking3DelayFlag := TRUE;
+END_IF;
+
+IF RTriggerCyl22.Q THEN
+  g_boBlankingCyl2DownDone := FALSE;
+  g_bBlankingCyl2DownCloseM := FALSE;
+  nCyl2DownState := 0;
+  g_bBlanking3DelayFlag := TRUE;
+END_IF;
+
+CASE nCyl2DownState OF
+  0:
+    nCyl2DownState := 0;
+  1:
+   IF LREAL_TO_INT(g_fBlankingCyl2MoveTypeM) = 0 THEN
+      nCyl2DownState := 2; (*下降*)
+    ELSIF LREAL_TO_INT(g_fBlankingCyl2MoveTypeM) = 1 AND (NOT g_bClaw3CylForbid) THEN
+      nCyl2DownState := 3;(*上升*)
+    END_IF;
+  2:
+    IF g_dBlankingCylinder3WaitBoardInputSignalM = 0.0 THEN
+      nCyl2DownState := 10;
+    ELSE
+      M.ENABLE[206] := 0;
+      nCyl2DownState := 15;
+      g_bExecuteFinishedM206 := FALSE;
+	  g_bFinishedM206_2 := FALSE;
+    END_IF;
+  10:
+    nPreCyl2DownState := nCyl2DownState;
+    IF g_dBlankingCylinder3WaitSignalM = 0.0 OR g_dBlankingCylinder3WaitSignalM = 3.0 THEN
+         nCyl2DownState := 20;
+      ELSIF g_dBlankingCylinder3WaitSignalM = 1.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_2 := FALSE;
+        IF NOT g_bBlankingStateUp1 THEN
+          nCyl2DownState := 20;
+        END_IF;
+      ELSIF g_dBlankingCylinder3WaitSignalM = 2.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_2 := FALSE;
+        IF NOT g_bBlankingStateUp2 THEN
+          nCyl2DownState := 20;
+        END_IF;
+      ELSIF g_dBlankingCylinder3WaitSignalM = 4.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_2 := FALSE;
+        IF NOT g_bBlankingStateUp4 THEN
+          nCyl2DownState := 20;
+        END_IF;
+      ELSIF g_dBlankingCylinder3WaitSignalM = 5.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_2 := FALSE;
+        IF NOT g_bBlankingStateUp5 THEN
+          nCyl2DownState := 20;
+        END_IF;
+      END_IF; 
+    IF g_bPlcPauseBuffer THEN
+      nCyl2DownState := 12;
+    END_IF;
+  15:
+    nPreCyl2DownState := nCyl2DownState;
+    nBlankingCyl3UpIndex :=LREAL_TO_INT(g_dBlankingCylinder3WaitSignalM) - 1;
+    IF g_dBlankingCylinder3WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl3UpIndex] THEN
+        nCyl2DownState := 20;
+      END_IF;
+    ELSIF g_dBlankingCylinder3WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl3UpIndex + 24] THEN
+        nCyl2DownState := 20;
+      END_IF;
+    ELSIF g_dBlankingCylinder3WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl3UpIndex + 48] THEN
+        nCyl2DownState := 20;
+      END_IF;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl2DownState := 12;
+    END_IF;
+  20:
+    nPreCyl2DownState := nCyl2DownState;
+    g_boBlankingCyl21Up := FALSE;
+    g_boBlankingCyl21Down := TRUE;
+    IF NOT g_bBlankingStateUp3 THEN
+        g_boBlankingCyl2DownDone := TRUE;
+        nCyl2DownState := 0;
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_2 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl2DownState := 12;
+    END_IF;
+  3:
+    IF g_dBlankingCylinder3WaitBoardInputSignalM = 0.0 THEN
+      nCyl2DownState := 30;
+    ELSE
+      M.ENABLE[206] := 0;
+      nCyl2DownState := 35;
+      g_bExecuteFinishedM206 := FALSE;
+	  g_bFinishedM206_2 := FALSE;
+    END_IF;
+  30:
+    nPreCyl2DownState := nCyl2DownState;
+    IF g_dBlankingCylinder3WaitSignalM = 0.0 OR g_dBlankingCylinder3WaitSignalM = 3.0 THEN
+         nCyl2DownState := 40;
+      ELSIF g_dBlankingCylinder3WaitSignalM = 1.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_2 := FALSE;
+        IF  g_bBlankingStateUp1 THEN
+          nCyl2DownState := 40;
+        END_IF;
+      ELSIF g_dBlankingCylinder3WaitSignalM = 2.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_2 := FALSE;
+        IF  g_bBlankingStateUp2 THEN
+          nCyl2DownState := 40;
+        END_IF;
+      ELSIF g_dBlankingCylinder3WaitSignalM = 4.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_2 := FALSE;
+        IF  g_bBlankingStateUp4 THEN
+          nCyl2DownState := 40;
+        END_IF;
+      ELSIF g_dBlankingCylinder3WaitSignalM = 5.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_2 := FALSE;
+        IF  g_bBlankingStateUp5 THEN
+          nCyl2DownState := 40;
+        END_IF;
+      END_IF; 
+      IF g_bPlcPauseBuffer THEN
+      nCyl2DownState := 12;
+    END_IF;
+  35:
+    nPreCyl2DownState := nCyl2DownState;
+    nBlankingCyl3DownIndex :=LREAL_TO_INT(g_dBlankingCylinder3WaitSignalM) - 1;
+    IF g_dBlankingCylinder3WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl3DownIndex] THEN
+        nCyl2DownState := 40;
+      END_IF;
+    ELSIF g_dBlankingCylinder3WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl3DownIndex + 24] THEN
+        nCyl2DownState := 40;
+      END_IF;
+    ELSIF g_dBlankingCylinder3WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl3DownIndex + 48] THEN
+        nCyl2DownState := 40;
+      END_IF;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl2DownState := 12;
+    END_IF;
+  40:
+    nPreCyl2DownState := nCyl2DownState;
+    g_boBlankingCyl21Up := TRUE;
+    g_boBlankingCyl21Down := FALSE;
+    IF g_bBlankingStateUp3 THEN
+        g_boBlankingCyl2DownDone := TRUE;
+        nCyl2DownState := 0;
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_2 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl2DownState := 12;
+    END_IF;
+  12:
+    IF g_bPlcStartBuffer OR g_bPlcStartM THEN
+      nCyl2DownState := nPreCyl2DownState;
+    END_IF;
+END_CASE;
+
+(*第三组气缸*)
+IF RTriggerCyl31.Q THEN
+  nCyl3DownState := 1;
+  g_boBlankingCyl3DownDone := FALSE;
+  g_bBlankingCyl3DownOpenM := FALSE;
+  g_bBlanking4DelayFlag := TRUE;
+END_IF;
+
+IF RTriggerCyl32.Q THEN
+  g_boBlankingCyl3DownDone := FALSE;
+  g_bBlankingCyl3DownCloseM := FALSE;
+  nCyl3DownState := 0;
+  g_bBlanking4DelayFlag := TRUE;
+END_IF;
+
+CASE nCyl3DownState OF
+  0:
+    nCyl3DownState := 0;
+  1:
+    IF LREAL_TO_INT(g_fBlankingCyl3MoveTypeM) = 0 THEN
+      nCyl3DownState := 2; (*下降*)
+    ELSIF LREAL_TO_INT(g_fBlankingCyl3MoveTypeM) = 1 AND (NOT g_bClaw3CylForbid) THEN
+      nCyl3DownState := 3;(*上升*)
+    END_IF;
+  2:
+    IF g_dBlankingCylinder4WaitBoardInputSignalM = 0.0 THEN
+      nCyl3DownState := 10;
+    ELSE
+      M.ENABLE[206] := 0;
+      nCyl3DownState := 15;
+      g_bExecuteFinishedM206 := FALSE;
+	  g_bFinishedM206_3 := FALSE;
+    END_IF;
+  10:
+    nPreCyl3DownState := nCyl3DownState;
+    IF g_dBlankingCylinder4WaitSignalM = 0.0 OR g_dBlankingCylinder4WaitSignalM = 4.0 THEN
+         nCyl3DownState := 20;
+      ELSIF g_dBlankingCylinder4WaitSignalM = 1.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_3 := FALSE;
+        IF NOT g_bBlankingStateUp1 THEN
+          nCyl3DownState := 20;
+        END_IF;
+      ELSIF g_dBlankingCylinder4WaitSignalM = 2.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_3 := FALSE;
+        IF NOT g_bBlankingStateUp2 THEN
+          nCyl3DownState := 20;
+        END_IF;
+      ELSIF g_dBlankingCylinder4WaitSignalM = 3.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_3 := FALSE;
+        IF NOT g_bBlankingStateUp3 THEN
+          nCyl3DownState := 20;
+        END_IF;
+      ELSIF g_dBlankingCylinder4WaitSignalM = 5.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_3 := FALSE;
+        IF NOT g_bBlankingStateUp5 THEN
+          nCyl3DownState := 20;
+        END_IF;
+      END_IF; 
+    IF g_bPlcPauseBuffer THEN
+      nCyl3DownState := 12;
+    END_IF;
+  15:
+    nPreCyl3DownState := nCyl3DownState;
+    nBlankingCyl4UpIndex :=LREAL_TO_INT(g_dBlankingCylinder4WaitSignalM) - 1;
+    IF g_dBlankingCylinder4WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl4UpIndex] THEN
+        nCyl3DownState := 20;
+      END_IF;
+    ELSIF g_dBlankingCylinder4WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl4UpIndex + 24] THEN
+        nCyl3DownState := 20;
+      END_IF;
+    ELSIF g_dBlankingCylinder4WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl4UpIndex + 48] THEN
+        nCyl3DownState := 20;
+      END_IF;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl3DownState := 12;
+    END_IF;
+  20:
+    nPreCyl3DownState := nCyl3DownState;
+    g_boBlankingCyl31Up := FALSE;
+    g_boBlankingCyl31Down := TRUE;
+    IF NOT g_bBlankingStateUp4 THEN
+        g_boBlankingCyl3DownDone := TRUE;
+        nCyl3DownState := 0;
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_3 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl3DownState := 12;
+    END_IF;
+  3:
+    IF g_dBlankingCylinder4WaitBoardInputSignalM = 0.0 THEN
+      nCyl3DownState := 30;
+    ELSE
+      M.ENABLE[206] := 0;
+      nCyl3DownState := 35;
+      g_bExecuteFinishedM206 := FALSE;
+	  g_bFinishedM206_3 := FALSE;
+    END_IF;
+  30:
+    nPreCyl3DownState := nCyl3DownState;
+    IF g_dBlankingCylinder4WaitSignalM = 0.0 OR g_dBlankingCylinder4WaitSignalM = 4.0 THEN
+         nCyl3DownState := 40;
+      ELSIF g_dBlankingCylinder4WaitSignalM = 2.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_3 := FALSE;
+        IF  g_bBlankingStateUp2 THEN
+          nCyl3DownState := 40;
+        END_IF;
+      ELSIF g_dBlankingCylinder4WaitSignalM = 2.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_3 := FALSE;
+        IF  g_bBlankingStateUp2 THEN
+          nCyl3DownState := 40;
+        END_IF;
+      ELSIF g_dBlankingCylinder4WaitSignalM = 3.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_3 := FALSE;
+        IF  g_bBlankingStateUp3 THEN
+          nCyl3DownState := 40;
+        END_IF;
+      ELSIF g_dBlankingCylinder4WaitSignalM = 5.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_3 := FALSE;
+        IF  g_bBlankingStateUp5 THEN
+          nCyl3DownState := 40;
+        END_IF;
+      END_IF; 
+      IF g_bPlcPauseBuffer THEN
+      nCyl3DownState := 12;
+    END_IF;
+  35:
+    nPreCyl3DownState := nCyl3DownState;
+    nBlankingCyl4DownIndex :=LREAL_TO_INT(g_dBlankingCylinder4WaitSignalM) - 1;
+    IF g_dBlankingCylinder4WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl4DownIndex] THEN
+        nCyl3DownState := 40;
+      END_IF;
+    ELSIF g_dBlankingCylinder4WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl4DownIndex + 24] THEN
+        nCyl3DownState := 40;
+      END_IF;
+    ELSIF g_dBlankingCylinder4WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl4DownIndex + 48] THEN
+        nCyl3DownState := 40;
+      END_IF;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl3DownState := 12;
+    END_IF;
+  40:
+    nPreCyl3DownState := nCyl3DownState;
+    g_boBlankingCyl31Up := TRUE;
+    g_boBlankingCyl31Down := FALSE;
+    IF g_bBlankingStateUp4 THEN
+        g_boBlankingCyl3DownDone := TRUE;
+        nCyl3DownState := 0;
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_3 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl3DownState := 12;
+    END_IF;
+  12:
+    IF g_bPlcStartBuffer OR g_bPlcStartM THEN
+      nCyl3DownState := nPreCyl3DownState;
+    END_IF;
+END_CASE;
+
+(*第四组气缸*)
+IF RTriggerCyl41.Q THEN
+  nCyl4DownState := 1;
+  g_boBlankingCyl4DownDone := FALSE;
+  g_bBlankingCyl4DownOpenM := FALSE;
+  g_bBlanking5DelayFlag := TRUE;
+END_IF;
+
+IF RTriggerCyl42.Q THEN
+  g_boBlankingCyl4DownDone := FALSE;
+  g_bBlankingCyl4DownCloseM := FALSE;
+  nCyl4DownState := 0;
+  g_bBlanking5DelayFlag := TRUE;
+END_IF;
+
+CASE nCyl4DownState OF
+  0:
+    nCyl4DownState := 0;
+  1:
+    IF LREAL_TO_INT(g_fBlankingCyl4MoveTypeM) = 0 THEN
+      nCyl4DownState := 2; (*下降*)
+    ELSIF LREAL_TO_INT(g_fBlankingCyl4MoveTypeM) = 1 AND (NOT g_bClaw3CylForbid) THEN
+      nCyl4DownState := 3;(*上升*)
+    END_IF;
+  2:
+    IF g_dBlankingCylinder5WaitBoardInputSignalM = 0.0 THEN
+      nCyl4DownState := 10;
+    ELSE
+      M.ENABLE[206] := 0;
+      nCyl4DownState := 15;
+      g_bExecuteFinishedM206 := FALSE;
+	  g_bFinishedM206_4 := FALSE;
+    END_IF;
+  10:
+    nPreCyl4DownState := nCyl4DownState;
+    IF g_dBlankingCylinder5WaitSignalM = 0.0 OR g_dBlankingCylinder5WaitSignalM = 5.0 THEN
+         nCyl4DownState := 20;
+      ELSIF g_dBlankingCylinder5WaitSignalM = 1.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_4 := FALSE;
+        IF NOT g_bBlankingStateUp1 THEN
+          nCyl4DownState := 20;
+        END_IF;
+      ELSIF g_dBlankingCylinder5WaitSignalM = 2.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_4 := FALSE;
+        IF NOT g_bBlankingStateUp2 THEN
+          nCyl4DownState := 20;
+        END_IF;
+      ELSIF g_dBlankingCylinder5WaitSignalM = 3.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_4 := FALSE;
+        IF NOT g_bBlankingStateUp3 THEN
+          nCyl4DownState := 20;
+        END_IF;
+      ELSIF g_dBlankingCylinder5WaitSignalM = 4.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_4 := FALSE;
+        IF NOT g_bBlankingStateUp4 THEN
+          nCyl4DownState := 20;
+        END_IF;
+      END_IF; 
+    IF g_bPlcPauseBuffer THEN
+      nCyl4DownState := 12;
+    END_IF;
+  15:
+    nPreCyl4DownState := nCyl4DownState;
+    nBlankingCyl5UpIndex :=LREAL_TO_INT(g_dBlankingCylinder5WaitSignalM) - 1;
+    IF g_dBlankingCylinder5WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl5UpIndex] THEN
+        nCyl4DownState := 20;
+      END_IF;
+    ELSIF g_dBlankingCylinder5WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl5UpIndex + 24] THEN
+        nCyl4DownState := 20;
+      END_IF;
+    ELSIF g_dBlankingCylinder5WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl5UpIndex + 48] THEN
+        nCyl4DownState := 20;
+      END_IF;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl4DownState := 12;
+    END_IF;
+  20:
+    nPreCyl4DownState := nCyl4DownState;
+    g_boBlankingCyl41Up := FALSE;
+    g_boBlankingCyl41Down := TRUE;
+    IF NOT g_bBlankingStateUp5 THEN
+        g_boBlankingCyl4DownDone := TRUE;
+        nCyl4DownState := 0;
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_4 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl4DownState := 12;
+    END_IF;
+  3:
+    IF g_dBlankingCylinder5WaitBoardInputSignalM = 0.0 THEN
+      nCyl4DownState := 30;
+    ELSE
+      M.ENABLE[206] := 0;
+      nCyl4DownState := 35;
+      g_bExecuteFinishedM206 := FALSE;
+	  g_bFinishedM206_4 := FALSE;
+    END_IF;
+  30:
+    nPreCyl4DownState := nCyl4DownState;
+    IF g_dBlankingCylinder5WaitSignalM = 0.0 OR g_dBlankingCylinder5WaitSignalM = 5.0 THEN
+         nCyl4DownState := 40;
+      ELSIF g_dBlankingCylinder5WaitSignalM = 1.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_4 := FALSE;
+        IF  g_bBlankingStateUp1 THEN
+          nCyl4DownState := 40;
+        END_IF;
+      ELSIF g_dBlankingCylinder5WaitSignalM = 2.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_4 := FALSE;
+        IF  g_bBlankingStateUp2 THEN
+          nCyl4DownState := 40;
+        END_IF;
+      ELSIF g_dBlankingCylinder5WaitSignalM = 3.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_4 := FALSE;
+        IF  g_bBlankingStateUp3 THEN
+          nCyl4DownState := 40;
+        END_IF;
+      ELSIF g_dBlankingCylinder5WaitSignalM = 4.0 THEN
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_4 := FALSE;
+        IF  g_bBlankingStateUp4 THEN
+          nCyl4DownState := 40;
+        END_IF;
+      END_IF; 
+      IF g_bPlcPauseBuffer THEN
+      nCyl4DownState := 12;
+    END_IF;
+  35:
+    nPreCyl4DownState := nCyl4DownState;
+    nBlankingCyl5DownIndex :=LREAL_TO_INT(g_dBlankingCylinder5WaitSignalM) - 1;
+    IF g_dBlankingCylinder5WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl5DownIndex] THEN
+        nCyl4DownState := 40;
+      END_IF;
+    ELSIF g_dBlankingCylinder5WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl5DownIndex + 24] THEN
+        nCyl4DownState := 40;
+      END_IF;
+    ELSIF g_dBlankingCylinder5WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nBlankingCyl5DownIndex + 48] THEN
+        nCyl4DownState := 40;
+      END_IF;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl4DownState := 12;
+    END_IF;
+  40:
+    nPreCyl4DownState := nCyl4DownState;
+    g_boBlankingCyl41Up := TRUE;
+    g_boBlankingCyl41Down := FALSE;
+    IF g_bBlankingStateUp5 THEN
+        g_boBlankingCyl4DownDone := TRUE;
+        nCyl4DownState := 0;
+        M.ENABLE[206] := 0;
+        g_bExecuteFinishedM206 := FALSE;
+		g_bFinishedM206_4 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nCyl4DownState := 12;
+    END_IF;
+  12:
+    IF g_bPlcStartBuffer OR g_bPlcStartM THEN
+      nCyl4DownState := nPreCyl4DownState;
+    END_IF;
+END_CASE;
+IF g_bPlcResetBuffer OR g_bPlcEndM THEN
+  nCyl0DownState := 0;
+  nCyl1DownState := 0;
+  nCyl2DownState := 0;
+  nCyl3DownState := 0;
+  nCyl4DownState := 0;
+  nPreCyl0DownState := 0;
+  nPreCyl1DownState := 0;
+  nPreCyl2DownState := 0;
+  nPreCyl3DownState := 0;
+  nPreCyl4DownState := 0;
+  g_bExecuteFinishedM206 := FALSE;
+  g_bFinishedM206_0 := FALSE;
+  g_bFinishedM206_1 := FALSE;
+  g_bFinishedM206_2 := FALSE;
+  g_bFinishedM206_3 := FALSE;
+  g_bFinishedM206_4 := FALSE;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[自动下料机气缸控制]]></xhtml:p>
+  </documentation>
+</pou>

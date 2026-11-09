@@ -1,0 +1,288 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Actual_XPosition" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="dWorkCoordU">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保存当前周期的U的角度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_diUMachineCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前U的角度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dSquareLenght">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[板材：长]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dSquareWidth">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[板材：宽]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLaserOnPlane">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[true:使用平面系数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_diXMachineCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工件零点X的工件坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="fLeft">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[零件左工件坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fRight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[零件右工件坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fPlaneX_Site">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[X距离拐角的距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fXWorkCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用来保存X的工件坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="fXRelativeDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[由Engine传递过来的坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fURelativeDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[由Engine传递过来的坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fUWorkCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用来保存U的工件坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="fXOffset">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[X的偏移量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fUOffset">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U的偏移量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fHighLowAngle">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[高低面旋转补偿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fCornerRadius">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[拐角半径]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Rtring_1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检测角度1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检测角度2]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dRecordAngle1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录角度1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dRecordAngle2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录角度2]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring_1(CLK := g_bRecordRatoteAngleBeforeCenteringM);
+Rtring_2(CLK := g_bRecordRatoteAngleBeforCuttingM);
+IF Rtring_1.Q THEN
+  g_bRecordRatoteAngleBeforeCenteringM := FALSE;
+  dRecordAngle1 := g_diUMachineCoordinate;
+END_IF;
+IF Rtring_2.Q THEN
+  g_bRecordRatoteAngleBeforCuttingM := FALSE;
+  dRecordAngle2 := g_diUMachineCoordinate;
+  g_dRatoteAngleDifference := dRecordAngle2 - dRecordAngle1;
+END_IF;
+
+
+
+(*计算X的工件坐标*)
+g_fXWorkCoordinate := g_diXMachineCoordinate - g_dBeamCenterPos;
+
+(*计算U的工件坐标*)
+g_fUWorkCoordinate := g_diUMachineCoordinate - g_dAngle - g_dRatoteAngleDifference;
+
+dWorkCoordU := FUN_FMOD(g_fUWorkCoordinate,FALSE);
+
+(*IF (dWorkCoordU > -90.0 AND dWorkCoordU < 90.0)  THEN*)
+IF (dWorkCoordU > -10.0 AND dWorkCoordU < 10.0)  OR  (dWorkCoordU > -370.0 AND dWorkCoordU < -350.0) OR  (dWorkCoordU > 350.0 AND dWorkCoordU < 370.0) THEN
+  fLeft := -DIV(IN1 := g_dSquareLenght,IN2 := 2.0)+10.0 + g_fCornerRadius;
+  fRight := DIV(IN1 := g_dSquareLenght,IN2 := 2.0) -10.0 - g_fCornerRadius;
+  IF g_fXWorkCoordinate > fLeft AND g_fXWorkCoordinate < fRight THEN
+    g_bLaserOnPlane := FALSE;
+  ELSE 
+    g_bLaserOnPlane := TRUE;
+    IF g_fXWorkCoordinate <= 0.0  THEN
+    g_fPlaneX_Site := g_fXWorkCoordinate - fLeft + 10.0;
+    ELSIF g_fXWorkCoordinate > 0.0 THEN
+      g_fPlaneX_Site := fRight - g_fXWorkCoordinate +10.0;
+    END_IF; 
+  END_IF;
+
+(*ELSIF  (dWorkCoordU >=90.0 AND dWorkCoordU <180.0)  OR  (dWorkCoordU > -360.0 AND dWorkCoordU <= -270.0) THEN*)
+ELSIF  (dWorkCoordU >80.0 AND dWorkCoordU <100.0)  OR  (dWorkCoordU > -280.0 AND dWorkCoordU < -260.0) THEN
+  fLeft := -DIV(IN1 := g_dSquareWidth,IN2 := 2.0)+10.0 + g_fCornerRadius;
+  fRight := DIV(IN1 := g_dSquareWidth,IN2 := 2.0) -10.0 - g_fCornerRadius;
+  IF g_fXWorkCoordinate > fLeft AND g_fXWorkCoordinate < fRight THEN
+    g_bLaserOnPlane := FALSE;
+  ELSE 
+    g_bLaserOnPlane := TRUE;
+    IF g_fXWorkCoordinate <= 0.0  THEN
+    g_fPlaneX_Site := g_fXWorkCoordinate - fLeft + 10.0;
+    ELSIF g_fXWorkCoordinate > 0.0 THEN
+      g_fPlaneX_Site := fRight - g_fXWorkCoordinate +10.0;
+    END_IF; 
+  END_IF;
+(*ELSIF (dWorkCoordU >=180.0 AND dWorkCoordU <270.0)  OR (dWorkCoordU > -270.0 AND dWorkCoordU <= -180.0) THEN*)
+ELSIF (dWorkCoordU >170.0 AND dWorkCoordU <190.0)  OR (dWorkCoordU > -190.0 AND dWorkCoordU <= -170.0) THEN
+  fLeft := -DIV(IN1 := g_dSquareLenght,IN2 := 2.0)+10.0 + g_fCornerRadius;
+  fRight := DIV(IN1 := g_dSquareLenght,IN2 := 2.0) -10.0 - g_fCornerRadius;
+  IF g_fXWorkCoordinate > fLeft AND g_fXWorkCoordinate < fRight THEN
+    g_bLaserOnPlane := FALSE;
+  ELSE 
+    g_bLaserOnPlane := TRUE;
+    IF g_fXWorkCoordinate <= 0.0  THEN
+    g_fPlaneX_Site := g_fXWorkCoordinate - fLeft + 10.0;
+    ELSIF g_fXWorkCoordinate > 0.0 THEN
+      g_fPlaneX_Site := fRight - g_fXWorkCoordinate +10.0;
+    END_IF; 
+  END_IF;
+(*ELSIF (dWorkCoordU >=270.0 AND dWorkCoordU <360.0) OR (dWorkCoordU > -180.0 AND dWorkCoordU <= -90.0) THEN*)
+ELSIF (dWorkCoordU >260.0 AND dWorkCoordU <280.0) OR (dWorkCoordU > -100.0 AND dWorkCoordU <= -80.0) THEN
+    fLeft := -DIV(IN1 := g_dSquareWidth,IN2 := 2.0) + 10.0 + g_fCornerRadius;
+  fRight := DIV( IN1 := g_dSquareWidth,IN2 := 2.0) -10.0 - g_fCornerRadius;
+  IF g_fXWorkCoordinate > fLeft AND g_fXWorkCoordinate < fRight THEN
+    g_bLaserOnPlane := FALSE;
+  ELSE 
+    g_bLaserOnPlane := TRUE;
+    IF g_fXWorkCoordinate <= 0.0  THEN    
+      g_fPlaneX_Site := g_fXWorkCoordinate - fLeft + 10.0;
+    ELSIF g_fXWorkCoordinate > 0.0 THEN
+      g_fPlaneX_Site := fRight - g_fXWorkCoordinate +10.0;
+    END_IF; 
+  END_IF;
+
+END_IF;
+
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

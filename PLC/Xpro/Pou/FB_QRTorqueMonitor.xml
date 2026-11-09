@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_QRTorqueMonitor" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_fiDriverTorque0">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverTorque1">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverTorque2">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverTorque3">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverTorque4">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiServoMaxTorque0">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fiServoMaxTorque1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fiServoMaxTorque2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fiServoMaxTorque3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fiServoMaxTorque4">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bTorqueWarn0">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTorqueWarn1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTorqueWarn2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTorqueWarn3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTorqueWarn4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nDriverSetTorque0">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nDriverSetTorque1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nDriverSetTorque2">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nDriverSetTorque3">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nDriverSetTorque4">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="bTorqueMonitor">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF bTorqueMonitor THEN
+  IF ABS(REAL_TO_LREAL(g_fiDriverTorque0)) > g_fiServoMaxTorque0*DINT_TO_LREAL(nDriverSetTorque0)/100.0 THEN
+    g_bTorqueWarn0 := TRUE;
+  END_IF;
+
+  IF ABS(REAL_TO_LREAL(g_fiDriverTorque1)) > g_fiServoMaxTorque1*DINT_TO_LREAL(nDriverSetTorque1)/100.0 THEN
+    g_bTorqueWarn1 := TRUE;
+  END_IF;
+
+  IF ABS(REAL_TO_LREAL(g_fiDriverTorque2)) > g_fiServoMaxTorque2*DINT_TO_LREAL(nDriverSetTorque2)/100.0 THEN
+    g_bTorqueWarn2 := TRUE;
+  END_IF;
+
+  IF ABS(REAL_TO_LREAL(g_fiDriverTorque3)) > g_fiServoMaxTorque3*DINT_TO_LREAL(nDriverSetTorque3)/100.0 THEN
+    g_bTorqueWarn3 := TRUE;
+  END_IF;
+
+  IF ABS(REAL_TO_LREAL(g_fiDriverTorque4)) > g_fiServoMaxTorque4*DINT_TO_LREAL(nDriverSetTorque4)/100.0 THEN
+    g_bTorqueWarn4 := TRUE;
+  END_IF;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

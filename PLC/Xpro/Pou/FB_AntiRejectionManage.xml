@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AntiRejectionManage" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_AntiRejection1Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection2Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_AntiRejection3Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBAntiRejectionAct">
+        <type>
+          <derived name="FB_AntiRejectionAct"/>
+        </type>
+      </variable>
+      <variable name="FBAntiRejectionPower">
+        <type>
+          <derived name="FB_AntiRejectionPower"/>
+        </type>
+      </variable>
+      <variable name="FBAntiRejectionHome">
+        <type>
+          <derived name="FB_AntiRejectionHome"/>
+        </type>
+      </variable>
+      <variable name="FBAntiRejectionJog">
+        <type>
+          <derived name="FB_AntiRejectionJog"/>
+        </type>
+      </variable>
+      <variable name="FBAntiRejectionAbs">
+        <type>
+          <derived name="FB_AntiRejectionAbs"/>
+        </type>
+      </variable>
+      <variable name="FBAntiRejectionRel">
+        <type>
+          <derived name="FB_AnRejectionRel"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBAntiRejectionAct();
+FBAntiRejectionPower();
+FBAntiRejectionHome();
+FBAntiRejectionJog();
+FBAntiRejectionAbs();
+FBAntiRejectionRel();
+
+IF AntiRejection1.NCTOPLC.ERRORCODE <>0 AND g_bPlcResetBuffer THEN
+  g_AntiRejection1Reset.Execute := TRUE;
+ELSE
+  g_AntiRejection1Reset.Execute := FALSE;   
+END_IF;
+
+IF AntiRejection2.NCTOPLC.ERRORCODE <>0 AND g_bPlcResetBuffer THEN
+  g_AntiRejection2Reset.Execute := TRUE;
+ELSE
+  g_AntiRejection2Reset.Execute := FALSE;   
+END_IF;
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

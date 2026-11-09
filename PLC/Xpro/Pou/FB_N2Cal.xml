@@ -1,0 +1,344 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_N2Cal" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bN2CalExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bN2CalDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="N2CalState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="RTrigge">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="FTrigge1">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="DAOutputVolAna">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[电压转换成32767]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="DAOutputVol">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[电压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDAOutputVolEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[电压输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="CalNum">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气压标定第几个采集点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="GasCalTon1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="GasCalTon2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="GasCalTon3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="i">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="j">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="temp">
+        <type>
+          <derived name="ST_AoPressure"/>
+        </type>
+      </variable>
+      <variable name="CutPreVarianceSet">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0.005"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[允许气压方差值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="GasCalDeltMax">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定数据间最大差值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="GasCalDeltMaxi">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定数据间最大差值数组下标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="STGasCalDelt">
+        <type>
+          <array>
+            <dimension lower="1" upper="6"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标定数据间差值数组]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="DAVolRepair1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[补采电压1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="DAVolRepair2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[补采电压1]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigge(CLK := g_bN2CalExecute);
+IF RTrigge.Q THEN
+  For i := 0 TO 10 BY 1 DO 
+    g_StNirtogenCal[i].Ao := 0.0;
+    g_StNirtogenCal[i].Pressure := 0.0;  
+    g_StNirtogenCal[i].Done := FALSE;  (*初始化空气气压标定数组*)
+  END_FOR;
+  CalNum := -1;
+  GasCalDeltMax := 0.0;
+  g_bN2CalDone := FALSE;
+  N2CalState := 10;
+END_IF;
+  
+CASE N2CalState OF
+  0:
+    N2CalState := 0;
+  10:(*初始化气体*)
+    g_boMasterValve := FALSE;
+    g_uoSharePressureOut := 0;
+    g_uoMasterPressureOut := 0;
+    g_boAirValve:= FALSE;
+    g_boOxygenValve := FALSE;
+    g_boNirtogenValve := FALSE;
+    g_uoAirPressureOut := 0;
+    g_uoNirtogenPressureOut := 0;
+    g_uoOxygenPressureOut := 0;   
+    N2CalState := 20; 
+  20:(*按采集点顺序输出标定电压*)
+    GasCalTon1(IN:= FALSE);
+    GasCalTon2(IN:= FALSE);
+    GasCalTon3(IN:= FALSE);
+    CalNum := CalNum +1;
+    IF CalNum = 0 THEN
+      DAOutputVol := 0.2;
+      N2CalState := 50;
+    ELSIF CalNum = 1 THEN
+      DAOutputVol := 0.5;
+      N2CalState := 50;
+    ELSIF CalNum = 2 THEN
+      DAOutputVol := 1.0;
+      N2CalState := 50;
+    ELSIF CalNum = 3 THEN
+      DAOutputVol := 2.4;
+      N2CalState := 50;
+    ELSIF CalNum = 4 THEN
+      DAOutputVol := 3.6;
+      N2CalState := 50;
+    ELSIF CalNum = 5 THEN
+      DAOutputVol := 5.0;
+      N2CalState := 50;
+    ELSIF CalNum = 6 THEN
+      DAOutputVol := 10.0;
+      N2CalState := 50;
+    ELSE
+      N2CalState := 100;
+    END_IF;
+  50:(*输出电压出气*)
+    DAOutputVolAna := LREAL_TO_UINT((32767.0 / 10.0) * DAOutputVol);   
+    bDAOutputVolEnable :=TRUE;
+    
+    GasCalTon1(IN:= TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nGasCalDelayTime)));
+    IF GasCalTon1.Q THEN
+      GasCalTon1(IN:= FALSE);
+      N2CalState := 60;
+    END_IF;
+  60:(*采集气压*)   
+    GasCalTon2(IN:= TRUE,PT := T#3000ms); (*超时跳过*)
+    GasCalTon3(IN:= (g_CutPreVariance < CutPreVarianceSet AND g_CutPreAverage >0.0),PT := T#1000ms); (*气压方差稳定*)
+    IF GasCalTon3.Q OR GasCalTon2.Q THEN
+      g_StNirtogenCal[CalNum].Ao := DAOutputVol;
+      g_StNirtogenCal[CalNum].Pressure := g_CutPreAverage;  (*电压-气压存到标定数组*)
+      g_StNirtogenCal[CalNum].Done := TRUE;
+      GasCalTon2(IN:= FALSE);
+      GasCalTon3(IN:= FALSE);
+      N2CalState := 20;
+    END_IF;
+  100:(*找最大气压,气压标定数据差值最大的区段*)   
+    STGasCalDelt[1] := g_StNirtogenCal[1].Pressure - g_StNirtogenCal[0].Pressure;
+    STGasCalDelt[2] := g_StNirtogenCal[2].Pressure - g_StNirtogenCal[1].Pressure;
+    STGasCalDelt[3] := g_StNirtogenCal[3].Pressure - g_StNirtogenCal[2].Pressure;
+    STGasCalDelt[4] := g_StNirtogenCal[4].Pressure - g_StNirtogenCal[3].Pressure;
+    STGasCalDelt[5] := g_StNirtogenCal[5].Pressure - g_StNirtogenCal[4].Pressure;
+    STGasCalDelt[6] := g_StNirtogenCal[6].Pressure - g_StNirtogenCal[5].Pressure; 
+    For i := 1 to 6 BY 1 DO 
+      IF STGasCalDelt[i] > GasCalDeltMax THEN
+        GasCalDeltMax := STGasCalDelt[i];
+        GasCalDeltMaxi := i;
+      END_IF;
+    END_FOR; 
+    N2CalState := 110; 
+  110:(*补采点判断*)
+    IF g_StNirtogenCal[GasCalDeltMaxi].Ao > 2.4 THEN  (*补2个点*)
+      DAVolRepair1 := g_StNirtogenCal[GasCalDeltMaxi-1].Ao + (g_StNirtogenCal[GasCalDeltMaxi].Ao - g_StNirtogenCal[GasCalDeltMaxi-1].Ao)/3.0;
+      DAVolRepair2 := g_StNirtogenCal[GasCalDeltMaxi-1].Ao + 2.0*(g_StNirtogenCal[GasCalDeltMaxi].Ao - g_StNirtogenCal[GasCalDeltMaxi-1].Ao)/3.0;
+    ELSE     (*补1个点*)
+      DAVolRepair1 := g_StNirtogenCal[GasCalDeltMaxi-1].Ao + (g_StNirtogenCal[GasCalDeltMaxi].Ao - g_StNirtogenCal[GasCalDeltMaxi-1].Ao)/2.0;
+    END_IF;
+    N2CalState := 120;
+  120:(*补采点1*)
+    DAOutputVolAna := LREAL_TO_UINT((32767.0 / 10.0) * DAVolRepair1);   
+    bDAOutputVolEnable :=TRUE;
+    
+    GasCalTon1(IN:= TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nGasCalDelayTime)));
+    IF GasCalTon1.Q THEN
+      GasCalTon1(IN:= FALSE);
+      N2CalState := 130;
+    END_IF;
+  130:(*采集气压*)    
+    GasCalTon2(IN:= TRUE,PT := T#3000ms); (*超时跳过*)
+    GasCalTon3(IN:= (g_CutPreVariance < CutPreVarianceSet AND g_CutPreAverage >= 0.0),PT := T#1000ms); (*气压方差稳定*)
+    IF GasCalTon3.Q OR GasCalTon2.Q THEN
+      g_StNirtogenCal[7].Ao := DAVolRepair1;
+      g_StNirtogenCal[7].Pressure := g_CutPreAverage;  (*电压-气压存到标定数组*)
+      g_StNirtogenCal[7].Done := TRUE;
+      GasCalTon2(IN:= FALSE);
+      GasCalTon3(IN:= FALSE);
+      N2CalState := 140;
+    END_IF; 
+  140:(*是否补采点2*)   
+    IF g_StNirtogenCal[GasCalDeltMaxi].Ao > 2.4 THEN
+      N2CalState := 150;
+    ELSE
+      N2CalState := 200;
+    END_IF;
+  150:(*补采点2*)
+    DAOutputVolAna := LREAL_TO_UINT((32767.0 / 10.0) * DAVolRepair2);   
+    bDAOutputVolEnable :=TRUE;
+    
+    GasCalTon1(IN:= TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nGasCalDelayTime)));
+    IF GasCalTon1.Q THEN
+      GasCalTon1(IN:= FALSE);
+      N2CalState := 160;
+    END_IF;
+  160:(*采集气压*)  
+    GasCalTon2(IN:= TRUE,PT := T#3000ms); (*超时跳过*) 
+    GasCalTon3(IN:= (g_CutPreVariance < CutPreVarianceSet AND g_CutPreAverage >= 0.0),PT := T#1000ms); (*气压方差稳定*)
+    IF GasCalTon3.Q OR GasCalTon2.Q THEN
+      g_StNirtogenCal[8].Ao := DAVolRepair2;
+      g_StNirtogenCal[8].Pressure := g_CutPreAverage;  (*电压-气压存到标定数组*)
+      g_StNirtogenCal[8].Done := TRUE;
+      GasCalTon2(IN:= FALSE);
+      GasCalTon3(IN:= FALSE);
+      N2CalState := 200;
+    END_IF; 
+  
+  200:(*关气,气压标定完成*)
+      (*气压标定结果数组冒泡排序,排除0组*)
+    FOR i := 0 TO 8 BY 1 DO
+      FOR j := 0 TO (8-i) BY 1 DO
+        IF g_StNirtogenCal[j].Ao > g_StNirtogenCal[j+1].Ao AND g_StNirtogenCal[j].Ao<>0.0 AND g_StNirtogenCal[j+1].Ao<>0.0 THEN
+          temp := g_StNirtogenCal[j];
+          g_StNirtogenCal[j] := g_StNirtogenCal[j+1];
+          g_StNirtogenCal[j+1] := temp;      
+        END_IF;
+      END_FOR;
+    END_FOR;
+    bDAOutputVolEnable := FALSE;
+    g_bN2CalExecute := FALSE;
+    g_bN2CalDone := TRUE;
+    N2CalState := 0;
+END_CASE;
+ 
+(*氮气电压输出*)
+IF bDAOutputVolEnable THEN
+    g_boMasterValve := TRUE;
+    g_uoSharePressureOut := DAOutputVolAna;
+    g_uoMasterPressureOut := DAOutputVolAna;
+    g_boNirtogenValve:= TRUE;  
+    g_uoNirtogenPressureOut := DAOutputVolAna; 
+END_IF;
+FTrigge1(CLK := bDAOutputVolEnable);
+IF FTrigge1.Q THEN
+  g_boMasterValve := FALSE;
+  g_uoSharePressureOut := 0;
+  g_uoMasterPressureOut := 0;
+  g_boNirtogenValve:= FALSE;
+  g_uoNirtogenPressureOut := 0; 
+END_IF;
+
+IF g_bPlcResetBuffer OR g_bGasCalStop THEN
+  bDAOutputVolEnable:=FALSE;
+  g_bN2CalExecute := FALSE;
+  N2CalState := 0;
+  g_bGasCalStop := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[氮气气压标定]]></xhtml:p>
+  </documentation>
+</pou>

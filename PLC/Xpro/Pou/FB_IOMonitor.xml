@@ -1,0 +1,2209 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_IOMonitor" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="bMinitorDi1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io1 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io2监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io3监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io4监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io5监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io6监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io7监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io8监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io9监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io10监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io11监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io12监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi13">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io13监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi14">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io14监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi15">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io15监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi16">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io16监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi17">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io17监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi18">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io18监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi19">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io19监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi20">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io20监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi21">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io21监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi22">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io22监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi23">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io23监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi24">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io24监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi25">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io25监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi26">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io26监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi27">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io27监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi28">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io28监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi29">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io29监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi30">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io30监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi31">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io31监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi32">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi33">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi34">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi35">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi36">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi37">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi38">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi39">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi40">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi41">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi42">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi43">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi44">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi45">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi46">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi47">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMinitorDi48">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输入io32监控]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biMonitorDI1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入1监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入2监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入3监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入4监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入5监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入6监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入7监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入8监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入9监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入10监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入11监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入12监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI13">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入13监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI14">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入14监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI15">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入15监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI16">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入16监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI17">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入17监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI18">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入18监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI19">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入19监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI20">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入20监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI21">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入21监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI22">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入22监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI23">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入23监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI24">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入24监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI25">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入25监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI26">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入26监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI27">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入27监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI28">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入28监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI29">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入29监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI30">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入30监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI31">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入31监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI32">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI33">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI34">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI35">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI36">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI37">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI38">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI39">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI40">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI41">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI42">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI43">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI44">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI45">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI46">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI47">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDI48">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输入32监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出1监控  输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出2监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出3监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出4监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出5监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出6监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出7监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出8监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出9监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出10监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出11监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出12监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO13">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出13监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO14">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出14监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO15">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出15监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO16">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出16监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO17">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出17监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO18">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出18监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO19">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出19监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO20">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出20监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO21">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出21监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO22">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出22监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO23">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出23监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO24">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出24监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO25">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出25监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO26">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出26监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO27">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出27监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO28">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出28监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO29">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出29监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO30">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出30监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO31">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出31监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO32">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO33">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO34">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO35">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO36">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO37">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO38">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO39">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO40">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO41">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO42">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO43">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO44">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO45">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO46">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO47">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biMonitorDO48">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[数字量io输出32监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bMonitordo1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io1 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io2 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io3 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io4 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io5 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo6">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io6 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo7">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io7 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo8">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io8 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo9">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io9 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo10">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io10 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo11">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io11 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo12">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io12 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo13">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io13 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo14">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io14 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo15">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io15 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo16">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io16 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo17">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io17 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo18">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io18 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo19">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io19 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo20">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io20 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo21">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io21 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo22">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io22 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo23">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io23 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo24">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io24 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo25">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io25 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo26">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io26 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo27">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io27 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo28">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io28 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo29">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io29 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo30">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io30 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo31">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io31 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo32">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo33">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo34">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo35">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo36">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo37">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo38">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo39">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo40">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo41">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo42">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo43">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo44">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo45">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo46">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo47">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMonitordo48">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存数字量输出io32 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAi1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io1 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAi2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io2 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAi3">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io3 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAi4">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io4 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAi5">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io5 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAi6">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io6 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAi7">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io7 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAi8">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io8 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAi9">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io9 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAi10">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io10 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAi11">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io11 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAi12">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io12 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAi13">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io13 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAi14">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io14 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAi15">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io15 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAi16">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io16 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_niMonitorAi1">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输入1监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAi2">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输入2监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAi3">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输入3监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAi4">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输入4监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAi5">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输入5监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAi6">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输入6监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAi7">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输入7监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAi8">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输入8监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAi9">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输入9监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAi10">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输入10监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAi11">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输入11监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAi12">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输入12监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAi13">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输入13监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAi14">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输入14监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAi15">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输入15监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAi16">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输入16监控 引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAo1">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输出1监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAo2">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输出2监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAo3">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输出3监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAo4">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输出4监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAo5">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输出5监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAo6">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输出6监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAo7">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输出7监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAo8">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输出8监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAo9">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输出9监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAo10">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输出10监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAo11">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输出11监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAo12">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输出12监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAo13">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输出13监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAo14">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输出14监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAo15">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输出15监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_niMonitorAo16">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[模拟量io输出16监控 输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dMonitorAo1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输出io1 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAo2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输入io2 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAo3">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输出io3 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAo4">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输出io4 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAo5">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输出io5 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAo6">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输出io6 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAo7">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输出io7 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAo8">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输出io8 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAo9">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输出io9 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAo10">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输出io10 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAo11">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输出io11 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAo12">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输出io12 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAo13">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输出io13 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAo14">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输出io14 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAo15">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输出io15 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMonitorAo16">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共享内存模拟量输出io16 监控]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*数字量输入信号监控*)
+bMinitorDi1 := g_biMonitorDI1;
+bMinitorDi2 := g_biMonitorDI2;
+bMinitorDi3 := g_biMonitorDI3;
+bMinitorDi4 := g_biMonitorDI4;
+bMinitorDi5 := g_biMonitorDI5;
+bMinitorDi6 := g_biMonitorDI6;
+bMinitorDi7 := g_biMonitorDI7;
+bMinitorDi8 := g_biMonitorDI8;
+bMinitorDi9 := g_biMonitorDI9;
+bMinitorDi10 := g_biMonitorDI10;
+bMinitorDi11 := g_biMonitorDI11;
+bMinitorDi12 := g_biMonitorDI12;
+bMinitorDi13 := g_biMonitorDI13;
+bMinitorDi14 := g_biMonitorDI14;
+bMinitorDi15 := g_biMonitorDI15;
+bMinitorDi16 := g_biMonitorDI16;
+bMinitorDi17 := g_biMonitorDI17;
+bMinitorDi18 := g_biMonitorDI18;
+bMinitorDi19 := g_biMonitorDI19;
+bMinitorDi20 := g_biMonitorDI20;
+bMinitorDi21 := g_biMonitorDI21;
+bMinitorDi22 := g_biMonitorDI22;
+bMinitorDi23 := g_biMonitorDI23;
+bMinitorDi24 := g_biMonitorDI24;
+bMinitorDi25 := g_biMonitorDI25;
+bMinitorDi26 := g_biMonitorDI26;
+bMinitorDi27 := g_biMonitorDI27;
+bMinitorDi28 := g_biMonitorDI28;
+bMinitorDi29 := g_biMonitorDI29;
+bMinitorDi30 := g_biMonitorDI30;
+bMinitorDi31 := g_biMonitorDI31;
+bMinitorDi32 := g_biMonitorDI32;
+bMinitorDi33 := g_biMonitorDI33;
+bMinitorDi34 := g_biMonitorDI34;
+bMinitorDi35 := g_biMonitorDI35;
+bMinitorDi36 := g_biMonitorDI36;
+bMinitorDi37 := g_biMonitorDI37;
+bMinitorDi38 := g_biMonitorDI38;
+bMinitorDi39 := g_biMonitorDI39;
+bMinitorDi40 := g_biMonitorDI40;
+bMinitorDi41 := g_biMonitorDI41;
+bMinitorDi42 := g_biMonitorDI42;
+bMinitorDi43 := g_biMonitorDI43;
+bMinitorDi44 := g_biMonitorDI44;
+bMinitorDi45 := g_biMonitorDI45;
+bMinitorDi46 := g_biMonitorDI46;
+bMinitorDi47 := g_biMonitorDI47;
+bMinitorDi48 := g_biMonitorDI48;
+
+
+(*数字量输出信号监控*)
+bMonitordo1 :=g_biMonitorDO1;
+bMonitordo2 :=g_biMonitorDO2;
+bMonitordo3 :=g_biMonitorDO3;
+bMonitordo4 :=g_biMonitorDO4;
+bMonitordo5 :=g_biMonitorDO5;
+bMonitordo6 :=g_biMonitorDO6;
+bMonitordo7 :=g_biMonitorDO7;
+bMonitordo8 :=g_biMonitorDO8;
+bMonitordo9 :=g_biMonitorDO9;
+bMonitordo10 :=g_biMonitorDO10;
+bMonitordo11 :=g_biMonitorDO11;
+bMonitordo12 :=g_biMonitorDO12;
+bMonitordo13 :=g_biMonitorDO13;
+bMonitordo14 :=g_biMonitorDO14;
+bMonitordo15 :=g_biMonitorDO15;
+bMonitordo16 :=g_biMonitorDO16;
+bMonitordo17 :=g_biMonitorDO17;
+bMonitordo18 :=g_biMonitorDO18;
+bMonitordo19 :=g_biMonitorDO19;
+bMonitordo20 :=g_biMonitorDO20;
+bMonitordo21 :=g_biMonitorDO21;
+bMonitordo22 :=g_biMonitorDO22;
+bMonitordo23 :=g_biMonitorDO23;
+bMonitordo24 :=g_biMonitorDO24;
+bMonitordo25 :=g_biMonitorDO25;
+bMonitordo26 :=g_biMonitorDO26;
+bMonitordo27 :=g_biMonitorDO27;
+bMonitordo28 :=g_biMonitorDO28;
+bMonitordo29 :=g_biMonitorDO29;
+bMonitordo30 :=g_biMonitorDO30;
+bMonitordo31 :=g_biMonitorDO31;
+bMonitordo32 :=g_biMonitorDO32;
+bMonitordo33 :=g_biMonitorDO33;
+bMonitordo34 :=g_biMonitorDO34;
+bMonitordo35 :=g_biMonitorDO35;
+bMonitordo36 :=g_biMonitorDO36;
+bMonitordo37 :=g_biMonitorDO37;
+bMonitordo38 :=g_biMonitorDO38;
+bMonitordo39 :=g_biMonitorDO39;
+bMonitordo40 :=g_biMonitorDO40;
+bMonitordo41 :=g_biMonitorDO41;
+bMonitordo42 :=g_biMonitorDO42;
+bMonitordo43 :=g_biMonitorDO43;
+bMonitordo44 :=g_biMonitorDO44;
+bMonitordo45 :=g_biMonitorDO45;
+bMonitordo46 :=g_biMonitorDO46;
+bMonitordo47 :=g_biMonitorDO47;
+bMonitordo48 :=g_biMonitorDO48;
+
+
+
+(*模拟量信号输入监控*)
+dMonitorAi1 := UINT_TO_LREAL(g_niMonitorAi1)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAi2 := UINT_TO_LREAL(g_niMonitorAi2)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAi3 := UINT_TO_LREAL(g_niMonitorAi3)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAi4 := UINT_TO_LREAL(g_niMonitorAi4)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAi5 := UINT_TO_LREAL(g_niMonitorAi5)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAi6 := UINT_TO_LREAL(g_niMonitorAi6)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAi7 := UINT_TO_LREAL(g_niMonitorAi7)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAi8 := UINT_TO_LREAL(g_niMonitorAi8)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAi9 := UINT_TO_LREAL(g_niMonitorAi9)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAi10 := UINT_TO_LREAL(g_niMonitorAi10)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAi11 := UINT_TO_LREAL(g_niMonitorAi11)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAi12 := UINT_TO_LREAL(g_niMonitorAi12)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAi13 := UINT_TO_LREAL(g_niMonitorAi13)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAi14 := UINT_TO_LREAL(g_niMonitorAi14)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAi15 := UINT_TO_LREAL(g_niMonitorAi15)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAi16 := UINT_TO_LREAL(g_niMonitorAi16)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+
+(*模拟量信号输出监控*)
+dMonitorAo1 := UINT_TO_LREAL(g_niMonitorAo1)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAo2 := UINT_TO_LREAL(g_niMonitorAo2)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAo3 := UINT_TO_LREAL(g_niMonitorAo3)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAo4 := UINT_TO_LREAL(g_niMonitorAo4)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAo5 := UINT_TO_LREAL(g_niMonitorAo5)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAo6 := UINT_TO_LREAL(g_niMonitorAo6)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAo7 := UINT_TO_LREAL(g_niMonitorAo7)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAo8 := UINT_TO_LREAL(g_niMonitorAo8)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAo9 := UINT_TO_LREAL(g_niMonitorAo9)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAo10 := UINT_TO_LREAL(g_niMonitorAo10)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAo11 := UINT_TO_LREAL(g_niMonitorAo11)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAo12 := UINT_TO_LREAL(g_niMonitorAo12)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAo13 := UINT_TO_LREAL(g_niMonitorAo13)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAo14 := UINT_TO_LREAL(g_niMonitorAo14)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAo15 := UINT_TO_LREAL(g_niMonitorAo15)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+dMonitorAo16 := UINT_TO_LREAL(g_niMonitorAo16)/UINT_TO_LREAL(32767)*UINT_TO_LREAL(10);
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[io监控模块]]></xhtml:p>
+  </documentation>
+</pou>

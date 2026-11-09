@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AnRejectionRel" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC暂停]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC复位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="RelRtring1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nRelState1">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_AntiRejection1Rel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_AntiRejection1Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAnRejection1RelEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAnRejection1RelEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动开始]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAnRejection1RelEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动开始局部变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAnRejection1RelDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动完成局部变量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bAnRejection1RelDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAnRejection1RelDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dARTargetPos1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动目标位置，用于暂停后开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dARTargetVel1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动目标速度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bFastInch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fiARRelDis1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动距离引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fARRelDis1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiARRelVel1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动速度引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fARRelVel1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dARRelDis1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAntiRejection1SlowVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[慢速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dAntiRejection1FastVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[快速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dAntiRejection1RelVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="AntiRejection1">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*防甩轴1*)
+RelRtring1(CLK :=g_bAnRejection1RelEnable OR g_biAnRejection1RelEnable OR bAnRejection1RelEnable);
+IF RelRtring1.Q THEN
+  nRelState1 :=1;
+  g_bAnRejection1RelDone := FALSE;
+  g_boAnRejection1RelDone := FALSE;
+  bAnRejection1RelDone := FALSE;
+  IF g_biAnRejection1RelEnable THEN
+    dARTargetPos1 := AntiRejection1.NCTOPLC.ActPos + g_fiARRelDis1;
+    dARTargetVel1 := g_fiARRelVel1;
+  ELSIF g_bAnRejection1RelEnable THEN
+    dARTargetPos1 := AntiRejection1.NCTOPLC.ActPos + g_fARRelDis1;
+    dARTargetVel1 := g_fARRelVel1;
+    g_bAnRejection1RelEnable := FALSE;
+  ELSE
+      dARTargetPos1 := AntiRejection1.NCTOPLC.ActPos + dARRelDis1;
+      IF g_bFastInch=0 THEN
+        dARTargetVel1 := dAntiRejection1SlowVel;
+      ELSE
+        dARTargetVel1 := dAntiRejection1FastVel;
+      END_IF;
+      bAnRejection1RelEnable := FALSE; 
+  END_IF;
+  IF dARTargetVel1 = 0.0 THEN
+    dARTargetVel1 := dAntiRejection1RelVelocity;
+  END_IF;
+END_IF;
+IF NOT (g_bAnRejection1RelEnable OR g_biAnRejection1RelEnable OR bAnRejection1RelEnable) THEN
+  g_bAnRejection1RelDone := FALSE;
+  g_boAnRejection1RelDone := FALSE;
+  bAnRejection1RelDone := FALSE;
+END_IF;
+
+CASE nRelState1 OF
+  0:
+  nRelState1 := 0;
+  1:
+  g_AntiRejection1Rel.Execute := TRUE;
+  g_AntiRejection1Rel.Velocity := dARTargetVel1;
+  g_AntiRejection1Rel.Distance := dARTargetPos1 - AntiRejection1.NCTOPLC.ACTPOS;
+  IF g_AntiRejection1Rel.Done THEN
+    g_AntiRejection1Rel.Execute := FALSE;
+    bAnRejection1RelDone := TRUE;
+    g_bAnRejection1RelDone :=TRUE;
+    g_boAnRejection1RelDone := TRUE;
+    nRelState1 := 0;
+  END_IF;
+  IF g_bPlcPauseBuffer THEN
+    nRelState1 := 20;
+  END_IF;
+  IF g_AntiRejection1Rel.CommandAborted OR g_AntiRejection1Rel.Error THEN
+    g_AntiRejection1Rel.Execute := FALSE;
+    nRelState1 := 0;
+  END_IF;
+  20:
+  g_AntiRejection1Rel.Execute := FALSE;
+  g_AntiRejection1Stop.Execute := TRUE;
+  IF g_AntiRejection1Stop.Done AND g_bPlcStartBuffer THEN
+    g_AntiRejection1Stop.Execute := FALSE;
+    nRelState1 := 1;
+  END_IF;
+  IF g_AntiRejection1Stop.CommandAborted OR g_AntiRejection1Stop.Error THEN 
+    g_AntiRejection1Stop.Execute := FALSE;
+    nRelState1 := 0;
+  END_IF;
+END_CASE;
+IF g_bPlcResetBuffer THEN
+  nRelState1 := 0;
+  g_AntiRejection1Rel.Execute := FALSE;
+  g_AntiRejection1Stop.Execute := FALSE;
+END_IF;
+
+
+
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

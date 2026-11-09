@@ -1,0 +1,1788 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DualStationChuck" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="DualChuck1Control">
+        <type>
+          <derived name="FB_ChuckControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘1控制逻辑]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="DualChuck2Control">
+        <type>
+          <derived name="FB_ChuckControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘2控制逻辑]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="DualChuck3Control">
+        <type>
+          <derived name="FB_ChuckControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘1控制逻辑]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="DualChuck4Control">
+        <type>
+          <derived name="FB_ChuckControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2控制逻辑]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerSignalClaw1Control">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘1外部控制信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerSignalClaw2Control">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘2外部控制信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerSignalClaw3Control">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘1外部控制信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerSignalClaw4Control">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2外部控制信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerDualStation1ChuckOneKeyClamp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘一键夹紧]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerDualStation1ChuckOneKeyLossen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘一键松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerDualStation2ChuckOneKeyClamp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘一键夹紧]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerDualStation2ChuckOneKeyLossen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘一键松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerDualStation1Chuck1Clamp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘1夹紧]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerDualStation1Chuck2Clamp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘2夹紧]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerDualStation1Chuck1Lossen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘1松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerDualStation1Chuck2Lossen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘2松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerDualStation2Chuck1Clamp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘1夹紧]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerDualStation2Chuck2Clamp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2夹紧]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerDualStation2Chuck1Lossen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘1松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerDualStation2Chuck2Lossen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Filter_1">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Filter_2">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Filter_3">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Filter_4">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Filter_5">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Filter_6">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Filter_7">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Filter_8">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bClaw1Enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘1夹紧触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bClaw2Enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘2夹紧触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bClaw3Enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘1夹紧触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bClaw4Enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2夹紧触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bClaw1Off">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘1松开触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bClaw2Off">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘2松开触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bClaw3Off">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘1松开触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bClaw4Off">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2松开触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck1UseClampSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘1是否使用夹紧到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck1UseLossenSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘1是否使用松开到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck2UseClampSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘2是否使用夹紧到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck2UseLossenSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘2是否使用松开到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck1UseClampSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘1是否使用加紧到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck1UseLossenSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘1是否使用松开到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck2UseClampSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2是否使用夹紧到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck2UseLossenSignal">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2是否使用松开到位信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck1UseKeepPressure">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘1是否保压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck2UseKeepPressure">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘2是否保压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck1UseKeepPressure">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘1是否保压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck2UseKeepPressure">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2是否保压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation1Chuck1UseKeepPressureTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘1保压时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation1Chuck2UseKeepPressureTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘2保压时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation2Chuck1UseKeepPressureTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘1保压时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation2Chuck2UseKeepPressureTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2保压时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation1Chuck1ClampDoneTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘1夹紧完成时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation1Chuck1LossenDoneTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘1松开完成时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation1Chuck2ClampDoneTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘2夹紧完成时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation1Chuck2LossenDoneTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘2松开完成时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation2Chuck1ClampDoneTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘1夹紧完成时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation2Chuck1LossenDoneTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘1松开完成时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation2Chuck2ClampDoneTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2夹紧完成时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation2Chuck2LossenDoneTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2松开完成时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation1Chuck1WaitDoneTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2松开完成时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation1Chuck2WaitDoneTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2松开完成时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation2Chuck1WaitDoneTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2松开完成时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation2Chuck2WaitDoneTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2松开完成时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dClawFilterTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡盘到位信号滤波时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck1ClampInplaceLogic">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1-卡盘1夹紧信号逻辑1：常开0：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck1LossenInplaceLogic">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1-卡盘1松开信号逻辑1：常开0：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck2ClampInplaceLogic">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1-卡盘2夹紧信号逻辑1：常开0：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck2LossenInplaceLogic">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1-卡盘2松开信号逻辑1：常开0：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck1ClampInplaceLogic">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2-卡盘1夹紧信号逻辑1：常开0：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck1LossenInplaceLogic">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2-卡盘1松开信号逻辑1：常开0：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck2ClampInplaceLogic">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2-卡盘2夹紧信号逻辑1：常开0：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck2LossenInplaceLogic">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2-卡盘2松开信号逻辑1：常开0：常闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck1ClampInPlace">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波后的夹紧到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck2ClampInPlace">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波后的夹紧到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck1ClampInPlace">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波后的夹紧到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck2ClampInPlace">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波后的夹紧到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck1LossenInPlace">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波后的松开到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck2LossenInPlace">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波后的松开到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck1LossenInPlace">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波后的松开到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck2LossenInPlace">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[滤波后的松开到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck1ClampNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1-卡盘1夹紧到位信号无效报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck1ClampWaitNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1-卡盘1夹紧到位信号无效报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck2ClampNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1-卡盘1夹紧到位信号无效报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck2ClampWaitNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1-卡盘1夹紧到位信号无效报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck1ClampNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工2-卡盘1夹紧到位信号无效报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck1ClampWaitNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工2-卡盘1夹紧到位信号无效报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck2ClampNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2-卡盘2夹紧到位信号无效报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck2ClampWaitNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2-卡盘2夹紧到位信号无效报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck1LossenNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1-卡盘1松开到位信号无效报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck1LossenWaitNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1-卡盘1松开到位信号无效报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck2LossenNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1-卡盘2松开到位信号无效报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation1Chuck2LossenWaitNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1-卡盘2松开到位信号无效报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck1LossenNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2-卡盘1松开到位信号无效报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck1LossenWaitNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2-卡盘1松开到位信号无效报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck2LossenNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2-卡盘2松开到位信号无效报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDualStation2Chuck2LossenWaitNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2-卡盘2松开到位信号无效报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation1ChuckState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1一键状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDualStation2ChuckState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2一键状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTringSignalClaw1Clamp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘1夹紧外部信号触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTringSignalClaw2Clamp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘2夹紧外部信号触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTringSignalClaw3Clamp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘1夹紧外部信号触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTringSignalClaw4Clamp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2夹紧外部信号触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTringSignalClaw1Lossen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘1松开外部信号触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTringSignalClaw2Lossen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位1卡盘2松开外部信号触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTringSignalClaw3Lossen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘1松开外部信号触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTringSignalClaw4Lossen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[工位2卡盘2松开外部信号触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTriggerSignalClaw1Control(CLK := g_biDualStation1Chuck1ExternalSignal);
+RTriggerSignalClaw2Control(CLK := g_biDualStation1Chuck2ExternalSignal);
+RTriggerSignalClaw3Control(CLK := g_biDualStation2Chuck1ExternalSignal);
+RTriggerSignalClaw4Control(CLK := g_biDualStation2Chuck2ExternalSignal);
+
+
+
+RTringSignalClaw1Clamp(CLK := g_biDualStation1Chuck1ClampExternalSignal);
+RTringSignalClaw2Clamp(CLK := g_biDualStation1Chuck2ClampExternalSignal);
+RTringSignalClaw3Clamp(CLK := g_biDualStation2Chuck1ClampExternalSignal);
+RTringSignalClaw4Clamp(CLK := g_biDualStation2Chuck2ClampExternalSignal);
+RTringSignalClaw1Lossen(CLK := g_biDualStation1Chuck1LossenExternalSignal);
+RTringSignalClaw2Lossen(CLK := g_biDualStation1Chuck2LossenExternalSignal);
+RTringSignalClaw3Lossen(CLK := g_biDualStation2Chuck1LossenExternalSignal);
+RTringSignalClaw4Lossen(CLK := g_biDualStation2Chuck2LossenExternalSignal);
+IF RTriggerSignalClaw1Control.Q THEN
+    IF g_bDualStation1Chuck1Status THEN
+		bClaw1Enable := FALSE;
+       bClaw1Off := TRUE;
+    ELSE
+      bClaw1Off := FALSE;
+      bClaw1Enable := TRUE;
+    END_IF;
+END_IF;
+IF RTriggerSignalClaw2Control.Q THEN
+    IF g_bDualStation1Chuck2Status THEN
+      bClaw2Off := TRUE;
+      bClaw2Enable := FALSE;
+    ELSE
+      bClaw2Enable := TRUE;
+      bClaw2Off := FALSE;
+    END_IF;
+END_IF;
+
+
+IF RTriggerSignalClaw3Control.Q THEN
+    IF g_bDualStation2Chuck1Status THEN
+		bClaw3Enable := FALSE;
+       bClaw3Off := TRUE;
+    ELSE
+      bClaw3Off := FALSE;
+      bClaw3Enable := TRUE;
+    END_IF;
+END_IF;
+IF RTriggerSignalClaw4Control.Q THEN
+    IF g_bDualStation2Chuck2Status THEN
+      bClaw4Off := TRUE;
+      bClaw4Enable := FALSE;
+    ELSE
+      bClaw4Enable := TRUE;
+      bClaw4Off := FALSE;
+    END_IF;
+END_IF;
+
+
+IF RTringSignalClaw1Clamp.Q THEN
+  bClaw1Enable := TRUE;
+  bClaw1Off := FALSE;
+END_IF;
+
+
+IF RTringSignalClaw2Clamp.Q THEN
+  bClaw2Enable := TRUE;
+  bClaw2Off := FALSE;
+END_IF;
+
+
+IF RTringSignalClaw3Clamp.Q THEN
+  bClaw3Enable := TRUE;
+  bClaw3Off := FALSE;
+END_IF;
+
+
+IF RTringSignalClaw4Clamp.Q THEN
+  bClaw4Enable := TRUE;
+  bClaw4Off := FALSE;
+END_IF;
+
+IF RTringSignalClaw1Lossen.Q THEN
+	bClaw1Enable := FALSE;
+	bClaw1Off := TRUE;
+END_IF;
+
+IF RTringSignalClaw2Lossen.Q THEN
+	bClaw2Enable := FALSE;
+	bClaw2Off := TRUE;
+END_IF;
+
+IF RTringSignalClaw3Lossen.Q THEN
+	bClaw3Enable := FALSE;
+	bClaw3Off := TRUE;
+END_IF;
+
+IF RTringSignalClaw4Lossen.Q THEN
+	bClaw4Enable := FALSE;
+	bClaw4Off := TRUE;
+END_IF;
+
+
+
+
+RTriggerDualStation1ChuckOneKeyClamp(CLK := g_bDualStation1AllChuckEnable);
+RTriggerDualStation1ChuckOneKeyLossen(CLK := g_bDualStation1AllChuckOff);
+IF RTriggerDualStation1ChuckOneKeyClamp.Q THEN
+  g_bDualStation1AllChuckEnable := FALSE;
+  nDualStation1ChuckState := 10;
+  IF (NOT g_bDualAxis1Config) AND (NOT g_bDualAxis2Config) THEN
+    nDualStation1ChuckState := 0;
+    M.ENABLE[338] := 0;
+    g_bFinishedM338_100 := FALSE;
+  END_IF;
+  
+END_IF;
+IF RTriggerDualStation1ChuckOneKeyLossen.Q THEN
+  g_bDualStation1AllChuckOff := FALSE;
+  nDualStation1ChuckState := 100;
+  IF (NOT g_bDualAxis1Config) AND (NOT g_bDualAxis2Config) THEN
+    nDualStation1ChuckState := 0;
+    M.ENABLE[338] := 0;
+    g_bFinishedM338_100 := FALSE;
+  END_IF;
+END_IF;
+
+RTriggerDualStation1Chuck1Clamp(CLK := g_bDualStation1Claw1Enable);
+RTriggerDualStation1Chuck1Lossen(CLK := g_bDualStation1Claw1Off);
+IF RTriggerDualStation1Chuck1Clamp.Q THEN
+  g_bDualStation1Claw1Enable := FALSE;
+  nDualStation1ChuckState := 20;
+  IF (NOT g_bDualAxis1Config)  THEN
+    nDualStation1ChuckState := 0;
+    M.ENABLE[338] := 0;
+    g_bFinishedM338_1 := FALSE;
+  END_IF;
+END_IF;
+
+IF RTriggerDualStation1Chuck1Lossen.Q THEN
+  g_bDualStation1Claw1Off := FALSE;
+  nDualStation1ChuckState := 30;
+  IF (NOT g_bDualAxis1Config)  THEN
+    nDualStation1ChuckState := 0;
+    M.ENABLE[338] := 0;
+    g_bFinishedM338_1 := FALSE;
+  END_IF;
+END_IF;
+
+RTriggerDualStation1Chuck2Clamp(CLK := g_bDualStation1Claw2Enable);
+RTriggerDualStation1Chuck2Lossen(CLK := g_bDualStation1Claw2Off);
+IF RTriggerDualStation1Chuck2Clamp.Q THEN
+  g_bDualStation1Claw2Enable := FALSE;
+  nDualStation1ChuckState := 40;
+  IF (NOT g_bDualAxis2Config)  THEN
+    nDualStation1ChuckState := 0;
+    M.ENABLE[338] := 0;
+    g_bFinishedM338_1 := FALSE;
+  END_IF;
+END_IF;
+
+IF RTriggerDualStation1Chuck2Lossen.Q THEN
+  g_bDualStation1Claw2Off := FALSE;
+  nDualStation1ChuckState := 50;
+  IF (NOT g_bDualAxis2Config)  THEN
+    nDualStation1ChuckState := 0;
+    M.ENABLE[338] := 0;
+    g_bFinishedM338_1 := FALSE;
+  END_IF;
+END_IF;
+
+
+
+CASE nDualStation1ChuckState OF
+  0:
+	nDualStation1ChuckState := 0;
+  10:(*夹紧*)
+	IF g_bDualAxis1Config THEN
+		bClaw1Enable := TRUE;
+        bClaw1Off := FALSE;
+        g_bDualStation1Claw1Off := FALSE;
+	END_IF;
+	IF g_bDualAxis2Config THEN
+      bClaw2Enable := TRUE;
+      bClaw2Off := FALSE;
+      g_bDualStation2Claw1Off := FALSE;
+    END_IF;
+    nDualStation1ChuckState :=15;
+  15:
+	IF g_bDualAxis1Config AND g_bDualAxis2Config THEN
+		IF g_bDualStation1Chuck1Status AND  g_bDualStation1Chuck2Status THEN
+          nDualStation1ChuckState := 200;
+        END_IF;
+    ELSIF g_bDualAxis1Config THEN
+      IF g_bDualStation1Chuck1Status THEN
+          nDualStation1ChuckState := 200;
+        END_IF;
+      
+    ELSIF g_bDualAxis2Config THEN
+		IF  g_bDualStation1Chuck2Status THEN
+          nDualStation1ChuckState := 200;
+        END_IF;
+    END_IF;
+  20:(*单卡夹紧*)
+		bClaw1Enable := TRUE;
+        bClaw1Off := FALSE;
+        g_bDualStation1Claw1Off := FALSE;
+		nDualStation1ChuckState := 25;
+  25:
+	IF g_bDualStation1Chuck1Status THEN
+         M.ENABLE[338] := 0;
+		nDualStation1ChuckState := 0;
+		g_bFinishedM338_1 := FALSE;
+    END_IF;
+  30:(*单卡松开*)
+		bClaw1Enable := FALSE;
+        bClaw1Off := TRUE;
+        g_bDualStation1Claw1Enable := FALSE;
+		nDualStation1ChuckState := 35;
+  35:
+	IF NOT g_bDualStation1Chuck1Status THEN
+         M.ENABLE[338] := 0;
+		nDualStation1ChuckState := 0;
+		g_bFinishedM338_1 := FALSE;
+    END_IF;
+  40:(*单卡夹紧*)
+		bClaw2Enable := TRUE;
+        bClaw2Off := FALSE;
+        g_bDualStation1Claw2Off := FALSE;
+		nDualStation1ChuckState := 45;
+  45:
+	IF g_bDualStation1Chuck2Status THEN
+         M.ENABLE[338] := 0;
+		nDualStation1ChuckState := 0;
+		g_bFinishedM338_1 := FALSE;
+    END_IF;
+  50:(*单卡松开*)
+		bClaw2Enable := FALSE;
+        bClaw2Off := TRUE;
+        g_bDualStation1Claw2Enable := FALSE;
+		nDualStation1ChuckState := 55;
+  55:
+	IF NOT g_bDualStation1Chuck2Status THEN
+         M.ENABLE[338] := 0;
+		nDualStation1ChuckState := 0;
+		g_bFinishedM338_1 := FALSE;
+    END_IF;
+  100:(*松开*)
+	IF g_bDualAxis1Config THEN
+		bClaw1Enable := FALSE;
+        bClaw1Off := TRUE;
+        g_bDualStation1Claw1Enable := FALSE;
+	END_IF;
+	IF g_bDualAxis2Config THEN
+      bClaw2Enable := FALSE;
+      bClaw2Off := TRUE;
+      g_bDualStation2Claw1Enable := FALSE;
+    END_IF;
+    nDualStation1ChuckState :=150;
+  150:
+	IF  g_bDualAxis1Config AND  g_bDualAxis2Config THEN
+		IF NOT g_bDualStation1Chuck1Status AND NOT g_bDualStation1Chuck2Status THEN
+          nDualStation1ChuckState := 200;
+        END_IF;
+    ELSIF g_bDualAxis1Config THEN
+      IF NOT g_bDualStation1Chuck1Status THEN
+          nDualStation1ChuckState := 200;
+        END_IF;
+      
+    ELSIF g_bDualAxis2Config THEN
+		IF NOT g_bDualStation1Chuck2Status THEN
+          nDualStation1ChuckState := 200;
+        END_IF;
+    END_IF;
+  
+  200:
+	M.ENABLE[338] := 0;
+    nDualStation1ChuckState := 0;
+	g_bFinishedM338_100 := FALSE;
+  
+END_CASE;
+
+RTriggerDualStation2ChuckOneKeyClamp(CLK := g_bDualStation2AllChuckEnable);
+RTriggerDualStation2ChuckOneKeyLossen(CLK := g_bDualStation2AllChuckOff);
+IF RTriggerDualStation2ChuckOneKeyClamp.Q THEN
+  g_bDualStation2AllChuckEnable := FALSE;
+  nDualStation2ChuckState := 10;
+  IF (NOT g_bDualAxis3Config) AND (NOT g_bDualAxis4Config) THEN
+    nDualStation2ChuckState := 0;
+    M.ENABLE[338] := 0;
+	g_bFinishedM338_200 := FALSE;
+  END_IF;
+  
+END_IF;
+IF RTriggerDualStation2ChuckOneKeyLossen.Q THEN
+  g_bDualStation2AllChuckOff := FALSE;
+  nDualStation2ChuckState := 100;
+  IF (NOT g_bDualAxis3Config) AND (NOT g_bDualAxis4Config) THEN
+    nDualStation2ChuckState := 0;
+    M.ENABLE[338] := 0;
+	g_bFinishedM338_200 := FALSE;
+  END_IF;
+END_IF;
+
+RTriggerDualStation2Chuck1Clamp(CLK := g_bDualStation2Claw1Enable);
+RTriggerDualStation2Chuck1Lossen(CLK := g_bDualStation2Claw1Off);
+IF RTriggerDualStation2Chuck1Clamp.Q THEN
+  g_bDualStation2Claw1Enable := FALSE;
+  nDualStation2ChuckState := 20;
+  IF (NOT g_bDualAxis3Config)  THEN
+    nDualStation2ChuckState := 0;
+    M.ENABLE[338] := 0;
+    g_bFinishedM338_2 := FALSE;
+  END_IF;
+END_IF;
+
+IF RTriggerDualStation2Chuck1Lossen.Q THEN
+  g_bDualStation2Claw1Off := FALSE;
+  nDualStation2ChuckState := 30;
+  IF (NOT g_bDualAxis3Config)  THEN
+    nDualStation2ChuckState := 0;
+    M.ENABLE[338] := 0;
+    g_bFinishedM338_2 := FALSE;
+  END_IF;
+END_IF;
+
+RTriggerDualStation2Chuck2Clamp(CLK := g_bDualStation2Claw2Enable);
+RTriggerDualStation2Chuck2Lossen(CLK := g_bDualStation2Claw2Off);
+IF RTriggerDualStation2Chuck2Clamp.Q THEN
+  g_bDualStation2Claw2Enable := FALSE;
+  nDualStation2ChuckState := 40;
+  IF (NOT g_bDualAxis4Config)  THEN
+    nDualStation2ChuckState := 0;
+    M.ENABLE[338] := 0;
+    g_bFinishedM338_2 := FALSE;
+  END_IF;
+END_IF;
+
+IF RTriggerDualStation2Chuck2Lossen.Q THEN
+  g_bDualStation2Claw2Off := FALSE;
+  nDualStation2ChuckState := 50;
+  IF (NOT g_bDualAxis4Config)  THEN
+    nDualStation2ChuckState := 0;
+    M.ENABLE[338] := 0;
+    g_bFinishedM338_2 := FALSE;
+  END_IF;
+END_IF;
+
+CASE nDualStation2ChuckState OF
+  0:
+	nDualStation2ChuckState := 0;
+  10:(*夹紧*)
+	IF g_bDualAxis3Config THEN
+		bClaw3Enable := TRUE;
+        bClaw3Off := FALSE;
+        g_bDualStation2Claw1Off := FALSE;
+	END_IF;
+	IF g_bDualAxis4Config THEN
+      bClaw4Enable := TRUE;
+      bClaw4Off := FALSE;
+      g_bDualStation2Claw2Off := FALSE;
+    END_IF;
+  15:
+	IF g_bDualAxis3Config AND g_bDualAxis4Config THEN
+		IF g_bDualStation2Chuck1Status AND  g_bDualStation2Chuck2Status THEN
+          nDualStation1ChuckState := 200;
+        END_IF;
+    ELSIF g_bDualAxis3Config THEN
+      IF g_bDualStation2Chuck1Status THEN
+          nDualStation2ChuckState := 200;
+        END_IF;
+      
+    ELSIF g_bDualAxis3Config THEN
+		IF  g_bDualStation2Chuck2Status THEN
+          nDualStation2ChuckState := 200;
+        END_IF;
+    END_IF;
+  20:(*单卡夹紧*)
+		bClaw3Enable := TRUE;
+        bClaw3Off := FALSE;
+        g_bDualStation2Claw1Off := FALSE;
+		nDualStation2ChuckState := 25;
+  25:
+	IF g_bDualStation2Chuck1Status THEN
+         M.ENABLE[338] := 0;
+		nDualStation2ChuckState := 0;
+		g_bFinishedM338_2 := FALSE;
+    END_IF;
+  30:(*单卡松开*)
+		bClaw3Enable := FALSE;
+        bClaw3Off := TRUE;
+        g_bDualStation2Claw1Enable := FALSE;
+		nDualStation2ChuckState := 35;
+  35:
+	IF NOT g_bDualStation2Chuck1Status THEN
+         M.ENABLE[338] := 0;
+		nDualStation2ChuckState := 0;
+		g_bFinishedM338_2 := FALSE;
+    END_IF;
+  40:(*单卡夹紧*)
+		bClaw4Enable := TRUE;
+        bClaw4Off := FALSE;
+        g_bDualStation2Claw2Off := FALSE;
+		nDualStation2ChuckState := 45;
+  45:
+	IF g_bDualStation2Chuck2Status THEN
+         M.ENABLE[338] := 0;
+		nDualStation2ChuckState := 0;
+		g_bFinishedM338_2 := FALSE;
+    END_IF;
+  50:(*单卡松开*)
+		bClaw4Enable := FALSE;
+        bClaw4Off := TRUE;
+        g_bDualStation2Claw2Enable := FALSE;
+		nDualStation2ChuckState := 55;
+  55:
+	IF NOT g_bDualStation2Chuck2Status THEN
+         M.ENABLE[338] := 0;
+		nDualStation2ChuckState := 0;
+		g_bFinishedM338_2 := FALSE;
+    END_IF;
+  100:(*松开*)
+	IF g_bDualAxis3Config THEN
+		bClaw3Enable := FALSE;
+        bClaw3Off := TRUE;
+        g_bDualStation2Claw1Enable := FALSE;
+	END_IF;
+	IF g_bDualAxis4Config THEN
+      bClaw4Enable := FALSE;
+      bClaw4Off := TRUE;
+      g_bDualStation2Claw2Enable := FALSE;
+    END_IF;
+    nDualStation2ChuckState :=150;
+  150:
+	IF  g_bDualAxis3Config AND  g_bDualAxis4Config THEN
+		IF NOT g_bDualStation2Chuck1Status AND NOT g_bDualStation2Chuck2Status THEN
+          nDualStation1ChuckState := 200;
+        END_IF;
+    ELSIF g_bDualAxis3Config THEN
+      IF NOT g_bDualStation2Chuck1Status THEN
+          nDualStation2ChuckState := 200;
+        END_IF;
+      
+    ELSIF g_bDualAxis4Config THEN
+		IF NOT g_bDualStation2Chuck2Status THEN
+          nDualStation2ChuckState := 200;
+        END_IF;
+    END_IF;
+  200:
+	M.ENABLE[338] := 0;
+    nDualStation2ChuckState := 0;
+	g_bFinishedM338_200 := FALSE;
+  
+END_CASE;
+
+IF bClaw1Enable THEN
+  g_boDualStation1Chuck1ClampOutPut := TRUE;
+  g_boDualStation1Chuck1LossenOutPut := FALSE;
+  
+END_IF;
+
+IF bClaw1Off THEN
+  g_boDualStation1Chuck1ClampOutPut := FALSE;
+  g_boDualStation1Chuck1LossenOutPut := TRUE;
+END_IF;
+
+
+DualChuck1Control(
+	ClampEnable :=bClaw1Enable,(*夹紧*)
+    LossenEnable := bClaw1Off ,(*松开*)
+    KeepPressure := bDualStation1Chuck1UseKeepPressure,(*保压*)
+    KeepPressureTime := nDualStation1Chuck1UseKeepPressureTime,(*保压时间*)
+    ClampInplaceDelay := nDualStation1Chuck1ClampDoneTime,(*夹紧完成时间*)
+    LossenInplaceDelay := nDualStation1Chuck1LossenDoneTime,(*松开完成时间*)
+    UseClampPlaceSignal :=bDualStation1Chuck1UseClampSignal AND ListenBoardInputConfig[550],(*是否使用夹紧到位信号*)
+    UseLossenPlaceSignal :=bDualStation1Chuck1UseLossenSignal AND ListenBoardInputConfig[551],(*是否使用松开到位信号*)
+    ClampInPlaceSignal := g_bDualStation1Chuck1ClampInPlace,(*夹紧到位*)
+    LossenInPlaceSignal := g_bDualStation1Chuck1LossenInPlace,(*松开到位*)
+    ChuckStatus := g_bDualStation1Chuck1Status,(*卡盘状态*)
+    ChuckDoneWaitTime := nDualStation1Chuck1WaitDoneTime,
+    ClampDone => g_bDualStation1Chuck1ClampDone,(*夹紧完成*)
+    LossenDone => g_bDualStation1Chuck1LossenDone,(*松开完成*)
+    ClawKeepPressureDone => g_bDualStation1Chuck1KeepPressureDone,
+    WaitClampDoneOutTimeAlarm => bDualStation1Chuck1ClampWaitNoSignalAlarm,
+    WaitLossenDoneOutTimeAlarm => bDualStation1Chuck1LossenWaitNoSignalAlarm
+    
+);
+IF bDualStation1Chuck1UseKeepPressure AND NOT g_bDualStation1Chuck1KeepPressureDone THEN
+  g_boDualStation1Chuck1ClampOutPut := FALSE;
+  g_boDualStation1Chuck1LossenOutPut := FALSE;
+  
+END_IF;
+
+    (*触发条件只保留一个周期*)
+	IF bClaw1Enable  THEN
+	  bClaw1Enable := FALSE;
+	END_IF;
+	IF bClaw1Off  THEN
+	  bClaw1Off := FALSE;
+	END_IF;
+
+IF bClaw2Enable THEN
+  g_boDualStation1Chuck2ClampOutPut := TRUE;
+  g_boDualStation1Chuck2LossenOutPut := FALSE;
+  
+END_IF;
+
+IF bClaw2Off THEN
+  g_boDualStation1Chuck2ClampOutPut := FALSE;
+  g_boDualStation1Chuck2LossenOutPut := TRUE;
+END_IF;
+
+   
+DualChuck2Control(
+	ClampEnable :=bClaw2Enable,(*夹紧*)
+    LossenEnable := bClaw2Off,(*松开*)
+    KeepPressure := bDualStation1Chuck2UseKeepPressure,(*保压*)
+    KeepPressureTime := nDualStation1Chuck2UseKeepPressureTime,(*保压时间*)
+    ClampInplaceDelay := nDualStation1Chuck2ClampDoneTime,(*夹紧完成时间*)
+    LossenInplaceDelay := nDualStation1Chuck2LossenDoneTime,(*松开完成时间*)
+    UseClampPlaceSignal :=bDualStation1Chuck2UseClampSignal AND ListenBoardInputConfig[552],(*是否使用夹紧到位信号*)
+    UseLossenPlaceSignal :=bDualStation1Chuck2UseLossenSignal AND ListenBoardInputConfig[553],(*是否使用松开到位信号*)
+    ClampInPlaceSignal := g_bDualStation1Chuck2ClampInPlace,(*夹紧到位*)
+    LossenInPlaceSignal := g_bDualStation1Chuck2LossenInPlace,(*松开到位*)
+    ChuckStatus := g_bDualStation1Chuck2Status,(*卡盘状态*)
+    ChuckDoneWaitTime := nDualStation1Chuck2WaitDoneTime,
+    ClampDone => g_bDualStation1Chuck2ClampDone,(*夹紧完成*)
+    LossenDone => g_bDualStation1Chuck2LossenDone,(*松开完成*)
+    ClawKeepPressureDone => g_bDualStation1Chuck2KeepPressureDone,
+    WaitClampDoneOutTimeAlarm => bDualStation1Chuck2ClampWaitNoSignalAlarm,
+    WaitLossenDoneOutTimeAlarm => bDualStation1Chuck2LossenWaitNoSignalAlarm
+);
+IF bDualStation1Chuck2UseKeepPressure AND NOT g_bDualStation1Chuck2KeepPressureDone THEN
+  g_boDualStation1Chuck2ClampOutPut := FALSE;
+  g_boDualStation1Chuck2LossenOutPut := FALSE;
+  
+END_IF;
+
+(*触发条件只保留一个周期*)
+IF bClaw2Enable  THEN
+  bClaw2Enable := FALSE;
+END_IF;
+IF bClaw2Off  THEN
+  bClaw2Off := FALSE;
+END_IF;
+
+
+
+IF bClaw3Enable THEN
+  g_boDualStation2Chuck1ClampOutPut := TRUE;
+  g_boDualStation2Chuck1LossenOutPut := FALSE;
+  
+END_IF;
+
+IF bClaw3Off THEN
+  g_boDualStation2Chuck1ClampOutPut := FALSE;
+  g_boDualStation2Chuck1LossenOutPut := TRUE;
+END_IF;
+
+DualChuck3Control(
+	ClampEnable :=bClaw3Enable,(*夹紧*)
+    LossenEnable := bClaw3Off ,(*松开*)
+    KeepPressure := bDualStation2Chuck1UseKeepPressure,(*保压*)
+    KeepPressureTime := nDualStation2Chuck1UseKeepPressureTime,(*保压时间*)
+    ClampInplaceDelay := nDualStation2Chuck1ClampDoneTime,(*夹紧完成时间*)
+    LossenInplaceDelay := nDualStation2Chuck1LossenDoneTime,(*松开完成时间*)
+    UseClampPlaceSignal :=bDualStation2Chuck1UseClampSignal AND ListenBoardInputConfig[554],(*是否使用夹紧到位信号*)
+    UseLossenPlaceSignal :=bDualStation2Chuck1UseLossenSignal AND ListenBoardInputConfig[555],(*是否使用松开到位信号*)
+    ClampInPlaceSignal := g_bDualStation2Chuck1ClampInPlace,(*夹紧到位*)
+    LossenInPlaceSignal := g_bDualStation2Chuck1LossenInPlace,(*松开到位*)
+    ChuckStatus := g_bDualStation2Chuck1Status,(*卡盘状态*)
+    ChuckDoneWaitTime := nDualStation2Chuck1WaitDoneTime,
+    ClampDone => g_bDualStation2Chuck1ClampDone,(*夹紧完成*)
+    LossenDone => g_bDualStation2Chuck1LossenDone,(*松开完成*)
+    ClawKeepPressureDone => g_bDualStation2Chuck1KeepPressureDone,
+    WaitClampDoneOutTimeAlarm => bDualStation2Chuck1ClampWaitNoSignalAlarm,
+    WaitLossenDoneOutTimeAlarm => bDualStation2Chuck1LossenWaitNoSignalAlarm
+    
+);
+
+IF bDualStation2Chuck1UseKeepPressure AND NOT g_bDualStation2Chuck1KeepPressureDone THEN
+  g_boDualStation2Chuck1ClampOutPut := FALSE;
+  g_boDualStation2Chuck1LossenOutPut := FALSE;
+  
+END_IF;
+
+(*触发条件只保留一个周期*)
+IF bClaw3Enable  THEN
+  bClaw3Enable := FALSE;
+END_IF;
+IF bClaw3Off  THEN
+  bClaw3Off := FALSE;
+END_IF;
+
+
+IF bClaw4Enable THEN
+  g_boDualStation2Chuck2ClampOutPut := TRUE;
+  g_boDualStation2Chuck2LossenOutPut := FALSE;
+  
+END_IF;
+
+IF bClaw4Off THEN
+  g_boDualStation2Chuck2ClampOutPut := FALSE;
+  g_boDualStation2Chuck2LossenOutPut := TRUE;
+END_IF;
+
+
+
+DualChuck4Control(
+	ClampEnable :=bClaw4Enable,(*夹紧*)
+    LossenEnable := bClaw4Off,(*松开*)
+    KeepPressure := bDualStation2Chuck2UseKeepPressure,(*保压*)
+    KeepPressureTime := nDualStation2Chuck2UseKeepPressureTime,(*保压时间*)
+    ClampInplaceDelay := nDualStation2Chuck2ClampDoneTime,(*夹紧完成时间*)
+    LossenInplaceDelay := nDualStation2Chuck2LossenDoneTime,(*松开完成时间*)
+    UseClampPlaceSignal :=bDualStation2Chuck2UseClampSignal AND ListenBoardInputConfig[556],(*是否使用夹紧到位信号*)
+    UseLossenPlaceSignal :=bDualStation2Chuck2UseLossenSignal AND ListenBoardInputConfig[557],(*是否使用松开到位信号*)
+    ClampInPlaceSignal := g_bDualStation2Chuck2ClampInPlace,(*夹紧到位*)
+    LossenInPlaceSignal := g_bDualStation2Chuck2LossenInPlace,(*松开到位*)
+    ChuckStatus := g_bDualStation2Chuck2Status,(*卡盘状态*)
+    ChuckDoneWaitTime := nDualStation2Chuck2WaitDoneTime,
+    ClampDone => g_bDualStation2Chuck2ClampDone,(*夹紧完成*)
+    LossenDone => g_bDualStation2Chuck2LossenDone,(*松开完成*)
+   ClawKeepPressureDone => g_bDualStation2Chuck2KeepPressureDone,
+    WaitClampDoneOutTimeAlarm => bDualStation2Chuck2ClampWaitNoSignalAlarm,
+    WaitLossenDoneOutTimeAlarm => bDualStation2Chuck2LossenWaitNoSignalAlarm
+);
+
+
+
+IF bDualStation2Chuck2UseKeepPressure AND NOT g_bDualStation2Chuck2KeepPressureDone THEN
+  g_boDualStation2Chuck2ClampOutPut := FALSE;
+  g_boDualStation2Chuck2LossenOutPut := FALSE;
+  
+END_IF;
+
+(*触发条件只保留一个周期*)
+IF bClaw4Enable  THEN
+  bClaw4Enable := FALSE;
+END_IF;
+IF bClaw4Off  THEN
+  bClaw4Off := FALSE;
+END_IF;
+
+
+(*卡爪1指示灯状态*)
+  IF bDualStation1Chuck1UseClampSignal THEN
+      IF g_bDualStation1Chuck1ClampInPlace AND g_bDualStation1Chuck1ClampDone  THEN
+        g_bDualStation1Chuck1Status :=TRUE;
+      END_IF;
+      IF g_bDualStation1Chuck1Status AND NOT g_bDualStation1Chuck1ClampInPlace AND g_bDualStation1Chuck1ClampDone AND g_nMotionMode=3 THEN
+        bDualStation1Chuck1ClampNoSignalAlarm:= TRUE;
+        bDualStation1Chuck1LossenNoSignalAlarm:= FALSE; 
+      ELSIF g_bDualStation1Chuck1Status AND g_bDualStation1Chuck1ClampInPlace  AND g_bDualStation1Chuck1ClampDone  THEN
+        bDualStation1Chuck1ClampNoSignalAlarm:= FALSE; 
+        bDualStation1Chuck1LossenNoSignalAlarm:= FALSE; 
+      END_IF; 
+  ELSE
+    bDualStation1Chuck1ClampNoSignalAlarm:= FALSE; 
+     IF bDualStation1Chuck1UseKeepPressure THEN
+        IF  g_bDualStation1Chuck1ClampDone THEN 
+          g_bDualStation1Chuck1Status :=TRUE;
+		END_IF;
+      ELSE
+        IF g_boDualStation1Chuck1ClampOutPut AND g_bDualStation1Chuck1ClampDone THEN 
+          g_bDualStation1Chuck1Status :=TRUE;
+        END_IF;
+      END_IF; 
+  END_IF;
+
+  IF bDualStation1Chuck1UseLossenSignal THEN
+      IF g_bDualStation1Chuck1LossenInPlace AND g_bDualStation1Chuck1LossenDone THEN
+        g_bDualStation1Chuck1Status :=FALSE;
+      END_IF;
+      IF NOT g_bDualStation1Chuck1Status AND NOT g_bDualStation1Chuck1LossenInPlace AND g_bDualStation1Chuck1LossenDone AND g_nMotionMode=3 THEN
+        bDualStation1Chuck1ClampNoSignalAlarm:= FALSE;
+        bDualStation1Chuck1LossenNoSignalAlarm:= TRUE; 
+      ELSIF NOT g_bDualStation1Chuck1Status AND g_bDualStation1Chuck1LossenInPlace AND g_bDualStation1Chuck1LossenDone THEN
+        bDualStation1Chuck1ClampNoSignalAlarm:= FALSE; 
+        bDualStation1Chuck1LossenNoSignalAlarm:= FALSE;
+      END_IF; 
+  ELSE
+    bDualStation1Chuck1LossenNoSignalAlarm:= FALSE;
+      IF bDualStation1Chuck1UseKeepPressure THEN
+        IF g_bDualStation1Chuck1LossenDone THEN 
+          g_bDualStation1Chuck1Status :=FALSE;
+        END_IF; 
+      ELSE
+        IF g_boDualStation1Chuck1LossenOutPut  AND g_bDualStation1Chuck1LossenDone THEN 
+          g_bDualStation1Chuck1Status :=FALSE;
+        END_IF; 
+      END_IF; 
+  END_IF;
+  
+  
+  
+  
+  
+  (*卡爪2指示灯状态*)
+  IF bDualStation1Chuck2UseClampSignal THEN
+      IF g_bDualStation1Chuck2ClampInPlace AND g_bDualStation1Chuck2ClampDone  THEN
+        g_bDualStation1Chuck2Status :=TRUE;
+      END_IF;
+      IF g_bDualStation1Chuck2Status AND NOT g_bDualStation1Chuck2ClampInPlace AND g_bDualStation1Chuck2ClampDone AND g_nMotionMode=3 THEN
+        bDualStation1Chuck2ClampNoSignalAlarm:= TRUE;
+        bDualStation1Chuck2LossenNoSignalAlarm:= FALSE;
+      ELSIF g_bDualStation1Chuck2Status AND g_bDualStation1Chuck2ClampInPlace  AND g_bDualStation1Chuck2ClampDone  THEN
+        bDualStation1Chuck2ClampNoSignalAlarm:= FALSE; 
+        bDualStation1Chuck2LossenNoSignalAlarm:= FALSE; 
+      END_IF; 
+  ELSE
+    bDualStation1Chuck2ClampNoSignalAlarm:= FALSE; 
+     IF bDualStation1Chuck2UseKeepPressure THEN
+        IF  g_bDualStation1Chuck2ClampDone THEN 
+          g_bDualStation1Chuck2Status :=TRUE;
+		END_IF;
+      ELSE
+        IF g_boDualStation1Chuck2ClampOutPut AND g_bDualStation1Chuck2ClampDone THEN 
+          g_bDualStation1Chuck2Status :=TRUE;
+        END_IF;
+      END_IF; 
+  END_IF;
+
+  IF bDualStation1Chuck2UseLossenSignal THEN
+      IF g_bDualStation1Chuck2LossenInPlace AND g_bDualStation1Chuck2LossenDone THEN
+        g_bDualStation1Chuck2Status :=FALSE;
+      END_IF;
+      IF NOT g_bDualStation1Chuck2Status AND NOT g_bDualStation1Chuck2LossenInPlace AND g_bDualStation1Chuck2LossenDone AND g_nMotionMode=3  THEN
+        bDualStation1Chuck2ClampNoSignalAlarm:= FALSE;
+        bDualStation1Chuck2LossenNoSignalAlarm:= TRUE; 
+      ELSIF NOT g_bDualStation1Chuck2Status AND g_bDualStation1Chuck2LossenInPlace AND g_bDualStation1Chuck2LossenDone THEN
+        bDualStation1Chuck2ClampNoSignalAlarm:= FALSE; 
+        bDualStation1Chuck2LossenNoSignalAlarm:= FALSE;
+      END_IF; 
+  ELSE
+    bDualStation1Chuck2LossenNoSignalAlarm:= FALSE;
+      IF bDualStation1Chuck2UseKeepPressure THEN
+        IF g_bDualStation1Chuck2LossenDone THEN 
+          g_bDualStation1Chuck2Status :=FALSE;
+        END_IF; 
+      ELSE
+        IF g_boDualStation1Chuck2LossenOutPut  AND g_bDualStation1Chuck2LossenDone THEN 
+          g_bDualStation1Chuck2Status :=FALSE;
+        END_IF; 
+      END_IF; 
+  END_IF;
+  
+  (*卡爪3指示灯状态*)
+  IF bDualStation2Chuck1UseClampSignal THEN
+      IF g_bDualStation2Chuck1ClampInPlace AND g_bDualStation2Chuck1ClampDone  THEN
+        g_bDualStation2Chuck1Status :=TRUE;
+      END_IF;
+      IF g_bDualStation2Chuck1Status AND NOT g_bDualStation2Chuck1ClampInPlace AND g_bDualStation2Chuck1ClampDone AND g_nMotionMode=3 THEN
+        bDualStation2Chuck1ClampNoSignalAlarm:= TRUE;
+        bDualStation2Chuck1LossenNoSignalAlarm:= FALSE; 
+      ELSIF g_bDualStation2Chuck1Status AND g_bDualStation2Chuck1ClampInPlace  AND g_bDualStation2Chuck1ClampDone  THEN
+        bDualStation2Chuck1ClampNoSignalAlarm:= FALSE; 
+        bDualStation2Chuck1LossenNoSignalAlarm:= FALSE; 
+      END_IF; 
+  ELSE
+    bDualStation2Chuck1ClampNoSignalAlarm:= FALSE; 
+     IF bDualStation2Chuck1UseKeepPressure THEN
+        IF  g_bDualStation2Chuck1ClampDone THEN 
+          g_bDualStation2Chuck1Status :=TRUE;
+		END_IF;
+      ELSE
+        IF g_boDualStation2Chuck1ClampOutPut AND g_bDualStation2Chuck1ClampDone THEN 
+          g_bDualStation2Chuck1Status :=TRUE;
+        END_IF;
+      END_IF; 
+  END_IF;
+
+  IF bDualStation2Chuck1UseLossenSignal THEN
+      IF g_bDualStation2Chuck1LossenInPlace AND g_bDualStation2Chuck1LossenDone THEN
+        g_bDualStation2Chuck1Status :=FALSE;
+      END_IF;
+      IF NOT g_bDualStation2Chuck1Status AND NOT g_bDualStation2Chuck1LossenInPlace AND g_bDualStation2Chuck1LossenDone AND g_nMotionMode=3 THEN
+        bDualStation2Chuck1ClampNoSignalAlarm:= FALSE;
+        bDualStation2Chuck1LossenNoSignalAlarm:= TRUE; 
+      ELSIF NOT g_bDualStation2Chuck1Status AND g_bDualStation2Chuck1LossenInPlace AND g_bDualStation2Chuck1LossenDone  THEN
+        bDualStation2Chuck1ClampNoSignalAlarm:= FALSE; 
+        bDualStation2Chuck1LossenNoSignalAlarm:= FALSE;
+      END_IF; 
+  ELSE
+    bDualStation2Chuck1LossenNoSignalAlarm:= FALSE;
+      IF bDualStation2Chuck1UseKeepPressure THEN
+        IF g_bDualStation2Chuck1LossenDone THEN 
+          g_bDualStation2Chuck1Status :=FALSE;
+        END_IF; 
+      ELSE
+        IF g_boDualStation2Chuck1LossenOutPut  AND g_bDualStation2Chuck1LossenDone THEN 
+          g_bDualStation2Chuck1Status :=FALSE;
+        END_IF; 
+      END_IF; 
+  END_IF;
+  
+  (*卡爪4指示灯状态*)
+  IF bDualStation2Chuck2UseClampSignal THEN
+      IF g_bDualStation2Chuck2ClampInPlace AND g_bDualStation2Chuck2ClampDone  THEN
+        g_bDualStation2Chuck2Status :=TRUE;
+      END_IF;
+      IF g_bDualStation2Chuck2Status AND NOT g_bDualStation2Chuck2ClampInPlace AND g_bDualStation2Chuck2ClampDone AND g_nMotionMode=3 THEN
+        bDualStation2Chuck2ClampNoSignalAlarm:= TRUE;
+        bDualStation2Chuck2LossenNoSignalAlarm:= FALSE; 
+      ELSIF g_bDualStation2Chuck2Status AND g_bDualStation2Chuck2ClampInPlace  AND g_bDualStation2Chuck2ClampDone THEN
+        bDualStation2Chuck2ClampNoSignalAlarm:= FALSE; 
+        bDualStation2Chuck2LossenNoSignalAlarm:= FALSE; 
+      END_IF; 
+  ELSE
+    bDualStation2Chuck2ClampNoSignalAlarm:= FALSE; 
+     IF bDualStation2Chuck2UseKeepPressure THEN
+        IF  g_bDualStation2Chuck2ClampDone THEN 
+          g_bDualStation2Chuck2Status :=TRUE;
+		END_IF;
+      ELSE
+        IF g_boDualStation2Chuck2ClampOutPut AND g_bDualStation2Chuck2ClampDone THEN 
+          g_bDualStation2Chuck2Status :=TRUE;
+        END_IF;
+      END_IF; 
+  END_IF;
+
+  IF bDualStation2Chuck2UseLossenSignal THEN
+      IF g_bDualStation2Chuck2LossenInPlace AND g_bDualStation2Chuck2LossenDone THEN
+        g_bDualStation2Chuck2Status :=FALSE;
+      END_IF;
+      IF NOT g_bDualStation2Chuck2Status AND NOT g_bDualStation2Chuck2LossenInPlace AND g_bDualStation2Chuck2LossenDone AND g_nMotionMode=3 THEN
+        bDualStation2Chuck2ClampNoSignalAlarm:= FALSE;
+        bDualStation2Chuck2LossenNoSignalAlarm:= TRUE; 
+      ELSIF NOT g_bDualStation2Chuck2Status AND g_bDualStation2Chuck2LossenInPlace AND g_bDualStation2Chuck2LossenDone THEN
+        bDualStation2Chuck2ClampNoSignalAlarm:= FALSE; 
+        bDualStation2Chuck2LossenNoSignalAlarm:= FALSE;
+      END_IF; 
+  ELSE
+    bDualStation2Chuck2LossenNoSignalAlarm:= FALSE;
+      IF bDualStation2Chuck2UseKeepPressure THEN
+        IF g_bDualStation2Chuck2LossenDone THEN 
+          g_bDualStation2Chuck2Status :=FALSE;
+        END_IF; 
+      ELSE
+        IF g_boDualStation2Chuck2LossenOutPut  AND g_bDualStation2Chuck2LossenDone THEN 
+          g_bDualStation2Chuck2Status :=FALSE;
+        END_IF; 
+      END_IF; 
+  END_IF;
+
+
+  
+(*卡盘气缸1 主卡到位报警*)
+IF (bDualStation1Chuck1ClampNoSignalAlarm OR bDualStation1Chuck1ClampWaitNoSignalAlarm) AND ListenBoardInputConfig[550] THEN
+  g_Alarm.alarmArray[660] := 1355;
+ELSE
+  g_Alarm.alarmArray[660] := 0;
+END_IF;
+IF (bDualStation1Chuck1LossenNoSignalAlarm OR bDualStation1Chuck1LossenWaitNoSignalAlarm) AND ListenBoardInputConfig[551] THEN
+  g_Alarm.alarmArray[661] := 1356;
+ELSE
+  g_Alarm.alarmArray[661] := 0;
+END_IF;
+
+(*卡盘气缸2 主卡到位报警*)
+IF (bDualStation1Chuck2ClampNoSignalAlarm OR bDualStation1Chuck2ClampWaitNoSignalAlarm) AND ListenBoardInputConfig[552] THEN
+  g_Alarm.alarmArray[662] := 1357;
+ELSE
+  g_Alarm.alarmArray[662] := 0;
+END_IF;
+IF (bDualStation1Chuck2LossenNoSignalAlarm OR bDualStation1Chuck2LossenWaitNoSignalAlarm) AND ListenBoardInputConfig[553] THEN
+  g_Alarm.alarmArray[663] := 1358;
+ELSE
+  g_Alarm.alarmArray[663] := 0;
+END_IF;
+
+(*卡盘气缸3 主卡到位报警*)
+IF (bDualStation2Chuck1ClampNoSignalAlarm OR bDualStation2Chuck1ClampWaitNoSignalAlarm) AND ListenBoardInputConfig[554] THEN
+  g_Alarm.alarmArray[664] := 1359;
+ELSE
+  g_Alarm.alarmArray[664] := 0;
+END_IF;
+IF (bDualStation2Chuck1LossenNoSignalAlarm OR bDualStation2Chuck1LossenWaitNoSignalAlarm) AND ListenBoardInputConfig[555] THEN
+  g_Alarm.alarmArray[665] := 1360;
+ELSE
+  g_Alarm.alarmArray[665] := 0;
+END_IF;
+
+(*卡盘气缸4 主卡到位报警*)
+IF (bDualStation2Chuck2ClampNoSignalAlarm OR bDualStation2Chuck2ClampWaitNoSignalAlarm) AND ListenBoardInputConfig[556] THEN
+  g_Alarm.alarmArray[666] := 1361;
+ELSE
+  g_Alarm.alarmArray[666] := 0;
+END_IF;
+IF (bDualStation2Chuck2LossenNoSignalAlarm OR bDualStation2Chuck2LossenWaitNoSignalAlarm) AND ListenBoardInputConfig[557] THEN
+  g_Alarm.alarmArray[667] := 1362;
+ELSE
+  g_Alarm.alarmArray[667] := 0;
+END_IF;
+
+
+
+
+
+
+
+Filter_1(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dClawFilterTime))),bDualStation1Chuck1ClampInplaceLogic,g_biDualStation1Chuck1ClampInPlace,bDualStation1Chuck1ClampInPlace);
+g_bDualStation1Chuck1ClampInPlace  := FUN_SingalLogic(bDualStation1Chuck1ClampInPlace,bDualStation1Chuck1ClampInplaceLogic);
+      
+Filter_2(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dClawFilterTime))),bDualStation1Chuck1LossenInplaceLogic,g_biDualStation1Chuck1LossenInPlace,bDualStation1Chuck1LossenInPlace);
+g_bDualStation1Chuck1LossenInPlace  := FUN_SingalLogic(bDualStation1Chuck1LossenInPlace,bDualStation1Chuck1LossenInplaceLogic);
+                       
+Filter_3(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dClawFilterTime))),bDualStation1Chuck2ClampInplaceLogic,g_biDualStation1Chuck2ClampInPlace,bDualStation1Chuck2ClampInPlace);
+g_bDualStation1Chuck2ClampInPlace  := FUN_SingalLogic(bDualStation1Chuck2ClampInPlace,bDualStation1Chuck2ClampInplaceLogic);
+      
+Filter_4(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dClawFilterTime))),bDualStation1Chuck2LossenInplaceLogic,g_biDualStation1Chuck2LossenInPlace,bDualStation1Chuck2LossenInPlace);
+g_bDualStation1Chuck2LossenInPlace  := FUN_SingalLogic(bDualStation1Chuck2LossenInPlace,bDualStation1Chuck2LossenInplaceLogic);
+   
+Filter_5(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dClawFilterTime))),bDualStation2Chuck1ClampInplaceLogic,g_biDualStation2Chuck1ClampInPlace,bDualStation2Chuck1ClampInPlace);
+g_bDualStation2Chuck1ClampInPlace  := FUN_SingalLogic(bDualStation2Chuck1ClampInPlace,bDualStation2Chuck1ClampInplaceLogic);
+      
+Filter_6(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dClawFilterTime))),bDualStation2Chuck1LossenInplaceLogic,g_biDualStation2Chuck1LossenInPlace,bDualStation2Chuck1LossenInPlace);
+g_bDualStation2Chuck1LossenInPlace  := FUN_SingalLogic(bDualStation2Chuck1LossenInPlace,bDualStation2Chuck1LossenInplaceLogic);
+
+Filter_7(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dClawFilterTime))),bDualStation2Chuck2ClampInplaceLogic,g_biDualStation2Chuck2ClampInPlace,bDualStation2Chuck2ClampInPlace);
+g_bDualStation2Chuck2ClampInPlace  := FUN_SingalLogic(bDualStation2Chuck2ClampInPlace,bDualStation2Chuck2ClampInplaceLogic);
+      
+Filter_8(LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(dClawFilterTime))),bDualStation2Chuck2LossenInplaceLogic,g_biDualStation2Chuck2LossenInPlace,bDualStation2Chuck2LossenInPlace);
+g_bDualStation2Chuck2LossenInPlace  := FUN_SingalLogic(bDualStation2Chuck2LossenInPlace,bDualStation2Chuck2LossenInplaceLogic);
+         ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

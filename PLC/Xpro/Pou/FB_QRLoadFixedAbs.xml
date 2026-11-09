@@ -1,0 +1,522 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_QRLoadFixedAbs" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Plc开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Plc暂停]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Plc复位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biLoadAbsOpen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biLoadAbsClose">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boLoadAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_LoadAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_LoadStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_LoadReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fPartLenght">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Axis_Load">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_fiLoadAbsType">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fPipeHead">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fOvershootDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dLoadMaxLimit">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dLastPipeTail">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dTotalLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dPipeTailLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_foLoadAbsTest">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_foLoadAbsTest0">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_foLoadAbsTest1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_foLoadAbsTest2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bLengthCheck5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadAbsWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadTailDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biClearError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_dOffset">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dPipeLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dSlitLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_boIgnoreCut">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biCutCheck">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boCutCheckDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biManualLoad">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boManualLoadDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZFollowWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bManualLoadTip">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nLoadAbsState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCutCheckState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nManualLoadState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPauseState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dTargetVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dTailVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dTargetPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="dLsZDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bDryRunEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dTriggerPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dMaxLimitError">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dManualLoadPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bLoadBlankingEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Ton_ManualLoad">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger1(CLK := g_biLoadAbsOpen);
+RTrigger2(CLK := g_biLoadAbsClose);
+RTrigger3(CLK := g_biClearError);
+RTrigger4(CLK := g_biCutCheck);
+RTrigger5(CLK := g_biManualLoad);
+
+IF RTrigger1.Q THEN
+  nLoadAbsState := 1;
+  g_boLoadAbsDone := FALSE;
+  g_boLoadTailDone := FALSE;
+  g_boIgnoreCut := FALSE;
+END_IF;
+IF RTrigger2.Q THEN
+  g_boLoadAbsDone := FALSE;
+  g_boLoadTailDone := FALSE;
+END_IF;
+g_foLoadAbsTest := g_fOvershootDistance;
+
+CASE nLoadAbsState OF
+  0:
+    nLoadAbsState := 0;
+  1:
+    IF bDryRunEnable OR LREAL_TO_DINT(g_fiLoadAbsType) = 6 OR LREAL_TO_DINT(g_fiLoadAbsType) = 3 OR (NOT bLoadBlankingEnable) THEN
+      nLoadAbsState := 2;
+    ELSE
+      IF g_bLengthCheck5 THEN
+        g_bLoadAbsWarn := TRUE;
+        nLoadAbsState := 21;
+      ELSE
+        nLoadAbsState := 2;
+      END_IF;     
+    END_IF;
+  2:
+    IF LREAL_TO_DINT(g_fiLoadAbsType) = 0 THEN
+      dTargetPos := Axis_Load.NCTOPLC.SETPOS + g_fPartLenght - g_dOffset + 5.0 + g_dSlitLength;     
+      g_LoadAbs.Velocity := dTargetVel;
+      IF dTargetPos > g_dLoadMaxLimit THEN
+        g_boIgnoreCut := TRUE;
+        g_boLoadAbsDone := TRUE;
+      END_IF;
+    ELSIF LREAL_TO_DINT(g_fiLoadAbsType) = 1 THEN
+      dTargetPos := Axis_Load.NCTOPLC.SETPOS + g_fPipeHead + dLsZDistance - g_fOvershootDistance;
+      g_LoadAbs.Velocity := dTailVel;
+    ELSIF LREAL_TO_DINT(g_fiLoadAbsType) = 2 THEN
+      dTargetPos := g_dLoadMaxLimit;
+      g_LoadAbs.Velocity := dTargetVel;
+      dMaxLimitError := g_dLoadMaxLimit - Axis_Load.NCTOPLC.SETPOS - 5.0;
+    ELSIF LREAL_TO_DINT(g_fiLoadAbsType) = 3 THEN
+      dTargetPos := Axis_Load.NCTOPLC.SETPOS + g_fPartLenght - dMaxLimitError + 1.0 + g_dLoadMaxLimit - g_dTotalLength - g_fOvershootDistance + g_dSlitLength;
+      g_foLoadAbsTest0 := dTargetPos;
+      g_LoadAbs.Velocity := dTargetVel;
+    ELSIF LREAL_TO_DINT(g_fiLoadAbsType) = 4 THEN
+      dTargetPos := g_dTotalLength + dLsZDistance + g_fPartLenght - g_dPipeLength;
+      g_LoadAbs.Velocity := dTailVel;
+    ELSIF LREAL_TO_DINT(g_fiLoadAbsType) = 5 THEN
+      dTargetPos := g_dTotalLength + dLsZDistance + g_fPipeHead - g_dPipeLength;
+      g_LoadAbs.Velocity := dTailVel;
+    ELSIF LREAL_TO_DINT(g_fiLoadAbsType) = 6 THEN
+      dTargetPos := Axis_Load.NCTOPLC.SETPOS - 5.0;
+      g_LoadAbs.Velocity := dTargetVel;
+    ELSIF LREAL_TO_DINT(g_fiLoadAbsType) = 7 THEN
+      dTargetPos := dManualLoadPos;
+      g_LoadAbs.Velocity := dTargetVel;
+    ELSIF LREAL_TO_DINT(g_fiLoadAbsType) = 8 THEN
+      dTargetPos := Axis_Load.NCTOPLC.SETPOS + g_fPartLenght + dLsZDistance - g_fOvershootDistance;
+      g_LoadAbs.Velocity := dTargetVel;
+    ELSE
+      dTargetPos := Axis_Load.NCTOPLC.SETPOS;
+    END_IF;   
+    IF g_boLoadAbsDone THEN
+      nLoadAbsState := 0;
+    ELSE
+      nLoadAbsState := 3;
+    END_IF;
+  3:
+    g_LoadAbs.Execute := TRUE;
+    g_LoadAbs.Position := dTargetPos;
+    IF g_LoadAbs.Done THEN
+      g_LoadAbs.Execute := FALSE;
+      g_boLoadAbsDone := TRUE;
+      nLoadAbsState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nLoadAbsState := 20;
+      nPauseState := 3;
+    END_IF;
+    IF g_LoadAbs.CommandAborted OR g_LoadAbs.Error THEN
+      g_LoadAbs.Execute := FALSE;
+      g_boLoadAbsDone := FALSE;
+      nLoadAbsState := 0;
+    END_IF;
+  20:
+    g_LoadAbs.Execute := FALSE;
+    g_LoadStop.Execute := TRUE;
+    IF g_LoadStop.Done AND g_bPlcStartBuffer THEN
+      g_LoadStop.Execute := FALSE;
+      nLoadAbsState := nPauseState;
+    END_IF;
+    IF g_LoadStop.CommandAborted OR g_LoadStop.Error THEN
+      g_LoadStop.Execute := FALSE;
+      nLoadAbsState := 0;
+    END_IF;
+  21:
+    IF g_bLengthCheck5 THEN
+      g_bLoadAbsWarn := TRUE;
+    ELSE
+      IF g_bPlcStartBuffer THEN
+        nLoadAbsState := 1;
+      END_IF;
+    END_IF;
+END_CASE;
+
+IF RTrigger4.Q THEN
+  IF bLoadBlankingEnable AND (NOT bDryRunEnable) THEN
+    nCutCheckState := 1;
+    g_boCutCheckDone := FALSE;
+  ELSE
+    g_boCutCheckDone := TRUE;
+  END_IF;
+END_IF;
+
+CASE nCutCheckState OF
+  0:
+    IF (NOT bLoadBlankingEnable) OR bDryRunEnable THEN
+      g_boCutCheckDone := TRUE;
+    ELSE
+      IF NOT g_bLengthCheck5 THEN
+        g_boCutCheckDone := FALSE;
+      END_IF; 
+    END_IF;
+  1:
+    IF g_bLengthCheck5 THEN
+      g_boCutCheckDone := TRUE;
+      nCutCheckState := 0;
+    ELSE
+      g_bZFollowWarn := TRUE;
+      nCutCheckState := 2;
+    END_IF;
+  2:
+    IF g_bLengthCheck5 THEN
+      IF g_bPlcStartBuffer THEN
+        nCutCheckState := 1;
+      END_IF;
+    ELSE
+      g_bZFollowWarn := TRUE;
+    END_IF;
+END_CASE;
+
+IF RTrigger5.Q THEN
+  nManualLoadState := 1;
+  g_boManualLoadDone := FALSE;
+END_IF;
+
+CASE nManualLoadState OF
+  0:
+    nManualLoadState := 0;
+  1:
+    g_bManualLoadTip := TRUE;
+    nManualLoadState := 2;
+  2:
+    IF g_bPlcStartBuffer THEN
+      g_boManualLoadDone := TRUE;
+      nManualLoadState := 3;
+    END_IF;
+  3:
+    Ton_ManualLoad(IN := TRUE,PT := T#1000ms);
+    IF Ton_ManualLoad.Q THEN
+      g_boManualLoadDone := FALSE;
+      nManualLoadState := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nLoadAbsState := 0;
+  nCutCheckState := 0;
+  nManualLoadState := 0;
+  Ton_ManualLoad(IN := FALSE);
+  g_LoadAbs.Execute := FALSE;
+  g_LoadStop.Execute := FALSE;
+  g_boCutCheckDone := FALSE;
+  g_boManualLoadDone := FALSE;
+  g_boIgnoreCut := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

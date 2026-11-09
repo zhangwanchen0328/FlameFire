@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FUN_ReturnZPosition" pouType="function">
+  <interface>
+    <returnType>
+      <LREAL/>
+    </returnType>
+    <inputVars>
+      <variable name="dInputX">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入X位置或者角度 返回Z对应的位置]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="dZPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[本地用于计算局部变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCycle">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="dFactorsArray">
+        <type>
+          <derived name="ST_Factors"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传入系数数组  ]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*
+dZPosition := 0.0;
+FOR nCycle := 0 TO 5 BY 1 DO
+  IF nCycle = 0 THEN
+    dZPosition := dZPosition + dFactorsArray.dFactors[nCycle];
+  ELSE
+    dZPosition := dZPosition+ dFactorsArray.dFactors[nCycle] * EXPT(IN1 := dInputX,IN2 :=nCycle);
+  END_IF;
+END_FOR;  
+FUN_ReturnZPosition := dZPosition;
+*)
+
+FUN_ReturnZPosition := dFactorsArray.dFactors[0] * EXPT(dInputX,0) + dFactorsArray.dFactors[1] * EXPT(dInputX,1)+ dFactorsArray.dFactors[2] * EXPT(dInputX,2) +dFactorsArray.dFactors[3] * EXPT(dInputX,3) + dFactorsArray.dFactors[4] * EXPT(dInputX,4) +dFactorsArray.dFactors[5] * EXPT(dInputX,5);]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[通过公式计算Z轴的位置]]></xhtml:p>
+  </documentation>
+</pou>

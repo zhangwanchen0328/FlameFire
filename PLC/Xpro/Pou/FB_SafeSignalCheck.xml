@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SafeSignalCheck" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Rtring">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nCheckState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[安全信号检测状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPreCheckState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bZAxisSafeCheckAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[z轴安全信号报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bXAxisSafeCheckAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[x轴安全信号报警]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC复位全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring(CLK := g_bSafeSignalCheckM);
+IF Rtring.Q THEN
+  IF M.PARAMETER_P[330] = 1.0 THEN(*检测Z轴安全信号*)
+    nCheckState := 10;
+  ELSIF M.PARAMETER_P[330] = 2.0 THEN(*检测x轴安全信号*)
+    nCheckState := 20;
+  END_IF;
+  g_bSafeSignalCheckM := false;
+END_IF;
+
+CASE nCheckState OF
+  0:
+	nCheckState := 0;
+  10:
+    IF g_bZAxisSafeCheck AND NOT g_bZAxisSafeCheckSignal THEN
+      nPreCheckState:=nCheckState;
+      bZAxisSafeCheckAlarm:=true;
+      nCheckState := 0;
+    ELSE
+      nPreCheckState := 0;
+      bZAxisSafeCheckAlarm:=false;
+      nCheckState := 0;
+      M.ENABLE[330] := 0;
+    END_IF;
+  20:
+    IF g_bXAxisSafeCheck AND NOT g_bXAxisSafeCheckSignal THEN
+      nPreCheckState:=nCheckState;
+      bXAxisSafeCheckAlarm:=true;
+      nCheckState := 0;
+    ELSE
+      nPreCheckState := 0;
+      bXAxisSafeCheckAlarm:=false;
+      nCheckState := 0;
+      M.ENABLE[330] := 0;
+    END_IF;
+END_CASE;
+IF bZAxisSafeCheckAlarm THEN
+  g_Alarm.alarmArray[575] := 1288;
+  bZAxisSafeCheckAlarm :=false;
+END_IF;
+IF bXAxisSafeCheckAlarm THEN
+  g_Alarm.alarmArray[583] := 1298;
+  bXAxisSafeCheckAlarm :=false;
+END_IF;
+(*避让限制旋转速度,放在这里刷新,比起其他的限制这里优先级最高*)
+IF g_bAvoidEnable THEN
+  IF g_fCurrentCoordYBuffer > g_fAvoidCoordY AND g_bLimitRotateSpeedEnbale AND g_niMotionType=1 AND NOT g_bLastPartCutEndCloseSlowEnable THEN
+		g_doRealtimeOverrid := g_dLimitRotateRatio; 
+		g_boSlowcutEnable := TRUE; 
+        g_bIsSetSlowCutEnableFlag := TRUE;
+  END_IF;
+END_IF;
+
+
+
+IF g_bPlcStartBuffer THEN
+  nCheckState := nPreCheckState;
+  nPreCheckState := 0;
+END_IF;
+
+IF g_bPlcResetBuffer THEN
+  nCheckState := 0;
+  nPreCheckState:= 0;
+  g_bSafeSignalCheckM := FALSE;
+  bZAxisSafeCheckAlarm:=false;
+  bXAxisSafeCheckAlarm:=false;
+  M.ENABLE[330] := 0;
+END_IF;
+
+
+
+
+
+
+
+
+
+
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

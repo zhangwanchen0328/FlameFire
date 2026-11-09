@@ -1,0 +1,416 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BKCylinderClawCtrl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="bFeedingCylinderUp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFeedingCylinderDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bPressurePipeCy1Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bPressurePipeCy1Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bPressurePipeCy2Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bPressurePipeCy2Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bClawEnableLoosen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bClawEnableClamp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustCylinderUp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustCylinderDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bRackForwardOn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bRackForwardOff">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bRackBackwardsOn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bRackBackwardsOff">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bPlatformUp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bPlatformDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bMaterialCylinderUp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bMaterialCylinderDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bVacuumDustValveOn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bVacuumDustValveOff">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDosingCylinderUp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDosingCylinderDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="R_Trriger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger6">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger7">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger8">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger9">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger10">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger11">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger12">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger13">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger14">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger15">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger16">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger17">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger18">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger19">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger20">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boCylinderY2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boCylinderY3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boClawState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boMaterialCylinder">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boDustCylinder">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBackward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFixedLenSupportCyl">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boPlatformUp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boPlatformDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boDustVacuum">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boDosingCylinder">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trriger1(CLK := bFeedingCylinderUp);
+R_Trriger2(CLK := bPressurePipeCy1Up);
+R_Trriger3(CLK := bPressurePipeCy2Up);
+R_Trriger4(CLK := bClawEnableClamp);
+R_Trriger5(CLK := bDustCylinderUp);
+R_Trriger6(CLK := bFeedingCylinderDown);
+R_Trriger7(CLK := bPressurePipeCy1Down);
+R_Trriger8(CLK := bPressurePipeCy2Down);
+R_Trriger9(CLK := bClawEnableLoosen);
+R_Trriger10(CLK := bDustCylinderDown);
+R_Trriger11(CLK := bMaterialCylinderUp);
+R_Trriger12(CLK := bMaterialCylinderDown);
+R_Trriger13(CLK := bRackForwardOn);
+R_Trriger14(CLK := bRackForwardOff);
+R_Trriger15(CLK := bRackBackwardsOn);
+R_Trriger16(CLK := bRackBackwardsOff);
+R_Trriger17(CLK := bVacuumDustValveOn);
+R_Trriger18(CLK := bVacuumDustValveOff);
+R_Trriger19(CLK := bDosingCylinderUp);
+R_Trriger20(CLK := bDosingCylinderDown);
+
+IF R_Trriger1.Q THEN
+  g_boMaterialCylinder := TRUE;
+END_IF;
+
+IF R_Trriger6.Q THEN
+  g_boMaterialCylinder := FALSE;
+END_IF;
+
+IF R_Trriger2.Q THEN
+  g_boCylinderY2 := TRUE;
+END_IF;
+
+IF R_Trriger7.Q THEN
+  g_boCylinderY2 := FALSE;
+END_IF;
+
+IF R_Trriger3.Q THEN
+  g_boCylinderY3 := TRUE;
+END_IF;
+
+IF R_Trriger8.Q THEN
+  g_boCylinderY3 := FALSE;
+END_IF;
+
+IF R_Trriger4.Q THEN
+  g_boClawState := TRUE;
+END_IF;
+
+IF R_Trriger9.Q THEN
+  g_boClawState := FALSE;
+END_IF;
+
+IF R_Trriger5.Q THEN
+  g_boDustCylinder := TRUE;
+END_IF;
+
+IF R_Trriger10.Q THEN
+  g_boDustCylinder := FALSE;
+END_IF;
+(*托料气缸*)
+IF R_Trriger11.Q THEN
+  g_boFixedLenSupportCyl := TRUE;
+END_IF;
+
+IF R_Trriger12.Q THEN
+  g_boFixedLenSupportCyl := FALSE;
+END_IF;
+(*上料正反转*)
+IF R_Trriger13.Q THEN
+  g_boForward := TRUE;
+END_IF;
+
+IF R_Trriger14.Q THEN
+  g_boForward := FALSE;
+END_IF;
+
+IF R_Trriger15.Q THEN
+  g_boBackward := TRUE;
+END_IF;
+
+IF R_Trriger16.Q THEN
+  g_boBackward := FALSE;
+END_IF;
+
+(*送料平台上升下降*)
+IF bPlatformUp THEN
+  g_boPlatformUp := TRUE;
+ELSE
+  g_boPlatformUp := FALSE;
+END_IF;
+
+IF bPlatformDown THEN
+  g_boPlatformDown := TRUE;
+ELSE
+  g_boPlatformDown := FALSE;
+END_IF;
+
+IF R_Trriger17.Q THEN
+  g_boDustVacuum := TRUE;
+END_IF;
+
+IF R_Trriger18.Q THEN
+  g_boDustVacuum := FALSE;
+END_IF;
+
+IF R_Trriger19.Q THEN
+  g_boDosingCylinder := TRUE;
+END_IF;
+
+IF R_Trriger20.Q THEN
+  g_boDosingCylinder := FALSE;
+END_IF;
+
+IF g_bPlcResetBuffer THEN
+  g_boClawState := FALSE;
+  g_boDustCylinder := FALSE;
+  g_boCylinderY3 := FALSE;
+  g_boCylinderY2 := FALSE;
+  g_boMaterialCylinder := FALSE;
+  g_boFixedLenSupportCyl := FALSE;
+  g_boForward := FALSE;
+  g_boBackward := FALSE;
+  g_boPlatformUp := FALSE;
+  g_boPlatformDown := FALSE;
+  g_boDustVacuum := FALSE;
+  g_boDosingCylinder := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

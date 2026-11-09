@@ -1,0 +1,1207 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_TurnCylinderControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_boTurnCyl01Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boTurnCyl11Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boTurnCyl21Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boTurnCyl31Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boTurnCyl41Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boTurnCyl01Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boTurnCyl11Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boTurnCyl21Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boTurnCyl31Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boTurnCyl41Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl01UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl02UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl03UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl04UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl11UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl12UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl13UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl14UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl21UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl22UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl23UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl24UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl31UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl32UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl33UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl34UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl41UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl42UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl43UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl44UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl01DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl02DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl03DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl04DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl11DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl12DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl13DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl14DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl21DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl22DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl23DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl24DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl31DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl32DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl33DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl34DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl41DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl42DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl43DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCyl44DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bTurn1UpInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurn2UpInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurn3UpInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurn4UpInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurn5UpInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurn1DownInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurn2DownInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurn3DownInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurn4DownInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurn5DownInPlaceSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nTurn1UpInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nTurn2UpInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nTurn3UpInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nTurn4UpInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nTurn5UpInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nTurn1DownInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nTurn2DownInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nTurn3DownInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nTurn4DownInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nTurn5DownInPlaceDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="bCylinder1Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder2Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder3Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder4Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder5Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder1Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder2Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder3Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder4Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinder5Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="RTrigger1Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger2Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger3Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger4Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger5Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger1Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger2Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger3Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger4Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger5Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bTurnState1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸1状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bTurnState2">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸2状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bTurnState3">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸3状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bTurnState4">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸4状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bTurnState5">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸5状态]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bTurn1DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurn2DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurn3DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurn4DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurn5DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay0">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="InPlaceDelay1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay5">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="InPlaceAlarmDelay1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceAlarmDelay2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceAlarmDelay3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceAlarmDelay4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceAlarmDelay5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bTurnCylinder1Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder2Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder3Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder4Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder5Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder1Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder2Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder3Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder4Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder5Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3CylForbid">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bTurnCyl1UpSignalInplaceTimeoutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[翻转气缸1上升到位超时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTurnCyl2UpSignalInplaceTimeoutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[翻转气缸2上升到位超时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTurnCyl3UpSignalInplaceTimeoutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[翻转气缸3上升到位超时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTurnCyl4UpSignalInplaceTimeoutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[翻转气缸4上升到位超时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTurnCyl5UpSignalInplaceTimeoutAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[翻转气缸5上升到位超时]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger1Open(CLK := bCylinder1Open OR g_bTurnCylinder1Open);
+RTrigger2Open(CLK := bCylinder2Open OR g_bTurnCylinder2Open);
+RTrigger3Open(CLK := bCylinder3Open OR g_bTurnCylinder3Open);
+RTrigger4Open(CLK := bCylinder4Open OR g_bTurnCylinder4Open);
+RTrigger5Open(CLK := bCylinder5Open OR g_bTurnCylinder5Open);
+
+RTrigger1Close(CLK := bCylinder1Close OR g_bTurnCylinder1Close);
+RTrigger2Close(CLK := bCylinder2Close OR g_bTurnCylinder2Close);
+RTrigger3Close(CLK := bCylinder3Close OR g_bTurnCylinder3Close);
+RTrigger4Close(CLK := bCylinder4Close OR g_bTurnCylinder4Close);
+RTrigger5Close(CLK := bCylinder5Close OR g_bTurnCylinder5Close);
+
+IF RTrigger1Open.Q THEN
+  bCylinder1Open:= FALSE;
+  bCylinder1Close:= FALSE;(*资源回收*)
+  InPlaceAlarmDelay1(IN :=FALSE);
+  g_bTurnCylinder1Open:= FALSE;
+  g_bTurnCylinder1Close := FALSE;
+  g_bTurnCyl1DownSignalInplaceTimeoutAlarm:= FALSE;
+  IF NOT g_bClaw3CylForbid THEN
+    g_boTurnCyl01Up := TRUE;
+    g_boTurnCyl01Down := FALSE;
+    bTurn1DelayFlag := TRUE;
+  END_IF;
+END_IF;
+IF RTrigger1Close.Q THEN
+  bCylinder1Open:= FALSE;
+  bCylinder1Close:= FALSE;(*资源回收*)
+  InPlaceAlarmDelay1(IN :=FALSE);
+  g_bTurnCylinder1Open:= FALSE;
+  g_bTurnCylinder1Close := FALSE;
+  bTurnCyl1UpSignalInplaceTimeoutAlarm:= FALSE;
+  g_boTurnCyl01Up := FALSE;
+  g_boTurnCyl01Down := TRUE;
+  bTurn1DelayFlag := TRUE;
+END_IF;
+(*hmi状态灯显示,自动下料机中也可使用*)
+IF bTurn1UpInPlaceSignal AND g_boTurnCyl01Up THEN(*使用到位信号*)
+  IF g_bTurnCyl01UpInPlace AND g_bTurnCyl02UpInPlace AND g_bTurnCyl03UpInPlace AND g_bTurnCyl04UpInPlace THEN
+    g_bTurnState1:= TRUE;
+    InPlaceAlarmDelay1(IN :=FALSE);
+    bTurnCyl1UpSignalInplaceTimeoutAlarm:= FALSE;
+  ELSE
+    IF NOT g_bTurnState1 THEN
+      InPlaceAlarmDelay1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn1UpInPlaceDelay)));
+      IF InPlaceAlarmDelay1.Q THEN
+        InPlaceAlarmDelay1(IN :=FALSE);
+        bTurnCyl1UpSignalInplaceTimeoutAlarm:= TRUE;
+      END_IF; 
+    END_IF;  
+  END_IF;
+  IF NOT g_CylAllStateUpDate.BoolArr[23] AND g_bTurnState1 THEN
+    bTurnCyl1UpSignalInplaceTimeoutAlarm:=TRUE;
+  ELSIF g_CylAllStateUpDate.BoolArr[23] AND g_bTurnState1 THEN
+    bTurnCyl1UpSignalInplaceTimeoutAlarm:= FALSE;
+  END_IF;
+ELSIF bTurn1DownInPlaceSignal AND g_boTurnCyl01Down THEN
+  IF g_bTurnCyl01DownInPlace AND g_bTurnCyl02DownInPlace AND g_bTurnCyl03DownInPlace AND g_bTurnCyl04DownInPlace THEN
+    g_bTurnState1:= FALSE;
+    InPlaceAlarmDelay1(IN :=FALSE);
+    g_bTurnCyl1DownSignalInplaceTimeoutAlarm:= FALSE;
+  ELSE
+    (*到位报警判断使用延时 保证报警时间大于滤波时间*)
+    IF g_bTurnState1 THEN
+      InPlaceAlarmDelay1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn1DownInPlaceDelay)));
+      IF InPlaceAlarmDelay1.Q THEN
+        InPlaceAlarmDelay1(IN :=FALSE);
+        g_bTurnCyl1DownSignalInplaceTimeoutAlarm:= TRUE;
+      END_IF; 
+    END_IF;
+       
+  END_IF; 
+  IF NOT g_CylAllStateUpDate.BoolArr[22] AND NOT g_bTurnState1 THEN
+    g_bTurnCyl1DownSignalInplaceTimeoutAlarm:=TRUE;
+  ELSIF g_CylAllStateUpDate.BoolArr[22] AND NOT g_bTurnState1 THEN
+    g_bTurnCyl1DownSignalInplaceTimeoutAlarm:= FALSE;
+  END_IF;
+ELSE(*使用延时信号*)
+  bTurnCyl1UpSignalInplaceTimeoutAlarm:= FALSE;
+  g_bTurnCyl1DownSignalInplaceTimeoutAlarm:= FALSE;
+  IF bTurn1DelayFlag THEN
+    IF g_boTurnCyl01Up THEN
+      InPlaceDelay0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn1UpInPlaceDelay)));
+    ELSE
+      InPlaceDelay0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn1DownInPlaceDelay)));
+    END_IF;
+    IF InPlaceDelay0.Q THEN
+      bTurn1DelayFlag := FALSE;
+      InPlaceDelay0(IN :=FALSE);
+      IF g_boTurnCyl01Up AND g_boTurnCyl01Down=FALSE THEN
+        g_bTurnState1:= TRUE;
+      END_IF;
+      IF g_boTurnCyl01Down AND g_boTurnCyl01Up=FALSE THEN
+        g_bTurnState1:= FALSE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF RTrigger2Open.Q THEN
+  bCylinder2Open:= FALSE;
+  bCylinder2Close:= FALSE;
+  g_bTurnCylinder2Open:= FALSE;
+  g_bTurnCylinder2Close := FALSE;
+  InPlaceAlarmDelay2(IN :=FALSE);
+  g_bTurnCyl2DownSignalInplaceTimeoutAlarm:= FALSE;
+  IF NOT g_bClaw3CylForbid THEN
+    g_boTurnCyl11Up := TRUE;
+    g_boTurnCyl11Down := FALSE;
+    bTurn2DelayFlag := TRUE;
+  END_IF;
+END_IF;
+IF RTrigger2Close.Q THEN
+  bCylinder2Open:= FALSE;
+  bCylinder2Close:= FALSE;
+  g_bTurnCylinder2Open:= FALSE;
+  g_bTurnCylinder2Close := FALSE;
+  InPlaceAlarmDelay2(IN :=FALSE);
+  bTurnCyl2UpSignalInplaceTimeoutAlarm:= FALSE;
+  g_boTurnCyl11Up := FALSE;
+  g_boTurnCyl11Down := TRUE;
+  bTurn2DelayFlag := TRUE;
+END_IF;
+(*hmi状态灯显示,自动下料机中也可使用*)
+IF bTurn2UpInPlaceSignal AND g_boTurnCyl11Up THEN(*使用到位信号*)
+  IF g_bTurnCyl11UpInPlace AND g_bTurnCyl12UpInPlace AND g_bTurnCyl13UpInPlace AND g_bTurnCyl14UpInPlace THEN
+    g_bTurnState2:= TRUE;
+    InPlaceAlarmDelay2(IN :=FALSE);
+    bTurnCyl2UpSignalInplaceTimeoutAlarm:= FALSE;
+  ELSE
+    IF NOT g_bTurnState2 THEN
+      InPlaceAlarmDelay2(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn2UpInPlaceDelay)));
+      IF InPlaceAlarmDelay2.Q THEN
+        InPlaceAlarmDelay2(IN :=FALSE);
+        bTurnCyl2UpSignalInplaceTimeoutAlarm:= TRUE;
+      END_IF; 
+    END_IF;  
+  END_IF;
+  IF NOT g_CylAllStateUpDate.BoolArr[25] AND g_bTurnState2 THEN
+    bTurnCyl2UpSignalInplaceTimeoutAlarm:=TRUE;
+  ELSIF g_CylAllStateUpDate.BoolArr[25] AND g_bTurnState2 THEN
+    bTurnCyl2UpSignalInplaceTimeoutAlarm:= FALSE;
+  END_IF;
+ELSIF bTurn2DownInPlaceSignal AND g_boTurnCyl11Down THEN
+  IF g_bTurnCyl11DownInPlace AND g_bTurnCyl12DownInPlace AND g_bTurnCyl13DownInPlace AND g_bTurnCyl14DownInPlace THEN
+    g_bTurnState2:= FALSE;
+    InPlaceAlarmDelay2(IN :=FALSE);
+    g_bTurnCyl2DownSignalInplaceTimeoutAlarm:= FALSE;
+  ELSE
+    (*到位报警判断使用延时 保证报警时间大于滤波时间*)
+    IF g_bTurnState2 THEN 
+      InPlaceAlarmDelay2(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn2DownInPlaceDelay)));
+      IF InPlaceAlarmDelay2.Q THEN
+        InPlaceAlarmDelay2(IN :=FALSE);
+        g_bTurnCyl2DownSignalInplaceTimeoutAlarm:= TRUE;
+      END_IF;   
+    END_IF;
+  END_IF;
+  IF NOT g_CylAllStateUpDate.BoolArr[24] AND NOT g_bTurnState2 THEN
+    g_bTurnCyl2DownSignalInplaceTimeoutAlarm:=TRUE;
+  ELSIF g_CylAllStateUpDate.BoolArr[24] AND NOT g_bTurnState2 THEN
+    g_bTurnCyl2DownSignalInplaceTimeoutAlarm:= FALSE;
+  END_IF;
+ELSE(*使用延时信号*)
+  bTurnCyl2UpSignalInplaceTimeoutAlarm:= FALSE;
+  g_bTurnCyl2DownSignalInplaceTimeoutAlarm:= FALSE;
+  IF bTurn2DelayFlag THEN
+    IF g_boTurnCyl11Up THEN
+      InPlaceDelay1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn2UpInPlaceDelay)));
+    ELSE
+      InPlaceDelay1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn2DownInPlaceDelay)));
+    END_IF;
+    IF InPlaceDelay1.Q THEN
+      bTurn2DelayFlag := FALSE;
+      InPlaceDelay1(IN :=FALSE);
+      IF g_boTurnCyl11Up AND g_boTurnCyl11Down=FALSE THEN
+        g_bTurnState2:= TRUE;
+      END_IF;
+      IF g_boTurnCyl11Down AND g_boTurnCyl11Up=FALSE THEN
+        g_bTurnState2:= FALSE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+  
+IF RTrigger3Open.Q THEN
+  bCylinder3Open:= FALSE;
+  bCylinder3Close := FALSE;
+  g_bTurnCylinder3Open:= FALSE;
+  g_bTurnCylinder3Close := FALSE;
+  InPlaceAlarmDelay3(IN :=FALSE);
+  g_bTurnCyl3DownSignalInplaceTimeoutAlarm:= FALSE;
+  IF NOT g_bClaw3CylForbid THEN
+    g_boTurnCyl21Up := TRUE;
+    g_boTurnCyl21Down := FALSE;
+    bTurn3DelayFlag := TRUE;
+  END_IF;
+END_IF;
+IF RTrigger3Close.Q THEN
+  bCylinder3Open:= FALSE;
+  bCylinder3Close := FALSE;
+  g_bTurnCylinder3Open:= FALSE;
+  g_bTurnCylinder3Close := FALSE;
+  InPlaceAlarmDelay3(IN :=FALSE);
+  bTurnCyl3UpSignalInplaceTimeoutAlarm:= FALSE;
+  g_boTurnCyl21Up := FALSE;
+  g_boTurnCyl21Down := TRUE;
+  bTurn3DelayFlag := TRUE;
+END_IF;
+  
+(*hmi状态灯显示,自动下料机中也可使用*)
+IF bTurn3UpInPlaceSignal AND g_boTurnCyl21Up THEN(*使用到位信号*)
+  IF g_bTurnCyl21UpInPlace AND g_bTurnCyl22UpInPlace AND g_bTurnCyl23UpInPlace AND g_bTurnCyl24UpInPlace THEN
+    g_bTurnState3:= TRUE;
+    InPlaceAlarmDelay3(IN :=FALSE);
+    bTurnCyl3UpSignalInplaceTimeoutAlarm:= FALSE;
+  ELSE
+    IF NOT g_bTurnState3 THEN
+      InPlaceAlarmDelay3(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn3UpInPlaceDelay)));
+      IF InPlaceAlarmDelay3.Q THEN
+        InPlaceAlarmDelay3(IN :=FALSE);
+        bTurnCyl3UpSignalInplaceTimeoutAlarm:= TRUE;
+      END_IF; 
+    END_IF;  
+  END_IF;
+  IF NOT g_CylAllStateUpDate.BoolArr[27] AND g_bTurnState3 THEN
+    bTurnCyl3UpSignalInplaceTimeoutAlarm:=TRUE;
+  ELSIF g_CylAllStateUpDate.BoolArr[27] AND g_bTurnState3 THEN
+    bTurnCyl3UpSignalInplaceTimeoutAlarm:= FALSE;
+  END_IF;
+ELSIF bTurn3DownInPlaceSignal AND g_boTurnCyl21Down THEN
+  IF g_bTurnCyl21DownInPlace AND g_bTurnCyl22DownInPlace AND g_bTurnCyl23DownInPlace AND g_bTurnCyl24DownInPlace THEN
+    g_bTurnState3:= FALSE;
+    InPlaceAlarmDelay3(IN :=FALSE);
+    g_bTurnCyl3DownSignalInplaceTimeoutAlarm:= FALSE;
+  ELSE
+    (*到位报警判断使用延时 保证报警时间大于滤波时间*)
+    IF g_bTurnState3 THEN
+      InPlaceAlarmDelay3(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn3DownInPlaceDelay)));
+      IF InPlaceAlarmDelay3.Q THEN
+        InPlaceAlarmDelay3(IN :=FALSE);
+        g_bTurnCyl3DownSignalInplaceTimeoutAlarm:= TRUE;
+      END_IF;  
+    END_IF;  
+  END_IF;
+  IF NOT g_CylAllStateUpDate.BoolArr[26] AND NOT g_bTurnState3 THEN
+    g_bTurnCyl3DownSignalInplaceTimeoutAlarm:=TRUE;
+  ELSIF g_CylAllStateUpDate.BoolArr[26] AND NOT g_bTurnState3 THEN
+    g_bTurnCyl3DownSignalInplaceTimeoutAlarm:= FALSE;
+  END_IF;
+ELSE(*使用延时信号*)
+  bTurnCyl3UpSignalInplaceTimeoutAlarm:= FALSE;
+  g_bTurnCyl3DownSignalInplaceTimeoutAlarm:= FALSE;
+  IF bTurn3DelayFlag THEN
+    IF g_boTurnCyl21Up THEN
+      InPlaceDelay2(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn3UpInPlaceDelay)));
+    ELSE
+      InPlaceDelay2(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn3DownInPlaceDelay)));
+    END_IF;
+    IF InPlaceDelay2.Q THEN
+      bTurn3DelayFlag := FALSE;
+      InPlaceDelay2(IN :=FALSE);
+      IF g_boTurnCyl21Up AND g_boTurnCyl21Down=FALSE THEN
+        g_bTurnState3:= TRUE;
+      END_IF;
+      IF g_boTurnCyl21Down AND g_boTurnCyl21Up=FALSE THEN
+        g_bTurnState3:= FALSE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;  
+  
+IF RTrigger4Open.Q THEN
+  bCylinder4Open:= FALSE;
+  bCylinder4Close := FALSE;
+  g_bTurnCylinder4Open:= FALSE;
+  g_bTurnCylinder4Close := FALSE;
+  InPlaceAlarmDelay4(IN :=FALSE);
+  g_bTurnCyl4DownSignalInplaceTimeoutAlarm:= FALSE;
+  IF NOT g_bClaw3CylForbid THEN
+    g_boTurnCyl31Up := TRUE;
+    g_boTurnCyl31Down := FALSE;
+    bTurn4DelayFlag := TRUE;
+  END_IF;
+END_IF;
+IF RTrigger4Close.Q THEN
+  bCylinder4Open:= FALSE;
+  bCylinder4Close := FALSE;
+  g_bTurnCylinder4Open:= FALSE;
+  g_bTurnCylinder4Close := FALSE;
+  InPlaceAlarmDelay4(IN :=FALSE);
+  bTurnCyl4UpSignalInplaceTimeoutAlarm:= FALSE;
+  g_boTurnCyl31Up := FALSE;
+  g_boTurnCyl31Down := TRUE; 
+  bTurn4DelayFlag := TRUE;
+END_IF;
+
+(*hmi状态灯显示,自动下料机中也可使用*)
+IF bTurn4UpInPlaceSignal AND g_boTurnCyl31Up THEN(*使用到位信号*)
+  IF g_bTurnCyl31UpInPlace AND g_bTurnCyl32UpInPlace AND g_bTurnCyl33UpInPlace AND g_bTurnCyl34UpInPlace THEN
+    g_bTurnState4:= TRUE;
+    InPlaceAlarmDelay4(IN :=FALSE);
+    bTurnCyl4UpSignalInplaceTimeoutAlarm:= FALSE;
+  ELSE
+    IF NOT g_bTurnState4 THEN
+      InPlaceAlarmDelay4(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn4UpInPlaceDelay)));
+      IF InPlaceAlarmDelay4.Q THEN
+        InPlaceAlarmDelay4(IN :=FALSE);
+        bTurnCyl4UpSignalInplaceTimeoutAlarm:= TRUE;
+      END_IF; 
+    END_IF;  
+  END_IF;
+  IF NOT g_CylAllStateUpDate.BoolArr[29] AND g_bTurnState4 THEN
+    bTurnCyl4UpSignalInplaceTimeoutAlarm:=TRUE;
+  ELSIF g_CylAllStateUpDate.BoolArr[29] AND g_bTurnState4 THEN
+    bTurnCyl4UpSignalInplaceTimeoutAlarm:= FALSE;
+  END_IF;
+ELSIF bTurn4DownInPlaceSignal AND g_boTurnCyl31Down THEN
+  IF g_bTurnCyl31DownInPlace AND g_bTurnCyl32DownInPlace AND g_bTurnCyl33DownInPlace AND g_bTurnCyl34DownInPlace THEN
+    g_bTurnState4:= FALSE;
+    InPlaceAlarmDelay4(IN :=FALSE);
+    g_bTurnCyl4DownSignalInplaceTimeoutAlarm:= FALSE;
+  ELSE
+    (*到位报警判断使用延时 保证报警时间大于滤波时间*)
+    IF g_bTurnState4 THEN
+      InPlaceAlarmDelay4(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn4DownInPlaceDelay)));
+      IF InPlaceAlarmDelay4.Q THEN
+        InPlaceAlarmDelay4(IN :=FALSE);
+        g_bTurnCyl4DownSignalInplaceTimeoutAlarm:= TRUE;
+      END_IF;  
+    END_IF; 
+  END_IF;
+  IF NOT g_CylAllStateUpDate.BoolArr[28] AND NOT g_bTurnState4 THEN
+    g_bTurnCyl4DownSignalInplaceTimeoutAlarm:=TRUE;
+  ELSIF g_CylAllStateUpDate.BoolArr[28] AND NOT g_bTurnState4 THEN
+    g_bTurnCyl4DownSignalInplaceTimeoutAlarm:= FALSE;
+  END_IF;
+ELSE(*使用延时信号*)
+  bTurnCyl4UpSignalInplaceTimeoutAlarm:= FALSE;
+  g_bTurnCyl4DownSignalInplaceTimeoutAlarm:= FALSE;
+  IF bTurn4DelayFlag THEN
+    IF g_boTurnCyl31Up THEN
+      InPlaceDelay3(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn4UpInPlaceDelay)));
+    ELSE
+      InPlaceDelay3(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn4DownInPlaceDelay)));
+    END_IF;
+    IF InPlaceDelay3.Q THEN
+      bTurn4DelayFlag := FALSE;
+      InPlaceDelay3(IN :=FALSE);
+      IF g_boTurnCyl31Up AND g_boTurnCyl31Down=FALSE THEN
+        g_bTurnState4:= TRUE;
+      END_IF;
+      IF g_boTurnCyl31Down AND g_boTurnCyl31Up=FALSE THEN
+        g_bTurnState4:= FALSE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;  
+  
+IF RTrigger5Open.Q THEN
+  bCylinder5Open:= FALSE;
+  bCylinder5Close := FALSE;
+  g_bTurnCylinder5Open:= FALSE;
+  g_bTurnCylinder5Close := FALSE;
+  InPlaceAlarmDelay5(IN :=FALSE);
+  g_bTurnCyl5DownSignalInplaceTimeoutAlarm:= FALSE;
+  IF NOT g_bClaw3CylForbid THEN
+    g_boTurnCyl41Up := TRUE;
+    g_boTurnCyl41Down := FALSE;
+    bTurn5DelayFlag := TRUE;
+  END_IF;
+END_IF;
+IF RTrigger5Close.Q THEN
+  bCylinder5Open:= FALSE;
+  bCylinder5Close := FALSE;
+  g_bTurnCylinder5Open:= FALSE;
+  g_bTurnCylinder5Close := FALSE;
+  InPlaceAlarmDelay5(IN :=FALSE);
+  bTurnCyl5UpSignalInplaceTimeoutAlarm:= FALSE;
+  g_boTurnCyl41Up := FALSE;
+  g_boTurnCyl41Down := TRUE;
+  bTurn5DelayFlag := TRUE;
+END_IF;
+
+(*hmi状态灯显示,自动下料机中也可使用*)
+IF bTurn5UpInPlaceSignal AND g_boTurnCyl41Up THEN(*使用到位信号*)
+  IF g_bTurnCyl41UpInPlace AND g_bTurnCyl42UpInPlace AND g_bTurnCyl43UpInPlace AND g_bTurnCyl44UpInPlace THEN
+    g_bTurnState5:= TRUE;
+    InPlaceAlarmDelay5(IN :=FALSE);
+    bTurnCyl5UpSignalInplaceTimeoutAlarm:= FALSE;
+  ELSE
+    IF NOT g_bTurnState5 THEN
+      InPlaceAlarmDelay5(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn5UpInPlaceDelay)));
+      IF InPlaceAlarmDelay5.Q THEN
+        InPlaceAlarmDelay5(IN :=FALSE);
+        bTurnCyl5UpSignalInplaceTimeoutAlarm:= TRUE;
+      END_IF; 
+    END_IF;  
+  END_IF;
+  IF NOT g_CylAllStateUpDate.BoolArr[31] AND g_bTurnState5 THEN
+    bTurnCyl5UpSignalInplaceTimeoutAlarm:=TRUE;
+  ELSIF g_CylAllStateUpDate.BoolArr[31] AND g_bTurnState5 THEN
+    bTurnCyl5UpSignalInplaceTimeoutAlarm:= FALSE;
+  END_IF;
+ELSIF bTurn5DownInPlaceSignal AND g_boTurnCyl41Down THEN
+  (*到位报警判断使用延时+滤波时间 保证报警时间大于滤波时间*)
+  IF g_bTurnCyl41DownInPlace AND g_bTurnCyl42DownInPlace AND g_bTurnCyl43DownInPlace AND g_bTurnCyl44DownInPlace THEN
+    g_bTurnState5:= FALSE;
+    InPlaceAlarmDelay5(IN :=FALSE);
+    g_bTurnCyl5DownSignalInplaceTimeoutAlarm:= FALSE;
+  ELSE
+    IF g_bTurnState5 THEN
+      InPlaceAlarmDelay5(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn5DownInPlaceDelay)));
+      IF InPlaceAlarmDelay5.Q THEN
+        InPlaceAlarmDelay5(IN :=FALSE);
+        g_bTurnCyl5DownSignalInplaceTimeoutAlarm:= TRUE;
+      END_IF;  
+    END_IF;   
+  END_IF;
+  IF NOT g_CylAllStateUpDate.BoolArr[30] AND NOT g_bTurnState5 THEN
+    g_bTurnCyl5DownSignalInplaceTimeoutAlarm:=TRUE;
+  ELSIF g_CylAllStateUpDate.BoolArr[30] AND NOT g_bTurnState5 THEN
+    g_bTurnCyl5DownSignalInplaceTimeoutAlarm:= FALSE;
+  END_IF;
+ELSE(*使用延时信号*)
+  bTurnCyl5UpSignalInplaceTimeoutAlarm:= FALSE;
+  g_bTurnCyl5DownSignalInplaceTimeoutAlarm:= FALSE;
+  IF bTurn5DelayFlag THEN
+    IF g_boTurnCyl41Up THEN
+      InPlaceDelay4(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn5UpInPlaceDelay)));
+    ELSE
+      InPlaceDelay4(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nTurn5DownInPlaceDelay)));
+    END_IF;
+    IF InPlaceDelay4.Q THEN
+      bTurn5DelayFlag := FALSE;
+      InPlaceDelay4(IN :=FALSE);
+      IF g_boTurnCyl41Up AND g_boTurnCyl41Down=FALSE THEN
+        g_bTurnState5:= TRUE;
+      END_IF;
+      IF g_boTurnCyl41Down AND g_boTurnCyl41Up=FALSE THEN
+        g_bTurnState5:= FALSE;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF; 
+(*翻转气缸气缸未上升到位报警*)
+IF bTurnCyl1UpSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[99] THEN
+  g_Alarm.alarmArray[507] := 1220;
+ELSE
+  g_Alarm.alarmArray[507] := 0;
+END_IF;
+IF bTurnCyl2UpSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[101] THEN
+  g_Alarm.alarmArray[508] := 1221;
+ELSE
+  g_Alarm.alarmArray[508] := 0;
+END_IF;
+IF bTurnCyl3UpSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[103] THEN
+  g_Alarm.alarmArray[509] := 1222;
+ELSE
+  g_Alarm.alarmArray[509] := 0;
+END_IF;
+IF bTurnCyl4UpSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[105] THEN
+  g_Alarm.alarmArray[510] := 1223;
+ELSE
+  g_Alarm.alarmArray[510] := 0;
+END_IF;
+IF bTurnCyl5UpSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[107] THEN
+  g_Alarm.alarmArray[511] := 1224;
+ELSE
+  g_Alarm.alarmArray[511] := 0;
+END_IF;
+
+(*打开输出口控制 气缸使用延时的状态切换  46-54 零件托举气缸的状态切换*)
+IF ArrayConfigOutputNumber[46] AND NOT bTurn1UpInPlaceSignal THEN
+  g_bTurnState1:= TRUE;
+  ArrayConfigOutputNumber[46] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[48] AND NOT bTurn2UpInPlaceSignal THEN
+  g_bTurnState2:= TRUE;
+  ArrayConfigOutputNumber[48] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[50] AND NOT bTurn3UpInPlaceSignal THEN
+  g_bTurnState3:= TRUE;
+  ArrayConfigOutputNumber[50] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[52] AND NOT bTurn4UpInPlaceSignal THEN
+  g_bTurnState4:= TRUE;
+  ArrayConfigOutputNumber[52] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[54] AND NOT bTurn5UpInPlaceSignal THEN
+  g_bTurnState5:= TRUE;
+  ArrayConfigOutputNumber[54] := FALSE;
+END_IF; 
+
+IF ArrayConfigOutputNumber[47] AND NOT bTurn1DownInPlaceSignal THEN
+  g_bTurnState1:= FALSE;
+  ArrayConfigOutputNumber[47] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[49] AND NOT bTurn2DownInPlaceSignal THEN
+  g_bTurnState2:= FALSE;
+  ArrayConfigOutputNumber[49] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[51] AND NOT bTurn3DownInPlaceSignal THEN
+  g_bTurnState3:= FALSE;
+  ArrayConfigOutputNumber[51] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[53] AND NOT bTurn4DownInPlaceSignal THEN
+  g_bTurnState4:= FALSE;
+  ArrayConfigOutputNumber[53] := FALSE;
+END_IF; 
+IF ArrayConfigOutputNumber[55] AND NOT bTurn5DownInPlaceSignal THEN
+  g_bTurnState5:= FALSE;
+  ArrayConfigOutputNumber[55] := FALSE;
+END_IF; ]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[手动控制上料机气缸]]></xhtml:p>
+  </documentation>
+</pou>

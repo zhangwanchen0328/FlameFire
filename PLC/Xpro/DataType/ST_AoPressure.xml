@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ST_AoPressure">
+  <baseType>
+    <struct>
+      <variable name="Ao">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[电压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Done">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[完成]]></xhtml:p>
+        </documentation>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

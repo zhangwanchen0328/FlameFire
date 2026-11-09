@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_LoadInteractiveSignal" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="LocalVar0">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*上料信号输出的开启和关闭，复位时，可以清除掉，不包含暂停关闭信号功能*)
+
+
+IF g_bPlcResetBuffer THEN
+  g_boLoadSinglePutOutCanReset1 := FALSE;
+  g_boLoadSinglePutOutCanReset2 := FALSE;
+  g_boLoadSinglePutOutCanReset3 := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[上料交互信号输出]]></xhtml:p>
+  </documentation>
+</pou>

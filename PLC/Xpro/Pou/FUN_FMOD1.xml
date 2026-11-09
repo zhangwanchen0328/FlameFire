@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FUN_FMOD1" pouType="function">
+  <interface>
+    <returnType>
+      <LREAL/>
+    </returnType>
+    <inputVars>
+      <variable name="InputVar">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="LocalVar1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="LocalVar2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="LocalVar3">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="LocalVar4">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="nVar">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </inputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+IF nVar=3 THEN(*0~180 取模*)
+  LocalVar1 := LREAL_TO_DINT(ABS(InputVar));
+  LocalVar2 := ABS(InputVar) - DINT_TO_LREAL(LocalVar1);
+  LocalVar3 := MOD(LocalVar1,180);
+  LocalVar4 := LocalVar2 + DINT_TO_LREAL(LocalVar3);
+  FUN_FMOD1 := LocalVar4; 
+
+ELSIF nVar=4 THEN
+  LocalVar1 := LREAL_TO_DINT(InputVar);
+  LocalVar2 := InputVar - DINT_TO_LREAL(LocalVar1);
+  LocalVar3 := MOD(LocalVar1,360);
+  LocalVar4 := LocalVar2 + DINT_TO_LREAL(LocalVar3);
+
+  FUN_FMOD1 := LocalVar4;  
+  
+END_IF;  ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

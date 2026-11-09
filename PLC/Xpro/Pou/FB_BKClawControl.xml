@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BKClawControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_biBKClawLoosen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biBKClawClamp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boClawState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trriger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcReset">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trriger1(CLK := g_biBKClawLoosen);
+R_Trriger2(CLK := g_biBKClawClamp);
+
+IF R_Trriger1.Q THEN
+  g_boClawState := FALSE;
+ELSIF R_Trriger2.Q THEN
+  g_boClawState := TRUE;
+END_IF;
+
+IF g_bPlcReset THEN
+  g_boClawState := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

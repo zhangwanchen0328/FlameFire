@@ -1,0 +1,368 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_EDS2000Fly_Micro" pouType="functionBlock">
+  <interface>
+    <inputVars>
+      <variable name="nLayerStartState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[板卡硬件飞切]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="nMicroConnetState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[微联状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RMicroConnetStart">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[微联状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FMicroConnetStop">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[微联状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMicroConnectType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[微联方式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RtringFlyCutEnableM64P1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[飞切开光使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FtringFlyCutEnableM64P1">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[飞切开光使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RringFlyOpenLight">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[飞切开光]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FringFlyCloseLight">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[飞切关光]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nFlyCuttingState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="TonFlyCloseLightDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonFlyOpenLightDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="bXFCPWMEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dCommunicationDelayTemp">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fbFlyPowerOn">
+        <type>
+          <derived name="FB_FlyPowerON"/>
+        </type>
+      </variable>
+      <variable name="fb_EDS3000PWM">
+        <type>
+          <derived name="FB_EDS3000"/>
+        </type>
+      </variable>
+      <variable name="rMicroConnectOpen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="fMicroConnectClose">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="fActualFlyCutCommunicationCycle">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(******微联功能***********************************************)
+rMicroConnectOpen(CLK := g_biMicroConnectOpenLight);(*M62 P5引脚*)
+fMicroConnectClose(CLK := g_biMicroConnectOpenLight);(*M63 P5引脚*)
+IF g_nMicroConnectType = 0 THEN
+  (*普通微联*)
+  IF rMicroConnectOpen.Q THEN
+    (*普通微联开光，PLC运行，*)
+    g_bMicroConnectEnable := FALSE;
+  END_IF;
+  IF fMicroConnectClose.Q  THEN
+    (*普通微联关光*)
+    g_bMicroConnectEnable := TRUE;
+  END_IF;
+ELSIF g_nMicroConnectType = 1 THEN
+  (*脉冲轴控精准微联*)
+  IF rMicroConnectOpen.Q AND g_nPlcState = 1 AND NOT g_bDryRunEnable THEN
+    
+    g_noMicroConnectEnable := 0;
+  END_IF;
+  IF fMicroConnectClose.Q  AND NOT g_bPlcEndM AND g_nPlcState <> 0 THEN
+    g_noMicroConnectDis := g_fMicroConnectDis ;
+    IF g_noMicroConnectDis > 16000 THEN
+      (*输出引脚只有14位内存，防溢出*)
+      g_noMicroConnectDis := 16000;
+    END_IF;
+    g_noMicroConnectEnable := 15;
+  END_IF;
+  
+ELSIF  g_nMicroConnectType = 2 THEN
+  (*总线轴控精准微联*)
+  (*总线精准微联什么都不要做,只要M62 P5  M63 P5触发引脚就好了*)
+  ;
+END_IF;
+
+IF g_nFlyCutType = 0 THEN
+  RtringFlyCutEnableM64P1(CLK := g_biFlyCutEnable); 
+  IF RtringFlyCutEnableM64P1.Q AND NOT g_bDryRunEnable AND g_bOpenEDS2000FlyCut THEN
+    nFlyCuttingState := 5; (*M64 P1 飞切功能开启*)
+  END_IF;
+  RringFlyOpenLight(CLK := g_biFlyCutOpenLight);(*M62 P0 开光*)
+  FringFlyCloseLight(CLK := g_biFlyCutOpenLight);(*M63 P0 关光*)
+  IF RringFlyOpenLight.Q AND g_nPlcState = 1 AND NOT g_bDryRunEnable AND g_nCurCutState = 1 THEN (*飞切开光,PLC运行状态,非空运行*)
+    nFlyCuttingState := 10;
+  END_IF;
+  IF FringFlyCloseLight.Q THEN
+    nFlyCuttingState := 20;
+  END_IF;
+  IF nLayerStartState = 620 THEN
+    nFlyCuttingState := 620;
+  END_IF;
+  IF g_nToolNum <> 5 THEN (*非飞切图层直接跳出*)
+    nFlyCuttingState := 0;
+  END_IF;
+
+  CASE nFlyCuttingState OF
+    0:
+      nFlyCuttingState := 0;
+    5:
+      IF g_biFlyCutOpenLightCNC THEN
+        g_bLaserCuttingEnable := TRUE;
+        nFlyCuttingState := 0;
+      END_IF;
+    10:(*飞切开光*)
+      TonFlyCloseLightDelay(IN := FALSE);
+      TonFlyOpenLightDelay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(g_dFlyCutOpenLightDelay))));
+      IF TonFlyOpenLightDelay.Q THEN
+        TonFlyOpenLightDelay(IN := FALSE);
+        IF g_bgas_enable THEN(*气开了才能开光，layerstart还没执行完开气，飞切开光M62 P0就触发导致气还没开光就开了*)
+          g_bLaserCuttingEnable := TRUE;
+        END_IF;
+        nFlyCuttingState := 0;
+      END_IF;
+    20:
+      TonFlyOpenLightDelay(IN := FALSE);
+      TonFlyCloseLightDelay(IN := TRUE,PT := LREAL_TO_TIME(FUN_MSTOS(LREAL_TO_DINT(g_dFlyCutCloseLightDelay))));
+      IF TonFlyCloseLightDelay.Q THEN
+        TonFlyCloseLightDelay(IN := FALSE);
+        g_bLaserCuttingEnable := FALSE;
+        nFlyCuttingState := 0;
+      END_IF;
+    
+  END_CASE;
+ELSIF g_nFlyCutType = 1 THEN(*硬件飞切*)
+    RtringFlyCutEnableM64P1(CLK := g_biFlyCutEnable); 
+    FtringFlyCutEnableM64P1(CLK := g_biFlyCutEnable);
+    IF RtringFlyCutEnableM64P1.Q AND NOT g_bDryRunEnable AND g_bOpenEDS2000FlyCut THEN
+      (*M64 P1开启飞切功能*)
+      fbFlyPowerOn(true);
+      nFlyCuttingState := 1000;
+    END_IF;
+    IF FtringFlyCutEnableM64P1.Q THEN
+      g_noPwmDutyFly := 0;
+      g_noPwmFreqFly := 0;
+      g_doFlyCutEnable := 0;
+      fbFlyPowerOn(false);
+    END_IF;
+    
+    IF nLayerStartState = 620 THEN
+      nFlyCuttingState := 620;
+    END_IF;
+    IF g_nToolNum <> 5 THEN
+      nFlyCuttingState := 0;
+    END_IF;
+    
+    
+    CASE nFlyCuttingState OF
+      0:
+      nFlyCuttingState := 0;
+      1000:
+        IF (nLayerStartState = 440 OR nLayerStartState = 500) AND g_nToolNum = 5 THEN
+          g_doFlyCutEnable := 15;
+          nFlyCuttingState := 20;
+        END_IF;
+      10:
+        IF g_biFlyCutSwitch THEN
+          g_doFlyCutEnable := 15;
+          nFlyCuttingState := 20;
+        END_IF;
+      20:
+        IF g_biFlyCutSwitch AND g_bOpenEDS2000FlyCut THEN(*飞切进入断点模式，将g_doFlyCutSwitch的第五位置为1或0*)
+          g_doFlyCutSwitch := 16#0F;
+        ELSE
+          g_doFlyCutSwitch := 16#00;
+        END_IF;
+        g_doFlyCutXpos := LREAL_TO_DINT(g_diFlyCutXpos);
+        g_doFlyCutYpos := LREAL_TO_DINT(g_diFlyCutYpos);
+        IF g_biFlyCutEnable=FALSE THEN(*M65执行则跳出*)
+          nFlyCuttingState := 0;
+        END_IF;
+      620:
+        IF g_fiXYUCurrentSpeed <= 0.1 THEN
+          g_noPwmDutyFly :=0;
+          g_noPwmFreqFly := 0;
+          g_doFlyCutEnable:=0;
+          g_doFlyCutSwitch:=0; 
+          fbFlyPowerOn(false); 
+        END_IF;
+        IF (nLayerStartState=440 OR nLayerStartState = 500) THEN
+         fbFlyPowerOn(TRUE);
+          IF g_biFlyCutOpenLightCNC AND g_nPlcState = 1 THEN
+            g_doFlyCutEnable := 15;
+            nFlyCuttingState := 20;
+          ELSE
+            nFlyCuttingState := 10;
+          END_IF;
+        END_IF;
+      END_CASE;
+      
+      IF g_nPlcState = 1 THEN
+        IF g_biFlyCutEnable AND (nLayerStartState = 440 OR nLayerStartState = 500) THEN
+          g_noPwmFreqFly:=LREAL_TO_UDINT(65535.0*UINT_TO_LREAL(g_nPwmFreq)/20000.0);
+          g_noPwmDutyFly:=LREAL_TO_UDINT((UINT_TO_LREAL(g_nPwmDuty)/100.0)* 65535.0); 
+        END_IF;
+      END_IF;
+ELSIF g_nFlyCutType=2 THEN(*EDS3000硬件飞切*)
+  RtringFlyCutEnableM64P1(CLK := g_biFlyCutEnable);
+  FtringFlyCutEnableM64P1(CLK := g_biFlyCutEnable);
+  IF RtringFlyCutEnableM64P1.Q AND NOT g_bDryRunEnable THEN
+    g_bLaserCuttingEnable := true;(*这个地方不是真的开光,这个地方是开模拟量和PWM,这个地方有点晚,看看是不是随动向下,就先给模拟量*)
+    (*g_bFlyCutOpenLightCNC在回退或者前进出了飞切图层的时候,这个标志位就清掉了,再次回退或者前进入飞切图层的时候*)
+    (*会触发上升沿,但是此时,Layerstart一直停止在620状态,此时切换到1000状态是切换不成功的*)
+    nFlyCuttingState := 1000;
+  END_IF;
+  (*M65 P1关闭飞切功能,如果有回退,徐工会把g_biFlyCutEnableM64P1置0*)
+  IF FtringFlyCutEnableM64P1.Q THEN
+    g_noPwmDutyFly := 0;
+    g_noPwmFreqFly := 0;
+    g_bLaserCuttingEnable := FALSE;
+    bXFCPWMEnable := FALSE;
+  END_IF;
+  
+  IF nLayerStartState = 620 THEN
+    nFlyCuttingState := 620;
+  END_IF;
+  IF g_nToolNum<>5 THEN
+    nFlyCuttingState := 0;
+  END_IF;
+  
+  CASE nFlyCuttingState OF
+    0:
+      nFlyCuttingState := 0;
+    1000:
+      IF (nLayerStartState = 400 OR nLayerStartState = 500) AND g_nToolNum=5 THEN
+        bXFCPWMEnable := TRUE;
+        nFlyCuttingState := 2000;
+      END_IF;
+    2000:(*正常M62和M63出光状态,什么都不做*)  
+      ;
+    620:(*暂停状态*)
+      IF g_fiXYUCurrentSpeed <= 0.01 THEN
+        g_noPwmDutyFly := 0;
+        g_noPwmFreqFly := 0;
+        bXFCPWMEnable := FALSE;
+        g_bLaserCuttingEnable := FALSE;
+      END_IF;
+      IF nLayerStartState = 440 OR nLayerStartState = 500 THEN
+        g_bLaserCuttingEnable := TRUE;
+        IF g_biFlyCutOpenLightCNC AND g_nPlcState = 1 THEN
+          bXFCPWMEnable := TRUE;
+        END_IF;
+        nFlyCuttingState := 2000;
+      END_IF;
+  END_CASE;
+END_IF;
+(*零尾料模式需要切换飞切延时*)
+IF g_bChangeSecondFlyAndPowerCutCommunicationCycle THEN
+  fActualFlyCutCommunicationCycle := g_fSecondFlyCutCommunicationCycle;
+ELSE
+  fActualFlyCutCommunicationCycle := g_fFlyCutCommunicationCycle;
+END_IF;
+
+  (*如果不是飞切刀具,bXFCPWMEnable与g_bLaserCuttingEnable保持一致*)
+    IF g_nToolNum <> 5 THEN
+      bXFCPWMEnable:=g_bLaserCuttingEnable;
+      dCommunicationDelayTemp := g_dFlyCutWeilianComunication + fActualFlyCutCommunicationCycle;   (*不是飞切的时候,系统延时就用飞切功率控制的系统延时 + 飞切微联控制系统延时 *)
+    ELSE
+      dCommunicationDelayTemp := fActualFlyCutCommunicationCycle;  (*飞切的时候,系统延时就用飞切控制系统延时*)
+    END_IF;
+(*bLaserONByPLC的上升沿或者下降沿会清除所有的队列,上升沿强制赋值ON,下降沿强制赋值OFF*)
+fb_EDS3000PWM(
+bLaserONByPLC:= bXFCPWMEnable or g_bLaserDotEnable,
+XFCLaserOn := g_niXFCLaserOn_CNCPin(*UDINT*),
+XFCLaserOnTime := g_niXFCLaserOnTime_CNCPin(*DINT*),
+XFCLaserOff := g_niXFCLaserOff_CNCPin(*UDINT*),
+XFCLaserOffTime :=g_niXFCLaserOffTime_CNCPin (*DINT*),
+nDelayOn := LREAL_TO_DINT(dCommunicationDelayTemp* 1000.0) (*DINT*),
+nDelayOff := LREAL_TO_DINT(dCommunicationDelayTemp* 1000.0) (*DINT*),
+XFCLaserPWMOut0 => g_noXFCLaserData0(*UDINT*),
+XFCLaserPWMOut1 => g_noXFCLaserData1(*UDINT*),
+XFCLaserPWMOut2 => g_noXFCLaserData2(*UDINT*),
+XFCLaserPWMOut3 => g_noXFCLaserData3(*UDINT*)
+);
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

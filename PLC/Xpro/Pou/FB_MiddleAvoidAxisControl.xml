@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_MiddleAvoidAxisControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBMiddleAxisAct">
+        <type>
+          <derived name="FB_MiddleAxisAct"/>
+        </type>
+      </variable>
+      <variable name="FBMiddleAxisRel">
+        <type>
+          <derived name="FB_MiddleAxisRel"/>
+        </type>
+      </variable>
+      <variable name="FBMiddleAxisAbs">
+        <type>
+          <derived name="FB_MiddleAxisAbs"/>
+        </type>
+      </variable>
+      <variable name="FBMiddleAxisJog">
+        <type>
+          <derived name="FB_MiddleAxisJog"/>
+        </type>
+      </variable>
+      <variable name="FBMiddleAxisHome">
+        <type>
+          <derived name="FB_MiddleAxisHome"/>
+        </type>
+      </variable>
+      <variable name="FBMiddleAxisPower">
+        <type>
+          <derived name="FB_MiddleAxisPower"/>
+        </type>
+      </variable>
+      <variable name="FBMiddleAxisGearControl">
+        <type>
+          <derived name="FB_MiddleAxisGearControl"/>
+        </type>
+      </variable>
+      <variable name="FBMiddleAxisDetection">
+        <type>
+          <derived name="FB_MiddleAxisMoveDetection"/>
+        </type>
+      </variable>
+      <variable name="FBMiddleCylinderControl">
+        <type>
+          <derived name="FB_MiddleCylinderControl"/>
+        </type>
+      </variable>
+      <variable name="FBReadMasterAxisStatus">
+        <type>
+          <derived name="MC_AXISSTATUS"/>
+        </type>
+      </variable>
+      <variable name="bAxis1ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis2ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="FBFeedAxisSelfTuning">
+        <type>
+          <derived name="FB_MiddleAvoidFeedAxisSelfTuning"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBMiddleAxisAct();
+FBMiddleAxisRel();
+FBMiddleAxisAbs();
+FBMiddleAxisJog();
+FBMiddleAxisHome();
+FBMiddleAxisPower();
+FBMiddleAxisGearControl();
+FBMiddleAxisDetection();
+FBMiddleCylinderControl();
+FBFeedAxisSelfTuning();
+(*刷新主轴状态*)
+FBReadMasterAxisStatus(
+AXIS := Axis_Y0);
+
+
+bAxis1ErrorAlarm :=  AntiRejection5.NCTOPLC.POWERPOSWARN OR AntiRejection5.NCTOPLC.POWERNEGWARN 
+     OR AntiRejection5.NCTOPLC.ERRORCODE <>0;
+bAxis2ErrorAlarm :=  AntiRejection4.NCTOPLC.POWERPOSWARN OR AntiRejection4.NCTOPLC.POWERNEGWARN 
+     OR AntiRejection4.NCTOPLC.ERRORCODE <>0;
+
+
+
+IF bAxis1ErrorAlarm AND g_bPlcResetBuffer THEN
+  g_AntiRejection5Reset.Execute := TRUE;
+ELSE
+  g_AntiRejection5Reset.Execute := FALSE;   
+END_IF;
+IF bAxis2ErrorAlarm AND g_bPlcResetBuffer THEN
+  g_AntiRejection4Reset.Execute := TRUE;
+ELSE
+  g_AntiRejection4Reset.Execute := FALSE;   
+END_IF;
+
+
+IF Axis_Y0.NCTOPLC.ERRORCODE <>0 AND g_bPlcResetBuffer THEN
+  g_Y0Reset.EXECUTE := TRUE;
+ELSE
+  g_Y0Reset.EXECUTE := FALSE;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

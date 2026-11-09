@@ -1,0 +1,600 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_EDS3000" pouType="functionBlock">
+  <interface>
+    <localVars constant="true">
+      <variable name="CYCLE_TIME">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="1000"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[控制周期]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="bLaserONByPLC">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC发出的LaserON开光]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="rtbLaserONByPLC">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC发出的LaserON的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ftbLaserONByPLC">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC发出的LaserON的下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="XFCLaserOn">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[CNC输入引脚，开光信号，每次加1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="XFCLaserOn_1">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="XFCLaserOnTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[CNC计算的开光延时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="XFCLaserOff">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[CNC输入引脚，关光信号，每次加1]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="XFCLaserOff_1">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="XFCLaserOffTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[CNC计算的开光延时]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="nLoop">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nLoop1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="nDelayOn">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[功能块输入，由调用这传入：系统，包括伺服，机械引起的时间的延时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDelayOff">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[功能块输入，由调用者传入：系统，包括伺服，机械引起的时间的延时]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <outputVars>
+      <variable name="XFCLaserPWMOut0">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[给EDS3000的飞切的PWM输出，数据0]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="XFCLaserPWMOut1">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[给EDS3000的飞切的PWM输出，数据1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="XFCLaserPWMOut2">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[给EDS3000的飞切的PWM输出，数据2]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="XFCLaserPWMOut3">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[给EDS3000的飞切的PWM输出，数据3]]></xhtml:p>
+        </documentation>
+      </variable>
+    </outputVars>
+    <localVars>
+      <variable name="abyOutput">
+        <type>
+          <array>
+            <dimension lower="0" upper="3"/>
+            <baseType>
+              <DWORD/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+    </localVars>
+    <localVars constant="true">
+      <variable name="MAX_OUTLEN">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="4"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[输出几个变量到EDS3000中]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <localVars>
+      <variable name="bSwitchOn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[内部变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSwitchOff">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[内部变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSwitchOnOffset">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[CNC引脚发过来的的开光的延时的内部变量副本]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSwitchOffOffset">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[CNC引脚发过来的的关光的延时的内部变量副本]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="byStaticValue">
+        <type>
+          <DWORD/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="bStateChanged">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFirstCycle">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="True"/>
+        </initialValue>
+      </variable>
+      <variable name="eLastState">
+        <type>
+          <derived name="E_FastMState"/>
+        </type>
+        <initialValue>
+          <simpleValue value="LAROFF"/>
+        </initialValue>
+      </variable>
+      <variable name="stDequeued">
+        <type>
+          <derived name="ST_FastMFunctionBufferltem"/>
+        </type>
+      </variable>
+      <variable name="nBits">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第几位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nBytes">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第几个DWOrd，注意倍福的是byte]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="byBitmask">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="nBitMove">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="astQueue">
+        <type>
+          <array>
+            <dimension lower="0" upper="9"/>
+            <baseType>
+              <derived name="ST_FastMFunctionBufferltem"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+    </localVars>
+    <localVars constant="true">
+      <variable name="MAX_QLEN">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="10"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[最长buffer几个命令]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <localVars>
+      <variable name="nQueuedCount">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前有几个命令在buffer中]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nErrorCode">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nSameCylcleONTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[如果是同一个周期开关，记下开的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSameCylcleOFFTime">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[如果是同一个周期开关，记下关的时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="unLastXFCData0">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当有XFC触发的时候，记下数据0]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="unLastXFCData1">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当有XFC触发的时候，记下数据1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="unLastXFCData2">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当有XFC触发的时候，记下数据2]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="unLastXFCData3">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当有XFC触发的时候，记下数据3]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fbEDS3000XFCOutRingBuff">
+        <type>
+          <derived name="FB_EDS3000XFCOutRingBuffer"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当有XFC触发的时候，记下此时的输出，做多保存100组]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="idx">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="rProramStartTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF (nQueuedCount > 0 and nQueuedCount <= MAX_QLEN) THEN
+	FOR nLoop := 0 TO (nQueuedCount - 1) DO
+    if(astQueue[nLoop].nSwitchTime - CYCLE_TIME >= 0) then
+      astQueue[nLoop].nSwitchTime	:= astQueue[nLoop].nSwitchTime - CYCLE_TIME;
+    else
+      nErrorCode:=1;
+      xfcDataMonitorInst.nErrorCode1 :=1;
+    end_if;
+	END_FOR;
+END_IF;
+
+rtbLaserONByPLC(CLK:=bLaserONByPLC);
+(*这个是如果外部按下了激光打点或者就是给了开光的指令*)
+if (rtbLaserONByPLC.Q) then
+  nQueuedCount:=0;
+  bStateChanged:=true;
+  eLastState := E_FastMState#LARON;
+end_if;
+ftbLaserONByPLC(CLK:=bLaserONByPLC);
+(*这个是如果外部按下了暂停或者复位键*)
+if (ftbLaserONByPLC.Q) then
+  nQueuedCount:=0;
+  bStateChanged:=true;
+  eLastState := E_FastMState#LAROFF;
+end_if;
+
+(****************************************************************************************)
+(*	  					    根据CNC发过来的引脚来确认状态 						*)
+(****************************************************************************************)
+bSwitchOn						:= FALSE;
+nSwitchOnOffset					:= 0;
+bSwitchOff						:= FALSE;
+nSwitchOffOffset				:= 0;
+rProramStartTrigger(clk:= g_bOProcessStart);
+if rProramStartTrigger.Q then
+  idx:=0;
+end_if;
+
+if(XFCLaserOn <> XFCLaserOn_1) THEN(*CNC触发开光*)
+  bSwitchOn:=true;
+  nSwitchOnOffset:=XFCLaserOnTime;(*保存下CNC发过来的开光延时*)  
+  (*以下数据位监控使用*)
+  idx := (idx+1) mod MaxXFCMonitorData;
+  xfcDataMonitorInst.xPosCNCXFCTrigger[idx] := g_fiMotionPosCmd;
+  xfcDataMonitorInst.yPosCNCXFCTrigger[idx] := g_fiMotionPosCmd;
+  xfcDataMonitorInst.isOpenLight[idx] := 1;
+  xfcDataMonitorInst.cncXFCTriggerTime[idx] := nSwitchOnOffset;
+  xfcDataMonitorInst.cncXFCVelocity[idx] :=g_fiXYUCurrentSpeed;
+end_if;
+if (XFCLaserOff<>XFCLaserOff_1) THEN(*CNC触发关光*)
+  bSwitchOff:=true;
+  nSwitchOffOffset := XFCLaserOffTime;(*保存下CNC发过来的关光延时*)
+  (*以下数据位监控使用*)
+  idx := (idx+1) mod MaxXFCMonitorData;
+  xfcDataMonitorInst.xPosCNCXFCTrigger[idx] := g_fiMotionPosCmd;
+  xfcDataMonitorInst.yPosCNCXFCTrigger[idx] := g_fiMotionPosCmd;
+  xfcDataMonitorInst.isOpenLight[idx] := 0;
+  xfcDataMonitorInst.cncXFCTriggerTime[idx] := nSwitchOffOffset;
+  xfcDataMonitorInst.cncXFCVelocity[idx] :=g_fiXYUCurrentSpeed;
+end_if;
+XFCLaserOn_1:=XFCLaserOn;
+XFCLaserOff_1:=XFCLaserOff;
+
+(****************************************************************************************)
+(*	  		Buffer found switch on/off events with correspondent switch times			*)
+(*	  		如果新来了ON或者OFF指令，就把他加入到队列中			*)
+(*	  		如果ON和OFF一起来了,根据时间先后,时间小的先入队,时间大的后入队			*)
+(****************************************************************************************)
+IF (nQueuedCount < MAX_QLEN) THEN
+	IF bSwitchOn AND bSwitchOff THEN
+		(* In case switch on and off events have been transmitted within the same cycle, 	*)
+		(* order them according to their switch times!										*)
+		IF ((nSwitchOnOffset + nDelayOn) < (nSwitchOffOffset + nDelayOff)) THEN
+			astQueue[nQueuedCount].eState := E_FastMState#LARON;
+			astQueue[nQueuedCount].nSwitchTime	:= nSwitchOnOffset + nDelayOn;(*nDelayOn额外添加的延时*)
+			nQueuedCount						:= nQueuedCount + 1;
+
+			astQueue[nQueuedCount].eState		:=  E_FastMState#LAROFF;
+			astQueue[nQueuedCount].nSwitchTime	:= nSwitchOffOffset + nDelayOff;(*nDelayOff额外添加的延时*)
+			nQueuedCount						:= nQueuedCount + 1;
+		ELSE
+			astQueue[nQueuedCount].eState		:=  E_FastMState#LAROFF;
+			astQueue[nQueuedCount].nSwitchTime	:= nSwitchOffOffset + nDelayOff;
+			nQueuedCount						:= nQueuedCount + 1;
+
+			astQueue[nQueuedCount].eState		:= E_FastMState#LARON;
+			astQueue[nQueuedCount].nSwitchTime	:= nSwitchOnOffset + nDelayOn;
+			nQueuedCount						:= nQueuedCount + 1;
+		END_IF;
+    
+    nSameCylcleONTime:= nSwitchOnOffset + nDelayOn;
+    nSameCylcleOFFTime:= nSwitchOffOffset + nDelayOff;
+	ELSIF bSwitchOn THEN
+		astQueue[nQueuedCount].eState			:= E_FastMState#LARON;
+		astQueue[nQueuedCount].nSwitchTime		:= nSwitchOnOffset + nDelayOn;
+		nQueuedCount							:= nQueuedCount + 1;
+	ELSIF bSwitchOff THEN
+		astQueue[nQueuedCount].eState			:=  E_FastMState#LAROFF;
+		astQueue[nQueuedCount].nSwitchTime		:= nSwitchOffOffset + nDelayOff;
+		nQueuedCount							:= nQueuedCount + 1;
+	END_IF;
+END_IF;
+
+(****************************************************************************************)
+(*	  				  Set output array according to latest switch state					*)
+(*              根据上一个周期的输出来确定本周期的输,如果此处的bStateChanged为true,代表上一个周期有XFC的输出*)
+(*              如果上一个周期,XFC最后输出的是关激光,那么这个周期,就先给这个周期的输出的初始值赋值为关激光*)
+(*              如果上一个周期,XFC最后输出的是开激光,那么这个周期,就先给这个周期的输出的初始值赋值为开激光*)
+(****************************************************************************************)
+
+IF bStateChanged OR bFirstCycle THEN
+	bStateChanged				:= FALSE;
+	IF (eLastState = E_FastMState#LAROFF) THEN
+		byStaticValue			:= 16#00;
+	ELSIF (eLastState =  E_FastMState#LARON) THEN
+		byStaticValue			:= 16#FFFF_FFFF;
+	END_IF;
+  FOR nLoop := 0 TO MAX_OUTLEN-1 DO
+      abyOutput[nLoop]:=byStaticValue;
+  end_for;
+END_IF;
+
+(****************************************************************************************)
+(*	  					  Dequeue switch events from the buffer							*)
+(****************************************************************************************)
+WHILE (nQueuedCount > 0) AND (*从队头开始判断*)
+	  (astQueue[0].eState <> EMPTY) AND
+	  (astQueue[0].nSwitchTime < CYCLE_TIME)(*此处用小于号,有可能nSwitchTime正好等于0,也时有可能的,那么就时整个周期的开启或者关闭*)
+DO
+	stDequeued					:= astQueue[0];
+	nQueuedCount				:= nQueuedCount - 1;
+  
+  FOR nLoop := 1 TO MAX_QLEN-1 DO
+      astQueue[nLoop-1]:=astQueue[nLoop];
+  end_for;
+ (*这一行千万不要删除,因为这一行,代表这个周期有XFC的输出变化,那么,下一个周期要根据这个周期的XFC的输出,来保证给输出变量一个初始值*)
+ (*如果下个周期,又有XFC的输出,那么再在这个循环里计算*)
+	bStateChanged				:= TRUE;
+	IF (stDequeued.nSwitchTime < 0) THEN
+		 nErrorCode:=2;
+     xfcDataMonitorInst.nErrorCode2 :=1;
+	ELSE
+    nBits 						:= REAL_TO_DINT( (DINT_TO_REAL(stDequeued.nSwitchTime mod 250) / 250.0) *32.0);(*第几个bit*)
+    nBytes 						:= stDequeued.nSwitchTime/250;(*第几个数*)
+		IF ((stDequeued.eState = E_FastMState#LARON) AND (eLastState = E_FastMState#LAROFF)) THEN
+      nBitMove := (nBits mod 32);
+       if(nBits = 32) then
+         byBitmask := UDINT_TO_DWORD(16#00);
+      else
+         byBitmask := SHL(UDINT_TO_DWORD(16#FFFF_FFFF), nBitMove);(*左移多少位,就是延时多少位开光,如果nBits=32,表示本字节为0,下一个字节开光*)
+      end_if;
+			abyOutput[nBytes]	:= abyOutput[nBytes] OR byBitmask;
+			eLastState			:= E_FastMState#LARON;
+      FOR nLoop := (nBytes + 1) TO MAX_OUTLEN-1 DO
+          abyOutput[nLoop]:=16#FFFF_FFFF;
+      end_for;
+		ELSIF ((stDequeued.eState = E_FastMState#LAROFF) AND (eLastState = E_FastMState#LARON)) THEN
+      nBitMove := (32 - nBits) mod 32;
+      if(nBits = 0) then
+         byBitmask := UDINT_TO_DWORD(16#00);
+      else
+         byBitmask := SHR(UDINT_TO_DWORD(16#FFFF_FFFF), nBitMove);(*右移多少位,就是延时多少位开光,如果nBits=0,就移动0位*)
+      end_if;
+
+			abyOutput[nBytes]	:= abyOutput[nBytes] AND byBitmask;
+			eLastState			:= E_FastMState#LAROFF;
+      FOR nLoop := nBytes + 1 TO MAX_OUTLEN-1 DO
+          abyOutput[nLoop]:=16#00;
+      end_for;
+		END_IF;
+	END_IF;
+
+END_WHILE;
+
+XFCLaserPWMOut0:= DWORD_TO_UDINT(abyOutput[0]);
+XFCLaserPWMOut1:= DWORD_TO_UDINT(abyOutput[1]);
+XFCLaserPWMOut2:= DWORD_TO_UDINT(abyOutput[2]);
+XFCLaserPWMOut3:= DWORD_TO_UDINT(abyOutput[3]);
+
+(*如果在此处bStateChanged为True,代表本周期有一个XFC的输出*)
+IF bStateChanged Then
+    unLastXFCData3:=XFCLaserPWMOut3;
+    unLastXFCData2:=XFCLaserPWMOut2;
+    unLastXFCData1:=XFCLaserPWMOut1;
+    unLastXFCData0:=XFCLaserPWMOut0;
+    if(idx > 0 and idx < MaxXFCMonitorData) then
+        (*以下数据位监控使用*)
+      xfcDataMonitorInst.xPosOutToEDS[idx] := g_fiMotionPosCmd;
+      xfcDataMonitorInst.yPosOutToEDS[idx] := g_fiMotionPosCmd;
+      xfcDataMonitorInst.xfcData0[idx] := XFCLaserPWMOut0;
+      xfcDataMonitorInst.xfcData1[idx] := XFCLaserPWMOut1;
+      xfcDataMonitorInst.xfcData2[idx] := XFCLaserPWMOut2;
+      xfcDataMonitorInst.xfcData3[idx] := XFCLaserPWMOut3;
+      (*将XFC的输出记录下来*)
+      fbEDS3000XFCOutRingBuff(
+                              iCount:=idx,
+                              nPWMOutData3:=XFCLaserPWMOut3,
+                              nPWMOutData2:=XFCLaserPWMOut2,
+                              nPWMOutData1:=XFCLaserPWMOut1,
+                              nPWMOutData0:=XFCLaserPWMOut0);
+    end_if;
+  
+end_if;
+
+(****************************************************************************************)
+(*	  							   Reset first cycle indicator							*)
+(****************************************************************************************)
+bFirstCycle						:= FALSE;
+IF nErrorCode =1 THEN    (*飞切报警*)
+  g_Alarm.alarmArray[232] := 967;
+ELSIF nErrorCode =2 THEN
+  g_Alarm.alarmArray[232] := 968;
+ELSE
+  g_Alarm.alarmArray[232] := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ST_TECHDATA">
+  <baseType>
+    <struct>
+      <variable name="nPiercing_Type">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="DIRECUT_CUTTING">
+        <type>
+          <derived name="ST_DIRECT_CUTTING"/>
+        </type>
+      </variable>
+      <variable name="NORMAL_CUTTING">
+        <type>
+          <derived name="ST_NORMAL_PERFORM_CUTTING"/>
+        </type>
+      </variable>
+      <variable name="PROGRESS_CUTTING">
+        <type>
+          <derived name="ST_PROGRESS_PERFORM_CUTTING"/>
+        </type>
+      </variable>
+      <variable name="MULTIL_PIERCING_HIGH">
+        <type>
+          <derived name="ST_MULTIL_PERFORM_CUTTING"/>
+        </type>
+      </variable>
+      <variable name="MULTIL_PIERCING_MIDDLE">
+        <type>
+          <derived name="ST_MULTIL_PERFORM_CUTTING"/>
+        </type>
+      </variable>
+      <variable name="MULTIL_PIERCING_LOW">
+        <type>
+          <derived name="ST_MULTIL_PERFORM_CUTTING"/>
+        </type>
+      </variable>
+      <variable name="CornerCompen">
+        <type>
+          <derived name="ST_CornerCompen"/>
+        </type>
+      </variable>
+      <variable name="POWER_DATA">
+        <type>
+          <derived name="ST_POWER_CONTROL"/>
+        </type>
+      </variable>
+      <variable name="NoninductivePiercing">
+        <type>
+          <derived name="ST_NoninductivePiercing_DATA"/>
+        </type>
+      </variable>
+      <variable name="NEW_MULTIL_PIERCING">
+        <type>
+          <array>
+            <dimension lower="0" upper="2"/>
+            <baseType>
+              <derived name="ST_NEWMULTIL_PIERCING"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

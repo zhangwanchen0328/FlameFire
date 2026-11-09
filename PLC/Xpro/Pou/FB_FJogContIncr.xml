@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FJogContIncr" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_FAxis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nJogSwitch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_FJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bJogForwardEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[正向点动使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bJogBackwardEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[反向点动使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nMode">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动模式]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF nJogSwitch THEN
+  g_FJog.Mode := 1;
+ELSE
+  g_FJog.Mode := 0;
+END_IF;
+
+g_FJog.JogForward := bJogForwardEnable;
+g_FJog.JogBackwards := bJogBackwardEnable;
+
+IF g_bPlcResetBuffer THEN
+  bJogForwardEnable := FALSE;
+  bJogBackwardEnable := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

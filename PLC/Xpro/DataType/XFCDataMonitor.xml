@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="XFCDataMonitor">
+  <baseType>
+    <struct>
+      <variable name="xPosCNCXFCTrigger">
+        <type>
+          <array>
+            <dimension lower="0" upper="1000"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="yPosCNCXFCTrigger">
+        <type>
+          <array>
+            <dimension lower="0" upper="1000"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="isOpenLight">
+        <type>
+          <array>
+            <dimension lower="0" upper="1000"/>
+            <baseType>
+              <INT/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="cncXFCTriggerTime">
+        <type>
+          <array>
+            <dimension lower="0" upper="1000"/>
+            <baseType>
+              <DINT/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="cncXFCVelocity">
+        <type>
+          <array>
+            <dimension lower="0" upper="1000"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="xPosOutToEDS">
+        <type>
+          <array>
+            <dimension lower="0" upper="1000"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="yPosOutToEDS">
+        <type>
+          <array>
+            <dimension lower="0" upper="1000"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="xfcData0">
+        <type>
+          <array>
+            <dimension lower="0" upper="1000"/>
+            <baseType>
+              <UDINT/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="xfcData1">
+        <type>
+          <array>
+            <dimension lower="0" upper="1000"/>
+            <baseType>
+              <UDINT/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="xfcData2">
+        <type>
+          <array>
+            <dimension lower="0" upper="1000"/>
+            <baseType>
+              <UDINT/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="xfcData3">
+        <type>
+          <array>
+            <dimension lower="0" upper="1000"/>
+            <baseType>
+              <UDINT/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="nErrorCode1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nErrorCode2">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

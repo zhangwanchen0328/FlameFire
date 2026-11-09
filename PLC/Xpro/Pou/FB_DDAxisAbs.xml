@@ -1,0 +1,436 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DDAxisAbs" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC暂停]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC复位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nAbsState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAbsExecuteEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始共享内存HMI]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bDDAxisAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_DDAxisAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_DDAxisStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Rtring">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dTargetVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="DDAxis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_bDDAxisAbsExecuteEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biDDAxisAbsExecuteEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boDDAxisAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成输出引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dTargetPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fiDDAxisAbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fDDAxisAbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fDDAxisAbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiDDAxisVelocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动速度输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dAbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置HMI]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dAbsVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置HMI]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDDAxisAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成HMI]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fDDAxisVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="M">
+        <type>
+          <derived name="CNC_MCONTROL"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring(CLK := g_bDDAxisAbsExecuteEnable OR g_biDDAxisAbsExecuteEnable OR bAbsExecuteEnable OR g_bGeneral3ABSOpenM);
+Rtring1(CLK := g_bAxisStopFlag);
+Rtring2(CLK := g_bAxisStopFlag_4);
+Rtring3(CLK := g_bGeneralAxis3AutoMoveControlM);
+IF Rtring3.Q THEN
+	g_bGeneralAxis3AutoMoveControlM := FALSE;
+    g_bUniversalAxis3MoveDoneM320 := FALSE;
+	IF g_dGeneralAxis3AutoMoveType = 1.0 THEN
+		dTargetPos := g_dGeneralAxis3AutoMoveDistance -g_dBoundRectangleWidth;
+	ELSE
+		dTargetPos := g_dGeneralAxis3AutoMoveDistance +g_dBoundRectangleheight;	
+	END_IF;
+  nAbsState := 1;
+  IF g_bSetAuxiliaryAxisSpeed THEN
+		dTargetVel := g_nAuxiliaryAxisSpeed;
+		g_bSetAuxiliaryAxisSpeed := FALSE;
+	ELSE
+      dTargetVel := dAbsVel;
+    END_IF;
+  IF NOT g_bUseCommonAxis3 THEN
+    M.ENABLE[334] := 0;
+    g_bFinishedM334_3 := FALSE;
+    nAbsState := 0;
+    g_boDDAxisAbsDone := TRUE;
+	g_bDDAxisAbsDone := TRUE;
+    g_bUniversalAxis3MoveDoneM320 := TRUE;
+  END_IF;
+  
+  (*IF nAbsState <> 0  AND nAbsState <> 10 AND DDAxis.NCTOPLC.ACTVELO > g_dCheckAxisIsMovingSpeedSet  THEN
+    g_bAxisIsMoveAlarm := TRUE;
+    g_bGeneralAxis3AutoMoveControlM := FALSE;
+  nAbsState := 11;
+  END_IF;
+  *)
+  
+ 
+END_IF;
+
+IF Rtring.Q THEN
+  IF nAbsState <> 0  AND nAbsState <> 10  THEN
+    g_bAxisIsMoveAlarm := TRUE;
+    bAbsExecuteEnable := FALSE;
+    g_bDDAxisAbsExecuteEnable := FALSE;
+    g_bGeneral3ABSOpenM := FALSE;
+    RETURN;
+  END_IF;
+  
+  
+  IF g_biDDAxisAbsExecuteEnable THEN
+    nAbsState := 1; 
+    dTargetPos := g_fiDDAxisAbsPosition;
+    dTargetVel := g_fiDDAxisVelocity;
+  ELSIF bAbsExecuteEnable THEN
+    nAbsState := 1; 
+    dTargetPos := dAbsPosition;
+    dTargetVel := dAbsVel;
+    bAbsExecuteEnable := FALSE;
+    IF g_bPowerOffMoveToTargetPosSetSpeedFlag THEN
+      dTargetVel := g_dPowerOffMoveToTargetPosSpeed;
+    END_IF;
+  ELSIF g_bGeneral3ABSOpenM THEN
+     nAbsState := 1; 
+    dTargetPos := dAbsPosition;
+    IF g_dGeneralAxisABSMoveTypeM = 0.0 THEN
+       dTargetPos := 0.0;
+    ELSIF g_dGeneralAxisABSMoveTypeM = 2.0 THEN
+       dTargetPos := g_dGeneralAxisMoveDistanceM;
+    END_IF;
+	IF g_bSetAuxiliaryAxisSpeed THEN
+      dTargetVel := g_nAuxiliaryAxisSpeed;
+	  g_bSetAuxiliaryAxisSpeed := FALSE;
+	ELSE
+      dTargetVel := dAbsVel;
+    END_IF;
+  ELSE
+    nAbsState := 2; 
+    dTargetPos := g_fDDAxisAbsPosition;
+    dTargetVel := g_fDDAxisAbsVelocity;
+    g_bDDAxisAbsExecuteEnable := FALSE;
+  END_IF;
+  IF dTargetVel = 0.0 THEN
+    dTargetVel := g_fDDAxisVel;
+  END_IF;
+  g_boDDAxisAbsDone := FALSE;
+  g_bDDAxisAbsDone := FALSE;
+  bDDAxisAbsDone := FALSE;
+  g_bGeneral3ABSOpenM := FALSE;
+END_IF;
+
+IF Rtring1.Q THEN
+  IF g_nAxisStopP = 4 THEN
+    g_bAxisStopFlag := FALSE;
+    nAbsState := 11;
+  END_IF;
+END_IF;
+  
+IF Rtring2.Q THEN
+  IF g_bAxisStopFlag_4 THEN
+    g_bAxisStopFlag_4 := FALSE;
+    nAbsState := 11;
+  END_IF;
+END_IF;
+  
+CASE nAbsState OF
+  0:
+  nAbsState := 0;
+  1:
+  g_DDAxisAbs.Execute := TRUE;
+  g_DDAxisAbs.Velocity := dTargetVel;
+  g_DDAxisAbs.Position := dTargetPos;
+  IF g_DDAxisAbs.Done THEN
+    g_DDAxisAbs.Execute := FALSE;
+    g_bDDAxisAbsDone := TRUE;
+    g_boDDAxisAbsDone := TRUE;
+    bDDAxisAbsDone := TRUE;
+    g_bUniversalAxis3MoveDoneM320 := TRUE;
+    nAbsState := 0;
+    M.ENABLE[274] := 0;
+    M.ENABLE[334] := 0;
+    g_bExecuteFinishedM274 := FALSE;
+    g_bFinishedM274_3 := FALSE;
+    g_bFinishedM334_3 := FALSE;
+  END_IF;
+  IF g_DDAxisAbs.CommandAborted OR g_DDAxisAbs.Error THEN
+    g_DDAxisAbs.Execute := FALSE;
+    g_bDDAxisAbsDone := FALSE;
+    nAbsState := 0;
+  END_IF;
+  IF g_bPlcPauseBuffer THEN
+    nAbsState := 10;
+  END_IF;
+  2:
+  g_DDAxisAbs.Execute := TRUE;
+  g_DDAxisAbs.Velocity := dTargetVel;
+  g_DDAxisAbs.Position := dTargetPos;
+  IF g_DDAxisAbs.Done THEN
+    g_DDAxisAbs.Execute := FALSE;
+    g_boDDAxisAbsDone := TRUE;
+    g_bDDAxisAbsDone := TRUE;
+    bDDAxisAbsDone := TRUE;
+    nAbsState := 0;
+  END_IF;
+  IF g_bPlcPauseBuffer THEN
+    nAbsState := 11;
+  END_IF;
+  IF g_DDAxisAbs.CommandAborted OR g_DDAxisAbs.Error THEN
+    g_DDAxisAbs.Execute  := FALSE;
+    g_boDDAxisAbsDone := FALSE;
+    nAbsState := 0;
+  END_IF;
+  10:
+    g_DDAxisAbs.Execute := FALSE;
+    g_DDAxisStop.Execute :=TRUE;
+    IF g_DDAxisStop.Done AND g_bPlcStartBuffer THEN
+      g_DDAxisStop.Execute := FALSE;
+      nAbsState := 1;
+    END_IF;
+    IF g_DDAxisStop.CommandAborted OR g_DDAxisStop.Error THEN
+      g_DDAxisStop.Execute := FALSE;
+      nAbsState := 0;
+    END_IF;
+    11:
+    g_DDAxisAbs.Execute := FALSE;
+    g_DDAxisStop.Execute := TRUE;
+    IF g_DDAxisStop.Done THEN
+      g_DDAxisStop.Execute := FALSE;
+      g_bFinishedM325_4 := FALSE;
+      M.ENABLE[325] := 0;
+      nAbsState := 0;
+      g_bUniversalAxis3MoveDoneM320 := TRUE;
+    END_IF;
+    IF g_DDAxisStop.CommandAborted OR g_DDAxisStop.Error THEN
+      g_DDAxisStop.Execute := FALSE;
+      g_bFinishedM325_4 := FALSE;
+      M.ENABLE[325] := 0;
+      nAbsState :=0;
+    END_IF;
+END_CASE;
+IF g_bPlcResetBuffer THEN
+  g_DDAxisAbs.Execute := FALSE;
+  g_DDAxisStop.Execute := FALSE;
+  IF g_bRealTimeUpdateParallePLCExecuteFlag AND nAbsState <> 0 AND  (g_bExecuteFinishedM274 OR 
+    g_bFinishedM274_3 OR g_bFinishedM325_4 OR g_bFinishedM334_3) THEN
+    ;
+  ELSE
+    nAbsState := 0;
+	g_bExecuteFinishedM274 := FALSE;
+	g_bFinishedM325_4 := FALSE;
+    g_bFinishedM274_3 := FALSE;
+    g_bFinishedM334_3 := FALSE;
+  END_IF;
+  
+  
+  
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

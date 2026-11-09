@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_QRLoadSensor" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBLoadAxisZero">
+        <type>
+          <derived name="FB_QRLoadAxisZero"/>
+        </type>
+      </variable>
+      <variable name="FBSensorAxisZero">
+        <type>
+          <derived name="FB_QRSensorAxisZero"/>
+        </type>
+      </variable>
+      <variable name="FBLoadFixedAbs">
+        <type>
+          <derived name="FB_QRLoadFixedAbs"/>
+        </type>
+      </variable>
+      <variable name="FBNCAxisAct">
+        <type>
+          <derived name="FB_QRNCAxisAct"/>
+        </type>
+      </variable>
+      <variable name="FBCalPartNum">
+        <type>
+          <derived name="FB_QRCalPartNum"/>
+        </type>
+      </variable>
+      <variable name="FBCalOffset">
+        <type>
+          <derived name="FB_QRCalOffset"/>
+        </type>
+      </variable>
+      <variable name="FBAdjustSensorPos">
+        <type>
+          <derived name="FB_QRAdjustSensorPos"/>
+        </type>
+      </variable>
+      <variable name="FBClawControl">
+        <type>
+          <derived name="FB_QRClawControl"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_LoadReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_SensorReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBLoadSensorPower">
+        <type>
+          <derived name="FB_QRLoadSensorPower"/>
+        </type>
+      </variable>
+      <variable name="FBLoadSensorJog">
+        <type>
+          <derived name="FB_QRLoadSensorJog"/>
+        </type>
+      </variable>
+      <variable name="FBSensorRel">
+        <type>
+          <derived name="FB_QRSensorRel"/>
+        </type>
+      </variable>
+      <variable name="FBLoadRel">
+        <type>
+          <derived name="FB_QRLoadRel"/>
+        </type>
+      </variable>
+      <variable name="FBLoadCylinder">
+        <type>
+          <derived name="FB_QRLoadCylinder"/>
+        </type>
+      </variable>
+      <variable name="FBTailCylinderControl">
+        <type>
+          <derived name="FB_QRTailCylinderControl"/>
+        </type>
+      </variable>
+      <variable name="FBTorqueMonitor">
+        <type>
+          <derived name="FB_QRTorqueMonitor"/>
+        </type>
+      </variable>
+      <variable name="FBCylinderClaw">
+        <type>
+          <derived name="FB_QRManualCylinderClaw"/>
+        </type>
+      </variable>
+      <variable name="FBSupportCylinder">
+        <type>
+          <derived name="FB_QRSupportCylinder"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBCylinderClaw();
+FBLoadAxisZero();
+FBSensorAxisZero();
+FBLoadFixedAbs();
+FBNCAxisAct();
+FBCalPartNum();
+FBCalOffset();
+FBAdjustSensorPos();
+FBClawControl();
+FBLoadSensorPower();
+FBLoadSensorJog();
+FBSensorRel();
+FBLoadRel();
+FBLoadCylinder();
+FBTailCylinderControl();
+FBTorqueMonitor();
+FBSupportCylinder();
+
+IF Axis_Load.NCTOPLC.ERRORCODE <>0 AND g_bPlcResetBuffer THEN
+  g_LoadReset.Execute := TRUE;
+ELSE
+  g_LoadReset.Execute := FALSE;   
+END_IF;
+
+IF Axis_Sensor.NCTOPLC.ERRORCODE <>0 AND g_bPlcResetBuffer THEN
+  g_SensorReset.Execute := TRUE;
+ELSE
+  g_SensorReset.Execute := FALSE;   
+END_IF;
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AllAxisDone" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_trig1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nAxisDoneState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_trig1(CLK := g_bAxisMoveDoneCheckM);
+IF R_trig1.Q THEN
+  g_bAxisMoveDoneCheckM := FALSE;
+  nAxisDoneState := 1;
+END_IF;
+CASE nAxisDoneState OF
+  0:
+   nAxisDoneState := 0;
+  1:
+	(*1:z轴运动到位  2-4:通用轴1-3运动到位  5-10:支撑轴1-6运动到位 11-13:下料轴运动到位  14-15:除尘轴1-2 16:中卡移动避让轴 17:下料轴4运动到位*)
+	IF g_dM320PValue=1.0 THEN
+	  IF g_bZAxisMoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_1 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF;  
+	ELSIF g_dM320PValue=2.0 THEN
+	  IF g_bUniversalAxis1MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_2 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF;
+	ELSIF g_dM320PValue=3.0 THEN
+	  IF g_bUniversalAxis2MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_3 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF;  
+	ELSIF g_dM320PValue=4.0 THEN
+	  IF g_bUniversalAxis3MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_4 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF;
+	ELSIF g_dM320PValue=5.0 THEN
+	  IF g_bSustainAxis1MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_5 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF;  
+	ELSIF g_dM320PValue=6.0 THEN
+	  IF g_bSustainAxis2MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_6 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF; 
+	ELSIF g_dM320PValue=7.0 THEN
+	  IF g_bSustainAxis3MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_7 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF; 
+	ELSIF g_dM320PValue=8.0 THEN
+	  IF g_bSustainAxis4MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_8 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF;
+	ELSIF g_dM320PValue=9.0 THEN
+	  IF g_bSustainAxis5MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_9 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF; 
+	ELSIF g_dM320PValue=10.0 THEN
+	  IF g_bSustainAxis6MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_10 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF;  
+	ELSIF g_dM320PValue=11.0 THEN
+	  IF g_bFrontAxis1MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_11 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF; 
+	ELSIF g_dM320PValue=12.0 THEN
+	  IF g_bFrontAxis2MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_12 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF; 
+	ELSIF g_dM320PValue=13.0 THEN
+      IF g_bFrontAxis3MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_13 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF;  
+    ELSIF g_dM320PValue=14.0 THEN
+      IF g_bDustAxis1MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_14 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF;
+    ELSIF g_dM320PValue=15.0 THEN
+      IF g_bDustAxis2MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_15 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF;
+    ELSIF g_dM320PValue=16.0 THEN
+      IF g_bMiddleMoveAxisDone THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_16 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF;
+    ELSIF g_dM320PValue=17.0 THEN
+      IF g_bFrontAxis4MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_17 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF; 
+    ELSIF g_dM320PValue=18.0 THEN
+      IF g_bSustainAxis7MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_18 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF; 
+    ELSIF g_dM320PValue=19.0 THEN
+      IF g_bSustainAxis8MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_19 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF; 
+    ELSIF g_dM320PValue=20.0 THEN
+      IF g_bSustainAxis9MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_20 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF; 
+    ELSIF g_dM320PValue=21.0 THEN
+      IF g_bSustainAxis10MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_21 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF; 
+    ELSIF g_dM320PValue=22.0 THEN
+      IF g_bSustainAxis11MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_22 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF; 
+    ELSIF g_dM320PValue=23.0 THEN
+      IF g_bSustainAxis12MoveDoneM320 THEN
+		M.ENABLE[320] := 0;
+		g_bExecuteFinishedM320 := FALSE;
+        g_bFinishedM320_23 := FALSE;
+        nAxisDoneState := 0;
+	  END_IF;                               
+	END_IF;  
+END_CASE;    ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

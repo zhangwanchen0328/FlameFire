@@ -1,0 +1,242 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DualStationConfig" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBDualAxisPower">
+        <type>
+          <array>
+            <dimension lower="0" upper="3"/>
+            <baseType>
+              <derived name="FB_NCAxisPower"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="FBDualAxisJog">
+        <type>
+          <array>
+            <dimension lower="0" upper="3"/>
+            <baseType>
+              <derived name="FB_NCAxisJog"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="FBDualAxisReset">
+        <type>
+          <array>
+            <dimension lower="0" upper="3"/>
+            <baseType>
+              <derived name="FB_NCAxisReset"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="FBDualAxisHome">
+        <type>
+          <array>
+            <dimension lower="0" upper="3"/>
+            <baseType>
+              <derived name="FB_NCAxisHome"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="FBDualAxisStop">
+        <type>
+          <array>
+            <dimension lower="0" upper="3"/>
+            <baseType>
+              <derived name="FB_NCAxisStop"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="FBDualAxisAbs">
+        <type>
+          <array>
+            <dimension lower="0" upper="3"/>
+            <baseType>
+              <derived name="FB_NCAxisAbs"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="FBDualAxisRel">
+        <type>
+          <array>
+            <dimension lower="0" upper="3"/>
+            <baseType>
+              <derived name="FB_NCAxisRel"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="FBDualAxisGearControl">
+        <type>
+          <array>
+            <dimension lower="0" upper="3"/>
+            <baseType>
+              <derived name="FB_NCGear"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="Index">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="FB_DualDataSet">
+        <type>
+          <derived name="FB_DualAxisDataSet"/>
+        </type>
+      </variable>
+      <variable name="UpdateAxisStatus">
+        <type>
+          <array>
+            <dimension lower="0" upper="3"/>
+            <baseType>
+              <derived name="MC_AXISSTATUS"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="FB_DualChuckListen">
+        <type>
+          <derived name="FB_DualStationChuck"/>
+        </type>
+      </variable>
+      <variable name="FB_DualAutoControl">
+        <type>
+          <derived name="FB_AutoModeControl"/>
+        </type>
+      </variable>
+      <variable name="UpdateMaster">
+        <type>
+          <derived name="MC_AXISSTATUS"/>
+        </type>
+      </variable>
+      <variable name="bAxisBrake">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*赋值*)
+FB_DualDataSet();
+FB_DualChuckListen();
+FB_DualAutoControl();
+
+FOR Index := 0 TO 3 BY 1 DO
+
+	(*使能*)
+	FBDualAxisPower[Index](
+		AxisName := g_NCMoveData.NCAXISDATA[Index].NCAxisName,
+		ENABLE := g_NCMoveData.NCAXISCMD[Index].NCAxisPower,
+		HomeMode := g_NCMoveData.NCAXISDATA[Index].AxisHomeMode,
+		HomeSignal := g_NCMoveData.NCAXISDATA[Index].AxisHomeSignal,
+		AxisPosLimit := g_NCMoveData.NCAXISDATA[Index].AxisPosLimit,
+		AxisNegLimit := g_NCMoveData.NCAXISDATA[Index].AxisNegLimit,
+		Error => g_NCMoveData.NCAXISDATA[Index].ErrorID[0],
+        OutBrake => bAxisBrake
+	);
+
+	CASE Index OF
+		0:
+           g_boDualStationAxis1HoldBrake := bAxisBrake;
+		1:
+           g_boDualStationAxis2HoldBrake := bAxisBrake;
+        2:
+           g_boDualStationAxis3HoldBrake := bAxisBrake;
+        3:
+           g_boDualStationAxis4HoldBrake := bAxisBrake;
+    END_CASE;
+  (*回原*)
+    FBDualAxisHome[Index](
+		NCAxisName := g_NCMoveData.NCAXISDATA[Index].NCAxisName,
+		IndexValue := Index,
+		dHomePosition := g_NCMoveData.NCAXISDATA[Index].NCHomePosition,
+        bAxisZero := g_NCMoveData.NCAXISDATA[Index].AxisZero,
+        dAxisHomeOffset := g_NCMoveData.NCAXISDATA[Index].AxisHomeOffset,
+        nHomingMode := g_NCMoveData.NCAXISDATA[Index].AxisHomeMode,
+        ChangeHomeMode := g_NCMoveData.NCAXISCMD[Index].ChangeHome,
+        bCleanHomed := g_NCMoveData.NCAXISCMD[Index].CleanHomed,
+        HomeMode := g_NCMoveData.NCAXISDATA[Index].AxisChangeHomeMode,
+        bHomeDone => g_NCMoveData.NCAXISDATA[Index].AxisHomeDone,
+        ERRORID =>g_NCMoveData.NCAXISDATA[Index].ErrorID[1]);
+ (*点动*)
+    FBDualAxisJog[Index](
+		NCAxisName := g_NCMoveData.NCAXISDATA[Index].NCAxisName,
+        bJogFast := g_bFastInch,
+        bJogForward := g_NCMoveData.NCAXISCMD[Index].NCAxisJogForward,
+        bBackForward := g_NCMoveData.NCAXISCMD[Index].NCAxisJogBackWard,
+        ERRORID =>g_NCMoveData.NCAXISDATA[Index].ErrorID[2]   
+    );
+    
+    
+     (*复位*)
+    FBDualAxisReset[Index](
+		NCAxisName := g_NCMoveData.NCAXISDATA[Index].NCAxisName,
+        ERRORID =>g_NCMoveData.NCAXISDATA[Index].ErrorID[3]);
+    
+ (*停止*)
+    FBDualAxisStop[Index](
+		NCAxisName := g_NCMoveData.NCAXISDATA[Index].NCAxisName,
+        IndexValue := Index,
+        StopDone := g_NCMoveData.NCAXISDATA[Index].AxisStopDone,
+        ERRORID =>g_NCMoveData.NCAXISDATA[Index].ErrorID[4]);
+        
+        (*绝对运动*)
+	FBDualAxisAbs[Index](
+		IndexNumber := Index,
+		NCAxisName := g_NCMoveData.NCAXISDATA[Index].NCAxisName,
+		TargetVel := g_NCMoveData.NCAXISDATA[Index].AxisAbsVel,
+		TargetPos := g_NCMoveData.NCAXISDATA[Index].AxisAbsPosition,
+		AbsMoveDone => g_NCMoveData.NCAXISDATA[Index].AxisAbsMoveDone,
+        AxisMoveDone:=g_NCMoveData.NCAXISDATA[Index].AxisMoveDone,
+        ERRORID =>g_NCMoveData.NCAXISDATA[Index].ErrorID[5]);
+        (*相对运动*)
+	FBDualAxisRel[Index](
+		IndexNumber := Index,
+		NCAxisName := g_NCMoveData.NCAXISDATA[Index].NCAxisName,
+		TargetAxisVel := g_NCMoveData.NCAXISDATA[Index].AxisRelVel,
+		RelMoceDistance := g_NCMoveData.NCAXISDATA[Index].AxisRelDistance,
+		TargetPos2 := g_NCMoveData.NCAXISDATA[Index].NCAxisName^.NCTOPLC.ACTPOS,
+		NCAxisRelMoveDone => g_NCMoveData.NCAXISDATA[Index].AxisRelMoveDone,
+        AxisMoveDone :=g_NCMoveData.NCAXISDATA[Index].AxisMoveDone,
+        ERRORID =>g_NCMoveData.NCAXISDATA[Index].ErrorID[6]);
+      (*耦合-解耦*)
+    FBDualAxisGearControl[Index](
+        NCAxisName := g_NCMoveData.NCAXISDATA[Index].NCAxisName,
+        GearInEnable := g_NCMoveData.NCAXISCMD[Index].NCAxisGearIn,
+        GearOutEnable := g_NCMoveData.NCAXISCMD[Index].NCAxisGearOut,
+        IndexNum := Index,
+        GearDone => g_NCMoveData.NCAXISDATA[Index].AxisGearDone,
+        GearErrorID => g_NCMoveData.NCAXISDATA[Index].ErrorID[7]
+        );
+        
+    (*状态刷新*)
+	UpDateAxisStatus[Index](
+		AXIS := g_NCMoveData.NCAXISDATA[Index].NCAxisName^(*AXIS_REF*),
+		OUTAXIS => g_NCMoveData.NCAXISDATA[Index].NCAxisName^(*AXIS_REF*));
+        
+        
+        
+      g_NCMoveData.NCAXISDATA[Index].AxisCurrentPos := g_NCMoveData.NCAXISDATA[Index].NCAxisName^.NCTOPLC.ACTPOS;
+	g_NCMoveData.NCAXISDATA[Index].AxisMoveSpeed := g_NCMoveData.NCAXISDATA[Index].NCAxisName^.NCTOPLC.ACTVELO;  
+
+END_FOR;
+UpdateMaster(
+AXIS := Axis_C,
+OUTAXIS => Axis_C
+);]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[双工位]]></xhtml:p>
+  </documentation>
+</pou>

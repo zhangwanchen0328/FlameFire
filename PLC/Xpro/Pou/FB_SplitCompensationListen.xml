@@ -1,0 +1,607 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SplitCompensationListen" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Rtring_Use">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_Clear">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_CalcInAdvance">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bDiffEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nSplitType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[根据管型下发对应的分中方式0：为关闭补偿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dUMachineCoord1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[根据管型下发对应的分中方式0：为关闭补偿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dUMachineCoord2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[根据管型下发对应的分中方式0：为关闭补偿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dUMachineCoord">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[根据管型下发对应的分中方式0：为关闭补偿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dUWorkCoord">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[根据管型下发对应的分中方式0：为关闭补偿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dUNestingMotionAngle">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下个轮廓的旋转角度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dNewManualCompensationA">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[结合当前角度线性插补]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dNewManualCompensationB">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[结合当前角度线性插补]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dNewManualCompensationC">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[结合当前角度线性插补]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dNewManualCompensationD">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[结合当前角度线性插补]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring_Use(CLK := g_bUseSplitComValueM);(*使用补偿值*)
+Rtring_Clear(CLK := g_bClearSplitComValueM);(*不使用补偿*)
+IF Rtring_Use.Q THEN
+  bDiffEnable := TRUE;
+  g_bUseSplitComValueM := FALSE;
+END_IF;
+
+
+IF Rtring_Clear.Q THEN
+  bDiffEnable := FALSE;
+  g_bClearSplitComValueM := FALSE;
+  dUNestingMotionAngle := 0.0;
+END_IF;
+Rtring_CalcInAdvance(CLK := g_bCalcRotateAngleInAdvanceM); (*触发上升沿计算下个轮廓的旋转角度*)
+IF Rtring_CalcInAdvance.Q THEN
+  g_bCalcRotateAngleInAdvanceM := FALSE;
+  dUNestingMotionAngle := M.PARAMETER_K[283];
+  dUMachineCoord := g_diUMachineCoordinate - g_dAngle;
+	dUMachineCoord2 := FUN_FMOD(dUMachineCoord+dUNestingMotionAngle,FALSE);
+	IF dUMachineCoord2 < 0.0 THEN
+	  dUMachineCoord2 := dUMachineCoord2 + 360.0;
+	END_IF;
+	dUWorkCoord := FUN_FMOD(g_fUWorkCoordinate+dUNestingMotionAngle,FALSE);
+	IF dUWorkCoord < 0.0 THEN
+	  dUWorkCoord := dUWorkCoord + 360.0;
+	END_IF;
+  IF (dUWorkCoord >=0.0 AND dUWorkCoord <= 45.5) OR (dUWorkCoord >=314.5 AND dUWorkCoord <= 360.5) THEN
+    dUWorkCoord := 0.0;
+  ELSIF  (dUWorkCoord >=44.5 AND dUWorkCoord <= 135.5) THEN
+    dUWorkCoord := 90.0;
+  ELSIF  (dUWorkCoord >=134.5 AND dUWorkCoord <= 225.5) THEN
+    dUWorkCoord := 180.0; 
+  ELSIF  (dUWorkCoord >=224.5 AND dUWorkCoord <= 315.5) THEN
+    dUWorkCoord := 270.0;
+  END_IF;
+(*对取余后的坐标值进行判断*)
+  IF (dUMachineCoord2 >=0.0 AND dUMachineCoord2 <= 45.5) OR (dUMachineCoord2 >=314.5 AND dUMachineCoord2 <= 360.5) THEN
+    dUMachineCoord1 := 0.0;
+  ELSIF  (dUMachineCoord2 >=44.5 AND dUMachineCoord2 <= 135.5) THEN
+    dUMachineCoord1 := 90.0;
+  ELSIF  (dUMachineCoord2 >=134.5 AND dUMachineCoord2 <= 225.5) THEN
+    dUMachineCoord1 := 180.0; 
+  ELSIF  (dUMachineCoord2 >=224.5 AND dUMachineCoord2 <= 315.5) THEN
+    dUMachineCoord1 := 270.0;
+  END_IF;
+  IF dUMachineCoord2 > 270.0 THEN
+    dNewManualCompensationA := g_dNewManualCompensationD + (g_dNewManualCompensationA - g_dNewManualCompensationD) * (dUMachineCoord2 - 270.0) / 90.0;
+    dNewManualCompensationB := g_dNewManualCompensationA + (g_dNewManualCompensationB - g_dNewManualCompensationA) * (dUMachineCoord2 - 270.0) / 90.0;
+    dNewManualCompensationC := g_dNewManualCompensationB + (g_dNewManualCompensationC - g_dNewManualCompensationB) * (dUMachineCoord2 - 270.0) / 90.0;
+    dNewManualCompensationD := g_dNewManualCompensationC + (g_dNewManualCompensationD - g_dNewManualCompensationC) * (dUMachineCoord2 - 270.0) / 90.0;
+  ELSIF dUMachineCoord2 > 180.0 THEN
+    dNewManualCompensationA := g_dNewManualCompensationC + (g_dNewManualCompensationD - g_dNewManualCompensationC) * (dUMachineCoord2 - 180.0) / 90.0;
+    dNewManualCompensationB := g_dNewManualCompensationD + (g_dNewManualCompensationA - g_dNewManualCompensationD) * (dUMachineCoord2 - 180.0) / 90.0;
+    dNewManualCompensationC := g_dNewManualCompensationA + (g_dNewManualCompensationB - g_dNewManualCompensationA) * (dUMachineCoord2 - 180.0) / 90.0;
+    dNewManualCompensationD := g_dNewManualCompensationB + (g_dNewManualCompensationC - g_dNewManualCompensationB) * (dUMachineCoord2 - 180.0) / 90.0;
+  ELSIF dUMachineCoord2 > 90.0 THEN
+    dNewManualCompensationA := g_dNewManualCompensationB + (g_dNewManualCompensationC - g_dNewManualCompensationB) * (dUMachineCoord2 - 90.0) / 90.0;
+    dNewManualCompensationB := g_dNewManualCompensationC + (g_dNewManualCompensationD - g_dNewManualCompensationC) * (dUMachineCoord2 - 90.0) / 90.0;
+    dNewManualCompensationC := g_dNewManualCompensationD + (g_dNewManualCompensationA - g_dNewManualCompensationD) * (dUMachineCoord2 - 90.0) / 90.0;
+    dNewManualCompensationD := g_dNewManualCompensationA + (g_dNewManualCompensationB - g_dNewManualCompensationA) * (dUMachineCoord2 - 90.0) / 90.0;
+  ELSE
+    dNewManualCompensationA := g_dNewManualCompensationA + (g_dNewManualCompensationB - g_dNewManualCompensationA) * dUMachineCoord2 / 90.0;
+    dNewManualCompensationB := g_dNewManualCompensationB + (g_dNewManualCompensationC - g_dNewManualCompensationB) * dUMachineCoord2 / 90.0;
+    dNewManualCompensationC := g_dNewManualCompensationC + (g_dNewManualCompensationD - g_dNewManualCompensationC) * dUMachineCoord2 / 90.0;
+    dNewManualCompensationD := g_dNewManualCompensationD + (g_dNewManualCompensationA - g_dNewManualCompensationD) * dUMachineCoord2 / 90.0;
+  END_IF;
+  
+END_IF;
+
+(*0平面 1圆管 2矩形管 3腰管 4椭圆管 5D型管*)
+IF bDiffEnable THEN(*补偿*)
+  g_foConcentricityDiff1 := 0.0;
+  g_foConcentricityDiff2 := 0.0;
+  g_foConcentricityDiff3 := 0.0;
+  g_foConcentricityDiff4 := 0.0;
+  CASE nSplitType OF
+      1:(*单面分中*)
+      
+        g_foConcentricityDiff1 := g_dSingleSideAngleAValue;
+        g_foConcentricityDiff2 := g_dSingleSideAngleDValue;
+        g_foConcentricityDiff3 := g_dSingleSideAngleCValue; 
+        g_foConcentricityDiff4 := g_dSingleSideAngleBValue;
+      2:(*两面分中*)
+        IF g_nPipeType = 2 THEN
+          IF g_bExecuteSingeSideOnAFace THEN
+            g_foConcentricityDiff1 := g_dSingleSideAngleAValue;
+          ELSE
+            g_foConcentricityDiff1 := 0.0; 
+          END_IF;
+          IF g_bExecuteSingeSideOnDFace THEN
+            g_foConcentricityDiff2 := g_dSingleSideAngleDValue;
+          ELSE
+              g_foConcentricityDiff2 := g_dTwoSidesCenterCompensationB;
+          END_IF;
+          IF g_bExecuteSingeSideOnCFace THEN
+            g_foConcentricityDiff3 := g_dSingleSideAngleCValue;
+          ELSE
+            g_foConcentricityDiff3 := g_dTwoSidesCenterCompensationA;
+          END_IF;
+          IF g_bExecuteSingeSideOnBFace THEN
+            g_foConcentricityDiff4 := g_dSingleSideAngleBValue;
+          ELSE
+            g_foConcentricityDiff4 := 0.0;
+          END_IF;
+        ELSIF g_nPipeType = 10 THEN
+          IF g_bExecuteSingeSideOnAFace THEN
+            g_foConcentricityDiff1 := g_dSingleSideAngleAValue;
+          ELSE
+            g_foConcentricityDiff1 := 0.0; 
+          END_IF;
+          IF g_bExecuteSingeSideOnCFace THEN
+            g_foConcentricityDiff3 := g_dSingleSideAngleCValue;
+          ELSE
+            g_foConcentricityDiff3 := g_dTwoSidesCenterCompensationA;
+          END_IF;
+          
+          g_foConcentricityDiff2 := g_dSingleSideAngleBValue;
+          g_foConcentricityDiff4 := g_dSingleSideAngleDValue;
+          
+          
+        ELSIF g_nPipeType = 11 THEN  
+          IF g_bExecuteSingeSideOnDFace THEN
+            g_foConcentricityDiff2 := g_dSingleSideAngleDValue;
+          ELSE
+              g_foConcentricityDiff2 := g_dTwoSidesCenterCompensationB;
+          END_IF;
+          IF g_bExecuteSingeSideOnCFace THEN
+            g_foConcentricityDiff3 := g_dSingleSideAngleCValue;
+          ELSE
+            g_foConcentricityDiff3 := g_dTwoSidesCenterCompensationA;
+          END_IF;
+        END_IF;    
+          
+      3:(*两点分中*)(*方管的两点分中四面全补*)
+        IF g_nPipeType = 2 OR g_nPipeType = 12 THEN
+              IF g_bExecuteSingeSideOnAFace THEN
+                g_foConcentricityDiff1 := g_dSingleSideAngleAValue;
+              ELSE
+                 g_foConcentricityDiff1 := g_dTwoSideCompensationValueA; 
+              END_IF;
+              IF g_bExecuteSingeSideOnDFace THEN
+                g_foConcentricityDiff2 := g_dSingleSideAngleDValue;
+              ELSE
+                 g_foConcentricityDiff2 := g_dTwoSideCompensationValueB;
+              END_IF;
+             IF g_bExecuteSingeSideOnCFace THEN
+                g_foConcentricityDiff3 := g_dSingleSideAngleCValue;
+              ELSE
+                g_foConcentricityDiff3 := (-1.0)*g_dTwoSideCompensationValueA;
+              END_IF;
+              IF g_bExecuteSingeSideOnBFace THEN
+                g_foConcentricityDiff4 := g_dSingleSideAngleBValue;
+              ELSE
+                g_foConcentricityDiff4 := (-1.0)*g_dTwoSideCompensationValueB;
+              END_IF;
+        ELSIF g_nPipeType = 10 THEN
+          IF g_bExecuteSingeSideOnDFace THEN
+            g_foConcentricityDiff2 := g_dSingleSideAngleDValue;
+          ELSE
+            g_foConcentricityDiff2 := g_dTwoSideCompensationValueA; 
+          END_IF;
+          IF g_bExecuteSingeSideOnBFace THEN
+            g_foConcentricityDiff4 := g_dSingleSideAngleBValue;
+          ELSE
+            g_foConcentricityDiff4 := g_dTwoSideCompensationValueB;
+          END_IF;
+        ELSIF g_nPipeType = 11 THEN
+           
+           IF g_bExecuteSingeSideOnCFace THEN
+              g_foConcentricityDiff3 := g_dSingleSideAngleCValue;
+           ELSE
+              g_foConcentricityDiff3 := g_dTwoSideCompensationValueB;
+           END_IF;
+           IF g_bExecuteSingeSideOnDFace THEN
+              g_foConcentricityDiff2 := g_dSingleSideAngleDValue;
+           ELSE
+              g_foConcentricityDiff2 := g_dTwoSideCompensationValueA;
+           END_IF;
+           
+        END_IF;
+      4:(*四面分中*)
+      IF g_nPipeType = 2 OR g_nPipeType = 12 THEN
+        IF g_bExecuteSingeSideOnAFace THEN
+            g_foConcentricityDiff1 := g_dSingleSideAngleAValue;
+        ELSE
+            g_foConcentricityDiff1 := g_dFourSidesCompensationValueA; 
+        END_IF;
+        
+        IF g_bExecuteSingeSideOnBFace THEN
+            g_foConcentricityDiff4 := g_dSingleSideAngleBValue;
+        ELSE
+            g_foConcentricityDiff4 := g_dFourSidesCompensationValueB; 
+        END_IF;
+        
+        IF g_bExecuteSingeSideOnCFace THEN
+            g_foConcentricityDiff3 := g_dSingleSideAngleCValue; 
+        ELSE
+            g_foConcentricityDiff3 := g_dFourSidesCompensationValueC;
+        END_IF;
+        IF g_bExecuteSingeSideOnDFace THEN
+            g_foConcentricityDiff2 := g_dSingleSideAngleDValue;
+        ELSE
+           g_foConcentricityDiff2 := g_dFourSidesCompensationValueD;
+        END_IF; 
+      END_IF;
+      5:(*四点分中*)(*圆、方、腰管*)
+      IF g_nPipeType = 1 OR g_nPipeType = 2 OR g_nPipeType = 3 OR g_nPipeType = 4 OR g_nPipeType = 12 THEN
+    
+        IF g_bExecuteSingeSideOnAFace THEN
+            g_foConcentricityDiff1 := g_dSingleSideAngleAValue;
+        ELSE
+            g_foConcentricityDiff1 := g_dConcentricityCompensationValueA; 
+        END_IF; 
+        
+        IF g_bExecuteSingeSideOnBFace THEN
+            g_foConcentricityDiff4 := g_dSingleSideAngleBValue; 
+        ELSE
+            g_foConcentricityDiff4 := g_dConcentricityCompensationValueB; 
+        END_IF; 
+        
+        IF g_bExecuteSingeSideOnCFace THEN
+            g_foConcentricityDiff3 := g_dSingleSideAngleCValue;
+        ELSE
+            g_foConcentricityDiff3 := g_dConcentricityCompensationValueC;
+        END_IF; 
+        
+        IF g_bExecuteSingeSideOnDFace THEN
+            g_foConcentricityDiff2 := g_dSingleSideAngleDValue; 
+        ELSE
+            g_foConcentricityDiff2 := g_dConcentricityCompensationValueD; 
+        END_IF;              
+      END_IF;
+      6:(*五点分中-校平+分中*)
+      IF g_nPipeType = 2 OR g_nPipeType = 12 THEN
+         IF g_bExecuteSingeSideOnAFace THEN
+            g_foConcentricityDiff1 := g_dSingleSideAngleAValue;
+        ELSE
+            g_foConcentricityDiff1 := g_dLevelAndSideCompensationValueA; 
+        END_IF; 
+        
+        IF g_bExecuteSingeSideOnBFace THEN
+            g_foConcentricityDiff4 := g_dSingleSideAngleBValue; 
+        ELSE
+            g_foConcentricityDiff4 := g_dLevelAndSideCompensationValueB; 
+        END_IF; 
+        
+        IF g_bExecuteSingeSideOnCFace THEN
+            g_foConcentricityDiff3 := g_dSingleSideAngleCValue;
+        ELSE
+            g_foConcentricityDiff3 := g_dLevelAndSideCompensationValueC;
+        END_IF; 
+        
+        IF g_bExecuteSingeSideOnDFace THEN
+            g_foConcentricityDiff2 := g_dSingleSideAngleDValue; 
+        ELSE
+            g_foConcentricityDiff2 := g_dLevelAndSideCompensationValueD; 
+        END_IF;         
+      END_IF;
+      7:(*三面分中*)
+        IF g_bExecuteSingeSideOnAFace THEN
+          g_foConcentricityDiff1 := g_dSingleSideAngleAValue;
+        ELSE
+          g_foConcentricityDiff1 := g_dThreeSidesCenterCompensationA; 
+        END_IF;
+        IF g_bExecuteSingeSideOnDFace THEN
+          g_foConcentricityDiff2 := g_dSingleSideAngleDValue;
+        ELSE
+          g_foConcentricityDiff2 := g_dThreeSidesCenterCompensationD;
+        END_IF;
+        IF g_bExecuteSingeSideOnBFace THEN
+          g_foConcentricityDiff4 := g_dSingleSideAngleBValue;
+        ELSE
+          g_foConcentricityDiff4 := g_dThreeSidesCenterCompensationB;
+        END_IF;
+  END_CASE;
+ 
+  (*需要提前计算后补偿*)
+  (*端面轮廓修正是根据回中后的机床坐标补的,实际输出是根据工件坐标补偿的*)
+  (*g_foConcentricityDiff1 :标准0°面 g_foConcentricityDiff2:标准270°面g_foConcentricityDiff3:标准180°面g_foConcentricityDiff14:标准90°面*)
+  IF (dUWorkCoord >=0.0 AND dUWorkCoord <= 0.5) OR (dUWorkCoord >=359.5 AND dUWorkCoord <= 360.5) THEN
+    IF dUMachineCoord1 = 0.0 THEN
+		g_foConcentricityDiff1 := g_foConcentricityDiff1 + dNewManualCompensationA; 
+        g_foConcentricityDiff2 := g_foConcentricityDiff2 + dNewManualCompensationD; 
+        g_foConcentricityDiff3 := g_foConcentricityDiff3 + dNewManualCompensationC;
+        g_foConcentricityDiff4 := g_foConcentricityDiff4 + dNewManualCompensationB;
+	ELSIF dUMachineCoord1 = 90.0 THEN(*对应回中后的90度*)
+		g_foConcentricityDiff1 := g_foConcentricityDiff1 + dNewManualCompensationB;
+        g_foConcentricityDiff2 := g_foConcentricityDiff2 + dNewManualCompensationA;
+        g_foConcentricityDiff3 := g_foConcentricityDiff3 + dNewManualCompensationD;
+        g_foConcentricityDiff4 := g_foConcentricityDiff4 + dNewManualCompensationC;
+	ELSIF dUMachineCoord1 = 180.0 THEN
+		g_foConcentricityDiff1 := g_foConcentricityDiff1 + dNewManualCompensationC;
+        g_foConcentricityDiff2 := g_foConcentricityDiff2 + dNewManualCompensationB;
+        g_foConcentricityDiff3 := g_foConcentricityDiff3 + dNewManualCompensationA; 
+        g_foConcentricityDiff4 := g_foConcentricityDiff4 + dNewManualCompensationD;
+	ELSIF dUMachineCoord1 = 270.0 THEN
+		g_foConcentricityDiff1 := g_foConcentricityDiff1 + dNewManualCompensationD;
+        g_foConcentricityDiff2 := g_foConcentricityDiff2 + dNewManualCompensationC;
+        g_foConcentricityDiff3 := g_foConcentricityDiff3 + dNewManualCompensationB;
+        g_foConcentricityDiff4 := g_foConcentricityDiff4 + dNewManualCompensationA;
+	END_IF; 
+  ELSIF  (dUWorkCoord >=89.5 AND dUWorkCoord <= 90.5) THEN
+    IF dUMachineCoord1 = 0.0 THEN
+		g_foConcentricityDiff4 := g_foConcentricityDiff4 + dNewManualCompensationA;
+		g_foConcentricityDiff3 := g_foConcentricityDiff3 + dNewManualCompensationB;
+		g_foConcentricityDiff2 := g_foConcentricityDiff2 + dNewManualCompensationC;
+        g_foConcentricityDiff1 := g_foConcentricityDiff1 + dNewManualCompensationD;
+    ELSIF dUMachineCoord1 = 90.0 THEN
+		g_foConcentricityDiff4 := g_foConcentricityDiff4 + dNewManualCompensationB;
+        g_foConcentricityDiff3 := g_foConcentricityDiff3 + dNewManualCompensationC;
+		g_foConcentricityDiff2 := g_foConcentricityDiff2 + dNewManualCompensationD;
+        g_foConcentricityDiff1 := g_foConcentricityDiff1 + dNewManualCompensationA;
+	ELSIF dUMachineCoord1 = 180.0 THEN
+		g_foConcentricityDiff4 := g_foConcentricityDiff4 + dNewManualCompensationC;
+        g_foConcentricityDiff3 := g_foConcentricityDiff3 + dNewManualCompensationD;
+		g_foConcentricityDiff2 := g_foConcentricityDiff2 + dNewManualCompensationA;
+        g_foConcentricityDiff1 := g_foConcentricityDiff1 + dNewManualCompensationB;
+	ELSIF dUMachineCoord1 = 270.0 THEN
+		g_foConcentricityDiff4 := g_foConcentricityDiff4 + dNewManualCompensationD;
+        g_foConcentricityDiff3 := g_foConcentricityDiff3 + dNewManualCompensationA;
+		g_foConcentricityDiff2 := g_foConcentricityDiff2 + dNewManualCompensationB;
+        g_foConcentricityDiff1 := g_foConcentricityDiff1 + dNewManualCompensationC;
+	END_IF; 
+  ELSIF  (dUWorkCoord >=179.5 AND dUWorkCoord <= 180.5) THEN
+    IF dUMachineCoord1 = 0.0 THEN
+		g_foConcentricityDiff4 := g_foConcentricityDiff4 + dNewManualCompensationD; 
+		g_foConcentricityDiff3 := g_foConcentricityDiff3 + dNewManualCompensationA; 
+        g_foConcentricityDiff2 := g_foConcentricityDiff2 + dNewManualCompensationB; 
+        g_foConcentricityDiff1 := g_foConcentricityDiff1 + dNewManualCompensationC; 
+	ELSIF dUMachineCoord1 = 90.0 THEN
+		g_foConcentricityDiff4 := g_foConcentricityDiff4 + dNewManualCompensationA; 
+		g_foConcentricityDiff3 := g_foConcentricityDiff3 + dNewManualCompensationB;
+        g_foConcentricityDiff2 := g_foConcentricityDiff2 + dNewManualCompensationC;
+        g_foConcentricityDiff1 := g_foConcentricityDiff1 + dNewManualCompensationD;
+	ELSIF dUMachineCoord1 = 180.0 THEN
+		g_foConcentricityDiff4 := g_foConcentricityDiff4 + dNewManualCompensationB;
+		g_foConcentricityDiff3 := g_foConcentricityDiff3 + dNewManualCompensationC;
+        g_foConcentricityDiff2 := g_foConcentricityDiff2 + dNewManualCompensationD;
+        g_foConcentricityDiff1 := g_foConcentricityDiff1 + dNewManualCompensationA;
+	ELSIF dUMachineCoord1 = 270.0 THEN
+		g_foConcentricityDiff4 := g_foConcentricityDiff4 + dNewManualCompensationC;
+		g_foConcentricityDiff3 := g_foConcentricityDiff3 + dNewManualCompensationD;
+        g_foConcentricityDiff2 := g_foConcentricityDiff2 + dNewManualCompensationA;
+        g_foConcentricityDiff1 := g_foConcentricityDiff1 + dNewManualCompensationB;
+	END_IF; 
+  ELSIF  (dUWorkCoord >=269.5 AND dUWorkCoord <= 270.5) THEN
+    IF dUMachineCoord1 = 0.0 THEN
+		g_foConcentricityDiff4 := g_foConcentricityDiff4 + dNewManualCompensationC;
+		g_foConcentricityDiff3 := g_foConcentricityDiff3 + dNewManualCompensationD;
+		g_foConcentricityDiff2 := g_foConcentricityDiff2 + dNewManualCompensationA; 
+        g_foConcentricityDiff1 := g_foConcentricityDiff1 + dNewManualCompensationB;
+	ELSIF dUMachineCoord1 = 90.0 THEN
+		g_foConcentricityDiff4 := g_foConcentricityDiff4 + dNewManualCompensationD;
+		g_foConcentricityDiff3 := g_foConcentricityDiff3 + dNewManualCompensationA;
+		g_foConcentricityDiff2 := g_foConcentricityDiff2 + dNewManualCompensationB;
+        g_foConcentricityDiff1 := g_foConcentricityDiff1 + dNewManualCompensationC;
+	ELSIF dUMachineCoord1 = 180.0 THEN
+		g_foConcentricityDiff4 := g_foConcentricityDiff4 + dNewManualCompensationA;
+		g_foConcentricityDiff3 := g_foConcentricityDiff3 + dNewManualCompensationB;
+		g_foConcentricityDiff2 := g_foConcentricityDiff2 + dNewManualCompensationC;
+        g_foConcentricityDiff1 := g_foConcentricityDiff1 + dNewManualCompensationD;
+	ELSIF dUMachineCoord1 = 270.0 THEN
+		g_foConcentricityDiff4 := g_foConcentricityDiff4 + dNewManualCompensationB;
+        g_foConcentricityDiff3 := g_foConcentricityDiff3 + dNewManualCompensationC;
+		g_foConcentricityDiff2 := g_foConcentricityDiff2 + dNewManualCompensationD;
+        g_foConcentricityDiff1 := g_foConcentricityDiff1 + dNewManualCompensationA;
+	END_IF;
+  END_IF;
+END_IF;
+
+
+IF bDiffEnable = FALSE   THEN
+  g_foConcentricityDiff1 := 0.0; 
+  g_foConcentricityDiff2 := 0.0; 
+  g_foConcentricityDiff3 := 0.0; 
+  g_foConcentricityDiff4 := 0.0;
+ELSIF  nSplitType = 0 THEN
+	IF (dUWorkCoord >=0.0 AND dUWorkCoord <= 0.5) OR (dUWorkCoord >=359.5 AND dUWorkCoord <= 360.5) THEN
+    IF dUMachineCoord1 = 0.0 THEN
+		g_foConcentricityDiff1 := dNewManualCompensationA; 
+        g_foConcentricityDiff2 := dNewManualCompensationD; 
+        g_foConcentricityDiff3 := dNewManualCompensationC;
+        g_foConcentricityDiff4 := dNewManualCompensationB;
+	ELSIF dUMachineCoord1 = 90.0 THEN(*对应回中后的90度*)
+		g_foConcentricityDiff1 := dNewManualCompensationB;
+        g_foConcentricityDiff2 := dNewManualCompensationA;
+        g_foConcentricityDiff3 := dNewManualCompensationD;
+        g_foConcentricityDiff4 := dNewManualCompensationC;
+	ELSIF dUMachineCoord1 = 180.0 THEN
+		g_foConcentricityDiff1 := dNewManualCompensationC;
+        g_foConcentricityDiff2 := dNewManualCompensationB;
+        g_foConcentricityDiff3 := dNewManualCompensationA; 
+        g_foConcentricityDiff4 := dNewManualCompensationD;
+	ELSIF dUMachineCoord1 = 270.0 THEN
+		g_foConcentricityDiff1 := dNewManualCompensationD;
+        g_foConcentricityDiff2 := dNewManualCompensationC;
+        g_foConcentricityDiff3 := dNewManualCompensationB;
+        g_foConcentricityDiff4 := dNewManualCompensationA;
+	END_IF; 
+  ELSIF  (dUWorkCoord >=89.5 AND dUWorkCoord <= 90.5) THEN
+    IF dUMachineCoord1 = 0.0 THEN
+		g_foConcentricityDiff4 := dNewManualCompensationA;
+		g_foConcentricityDiff3 := dNewManualCompensationB;
+		g_foConcentricityDiff2 := dNewManualCompensationC;
+        g_foConcentricityDiff1 := dNewManualCompensationD;
+    ELSIF dUMachineCoord1 = 90.0 THEN
+		g_foConcentricityDiff4 := dNewManualCompensationB;
+        g_foConcentricityDiff3 := dNewManualCompensationC;
+		g_foConcentricityDiff2 := dNewManualCompensationD;
+        g_foConcentricityDiff1 := dNewManualCompensationA;
+	ELSIF dUMachineCoord1 = 180.0 THEN
+		g_foConcentricityDiff4 := dNewManualCompensationC;
+        g_foConcentricityDiff3 := dNewManualCompensationD;
+		g_foConcentricityDiff2 := dNewManualCompensationA;
+        g_foConcentricityDiff1 := dNewManualCompensationB;
+	ELSIF dUMachineCoord1 = 270.0 THEN
+		g_foConcentricityDiff4 := dNewManualCompensationD;
+        g_foConcentricityDiff3 := dNewManualCompensationA;
+		g_foConcentricityDiff2 := dNewManualCompensationB;
+        g_foConcentricityDiff1 := dNewManualCompensationC;
+	END_IF; 
+  ELSIF  (dUWorkCoord >=179.5 AND dUWorkCoord <= 180.5) THEN
+    IF dUMachineCoord1 = 0.0 THEN
+		g_foConcentricityDiff4 := dNewManualCompensationD; 
+		g_foConcentricityDiff3 := dNewManualCompensationA; 
+        g_foConcentricityDiff2 := dNewManualCompensationB; 
+        g_foConcentricityDiff1 := dNewManualCompensationC; 
+	ELSIF dUMachineCoord1 = 90.0 THEN
+		g_foConcentricityDiff4 := dNewManualCompensationA; 
+		g_foConcentricityDiff3 := dNewManualCompensationB;
+        g_foConcentricityDiff2 := dNewManualCompensationC;
+        g_foConcentricityDiff1 := dNewManualCompensationD;
+	ELSIF dUMachineCoord1 = 180.0 THEN
+		g_foConcentricityDiff4 := dNewManualCompensationB;
+		g_foConcentricityDiff3 := dNewManualCompensationC;
+        g_foConcentricityDiff2 := dNewManualCompensationD;
+        g_foConcentricityDiff1 := dNewManualCompensationA;
+	ELSIF dUMachineCoord1 = 270.0 THEN
+		g_foConcentricityDiff4 := dNewManualCompensationC;
+		g_foConcentricityDiff3 := dNewManualCompensationD;
+        g_foConcentricityDiff2 := dNewManualCompensationA;
+        g_foConcentricityDiff1 := dNewManualCompensationB;
+	END_IF; 
+  ELSIF  (dUWorkCoord >=269.5 AND dUWorkCoord <= 270.5) THEN
+    IF dUMachineCoord1 = 0.0 THEN
+		g_foConcentricityDiff4 := dNewManualCompensationC;
+		g_foConcentricityDiff3 := dNewManualCompensationD;
+		g_foConcentricityDiff2 := dNewManualCompensationA; 
+        g_foConcentricityDiff1 := dNewManualCompensationB;
+	ELSIF dUMachineCoord1 = 90.0 THEN
+		g_foConcentricityDiff4 := dNewManualCompensationD;
+		g_foConcentricityDiff3 := dNewManualCompensationA;
+		g_foConcentricityDiff2 := dNewManualCompensationB;
+        g_foConcentricityDiff1 := dNewManualCompensationC;
+	ELSIF dUMachineCoord1 = 180.0 THEN
+		g_foConcentricityDiff4 := dNewManualCompensationA;
+		g_foConcentricityDiff3 := dNewManualCompensationB;
+		g_foConcentricityDiff2 := dNewManualCompensationC;
+        g_foConcentricityDiff1 := dNewManualCompensationD;
+	ELSIF dUMachineCoord1 = 270.0 THEN
+		g_foConcentricityDiff4 := dNewManualCompensationB;
+        g_foConcentricityDiff3 := dNewManualCompensationC;
+		g_foConcentricityDiff2 := dNewManualCompensationD;
+        g_foConcentricityDiff1 := dNewManualCompensationA;
+	END_IF;
+  END_IF;
+  
+END_IF;
+  
+ 
+	IF g_foConcentricityDiff1 >= 0.0 THEN
+		g_foConcentricityDiff1 := MIN(g_foConcentricityDiff1,g_dCompensationThreshold);
+	ELSE
+		g_foConcentricityDiff1 := MAX(g_foConcentricityDiff1,g_dCompensationThreshold*(-1.0));
+	END_IF;
+    IF g_foConcentricityDiff2 >= 0.0 THEN
+		g_foConcentricityDiff2 := MIN(g_foConcentricityDiff2,g_dCompensationThreshold);
+	ELSE
+		g_foConcentricityDiff2 := MAX(g_foConcentricityDiff2,g_dCompensationThreshold*(-1.0));
+	END_IF;
+	IF g_foConcentricityDiff3 >= 0.0 THEN
+		g_foConcentricityDiff3 := MIN(g_foConcentricityDiff3,g_dCompensationThreshold);
+	ELSE
+		g_foConcentricityDiff3 := MAX(g_foConcentricityDiff3,g_dCompensationThreshold*(-1.0));
+	END_IF;
+	IF g_foConcentricityDiff4 >= 0.0 THEN
+		g_foConcentricityDiff4 := MIN(g_foConcentricityDiff4,g_dCompensationThreshold);
+	ELSE
+		g_foConcentricityDiff4 := MAX(g_foConcentricityDiff4,g_dCompensationThreshold*(-1.0));
+	END_IF;
+IF g_bPlcResetBuffer OR g_bPlcEndM THEN
+  bDiffEnable := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[分中补偿值开启关闭]]></xhtml:p>
+  </documentation>
+</pou>

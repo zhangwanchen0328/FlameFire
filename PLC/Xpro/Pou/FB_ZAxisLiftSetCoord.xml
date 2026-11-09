@@ -1,0 +1,377 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ZAxisLiftSetCoord" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZLiftExecuteM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZLiftExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZLiftCloseM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLiftDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLiftDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_ZMoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_ZMoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="Axis_Z">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_fLiftCoord">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nLiftState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bZLiftExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dLiftVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bLiftDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLiftClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dTargetCoord">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTargetVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="RTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger0">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger_Manualcalibrate">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="FTrigger">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bZFollowClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZFollowOutDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bManualCalibrate">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bManualCalibrateAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nManualCalibrateState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="ZLiftSensorToSave">
+        <type>
+          <derived name="SSA"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger(CLK := g_bZLiftExecuteM OR g_bZLiftExecute OR bZLiftExecute);
+FTrigger(g_bZLiftExecute OR bZLiftExecute);
+RTrigger0(CLK := g_bZLiftCloseM);
+R_Trigger_Manualcalibrate(CLK := bManualCalibrate);
+
+
+R_Trigger2(CLK := g_bZIdleWarnLift);
+IF R_Trigger2.Q THEN  
+  nLiftState := 50; 
+END_IF;
+IF RTrigger.Q THEN
+  IF Axis_Z.NCTOPLC.ACTPOS >= g_fLiftCoord THEN    
+    g_boLiftDone := TRUE;
+    g_bLiftDone := TRUE;
+    bLiftDone := TRUE;
+    g_bZLiftingDone := TRUE;
+    M.ENABLE[158] := 0;(*本身处于安全高度之上，直接完成*)
+    g_bExecuteFinishedM158 := FALSE;
+  ELSIF g_bZLiftExecuteM THEN
+    nLiftState := 1;
+    dTargetCoord := g_fLiftCoord;
+    dTargetVel := dLiftVelocity;
+    g_boLiftDone := FALSE;
+    g_bLiftDone := FALSE;
+    bLiftDone := FALSE;
+    g_bZLiftingDone := FALSE;
+  ELSE
+    nLiftState := 100;
+     g_boLiftDone := FALSE;
+    g_bLiftDone := FALSE;
+    bLiftDone := FALSE;
+    g_bZLiftingDone := FALSE;
+  END_IF;
+  bLiftClose := FALSE;
+  g_bZLiftExecuteM := FALSE;
+  bZLiftExecute := FALSE;
+END_IF;
+
+IF FTrigger.Q OR RTrigger0.Q THEN
+  bLiftClose := TRUE;  
+  g_bZLiftCloseM := FALSE;  
+END_IF;
+IF bLiftClose THEN
+  g_boLiftDone := FALSE;
+  g_bLiftDone := FALSE;
+  bLiftDone := FALSE;
+  g_bZLiftingDone := FALSE;
+  M.ENABLE[159] := 0;
+END_IF;
+
+CASE nLiftState OF
+  0:
+    nLiftState := 0;
+  1:
+    IF Axis_Z.NCTOPLC.AxisState = 2 THEN
+      nLiftState := 3;
+    ELSIF Axis_Z.NCTOPLC.AxisState = 9 THEN
+      g_bZFollowOutDone:=FALSE;
+      nLiftState := 2;
+    END_IF;
+  2:
+    g_bZFollowClose := TRUE;
+    g_nFollowState :=160; 
+    IF g_bZFollowOutDone THEN
+      g_bZFollowClose := FALSE;
+      nLiftState := 3;
+    END_IF;
+  3:
+    g_ZMoveAbs.Execute := TRUE;
+    g_ZMoveAbs.Velocity := dTargetVel;
+    g_ZMoveAbs.Position := dTargetCoord;
+    g_bLifting := TRUE;
+    IF g_ZMoveAbs.Done THEN
+      g_ZMoveAbs.Execute := FALSE;
+      g_boLiftDone := TRUE;
+      g_bLiftDone := TRUE;
+      bLiftDone := TRUE;
+      g_bZLiftingDone := TRUE;
+      nLiftState := 0;
+      g_bLifting := FALSE;
+      M.ENABLE[158] := 0;
+       IF Axis_Z.NCTOPLC.ACTPOS >= (g_fLiftCoord - 0.5) AND ABS(UDINT_TO_DINT(g_nZEndSensor) - UDINT_TO_DINT(g_niZSensorValue)) < 15000 THEN
+        g_nZLiftSensor := g_niZSensorValue;
+        ZLiftSensorToSave(ENABLE := TRUE);
+      END_IF;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nLiftState := 20;
+    END_IF;
+    IF g_ZMoveAbs.CommandAborted OR g_ZMoveAbs.Error THEN
+      g_ZMoveAbs.Execute := FALSE;
+      nLiftState := 0;
+      g_bLifting := FALSE;
+    END_IF;
+  20:
+    g_ZMoveAbs.Execute := FALSE;
+    g_ZMoveStop.Execute := TRUE;
+    IF g_ZMoveStop.Done AND g_bPlcStartBuffer THEN
+      g_ZMoveStop.Execute := FALSE;
+      nLiftState := 1;
+    END_IF;
+    IF g_ZMoveStop.CommandAborted OR g_ZMoveStop.Error THEN
+      g_ZMoveStop.Execute := FALSE;
+      nLiftState := 0;
+      g_bLifting := FALSE;
+    END_IF;
+  50:
+    g_ZWarnReset.EXECUTE := TRUE;
+    IF g_ZWarnReset.DONE THEN
+      g_ZWarnReset.EXECUTE := FALSE;
+      IF Axis_Z.NCTOPLC.ACTPOS < g_fLiftCoord AND Axis_Z.NCTOPLC.HOMINGSTATE THEN
+        nLiftState := 3;
+      ELSE
+        nLiftState := 0;
+      END_IF;
+    END_IF;
+    IF g_ZWarnReset.ERROR THEN
+      g_ZWarnReset.EXECUTE := FALSE;
+      nLiftState := 0;
+    END_IF;
+  100:
+     IF Axis_Z.NCTOPLC.AxisState = 2 THEN
+      nLiftState := 110;
+    ELSIF Axis_Z.NCTOPLC.AxisState = 9 THEN
+      nLiftState := 105;
+    END_IF;
+  105:
+     g_bZFollowClose := TRUE;
+     nLiftState := 106;
+  106:
+    g_nFollowState :=161; 
+    IF g_bZFollowOutDone THEN
+      g_bZFollowClose := FALSE;
+      nLiftState := 110;
+    END_IF;
+  110:
+    g_ZAxisRealTimeCalibrate.EXECUTE := TRUE;
+    g_bLifting := TRUE;
+    IF g_ZAxisRealTimeCalibrate.DONE THEN
+      g_ZAxisRealTimeCalibrate.EXECUTE := FALSE;
+      IF Axis_Z.NCTOPLC.ACTPOS >= (g_fLiftCoord - 0.5) AND g_niZSensorValue < g_nZLiftSensorMIn THEN
+        g_bZLiftSensorMInAlarm := TRUE;
+      END_IF;
+      g_bLifting := FALSE;
+      g_boLiftDone := TRUE;
+      g_bLiftDone := TRUE;
+      bLiftDone := TRUE;
+      g_bZLiftingDone := TRUE;
+	  g_bExecuteFinishedM158 := FALSE;
+      nLiftState := 0;
+    END_IF;
+    IF g_ZAxisRealTimeCalibrate.COMMANDABORTED OR g_ZAxisRealTimeCalibrate.ERROR THEN
+      g_ZAxisRealTimeCalibrate.EXECUTE := FALSE;
+      g_bLifting := FALSE;
+      nLiftState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer OR g_bPlcResetBuffer THEN
+      g_ZAxisRealTimeCalibrate.EXECUTE := FALSE;
+      g_bLifting := FALSE;
+      nLiftState := 20;
+    END_IF;
+    
+END_CASE;
+
+
+
+(*实时标定在最高处测试*)
+IF R_Trigger_Manualcalibrate.Q THEN
+  bManualCalibrate := FALSE;
+  nManualCalibrateState := 10;
+  
+END_IF;
+
+CASE nManualCalibrateState OF
+  0:
+	nManualCalibrateState := 0;
+  10:
+	g_ZAxisRealTimeCalibrate.EXECUTE := TRUE;
+    g_ZAxisRealTimeCalibrate.FORCE := TRUE;
+    IF g_ZAxisRealTimeCalibrate.CALIBRATESUCCEEDED THEN
+      nManualCalibrateState := 0;
+      g_ZAxisRealTimeCalibrate.EXECUTE := FALSE;
+      g_ZAxisRealTimeCalibrate.FORCE := FALSE;
+    END_IF;
+    IF g_ZAxisRealTimeCalibrate.COMMANDABORTED OR g_ZAxisRealTimeCalibrate.ERROR THEN
+		g_ZAxisRealTimeCalibrate.EXECUTE := FALSE;
+		g_ZAxisRealTimeCalibrate.FORCE := FALSE;
+		nManualCalibrateState := 0;
+        bManualCalibrateAlarm := TRUE;
+    END_IF;
+  
+  
+END_CASE;
+IF bManualCalibrateAlarm THEN
+	g_Alarm.alarmArray[582] := 1297;
+	bManualCalibrateAlarm := FALSE;
+END_IF;
+
+
+IF g_bPlcResetBuffer THEN
+  nLiftState := 0;
+  g_ZMoveAbs.Execute := FALSE;
+  g_ZMoveStop.Execute := FALSE;
+  g_bLifting := FALSE;
+  g_ReadCAPCurve.EXECUTE := FALSE;
+  bManualCalibrate := FALSE;
+  bZLiftExecute := FALSE;
+END_IF;
+g_foTorqueState := INT_TO_LREAL(nLiftState);
+g_boReset := g_ZReset.Execute;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,1485 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FrontSustainFollowControlExt" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bFrontSustainFollowExecuteM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动开始引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biFrontSustainFollowClose">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动关闭引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[M代码触发单个托料轴开关浮动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[流程编辑中的托料加耦或解耦哦]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fSustain4ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain5ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain6ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain4">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain5">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain6">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_bSustain4Follow">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动开启关闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bSustain5Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain6Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nSustainNum">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bSustain4Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain5Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain6Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain4AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain5AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain6AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain4AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[浮动的绝对位置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bSustain5AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain6AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nFollowStep">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="fActPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bSustain4InFollow">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动完成状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bSustain5InFollow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain6InFollow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFrontSustainUpDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFrontSustainUpDownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nFrontSustainMoveType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nBlankClylinderCount">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸数量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nFrontSusutainCount">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴数量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bFrontSustainEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[前浮动支撑轴是否开启的配置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bBlankCylinderEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[前浮动支撑轴是否开启的配置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nFrontSustainSignalM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustainTargetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_boFrontSustainFollowDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_diYMachineCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bDynamicFollowUp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDynamicFollowS1Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDynamicFollowS2Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDynamicFollowS3Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDynamicFollowS4Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Ton_CylDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="bCheckFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCheckFlag1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCheckFlag2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCheckFlag3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCheckFlag4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDoneCheckFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nFrontSustainAxis1FollowState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[托料轴1浮动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nFrontSustainAxis2FollowState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[托料轴2浮动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nFrontSustainAxis3FollowState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[托料轴3浮动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nFrontSustainAxis4FollowState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[托料轴3浮动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nFrontSustainAxisFollowState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bFrontSustainAxisFollowCheck">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nPreFollowStep">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bAxis1P100TriggerFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis2P100TriggerFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis3P100TriggerFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis4P100TriggerFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+RTrigger3(CLK := g_bFrontSupportPendingControlM);
+IF RTrigger3.Q THEN
+  g_bFrontSupportPendingControlM := FALSE;
+  g_bFrontSupportPendingFlag := FALSE;
+  nPreFollowStep := nFollowStep;
+  IF NOT bDynamicFollowUp THEN
+    M.ENABLE[319] := 0;
+  ELSE
+    IF M.PARAMETER_P[319] = 0.0 THEN
+		  IF ABS(M.PARAMETER_Q[319]) >= 180.0 THEN
+				IF g_nFrontSusutainCount >= 1 AND  g_bFrontAxis1VelAddEnable THEN
+				  g_bFrontSupportPendingFlag := TRUE;
+				  g_bSustain4AbsPosition := g_fSustain4ToChuckDist - SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+				  g_bSustain4Abs := TRUE;
+				END_IF;
+					  
+				IF g_nFrontSusutainCount >= 2 AND  g_bFrontAxis2VelAddEnable THEN
+				  g_bFrontSupportPendingFlag := TRUE;
+				  g_bSustain5AbsPosition := g_fSustain5ToChuckDist - SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+				  g_bSustain5Abs := TRUE;
+				END_IF;
+				IF g_nFrontSusutainCount >= 3 AND  g_bFrontAxis3VelAddEnable THEN
+				  g_bFrontSupportPendingFlag := TRUE;
+				  g_bSustain6AbsPosition := g_fSustain6ToChuckDist - SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+				  g_bSustain6Abs := TRUE;
+				END_IF;
+                IF g_nFrontSusutainCount >= 4 AND  g_bFrontAxis4VelAddEnable THEN
+				  g_bFrontSupportPendingFlag := TRUE;
+				  g_fARAbsPosition2 := g_fSustain6ToChuckDist - SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+				  g_bAntiRejection2AbsExecute := TRUE;
+				END_IF;
+		   
+		  END_IF;
+       M.ENABLE[319] := 0;
+	  ELSE
+      IF g_nFrontSusutainCount >= 1 AND g_bFrontAxis1VelAddEnable AND g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowS1Dis THEN
+        g_bSustain4AbsPosition := g_fSustain4ToChuckDist - g_fSustainTargetPos;
+        g_bSustain4Abs := TRUE;
+      END_IF;
+      IF g_nFrontSusutainCount >= 2 AND g_bFrontAxis2VelAddEnable AND g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowS2Dis THEN
+        g_bSustain5AbsPosition := g_fSustain5ToChuckDist - g_fSustainTargetPos;
+        g_bSustain5Abs := TRUE;
+      END_IF;
+      IF g_nFrontSusutainCount >= 3 AND g_bFrontAxis3VelAddEnable AND g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowS3Dis THEN
+        g_bSustain6AbsPosition := g_fSustain6ToChuckDist - g_fSustainTargetPos;
+        g_bSustain6Abs := TRUE;
+      END_IF;
+      IF g_nFrontSusutainCount >= 4 AND g_bFrontAxis4VelAddEnable AND g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowZ4Dis THEN
+        g_fARAbsPosition2 := g_dFrontSustainAxis7ChuckDist - g_fSustainTargetPos;
+        g_bAntiRejection2AbsExecute := TRUE;
+      END_IF;
+      M.ENABLE[319] := 0;
+    END_IF; 
+  END_IF; 
+END_IF;
+
+
+
+
+
+RTrigger1(CLK := g_bFrontSustainFollowExecuteM);
+RTrigger2(CLK := g_biFrontSustainFollowClose);
+
+IF RTrigger1.Q THEN
+  (*托料轴*)
+  IF g_bFrontSustainEnable THEN
+    IF LREAL_TO_INT(g_nFrontSustainSignalM) = 0 THEN
+      (*关闭浮动*)
+      nFollowStep := 100;
+      bDynamicFollowS1Up := FALSE;
+      bDynamicFollowS2Up := FALSE;
+      bDynamicFollowS3Up := FALSE;
+      bDynamicFollowS4Up := FALSE;
+      g_bFrontAxis1VelAddEnable := FALSE;
+      g_bFrontAxis2VelAddEnable := FALSE;
+      g_bFrontAxis3VelAddEnable := FALSE;
+      g_bFrontAxis4VelAddEnable := FALSE;
+    ELSIF LREAL_TO_INT(g_nFrontSustainSignalM) = 1 THEN
+      (*浮动*)
+      nFollowStep := 10;
+      (*不开启托料轴自动浮动依旧升起托料轴
+      ELSE
+        nFollowStep := 420;
+      *)
+      g_boFrontSustainFollowDone := FALSE;
+      g_bSustain4AbsDone := FALSE;
+      g_bSustain5AbsDone := FALSE;
+      g_bSustain6AbsDone := FALSE;
+      g_bAntiRejection2AbsDone := FALSE;
+    ELSE(*处理回中或其他，只浮动*)
+      nFollowStep := 600;
+    END_IF;
+  (*托料气缸*)
+  ELSIF g_bBlankCylinderEnable THEN
+    IF LREAL_TO_INT(g_nFrontSustainSignalM) = 0 THEN
+      nFollowStep := 140;
+      IF g_nBlankClylinderCount = 0 THEN
+        g_boFrontSustainFollowDone := TRUE;
+        M.ENABLE[222] := 0;
+        g_bExecuteFinishedM222 := FALSE;
+        nFollowStep := 0;
+      END_IF;
+      
+    ELSIF LREAL_TO_INT(g_nFrontSustainSignalM) = 1 THEN
+      (*托料气缸上升*)
+      IF bDynamicFollowUp THEN
+        nFollowStep := 400;
+      ELSE
+        nFollowStep := 160;
+      END_IF;
+      g_boFrontSustainFollowDone := FALSE;
+    ELSE(*此处进，说明是回中或其他，直接跳过*)
+      g_boFrontSustainFollowDone := TRUE; 
+      M.ENABLE[222] := 0;
+      g_bExecuteFinishedM222 := FALSE;
+    END_IF;
+  ELSE
+    g_boFrontSustainFollowDone := TRUE; 
+    M.ENABLE[222] := 0;
+    g_bExecuteFinishedM222 := FALSE;
+  END_IF;
+  g_dDynamicCoordTemp := g_diYMachineCoordinate;
+  g_bFrontSustainFollowExecuteM := FALSE;
+END_IF;
+
+CASE nFollowStep OF
+  0:
+    nFollowStep := 0;
+  10:
+  IF g_nFrontSusutainCount >= 1 AND NOT g_bFrontSustainAxis1CloseVelAdd THEN
+    g_bSustain4Abs := TRUE;
+    g_bSustain4AbsPosition := g_dFrontSustainAxis4DownPos;
+    g_bSustain4AbsDone := FALSE;
+  END_IF;
+  IF g_nFrontSusutainCount >= 2 AND NOT g_bFrontSustainAxis2CloseVelAdd  THEN
+     g_bSustain5Abs := TRUE;
+    g_bSustain5AbsPosition := g_dFrontSustainAxis5DownPos;
+    g_bSustain5AbsDone := FALSE;
+  END_IF;
+  
+  IF g_nFrontSusutainCount >= 3 AND NOT g_bFrontSustainAxis3CloseVelAdd THEN
+     g_bSustain6Abs := TRUE;
+    g_bSustain6AbsPosition := g_dFrontSustainAxis6DownPos;
+    g_bSustain6AbsDone := FALSE;
+  END_IF;
+  IF g_nFrontSusutainCount >= 4 AND NOT g_bFrontSustainAxis4CloseVelAdd THEN
+     g_bAntiRejection2AbsExecute := TRUE;
+    g_fARAbsPosition2 := g_dFrontSustainAxis7DownPos;
+    g_bAntiRejection2AbsDone := FALSE;
+  END_IF;
+  
+  nFollowStep := 11;
+  IF g_nFrontSusutainCount = 0 THEN
+    nFollowStep := 0;
+    M.ENABLE[222] := 0;
+    g_bExecuteFinishedM222 := FALSE;
+    g_boFrontSustainFollowDone := TRUE;
+  END_IF;
+  11:
+  bCheckFlag4 := TRUE;
+   IF (NOT g_bSustain4AbsDone) AND g_nFrontSusutainCount >= 1 AND NOT g_bFrontSustainAxis1CloseVelAdd THEN
+     
+      bCheckFlag4 := FALSE; 
+    END_IF;
+    IF (NOT g_bSustain5AbsDone) AND g_nFrontSusutainCount >= 2 AND NOT g_bFrontSustainAxis2CloseVelAdd THEN
+      bCheckFlag4 := FALSE;
+    END_IF;
+    IF (NOT g_bSustain6AbsDone) AND g_nFrontSusutainCount >= 3 AND NOT g_bFrontSustainAxis3CloseVelAdd  THEN
+      
+      bCheckFlag4 := FALSE;
+    END_IF;
+    IF (NOT g_bAntiRejection2AbsDone) AND g_nFrontSusutainCount >= 4 AND NOT g_bFrontSustainAxis4CloseVelAdd  THEN
+      
+      bCheckFlag4 := FALSE;
+    END_IF;
+  
+  IF bCheckFlag4 THEN
+    nFollowStep := 15;
+    g_bSustain4AbsDone := FALSE;
+    g_bSustain5AbsDone := FALSE;
+    g_bSustain6AbsDone := FALSE;
+    g_bAntiRejection2AbsDone := FALSE;
+  END_IF;
+   
+  15:(*判断是否要浮动*)
+    fActPos := g_fSustainTargetPos;
+    IF g_nFrontSusutainCount >= 1 AND g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowS1Dis AND (NOT g_bSustain4InFollow)  AND NOT bDynamicFollowS1Up AND NOT g_bFrontSustainAxis1CloseVelAdd THEN
+      g_bSustain4AbsPosition := g_fSustain4ToChuckDist - fActPos;
+      g_bSustain4Abs := TRUE;
+      bDynamicFollowS1Up := TRUE;
+      g_bFrontAxis1VelAddEnable := TRUE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 2 AND g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowS2Dis AND (NOT g_bSustain5InFollow) AND NOT bDynamicFollowS2Up AND NOT g_bFrontSustainAxis2CloseVelAdd THEN
+        g_bSustain5AbsPosition := g_fSustain5ToChuckDist - fActPos;
+        g_bSustain5Abs := TRUE;
+        bDynamicFollowS2Up := TRUE;
+        g_bFrontAxis2VelAddEnable := TRUE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 3 AND g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowS3Dis AND (NOT g_bSustain6InFollow) AND NOT bDynamicFollowS3Up AND NOT g_bFrontSustainAxis3CloseVelAdd THEN
+      g_bSustain6AbsPosition := g_fSustain6ToChuckDist - fActPos;
+      g_bSustain6Abs := TRUE;
+      bDynamicFollowS3Up := TRUE;
+      g_bFrontAxis3VelAddEnable := TRUE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 4 AND g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowZ4Dis AND NOT bDynamicFollowS4Up AND NOT g_bFrontSustainAxis4CloseVelAdd THEN
+      g_fARAbsPosition2 := g_dFrontSustainAxis7ChuckDist - fActPos;
+      g_bAntiRejection2AbsExecute := TRUE;
+      bDynamicFollowS4Up := TRUE;
+      g_bFrontAxis4VelAddEnable := TRUE;
+    END_IF;
+    M.ENABLE[222] := 0;
+    g_bExecuteFinishedM222 := FALSE;
+    g_boFrontSustainFollowDone := TRUE;
+    IF g_bPlcPauseBuffer THEN
+       nFollowStep := 16;
+    END_IF;
+  16:
+	IF g_bPlcStartBuffer THEN
+       nFollowStep := 15;
+       bDynamicFollowS1Up := FALSE;
+       bDynamicFollowS2Up := FALSE;
+       bDynamicFollowS3Up := FALSE;
+       bDynamicFollowS4Up := FALSE;
+    END_IF;
+  100:
+     IF g_nFrontSusutainCount >= 1 THEN
+      g_bSustain4Follow := FALSE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 2 THEN
+      g_bSustain5Follow := FALSE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 3 THEN
+      g_bSustain6Follow := FALSE;
+    END_IF;
+    nFollowStep := 105;
+  105:
+    IF g_nFrontSusutainCount >= 1 THEN
+      g_bSustain4InFollow := FALSE;
+      g_Sustain4Stop.EXECUTE := TRUE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 2 THEN
+      g_bSustain5InFollow := FALSE;
+      g_Sustain5Stop.EXECUTE := TRUE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 3 THEN
+       g_bSustain6InFollow := FALSE;
+      g_Sustain6Stop.EXECUTE := TRUE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 4 THEN
+      g_AntiRejection2Stop.EXECUTE := TRUE;
+    END_IF;
+	bCheckFlag := TRUE;
+    IF g_nFrontSusutainCount >= 1 AND NOT g_Sustain4Stop.DONE THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 2 AND NOT g_Sustain5Stop.DONE THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 3 AND NOT g_Sustain6Stop.DONE THEN
+       bCheckFlag := FALSE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 4 AND NOT g_AntiRejection2Stop.DONE THEN
+       bCheckFlag := FALSE;
+    END_IF;
+	IF bCheckFlag THEN
+      nFollowStep := 110;
+      g_Sustain6Stop.EXECUTE := FALSE;
+      g_Sustain5Stop.EXECUTE := FALSE;
+      g_Sustain4Stop.EXECUTE := FALSE;
+      g_AntiRejection2Stop.EXECUTE := FALSE;
+    END_IF;
+  110:
+    g_boFrontSustainFollowDone := TRUE;
+    g_boFrontSustainUpDownDone := FALSE;
+    g_bFrontSustainUpDownDone := FALSE;
+    nFollowStep := 120;
+  120:
+    IF g_nFrontSusutainCount >= 1 THEN
+      g_bSustain4Abs := TRUE;
+      IF Axis_Sustain4.NCTOPLC.SETPOS <= 0.0 THEN
+        g_bSustain4AbsPosition := Axis_Sustain4.NCTOPLC.SETPOS;
+      ELSE
+        g_bSustain4AbsPosition := g_dFrontSustainAxis4DownPos;
+      END_IF;
+    END_IF;
+    IF g_nFrontSusutainCount >= 2 THEN
+      g_bSustain5Abs := TRUE;
+      IF Axis_Sustain5.NCTOPLC.SETPOS <= 0.0 THEN
+        g_bSustain5AbsPosition := Axis_Sustain5.NCTOPLC.SETPOS;
+      ELSE
+        g_bSustain5AbsPosition := g_dFrontSustainAxis5DownPos;
+      END_IF;
+    END_IF;
+    IF g_nFrontSusutainCount >= 3 THEN
+      g_bSustain6Abs := TRUE;
+      IF Axis_Sustain6.NCTOPLC.SETPOS <= 0.0 THEN
+        g_bSustain6AbsPosition := Axis_Sustain6.NCTOPLC.SETPOS;
+      ELSE
+        g_bSustain6AbsPosition := g_dFrontSustainAxis6DownPos;
+      END_IF;
+    END_IF;
+    IF g_nFrontSusutainCount >= 4 THEN
+      g_bAntiRejection2AbsExecute := TRUE;
+      IF AntiRejection2.NCTOPLC.SETPOS <= 0.0 THEN
+        g_fARAbsPosition2 := AntiRejection2.NCTOPLC.SETPOS;
+      ELSE
+        g_fARAbsPosition2 := g_dFrontSustainAxis7DownPos;
+      END_IF;
+    END_IF;
+    nFollowStep := 130;
+  130:
+    bCheckFlag := TRUE;
+    IF g_nFrontSusutainCount >= 1 AND NOT(g_bSustain4AbsDone) THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 2 AND NOT(g_bSustain5AbsDone) THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 3 AND NOT(g_bSustain5AbsDone) THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 4 AND NOT(g_bAntiRejection2AbsDone) THEN
+      bCheckFlag := FALSE;
+    END_IF;
+    IF bCheckFlag THEN
+      g_boFrontSustainUpDownDone := TRUE;
+      g_bFrontSustainUpDownDone := TRUE;
+      nFollowStep := 0;
+      M.ENABLE[222] := 0;
+      g_bExecuteFinishedM222 := FALSE;
+    END_IF;
+    140:
+    nFollowStep := 150;
+    IF g_nBlankClylinderCount >= 1 THEN
+      g_bCylinder1Open := FALSE;
+      g_bCylinder1Close := TRUE;
+    END_IF;
+    IF g_nBlankClylinderCount >= 2 THEN
+      g_bCylinder2Open := FALSE;
+      g_bCylinder2Close := TRUE;
+    END_IF;
+    IF g_nBlankClylinderCount >= 3 THEN
+      g_bCylinder3Open := FALSE;
+      g_bCylinder3Close := TRUE;
+    END_IF;
+    IF g_nBlankClylinderCount >= 4 THEN
+      g_bCylinder4Open := FALSE;
+      g_bCylinder4Close := TRUE;
+    END_IF;
+    IF g_nBlankClylinderCount >= 5 THEN
+      g_bCylinder5Open := FALSE;
+      g_bCylinder5Close := TRUE;
+    END_IF;
+  150:(*等待到位*)
+    bDoneCheckFlag := TRUE;
+    IF g_nBlankClylinderCount >= 1 AND NOT g_bBlankingStateDown1 THEN
+      bDoneCheckFlag := FALSE;
+    END_IF;
+    IF g_nBlankClylinderCount >= 2 AND NOT g_bBlankingStateDown2 THEN
+      bDoneCheckFlag := FALSE;
+    END_IF;
+    IF g_nBlankClylinderCount >= 3 AND NOT g_bBlankingStateDown3 THEN
+      bDoneCheckFlag := FALSE;
+    END_IF;
+    IF g_nBlankClylinderCount >= 4 AND NOT g_bBlankingStateDown4 THEN
+     bDoneCheckFlag := FALSE;
+    END_IF;
+    IF g_nBlankClylinderCount >= 5 AND NOT g_bBlankingStateDown5 THEN
+      bDoneCheckFlag := FALSE;
+    END_IF;
+    IF bDoneCheckFlag THEN
+        g_boFrontSustainFollowDone := TRUE;
+        M.ENABLE[222] := 0;
+        g_bExecuteFinishedM222 := FALSE;
+        nFollowStep := 0;
+    END_IF;
+  160:
+    (*支撑气缸上升*)
+    g_nFrontSustainMoveType := 1;
+    g_bFrontSustainUpDown := TRUE;
+    nFollowStep := 170;
+  170:
+    IF g_bFrontSustainUpDownDone THEN
+      g_boFrontSustainFollowDone := TRUE;
+      M.ENABLE[222] := 0;
+      g_bExecuteFinishedM222 := FALSE;
+      nFollowStep := 0;
+    END_IF; 
+  400:
+    (*支撑气缸上升*)
+    g_nFrontSustainMoveType := 2;
+    g_bFrontSustainUpDown := TRUE;
+    nFollowStep := 410;
+  410:
+    IF g_bFrontSustainUpDownDone THEN
+      g_boFrontSustainFollowDone := TRUE;
+      M.ENABLE[222] := 0;
+      g_bExecuteFinishedM222 := FALSE;
+      nFollowStep := 0;
+    END_IF;
+  420:(*开启自动下料，先将升起来的轴降下去*)
+    IF g_nFrontSusutainCount >= 1 AND g_dDynamicFollowS1Dis > 0.0 THEN
+      g_bSustain4Abs := TRUE;
+      IF Axis_Sustain4.NCTOPLC.SETPOS <= 0.0 THEN
+          g_bSustain4AbsPosition := Axis_Sustain4.NCTOPLC.SETPOS;
+      ELSE
+          g_bSustain4AbsPosition := g_dFrontSustainAxis4DownPos;
+      END_IF;
+    END_IF;
+    IF g_nFrontSusutainCount >= 2 AND g_dDynamicFollowS2Dis > 0.0  THEN
+       g_bSustain5Abs := TRUE;
+      IF Axis_Sustain5.NCTOPLC.SETPOS <= 0.0 THEN
+          g_bSustain5AbsPosition := Axis_Sustain5.NCTOPLC.SETPOS;
+      ELSE
+          g_bSustain5AbsPosition := g_dFrontSustainAxis5DownPos;
+      END_IF;
+    END_IF;
+    
+    IF g_nFrontSusutainCount >= 3 AND g_dDynamicFollowS3Dis > 0.0 THEN
+       g_bSustain6Abs := TRUE;
+      IF Axis_Sustain6.NCTOPLC.SETPOS <= 0.0   THEN
+          g_bSustain6AbsPosition := Axis_Sustain6.NCTOPLC.SETPOS;
+      ELSE
+          g_bSustain6AbsPosition := g_dFrontSustainAxis6DownPos;
+      END_IF;
+    END_IF;
+    IF g_nFrontSusutainCount >= 4 AND g_dDynamicFollowZ4Dis > 0.0 THEN
+       g_bAntiRejection2AbsDone := TRUE;
+      IF AntiRejection2.NCTOPLC.SETPOS <= 0.0   THEN
+          g_fARAbsPosition2 := AntiRejection2.NCTOPLC.SETPOS;
+      ELSE
+          g_fARAbsPosition2 := g_dFrontSustainAxis7DownPos;
+      END_IF;
+    END_IF;
+    nFollowStep := 500;
+  500:(*到了距离顶升，然后开浮动*)
+    fActPos := g_fSustainTargetPos;
+    IF g_nFrontSusutainCount >= 1 THEN
+      IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowS1Dis AND (NOT bDynamicFollowS1Up) AND (NOT g_bSustain4InFollow) THEN
+        g_bSustain4AbsPosition := g_fSustain4ToChuckDist - fActPos;
+        g_bSustain4Abs := TRUE;
+        bDynamicFollowS1Up := TRUE;
+      END_IF;
+    END_IF;
+    
+    IF g_nFrontSusutainCount >= 2 THEN
+       IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowS2Dis AND (NOT bDynamicFollowS2Up) AND (NOT g_bSustain5InFollow) THEN
+         g_bSustain5AbsPosition := g_fSustain5ToChuckDist - fActPos;
+          g_bSustain5Abs := TRUE;
+          bDynamicFollowS2Up := TRUE;
+      END_IF;
+    END_IF;
+    
+    IF g_nFrontSusutainCount >= 3 THEN
+       IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowS3Dis AND (NOT bDynamicFollowS3Up) AND (NOT g_bSustain6InFollow) THEN
+         g_bSustain6AbsPosition := g_fSustain6ToChuckDist - fActPos;
+          g_bSustain6Abs := TRUE;
+          bDynamicFollowS3Up := TRUE;
+      END_IF;
+    END_IF;
+    
+    IF g_nFrontSusutainCount >= 4 THEN
+       IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowZ4Dis AND (NOT bDynamicFollowS4Up)  THEN
+         g_fARAbsPosition2 := g_dFrontSustainAxis7ChuckDist - fActPos;
+          g_bAntiRejection2AbsExecute := TRUE;
+          bDynamicFollowS4Up := TRUE;
+      END_IF;
+    END_IF;
+    IF bDynamicFollowS1Up OR bDynamicFollowS2Up OR bDynamicFollowS3Up OR bDynamicFollowS4Up THEN
+      nFollowStep := 510;
+    END_IF;
+    IF g_nFrontSusutainCount = 0 THEN
+      M.ENABLE[222] := 0;
+      g_bExecuteFinishedM222 := FALSE;
+      g_boFrontSustainFollowDone := TRUE;
+    END_IF;
+  510:
+   IF NOT((g_nFrontSusutainCount >= 1 AND (NOT g_bSustain4AbsDone)) OR
+       (g_nFrontSusutainCount >= 2 AND (NOT g_bSustain5AbsDone)) OR  
+       (g_nFrontSusutainCount >= 3 AND (NOT g_bSustain6AbsDone))) THEN
+      IF g_nFrontSusutainCount >= 1 AND bDynamicFollowS1Up AND NOT g_bSustain4InFollow  THEN
+        IF g_bSustain4AbsDone THEN
+          g_bSustain4Follow := TRUE;
+        END_IF;
+      END_IF;
+      IF g_nFrontSusutainCount >= 2 AND bDynamicFollowS2Up AND NOT g_bSustain5InFollow  THEN
+         IF g_bSustain5AbsDone THEN
+          g_bSustain5Follow := TRUE;
+         END_IF;
+      END_IF;
+      IF g_nFrontSusutainCount >= 3 AND bDynamicFollowS3Up AND NOT g_bSustain6InFollow  THEN
+        IF g_bSustain6AbsDone THEN
+          g_bSustain6Follow := TRUE;
+        END_IF;
+      END_IF;
+      nFollowStep := 550;
+    END_IF;
+  550:
+   IF  (g_nFrontSusutainCount >= 1 AND g_bSustain4InFollow) OR
+       (g_nFrontSusutainCount >= 2 AND g_bSustain5InFollow) OR
+       (g_nFrontSusutainCount >= 3 AND g_bSustain6InFollow) THEN
+      g_boFrontSustainFollowDone := TRUE;
+      M.ENABLE[222] := 0;
+      g_bExecuteFinishedM222 := FALSE;
+      nFollowStep := 500;
+    END_IF;
+  600:(*判断当前轴的坐标*)
+    fActPos := g_fSustainTargetPos;
+	  IF g_nFrontSusutainCount >= 1 AND NOT g_bSustain4InFollow THEN
+		g_bSustain4AbsPosition := g_fSustain4ToChuckDist - fActPos;
+		g_bSustain4Abs := TRUE;
+	  END_IF;
+	  IF  g_nFrontSusutainCount >= 2 AND NOT g_bSustain5InFollow THEN
+		g_bSustain5AbsPosition := g_fSustain5ToChuckDist - fActPos;
+		g_bSustain5Abs := TRUE;
+	  END_IF;
+	  IF  g_nFrontSusutainCount >= 3 AND NOT g_bSustain6InFollow THEN
+		g_bSustain6AbsPosition := g_fSustain6ToChuckDist - fActPos;
+		g_bSustain6Abs := TRUE;
+	  END_IF;
+      IF  g_nFrontSusutainCount >= 4  THEN
+		g_fARAbsPosition2 := g_dFrontSustainAxis7ChuckDist - fActPos;
+		g_bAntiRejection2AbsExecute := TRUE;
+	  END_IF;
+	  nFollowStep := 610;
+  610:
+	  IF (g_nFrontSusutainCount >= 1 AND g_bSustain4AbsDone) OR
+		(g_nFrontSusutainCount >= 2 AND g_bSustain5AbsDone) OR 
+		(g_nFrontSusutainCount >= 3 AND g_bSustain6AbsDone) THEN
+		g_bSustain4Follow := TRUE;
+		g_bSustain5Follow := TRUE;
+		g_bSustain6Follow := TRUE;
+		  g_boFrontSustainFollowDone := TRUE;
+		  M.ENABLE[222] := 0;
+		  g_bExecuteFinishedM222 := FALSE;
+		  nFollowStep := 0;
+		END_IF;
+    
+END_CASE;
+RTrigger5(CLK := g_bFrontSustainAxisFloatControlM);
+IF RTrigger5.Q THEN
+  g_bFrontSustainAxisFloatControlM := FALSE;
+  IF g_nFrontSustainSignalM = 1.0 THEN
+	nFrontSustainAxisFollowState := 10;
+  ELSE
+    nFrontSustainAxisFollowState := 100;
+  END_IF;
+  IF g_nFrontSusutainCount = 0 THEN
+    nFrontSustainAxisFollowState := 0;
+    M.ENABLE[222] := 0;
+    g_bExecuteFinishedM222 := FALSE;
+    g_boFrontSustainFollowDone := TRUE;
+  END_IF;
+END_IF;
+
+
+
+CASE nFrontSustainAxisFollowState OF
+  0:
+	nFrontSustainAxisFollowState := 0;
+  10:
+	IF g_nFrontSusutainCount >= 1 THEN
+      nFrontSustainAxis1FollowState := 10;
+		IF g_bFrontAxis1VelAddEnable THEN
+		   g_bFrontAxis1VelAddEnable := FALSE;
+		END_IF;
+    END_IF;
+    IF g_nFrontSusutainCount >= 2 THEN
+      nFrontSustainAxis2FollowState := 10;
+		IF g_bFrontAxis2VelAddEnable THEN
+		   g_bFrontAxis2VelAddEnable := FALSE;
+		END_IF;
+    END_IF;
+    IF g_nFrontSusutainCount >= 3 THEN
+      nFrontSustainAxis3FollowState := 10;
+		IF g_bFrontAxis3VelAddEnable THEN
+		   g_bFrontAxis3VelAddEnable := FALSE;
+		END_IF;
+    END_IF;
+    
+    IF g_nFrontSusutainCount >= 4 THEN
+      nFrontSustainAxis4FollowState := 10;
+		IF g_bFrontAxis4VelAddEnable THEN
+		   g_bFrontAxis4VelAddEnable := FALSE;
+		END_IF;
+    END_IF;
+    nFrontSustainAxisFollowState := 20;
+  20:
+	bFrontSustainAxisFollowCheck := TRUE;
+    IF g_nFrontSusutainCount >= 1 AND NOT g_bSustain4AbsDone THEN
+      bFrontSustainAxisFollowCheck := FALSE;
+    END_IF;
+     IF g_nFrontSusutainCount >= 2 AND NOT g_bSustain5AbsDone THEN
+      bFrontSustainAxisFollowCheck := FALSE;
+    END_IF;
+     IF g_nFrontSusutainCount >= 3 AND NOT g_bSustain6AbsDone THEN
+      bFrontSustainAxisFollowCheck := FALSE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 4 AND NOT g_bAntiRejection2AbsDone THEN
+      bFrontSustainAxisFollowCheck := FALSE;
+    END_IF;
+	IF bFrontSustainAxisFollowCheck THEN
+      nFrontSustainAxisFollowState := 200;
+    END_IF;
+  100:
+    IF g_nFrontSusutainCount >= 1 THEN
+		nFrontSustainAxis1FollowState := 100;
+		g_bFrontAxis1VelAddEnable := FALSE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 2 THEN
+		nFrontSustainAxis2FollowState := 100;
+		g_bFrontAxis2VelAddEnable := FALSE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 3 THEN
+		nFrontSustainAxis3FollowState := 100;
+		g_bFrontAxis3VelAddEnable := FALSE;
+    END_IF;
+     IF g_nFrontSusutainCount >= 4 THEN
+		nFrontSustainAxis4FollowState := 100;
+		g_bFrontAxis4VelAddEnable := FALSE;
+    END_IF;
+     nFrontSustainAxisFollowState := 120;
+  120:
+	bFrontSustainAxisFollowCheck := TRUE;
+    IF g_nFrontSusutainCount >= 1 AND NOT g_bSustain4AbsDone THEN
+      bFrontSustainAxisFollowCheck := FALSE;
+    END_IF;
+     IF g_nFrontSusutainCount >= 2 AND NOT g_bSustain5AbsDone THEN
+      bFrontSustainAxisFollowCheck := FALSE;
+    END_IF;
+     IF g_nFrontSusutainCount >= 3 AND NOT g_bSustain6AbsDone THEN
+      bFrontSustainAxisFollowCheck := FALSE;
+    END_IF;
+    IF g_nFrontSusutainCount >= 4 AND NOT g_bAntiRejection2AbsDone THEN
+      bFrontSustainAxisFollowCheck := FALSE;
+    END_IF;
+	IF bFrontSustainAxisFollowCheck THEN
+      nFrontSustainAxisFollowState := 200;
+    END_IF;
+  200:
+	nFrontSustainAxisFollowState := 0;
+    M.ENABLE[222] := 0;
+    g_bExecuteFinishedM222 := FALSE;
+    g_boFrontSustainFollowDone := TRUE;
+  
+END_CASE;
+
+
+
+(*M代码触发单个托料轴浮动开关*)
+RTrigger4(CLK := g_bFrontSustainAxisFollowControlM);
+IF RTrigger4.Q THEN
+  (*托料轴1加耦浮动*)
+  IF g_nFrontSustainSignalM = 11.0 THEN
+    nFrontSustainAxis1FollowState := 10;
+    IF g_bFrontAxis1VelAddEnable THEN
+       g_bFrontAxis1VelAddEnable := FALSE;
+    END_IF;
+  (*托料轴1解耦下降*)
+  ELSIF g_nFrontSustainSignalM = 12.0 THEN
+    nFrontSustainAxis1FollowState := 100;
+    g_bFrontAxis1VelAddEnable := FALSE;
+  (*托料轴2加耦浮动*)
+  ELSIF g_nFrontSustainSignalM = 13.0 THEN
+    nFrontSustainAxis2FollowState := 10;
+    IF g_bFrontAxis2VelAddEnable THEN
+       g_bFrontAxis2VelAddEnable := FALSE;
+    END_IF;
+  (*托料轴2解耦下降*)
+  ELSIF g_nFrontSustainSignalM = 14.0 THEN
+    nFrontSustainAxis2FollowState := 100;
+    g_bFrontAxis2VelAddEnable := FALSE;
+  (*托料轴3加耦浮动*)
+  ELSIF g_nFrontSustainSignalM = 15.0 THEN
+    nFrontSustainAxis3FollowState := 10;
+    IF g_bFrontAxis3VelAddEnable THEN
+       g_bFrontAxis3VelAddEnable := FALSE;
+    END_IF;
+  (*托料轴3解耦下降*)
+  ELSIF g_nFrontSustainSignalM = 16.0 THEN
+    nFrontSustainAxis3FollowState := 100;
+    g_bFrontAxis3VelAddEnable := FALSE;
+  (*托料轴4加耦浮动*)
+  ELSIF g_nFrontSustainSignalM = 17.0 THEN
+    nFrontSustainAxis4FollowState := 10;
+    IF g_bFrontAxis4VelAddEnable THEN
+       g_bFrontAxis4VelAddEnable := FALSE;
+    END_IF;
+  (*托料轴4解耦下降*)
+  ELSIF g_nFrontSustainSignalM = 18.0 THEN
+    nFrontSustainAxis4FollowState := 100;
+    g_bFrontAxis4VelAddEnable := FALSE;
+  ELSIF g_nFrontSustainSignalM = 100.0 THEN(*新增指令:P100:控制轴的零件间的托举是否要执行Q:0:关闭1:开启 I:1-3*)
+    IF M.PARAMETER_I[222] = 1.0 THEN
+      g_bFrontSustainAxis1CloseVelAdd := NOT LREAL_TO_BOOL(M.PARAMETER_Q[222]);
+      IF NOT g_bFrontSustainAxis1CloseVelAdd THEN
+        nFrontSustainAxis1FollowState := 200;
+        bAxis1P100TriggerFlag := TRUE;
+      END_IF;
+		IF g_bFrontAxis1VelAddEnable THEN
+		   g_bFrontAxis1VelAddEnable := FALSE;
+		END_IF;
+    ELSIF M.PARAMETER_I[222] = 2.0 THEN
+      g_bFrontSustainAxis2CloseVelAdd := NOT LREAL_TO_BOOL(M.PARAMETER_Q[222]);
+      IF NOT g_bFrontSustainAxis2CloseVelAdd THEN
+        nFrontSustainAxis2FollowState := 200;
+        bAxis2P100TriggerFlag := TRUE;
+      END_IF;
+		IF g_bFrontAxis2VelAddEnable THEN
+		   g_bFrontAxis2VelAddEnable := FALSE;
+		END_IF;
+    ELSIF M.PARAMETER_I[222] = 3.0 THEN 
+      g_bFrontSustainAxis3CloseVelAdd := NOT LREAL_TO_BOOL(M.PARAMETER_Q[222]);
+      IF NOT g_bFrontSustainAxis3CloseVelAdd THEN
+        nFrontSustainAxis3FollowState := 200;
+        bAxis3P100TriggerFlag := TRUE;
+      END_IF;
+		IF g_bFrontAxis3VelAddEnable THEN
+		   g_bFrontAxis3VelAddEnable := FALSE;
+		END_IF;
+    ELSIF M.PARAMETER_I[222] = 4.0 THEN 
+      g_bFrontSustainAxis4CloseVelAdd := NOT LREAL_TO_BOOL(M.PARAMETER_Q[222]);
+      IF NOT g_bFrontSustainAxis4CloseVelAdd THEN
+        nFrontSustainAxis4FollowState := 200;
+        bAxis4P100TriggerFlag := TRUE;
+      END_IF;
+		IF g_bFrontAxis4VelAddEnable THEN
+		   g_bFrontAxis4VelAddEnable := FALSE;
+		END_IF;
+    END_IF;
+    M.ENABLE[222] :=0;
+  END_IF;
+  g_bFrontSustainAxisFollowControlM := FALSE;
+END_IF;
+
+(*托料轴1*)
+CASE nFrontSustainAxis1FollowState OF
+  0:
+	nFrontSustainAxis1FollowState := 0;
+  10:
+	fActPos := g_fSustainTargetPos;
+    g_bSustain4AbsPosition := g_fSustain4ToChuckDist - fActPos;
+    g_bSustain4Abs := TRUE;
+    g_bFrontAxis1VelAddEnable := TRUE;
+    nFrontSustainAxis1FollowState := 20;
+    g_bSustain4AbsDone := FALSE;
+  20:
+	IF g_bSustain4AbsDone THEN
+      g_bSustain4Abs := FALSE;
+      M.ENABLE[222] := 0;
+	  g_boFrontSustainFollowDone := TRUE;
+      bDynamicFollowS1Up := FALSE;
+      g_bFinishedM222_11 := FALSE;
+    END_IF;
+	  IF g_bPlcPauseBuffer THEN
+		  nFrontSustainAxis1FollowState := 40;
+	  END_IF;
+  40:
+	  IF g_bPlcStartBuffer THEN
+		nFrontSustainAxis1FollowState := 10;
+	  END_IF;
+  100:
+	  g_Sustain4Stop.EXECUTE := TRUE;
+      IF g_Sustain4Stop.DONE THEN
+         g_Sustain4Stop.EXECUTE := FALSE;
+		nFrontSustainAxis1FollowState := 110;
+      END_IF;
+  110:
+	  g_boFrontSustainFollowDone := TRUE;
+	  g_boFrontSustainUpDownDone := FALSE;
+	  g_bFrontSustainUpDownDone := FALSE;
+	  nFrontSustainAxis1FollowState := 120;
+  120:
+	  g_bSustain4Abs := TRUE;
+      g_bSustain4AbsPosition := g_dFrontSustainAxis4DownPos;
+	  g_bSustain4AbsDone := FALSE;
+	  nFrontSustainAxis1FollowState := 130;
+  130:
+	  IF g_bSustain4AbsDone THEN
+		g_boFrontSustainUpDownDone := TRUE;
+		g_bFrontSustainUpDownDone := TRUE;
+		nFrontSustainAxis1FollowState := 0;
+		M.ENABLE[222] := 0;
+		g_bFinishedM222_12 := FALSE;
+        bDynamicFollowS1Up := TRUE;
+	  END_IF;
+      IF g_bPlcPauseBuffer THEN
+		  nFrontSustainAxis1FollowState := 140;
+	  END_IF;
+  140:
+	 IF g_bPlcStartBuffer THEN
+		nFrontSustainAxis1FollowState := 120;
+	  END_IF;
+  200:
+	fActPos := g_fSustainTargetPos;
+    IF g_nFrontSusutainCount >= 1 THEN
+       IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowS1Dis  AND NOT g_bFrontSustainAxis1CloseVelAdd THEN
+		  g_bSustain4AbsPosition := g_fSustain4ToChuckDist - fActPos;
+		  g_bSustain4Abs := TRUE;
+		  g_bFrontAxis1VelAddEnable := TRUE;
+          nFrontSustainAxis1FollowState := 0;
+        END_IF;
+        IF bAxis1P100TriggerFlag THEN
+          M.ENABLE[222] := 0;
+          g_bFinishedM222_11 := FALSE;
+          bAxis1P100TriggerFlag := FALSE;
+        END_IF;
+    ELSE
+      M.ENABLE[222] := 0;
+      g_bFinishedM222_11 := FALSE;
+	  nFrontSustainAxis1FollowState := 0;
+      bAxis1P100TriggerFlag := FALSE;
+    END_IF;
+END_CASE;
+
+(*托料轴2*)
+CASE nFrontSustainAxis2FollowState OF
+  0:
+	nFrontSustainAxis2FollowState := 0;
+  10:
+	fActPos := g_fSustainTargetPos;
+	g_bSustain5AbsPosition := g_fSustain5ToChuckDist - fActPos;
+	g_bSustain5Abs := TRUE;
+	g_bSustain5AbsDone := FALSE;
+    g_boFrontSustainFollowDone := FALSE;
+	nFrontSustainAxis2FollowState := 20;
+  20:
+	IF g_bSustain5AbsDone THEN
+	  M.ENABLE[222] := 0;
+	  g_bFinishedM222_13 := FALSE;
+	  g_boFrontSustainFollowDone := TRUE;
+      g_bSustain5Abs :=  FALSE;
+      g_bFrontAxis2VelAddEnable := TRUE;
+      bDynamicFollowS2Up := FALSE;
+    END_IF;
+	IF g_bPlcPauseBuffer THEN
+		nFrontSustainAxis2FollowState := 40;
+	END_IF;
+  40:
+	IF g_bPlcStartBuffer THEN
+		nFrontSustainAxis2FollowState := 10;
+	END_IF;
+  100:
+	g_Sustain5Stop.EXECUTE := TRUE;
+	nFrontSustainAxis2FollowState := 110;
+  110:
+	IF g_Sustain5Stop.DONE THEN
+		g_Sustain5Stop.EXECUTE := FALSE;
+		g_boFrontSustainFollowDone := FALSE;
+		g_boFrontSustainUpDownDone := FALSE;
+		g_bFrontSustainUpDownDone := FALSE;
+        nFrontSustainAxis2FollowState := 120;
+    END_IF;
+  120:
+	g_bSustain5Abs := TRUE;
+    g_bSustain5AbsPosition := g_dFrontSustainAxis5DownPos;
+	nFrontSustainAxis2FollowState := 130;
+  130:
+	IF g_bSustain5AbsDone THEN
+		g_boFrontSustainUpDownDone := TRUE;
+		g_bFrontSustainUpDownDone := TRUE;
+		nFrontSustainAxis2FollowState := 0;
+		M.ENABLE[222] := 0;
+		g_bFinishedM222_14 := FALSE;
+        g_bSustain5Abs := FALSE;
+        bDynamicFollowS2Up := TRUE;
+	END_IF;
+    IF g_bPlcPauseBuffer THEN
+		nFrontSustainAxis2FollowState := 140;
+	END_IF;
+  140:
+	IF g_bPlcStartBuffer THEN
+		nFrontSustainAxis2FollowState := 120;
+	END_IF;
+  200:
+	fActPos := g_fSustainTargetPos;
+    IF g_nFrontSusutainCount >= 2 THEN
+       IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowS2Dis  AND NOT g_bFrontSustainAxis2CloseVelAdd THEN
+		  g_bSustain5AbsPosition := g_fSustain5ToChuckDist - fActPos;
+		  g_bSustain5Abs := TRUE;
+		  g_bFrontAxis2VelAddEnable := TRUE;
+          nFrontSustainAxis2FollowState := 0;
+        END_IF;
+        IF bAxis2P100TriggerFlag THEN
+          M.ENABLE[222] := 0;
+          g_bFinishedM222_13 := FALSE;
+          bAxis2P100TriggerFlag := FALSE;
+        END_IF;
+    ELSE
+      M.ENABLE[222] := 0;
+      g_bFinishedM222_13 := FALSE;
+	  nFrontSustainAxis2FollowState := 0;
+      bAxis2P100TriggerFlag := FALSE;
+    END_IF;
+END_CASE;
+
+(*托料轴3*)
+CASE nFrontSustainAxis3FollowState OF
+  0:
+	nFrontSustainAxis3FollowState := 0;
+  10:
+	g_bSustain6AbsDone := FALSE;
+	fActPos := g_fSustainTargetPos;
+    g_bSustain6AbsPosition := g_fSustain6ToChuckDist - fActPos;
+    g_bSustain6Abs := TRUE;
+    g_bFrontAxis3VelAddEnable := TRUE;
+    nFrontSustainAxis3FollowState := 20;
+  20:
+	IF g_bSustain6AbsDone THEN
+      M.ENABLE[222] := 0;
+	  g_bFinishedM222_15 := FALSE;
+	  g_boFrontSustainFollowDone := TRUE;
+      bDynamicFollowS3Up := FALSE;
+      nFrontSustainAxis3FollowState := 0;
+    END_IF;
+	  IF g_bPlcPauseBuffer THEN
+		  nFrontSustainAxis3FollowState := 40;
+	  END_IF;
+  40:
+	  IF g_bPlcStartBuffer THEN
+		nFrontSustainAxis3FollowState := 10;
+		
+	  END_IF;
+  100:
+	  g_Sustain6Stop.EXECUTE := TRUE;
+      IF g_Sustain6Stop.DONE THEN
+        g_Sustain6Stop.EXECUTE := FALSE;
+        nFrontSustainAxis3FollowState := 110;
+      END_IF;
+  110:
+	g_boFrontSustainFollowDone := FALSE;
+	g_boFrontSustainUpDownDone := FALSE;
+	g_bFrontSustainUpDownDone := FALSE;
+	g_bSustain6AbsDone := FALSE;
+	g_bSustain6Abs := TRUE;
+	g_bSustain6AbsPosition := g_dFrontSustainAxis6DownPos;
+	nFrontSustainAxis3FollowState := 130;
+  130:
+  IF g_bSustain6AbsDone THEN
+    g_boFrontSustainUpDownDone := TRUE;
+    g_bFrontSustainUpDownDone := TRUE;
+    nFrontSustainAxis3FollowState := 0;
+    M.ENABLE[222] := 0;
+    g_bFinishedM222_16 := FALSE;
+    bDynamicFollowS3Up := TRUE;
+  END_IF;
+  IF g_bPlcPauseBuffer THEN
+	nFrontSustainAxis3FollowState := 140;
+  END_IF;
+  140:
+	IF g_bPlcStartBuffer THEN
+		nFrontSustainAxis3FollowState := 100;
+	END_IF;
+  200:
+	fActPos := g_fSustainTargetPos;
+    IF g_nFrontSusutainCount >= 3 THEN
+       IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowS3Dis  AND NOT g_bFrontSustainAxis3CloseVelAdd THEN
+		  g_bSustain6AbsPosition := g_fSustain5ToChuckDist - fActPos;
+		  g_bSustain6Abs := TRUE;
+		  g_bFrontAxis3VelAddEnable := TRUE;
+          nFrontSustainAxis3FollowState := 0;
+        END_IF;
+        IF bAxis3P100TriggerFlag THEN
+          M.ENABLE[222] := 0;
+          g_bFinishedM222_15 := FALSE;
+          bAxis3P100TriggerFlag := FALSE;
+        END_IF;
+    ELSE
+      M.ENABLE[222] := 0;
+      g_bFinishedM222_15 := FALSE;
+	  nFrontSustainAxis3FollowState := 0;
+      bAxis3P100TriggerFlag := FALSE;
+    END_IF;
+END_CASE;
+
+
+(*托料轴4*)
+CASE nFrontSustainAxis4FollowState OF
+  0:
+	nFrontSustainAxis4FollowState := 0;
+  10:
+	g_bAntiRejection2AbsDone := FALSE;
+	fActPos := g_fSustainTargetPos;
+    g_fARAbsPosition2 := g_dFrontSustainAxis7ChuckDist - fActPos;
+    g_bAntiRejection2AbsExecute := TRUE;
+    g_bFrontAxis4VelAddEnable := TRUE;
+    nFrontSustainAxis4FollowState := 20;
+  20:
+	IF g_bAntiRejection2AbsDone THEN
+      M.ENABLE[222] := 0;
+	  g_bFinishedM222_17 := FALSE;
+	  g_boFrontSustainFollowDone := TRUE;
+      bDynamicFollowS4Up := FALSE;
+      nFrontSustainAxis4FollowState := 0;
+    END_IF;
+	  IF g_bPlcPauseBuffer THEN
+		  nFrontSustainAxis4FollowState := 40;
+	  END_IF;
+  40:
+	  IF g_bPlcStartBuffer THEN
+		nFrontSustainAxis4FollowState := 10;
+		
+	  END_IF;
+  100:
+	  g_AntiRejection2Stop.EXECUTE := TRUE;
+      IF g_AntiRejection2Stop.DONE THEN
+        g_AntiRejection2Stop.EXECUTE := FALSE;
+        nFrontSustainAxis4FollowState := 110;
+      END_IF;
+  110:
+	g_boFrontSustainFollowDone := FALSE;
+	g_boFrontSustainUpDownDone := FALSE;
+	g_bFrontSustainUpDownDone := FALSE;
+	g_bAntiRejection2AbsDone := FALSE;
+	g_bAntiRejection2AbsExecute := TRUE;
+	g_fARAbsPosition2 := g_dFrontSustainAxis7DownPos;
+	nFrontSustainAxis4FollowState := 130;
+  130:
+  IF g_bAntiRejection2AbsDone THEN
+    g_boFrontSustainUpDownDone := TRUE;
+    g_bFrontSustainUpDownDone := TRUE;
+    nFrontSustainAxis4FollowState := 0;
+    M.ENABLE[222] := 0;
+    g_bFinishedM222_18 := FALSE;
+    bDynamicFollowS4Up := TRUE;
+  END_IF;
+  IF g_bPlcPauseBuffer THEN
+	nFrontSustainAxis4FollowState := 140;
+  END_IF;
+  140:
+	IF g_bPlcStartBuffer THEN
+		nFrontSustainAxis4FollowState := 100;
+	END_IF;
+  200:
+	fActPos := g_fSustainTargetPos;
+    IF g_nFrontSusutainCount >= 4 THEN
+       IF g_diYMachineCoordinate - g_dDynamicCoordTemp >= g_dDynamicFollowZ4Dis  AND NOT g_bFrontSustainAxis4CloseVelAdd THEN
+		  g_fARAbsPosition2 := g_fSustain5ToChuckDist - fActPos;
+		  g_bAntiRejection2AbsExecute := TRUE;
+		  g_bFrontAxis4VelAddEnable := TRUE;
+          nFrontSustainAxis4FollowState := 0;
+        END_IF;
+        IF bAxis4P100TriggerFlag THEN
+          M.ENABLE[222] := 0;
+          g_bFinishedM222_17 := FALSE;
+          bAxis4P100TriggerFlag := FALSE;
+        END_IF;
+    ELSE
+      M.ENABLE[222] := 0;
+      g_bFinishedM222_17 := FALSE;
+	  nFrontSustainAxis4FollowState := 0;
+      bAxis4P100TriggerFlag := FALSE;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nFollowStep := 0;
+  nFrontSustainAxis1FollowState := 0;
+  nFrontSustainAxis2FollowState := 0;
+  nFrontSustainAxis3FollowState := 0;
+  nFrontSustainAxis4FollowState := 0;
+  g_bSustain4Follow := FALSE;
+  g_bSustain5Follow := FALSE;
+  g_bSustain6Follow := FALSE;
+  g_boFrontSustainFollowDone := FALSE;
+  bDynamicFollowS1Up := FALSE;
+  bDynamicFollowS2Up := FALSE;
+  bDynamicFollowS3Up := FALSE;
+  bDynamicFollowS4Up := FALSE;
+  g_bFrontAxis1VelAddEnable := FALSE;
+  g_bFrontAxis2VelAddEnable := FALSE;
+  g_bFrontAxis3VelAddEnable := FALSE;
+  g_bFrontAxis4VelAddEnable := FALSE;
+  g_bExecuteFinishedM222 := FALSE;
+  g_bFrontSustainFollowExecuteM := FALSE;
+  g_bFrontSustainAxis1CloseVelAdd := FALSE;
+  g_bFrontSustainAxis2CloseVelAdd := FALSE;
+  g_bFrontSustainAxis3CloseVelAdd := FALSE;
+  g_bFrontSustainAxis4CloseVelAdd := FALSE;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

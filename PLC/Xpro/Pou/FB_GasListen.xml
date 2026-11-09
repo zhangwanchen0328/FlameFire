@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_GasListen" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBGasControl">
+        <type>
+          <derived name="FB_GasControl"/>
+        </type>
+      </variable>
+      <variable name="DACONTROL">
+        <type>
+          <derived name="FB_GasDAOutPut"/>
+        </type>
+      </variable>
+      <variable name="FBGasShare">
+        <type>
+          <derived name="FB_GasShareControl"/>
+        </type>
+      </variable>
+      <variable name="FBBaroceptor">
+        <type>
+          <derived name="FB_Baroceptor"/>
+        </type>
+      </variable>
+      <variable name="FBGasCal">
+        <type>
+          <derived name="FB_GasCal"/>
+        </type>
+      </variable>
+      <variable name="FBCutHeadCool">
+        <type>
+          <derived name="FB_CutHeadCool"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBGasControl();
+DACONTROL();
+FBGasShare();
+FBCutHeadCool();
+FBBaroceptor();
+
+FBGasCal(); 
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

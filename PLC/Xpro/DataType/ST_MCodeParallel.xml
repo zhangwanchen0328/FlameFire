@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ST_MCodeParallel">
+  <baseType>
+    <struct>
+      <variable name="bExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nM">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nP">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nQ">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nI">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nJ">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nK">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nH">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

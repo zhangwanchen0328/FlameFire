@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SlowStartAndEndCut" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bSlowStartCutOpen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[慢速起刀开启]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nSlowCutState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[慢速起刀状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dSlowStartGoneDist">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[运行距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dSlowStartCutDis">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI慢速起刀距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dSlowSpeedRatio">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI慢速起刀速度倍率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nLayerStart">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[nLayerStartState状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Rtrig_SlowCutState">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtrig_EndCutEnable">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Timer_EndCut">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="GoneDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bPrefectEndCutControlOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSlowStartCutControlOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSlowStartCutEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="EndCutPwmControl">
+        <type>
+          <derived name="FB_EndCutPwmControl"/>
+        </type>
+      </variable>
+      <variable name="SlowStartCutPwmControl">
+        <type>
+          <derived name="FB_SlowStartCutPwmControl"/>
+        </type>
+      </variable>
+      <variable name="fActualCommunicationCycle">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+Rtrig_EndCutEnable(CLK := (g_nLayerStart =500 AND g_biPerfectEndCutEnableM62P9));
+(*慢速起刀功能*)
+IF g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.nSlowStartCutEnable = 1 THEN
+  g_bSlowStartCutOpen := TRUE;
+ELSE
+  g_bSlowStartCutOpen := FALSE;
+END_IF;
+g_dSlowStartCutDis := g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.dSlowStartCutDis;
+g_dSlowSpeedRatio := g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.dSpeedRatio;
+bPrefectEndCutControlOpen := g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.bPrefectEndCutEnable;
+bSlowStartCutControlOpen := g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.bSlowStartControlOpen;
+g_foEndCutSpeed := (g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.dPrefectEndCutVel/60.0)*1000.0; (*完美收刀速度  现在准备改成直接发给CNC cnc自己规划 需要的单位是MM/S 界面上下发的是M/min*)
+IF g_dSlowSpeedRatio <= 5.0 THEN  (*HMI慢速起刀速度倍率*)
+  g_dSlowSpeedRatio := 5.0;
+END_IF;
+Rtrig_SlowCutState(CLK := (g_nLayerStart =500 AND g_bSlowStartCutOpen));
+IF Rtrig_SlowCutState.Q THEN
+  nSlowCutState := 10;
+   GoneDist := 0.0;
+   g_dSlowStartGoneDist :=0.0;
+	IF Rtrig_EndCutEnable.Q THEN
+      nSlowCutState := 15;
+    END_IF;
+END_IF;
+IF Rtrig_EndCutEnable.Q THEN
+  g_dGoneDist :=0.0;
+  nSlowCutState := 15;
+END_IF;
+IF g_bChangeSecondFlyAndPowerCutCommunicationCycle THEN
+  fActualCommunicationCycle := g_fSecondCommunicationCycle;
+ELSE
+  fActualCommunicationCycle := g_fCommunicationCycle;
+END_IF;
+CASE nSlowCutState OF
+  0:(*关闭慢速起刀速度倍率*)
+	nSlowCutState := 0;
+  10: 
+	 GoneDist := GoneDist + g_fiXYCurrentSpeedBuff *0.001;(**速度乘以周期就是移动的距离**)
+    (*当移动距离小于等于慢速起刀距离时，开启慢速起刀速度倍率功能*)
+    g_doRealtimeOverrid := g_dSlowSpeedRatio/100.0;
+    g_boSlowcutEnable := TRUE;
+    g_bIsSetSlowCutEnableFlag := TRUE; 
+    Timer_EndCut(IN := FALSE);   
+    IF GoneDist >= g_dSlowStartCutDis THEN
+      GoneDist := 0.0;
+      g_boSlowcutEnable := FALSE;
+      g_bIsSetSlowCutEnableFlag := FALSE;       
+      nSlowCutState := 0;       
+    ELSIF g_nLayerStart <> 500 THEN    (*不在切割中*)
+		nSlowCutState := 0;
+		g_boSlowcutEnable := FALSE;
+    END_IF;
+    IF GoneDist < g_dSlowStartCutDis AND g_nLayerStart = 500 AND bSlowStartCutControlOpen THEN
+      
+      SlowStartCutPwmControl();
+    END_IF;
+    IF Rtrig_EndCutEnable.Q THEN    (*当收到的收刀信号 M62 P9，开启收刀速度倍率功能  收刀优先*)
+      nSlowCutState := 15;
+    END_IF;
+  15:
+	 Timer_EndCut(IN := TRUE,PT := LREAL_TO_TIME((fActualCommunicationCycle+20.0)/1000.0));  (*功率控制周期加20才准*)
+	   IF Timer_EndCut.Q THEN
+		  Timer_EndCut(IN := FALSE);
+		  nSlowCutState := 20;
+	   END_IF;
+  20:
+	Timer_EndCut(IN := FALSE);
+    IF (g_nLayerStart <> 500) OR (NOT  g_biPerfectEndCutEnableM62P9)  THEN    (*不在切割中 或者M69P5已经触发了之前这个条件不OR上的话会导致飞切微联加上收刀在微联之后就不出光 *)
+     
+      nSlowCutState := 0;
+    g_boSlowcutEnable := FALSE;
+    END_IF;
+    IF g_nLayerStart = 500 AND bPrefectEndCutControlOpen THEN (*加工过程中的收刀工艺才需要生效*)
+      EndCutPwmControl();
+    END_IF; 
+END_CASE;
+
+IF (NOT  g_biPerfectEndCutEnableM62P9)  THEN
+  g_dGoneDist :=0.0;
+END_IF;
+
+g_doSlowStartGoneDist := g_dSlowStartGoneDist;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[慢速起刀]]></xhtml:p>
+  </documentation>
+</pou>

@@ -1,0 +1,318 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_WeldCheck" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bWeldCheck">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bWeldCheckEnableM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bWeldCheckDisenableM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boWeldCheckDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boWeldSecond">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bNoFindWeld">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fiUCncCoord">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_foWeldPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger_M313">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nWeldState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dWeldPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="TonDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonDelay_WaitCheckDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="WeldLaps">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCurrentUCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dWeldCheckSuccessCount">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dWeldCheckCount">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bWeldCheckDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dWeldCheckMode">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[只对2做处理，2是嘉强合作的相机检测]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCameraCheckDoneFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[嘉强合作的相机拍照是否返回完成信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger_CameraDone">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相机拍照完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCameraDoneHMIFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[嘉强相机自测试]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger_CameraResualtDone">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相机拍照返回结果]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCameraResualtDoneHMIFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相机拍照返回结果]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCameraResualtDoneTest">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相机拍照返回结果]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger1(CLK := g_bWeldCheckEnableM);
+RTrigger2(CLK := g_bWeldCheckDisenableM);
+RTrigger_M313(CLK := g_bM313EnableM);
+RTrigger_CameraDone(CLK := g_biJiaQiangWeldCheckCameraDone OR bCameraDoneHMIFlag);
+RTrigger_CameraResualtDone(CLK := g_biJiaQiangCameraWeldCheckResault OR bCameraResualtDoneHMIFlag OR bCameraResualtDoneTest);
+
+
+IF RTrigger_CameraDone.Q THEN
+  bCameraCheckDoneFlag := TRUE;
+  bCameraDoneHMIFlag := FALSE;
+END_IF;
+
+IF RTrigger1.Q THEN
+  IF g_dM178PassedPValue = 0.0 THEN
+    nWeldState := 1;
+    g_boWeldCheckDone := FALSE;
+    g_boWeldSecond := FALSE;
+    g_boFindEage := FALSE;
+    dCurrentUCoordinate := g_fiUCncCoord;
+  END_IF;
+  dWeldCheckMode := M.PARAMETER_P[178];
+  IF dWeldCheckMode = 2.0 THEN
+    g_boJiaQiangCameraWeldCheckSignal := TRUE;
+    bCameraCheckDoneFlag := FALSE;
+    
+  END_IF;
+   g_foWeldPos :=0.0;
+  M.ENABLE[178] := 0;
+  g_bWeldCheckEnableM := FALSE;
+  bWeldCheckDone := FALSE;
+END_IF;
+
+IF RTrigger2.Q THEN
+  g_bWeldCheckDisenableM:= FALSE;
+  g_boJiaQiangCameraWeldCheckSignal := FALSE;
+  IF nWeldState = 1 THEN
+    nWeldState := 20;
+    g_bNoFindWeld := TRUE;
+  ELSE
+    g_bNoFindWeld := FALSE;
+  END_IF;
+  g_dM178PassedPValue := 0.0;
+  IF M.PARAMETER_P[179] = 0.0 THEN
+    bWeldCheckDone := TRUE;
+  ELSIF M.PARAMETER_P[179] = 1.0 THEN
+    g_bNoFindWeld := TRUE;
+  ELSIF M.PARAMETER_P[179] = 2.0 THEN
+    dWeldCheckSuccessCount := dWeldCheckSuccessCount +1.0;
+  ELSIF M.PARAMETER_P[179] = 3.0 THEN
+    dWeldCheckSuccessCount := 0.0;
+	dWeldCheckCount := 0.0;
+  ELSIF M.PARAMETER_P[179] = 4.0 THEN
+    dWeldCheckCount := dWeldCheckCount + 1.0;
+  END_IF;
+END_IF;
+
+
+IF RTrigger_M313.Q THEN
+  TonDelay_WaitCheckDelay(IN := FALSE);
+  g_bM313EnableM := FALSE;
+  IF dWeldCheckMode <> 2.0 THEN
+	  g_foWeldPos :=999.0;
+	  nWeldState := 50;
+  ELSIF dWeldCheckMode = 2.0 THEN
+    nWeldState := 100;(*去检测拍照完成信号和拍照结果*)
+  END_IF;
+  
+END_IF;
+
+CASE nWeldState OF 
+  0:
+    nWeldState := 0;
+  1:
+    IF g_bWeldCheck THEN(*实际硬件信号*)
+      dWeldPos := g_fiUCncCoord;
+      nWeldState := 2;
+      g_boFindEage := TRUE;
+    END_IF;
+    IF g_fiUCncCoord - dCurrentUCoordinate >= (WeldLaps * 360.0 -0.5) THEN
+      g_boFindEage := TRUE;
+    END_IF;
+  2:
+    g_foWeldPos := dWeldPos;
+    g_boWeldCheckDone := TRUE;
+    g_boWeldSecond := TRUE;
+    M.ENABLE[178] := 0;
+  20:
+    TonDelay(IN := TRUE,PT := T#1000ms);
+    IF TonDelay.Q THEN
+      nWeldState := 21;
+    END_IF;
+  21:
+    IF g_bPlcStartBuffer THEN
+      g_boWeldSecond := TRUE;
+      nWeldState := 0;
+      g_bNoFindWeld := FALSE;
+    END_IF;
+  50:
+    TonDelay_WaitCheckDelay(IN := TRUE,PT := LREAL_TO_TIME(M.PARAMETER_P[313]));
+    IF TonDelay_WaitCheckDelay.Q THEN
+      TonDelay_WaitCheckDelay(IN := FALSE);
+      g_bCameraNotFeedBackSignalAlarm := TRUE;
+      nWeldState := 0;
+    END_IF;
+    IF g_foWeldPos <> 999.0 THEN
+      TonDelay_WaitCheckDelay(IN := FALSE);
+      M.ENABLE[313] := 0;
+      nWeldState := 0;
+    END_IF;
+  100:
+	TonDelay_WaitCheckDelay(IN := TRUE,PT := LREAL_TO_TIME(M.PARAMETER_P[313]));
+    IF TonDelay_WaitCheckDelay.Q THEN
+      TonDelay_WaitCheckDelay(IN := FALSE);
+      nWeldState := 0;
+      IF bCameraCheckDoneFlag THEN
+		M.ENABLE[313] := 0;
+      ELSE
+        g_bCameraNotFeedBackSignalAlarm := TRUE;
+      END_IF;
+    END_IF;
+    
+    IF RTrigger_CameraResualtDone.Q THEN
+      TonDelay_WaitCheckDelay(IN := FALSE);
+      IF NOT bCameraResualtDoneTest THEN
+		g_foWeldPos := 1.0;
+      END_IF;
+      M.ENABLE[313] := 0;
+      nWeldState := 0;
+      bCameraResualtDoneHMIFlag := FALSE;
+      bCameraResualtDoneTest := FALSE;
+    END_IF;
+  
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nWeldState := 0;
+  g_bNoFindWeld := FALSE;
+  g_boJiaQiangCameraWeldCheckSignal := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

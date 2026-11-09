@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AvoidAxisGear" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="RTring_GearIn">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTring_GearOut">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bGearIn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bGearOut">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nGearstate">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTring_GearIn(CLK := g_bAvoidAxisGearInM  OR bGearIn);
+RTring_GearOut(CLK := g_bAvoidAxisGearOutM OR bGearOut);
+
+IF RTring_GearIn.Q THEN
+  bGearIn := FALSE;
+  g_bAvoidAxisGearInM := FALSE;
+  IF AntiRejection6.NCTOPLC.AXISSTATE <> 8 THEN
+    nGearstate := 1;
+    g_dAvoidAxisNodeYPosGearInState := g_diYMachineCoordinate;
+  ELSE
+    M.ENABLE[318] := 0;
+  END_IF;
+END_IF;
+IF RTring_GearOut.Q THEN
+  bGearOut := FALSE;
+  g_bAvoidAxisGearOutM := FALSE;
+  IF AntiRejection6.NCTOPLC.AXISSTATE = 8 THEN
+    nGearstate := 2;
+  ELSE
+    M.ENABLE[318] := 0;
+  END_IF;
+END_IF;
+CASE nGearstate OF
+  0:
+  nGearstate := 0;
+  1:
+  g_AntiRejection6GearIn.EXECUTE := TRUE;
+  g_AntiRejection6GearIn.RatioNumerator := 1.0;
+  g_AntiRejection6GearIn.RatioDenominator := 1;
+  IF g_AntiRejection6GearIn.InGear THEN
+    nGearstate := 0;
+    M.ENABLE[318] := 0;
+  END_IF;
+  IF g_AntiRejection6GearIn.ERROR OR g_AntiRejection6GearIn.COMMANDABORTED THEN
+    g_AntiRejection6GearIn.Execute := FALSE;
+    nGearstate := 0;
+  END_IF;
+  2:
+  g_AntiRejection6GearOut.EXECUTE := TRUE;
+  g_AntiRejection6GearIn.EXECUTE := FALSE;
+  IF g_AntiRejection6GearOut.DONE THEN
+    g_AntiRejection6GearOut.EXECUTE := FALSE;
+    M.ENABLE[318] := 0;
+    nGearstate := 0;
+  END_IF;
+  IF g_AntiRejection6GearOut.ERROR THEN
+    g_AntiRejection6GearOut.EXECUTE := FALSE;
+       nGearstate := 3;
+  END_IF;
+  3:
+  g_AntiRejection6Stop.EXECUTE := TRUE;
+  IF g_AntiRejection6Stop.DONE THEN
+    g_AntiRejection6Stop.EXECUTE := FALSE;
+    nGearstate := 0;
+    M.ENABLE[318] := 0;
+  END_IF;
+  IF g_AntiRejection6Stop.COMMANDABORTED OR g_AntiRejection6Stop.ERROR THEN
+    g_AntiRejection6Stop.EXECUTE := FALSE;
+    nGearstate := 0;
+    M.ENABLE[318] := 0;
+  END_IF;
+END_CASE;
+    
+    ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

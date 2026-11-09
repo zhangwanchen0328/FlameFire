@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_NCAxisHome" pouType="functionBlock">
+  <interface>
+    <inputVars>
+      <variable name="NCAxisName">
+        <type>
+          <derived name="REF_TO AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="IndexValue">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </inputVars>
+    <outputVars>
+      <variable name="ERRORID">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+    </outputVars>
+    <inputVars>
+      <variable name="dHomePosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bAxisZero">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dAxisHomeOffset">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nHomingMode">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="ChangeHomeMode">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCleanHomed">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="HomeMode">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="Rtring_Home">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nHomeState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nChangeHomeModeState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <outputVars>
+      <variable name="bHomeDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </outputVars>
+    <localVars>
+      <variable name="NCHome">
+        <type>
+          <derived name="MC_HOME2"/>
+        </type>
+      </variable>
+      <variable name="NCStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+NCHome(
+     AXIS :=NCAxisName^(*AXIS_REF*),
+     OUTAXIS =>NCAxisName^(*AXIS_REF*));
+NCStop(
+     AXIS := NCAxisName^(*AXIS_REF*),
+     OUTAXIS =>NCAxisName^ (*AXIS_REF*));
+
+
+Rtring_Home(CLK := g_NCMoveData.NCAXISCMD[IndexValue].NCAxisHome);
+IF Rtring_Home.Q THEN
+  bHomeDone := FALSE;
+  g_NCMoveData.NCAXISCMD[IndexValue].NCAxisHome := FALSE;
+  nHomeState := 1;
+END_IF;
+
+
+
+
+CASE nHomeState OF
+  0:
+  nHomeState := 0;
+  1:
+  NCHome.Execute := TRUE;
+  NCHome.Position := dHomePosition;
+   NCHome.bCalibrationCam := bAxisZero;
+   NCHome.DISTANCE := dAxisHomeOffset;
+  IF nHomingMode = 0 THEN
+    NCHome.HomingMode := 0;
+  ELSIF nHomingMode = 1 THEN
+    NCHome.HomingMode := 5;
+  ELSIF nHomingMode = 3 THEN
+    NCHome.HomingMode := 1;
+  END_IF;
+  IF NCHome.Done THEN
+     NCHome.Execute := FALSE;
+    bHomeDone := TRUE;
+    nHomeState := 0;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer THEN
+    nHomeState := 10;
+  END_IF;
+    IF g_bPlcResetBuffer THEN
+      nHomeState := 21;
+    END_IF;
+  
+  IF NCHome.CommandAborted OR NCHome.Error THEN
+    NCHome.Execute := FALSE;
+    nHomeState := 0;
+  END_IF;
+  10:
+  NCHome.Execute := FALSE;
+  NCStop.Execute := TRUE;
+  IF NCStop.Done AND g_bPlcStartBuffer THEN
+    NCStop.Execute := FALSE;
+    nHomeState := 1;
+  END_IF;
+    IF g_bPlcResetBuffer THEN
+      nHomeState := 0;
+    END_IF;
+  
+  IF NCStop.CommandAborted OR NCStop.Error THEN
+    NCStop.Execute := FALSE;
+    nHomeState := 0;
+  END_IF;
+  21:
+  NCHome.Execute := FALSE;
+  NCStop.Execute := TRUE;
+  IF NCStop.Done  THEN
+    NCStop.Execute := FALSE;
+    nHomeState := 0;
+  END_IF;
+  
+  IF NCStop.CommandAborted OR NCStop.Error THEN
+    NCStop.Execute := FALSE;
+    nHomeState := 0;
+  END_IF;
+END_CASE;
+
+
+IF ChangeHomeMode THEN
+  g_NCMoveData.NCAXISCMD[IndexValue].ChangeHome := FALSE;
+  nChangeHomeModeState := 1;
+END_IF;
+(*置零点功能*)
+CASE nChangeHomeModeState OF
+  0:
+    nChangeHomeModeState := 0;
+  1:
+    NCHome.Execute := TRUE;
+    IF HomeMode = 0 THEN
+      NCHome.HomingMode := 0;
+    ELSIF HomeMode = 1 THEN
+      NCHome.HomingMode := 5;
+    ELSIF HomeMode = 2 THEN
+      NCHome.HomingMode := 4;
+    END_IF;
+	NCHome.Position := 0.0;
+	NCHome.DISTANCE := 0.0;
+    IF NCHome.Done THEN
+      NCHome.Execute := FALSE;
+      nChangeHomeModeState := 0;
+      bHomeDone := TRUE;
+    END_IF;
+    IF NCHome.CommandAborted OR NCHome.Error THEN
+      NCHome.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+END_CASE;
+
+(***界面上下发了去掉T1轴回零标志***)
+IF bCleanHomed THEN
+   NCHome.HomingMode := 1;
+   NCHome.Execute := TRUE; 
+   bHomeDone := FALSE; 
+   IF NCHome.DONE OR NCHome.ERROR THEN 
+    NCHome.Execute := FALSE; 
+    g_NCMoveData.NCAXISCMD[IndexValue].CleanHomed := FALSE;
+   END_IF;
+END_IF;
+
+ERRORID := NCHome.ERRORID;
+IF g_bPlcResetBuffer  THEN
+  nHomeState := 0;
+  NCHome.Execute := FALSE;
+  bHomeDone := TRUE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

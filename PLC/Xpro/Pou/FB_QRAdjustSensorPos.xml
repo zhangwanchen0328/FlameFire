@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_QRAdjustSensorPos" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_biAdjustSensorOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biAdjustSensorClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boAdjustSensorDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_SensorAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_SensorStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Axis_Sensor">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_fPartLenght">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fiSensorAbsType">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fPipeHead">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dPipeTailLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nAdjustState">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="dSensorDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAdjustVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dAdjustPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSensorCompDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger1(CLK := g_biAdjustSensorOpen);
+RTrigger2(CLK := g_biAdjustSensorClose);
+
+IF RTrigger1.Q THEN
+  nAdjustState := 1;
+  g_boAdjustSensorDone := FALSE;
+END_IF;
+
+IF RTrigger2.Q THEN
+  g_boAdjustSensorDone := FALSE;
+END_IF;
+
+CASE nAdjustState OF
+  0:
+    nAdjustState := 0;
+  1:
+    IF LREAL_TO_DINT(g_fiSensorAbsType) = 0 THEN
+      dAdjustPos := g_fPipeHead - dSensorDistance - dSensorCompDis;
+    ELSIF LREAL_TO_DINT(g_fiSensorAbsType) = 1 THEN
+      dAdjustPos := g_fPartLenght - dSensorDistance - dSensorCompDis;
+    ELSIF LREAL_TO_DINT(g_fiSensorAbsType) = 2 THEN
+      dAdjustPos := Axis_Sensor.NCTOPLC.SETPOS + g_dPipeTailLength;
+    ELSE
+      dAdjustPos := Axis_Sensor.NCTOPLC.SETPOS;
+    END_IF;
+    nAdjustState := 2;
+  2:
+    g_SensorAbs.Execute := TRUE;
+    g_SensorAbs.Velocity := dAdjustVel;
+    g_SensorAbs.Position := dAdjustPos;
+    IF g_SensorAbs.Done THEN
+      g_SensorAbs.Execute := FALSE;
+      g_boAdjustSensorDone := TRUE;
+      nAdjustState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nAdjustState := 20;
+    END_IF;
+    IF g_SensorAbs.CommandAborted OR g_SensorAbs.Error THEN
+      g_SensorAbs.Execute := FALSE;
+      g_boAdjustSensorDone := FALSE;
+      nAdjustState := 0;
+    END_IF;
+  20:
+    g_SensorAbs.Execute := FALSE;
+    g_SensorStop.Execute := TRUE;
+    IF g_SensorStop.Done AND g_bPlcStartBuffer THEN
+      g_SensorStop.Execute := FALSE;
+      nAdjustState := 2;
+    END_IF;
+    IF g_SensorStop.CommandAborted OR g_SensorStop.Error THEN
+      g_SensorStop.Execute := FALSE;
+      nAdjustState := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nAdjustState := 0;
+  g_SensorAbs.Execute := FALSE;
+  g_SensorStop.Execute := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

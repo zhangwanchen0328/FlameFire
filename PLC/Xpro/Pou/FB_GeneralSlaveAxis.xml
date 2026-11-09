@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_GeneralSlaveAxis" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBSlaveAxisAct">
+        <type>
+          <derived name="FB_SlaveAxisAct"/>
+        </type>
+      </variable>
+      <variable name="bAxis1ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis2ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis3ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBSlaveAxisAct();
+
+bAxis1ErrorAlarm :=  T1Slave.NCTOPLC.POWERPOSWARN OR T1Slave.NCTOPLC.POWERNEGWARN 
+     OR T1Slave.NCTOPLC.ERRORCODE <>0;
+     
+     
+  IF bAxis1ErrorAlarm AND g_bPlcResetBuffer THEN
+    T1SlaveReset.Execute := TRUE;
+  ELSE
+    T1SlaveReset.Execute := FALSE;   
+  END_IF;
+  
+  bAxis2ErrorAlarm :=  T2Slave.NCTOPLC.POWERPOSWARN OR T2Slave.NCTOPLC.POWERNEGWARN 
+     OR T2Slave.NCTOPLC.ERRORCODE <>0;
+     
+     
+  IF bAxis2ErrorAlarm AND g_bPlcResetBuffer THEN
+    T2SlaveReset.Execute := TRUE;
+  ELSE
+    T2SlaveReset.Execute := FALSE;   
+  END_IF;
+  
+  bAxis3ErrorAlarm :=  T3Slave.NCTOPLC.POWERPOSWARN OR T3Slave.NCTOPLC.POWERNEGWARN 
+     OR T3Slave.NCTOPLC.ERRORCODE <>0;
+     
+     
+  IF bAxis3ErrorAlarm AND g_bPlcResetBuffer THEN
+    T3SlaveReset.Execute := TRUE;
+  ELSE
+    T3SlaveReset.Execute := FALSE;   
+  END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

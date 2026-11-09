@@ -1,0 +1,5115 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AlarmHandle" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Axis_U">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Z">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_U3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Y3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Y2">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Y1">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="DDAxis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Load">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sensor">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_FAxis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain1">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain2">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain4">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain5">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain6">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain7">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain8">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain9">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="D_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="FixedLen_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Feeding_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Dust_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_General1_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="AntiRejection1">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="AntiRejection2">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="AntiRejection3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="AntiRejection4">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="AntiRejection5">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="AntiRejection6">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_bUAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bU3AxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY3AxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY2AxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bUAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bU3AxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY3AxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY2AxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_Alarm">
+        <type>
+          <derived name="DT_ALARM"/>
+        </type>
+      </variable>
+      <variable name="g_bFAxisEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nFAxisControlType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bTouchPanel">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nDriveStatus">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[所有驱动器状态]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bDriveError">
+        <type>
+          <DWORD/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bU2AxisEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U2轴是否开启]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nSlaveNums">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[从站个数]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nSlaveNum">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="1"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[第几个从站]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bCommunicationCheck">
+        <type>
+          <derived name="ST_CommunicationCheck"/>
+        </type>
+      </variable>
+      <variable name="g_bControlPanelEmergencyStop">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[急停]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bTraLineError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSensorLineError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bUGearError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bU3GearError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZFollowWarning">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAirPressureAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bOxygenPressureAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bNirtogenPressureAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAirMaxPressureAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bOxygenMaxPressureAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bNirtogenMaxPressureAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFrontSustainEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fCurrentCoordYBuffer">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder1CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder2CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder3CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder4CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder5CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder6CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder7CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder8CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder1SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder2SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder3SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder4SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder5SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder6SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder7SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder8SafeDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bClylinderIsPosition">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClylinderDownIsPosition">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSupportcyLinderDownInPlace8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportcyLinder1UpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportcyLinder2UpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportcyLinder3UpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportcyLinder4UpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportcyLinder5UpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportcyLinder6UpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportcyLinder7UpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSupportcyLinder8UpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZAxisTorqueWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nClylinderCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nSusutainCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_biAxIsYisHome">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bNoPipeWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadAbsWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZFollowWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTorqueWarn0">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTorqueWarn1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTorqueWarn2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTorqueWarn3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTorqueWarn4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSensorError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bKeepPressure1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bKeepPressure2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bKeepPressure3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_LoadAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_SensorAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_bQREnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bChunkAvoidError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDDGoOnNoInPlaceError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nMachineType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bFixedLenNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFixedLenPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFeedingNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDustPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bManualLoadTip">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bNoFindWeld">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bQRCyl1Warn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bQRCyl2Warn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bQRCyl3Warn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGearInError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bU3GearInError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGearOutError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bU3GearOutError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain1PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain2PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain3PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain1NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain2NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain3NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="FixedLenAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_bSustain4PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain5PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain6PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain4NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain5NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain6NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nFrontSusutainCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bDDAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bDDAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bKuXunExceed">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bKuXunUnder">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw2Check">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="FeedingAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_bY3NoPrepare">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY2NoPrepare">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_b2ClawY3NoPrepare">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_b2ClawY2NoPrepare">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_b3ClawZPosError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_b3ClawFrontPosError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_b3ClawTurnPosError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY1Y2DisError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY2Y3DisError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nGeneralAxisCount">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="g_nGeneralAxisEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral1PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral1NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral2PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral2NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3YY2Collision">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3Y2Y3Collision">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBoendeZWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBoendeCheckWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain7PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain7NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain8PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain8NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain9PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain9NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY1AxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY1AxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bHGTECHCheckWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bHGTECHZWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bHGTechStopParalleWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bHGTECHPipeDiameterErrorWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bClearAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[清报警标志位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCycle">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标志位清NC报警]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="M">
+        <type>
+          <derived name="CNC_MCONTROL"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标志位清NC报警]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="RTing_TouchPanel">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标志位清NC报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm359">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标志位清NC报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm360">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标志位清NC报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm361">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标志位清NC报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm362">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[标志位清NC报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_MoveDisable">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Ftring_MoveDisable">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="SupportAvoidFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*注释掉的ListenBoardInputConfig是对应的限位信号是否配置,暂时屏蔽*)
+
+(*U2轴报警*)
+IF g_bU2AxisEnable THEN
+  IF Axis_U.NCTOPLC.POSSOFTWARN AND g_bU2HomeDone THEN
+    g_Alarm.alarmArray[0] := 700;
+  ELSE
+    g_Alarm.alarmArray[0] := 0;
+  END_IF;
+  IF Axis_U.NCTOPLC.NEGSOFTWARN AND g_bU2HomeDone THEN
+    g_Alarm.alarmArray[1] := 701;
+  ELSE
+    g_Alarm.alarmArray[1] := 0;
+  END_IF;
+  IF NOT Axis_U.NCTOPLC.HOMINGSTATE THEN
+    g_Alarm.alarmArray[2] := 702;
+  ELSE
+    g_Alarm.alarmArray[2] := 0;
+  END_IF;
+  (*绝对式回原限位也要报警*)
+  IF g_nUHomeMode = 1 THEN
+    IF g_bUAxisPosLimit (*AND ListenBoardInputConfig[24]*)  THEN
+		g_Alarm.alarmArray[3] := 703;
+	ELSE
+		g_Alarm.alarmArray[3] := 0;
+	END_IF;
+    IF g_bUAxisNegLimit  (*AND ListenBoardInputConfig[26] *)  THEN
+		g_Alarm.alarmArray[4] := 704;
+    ELSE
+		g_Alarm.alarmArray[4] := 0;
+    END_IF;
+  ELSE
+     IF g_bUAxisPosLimit AND Axis_U.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[24]*) THEN
+		g_Alarm.alarmArray[3] := 703;
+	ELSE
+		g_Alarm.alarmArray[3] := 0;
+	END_IF;
+    IF g_bUAxisNegLimit AND Axis_U.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[26]*) THEN
+		g_Alarm.alarmArray[4] := 704;
+	  ELSE
+		g_Alarm.alarmArray[4] := 0;
+	  END_IF;
+  END_IF;
+  
+END_IF;
+
+(*Z轴报警*)
+IF Axis_Z.NCTOPLC.POSSOFTWARN AND g_bZHomeDone THEN
+  g_Alarm.alarmArray[6] := 706;
+ELSE
+  g_Alarm.alarmArray[6] := 0;
+END_IF;
+
+IF Axis_Z.NCTOPLC.NEGSOFTWARN AND g_bZHomeDone THEN
+  g_Alarm.alarmArray[7] := 707;
+ELSE
+  g_Alarm.alarmArray[7] := 0;
+END_IF;
+
+IF NOT Axis_Z.NCTOPLC.HOMINGSTATE THEN
+  g_Alarm.alarmArray[8] := 708; 
+ELSE
+  g_Alarm.alarmArray[8] := 0;
+END_IF;
+
+
+IF g_nZHomeMode = 1 THEN
+  IF g_bZAxisPosLimit (*AND ListenBoardInputConfig[12]*) THEN
+	  g_Alarm.alarmArray[9] := 709;
+	ELSE
+	  g_Alarm.alarmArray[9] := 0;
+	END_IF;
+
+	IF g_bZAxisNegLimit (*AND ListenBoardInputConfig[14] *) THEN
+	  g_Alarm.alarmArray[10] := 710;
+	ELSE
+	  g_Alarm.alarmArray[10] := 0;
+	END_IF;
+  
+ELSE
+	IF g_bZAxisPosLimit AND Axis_Z.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[12]*) THEN
+		g_Alarm.alarmArray[9] := 709;
+	ELSE
+	  g_Alarm.alarmArray[9] := 0;
+	END_IF;
+
+	IF g_bZAxisNegLimit AND Axis_Z.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[14]*) THEN
+	  g_Alarm.alarmArray[10] := 710;
+	ELSE
+	  g_Alarm.alarmArray[10] := 0;
+	END_IF;
+  
+END_IF;
+ 
+(*F轴报警*)
+IF g_nFAxisControl=2 THEN
+  IF g_FAxis.NCTOPLC.POSSOFTWARN AND g_bFHomeDone THEN
+    g_Alarm.alarmArray[12] := 712;
+  ELSE
+    g_Alarm.alarmArray[12] := 0;
+  END_IF;
+
+  IF g_FAxis.NCTOPLC.NEGSOFTWARN AND g_bFHomeDone THEN
+    g_Alarm.alarmArray[13] := 713;
+  ELSE
+    g_Alarm.alarmArray[13] := 0;
+  END_IF;
+
+  IF NOT g_FAxis.NCTOPLC.HOMINGSTATE THEN
+    g_Alarm.alarmArray[14] := 714;
+  ELSE
+    g_Alarm.alarmArray[14] := 0;
+  END_IF;
+IF g_nFHomeMode = 1 THEN
+  IF g_bFAxisPosLimit (*AND ListenBoardInputConfig[27]*) THEN
+    g_Alarm.alarmArray[15] := 715;
+  ELSE
+    g_Alarm.alarmArray[15] := 0;
+  END_IF;
+
+  IF g_bFAxisNegLimit (* AND ListenBoardInputConfig[29]*) THEN
+    g_Alarm.alarmArray[16] := 716;
+  ELSE
+    g_Alarm.alarmArray[16] := 0;
+  END_IF;
+  
+ELSE
+  IF g_bFAxisPosLimit AND g_FAxis.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[27] *)THEN
+    g_Alarm.alarmArray[15] := 715;
+  ELSE
+    g_Alarm.alarmArray[15] := 0;
+  END_IF;
+
+  IF g_bFAxisNegLimit AND g_FAxis.NCTOPLC.AXISSTATE<>5(* AND ListenBoardInputConfig[29]*) THEN
+    g_Alarm.alarmArray[16] := 716;
+  ELSE
+    g_Alarm.alarmArray[16] := 0;
+  END_IF;
+  
+END_IF;
+  
+  
+END_IF;
+
+(*支撑轴报警*)
+IF g_bSustainEnable = TRUE THEN
+  IF g_nSusutainCount >= 1 THEN
+    (*支撑轴1*)
+    IF Axis_Sustain1.NCTOPLC.POSSOFTWARN AND g_bSustain1HomeDone THEN
+      g_Alarm.alarmArray[80] := 780;
+    ELSE
+      g_Alarm.alarmArray[80] := 0;
+    END_IF;
+
+    IF Axis_Sustain1.NCTOPLC.NEGSOFTWARN AND g_bSustain1HomeDone THEN
+      g_Alarm.alarmArray[81] := 781;
+    ELSE
+      g_Alarm.alarmArray[81] := 0;
+    END_IF;
+
+    IF NOT Axis_Sustain1.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[82] := 782;
+    ELSE
+      g_Alarm.alarmArray[82] := 0;
+    END_IF;
+
+    IF Axis_Sustain1.NCTOPLC.POWERPOSWARN THEN
+      g_Alarm.alarmArray[83] := 783;
+    ELSE
+      g_Alarm.alarmArray[83] := 0;
+    END_IF;
+
+    IF Axis_Sustain1.NCTOPLC.POWERNEGWARN THEN
+      g_Alarm.alarmArray[84] := 784;
+    ELSE
+      g_Alarm.alarmArray[84] := 0;
+    END_IF;
+    IF g_nS1HomeMode = 1 THEN
+      IF g_bSustain1PosLimit  (*AND ListenBoardInputConfig[365] *)THEN
+			g_Alarm.alarmArray[203] := 907;
+		ELSE
+		  g_Alarm.alarmArray[203] := 0;
+		END_IF;
+		
+		IF g_bSustain1NegLimit (*AND ListenBoardInputConfig[367]*) THEN
+		  g_Alarm.alarmArray[204] := 908;
+		ELSE
+		  g_Alarm.alarmArray[204] := 0;
+		END_IF;
+      
+    ELSE
+		  IF g_bSustain1PosLimit AND Axis_Sustain1.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[365]*) THEN
+		  g_Alarm.alarmArray[203] := 907;
+		ELSE
+		  g_Alarm.alarmArray[203] := 0;
+		END_IF;
+		
+		IF g_bSustain1NegLimit AND Axis_Sustain1.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[367]*) THEN
+		  g_Alarm.alarmArray[204] := 908;
+		ELSE
+		  g_Alarm.alarmArray[204] := 0;
+		END_IF; 
+    END_IF;
+    
+    
+  END_IF;
+  IF g_nSusutainCount >= 2 THEN
+    (*支撑轴2*)
+    IF Axis_Sustain2.NCTOPLC.POSSOFTWARN AND g_bSustain2HomeDone THEN
+      g_Alarm.alarmArray[86] := 786;
+    ELSE
+      g_Alarm.alarmArray[86] := 0;
+    END_IF;
+
+    IF Axis_Sustain2.NCTOPLC.NEGSOFTWARN AND g_bSustain2HomeDone THEN
+      g_Alarm.alarmArray[87] := 787;
+    ELSE
+      g_Alarm.alarmArray[87] := 0;
+    END_IF;
+
+    IF NOT Axis_Sustain2.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[88] := 788;
+    ELSE
+      g_Alarm.alarmArray[88] := 0;
+    END_IF;
+
+    IF Axis_Sustain2.NCTOPLC.POWERPOSWARN THEN
+      g_Alarm.alarmArray[89] := 789;
+    ELSE
+      g_Alarm.alarmArray[89] := 0;
+    END_IF;
+
+    IF Axis_Sustain2.NCTOPLC.POWERNEGWARN THEN
+      g_Alarm.alarmArray[90] := 790;
+    ELSE
+      g_Alarm.alarmArray[90] := 0;
+    END_IF;
+    IF g_nS2HomeMode = 1 THEN
+		IF g_bSustain2PosLimit (*AND ListenBoardInputConfig[368]*)  THEN
+		  g_Alarm.alarmArray[205] := 909;
+		ELSE
+		  g_Alarm.alarmArray[205] := 0;
+		END_IF;
+    
+		IF g_bSustain2NegLimit (*AND ListenBoardInputConfig[370]*)  THEN
+		  g_Alarm.alarmArray[206] := 910;
+		ELSE
+		  g_Alarm.alarmArray[206] := 0;
+		END_IF;
+    ELSE
+		IF g_bSustain2PosLimit AND Axis_Sustain2.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[368]*)  THEN
+			g_Alarm.alarmArray[205] := 909;
+		ELSE
+		  g_Alarm.alarmArray[205] := 0;
+		END_IF;
+    
+		IF g_bSustain2NegLimit AND Axis_Sustain2.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[370]*)  THEN
+		  g_Alarm.alarmArray[206] := 910;
+		ELSE
+		  g_Alarm.alarmArray[206] := 0;
+		END_IF; 
+    END_IF;  
+  END_IF;
+  IF g_nSusutainCount >= 3 THEN
+    (*支撑轴3*)
+    IF Axis_Sustain3.NCTOPLC.POSSOFTWARN AND g_bSustain3HomeDone THEN
+      g_Alarm.alarmArray[92] := 792;
+    ELSE
+      g_Alarm.alarmArray[92] := 0;
+    END_IF;
+
+    IF Axis_Sustain3.NCTOPLC.NEGSOFTWARN AND g_bSustain3HomeDone THEN
+      g_Alarm.alarmArray[93] := 793;
+    ELSE
+      g_Alarm.alarmArray[93] := 0;
+    END_IF;
+
+    IF NOT Axis_Sustain3.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[94] := 794;
+    ELSE
+      g_Alarm.alarmArray[94] := 0;
+    END_IF;
+
+    IF Axis_Sustain3.NCTOPLC.POWERPOSWARN THEN
+      g_Alarm.alarmArray[95] := 795;
+    ELSE
+      g_Alarm.alarmArray[95] := 0;
+    END_IF;
+
+    IF Axis_Sustain3.NCTOPLC.POWERNEGWARN THEN
+      g_Alarm.alarmArray[96] := 796;
+    ELSE
+      g_Alarm.alarmArray[96] := 0;
+    END_IF;
+    IF g_nS3HomeMode = 1 THEN
+		IF g_bSustain3PosLimit (*AND ListenBoardInputConfig[371] *) THEN
+		  g_Alarm.alarmArray[207] := 911;
+		ELSE
+		  g_Alarm.alarmArray[207] := 0;
+		END_IF;
+		
+		IF g_bSustain3NegLimit (*AND ListenBoardInputConfig[373] *) THEN
+		  g_Alarm.alarmArray[208] := 912;
+		ELSE
+		  g_Alarm.alarmArray[208] := 0;
+		END_IF;
+    ELSE
+		IF g_bSustain3PosLimit AND Axis_Sustain3.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[371]*) THEN
+		  g_Alarm.alarmArray[207] := 911;
+		ELSE
+		  g_Alarm.alarmArray[207] := 0;
+		END_IF;
+		
+		IF g_bSustain3NegLimit AND Axis_Sustain3.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[373]*) THEN
+		  g_Alarm.alarmArray[208] := 912;
+		ELSE
+		  g_Alarm.alarmArray[208] := 0;
+		END_IF;
+    END_IF;
+    
+  END_IF;
+  
+  IF g_nSusutainCount >= 4 THEN
+    (*支撑轴7*)
+    IF Axis_Sustain7.NCTOPLC.POSSOFTWARN AND g_bSustain7HomeDone THEN
+      g_Alarm.alarmArray[299] := 1002;
+    ELSE
+      g_Alarm.alarmArray[299] := 0;
+    END_IF;
+    
+    IF Axis_Sustain7.NCTOPLC.NEGSOFTWARN AND g_bSustain7HomeDone THEN
+      g_Alarm.alarmArray[600] := 1003;
+    ELSE
+      g_Alarm.alarmArray[600] := 0;
+    END_IF;
+    
+    IF NOT Axis_Sustain7.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[601] := 1004;
+    ELSE
+      g_Alarm.alarmArray[601] := 0;
+    END_IF;
+    
+    IF Axis_Sustain7.NCTOPLC.POWERPOSWARN THEN
+      g_Alarm.alarmArray[602] := 1005;
+    ELSE
+      g_Alarm.alarmArray[602] := 0;
+    END_IF;
+    
+    IF Axis_Sustain7.NCTOPLC.POWERNEGWARN THEN
+      g_Alarm.alarmArray[603] := 1006;
+    ELSE
+      g_Alarm.alarmArray[603] := 0;
+    END_IF;
+    IF g_nS4HomeMode = 1 THEN
+		IF g_bSustain7PosLimit (*AND ListenBoardInputConfig[374]*) THEN
+		  g_Alarm.alarmArray[604] := 1007;
+		ELSE
+		  g_Alarm.alarmArray[604] := 0;
+		END_IF;
+		
+		IF g_bSustain7NegLimit (*AND ListenBoardInputConfig[376]*) THEN
+		  g_Alarm.alarmArray[605] := 1008;
+		ELSE
+		  g_Alarm.alarmArray[605] := 0;
+		END_IF;      
+    ELSE
+		IF g_bSustain7PosLimit AND Axis_Sustain7.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[374]*) THEN
+		  g_Alarm.alarmArray[604] := 1007;
+		ELSE
+		  g_Alarm.alarmArray[604] := 0;
+		END_IF;
+		
+		IF g_bSustain7NegLimit AND Axis_Sustain7.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[376]*) THEN
+		  g_Alarm.alarmArray[605] := 1008;
+		ELSE
+		  g_Alarm.alarmArray[605] := 0;
+		END_IF;
+    END_IF;
+  END_IF;
+  
+  IF g_nSusutainCount >= 5 THEN
+    (*支撑轴8*)
+    IF Axis_Sustain8.NCTOPLC.POSSOFTWARN AND g_bSustain8HomeDone THEN
+      g_Alarm.alarmArray[606] := 1009;
+    ELSE
+      g_Alarm.alarmArray[606] := 0;
+    END_IF;
+    
+    IF Axis_Sustain8.NCTOPLC.NEGSOFTWARN AND g_bSustain8HomeDone THEN
+      g_Alarm.alarmArray[607] := 1010;
+    ELSE
+      g_Alarm.alarmArray[607] := 0;
+    END_IF;
+    
+    IF NOT Axis_Sustain8.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[608] := 1011;
+    ELSE
+      g_Alarm.alarmArray[608] := 0;
+    END_IF;
+    
+    IF Axis_Sustain8.NCTOPLC.POWERPOSWARN THEN
+      g_Alarm.alarmArray[609] := 1012;
+    ELSE
+      g_Alarm.alarmArray[609] := 0;
+    END_IF;
+    
+    IF Axis_Sustain8.NCTOPLC.POWERNEGWARN THEN
+      g_Alarm.alarmArray[610] := 1013;
+    ELSE
+      g_Alarm.alarmArray[610] := 0;
+    END_IF;
+    IF g_nS5HomeMode = 1 THEN
+		IF g_bSustain8PosLimit (*AND ListenBoardInputConfig[377] *) THEN
+		  g_Alarm.alarmArray[611] := 1014;
+		ELSE
+		  g_Alarm.alarmArray[611] := 0;
+		END_IF;
+		
+		IF g_bSustain8NegLimit  (*AND ListenBoardInputConfig[379]*) THEN
+		  g_Alarm.alarmArray[612] := 1015;
+		ELSE
+		  g_Alarm.alarmArray[612] := 0;
+		END_IF;      
+    ELSE
+		IF g_bSustain8PosLimit AND Axis_Sustain8.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[377]*) THEN
+		  g_Alarm.alarmArray[611] := 1014;
+		ELSE
+		  g_Alarm.alarmArray[611] := 0;
+		END_IF;
+		
+		IF g_bSustain8NegLimit AND Axis_Sustain8.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[379]*) THEN
+		  g_Alarm.alarmArray[612] := 1015;
+		ELSE
+		  g_Alarm.alarmArray[612] := 0;
+		END_IF;
+    END_IF;
+  END_IF;
+  
+  IF g_nSusutainCount >= 6 THEN
+    (*支撑轴9*)
+    IF Axis_Sustain9.NCTOPLC.POSSOFTWARN AND g_bSustain9HomeDone THEN
+      g_Alarm.alarmArray[613] := 1016;
+    ELSE
+      g_Alarm.alarmArray[613] := 0;
+    END_IF;
+    
+    IF Axis_Sustain9.NCTOPLC.NEGSOFTWARN AND g_bSustain9HomeDone THEN
+      g_Alarm.alarmArray[614] := 1017;
+    ELSE
+      g_Alarm.alarmArray[614] := 0;
+    END_IF;
+    
+    IF NOT Axis_Sustain9.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[615] := 1018;
+    ELSE
+      g_Alarm.alarmArray[615] := 0;
+    END_IF;
+    
+    IF Axis_Sustain9.NCTOPLC.POWERPOSWARN THEN
+      g_Alarm.alarmArray[616] := 1019;
+    ELSE
+      g_Alarm.alarmArray[616] := 0;
+    END_IF;
+    
+    IF Axis_Sustain9.NCTOPLC.POWERNEGWARN THEN
+      g_Alarm.alarmArray[617] := 1020;
+    ELSE
+      g_Alarm.alarmArray[617] := 0;
+    END_IF;
+    IF g_nS6HomeMode = 1 THEN
+		IF g_bSustain9PosLimit (*AND ListenBoardInputConfig[380] *) THEN
+		  g_Alarm.alarmArray[618] := 1021;
+		ELSE
+		  g_Alarm.alarmArray[618] := 0;
+		END_IF;
+		
+		IF g_bSustain9NegLimit (*AND ListenBoardInputConfig[382] *) THEN
+		  g_Alarm.alarmArray[619] := 1022;
+		ELSE
+		  g_Alarm.alarmArray[619] := 0;
+		END_IF;
+    ELSE
+		IF g_bSustain9PosLimit AND Axis_Sustain9.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[380]*) THEN
+		  g_Alarm.alarmArray[618] := 1021;
+		ELSE
+		  g_Alarm.alarmArray[618] := 0;
+		END_IF;
+		
+		IF g_bSustain9NegLimit AND Axis_Sustain9.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[382]*) THEN
+		  g_Alarm.alarmArray[619] := 1022;
+		ELSE
+		  g_Alarm.alarmArray[619] := 0;
+		END_IF;      
+      
+    END_IF;
+  END_IF;
+END_IF;
+IF g_nSusutainCount >= 7 THEN
+	IF Axis_S7.NCTOPLC.POSSOFTWARN AND g_NCMoveData.NCAXISDATA[4].AxisHomeDone  THEN
+      g_Alarm.alarmArray[694] := 1389;
+    ELSE
+      g_Alarm.alarmArray[694] := 0;
+    END_IF;
+    
+    IF Axis_S7.NCTOPLC.NEGSOFTWARN AND g_NCMoveData.NCAXISDATA[4].AxisHomeDone THEN
+      g_Alarm.alarmArray[695] := 1390;
+    ELSE
+      g_Alarm.alarmArray[695] := 0;
+    END_IF;
+
+    IF NOT Axis_S7.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[696] := 1391;
+    ELSE
+      g_Alarm.alarmArray[696] := 0;
+    END_IF;
+    
+    IF Axis_S7.NCTOPLC.POWERPOSWARN THEN
+      g_Alarm.alarmArray[697] := 1392;
+    ELSE
+      g_Alarm.alarmArray[697] := 0;
+    END_IF;
+    
+    IF Axis_S7.NCTOPLC.POWERNEGWARN THEN
+      g_Alarm.alarmArray[698] := 1393;
+    ELSE
+      g_Alarm.alarmArray[698] := 0;
+    END_IF;
+    
+    
+	IF g_NCMoveData.NCAXISDATA[4].AxisHomeMode = 1 THEN
+      IF g_NCMoveData.NCAXISDATA[4].AxisPosLimit (*AND ListenBoardInputConfig[605]*) THEN
+			g_Alarm.alarmArray[699] :=1394;
+		ELSE
+			g_Alarm.alarmArray[699] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[4].AxisNegLimit (*AND ListenBoardInputConfig[607]*) THEN
+		  g_Alarm.alarmArray[700] := 1395;
+		ELSE
+		  g_Alarm.alarmArray[700] := 0;
+		END_IF;
+      
+      
+    ELSE
+      IF g_NCMoveData.NCAXISDATA[4].AxisPosLimit AND Axis_S7.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[605]*) THEN
+		g_Alarm.alarmArray[699] := 1394;
+		ELSE
+		  g_Alarm.alarmArray[699] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[4].AxisNegLimit AND Axis_S7.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[607]*) THEN
+		  g_Alarm.alarmArray[700] := 1395;
+		ELSE
+		  g_Alarm.alarmArray[700] := 0;
+		END_IF;
+    END_IF;
+END_IF;
+
+IF g_nSusutainCount >= 8 THEN
+	IF Axis_S8.NCTOPLC.POSSOFTWARN AND g_NCMoveData.NCAXISDATA[5].AxisHomeDone  THEN
+      g_Alarm.alarmArray[701] := 1396;
+    ELSE
+      g_Alarm.alarmArray[701] := 0;
+    END_IF;
+    
+    IF Axis_S8.NCTOPLC.NEGSOFTWARN AND g_NCMoveData.NCAXISDATA[5].AxisHomeDone THEN
+      g_Alarm.alarmArray[702] := 1397;
+    ELSE
+      g_Alarm.alarmArray[702] := 0;
+    END_IF;
+
+    IF NOT Axis_S8.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[703] := 1398;
+    ELSE
+      g_Alarm.alarmArray[703] := 0;
+    END_IF;
+    IF Axis_S8.NCTOPLC.POWERPOSWARN THEN
+      g_Alarm.alarmArray[704] := 1399;
+    ELSE
+      g_Alarm.alarmArray[704] := 0;
+    END_IF;
+    
+    IF Axis_S8.NCTOPLC.POWERNEGWARN THEN
+      g_Alarm.alarmArray[705] := 1400;
+    ELSE
+      g_Alarm.alarmArray[705] := 0;
+    END_IF;
+	IF g_NCMoveData.NCAXISDATA[5].AxisHomeMode = 1 THEN
+      IF g_NCMoveData.NCAXISDATA[5].AxisPosLimit (*AND ListenBoardInputConfig[609]*) THEN
+			g_Alarm.alarmArray[706] :=1401;
+		ELSE
+			g_Alarm.alarmArray[706] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[5].AxisNegLimit (*AND ListenBoardInputConfig[611]*) THEN
+		  g_Alarm.alarmArray[707] := 1402;
+		ELSE
+		  g_Alarm.alarmArray[707] := 0;
+		END_IF;
+      
+      
+    ELSE
+      IF g_NCMoveData.NCAXISDATA[5].AxisPosLimit AND Axis_S8.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[609]*) THEN
+		g_Alarm.alarmArray[706] := 1401;
+		ELSE
+		  g_Alarm.alarmArray[706] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[5].AxisNegLimit AND Axis_S8.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[611]*) THEN
+		  g_Alarm.alarmArray[707] := 1402;
+		ELSE
+		  g_Alarm.alarmArray[707] := 0;
+		END_IF;
+    END_IF;
+END_IF;
+IF g_nSusutainCount >= 9 THEN
+	IF Axis_S9.NCTOPLC.POSSOFTWARN AND g_NCMoveData.NCAXISDATA[6].AxisHomeDone  THEN
+      g_Alarm.alarmArray[708] := 1403;
+    ELSE
+      g_Alarm.alarmArray[708] := 0;
+    END_IF;
+    
+    IF Axis_S9.NCTOPLC.NEGSOFTWARN AND g_NCMoveData.NCAXISDATA[6].AxisHomeDone THEN
+      g_Alarm.alarmArray[709] := 1404;
+    ELSE
+      g_Alarm.alarmArray[709] := 0;
+    END_IF;
+
+    IF NOT Axis_S9.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[710] :=1405;
+    ELSE
+      g_Alarm.alarmArray[710] := 0;
+    END_IF;
+    IF Axis_S9.NCTOPLC.POWERPOSWARN THEN
+      g_Alarm.alarmArray[711] := 1406;
+    ELSE
+      g_Alarm.alarmArray[711] := 0;
+    END_IF;
+    
+    IF Axis_S9.NCTOPLC.POWERNEGWARN THEN
+      g_Alarm.alarmArray[712] := 1407;
+    ELSE
+      g_Alarm.alarmArray[712] := 0;
+    END_IF;
+	IF g_NCMoveData.NCAXISDATA[6].AxisHomeMode = 1 THEN
+      IF g_NCMoveData.NCAXISDATA[6].AxisPosLimit (*AND ListenBoardInputConfig[612]*) THEN
+			g_Alarm.alarmArray[713] :=1408;
+		ELSE
+			g_Alarm.alarmArray[713] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[6].AxisNegLimit (*AND ListenBoardInputConfig[614]*) THEN
+		  g_Alarm.alarmArray[714] := 1409;
+		ELSE
+		  g_Alarm.alarmArray[714] := 0;
+		END_IF;
+      
+      
+    ELSE
+      IF g_NCMoveData.NCAXISDATA[6].AxisPosLimit AND Axis_S9.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[612]*) THEN
+		g_Alarm.alarmArray[713] := 1408;
+		ELSE
+		  g_Alarm.alarmArray[713] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[6].AxisNegLimit AND Axis_S9.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[614]*) THEN
+		  g_Alarm.alarmArray[714] := 1409;
+		ELSE
+		  g_Alarm.alarmArray[714] := 0;
+		END_IF;
+    END_IF;
+END_IF;
+IF g_nSusutainCount >= 10 THEN
+	IF Axis_S10.NCTOPLC.POSSOFTWARN AND g_NCMoveData.NCAXISDATA[7].AxisHomeDone  THEN
+      g_Alarm.alarmArray[715] := 1410;
+    ELSE
+      g_Alarm.alarmArray[715] := 0;
+    END_IF;
+    
+    IF Axis_S10.NCTOPLC.NEGSOFTWARN AND g_NCMoveData.NCAXISDATA[7].AxisHomeDone THEN
+      g_Alarm.alarmArray[716] := 1411;
+    ELSE
+      g_Alarm.alarmArray[716] := 0;
+    END_IF;
+
+    IF NOT Axis_S10.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[715] := 1412;
+    ELSE
+      g_Alarm.alarmArray[715] := 0;
+    END_IF;
+    IF Axis_S10.NCTOPLC.POWERPOSWARN THEN
+      g_Alarm.alarmArray[716] := 1413;
+    ELSE
+      g_Alarm.alarmArray[716] := 0;
+    END_IF;
+    
+    IF Axis_S10.NCTOPLC.POWERNEGWARN THEN
+      g_Alarm.alarmArray[717] := 1414;
+    ELSE
+      g_Alarm.alarmArray[717] := 0;
+    END_IF;
+	IF g_NCMoveData.NCAXISDATA[7].AxisHomeMode = 1 THEN
+      IF g_NCMoveData.NCAXISDATA[7].AxisPosLimit (*AND ListenBoardInputConfig[615]*) THEN
+			g_Alarm.alarmArray[718] :=1415;
+		ELSE
+			g_Alarm.alarmArray[718] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[7].AxisNegLimit (*AND ListenBoardInputConfig[617]*) THEN
+		  g_Alarm.alarmArray[719] := 1416;
+		ELSE
+		  g_Alarm.alarmArray[719] := 0;
+		END_IF;
+      
+      
+    ELSE
+      IF g_NCMoveData.NCAXISDATA[7].AxisPosLimit AND Axis_S10.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[615]*) THEN
+		g_Alarm.alarmArray[718] := 1415;
+		ELSE
+		  g_Alarm.alarmArray[718] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[7].AxisNegLimit AND Axis_S10.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[617]*) THEN
+		  g_Alarm.alarmArray[719] := 1416;
+		ELSE
+		  g_Alarm.alarmArray[719] := 0;
+		END_IF;
+    END_IF;
+END_IF;
+IF g_nSusutainCount >= 11 THEN
+	IF Axis_S11.NCTOPLC.POSSOFTWARN AND g_NCMoveData.NCAXISDATA[8].AxisHomeDone  THEN
+      g_Alarm.alarmArray[720] := 1417;
+    ELSE
+      g_Alarm.alarmArray[720] := 0;
+    END_IF;
+    
+    IF Axis_S11.NCTOPLC.NEGSOFTWARN AND g_NCMoveData.NCAXISDATA[8].AxisHomeDone THEN
+      g_Alarm.alarmArray[721] := 1418;
+    ELSE
+      g_Alarm.alarmArray[721] := 0;
+    END_IF;
+
+    IF NOT Axis_S11.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[722] := 1419;
+    ELSE
+      g_Alarm.alarmArray[722] := 0;
+    END_IF;
+    IF Axis_S11.NCTOPLC.POWERPOSWARN THEN
+      g_Alarm.alarmArray[723] := 1420;
+    ELSE
+      g_Alarm.alarmArray[723] := 0;
+    END_IF;
+    
+    IF Axis_S11.NCTOPLC.POWERNEGWARN THEN
+      g_Alarm.alarmArray[724] := 1421;
+    ELSE
+      g_Alarm.alarmArray[724] := 0;
+    END_IF;
+	IF g_NCMoveData.NCAXISDATA[8].AxisHomeMode = 1 THEN
+      IF g_NCMoveData.NCAXISDATA[8].AxisPosLimit (*AND ListenBoardInputConfig[618]*) THEN
+			g_Alarm.alarmArray[725] :=1422;
+		ELSE
+			g_Alarm.alarmArray[725] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[8].AxisNegLimit (*AND ListenBoardInputConfig[620]*) THEN
+		  g_Alarm.alarmArray[726] := 1423;
+		ELSE
+		  g_Alarm.alarmArray[726] := 0;
+		END_IF;
+      
+      
+    ELSE
+      IF g_NCMoveData.NCAXISDATA[8].AxisPosLimit AND Axis_S11.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[618]*) THEN
+		g_Alarm.alarmArray[725] := 1422;
+		ELSE
+		  g_Alarm.alarmArray[725] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[8].AxisNegLimit AND Axis_S11.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[620]*) THEN
+		  g_Alarm.alarmArray[726] := 1423;
+		ELSE
+		  g_Alarm.alarmArray[726] := 0;
+		END_IF;
+    END_IF;
+END_IF;
+IF g_nSusutainCount >= 12 THEN
+	IF Axis_S12.NCTOPLC.POSSOFTWARN AND g_NCMoveData.NCAXISDATA[9].AxisHomeDone  THEN
+      g_Alarm.alarmArray[727] := 1424;
+    ELSE
+      g_Alarm.alarmArray[727] := 0;
+    END_IF;
+    
+    IF Axis_S12.NCTOPLC.NEGSOFTWARN AND g_NCMoveData.NCAXISDATA[9].AxisHomeDone THEN
+      g_Alarm.alarmArray[728] := 1425;
+    ELSE
+      g_Alarm.alarmArray[728] := 0;
+    END_IF;
+
+    IF NOT Axis_S12.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[729] := 1426;
+    ELSE
+      g_Alarm.alarmArray[729] := 0;
+    END_IF;
+    IF Axis_S12.NCTOPLC.POWERPOSWARN THEN
+      g_Alarm.alarmArray[730] := 1427;
+    ELSE
+      g_Alarm.alarmArray[730] := 0;
+    END_IF;
+    
+    IF Axis_S12.NCTOPLC.POWERNEGWARN THEN
+      g_Alarm.alarmArray[731] := 1428;
+    ELSE
+      g_Alarm.alarmArray[731] := 0;
+    END_IF;
+	IF g_NCMoveData.NCAXISDATA[9].AxisHomeMode = 1 THEN
+      IF g_NCMoveData.NCAXISDATA[9].AxisPosLimit (*AND ListenBoardInputConfig[621]*) THEN
+			g_Alarm.alarmArray[732] :=1429;
+		ELSE
+			g_Alarm.alarmArray[732] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[9].AxisNegLimit (*AND ListenBoardInputConfig[623]*) THEN
+		  g_Alarm.alarmArray[733] := 1430;
+		ELSE
+		  g_Alarm.alarmArray[733] := 0;
+		END_IF;
+      
+      
+    ELSE
+      IF g_NCMoveData.NCAXISDATA[9].AxisPosLimit AND Axis_S12.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[621]*) THEN
+		g_Alarm.alarmArray[732] := 1429;
+		ELSE
+		  g_Alarm.alarmArray[732] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[9].AxisNegLimit AND Axis_S12.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[623]*) THEN
+		  g_Alarm.alarmArray[733] := 1430;
+		ELSE
+		  g_Alarm.alarmArray[733] := 0;
+		END_IF;
+    END_IF;
+END_IF;
+
+
+
+(*碰板报警*)
+RTing_TouchPanel(IN := g_bTouchPanel AND NOT g_bDebugMode AND NOT g_bHmiCloseFollow, PT := T#1s);
+IF RTing_TouchPanel.Q THEN
+  g_Alarm.alarmArray[18] := 718;
+ELSE
+  g_Alarm.alarmArray[18] := 0;
+END_IF;
+
+
+(*伺服报警719~728*)
+(*
+bDriveError := AND(g_nDriveStatus,2);
+IF bDriveError<>0 THEN
+  g_Alarm.alarmArray[19] := 719;
+END_IF;
+
+bDriveError := AND(g_nDriveStatus,8);
+IF bDriveError<>0 THEN
+  g_Alarm.alarmArray[20] := 720;
+END_IF;
+
+bDriveError := AND(g_nDriveStatus,32);
+IF bDriveError<>0 THEN
+  g_Alarm.alarmArray[21] := 721;
+END_IF;
+
+bDriveError := AND(g_nDriveStatus,128);
+IF bDriveError<>0 THEN
+  g_Alarm.alarmArray[22] := 722;
+END_IF;
+
+bDriveError := AND(g_nDriveStatus,512);
+IF bDriveError<>0 THEN
+  g_Alarm.alarmArray[23] := 723;
+END_IF;
+
+bDriveError := AND(g_nDriveStatus,2048);
+IF bDriveError<>0 THEN
+  g_Alarm.alarmArray[24] := 724;
+END_IF;
+
+bDriveError := AND(g_nDriveStatus,8192);
+IF bDriveError<>0 THEN
+  g_Alarm.alarmArray[25] := 725;
+END_IF;
+
+bDriveError := AND(g_nDriveStatus,32768);
+IF bDriveError<>0 THEN
+  g_Alarm.alarmArray[26] := 726;
+END_IF;
+
+bDriveError := AND(g_nDriveStatus,131072);
+IF bDriveError<>0 THEN
+  g_Alarm.alarmArray[27] := 727;
+END_IF;
+
+bDriveError := AND(g_nDriveStatus,524288);
+IF bDriveError<>0 THEN
+  g_Alarm.alarmArray[28] := 728;
+END_IF;*)
+
+
+
+(*判断从站是否进入OP状态  从站0~19报警对应749-768，20~29对应975~984*)
+FOR nSlaveNum := 0 TO g_nSlaveNums BY 1 DO
+  IF nSlaveNum>=20 THEN
+    IF g_bCommunicationCheck.SlaveStateOp[nSlaveNum]=FALSE THEN
+      g_Alarm.alarmArray[285+nSlaveNum-20] := 975+nSlaveNum-20;
+    END_IF;
+  ELSE
+    IF g_bCommunicationCheck.SlaveStateOp[nSlaveNum]=FALSE THEN
+      g_Alarm.alarmArray[49+nSlaveNum] := 749+nSlaveNum;
+    END_IF;
+  END_IF;
+END_FOR;
+
+(*急停*)
+IF g_bControlPanelEmergencyStop THEN
+  g_Alarm.alarmArray[69] := 769;
+END_IF;
+
+(*断线报警*)
+IF g_bTraLineError AND NOT g_bDebugMode  AND NOT g_bHmiCloseFollow THEN
+  g_Alarm.alarmArray[70] := 141;
+  g_bTraLineError := FALSE;
+END_IF;
+(*传感器报警,调试模式屏蔽掉报警*)
+IF g_bSensorLineError AND NOT g_bDebugMode AND NOT g_bHmiCloseFollow THEN
+  g_Alarm.alarmArray[71] := 142;
+  g_bSensorLineError := FALSE;
+END_IF;
+
+(*随动到位超时*)
+IF g_bZFollowWarning THEN
+    g_Alarm.alarmArray[72] := 775;
+    g_bZFollowWarning:= FALSE;
+END_IF;
+
+(*耦合轴U2误差报警*)
+IF g_bU2AxisEnable AND g_bUGearError AND NOT g_bUAndU2BackToPoint THEN
+  g_Alarm.alarmArray[73] := 776;
+  g_bUGearError := FALSE;
+END_IF;
+
+(*空气压力报警*)
+IF g_bAirPressureAlarm  AND g_boAirValve AND g_bGasAlarmPause AND ListenBoardInputConfig[6] THEN
+  g_Alarm.alarmArray[74] := 66;
+  g_bAirPressureAlarm := false;
+ELSIF g_bAirPressureAlarm  AND g_boAirValve AND NOT g_bGasAlarmPause AND ListenBoardInputConfig[6] THEN
+  g_Alarm.alarmArray[74] := 1069;
+  g_bAirPressureAlarm := false;
+END_IF;
+
+(*氧气压力报警*)
+IF g_bOxygenPressureAlarm AND g_boOxygenValve AND g_bGasAlarmPause AND ListenBoardInputConfig[7] THEN
+  g_Alarm.alarmArray[75] := 67;
+  g_bOxygenPressureAlarm := false;
+ELSIF g_bOxygenPressureAlarm AND g_boOxygenValve AND NOT g_bGasAlarmPause AND ListenBoardInputConfig[7] THEN
+  g_Alarm.alarmArray[75] := 1070;
+  g_bOxygenPressureAlarm := false;
+END_IF;
+
+(*氮气压力报警*)
+IF g_bNirtogenPressureAlarm AND g_boNirtogenValve AND g_bGasAlarmPause AND ListenBoardInputConfig[8] THEN
+  g_Alarm.alarmArray[76] := 68;
+  g_bNirtogenPressureAlarm := false;
+ELSIF g_bNirtogenPressureAlarm AND g_boNirtogenValve AND NOT g_bGasAlarmPause AND ListenBoardInputConfig[8] THEN
+  g_Alarm.alarmArray[76] := 1071;
+  g_bNirtogenPressureAlarm := false;
+END_IF;
+
+(*空气比例阀反馈电压报警*)
+IF g_bAirMaxPressureAlarm AND g_boAirValve AND g_bGasAlarmPause THEN
+  g_Alarm.alarmArray[77] := 69;
+  g_bAirMaxPressureAlarm := false;
+ELSIF g_bAirMaxPressureAlarm AND g_boAirValve AND NOT g_bGasAlarmPause THEN
+  g_Alarm.alarmArray[77] := 1072;
+  g_bAirMaxPressureAlarm := false;
+END_IF;
+
+(*氧气比例阀反馈电压报警*)
+IF g_bOxygenMaxPressureAlarm AND g_boOxygenValve AND g_bGasAlarmPause THEN
+  g_Alarm.alarmArray[78] := 70;
+  g_bOxygenMaxPressureAlarm := false;
+ELSIF g_bOxygenMaxPressureAlarm AND g_boOxygenValve AND NOT g_bGasAlarmPause THEN
+  g_Alarm.alarmArray[78] := 1073;
+  g_bOxygenMaxPressureAlarm := false;
+END_IF;
+
+(*氮气比例阀反馈电压报警*)
+IF g_bNirtogenMaxPressureAlarm AND g_boNirtogenValve AND g_bGasAlarmPause THEN
+  g_Alarm.alarmArray[79] := 71;
+  g_bNirtogenMaxPressureAlarm := false;
+ELSIF g_bNirtogenMaxPressureAlarm AND g_boNirtogenValve AND NOT g_bGasAlarmPause THEN
+  g_Alarm.alarmArray[79] := 1074;
+  g_bNirtogenMaxPressureAlarm := false;
+END_IF;
+
+
+(*支撑轴未下降到位报警检测*)
+IF g_nSusutainCount <> 0 THEN
+  IF g_biAxIsYisHome THEN
+    IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY1 - g_fSupAxisSafeDis1) AND Axis_Sustain1.NCTOPLC.ActPos > 1.0 AND g_nSusutainCount > 0  THEN
+      g_Alarm.alarmArray[98] := 798;
+      SupportAvoidFlag := TRUE;
+      g_boCNCMoveDisable := TRUE;
+    ELSE
+      g_Alarm.alarmArray[98] := 0;
+      IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;
+    END_IF;
+
+    IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY2 - g_fSupAxisSafeDis2) AND Axis_Sustain2.NCTOPLC.ActPos > 1.0 AND g_nSusutainCount > 1 THEN
+      g_Alarm.alarmArray[99] := 799;
+      SupportAvoidFlag := TRUE;
+      g_boCNCMoveDisable := TRUE;
+    ELSE
+      g_Alarm.alarmArray[99] := 0;
+      IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;
+    END_IF;
+
+    IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY3 - g_fSupAxisSafeDis3) AND Axis_Sustain3.NCTOPLC.ActPos > 1.0 AND g_nSusutainCount > 2  THEN
+      g_Alarm.alarmArray[100] := 800;
+      SupportAvoidFlag := TRUE;
+      g_boCNCMoveDisable := TRUE;
+    ELSE
+      g_Alarm.alarmArray[100] := 0;
+      IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;
+    END_IF;
+    
+    IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY4 - g_fSupAxisSafeDis4) AND Axis_Sustain7.NCTOPLC.ActPos > 1.0 AND g_nSusutainCount > 3  THEN
+      g_Alarm.alarmArray[385] := 1113;
+      SupportAvoidFlag := TRUE;
+      g_boCNCMoveDisable := TRUE;
+    ELSE
+      g_Alarm.alarmArray[385] := 0;
+      IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;
+    END_IF;   
+     
+    IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY5 - g_fSupAxisSafeDis5) AND Axis_Sustain8.NCTOPLC.ActPos > 1.0 AND g_nSusutainCount > 4  THEN
+      g_Alarm.alarmArray[386] := 1114;
+      SupportAvoidFlag := TRUE;
+      g_boCNCMoveDisable := TRUE;
+    ELSE
+      g_Alarm.alarmArray[386] := 0;
+      IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;
+    END_IF;
+    
+    IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY6 - g_fSupAxisSafeDis6) AND Axis_Sustain9.NCTOPLC.ActPos > 1.0 AND g_nSusutainCount > 5  THEN
+      g_Alarm.alarmArray[387] := 1115;
+      SupportAvoidFlag := TRUE;
+      g_boCNCMoveDisable := TRUE;
+    ELSE
+      g_Alarm.alarmArray[387] := 0;
+      IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+      END_IF;
+    END_IF; 
+    
+    IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY7 - g_fSupAxisSafeDis7) AND Axis_S7.NCTOPLC.ActPos > 1.0 AND g_nSusutainCount > 6  THEN
+      g_Alarm.alarmArray[734] := 1431;
+      SupportAvoidFlag := TRUE;
+      g_boCNCMoveDisable := TRUE;
+    ELSE
+      g_Alarm.alarmArray[734] := 0;
+      IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+      END_IF;
+    END_IF; 
+    
+    IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY8 - g_fSupAxisSafeDis8) AND Axis_S8.NCTOPLC.ActPos > 1.0 AND g_nSusutainCount > 7  THEN
+      g_Alarm.alarmArray[735] := 1432;
+      SupportAvoidFlag := TRUE;
+      g_boCNCMoveDisable := TRUE;
+    ELSE
+      g_Alarm.alarmArray[735] := 0;
+      IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+      END_IF;
+    END_IF; 
+    
+    IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY9 - g_fSupAxisSafeDis9) AND Axis_S9.NCTOPLC.ActPos > 1.0 AND g_nSusutainCount > 8  THEN
+      g_Alarm.alarmArray[736] := 1433;
+      SupportAvoidFlag := TRUE;
+      g_boCNCMoveDisable := TRUE;
+    ELSE
+      g_Alarm.alarmArray[736] := 0;
+      IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+      END_IF;
+    END_IF; 
+    
+    IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY10 - g_fSupAxisSafeDis10) AND Axis_S10.NCTOPLC.ActPos > 1.0 AND g_nSusutainCount > 9 THEN
+      g_Alarm.alarmArray[737] := 1434;
+      SupportAvoidFlag := TRUE;
+      g_boCNCMoveDisable := TRUE;
+    ELSE
+      g_Alarm.alarmArray[737] := 0;
+      IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+      END_IF;
+    END_IF; 
+    
+    IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY11 - g_fSupAxisSafeDis11) AND Axis_S11.NCTOPLC.ActPos > 1.0 AND g_nSusutainCount > 10  THEN
+      g_Alarm.alarmArray[738] := 1435;
+      SupportAvoidFlag := TRUE;
+      g_boCNCMoveDisable := TRUE;
+    ELSE
+      g_Alarm.alarmArray[738] := 0;
+      IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+      END_IF;
+    END_IF; 
+    
+    IF g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY12 - g_fSupAxisSafeDis12) AND Axis_S12.NCTOPLC.ActPos > 1.0 AND g_nSusutainCount > 11  THEN
+      g_Alarm.alarmArray[739] := 1436;
+      SupportAvoidFlag := TRUE;
+      g_boCNCMoveDisable := TRUE;
+    ELSE
+      g_Alarm.alarmArray[739] := 0;
+      IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+      END_IF;
+    END_IF; 
+    
+  END_IF;
+END_IF;
+
+(*气缸安全位置报警*)
+(*到位信号*)
+(*新增g_nMachineType = 9(博恩德）气缸避让*)
+IF g_nClylinderCount <> 0 AND g_bClylinderEnable THEN
+  IF g_nMachineType = 9 THEN
+    IF DDAxis.NCTOPLC.HomingState THEN
+      IF g_bClylinderDownIsPosition1 THEN
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder1CoordY - g_fClylinder1SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[65] AND g_nClylinderCount > 0 THEN
+          g_Alarm.alarmArray[101] := 801;
+        ELSE
+          g_Alarm.alarmArray[101] :=0;   
+        END_IF;
+      ELSE
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder1CoordY - g_fClylinder1SafeDistance) AND g_boSupportcyLinder1UpEnable AND g_nClylinderCount > 0 THEN
+          g_Alarm.alarmArray[101] := 801;
+        ELSE
+          g_Alarm.alarmArray[101] :=0;  
+        END_IF;
+      END_IF;
+      IF g_bClylinderDownIsPosition2 THEN
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder2CoordY - g_fClylinder2SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[67] AND g_nClylinderCount > 1 THEN
+          g_Alarm.alarmArray[102] := 802;
+        ELSE
+          g_Alarm.alarmArray[102] :=0;  
+        END_IF;
+      ELSE
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder2CoordY - g_fClylinder2SafeDistance) AND g_boSupportcyLinder2UpEnable AND g_nClylinderCount > 1 THEN
+          g_Alarm.alarmArray[102] := 802;
+        ELSE
+          g_Alarm.alarmArray[102] :=0;    
+        END_IF;
+      END_IF;  
+      IF g_bClylinderDownIsPosition3 THEN
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder3CoordY - g_fClylinder3SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[69] AND g_nClylinderCount > 2 THEN
+          g_Alarm.alarmArray[103] := 803;
+        ELSE
+          g_Alarm.alarmArray[103] :=0;   
+        END_IF;
+      ELSE
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder3CoordY - g_fClylinder3SafeDistance) AND g_boSupportcyLinder3UpEnable AND g_nClylinderCount > 2 THEN
+          g_Alarm.alarmArray[103] := 803;
+        ELSE
+          g_Alarm.alarmArray[103] :=0;     
+        END_IF;
+      END_IF;
+      IF g_bClylinderDownIsPosition4 THEN
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder4CoordY - g_fClylinder4SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[71] AND g_nClylinderCount > 3 THEN
+          g_Alarm.alarmArray[104] := 804;
+        ELSE
+          g_Alarm.alarmArray[104] :=0;    
+        END_IF;
+      ELSE
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder4CoordY - g_fClylinder4SafeDistance) AND g_boSupportcyLinder4UpEnable AND g_nClylinderCount > 3 THEN
+          g_Alarm.alarmArray[104] := 804;
+        ELSE
+          g_Alarm.alarmArray[104] :=0;     
+        END_IF;
+      END_IF;
+      IF g_bClylinderDownIsPosition5 THEN
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder5CoordY - g_fClylinder5SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[73] AND g_nClylinderCount > 4 THEN
+          g_Alarm.alarmArray[105] := 805;
+        ELSE
+          g_Alarm.alarmArray[105] :=0;     
+        END_IF;
+      ELSE
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder5CoordY - g_fClylinder5SafeDistance) AND g_boSupportcyLinder5UpEnable AND g_nClylinderCount > 4 THEN
+          g_Alarm.alarmArray[105] := 805;
+        ELSE
+          g_Alarm.alarmArray[105] :=0;     
+        END_IF;
+      END_IF;
+      IF g_bClylinderDownIsPosition6 THEN
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder6CoordY - g_fClylinder6SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[75] AND g_nClylinderCount > 5 THEN
+          g_Alarm.alarmArray[106] := 806;
+        ELSE
+          g_Alarm.alarmArray[106] :=0;     
+        END_IF;
+      ELSE
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder6CoordY - g_fClylinder6SafeDistance) AND g_boSupportcyLinder6UpEnable AND g_nClylinderCount > 5 THEN
+          g_Alarm.alarmArray[106] := 806;
+        ELSE
+          g_Alarm.alarmArray[106] :=0;   
+        END_IF;
+      END_IF;
+      IF g_bClylinderDownIsPosition7 THEN
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder7CoordY - g_fClylinder7SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[77] AND g_nClylinderCount > 6 THEN
+          g_Alarm.alarmArray[107] := 807;
+        ELSE
+          g_Alarm.alarmArray[107] :=0;  
+        END_IF;
+      ELSE
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder7CoordY - g_fClylinder7SafeDistance) AND g_boSupportcyLinder7UpEnable AND g_nClylinderCount > 6 THEN
+          g_Alarm.alarmArray[107] := 807;
+        ELSE
+          g_Alarm.alarmArray[107] :=0;   
+        END_IF;
+      END_IF;
+      IF g_bClylinderDownIsPosition8 THEN
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder8CoordY - g_fClylinder8SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[79] AND g_nClylinderCount > 7 THEN
+          g_Alarm.alarmArray[108] := 808;
+        ELSE
+          g_Alarm.alarmArray[108] :=0;   
+        END_IF;
+      ELSE
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder8CoordY - g_fClylinder8SafeDistance) AND g_boSupportcyLinder8UpEnable AND g_nClylinderCount > 7 THEN
+          g_Alarm.alarmArray[108] := 808;
+        ELSE
+          g_Alarm.alarmArray[108] :=0;    
+        END_IF;
+      END_IF;
+      
+      IF g_bClylinderDownIsPosition9 THEN
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder9CoordY - g_fClylinder9SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[95] AND g_nClylinderCount > 8 THEN
+          g_Alarm.alarmArray[642] := 1337;
+        ELSE
+          g_Alarm.alarmArray[642] :=0;   
+        END_IF;
+      ELSE
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder9CoordY - g_fClylinder9SafeDistance) AND g_boSupportcyLinder9UpEnable AND g_nClylinderCount > 8 THEN
+          g_Alarm.alarmArray[642] := 1337;
+        ELSE
+          g_Alarm.alarmArray[642] :=0;    
+        END_IF;
+      END_IF;
+      
+       IF g_bClylinderDownIsPosition10 THEN
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder10CoordY - g_fClylinder10SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[97] AND g_nClylinderCount > 9 THEN
+          g_Alarm.alarmArray[645] := 1340;
+        ELSE
+          g_Alarm.alarmArray[645] :=0;   
+        END_IF;
+      ELSE
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder10CoordY - g_fClylinder10SafeDistance) AND g_boSupportcyLinder10UpEnable AND g_nClylinderCount > 9 THEN
+          g_Alarm.alarmArray[645] := 1340;
+        ELSE
+          g_Alarm.alarmArray[645] :=0;    
+        END_IF;
+      END_IF;
+      
+       IF g_bClylinderDownIsPosition11 THEN
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder11CoordY - g_fClylinder11SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[99] AND g_nClylinderCount > 10 THEN
+          g_Alarm.alarmArray[646] := 1341;
+        ELSE
+          g_Alarm.alarmArray[646] :=0;   
+        END_IF;
+      ELSE
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder11CoordY - g_fClylinder11SafeDistance) AND g_boSupportcyLinder11UpEnable AND g_nClylinderCount > 10 THEN
+          g_Alarm.alarmArray[646] := 1341;
+        ELSE
+          g_Alarm.alarmArray[646] :=0;    
+        END_IF;
+      END_IF;
+      
+       IF g_bClylinderDownIsPosition12 THEN
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder12CoordY - g_fClylinder12SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[101] AND g_nClylinderCount > 11 THEN
+          g_Alarm.alarmArray[647] := 1342;
+        ELSE
+          g_Alarm.alarmArray[647] :=0;   
+        END_IF;
+      ELSE
+        IF DDAxis.NCTOPLC.ACTPOS >= (g_fClylinder12CoordY - g_fClylinder12SafeDistance) AND g_boSupportcyLinder12UpEnable AND g_nClylinderCount > 11 THEN
+          g_Alarm.alarmArray[647] := 1342;
+        ELSE
+          g_Alarm.alarmArray[647] :=0;    
+        END_IF;
+      END_IF;
+      
+    END_IF;
+  ELSE
+    IF g_biAxIsYisHome THEN
+      IF g_bClylinderDownIsPosition1 THEN
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder1CoordY - g_fClylinder1SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[65] AND g_nClylinderCount > 0 THEN
+          g_Alarm.alarmArray[101] := 801;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[101] :=0;
+          IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;   
+        END_IF;
+      ELSE
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder1CoordY - g_fClylinder1SafeDistance) AND g_bClylinder1State AND g_nClylinderCount > 0  THEN
+          g_Alarm.alarmArray[101] := 801;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[101] :=0;
+			IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+			END_IF;    
+        END_IF;
+      END_IF;
+      IF g_bClylinderDownIsPosition2 THEN
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder2CoordY - g_fClylinder2SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[67] AND g_nClylinderCount > 1 THEN
+          g_Alarm.alarmArray[102] := 802;
+        ELSE
+          g_Alarm.alarmArray[102] :=0; 
+          IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;    
+        END_IF;
+      ELSE
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder2CoordY - g_fClylinder2SafeDistance) AND g_bClylinder2State AND g_nClylinderCount > 1  THEN
+          g_Alarm.alarmArray[102] := 802;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[102] :=0; 
+          IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;    
+        END_IF;
+      END_IF; 
+      IF g_bClylinderDownIsPosition3 THEN
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder3CoordY - g_fClylinder3SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[69] AND g_nClylinderCount > 2  THEN
+          g_Alarm.alarmArray[103] := 803;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[103] :=0; 
+          IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;   
+        END_IF;
+      ELSE
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder3CoordY - g_fClylinder3SafeDistance) AND g_bClylinder3State AND g_nClylinderCount > 2  THEN
+          g_Alarm.alarmArray[103] := 803;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[103] :=0;
+          IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;  
+        END_IF;
+      END_IF;
+      IF g_bClylinderDownIsPosition4 THEN
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder4CoordY - g_fClylinder4SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[71] AND g_nClylinderCount > 3  THEN
+          g_Alarm.alarmArray[104] := 804;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[104] :=0;
+          IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;   
+        END_IF;
+      ELSE
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder4CoordY - g_fClylinder4SafeDistance) AND g_bClylinder4State AND g_nClylinderCount > 3  THEN
+          g_Alarm.alarmArray[104] := 804;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[104] :=0;
+          IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;    
+        END_IF;
+      END_IF;
+      IF g_bClylinderDownIsPosition5 THEN
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder5CoordY - g_fClylinder5SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[73] AND g_nClylinderCount > 4  THEN
+          g_Alarm.alarmArray[105] := 805;
+        ELSE
+          g_Alarm.alarmArray[105] :=0; 
+          IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;   
+        END_IF;  
+      ELSE
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder5CoordY - g_fClylinder5SafeDistance) AND g_bClylinder5State AND g_nClylinderCount > 4 THEN
+          g_Alarm.alarmArray[105] := 805;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[105] :=0;
+          IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;  
+        END_IF;
+      END_IF;
+      IF g_bClylinderDownIsPosition6 THEN
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder6CoordY - g_fClylinder6SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[75] AND g_nClylinderCount > 5  THEN
+          g_Alarm.alarmArray[106] := 806;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[106] :=0;
+          IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;  
+        END_IF;
+      ELSE
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder6CoordY - g_fClylinder6SafeDistance) AND g_bClylinder6State AND g_nClylinderCount > 5  THEN
+          g_Alarm.alarmArray[106] := 806;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[106] :=0;
+		IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;  
+        END_IF;
+      END_IF;
+      IF g_bClylinderDownIsPosition7 THEN
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder7CoordY - g_fClylinder7SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[77] AND g_nClylinderCount > 6  THEN
+          g_Alarm.alarmArray[107] := 807;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[107] :=0;
+          IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;
+        END_IF;
+      ELSE
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder7CoordY - g_fClylinder7SafeDistance) AND g_bClylinder7State AND g_nClylinderCount > 6  THEN
+          g_Alarm.alarmArray[107] := 807;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[107] :=0; 
+		IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;
+        END_IF;
+      END_IF;
+      IF g_bClylinderDownIsPosition8 THEN
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder8CoordY - g_fClylinder8SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[79] AND g_nClylinderCount > 7  THEN
+          g_Alarm.alarmArray[108] := 808;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[108] :=0;
+			IF SupportAvoidFlag THEN
+				g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+			END_IF; 
+        END_IF;
+      ELSE
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder8CoordY - g_fClylinder8SafeDistance) AND g_bClylinder8State AND g_nClylinderCount > 7  THEN
+          g_Alarm.alarmArray[108] := 808;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;
+          g_Alarm.alarmArray[108] :=0; 
+        END_IF;
+      END_IF;
+      
+      IF g_bClylinderDownIsPosition9 THEN
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder9CoordY - g_fClylinder9SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[95] AND g_nClylinderCount > 8  THEN
+          g_Alarm.alarmArray[642] := 1337;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[642] :=0;
+			IF SupportAvoidFlag THEN
+				g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+			END_IF; 
+        END_IF;
+      ELSE
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder9CoordY - g_fClylinder9SafeDistance) AND g_bClylinder9State AND g_nClylinderCount > 8  THEN
+          g_Alarm.alarmArray[642] := 1337;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;
+          g_Alarm.alarmArray[642] :=0; 
+        END_IF;
+      END_IF;
+      
+      IF g_bClylinderDownIsPosition10 THEN
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder10CoordY - g_fClylinder10SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[97] AND g_nClylinderCount > 9  THEN
+          g_Alarm.alarmArray[645] := 1340;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[645] :=0;
+			IF SupportAvoidFlag THEN
+				g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+			END_IF; 
+        END_IF;
+      ELSE
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder10CoordY - g_fClylinder10SafeDistance) AND g_bClylinder10State AND g_nClylinderCount > 9  THEN
+          g_Alarm.alarmArray[645] := 1340;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;
+          g_Alarm.alarmArray[645] :=0; 
+        END_IF;
+      END_IF;
+      
+      IF g_bClylinderDownIsPosition11 THEN
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder11CoordY - g_fClylinder11SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[99] AND g_nClylinderCount > 10  THEN
+          g_Alarm.alarmArray[646] := 1341;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[646] :=0;
+			IF SupportAvoidFlag THEN
+				g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+			END_IF; 
+        END_IF;
+      ELSE
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder11CoordY - g_fClylinder11SafeDistance) AND g_bClylinder11State AND g_nClylinderCount > 10  THEN
+          g_Alarm.alarmArray[646] := 1341;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;
+          g_Alarm.alarmArray[646] :=0; 
+        END_IF;
+      END_IF;
+      
+      IF g_bClylinderDownIsPosition12 THEN
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder12CoordY - g_fClylinder12SafeDistance) AND NOT g_CylAllStateUpDate.BoolArr[101] AND g_nClylinderCount > 11  THEN
+          g_Alarm.alarmArray[647] := 1342;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          g_Alarm.alarmArray[647] :=0;
+			IF SupportAvoidFlag THEN
+				g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+			END_IF; 
+        END_IF;
+      ELSE
+        IF g_fCurrentCoordYBuffer >= (g_fClylinder12CoordY - g_fClylinder12SafeDistance) AND g_bClylinder12State AND g_nClylinderCount > 11  THEN
+          g_Alarm.alarmArray[647] := 1342;
+		  g_boCNCMoveDisable := TRUE;
+		  SupportAvoidFlag := TRUE;
+        ELSE
+          IF SupportAvoidFlag THEN
+            g_boCNCMoveDisable := FALSE;
+            SupportAvoidFlag := FALSE;
+          END_IF;
+          g_Alarm.alarmArray[647] :=0; 
+        END_IF;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF g_bNoPipeWarn THEN
+  g_bNoPipeWarn := FALSE;
+  g_Alarm.alarmArray[109] := 813;
+END_IF;
+
+IF g_bQREnable THEN
+  IF g_bLoadAbsWarn THEN
+    g_bLoadAbsWarn := FALSE;
+    g_Alarm.alarmArray[110] := 814;
+  END_IF;
+
+  IF g_bZFollowWarn THEN
+    g_bZFollowWarn := FALSE;
+    g_Alarm.alarmArray[111] := 815;
+  END_IF;
+
+  IF Axis_Load.NCTOPLC.POSSOFTWARN AND Axis_Load.NCTOPLC.HOMINGSTATE THEN
+    g_Alarm.alarmArray[112] := 816;
+  END_IF;
+
+  IF Axis_Load.NCTOPLC.NEGSOFTWARN AND Axis_Load.NCTOPLC.HOMINGSTATE THEN
+    g_Alarm.alarmArray[113] := 817;
+  END_IF;
+
+  IF NOT Axis_Load.NCTOPLC.HOMINGSTATE THEN
+    g_Alarm.alarmArray[114] := 818;
+  ELSE
+    g_Alarm.alarmArray[114] := 0;
+  END_IF;
+
+  IF Axis_Sensor.NCTOPLC.POSSOFTWARN AND Axis_Sensor.NCTOPLC.HOMINGSTATE THEN
+    g_Alarm.alarmArray[117] := 820;
+  END_IF;
+
+  IF Axis_Sensor.NCTOPLC.NEGSOFTWARN AND Axis_Sensor.NCTOPLC.HOMINGSTATE THEN
+    g_Alarm.alarmArray[118] := 821;
+  END_IF;
+
+  IF NOT Axis_Sensor.NCTOPLC.HOMINGSTATE THEN
+    g_Alarm.alarmArray[119] := 822;
+  ELSE
+    g_Alarm.alarmArray[119] := 0;
+  END_IF;
+
+  IF g_bTorqueWarn0 THEN
+    g_bTorqueWarn0 := FALSE;
+    g_Alarm.alarmArray[121] := 824;
+  END_IF;
+  IF g_bTorqueWarn1 THEN
+    g_bTorqueWarn1 := FALSE;
+    g_Alarm.alarmArray[122] := 825;
+  END_IF;
+  IF g_bTorqueWarn2 THEN
+    g_bTorqueWarn2 := FALSE;
+    g_Alarm.alarmArray[123] := 826;
+  END_IF;
+  IF g_bTorqueWarn3 THEN
+    g_bTorqueWarn3 := FALSE;
+    g_Alarm.alarmArray[124] := 827;
+  END_IF;
+  IF g_bTorqueWarn4 THEN
+    g_bTorqueWarn4 := FALSE;
+    g_Alarm.alarmArray[125] := 828;
+  END_IF;
+  IF g_bSensorError THEN
+    g_bSensorError := FALSE;
+    g_Alarm.alarmArray[126] := 829;
+  END_IF;
+  IF g_LoadAbs.Error THEN
+    g_Alarm.alarmArray[127] := 830;
+  END_IF;
+  IF g_SensorAbs.Error THEN
+    g_Alarm.alarmArray[128] := 831;
+  END_IF;
+END_IF;
+
+IF g_bKeepPressure1 THEN
+  g_Alarm.alarmArray[129] := 832;
+ELSE
+  g_Alarm.alarmArray[129] := 0;
+END_IF;
+IF g_bKeepPressure2 THEN
+  g_Alarm.alarmArray[130] := 833;
+ELSE
+  g_Alarm.alarmArray[130] := 0;
+END_IF;
+
+IF g_bChunkAvoidError THEN
+  g_Alarm.alarmArray[131] := 834;
+  g_bChunkAvoidError := FALSE;
+END_IF;
+
+IF g_bDustEnable THEN
+  (*抽尘轴*)
+  IF D_Axis.NCTOPLC.POSSOFTWARN AND g_bDustHomeDone THEN
+    g_Alarm.alarmArray[144] := 847;
+  ELSE
+    g_Alarm.alarmArray[144] := 0;
+  END_IF;
+
+  IF D_Axis.NCTOPLC.NEGSOFTWARN AND g_bDustHomeDone THEN
+    g_Alarm.alarmArray[145] := 848;
+  ELSE
+    g_Alarm.alarmArray[145] := 0;
+  END_IF;
+
+  IF NOT D_Axis.NCTOPLC.HOMINGSTATE THEN
+    g_Alarm.alarmArray[146] := 849;
+  ELSE
+    g_Alarm.alarmArray[146] := 0;
+  END_IF;
+	
+  IF g_nDHomeMode = 1 THEN
+	  IF g_bDustAxisPosLimit (*AND ListenBoardInputConfig[294]*)  THEN
+		g_Alarm.alarmArray[147] := 850;
+	  ELSE
+		g_Alarm.alarmArray[147] := 0;
+	  END_IF;
+
+	  IF g_bDustAxisNegLimit (*AND ListenBoardInputConfig[296]*)  THEN
+		g_Alarm.alarmArray[148] := 851;
+	  ELSE
+		g_Alarm.alarmArray[148] := 0;
+	  END_IF;
+  ELSE
+	  IF g_bDustAxisPosLimit AND D_Axis.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[294]*) THEN
+		g_Alarm.alarmArray[147] := 850;
+	  ELSE
+		g_Alarm.alarmArray[147] := 0;
+	  END_IF;
+
+	  IF g_bDustAxisNegLimit AND D_Axis.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[296]*) THEN
+		g_Alarm.alarmArray[148] := 851;
+	  ELSE
+		g_Alarm.alarmArray[148] := 0;
+	  END_IF; 
+    
+  END_IF;
+  
+  
+END_IF;
+ 
+IF g_bDDGoOnNoInPlaceError THEN
+  g_bDDGoOnNoInPlaceError:=FALSE;
+  g_Alarm.alarmArray[150] := 853;
+END_IF;
+
+IF g_nMachineType = 1 OR g_nMachineType = 7 THEN
+  (*定长轴*)
+  IF FixedLen_Axis.NCTOPLC.POSSOFTWARN AND FixedLen_Axis.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[132] := 835;
+    END_IF;
+  IF FixedLen_Axis.NCTOPLC.NEGSOFTWARN AND FixedLen_Axis.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[133] := 836;
+  END_IF;
+
+  IF NOT FixedLen_Axis.NCTOPLC.HOMINGSTATE THEN
+    g_Alarm.alarmArray[134] := 837;
+  ELSE
+    g_Alarm.alarmArray[134] := 0;
+  END_IF;
+
+  IF g_bFixedLenPosLimit AND FixedLen_Axis.NCTOPLC.AXISSTATE<>5 THEN
+    g_Alarm.alarmArray[135] := 838;
+  ELSE
+    g_Alarm.alarmArray[135] := 0;
+  END_IF;
+
+  IF g_bFixedLenNegLimit AND FixedLen_Axis.NCTOPLC.AXISSTATE<>5 THEN
+    g_Alarm.alarmArray[136] := 839;
+  ELSE
+    g_Alarm.alarmArray[136] := 0;
+  END_IF;
+
+  (*送料轴*)
+  IF Feeding_Axis.NCTOPLC.POSSOFTWARN AND Feeding_Axis.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[138] := 841;
+    END_IF;
+  IF Feeding_Axis.NCTOPLC.NEGSOFTWARN AND Feeding_Axis.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[139] := 842;
+  END_IF;
+
+  IF NOT Feeding_Axis.NCTOPLC.HOMINGSTATE THEN
+    g_Alarm.alarmArray[140] := 843;
+  ELSE
+    g_Alarm.alarmArray[140] := 0;
+  END_IF;
+
+  (*IF Feeding_Axis.NCTOPLC.POWERPOSWARN THEN
+    g_Alarm.alarmArray[140] := 843;
+  ELSE
+    g_Alarm.alarmArray[140] := 0;
+  END_IF;*)
+
+  IF g_bFeedingNegLimit AND Feeding_Axis.NCTOPLC.AXISSTATE<>5 THEN
+    g_Alarm.alarmArray[141] := 844;
+  ELSE
+    g_Alarm.alarmArray[141] := 0;
+  END_IF;
+
+  (*抽尘轴*)
+  IF Dust_Axis.NCTOPLC.POSSOFTWARN AND Dust_Axis.NCTOPLC.HOMINGSTATE THEN
+    g_Alarm.alarmArray[144] := 847;
+  END_IF;
+  IF Dust_Axis.NCTOPLC.NEGSOFTWARN AND Dust_Axis.NCTOPLC.HOMINGSTATE THEN
+    g_Alarm.alarmArray[145] := 848;
+  END_IF;
+
+  IF NOT Dust_Axis.NCTOPLC.HOMINGSTATE THEN
+    g_Alarm.alarmArray[146] := 849;
+  ELSE
+    g_Alarm.alarmArray[146] := 0;
+  END_IF;
+
+  IF g_bDustPosLimit AND Dust_Axis.NCTOPLC.AXISSTATE<>5 THEN
+    g_Alarm.alarmArray[147] := 850;
+  ELSE
+    g_Alarm.alarmArray[147] := 0;
+  END_IF;
+
+  IF g_bDustNegLimit AND Dust_Axis.NCTOPLC.AXISSTATE<>5 THEN
+    g_Alarm.alarmArray[148] := 851;
+  ELSE
+    g_Alarm.alarmArray[148] := 0;
+  END_IF;
+END_IF;
+
+IF g_bManualLoadTip THEN
+  g_bManualLoadTip := FALSE;
+  g_Alarm.alarmArray[151] := 854;
+END_IF;
+(*g_Alarm.alarmArray[152]-g_Alarm.alarmArray[173]已占用*)
+IF g_bNoFindWeld THEN
+  g_Alarm.alarmArray[471] := 877;
+  g_bNoFindWeld := FALSE;
+END_IF;
+
+IF g_bQREnable THEN
+  IF g_bQRCyl1Warn THEN
+    g_bQRCyl1Warn := FALSE;
+    g_Alarm.alarmArray[174] := 878;
+  END_IF;
+  IF g_bQRCyl2Warn THEN
+    g_bQRCyl2Warn := FALSE;
+    g_Alarm.alarmArray[175] := 879;
+  END_IF;
+  IF g_bQRCyl3Warn THEN
+    g_bQRCyl3Warn := FALSE;
+    g_Alarm.alarmArray[176] := 880;
+  END_IF;
+END_IF;
+
+IF g_bGearInError THEN
+  g_bGearInError := FALSE;
+  g_Alarm.alarmArray[177] := 881;
+END_IF;
+
+IF g_bGearOutError THEN
+  g_bGearOutError := FALSE;
+  g_Alarm.alarmArray[178] := 882;
+END_IF;
+IF g_nMachineType = 19 THEN
+   IF Axis_U3.NCTOPLC.POSSOFTWARN AND g_boU3HomeDone THEN(*U3轴过正向软限位*)
+    g_Alarm.alarmArray[182] := 886;
+  ELSE
+    g_Alarm.alarmArray[182] := 0;
+  END_IF;
+  
+  IF Axis_U3.NCTOPLC.NEGSOFTWARN AND g_boU3HomeDone THEN(*U3轴过负向软限位*)
+    g_Alarm.alarmArray[183] := 887;
+  ELSE
+    g_Alarm.alarmArray[183] := 0;
+  END_IF;
+
+  IF NOT Axis_U3.NCTOPLC.HOMINGSTATE THEN(*U3轴未回零*)
+    g_Alarm.alarmArray[184] := 888;
+  ELSE
+    g_Alarm.alarmArray[184] := 0;
+  END_IF;
+
+  IF g_bU3AxisPosLimit AND Axis_U3.NCTOPLC.AXISSTATE<>5 THEN(*U3轴过正向硬限位*)
+    g_Alarm.alarmArray[185] := 889;
+  ELSE
+    g_Alarm.alarmArray[185] := 0;
+  END_IF;
+
+  IF g_bU3AxisNegLimit AND Axis_U3.NCTOPLC.AXISSTATE<>5 THEN(*U3轴过负向硬限位*)
+    g_Alarm.alarmArray[186] := 890;
+  ELSE
+    g_Alarm.alarmArray[186] := 0;
+  END_IF;
+
+  (*耦合轴U3误差报警*)
+IF g_bU3GearError THEN
+  g_Alarm.alarmArray[200] := 904;
+  g_bU3GearError := FALSE;
+END_IF;
+
+IF g_bU3GearInError THEN
+  g_bU3GearInError := FALSE;
+  g_Alarm.alarmArray[201] := 905;
+END_IF;
+
+	IF g_bU3GearOutError THEN
+	  g_bU3GearOutError := FALSE;
+	  g_Alarm.alarmArray[202] := 906;
+	END_IF;
+	IF g_General1_Axis.NCTOPLC.POSSOFTWARN AND g_bGeneral1HomeDone THEN
+      g_Alarm.alarmArray[261] := 985;
+    END_IF;
+    
+    IF g_General1_Axis.NCTOPLC.NEGSOFTWARN AND g_bGeneral1HomeDone THEN
+      g_Alarm.alarmArray[262] := 986;
+    END_IF;
+
+    IF NOT g_General1_Axis.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[263] := 987;
+    ELSE
+      g_Alarm.alarmArray[263] := 0;
+    END_IF;
+	IF g_nT1HomeMode = 1 THEN
+		IF g_bGeneral1PosLimit (*AND ListenBoardInputConfig[234]*)  THEN
+		  g_Alarm.alarmArray[264] := 988;
+		ELSE
+		  g_Alarm.alarmArray[264] := 0;
+		END_IF;
+
+		IF g_bGeneral1NegLimit (*AND ListenBoardInputConfig[236] *) THEN
+		  g_Alarm.alarmArray[265] := 989;
+		ELSE
+		  g_Alarm.alarmArray[265] := 0;
+		END_IF;
+    ELSE
+		IF g_bGeneral1PosLimit AND g_General1_Axis.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[234] *) THEN
+		  g_Alarm.alarmArray[264] := 988;
+		ELSE
+		  g_Alarm.alarmArray[264] := 0;
+		END_IF;
+
+		IF g_bGeneral1NegLimit AND g_General1_Axis.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[236]*) THEN
+		  g_Alarm.alarmArray[265] := 989;
+		ELSE
+		  g_Alarm.alarmArray[265] := 0;
+		END_IF;  
+      
+    END_IF;
+END_IF;
+IF g_nMachineType=6 THEN(*3卡盘*)
+  (*##################################U3*)
+  IF Axis_U3.NCTOPLC.POSSOFTWARN AND g_boU3HomeDone THEN(*U3轴过正向软限位*)
+    g_Alarm.alarmArray[182] := 886;
+  ELSE
+    g_Alarm.alarmArray[182] := 0;
+  END_IF;
+  
+  IF Axis_U3.NCTOPLC.NEGSOFTWARN AND g_boU3HomeDone THEN(*U3轴过负向软限位*)
+    g_Alarm.alarmArray[183] := 887;
+  ELSE
+    g_Alarm.alarmArray[183] := 0;
+  END_IF;
+
+  IF NOT Axis_U3.NCTOPLC.HOMINGSTATE THEN(*U3轴未回零*)
+    g_Alarm.alarmArray[184] := 888;
+  ELSE
+    g_Alarm.alarmArray[184] := 0;
+  END_IF;
+
+  IF g_bU3AxisPosLimit AND Axis_U3.NCTOPLC.AXISSTATE<>5 THEN(*U3轴过正向硬限位*)
+    g_Alarm.alarmArray[185] := 889;
+  ELSE
+    g_Alarm.alarmArray[185] := 0;
+  END_IF;
+
+  IF g_bU3AxisNegLimit AND Axis_U3.NCTOPLC.AXISSTATE<>5 THEN(*U3轴过负向硬限位*)
+    g_Alarm.alarmArray[186] := 890;
+  ELSE
+    g_Alarm.alarmArray[186] := 0;
+  END_IF;
+
+  (*耦合轴U3误差报警*)
+IF g_bU3GearError THEN
+  g_Alarm.alarmArray[200] := 904;
+  g_bU3GearError := FALSE;
+END_IF;
+
+IF g_bU3GearInError THEN
+  g_bU3GearInError := FALSE;
+  g_Alarm.alarmArray[201] := 905;
+END_IF;
+
+IF g_bU3GearOutError THEN
+  g_bU3GearOutError := FALSE;
+  g_Alarm.alarmArray[202] := 906;
+END_IF;
+  (*##################################Y3*)
+  IF Axis_Y3.NCTOPLC.POSSOFTWARN AND g_boY3HomeDone THEN(*Y3轴过正向软限位*)
+    g_Alarm.alarmArray[188] := 892;
+  ELSE
+    g_Alarm.alarmArray[188] := 0;
+  END_IF;
+  
+  IF Axis_Y3.NCTOPLC.NEGSOFTWARN AND g_boY3HomeDone THEN(*Y3轴过负向软限位*)
+    g_Alarm.alarmArray[189] := 893;
+  ELSE
+    g_Alarm.alarmArray[189] := 0;
+  END_IF;
+
+  IF NOT Axis_Y3.NCTOPLC.HOMINGSTATE THEN(*Y3轴未回零*)
+    g_Alarm.alarmArray[190] := 894;
+  ELSE
+    g_Alarm.alarmArray[190] := 0;
+  END_IF;
+
+  IF g_bY3AxisPosLimit AND Axis_Y3.NCTOPLC.AXISSTATE<>5 THEN(*Y3轴过正向硬限位*)
+    g_Alarm.alarmArray[191] := 895;
+  ELSE
+    g_Alarm.alarmArray[191] := 0;
+  END_IF;
+
+  IF g_bY3AxisNegLimit AND Axis_Y3.NCTOPLC.AXISSTATE<>5 THEN(*Y3轴过负向硬限位*)
+    g_Alarm.alarmArray[192] := 896;
+  ELSE
+    g_Alarm.alarmArray[192] := 0;
+  END_IF;
+  (*##################################Y2*)
+  IF Axis_Y2.NCTOPLC.POSSOFTWARN AND g_boY2HomeDone THEN(*Y2轴过正向软限位*)
+    g_Alarm.alarmArray[194] := 898;
+  ELSE
+    g_Alarm.alarmArray[194] := 0;
+  END_IF;
+  
+  IF Axis_Y2.NCTOPLC.NEGSOFTWARN AND g_boY2HomeDone THEN(*Y2轴过负向软限位*)
+    g_Alarm.alarmArray[195] := 899;
+  ELSE
+    g_Alarm.alarmArray[195] := 0;
+  END_IF;
+
+  IF NOT Axis_Y2.NCTOPLC.HOMINGSTATE THEN(*Y3轴未回零*)
+    g_Alarm.alarmArray[196] := 900;
+  ELSE
+    g_Alarm.alarmArray[196] := 0;
+  END_IF;
+
+  IF g_bY2AxisPosLimit AND Axis_Y2.NCTOPLC.AXISSTATE<>5 THEN(*Y3轴过正向硬限位*)
+    g_Alarm.alarmArray[197] := 901;
+  ELSE
+    g_Alarm.alarmArray[197] := 0;
+  END_IF;
+
+  IF g_bY2AxisNegLimit AND Axis_Y2.NCTOPLC.AXISSTATE<>5 THEN(*Y3轴过负向硬限位*)
+    g_Alarm.alarmArray[198] := 902;
+  ELSE
+    g_Alarm.alarmArray[198] := 0;
+  END_IF;
+  
+  IF g_bClaw3YY2Collision THEN(*后卡和中卡硬限位防撞报警*)
+    g_Alarm.alarmArray[295] := 997;
+  END_IF;
+  IF g_bClaw3Y2Y3Collision THEN
+    g_Alarm.alarmArray[296] := 998;
+  END_IF;
+END_IF;
+
+(*3卡盘Y1轴*)
+IF g_nMachineType = 11 THEN
+  (*##################################Y1*)
+  IF Axis_Y1.NCTOPLC.POSSOFTWARN AND g_boY1HomeDone THEN(*Y1轴过正向软限位*)
+    g_Alarm.alarmArray[623] := 1026;
+  ELSE
+    g_Alarm.alarmArray[623] := 0;
+  END_IF;
+  
+  IF Axis_Y1.NCTOPLC.NEGSOFTWARN AND g_boY1HomeDone THEN(*Y1轴过负向软限位*)
+    g_Alarm.alarmArray[624] := 1027;
+  ELSE
+    g_Alarm.alarmArray[624] := 0;
+  END_IF;
+
+  IF NOT Axis_Y1.NCTOPLC.HOMINGSTATE THEN(*Y1轴未回零*)
+    g_Alarm.alarmArray[625] := 1028;
+  ELSE
+    g_Alarm.alarmArray[625] := 0;
+  END_IF;
+
+  IF g_bY1AxisPosLimit AND Axis_Y1.NCTOPLC.AXISSTATE<>5 THEN(*Y1轴过正向硬限位*)
+    g_Alarm.alarmArray[626] := 1029;
+  ELSE
+    g_Alarm.alarmArray[626] := 0;
+  END_IF;
+
+  IF g_bY1AxisNegLimit AND Axis_Y1.NCTOPLC.AXISSTATE<>5 THEN(*Y1轴过负向硬限位*)
+    g_Alarm.alarmArray[627] := 1030;
+  ELSE
+    g_Alarm.alarmArray[627] := 0;
+  END_IF;
+END_IF;
+
+(*前浮动支撑轴*)
+IF g_bFrontSustainEnable THEN
+  IF g_nFrontSusutainCount >= 1 THEN
+    (*前浮动支撑轴1*)
+    IF Axis_Sustain4.NCTOPLC.POSSOFTWARN AND g_bSustain4HomeDone THEN
+      g_Alarm.alarmArray[211] := 915;
+    ELSE
+      g_Alarm.alarmArray[211] := 0;
+    END_IF;
+
+    IF Axis_Sustain4.NCTOPLC.NEGSOFTWARN AND g_bSustain4HomeDone THEN
+      g_Alarm.alarmArray[212] := 916;
+    ELSE
+      g_Alarm.alarmArray[212] := 0;
+    END_IF;
+
+    IF NOT Axis_Sustain4.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[213] := 917;
+    ELSE
+      g_Alarm.alarmArray[213] := 0;
+    END_IF;
+
+    IF Axis_Sustain4.NCTOPLC.POWERPOSWARN THEN
+      g_Alarm.alarmArray[214] := 918;
+    ELSE
+      g_Alarm.alarmArray[214] := 0;
+    END_IF;
+
+    IF Axis_Sustain4.NCTOPLC.POWERNEGWARN THEN
+      g_Alarm.alarmArray[215] := 919;
+    ELSE
+      g_Alarm.alarmArray[215] := 0;
+    END_IF;
+    IF g_nZ1HomeMode = 1 THEN
+		IF g_bSustain4PosLimit (*AND ListenBoardInputConfig[364]*)  THEN
+		  g_Alarm.alarmArray[216] := 920;
+		ELSE
+		  g_Alarm.alarmArray[216] := 0;
+		END_IF;
+		
+		IF g_bSustain4NegLimit (*AND ListenBoardInputConfig[82]*)  THEN
+		  g_Alarm.alarmArray[217] := 921;
+		ELSE
+		  g_Alarm.alarmArray[217] := 0;
+		END_IF;
+    ELSE
+		IF g_bSustain4PosLimit AND Axis_Sustain4.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[364] *) THEN
+		  g_Alarm.alarmArray[216] := 920;
+		ELSE
+		  g_Alarm.alarmArray[216] := 0;
+		END_IF;
+		
+		IF g_bSustain4NegLimit AND Axis_Sustain4.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[82]*)  THEN
+		  g_Alarm.alarmArray[217] := 921;
+		ELSE
+		  g_Alarm.alarmArray[217] := 0;
+		END_IF;  
+      
+    END_IF;
+  END_IF;
+  
+  IF g_nFrontSusutainCount >= 2 THEN
+    (*前浮动支撑轴2*)
+    IF Axis_Sustain5.NCTOPLC.POSSOFTWARN AND g_bSustain5HomeDone THEN
+      g_Alarm.alarmArray[219] := 923;
+    ELSE
+      g_Alarm.alarmArray[219] := 0;
+    END_IF;
+
+    IF Axis_Sustain5.NCTOPLC.NEGSOFTWARN AND g_bSustain5HomeDone THEN
+      g_Alarm.alarmArray[220] := 924;
+    ELSE
+      g_Alarm.alarmArray[220] := 0;
+    END_IF;
+
+    IF NOT Axis_Sustain5.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[221] := 925;
+    ELSE
+      g_Alarm.alarmArray[221] := 0;
+    END_IF;
+
+    IF Axis_Sustain5.NCTOPLC.POWERPOSWARN THEN
+      g_Alarm.alarmArray[222] := 926;
+    ELSE
+      g_Alarm.alarmArray[222] := 0;
+    END_IF;
+
+    IF Axis_Sustain5.NCTOPLC.POWERNEGWARN THEN
+      g_Alarm.alarmArray[223] := 927;
+    ELSE
+      g_Alarm.alarmArray[223] := 0;
+    END_IF;
+    IF g_nZ2HomeMode = 1 THEN
+		IF g_bSustain5PosLimit (*AND ListenBoardInputConfig[83]*)  THEN
+		  g_Alarm.alarmArray[224] := 928;
+		ELSE
+		  g_Alarm.alarmArray[224] := 0;
+		END_IF;
+		
+		IF g_bSustain5NegLimit (*AND ListenBoardInputConfig[85] *) THEN
+		  g_Alarm.alarmArray[225] := 929;
+		ELSE
+		  g_Alarm.alarmArray[225] := 0;
+		END_IF;
+    ELSE
+		IF g_bSustain5PosLimit AND Axis_Sustain5.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[83]*) THEN
+		  g_Alarm.alarmArray[224] := 928;
+		ELSE
+		  g_Alarm.alarmArray[224] := 0;
+		END_IF;
+		
+		IF g_bSustain5NegLimit AND Axis_Sustain5.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[85]*)  THEN
+		  g_Alarm.alarmArray[225] := 929;
+		ELSE
+		  g_Alarm.alarmArray[225] := 0;
+		END_IF; 
+    END_IF;
+  END_IF;
+  
+  IF g_nFrontSusutainCount >= 3 THEN
+    (*前浮动支撑轴3*)
+    IF Axis_Sustain6.NCTOPLC.POSSOFTWARN AND g_bSustain6HomeDone THEN
+      g_Alarm.alarmArray[227] := 931;
+    ELSE
+      g_Alarm.alarmArray[227] := 0;
+    END_IF;
+
+    IF Axis_Sustain6.NCTOPLC.NEGSOFTWARN AND g_bSustain6HomeDone THEN
+      g_Alarm.alarmArray[228] := 932;
+    ELSE
+      g_Alarm.alarmArray[228] := 0;
+    END_IF;
+
+    IF NOT Axis_Sustain6.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[229] := 933;
+    ELSE
+      g_Alarm.alarmArray[229] := 0;
+    END_IF;
+
+    IF Axis_Sustain6.NCTOPLC.POWERPOSWARN THEN
+      g_Alarm.alarmArray[230] := 934;
+    ELSE
+      g_Alarm.alarmArray[230] := 0;
+    END_IF;
+
+    IF Axis_Sustain6.NCTOPLC.POWERNEGWARN THEN
+      g_Alarm.alarmArray[231] := 935;
+    ELSE
+      g_Alarm.alarmArray[231] := 0;
+    END_IF;
+    IF g_nZ3HomeMode = 1 THEN
+		IF g_bSustain6PosLimit (*AND ListenBoardInputConfig[86]*)  THEN
+		  g_Alarm.alarmArray[232] := 936;
+		ELSE
+		  g_Alarm.alarmArray[232] := 0;
+		END_IF;
+		
+		IF g_bSustain6NegLimit (*AND ListenBoardInputConfig[88] *) THEN
+		  g_Alarm.alarmArray[234] := 937;
+		ELSE
+		  g_Alarm.alarmArray[234] := 0;
+		END_IF;
+    ELSE
+		IF g_bSustain6PosLimit AND Axis_Sustain6.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[86]*) THEN
+		  g_Alarm.alarmArray[232] := 936;
+		ELSE
+		  g_Alarm.alarmArray[232] := 0;
+		END_IF;
+		
+		IF g_bSustain6NegLimit AND Axis_Sustain6.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[88] *) THEN
+		  g_Alarm.alarmArray[234] := 937;
+		ELSE
+		  g_Alarm.alarmArray[234] := 0;
+		END_IF;  
+    END_IF;
+  END_IF;
+  IF g_nFrontSusutainCount >= 4 THEN
+   
+    IF AntiRejection2.NCTOPLC.POSSOFTWARN AND g_boAntiRejection2HomeDone THEN
+      g_Alarm.alarmArray[305] := 1036;
+    ELSE
+      g_Alarm.alarmArray[305] := 0;
+    END_IF;
+    
+    IF AntiRejection2.NCTOPLC.NEGSOFTWARN AND g_boAntiRejection2HomeDone THEN
+      g_Alarm.alarmArray[306] := 1037;
+    ELSE
+      g_Alarm.alarmArray[306] := 0;
+    END_IF;
+
+    IF NOT AntiRejection2.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[307] := 1038;
+    ELSE
+      g_Alarm.alarmArray[307] := 0;
+    END_IF;
+	
+    IF g_nZ4HomeMode = 1 THEN
+		IF g_bAntiRejection2PosLimit  (*AND ListenBoardInputConfig[493]*)  THEN
+		  g_Alarm.alarmArray[308] := 1039;
+		ELSE
+		  g_Alarm.alarmArray[308] := 0;
+		END_IF;
+
+		IF g_bAntiRejection2NegLimit  (*AND ListenBoardInputConfig[495] *) THEN
+		  g_Alarm.alarmArray[309] := 1040;
+		ELSE
+		  g_Alarm.alarmArray[309] := 0;
+		END_IF;
+      
+    ELSE
+		IF g_bAntiRejection2PosLimit AND AntiRejection2.NCTOPLC.AXISSTATE<>5  (*AND ListenBoardInputConfig[493]*)  THEN
+		  g_Alarm.alarmArray[308] := 1039;
+		ELSE
+		  g_Alarm.alarmArray[308] := 0;
+		END_IF;
+
+		IF g_bAntiRejection2NegLimit AND AntiRejection2.NCTOPLC.AXISSTATE<>5  (*AND ListenBoardInputConfig[495]*)  THEN
+		  g_Alarm.alarmArray[309] := 1040;
+		ELSE
+		  g_Alarm.alarmArray[309] := 0;
+		END_IF;
+      
+    END_IF;
+    
+  END_IF;
+  
+  
+END_IF;
+
+IF g_bKeepPressure3 THEN
+  g_Alarm.alarmArray[236] := 939;
+ELSE
+  g_Alarm.alarmArray[236] := 0;
+END_IF;
+(*鼎点新增轴报警信息*)
+IF g_nMachineType = 4 OR g_nMachineType = 9 THEN
+   IF DDAxis.NCTOPLC.POSSOFTWARN AND g_bDDAxisHomeDone THEN
+    g_Alarm.alarmArray[237] := 940 ;
+  ELSE
+    g_Alarm.alarmArray[237] := 0;
+  END_IF;
+
+  IF DDAxis.NCTOPLC.NEGSOFTWARN AND g_bDDAxisHomeDone THEN
+    g_Alarm.alarmArray[238] :=942;
+  ELSE
+    g_Alarm.alarmArray[238] := 0;
+  END_IF;
+
+  IF NOT DDAxis.NCTOPLC.HOMINGSTATE THEN
+    g_Alarm.alarmArray[239] := 944;
+  ELSE
+    g_Alarm.alarmArray[239] := 0;
+  END_IF;
+
+  IF g_bDDAxisPosLimit AND DDAxis.NCTOPLC.AXISSTATE<>5 THEN
+    g_Alarm.alarmArray[240] := 941;
+  ELSE
+    g_Alarm.alarmArray[240] := 0;
+  END_IF;
+
+  IF g_bDDAxisNegLimit AND DDAxis.NCTOPLC.AXISSTATE<>5 THEN
+    g_Alarm.alarmArray[241] := 943;
+  ELSE
+    g_Alarm.alarmArray[241] := 0;
+  END_IF;
+END_IF;
+IF g_bKuXunExceed THEN
+  g_bKuXunExceed := FALSE;
+  g_Alarm.alarmArray[243] := 946;
+END_IF;
+
+IF g_bKuXunUnder THEN
+  g_bKuXunUnder := FALSE;
+  g_Alarm.alarmArray[244] := 947;
+END_IF;
+
+IF g_bClaw2Check THEN(*坐标避让2卡爪松开等待*)
+  g_bClaw2Check := FALSE;
+  g_Alarm.alarmArray[245] := 949;
+  M.ENABLE[200] := 1;
+  
+END_IF;
+
+IF g_bY3NoPrepare THEN(*3卡盘模式，Y3切割点位2未就位*)
+  g_bY3NoPrepare := FALSE;
+  g_Alarm.alarmArray[252] := 955;
+END_IF;
+IF g_bY2NoPrepare THEN(*3卡盘模式，Y2切割点位1未就位*)
+  g_bY2NoPrepare := FALSE;
+  g_Alarm.alarmArray[253] := 956;
+END_IF;
+IF g_b2ClawY3NoPrepare THEN(*2卡盘模式，Y3安全未就位*)
+  g_b2ClawY3NoPrepare := FALSE;
+  g_Alarm.alarmArray[254] := 957;
+END_IF;
+IF g_b2ClawY2NoPrepare THEN(*2卡盘模式，Y2切割点位2未就位*)
+   g_b2ClawY2NoPrepare:= FALSE;
+  g_Alarm.alarmArray[255] := 958;
+END_IF;
+IF g_b3ClawZPosError THEN(*Z轴位置不正确*)
+   g_b3ClawZPosError:= FALSE;
+  g_Alarm.alarmArray[256] := 960;
+END_IF;
+IF g_b3ClawFrontPosError THEN(*前支撑没有下降到位*)
+   g_b3ClawFrontPosError:= FALSE;
+  g_Alarm.alarmArray[257] := 961;
+END_IF;
+IF g_b3ClawTurnPosError THEN(*翻转气缸没有水平*)
+   g_b3ClawTurnPosError:= FALSE;
+  g_Alarm.alarmArray[258] := 962;
+END_IF;
+IF g_bY1Y2DisError THEN(*后卡和中卡距离太近*)
+  g_Alarm.alarmArray[259] := 963;
+END_IF;
+IF g_bY2Y3DisError THEN(*中卡和前卡距离太近*)
+  g_Alarm.alarmArray[260] := 964;
+END_IF;
+
+(*通用轴1*)
+  IF g_bUseCommonAxis1 THEN
+    IF g_General1_Axis.NCTOPLC.POSSOFTWARN AND g_bGeneral1HomeDone THEN
+      g_Alarm.alarmArray[261] := 985;
+    END_IF;
+    
+    IF g_General1_Axis.NCTOPLC.NEGSOFTWARN AND g_bGeneral1HomeDone THEN
+      g_Alarm.alarmArray[262] := 986;
+    END_IF;
+
+    IF NOT g_General1_Axis.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[263] := 987;
+    ELSE
+      g_Alarm.alarmArray[263] := 0;
+    END_IF;
+	IF g_nT1HomeMode = 1 THEN
+		IF g_bGeneral1PosLimit (*AND ListenBoardInputConfig[234]*)  THEN
+		  g_Alarm.alarmArray[264] := 988;
+		ELSE
+		  g_Alarm.alarmArray[264] := 0;
+		END_IF;
+
+		IF g_bGeneral1NegLimit (*AND ListenBoardInputConfig[236]*)  THEN
+		  g_Alarm.alarmArray[265] := 989;
+		ELSE
+		  g_Alarm.alarmArray[265] := 0;
+		END_IF;
+    ELSE
+		IF g_bGeneral1PosLimit AND g_General1_Axis.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[234]*) THEN
+		  g_Alarm.alarmArray[264] := 988;
+		ELSE
+		  g_Alarm.alarmArray[264] := 0;
+		END_IF;
+
+		IF g_bGeneral1NegLimit AND g_General1_Axis.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[236]*) THEN
+		  g_Alarm.alarmArray[265] := 989;
+		ELSE
+		  g_Alarm.alarmArray[265] := 0;
+		END_IF;
+      
+    END_IF;
+  END_IF;
+
+  (*通用轴2*)
+  IF g_bUseCommonAxis2 THEN
+    IF g_General2_Axis.NCTOPLC.POSSOFTWARN AND g_bGeneral2HomeDone THEN
+      g_Alarm.alarmArray[266] := 990;
+    END_IF;
+    
+    IF g_General2_Axis.NCTOPLC.NEGSOFTWARN AND g_bGeneral2HomeDone THEN
+      g_Alarm.alarmArray[267] := 991;
+    END_IF;
+
+    IF NOT g_General2_Axis.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[268] := 992;
+    ELSE
+      g_Alarm.alarmArray[268] := 0;
+    END_IF;
+	IF g_nT2HomeMode = 1 THEN
+		IF g_bGeneral2PosLimit (*AND ListenBoardInputConfig[237]*)  THEN
+		  g_Alarm.alarmArray[269] := 993;
+		ELSE
+		  g_Alarm.alarmArray[269] := 0;
+		END_IF;
+
+		IF g_bGeneral2NegLimit (*AND ListenBoardInputConfig[239] *) THEN
+		  g_Alarm.alarmArray[270] := 994;
+		ELSE
+		  g_Alarm.alarmArray[270] := 0;
+		END_IF;
+    ELSE
+		IF g_bGeneral2PosLimit AND g_General2_Axis.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[237]*) THEN
+		  g_Alarm.alarmArray[269] := 993;
+		ELSE
+		  g_Alarm.alarmArray[269] := 0;
+		END_IF;
+
+		IF g_bGeneral2NegLimit AND g_General2_Axis.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[239]*) THEN
+		  g_Alarm.alarmArray[270] := 994;
+		ELSE
+		  g_Alarm.alarmArray[270] := 0;
+		END_IF;
+      
+    END_IF;
+  END_IF;
+  IF g_bUseCommonAxis3 THEN
+    IF DDAxis.NCTOPLC.POSSOFTWARN AND g_bDDAxisHomeDone THEN
+      g_Alarm.alarmArray[237] := 940 ;
+    ELSE
+      g_Alarm.alarmArray[237] := 0;
+    END_IF;
+    IF DDAxis.NCTOPLC.NEGSOFTWARN AND g_bDDAxisHomeDone THEN
+      g_Alarm.alarmArray[238] :=942;
+    ELSE
+      g_Alarm.alarmArray[238] := 0;
+    END_IF;
+    IF NOT DDAxis.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[239] := 944;
+    ELSE
+      g_Alarm.alarmArray[239] := 0;
+    END_IF;
+    IF g_nT3HomeMode = 1 THEN
+		IF g_bDDAxisPosLimit (*AND ListenBoardInputConfig[240]*)  THEN
+		  g_Alarm.alarmArray[240] := 941;
+		ELSE
+		  g_Alarm.alarmArray[240] := 0;
+		END_IF;
+		IF g_bDDAxisNegLimit  (*AND ListenBoardInputConfig[242]*) THEN
+		  g_Alarm.alarmArray[241] := 943;
+		ELSE
+		  g_Alarm.alarmArray[241] := 0;
+		END_IF;
+    ELSE
+		IF g_bDDAxisPosLimit AND DDAxis.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[240]*) THEN
+		  g_Alarm.alarmArray[240] := 941;
+		ELSE
+		  g_Alarm.alarmArray[240] := 0;
+		END_IF;
+		IF g_bDDAxisNegLimit AND DDAxis.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[242]*) THEN
+		  g_Alarm.alarmArray[241] := 943;
+		ELSE
+		  g_Alarm.alarmArray[241] := 0;
+		END_IF;     
+      
+    END_IF;
+  END_IF;
+IF g_bBoendeZWarn THEN
+  g_bBoendeZWarn := FALSE;
+  g_Alarm.alarmArray[297] := 1000;
+END_IF;
+IF g_bBoendeCheckWarn THEN
+  g_bBoendeCheckWarn := FALSE;
+  g_Alarm.alarmArray[298] := 1001;
+END_IF;
+
+IF g_nAntiRejectionFun = 2 THEN
+  IF g_nAntiRejectionAxisNum >= 1 THEN
+    (*防甩轴1*)
+    IF AntiRejection1.NCTOPLC.POSSOFTWARN AND g_boAntiRejection1HomeDone THEN
+      g_Alarm.alarmArray[300] := 1031;
+    ELSE
+      g_Alarm.alarmArray[300] := 0;
+    END_IF;
+    
+    IF AntiRejection1.NCTOPLC.NEGSOFTWARN AND g_boAntiRejection1HomeDone THEN
+      g_Alarm.alarmArray[301] := 1032;
+    ELSE
+      g_Alarm.alarmArray[301] := 0;
+    END_IF;
+
+    IF NOT AntiRejection1.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[302] := 1033;
+    ELSE
+      g_Alarm.alarmArray[302] := 0;
+    END_IF;
+
+    IF g_bAntiRejection1PosLimit AND AntiRejection1.NCTOPLC.AXISSTATE<>5 THEN
+      g_Alarm.alarmArray[303] := 1034;
+    ELSE
+      g_Alarm.alarmArray[303] := 0;
+    END_IF;
+
+    IF g_bAntiRejection1NegLimit AND AntiRejection1.NCTOPLC.AXISSTATE<>5 THEN
+      g_Alarm.alarmArray[304] := 1035;
+    ELSE
+      g_Alarm.alarmArray[304] := 0;
+    END_IF;
+  END_IF;
+  
+  
+  
+  
+END_IF;
+IF g_bIsConfigDustAxis2 THEN
+      (*防甩轴3*)
+    IF AntiRejection3.NCTOPLC.POSSOFTWARN AND g_bAntiRejection3HomeDone  THEN
+      g_Alarm.alarmArray[310] := 1041;
+    ELSE
+      g_Alarm.alarmArray[310] := 0;
+    END_IF;
+    
+    IF AntiRejection3.NCTOPLC.NEGSOFTWARN AND g_bAntiRejection3HomeDone THEN
+      g_Alarm.alarmArray[311] := 1042;
+    ELSE
+      g_Alarm.alarmArray[311] := 0;
+    END_IF;
+
+    IF NOT AntiRejection3.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[312] := 1043;
+    ELSE
+      g_Alarm.alarmArray[312] := 0;
+    END_IF;
+	IF g_nD2HomeMode = 1 THEN
+      IF g_bAntiRejection3PosLimit (*AND ListenBoardInputConfig[445] *)THEN
+      g_Alarm.alarmArray[313] := 1044;
+		ELSE
+		  g_Alarm.alarmArray[313] := 0;
+		END_IF;
+
+		IF g_bAntiRejection3NegLimit (*AND ListenBoardInputConfig[447]*) THEN
+		  g_Alarm.alarmArray[314] := 1045;
+		ELSE
+		  g_Alarm.alarmArray[314] := 0;
+		END_IF;
+      
+      
+    ELSE
+      IF g_bAntiRejection3PosLimit AND AntiRejection3.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[445]*) THEN
+		g_Alarm.alarmArray[313] := 1044;
+		ELSE
+		  g_Alarm.alarmArray[313] := 0;
+		END_IF;
+
+		IF g_bAntiRejection3NegLimit AND AntiRejection3.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[447] *)THEN
+		  g_Alarm.alarmArray[314] := 1045;
+		ELSE
+		  g_Alarm.alarmArray[314] := 0;
+		END_IF;
+      
+    END_IF;
+    
+END_IF;
+IF g_bIsConfigMiddleAvoidAxis1 THEN
+      (*中卡避让进给轴*)
+    IF AntiRejection4.NCTOPLC.POSSOFTWARN AND g_boAntiRejection4HomeDone THEN
+      g_Alarm.alarmArray[315] := 1046;
+    ELSE
+      g_Alarm.alarmArray[315] := 0;
+    END_IF;
+    
+    IF AntiRejection4.NCTOPLC.NEGSOFTWARN AND g_boAntiRejection4HomeDone THEN
+      g_Alarm.alarmArray[316] := 1047;
+    ELSE
+      g_Alarm.alarmArray[316] := 0;
+    END_IF;
+
+    IF NOT AntiRejection4.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[317] := 1048;
+    ELSE
+      g_Alarm.alarmArray[317] := 0;
+    END_IF;
+	IF g_nZeroTailBackAxisHomeMode = 1 THEN
+		IF g_bAntiRejection4PosLimit (*AND ListenBoardInputConfig[289]*)  THEN
+		  g_Alarm.alarmArray[318] := 1049;
+		ELSE
+		  g_Alarm.alarmArray[318] := 0;
+		END_IF;
+
+		IF g_bAntiRejection4NegLimit (*AND ListenBoardInputConfig[290]*)  THEN
+		  g_Alarm.alarmArray[319] := 1050;
+		ELSE
+		  g_Alarm.alarmArray[319] := 0;
+		END_IF;
+    ELSE
+		IF g_bAntiRejection4PosLimit AND AntiRejection4.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[289]*) THEN
+		  g_Alarm.alarmArray[318] := 1049;
+		ELSE
+		  g_Alarm.alarmArray[318] := 0;
+		END_IF;
+
+		IF g_bAntiRejection4NegLimit AND AntiRejection4.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[290]*) THEN
+		  g_Alarm.alarmArray[319] := 1050;
+		ELSE
+		  g_Alarm.alarmArray[319] := 0;
+		END_IF;
+      
+    END_IF;
+  
+END_IF;
+IF g_bIsConfigMiddleAvoidAxis2 THEN
+      (*防甩轴5*)
+    IF AntiRejection5.NCTOPLC.POSSOFTWARN AND g_boAntiRejection5HomeDone THEN
+      g_Alarm.alarmArray[320] := 1051;
+    ELSE
+      g_Alarm.alarmArray[320] := 0;
+    END_IF;
+    
+    IF AntiRejection5.NCTOPLC.NEGSOFTWARN AND g_boAntiRejection5HomeDone THEN
+      g_Alarm.alarmArray[321] := 1052;
+    ELSE
+      g_Alarm.alarmArray[321] := 0;
+    END_IF;
+
+    IF NOT AntiRejection5.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[322] := 1053;
+    ELSE
+      g_Alarm.alarmArray[322] := 0;
+    END_IF;
+	IF g_nMiddleCardMoveAxisHomeMode = 1 THEN
+		IF g_bAntiRejection5PosLimit (*AND ListenBoardInputConfig[286]*)  THEN
+		  g_Alarm.alarmArray[323] := 1054;
+		ELSE
+		  g_Alarm.alarmArray[323] := 0;
+		END_IF;
+
+		IF g_bAntiRejection5NegLimit (*AND ListenBoardInputConfig[287] *) THEN
+		  g_Alarm.alarmArray[324] := 1055;
+		ELSE
+		  g_Alarm.alarmArray[324] := 0;
+		END_IF;
+    ELSE
+		IF g_bAntiRejection5PosLimit AND AntiRejection5.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[286]*) THEN
+		  g_Alarm.alarmArray[323] := 1054;
+		ELSE
+		  g_Alarm.alarmArray[323] := 0;
+		END_IF;
+
+		IF g_bAntiRejection5NegLimit AND AntiRejection5.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[287]*) THEN
+		  g_Alarm.alarmArray[324] := 1055;
+		ELSE
+		  g_Alarm.alarmArray[324] := 0;
+		END_IF;
+      
+    END_IF;
+END_IF;
+
+
+IF g_bIsConfigAvoidAxis THEN
+    IF AntiRejection6.NCTOPLC.POSSOFTWARN AND g_boAntiRejection6HomeDone THEN
+      g_Alarm.alarmArray[325] := 1056;
+    ELSE
+      g_Alarm.alarmArray[325] := 0;
+    END_IF;
+    
+    IF AntiRejection6.NCTOPLC.NEGSOFTWARN AND g_boAntiRejection6HomeDone THEN
+      g_Alarm.alarmArray[326] := 1057;
+    ELSE
+      g_Alarm.alarmArray[326] := 0;
+    END_IF;
+
+    IF NOT AntiRejection6.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[327] := 1058;
+    ELSE
+      g_Alarm.alarmArray[327] := 0;
+    END_IF;
+	IF g_nAvoidAxisHomeMode = 1 THEN
+		IF g_bAntiRejection6PosLimit (*AND ListenBoardInputConfig[264] *)  THEN
+		  g_Alarm.alarmArray[328] := 1059;
+		ELSE
+		  g_Alarm.alarmArray[328] := 0;
+		END_IF;
+		
+		IF g_bAntiRejection6NegLimit(* AND ListenBoardInputConfig[265]*)  THEN
+		  g_Alarm.alarmArray[329] := 1060;
+		ELSE
+		  g_Alarm.alarmArray[329] := 0;
+		END_IF;
+    ELSE
+		IF g_bAntiRejection6PosLimit AND AntiRejection6.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[264]*) THEN
+		  g_Alarm.alarmArray[328] := 1059;
+		ELSE
+		  g_Alarm.alarmArray[328] := 0;
+		END_IF;
+		
+		IF g_bAntiRejection6NegLimit AND AntiRejection6.NCTOPLC.AXISSTATE<>5 (*AND ListenBoardInputConfig[265]*) THEN
+		  g_Alarm.alarmArray[329] := 1060;
+		ELSE
+		  g_Alarm.alarmArray[329] := 0;
+		END_IF; 
+    END_IF;
+END_IF;
+  
+IF g_bZAxisTorqueWarn THEN
+  g_Alarm.alarmArray[330] := 809;
+END_IF;
+
+IF g_nMachineType=13 THEN
+  IF g_bHGTECHCheckWarn THEN
+    g_Alarm.alarmArray[331] := 1065;
+    g_bHGTECHCheckWarn:=FALSE;
+  END_IF;
+  IF g_bHGTECHZWarn THEN
+    g_bHGTECHZWarn := FALSE;
+    g_Alarm.alarmArray[297] := 1000;
+  END_IF;
+  IF g_bHGTechStopParalleWarn THEN
+    g_bHGTechStopParalleWarn:=FALSE;
+    g_Alarm.alarmArray[332] := 1066;
+  END_IF;
+  IF g_bHGTECHPipeDiameterErrorWarn THEN
+    g_Alarm.alarmArray[333] := 1067;
+  ELSE
+    g_Alarm.alarmArray[333] := 0;
+  END_IF;
+ELSE 
+  g_Alarm.alarmArray[333] := 0;
+END_IF;
+
+
+  (*自定义报警*)
+  IF g_bUserDefineAlarm1 AND ListenBoardInputConfig[161] THEN
+    g_Alarm.alarmArray[335] := 128;
+  ELSE
+    g_Alarm.alarmArray[335] := 0;  
+  END_IF;
+  IF g_bUserDefineAlarm2 AND ListenBoardInputConfig[162] THEN
+    g_Alarm.alarmArray[336] := 129;
+  ELSE
+    g_Alarm.alarmArray[336] := 0;    
+  END_IF;
+  IF g_bUserDefineAlarm3 AND ListenBoardInputConfig[163]  THEN
+    g_Alarm.alarmArray[337] := 130;
+  ELSE
+    g_Alarm.alarmArray[337] := 0;    
+  END_IF;
+  IF g_bUserDefineAlarm4 AND ListenBoardInputConfig[164]  THEN
+    g_Alarm.alarmArray[338] := 131;
+  ELSE
+    g_Alarm.alarmArray[338] := 0;    
+  END_IF;
+  IF g_bUserDefineAlarm5 AND ListenBoardInputConfig[165]  THEN
+    g_Alarm.alarmArray[339] := 132;
+  ELSE
+    g_Alarm.alarmArray[339] := 0;    
+  END_IF;
+  IF g_bUserDefineAlarm6 AND ListenBoardInputConfig[166]  THEN
+    g_Alarm.alarmArray[340] := 133;
+  ELSE
+    g_Alarm.alarmArray[340] := 0;    
+  END_IF;
+  IF g_bUserDefineAlarm7 AND ListenBoardInputConfig[167]  THEN
+    g_Alarm.alarmArray[341] := 134;
+  ELSE
+    g_Alarm.alarmArray[341] := 0;    
+  END_IF;
+  IF g_bUserDefineAlarm8 AND ListenBoardInputConfig[168]  THEN
+    g_Alarm.alarmArray[342] := 135;
+  ELSE
+    g_Alarm.alarmArray[342] := 0;    
+  END_IF;
+  IF g_bUserDefineAlarm9 AND ListenBoardInputConfig[169]  THEN
+    g_Alarm.alarmArray[343] := 136;
+  ELSE
+    g_Alarm.alarmArray[343] := 0;    
+  END_IF;
+  IF g_bUserDefineAlarm10 AND ListenBoardInputConfig[170]  THEN
+    g_Alarm.alarmArray[344] := 137;
+  ELSE
+    g_Alarm.alarmArray[344] := 0;    
+  END_IF;
+  IF g_bUserDefineAlarm11 AND ListenBoardInputConfig[171]  THEN
+    g_Alarm.alarmArray[345] := 613;
+  ELSE
+    g_Alarm.alarmArray[345] := 0;    
+  END_IF;
+  IF g_bUserDefineAlarm12 AND ListenBoardInputConfig[172]  THEN
+    g_Alarm.alarmArray[346] := 614;
+  ELSE
+    g_Alarm.alarmArray[346] := 0;    
+  END_IF;
+  IF g_bUserDefineAlarm13 AND ListenBoardInputConfig[173]  THEN
+    g_Alarm.alarmArray[347] := 615;
+  ELSE
+    g_Alarm.alarmArray[347] := 0;    
+  END_IF;
+  IF g_bUserDefineAlarm14 AND ListenBoardInputConfig[174]  THEN
+    g_Alarm.alarmArray[348] := 616;
+  ELSE
+    g_Alarm.alarmArray[348] := 0;    
+  END_IF;
+  IF g_bUserDefineAlarm15 AND ListenBoardInputConfig[175]  THEN
+    g_Alarm.alarmArray[349] := 617;
+  ELSE
+    g_Alarm.alarmArray[349] := 0;    
+  END_IF;
+  IF g_bUserDefineAlarm16 AND ListenBoardInputConfig[176]  THEN
+    g_Alarm.alarmArray[350] := 618;
+  ELSE
+    g_Alarm.alarmArray[350] := 0;    
+  END_IF;
+  (*部分报警自动清除*)
+  IF bClearAlarm THEN
+    g_boCNCMoveDisable := FALSE;
+    g_Alarm.alarmArray[18] := 0;
+    IF g_bClylinderDownIsPosition1 THEN
+      IF g_bSupportcyLinderDownInPlace1 THEN
+        g_Alarm.alarmArray[101] := 0;
+      END_IF;
+    ELSE
+      IF NOT g_boSupportcyLinder1UpEnable THEN
+        g_Alarm.alarmArray[101] := 0;
+      END_IF;
+    END_IF;
+    IF g_bClylinderDownIsPosition2 THEN
+      IF g_bSupportcyLinderDownInPlace2 THEN
+        g_Alarm.alarmArray[102] := 0;
+      END_IF;
+    ELSE
+      IF NOT g_boSupportcyLinder2UpEnable THEN
+        g_Alarm.alarmArray[102] := 0;
+      END_IF;
+    END_IF;
+    IF g_bClylinderDownIsPosition3 THEN
+      IF g_bSupportcyLinderDownInPlace3 THEN
+        g_Alarm.alarmArray[103] := 0;
+      END_IF;
+    ELSE
+      IF NOT g_boSupportcyLinder3UpEnable THEN
+        g_Alarm.alarmArray[103] := 0;
+      END_IF;
+    END_IF;
+    IF g_bClylinderDownIsPosition4 THEN
+      IF g_bSupportcyLinderDownInPlace4 THEN
+        g_Alarm.alarmArray[104] := 0;
+      END_IF;
+    ELSE
+      IF NOT g_boSupportcyLinder4UpEnable THEN
+        g_Alarm.alarmArray[104] := 0;
+      END_IF;
+    END_IF; 
+    IF g_bClylinderDownIsPosition5 THEN
+      IF g_bSupportcyLinderDownInPlace5 THEN
+        g_Alarm.alarmArray[105] := 0;
+      END_IF;
+    ELSE
+      IF NOT g_boSupportcyLinder5UpEnable THEN
+        g_Alarm.alarmArray[105] := 0;
+      END_IF;
+    END_IF;
+    IF g_bClylinderDownIsPosition6 THEN
+      IF g_bSupportcyLinderDownInPlace6 THEN
+        g_Alarm.alarmArray[106] := 0;
+      END_IF;
+    ELSE
+      IF NOT g_boSupportcyLinder6UpEnable THEN
+        g_Alarm.alarmArray[106] := 0;
+      END_IF;
+    END_IF;
+    IF g_bClylinderDownIsPosition7 THEN
+      IF g_bSupportcyLinderDownInPlace7 THEN
+        g_Alarm.alarmArray[107] := 0;
+      END_IF;
+    ELSE
+      IF NOT g_boSupportcyLinder7UpEnable THEN
+        g_Alarm.alarmArray[107] := 0;
+      END_IF;
+    END_IF;
+    IF g_bClylinderDownIsPosition8 THEN
+      IF g_bSupportcyLinderDownInPlace8 THEN
+        g_Alarm.alarmArray[108] := 0;
+      END_IF;
+    ELSE
+      IF NOT g_boSupportcyLinder8UpEnable THEN
+        g_Alarm.alarmArray[108] := 0;
+      END_IF;
+    END_IF;
+    IF g_bClylinderDownIsPosition9 THEN
+      IF g_bSupportcyLinderDownInPlace9 THEN
+        g_Alarm.alarmArray[642] := 0;
+      END_IF;
+    ELSE
+      IF NOT g_boSupportcyLinder9UpEnable THEN
+        g_Alarm.alarmArray[642] := 0;
+      END_IF;
+    END_IF;
+    
+    IF g_bClylinderDownIsPosition10 THEN
+      IF g_bSupportcyLinderDownInPlace10 THEN
+        g_Alarm.alarmArray[645] := 0;
+      END_IF;
+    ELSE
+      IF NOT g_boSupportcyLinder10UpEnable THEN
+        g_Alarm.alarmArray[645] := 0;
+      END_IF;
+    END_IF;
+    
+    IF g_bClylinderDownIsPosition11 THEN
+      IF g_bSupportcyLinderDownInPlace11 THEN
+        g_Alarm.alarmArray[646] := 0;
+      END_IF;
+    ELSE
+      IF NOT g_boSupportcyLinder11UpEnable THEN
+        g_Alarm.alarmArray[646] := 0;
+      END_IF;
+    END_IF;
+    
+    IF g_bClylinderDownIsPosition12 THEN
+      IF g_bSupportcyLinderDownInPlace12 THEN
+        g_Alarm.alarmArray[647] := 0;
+      END_IF;
+    ELSE
+      IF NOT g_boSupportcyLinder12UpEnable THEN
+        g_Alarm.alarmArray[647] := 0;
+      END_IF;
+    END_IF;
+    FOR nCycle := 0 TO 700 BY 1 DO 
+      g_NcAlarm.alarmArray[nCycle]:= 0;
+    END_FOR;
+  bClearAlarm := FALSE;
+END_IF;
+
+IF g_bIsCalibrateFlag OR g_bDebugMode OR g_bHmiCloseFollow THEN(*未标定过，提示重新标定*)
+  g_Alarm.alarmArray[351] := 0;
+ELSE
+  g_Alarm.alarmArray[351] := 1077;
+  IF g_nCalStatus=1 THEN
+    g_Alarm.alarmArray[351] := 0;
+  END_IF;
+END_IF;
+IF g_bDustEnable THEN
+  (*抽尘轴D耦合报警*)
+  IF g_bDAxisGearError THEN
+    g_Alarm.alarmArray[352] := 1080;
+    g_bDAxisGearError := FALSE;
+  END_IF;
+  IF g_bDAxisGearInError THEN
+    g_bDAxisGearInError := FALSE;
+    g_Alarm.alarmArray[353] := 1081;
+  END_IF;
+END_IF;
+(*F轴BM11X报警*)(*0 :关闭 1 ：F050  2 轴控制 3: 普雷斯特 4 : BM11X *)
+IF g_nFAxisControlType=4 THEN
+  IF g_niTemperature_ErrorCode = 1 THEN (*断线*)
+    g_Alarm.alarmArray[355] := 1082;
+  ELSIF g_niTemperature_ErrorCode = 2 THEN  (*超温*)
+    g_Alarm.alarmArray[355] := 1083;
+  ELSE
+    g_Alarm.alarmArray[355] := 0;
+  END_IF;
+  IF g_niMOTO_ErrorCode <> 0 THEN   (*BM11XMOTO报错*)
+     g_Alarm.alarmArray[356] := 1084;
+  ELSE
+    g_Alarm.alarmArray[356] := 0;
+  END_IF;
+END_IF;
+(*NC轴跟随误差报警*)
+IF g_bZAxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[366] := 1094;
+ELSE
+  g_Alarm.alarmArray[366] := 0;
+END_IF;
+IF g_bFAxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[367] := 1095;
+ELSE
+  g_Alarm.alarmArray[367] := 0;
+END_IF;
+IF g_bU2AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[368] := 1096;
+ELSE
+  g_Alarm.alarmArray[368] := 0;
+END_IF;
+IF g_bDustAxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[369] := 1097;
+ELSE
+  g_Alarm.alarmArray[369] := 0;
+END_IF;
+IF g_bT1AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[370] := 1098;
+ELSE
+  g_Alarm.alarmArray[370] := 0;
+END_IF;
+IF g_bT2AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[371] := 1099;
+ELSE
+  g_Alarm.alarmArray[371] := 0;
+END_IF;
+IF g_bT3AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[372] := 1100;
+ELSE
+  g_Alarm.alarmArray[372] := 0;
+END_IF;
+IF g_bZ1AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[373] := 1101;
+ELSE
+  g_Alarm.alarmArray[373] := 0;
+END_IF;
+IF g_bZ2AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[374] := 1102;
+ELSE
+  g_Alarm.alarmArray[374] := 0;
+END_IF;
+IF g_bZ3AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[375] := 1103;
+ELSE
+  g_Alarm.alarmArray[375] := 0;
+END_IF;
+
+IF g_bZ4AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[637] := 1332;
+ELSE
+  g_Alarm.alarmArray[637] := 0;
+END_IF;
+
+IF g_bS1AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[376] := 1104;
+ELSE
+  g_Alarm.alarmArray[376] := 0;
+END_IF;
+IF g_bS2AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[377] := 1105;
+ELSE
+  g_Alarm.alarmArray[377] := 0;
+END_IF;
+IF g_bS3AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[378] := 1106;
+ELSE
+  g_Alarm.alarmArray[378] := 0;
+END_IF;
+IF g_bS4AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[379] := 1107;
+ELSE
+  g_Alarm.alarmArray[379] := 0;
+END_IF;
+IF g_bS5AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[380] := 1108;
+ELSE
+  g_Alarm.alarmArray[380] := 0;
+END_IF;
+IF g_bS6AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[381] := 1109;
+ELSE
+  g_Alarm.alarmArray[381] := 0;
+END_IF;
+IF g_bU3AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[382] := 1110;
+ELSE
+  g_Alarm.alarmArray[382] := 0;
+END_IF;
+IF g_bY2AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[383] := 1111;
+ELSE
+  g_Alarm.alarmArray[383] := 0;
+END_IF;
+IF g_bY3AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[384] := 1112;
+ELSE
+  g_Alarm.alarmArray[384] := 0;
+END_IF;
+(*管子不水平报警*)
+IF g_bPipeNoLevelWaringM THEN
+  g_bPipeNoLevelWaringM := FALSE;
+  g_Alarm.alarmArray[388] := 1116;
+END_IF;
+(*EDS2000飞切脉冲位置误差超限报警*)
+IF g_diFlyCutPosErrorAlarm = 1 THEN
+  g_Alarm.alarmArray[389] := 1117;
+ELSE
+  g_Alarm.alarmArray[389] := 0; 
+END_IF;
+
+
+(*支撑气缸2  避让不及时报警暂停*)
+IF g_biAxIsYisHome THEN
+  IF g_bUseSup2Cyl1 AND g_bSenF_SupportIsAvoid1 THEN
+    IF g_bSupCyl2Down_UseINPOS1 THEN(*使用到位信号，则取用下降到位信号做检测到位条件，否则取用输出后延时到位做条件*)
+      IF g_fCurrentCoordYBuffer >= (g_fSup2Cy1InYCoor1 - g_fSup2CylSafeDis1) AND NOT g_bSupCyl2Down_INPOS1 THEN
+        g_Alarm.alarmArray[391] := 1119;
+      END_IF;
+    ELSE
+      IF g_fCurrentCoordYBuffer >= (g_fSup2Cy1InYCoor1 - g_fSup2CylSafeDis1) AND NOT g_boSupCyl2Down_Done1 AND g_boSupCyl2Down1 THEN
+        g_Alarm.alarmArray[391] := 1119;
+      END_IF; 
+    END_IF;
+  END_IF;
+  IF g_bUseSup2Cyl2 AND g_bSenF_SupportIsAvoid2 THEN
+    IF g_bSupCyl2Down_UseINPOS2 THEN(*使用到位信号，则取用下降到位信号做检测到位条件，否则取用输出后延时到位做条件*)
+      IF g_fCurrentCoordYBuffer >= (g_fSup2Cy1InYCoor2 - g_fSup2CylSafeDis2) AND NOT g_bSupCyl2Down_INPOS2 THEN
+        g_Alarm.alarmArray[392] := 1120;
+      END_IF;
+    ELSE
+      IF g_fCurrentCoordYBuffer >= (g_fSup2Cy1InYCoor2 - g_fSup2CylSafeDis2) AND NOT g_boSupCyl2Down_Done2 AND g_boSupCyl2Down2 THEN
+        g_Alarm.alarmArray[392] := 1120;
+      END_IF; 
+    END_IF;
+  END_IF;
+  IF g_bUseSup2Cyl3 AND g_bSenF_SupportIsAvoid3 THEN
+    IF g_bSupCyl2Down_UseINPOS3 THEN(*使用到位信号，则取用下降到位信号做检测到位条件，否则取用输出后延时到位做条件*)
+      IF g_fCurrentCoordYBuffer >= (g_fSup2Cy1InYCoor3 - g_fSup2CylSafeDis3) AND NOT g_bSupCyl2Down_INPOS3  THEN
+        g_Alarm.alarmArray[393] := 1121;
+      END_IF;
+    ELSE
+      IF g_fCurrentCoordYBuffer >= (g_fSup2Cy1InYCoor3 - g_fSup2CylSafeDis3) AND NOT g_boSupCyl2Down_Done3 AND g_boSupCyl2Down3 THEN
+        g_Alarm.alarmArray[393] := 1121;
+      END_IF; 
+    END_IF;
+  END_IF;
+  IF g_bUseSup2Cyl4 AND g_bSenF_SupportIsAvoid4 THEN
+    IF g_bSupCyl2Down_UseINPOS4 THEN(*使用到位信号，则取用下降到位信号做检测到位条件，否则取用输出后延时到位做条件*)
+      IF g_fCurrentCoordYBuffer >= (g_fSup2Cy1InYCoor4 - g_fSup2CylSafeDis4) AND NOT g_bSupCyl2Down_INPOS4  THEN
+        g_Alarm.alarmArray[595] := 1310;
+      END_IF;
+    ELSE
+      IF g_fCurrentCoordYBuffer >= (g_fSup2Cy1InYCoor4 - g_fSup2CylSafeDis4) AND NOT g_boSupCyl2Down_Done4 AND g_boSupCyl2Down4 THEN
+        g_Alarm.alarmArray[595] := 1310;
+      END_IF; 
+    END_IF;
+  END_IF;
+END_IF;
+(*润滑报警*)
+IF g_bLubri_OverOilWarning AND ListenBoardInputConfig[4] THEN
+  g_Alarm.alarmArray[394] := 64;
+ELSE
+  g_Alarm.alarmArray[394] := 0;
+END_IF;
+
+IF g_bLubri_LowOilWarning AND ListenBoardInputConfig[5] THEN
+  g_Alarm.alarmArray[395] := 65;
+ELSE
+  g_Alarm.alarmArray[395] := 0;
+END_IF;
+
+IF g_bGrease_OverOilWarning  AND ListenBoardInputConfig[9] THEN
+  g_Alarm.alarmArray[396] := 1123;
+ELSE
+  g_Alarm.alarmArray[396] := 0;
+END_IF;
+
+IF g_bGrease_LowOilWarning AND ListenBoardInputConfig[10] THEN
+  g_Alarm.alarmArray[397] := 1124;
+ELSE
+  g_Alarm.alarmArray[397] := 0;
+END_IF;
+
+IF g_bUserDefineAlarm17  AND ListenBoardInputConfig[177] THEN
+  g_Alarm.alarmArray[398] := 619;
+ELSE
+  g_Alarm.alarmArray[398] := 0;    
+END_IF;
+
+IF g_bUserDefineAlarm18 AND ListenBoardInputConfig[178]  THEN
+  g_Alarm.alarmArray[399] := 620;
+ELSE
+  g_Alarm.alarmArray[399] := 0;     
+END_IF;
+
+IF g_bUserDefineAlarm19 AND ListenBoardInputConfig[179]  THEN
+  g_Alarm.alarmArray[400] := 621;
+ELSE
+  g_Alarm.alarmArray[400] := 0;     
+END_IF;
+
+IF g_bUserDefineAlarm20 AND ListenBoardInputConfig[180]  THEN
+  g_Alarm.alarmArray[401] := 622;
+ELSE
+  g_Alarm.alarmArray[401] := 0;   
+END_IF;
+
+IF g_bUserDefineAlarm21 AND ListenBoardInputConfig[181]  THEN
+  g_Alarm.alarmArray[402] := 623;
+ELSE
+  g_Alarm.alarmArray[402] := 0;   
+END_IF;
+
+IF g_bUserDefineAlarm22 AND ListenBoardInputConfig[182]  THEN
+  g_Alarm.alarmArray[403] := 624;
+ELSE
+  g_Alarm.alarmArray[403] := 0;   
+END_IF;
+
+
+IF g_bUserDefineAlarm23 AND ListenBoardInputConfig[183]  THEN
+  g_Alarm.alarmArray[404] := 625;
+ELSE
+  g_Alarm.alarmArray[404] := 0;   
+END_IF;
+
+IF g_bUserDefineAlarm24 AND ListenBoardInputConfig[184]  THEN
+  g_Alarm.alarmArray[405] := 626;
+ELSE
+  g_Alarm.alarmArray[405] := 0;   
+END_IF;
+
+IF g_bUserDefineAlarm25 AND ListenBoardInputConfig[185]  THEN
+  g_Alarm.alarmArray[406] := 627;
+ELSE
+  g_Alarm.alarmArray[406] := 0;   
+END_IF;
+
+IF g_bUserDefineAlarm26 AND ListenBoardInputConfig[186]  THEN
+  g_Alarm.alarmArray[407] := 628;
+ELSE
+  g_Alarm.alarmArray[407] := 0; 
+END_IF;
+
+IF g_bUserDefineAlarm27 AND ListenBoardInputConfig[187]  THEN
+  g_Alarm.alarmArray[408] := 629;
+ELSE
+  g_Alarm.alarmArray[408] := 0;   
+END_IF;
+
+IF g_bUserDefineAlarm28 AND ListenBoardInputConfig[188]  THEN
+  g_Alarm.alarmArray[409] := 630;
+ELSE
+  g_Alarm.alarmArray[409] := 0;   
+END_IF;
+
+IF g_bUserDefineAlarm29 AND ListenBoardInputConfig[189]  THEN
+  g_Alarm.alarmArray[410] := 631;
+ELSE
+  g_Alarm.alarmArray[410] := 0;   
+END_IF;
+
+IF g_bUserDefineAlarm30 AND ListenBoardInputConfig[190]  THEN
+  g_Alarm.alarmArray[411] := 632;
+ELSE
+  g_Alarm.alarmArray[411] := 0; 
+END_IF;
+
+
+IF g_bUserDefineAlarm31 AND ListenBoardInputConfig[191]  THEN
+  g_Alarm.alarmArray[412] := 633;
+ELSE
+  g_Alarm.alarmArray[412] := 0;   
+END_IF;
+
+IF g_bUserDefineAlarm32 AND ListenBoardInputConfig[192]  THEN
+  g_Alarm.alarmArray[413] := 634;
+ELSE
+  g_Alarm.alarmArray[413] := 0;   
+END_IF;
+IF g_bCannotContinueCutAlarm THEN
+  g_Alarm.alarmArray[414] := 1125;
+  g_bCannotContinueCutAlarm := FALSE;
+END_IF;
+IF g_bCannotCutCompletelyHint THEN
+  g_Alarm.alarmArray[415] := 1126;
+  g_bCannotCutCompletelyHint := FALSE;
+END_IF;
+IF g_bCheckSensorIsClampPipeAlarm THEN
+  g_Alarm.alarmArray[416] := 1127;
+  g_bCheckSensorIsClampPipeAlarm := FALSE;
+END_IF;
+IF g_bTraManualOpenGasErrorAlarm AND NOT g_bDebugMode THEN (*手动出气电容值差值超2000报警*)
+  g_Alarm.alarmArray[417] := 1128;
+  g_bTraManualOpenGasErrorAlarm := FALSE;
+END_IF;
+
+IF g_bFollowPosErrorAlarm AND NOT g_bDebugMode AND g_bFollowPosErrorAlarmEnable THEN (*随动高度异常报警*)
+  g_Alarm.alarmArray[418] := 1129;
+  g_bFollowPosErrorAlarm := FALSE;
+END_IF;
+IF g_bFollowSenSorNotLineAlarm AND NOT g_bDebugMode THEN
+  g_Alarm.alarmArray[419] := 1130;
+END_IF;
+
+(*2秒电容变化值小于跳变值的一半就报警*)
+IF g_bTraCalibrationCheck AND NOT g_bDebugMode THEN
+  g_Alarm.alarmArray[421] := 1132;
+  g_bTraCalibrationCheck := FALSE;
+END_IF;
+IF g_bCannotClampPipeAlarm THEN
+  g_Alarm.alarmArray[422] := 1133;
+END_IF;
+
+(*Z轴高度异常报警*)
+IF g_bZaxisHeightAbnormalError THEN
+  g_Alarm.alarmArray[423] := 1134;
+  g_bZaxisHeightAbnormalError := FALSE;
+END_IF;
+(*输入口等待超时报警*)
+IF g_bWaitInputPorTimeOutAlarm THEN
+  g_Alarm.alarmArray[424] := 1135;
+  g_bWaitInputPorTimeOutAlarm := FALSE;
+END_IF;
+(*调焦超时5s报警*)
+IF g_bFocusOvertimeAlarm THEN         
+  g_Alarm.alarmArray[425] := 1136;
+  g_bFocusOvertimeAlarm := FALSE;
+END_IF;
+
+(*上料气缸0-10到位超时报警*)
+IF g_bLoadCylinder1UpSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[302] THEN
+  g_Alarm.alarmArray[446] := 1160;
+ELSE
+  g_Alarm.alarmArray[446] := 0;  
+END_IF;
+IF g_bLoadCylinder1DownSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[313]  THEN
+  g_Alarm.alarmArray[447] := 1161;
+ELSE
+  g_Alarm.alarmArray[447] := 0;  
+END_IF;
+
+IF g_bLoadCylinder2UpSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[303] THEN
+  g_Alarm.alarmArray[448] := 1162;
+ELSE
+  g_Alarm.alarmArray[448] := 0;  
+END_IF;
+IF g_bLoadCylinder2DownSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[314] THEN
+  g_Alarm.alarmArray[449] := 1163;
+ELSE
+  g_Alarm.alarmArray[449] := 0; 
+END_IF;
+
+IF g_bLoadCylinder3UpSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[304] THEN
+  g_Alarm.alarmArray[450] := 1164;
+ELSE
+  g_Alarm.alarmArray[450] := 0; 
+END_IF;
+IF g_bLoadCylinder3DownSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[315] THEN
+  g_Alarm.alarmArray[451] := 1165;
+ELSE
+  g_Alarm.alarmArray[451] := 0; 
+END_IF;
+
+IF g_bLoadCylinder4UpSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[305] THEN
+  g_Alarm.alarmArray[452] := 1166;
+ELSE
+  g_Alarm.alarmArray[452] := 0; 
+END_IF;
+IF g_bLoadCylinder4DownSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[316] THEN
+  g_Alarm.alarmArray[453] := 1167;
+ELSE
+  g_Alarm.alarmArray[453] := 0; 
+END_IF;
+
+IF g_bLoadCylinder5UpSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[306] THEN
+  g_Alarm.alarmArray[454] := 1168;
+ELSE
+  g_Alarm.alarmArray[454] := 0; 
+END_IF;
+IF g_bLoadCylinder5DownSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[317] THEN
+  g_Alarm.alarmArray[455] := 1169;
+ELSE
+  g_Alarm.alarmArray[455] := 0; 
+END_IF;
+
+IF g_bLoadCylinder6UpSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[307] THEN
+  g_Alarm.alarmArray[456] := 1170;
+ELSE
+  g_Alarm.alarmArray[456] := 0; 
+END_IF;
+IF g_bLoadCylinder6DownSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[318] THEN
+  g_Alarm.alarmArray[457] := 1171;
+ELSE
+  g_Alarm.alarmArray[457] := 0; 
+END_IF;
+
+IF g_bLoadCylinder7UpSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[308] THEN
+  g_Alarm.alarmArray[458] := 1172;
+ELSE
+  g_Alarm.alarmArray[458] := 0; 
+END_IF;
+IF g_bLoadCylinder7DownSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[319] THEN
+  g_Alarm.alarmArray[459] := 1173;
+ELSE
+  g_Alarm.alarmArray[459] := 0; 
+END_IF;
+
+IF g_bLoadCylinder8UpSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[309] THEN
+  g_Alarm.alarmArray[460] := 1174;
+ELSE
+  g_Alarm.alarmArray[460] := 0; 
+END_IF;
+IF g_bLoadCylinder8DownSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[320] THEN
+  g_Alarm.alarmArray[461] := 1175;
+ELSE
+  g_Alarm.alarmArray[461] := 0; 
+END_IF;
+
+IF g_bLoadCylinder9UpSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[310] THEN
+  g_Alarm.alarmArray[462] := 1176;
+ELSE
+  g_Alarm.alarmArray[462] := 0; 
+END_IF;
+IF g_bLoadCylinder9DownSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[321] THEN
+  g_Alarm.alarmArray[463] := 1177;
+ELSE
+  g_Alarm.alarmArray[463] := 0; 
+END_IF;
+
+IF g_bLoadCylinder10UpSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[311] THEN
+  g_Alarm.alarmArray[464] := 1178;
+ELSE
+  g_Alarm.alarmArray[464] := 0; 
+END_IF;
+IF g_bLoadCylinder10DownSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[322] THEN
+  g_Alarm.alarmArray[465] := 1179;
+ELSE
+  g_Alarm.alarmArray[465] := 0; 
+END_IF;
+
+IF g_bLoadCylinder11UpSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[312] THEN
+  g_Alarm.alarmArray[466] := 1180;
+ELSE
+  g_Alarm.alarmArray[466] := 0; 
+END_IF;
+IF g_bLoadCylinder11DownSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[323] THEN
+  g_Alarm.alarmArray[467] := 1181;
+ELSE
+  g_Alarm.alarmArray[467] := 0; 
+END_IF;
+ToFAlarm359(IN := g_bCuttingTraMax2Alarm, PT := T#5s);  (*切割中电容突变超过本体电容且周期突变30000*)
+IF ToFAlarm359.Q THEN
+  g_Alarm.alarmArray[468] := 1182;
+  g_bCuttingTraMax2Alarm := FALSE;
+ELSE
+  g_Alarm.alarmArray[468] := 0;
+END_IF;
+IF g_bFocusTimeOutAlarm THEN
+  g_Alarm.alarmArray[469] := 1183;
+  g_bFocusTimeOutAlarm := FALSE;
+END_IF;
+IF g_bWaitG00Time_remTimeOutAlarm THEN
+  g_Alarm.alarmArray[470] := 1184;
+  g_bWaitG00Time_remTimeOutAlarm := FALSE;
+END_IF;
+IF g_bTurnCyl1DownSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[100] THEN
+  g_Alarm.alarmArray[472] := 1185;
+ELSE
+  g_Alarm.alarmArray[472] := 0;
+END_IF;
+(*翻转气缸气缸未下降到位报警*)
+IF g_bTurnCyl2DownSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[102] THEN
+  g_Alarm.alarmArray[473] := 1186;
+ELSE
+  g_Alarm.alarmArray[473] := 0;
+END_IF;
+IF g_bTurnCyl3DownSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[104]  THEN
+  g_Alarm.alarmArray[474] := 1187;
+ELSE
+  g_Alarm.alarmArray[474] := 0;
+END_IF;
+IF g_bTurnCyl4DownSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[106] THEN
+  g_Alarm.alarmArray[475] := 1188;
+ELSE
+  g_Alarm.alarmArray[475] := 0;
+END_IF;
+IF g_bTurnCyl5DownSignalInplaceTimeoutAlarm AND ListenBoardInputConfig[108] THEN
+  g_Alarm.alarmArray[476] := 1189;
+ELSE
+  g_Alarm.alarmArray[476] := 0;
+END_IF;
+
+(*下料气缸未下降到位报警*)
+IF g_bBlankingCyl1NoDownSignalAlarm AND ListenBoardInputConfig[93] THEN
+  g_Alarm.alarmArray[477] := 1190;
+ELSE
+  g_Alarm.alarmArray[477] := 0;
+END_IF;
+IF g_bBlankingCyl2NoDownSignalAlarm AND ListenBoardInputConfig[94] THEN
+  g_Alarm.alarmArray[478] := 1191;
+ELSE
+   g_Alarm.alarmArray[478] := 0;
+END_IF;
+IF g_bBlankingCyl3NoDownSignalAlarm AND ListenBoardInputConfig[95]  THEN
+  g_Alarm.alarmArray[479] := 1192;
+ELSE
+   g_Alarm.alarmArray[479] := 0;
+END_IF;
+IF g_bBlankingCyl4NoDownSignalAlarm AND ListenBoardInputConfig[96] THEN
+  g_Alarm.alarmArray[480] := 1193;
+ELSE
+   g_Alarm.alarmArray[480] := 0;
+END_IF;
+IF g_bBlankingCyl5NoDownSignalAlarm AND ListenBoardInputConfig[98] THEN
+  g_Alarm.alarmArray[481] := 1194;
+ELSE
+   g_Alarm.alarmArray[481] := 0;
+END_IF;
+(*下料气缸报警结束*)
+(*上料支撑和对中气缸未下降到位报警*)
+IF g_bLoadSupportCyl1DownNoSignalAlarm AND ListenBoardInputConfig[402] THEN
+  g_Alarm.alarmArray[482] := 1195;
+ELSE
+   g_Alarm.alarmArray[482] := 0;
+END_IF;
+IF g_bLoadSupportCyl2DownNoSignalAlarm AND ListenBoardInputConfig[403] THEN
+  g_Alarm.alarmArray[483] := 1196;
+ELSE
+   g_Alarm.alarmArray[483] := 0;
+END_IF;
+IF g_bLoadSupportCyl3DownNoSignalAlarm AND ListenBoardInputConfig[404] THEN
+  g_Alarm.alarmArray[484] := 1197;
+ELSE
+   g_Alarm.alarmArray[484] := 0;
+END_IF;
+IF g_bCenterCyl1DownNoSignalAlarm AND ListenBoardInputConfig[408] THEN
+  g_Alarm.alarmArray[485] := 1198;
+ELSE
+  g_Alarm.alarmArray[485] := 0;
+END_IF;
+IF g_bCenterCyl2DownNoSignalAlarm AND ListenBoardInputConfig[409] THEN
+  g_Alarm.alarmArray[486] := 1199;
+ELSE
+  g_Alarm.alarmArray[486] := 0;
+END_IF;
+IF g_bCenterCyl3DownNoSignalAlarm AND ListenBoardInputConfig[410] THEN
+  g_Alarm.alarmArray[487] := 1200;
+ELSE
+  g_Alarm.alarmArray[487] := 0;
+END_IF;
+IF g_bCenterCyl4DownNoSignalAlarm AND ListenBoardInputConfig[458] THEN
+  g_Alarm.alarmArray[620] := 1331;
+ELSE
+  g_Alarm.alarmArray[620] := 0;
+END_IF;
+(*静止状态耦合轴U2误差报警*)
+IF g_bU2AxisEnable AND g_bUGearStopError AND NOT g_bUAndU2BackToPoint THEN
+  g_Alarm.alarmArray[550] := 1267;
+  g_bUGearStopError := FALSE;
+END_IF;
+(*分中补偿偏差过大报警*)
+IF g_bExcessiveDeviationOfCentringCompensationAlarm THEN
+  g_Alarm.alarmArray[551] := 1268;
+  g_bExcessiveDeviationOfCentringCompensationAlarm := FALSE;
+END_IF;
+
+IF g_bCameraNotFeedBackSignalAlarm THEN
+  g_Alarm.alarmArray[557] := 1270;
+  g_bCameraNotFeedBackSignalAlarm := FALSE;
+  M.ENABLE[313] := 0;
+END_IF;
+IF g_bCylinderMoveAvoidAlarm THEN
+   g_Alarm.alarmArray[564] := 1277;
+ELSE
+  g_Alarm.alarmArray[564] := 0;
+END_IF;
+IF g_bMiddleAvoidZCannotMoveAlarm THEN
+  g_Alarm.alarmArray[565] := 1278;
+  g_bMiddleAvoidZCannotMoveAlarm := FALSE;
+END_IF;
+
+IF Axis_Y0.NCTOPLC.ERRORCODE <> 0 OR Axis_C.NCTOPLC.ERRORCODE<>0 THEN
+  g_Alarm.alarmArray[566] := 1279;
+ELSE
+  g_Alarm.alarmArray[566] := 0;
+END_IF;
+(*输入口等待超时继续提示*)
+IF g_bWaitInputPorTimeOutContinueAlarm THEN
+  g_Alarm.alarmArray[569] := 1282;
+  g_bWaitInputPorTimeOutContinueAlarm := FALSE;
+END_IF;
+
+(*Y轴超过避让位置,修改上料参数*)
+IF g_bNextPosExceedAvoidPosAlarm THEN
+  g_Alarm.alarmArray[570] := 1283;
+ELSE
+  g_Alarm.alarmArray[570] := 0;  
+END_IF;
+
+(*对边下来时电容跳变超过设定值,提示重新标定*)
+IF g_bEdgCapacitanceAlarm THEN
+  g_Alarm.alarmArray[574] := 1287;
+  g_bEdgCapacitanceAlarm := FALSE;
+  M.ENABLE[324] := 0;
+END_IF;
+IF g_bCheckPipeSizeBeforeCuttingAlarm THEN
+  g_Alarm.alarmArray[584] := 1299;
+  g_bCheckPipeSizeBeforeCuttingAlarm := FALSE;
+END_IF;
+
+(*托料轴在加耦浮动过程中进行绝对/相对运动报警*)
+IF g_bFrontSustainAxisAbsInFollowAlarm THEN
+  IF g_Alarm.alarmArray[585] = 0 THEN
+    g_bFrontSustainAxisAbsInFollowAlarm := FALSE;
+    M.ENABLE[305] := 0;
+  END_IF;
+END_IF;
+
+(*支撑轴在加耦浮动过程中进行绝对/相对运动报警*)
+IF g_bSustainAxisAbsInFollowAlarm THEN
+  IF g_Alarm.alarmArray[586] = 0 THEN
+    g_bSustainAxisAbsInFollowAlarm := FALSE;
+    M.ENABLE[306] := 0;
+  END_IF;
+END_IF;
+  
+IF  g_bCapHeartAlarm THEN
+	g_Alarm.alarmArray[587] := 1302;
+ELSE
+  g_Alarm.alarmArray[587] := 0;
+END_IF;
+
+
+IF g_bCurrentContourCannotCutAlarm THEN
+  g_Alarm.alarmArray[589] := 1304;
+END_IF;
+ToFAlarm360(IN := g_bBaroceptorAlarm1, PT := T#1s);
+IF ToFAlarm360.Q THEN         (*切割头切割气压传感器检测到开气超时报警*)
+  g_Alarm.alarmArray[590] := 1305;
+ELSE
+  g_Alarm.alarmArray[590] := 0;
+END_IF;
+
+ToFAlarm361(IN := g_bBaroceptorAlarm2, PT := T#1s);
+IF ToFAlarm361.Q THEN      (*切割头切割气压传感器检测到气压小于允许偏差*)
+  g_Alarm.alarmArray[591] := 1306;
+ELSE
+  g_Alarm.alarmArray[591] := 0;
+END_IF;
+(*****318---320,1091-1096号报警都给到BSKE系列的智能头保护镜温升报警用了****)
+ToFAlarm362(IN := g_bBaroceptorAlarm3, PT := T#1s);
+IF ToFAlarm362.Q THEN         (*切割头切割气压传感器检测到开光后气压小于报警阈值*)
+  g_Alarm.alarmArray[592] := 1307;
+ELSE
+  g_Alarm.alarmArray[592] := 0;
+END_IF;
+
+(*龙门轴误差报警*)
+IF g_bYY1FollowErrorAlarm THEN
+  g_Alarm.alarmArray[334] := 7;
+ELSE
+  g_Alarm.alarmArray[334] := 0;
+END_IF;
+(*X龙门轴误差报警*)
+IF g_bXX1FollowErrorAlarm THEN
+  g_Alarm.alarmArray[588] := 1303;
+ELSE
+  g_Alarm.alarmArray[588] := 0;
+END_IF;
+
+(*龙门主轴Y静止时跟随误差过大*)
+IF g_bYAxisStopPosErrorAlarm THEN
+  g_Alarm.alarmArray[596] := 1311;
+ELSE
+  g_Alarm.alarmArray[596] := 0;
+END_IF;
+(*龙门从轴Y1静止时跟随误差过大*)
+IF g_bY1AxisStopPosErrorAlarm THEN
+  g_Alarm.alarmArray[597] := 1312;
+ELSE
+  g_Alarm.alarmArray[597] := 0;
+END_IF;
+(*龙门主轴X静止时跟随误差过大*)
+IF g_bXAxisStopPosErrorAlarm THEN
+  g_Alarm.alarmArray[598] := 1313;
+ELSE
+  g_Alarm.alarmArray[598] := 0;
+END_IF;
+(*龙门从轴X1静止时跟随误差过大*)
+IF g_bX1AxisStopPosErrorAlarm THEN
+  g_Alarm.alarmArray[599] := 1314;
+ELSE
+  g_Alarm.alarmArray[599] := 0;
+END_IF;
+IF g_bPLCParaExecuteOutTimeAlarm THEN
+	g_Alarm.alarmArray[639] := 1334;
+    g_bPLCParaExecuteOutTimeAlarm := FALSE; 
+   (* M.ENABLE[336] := 0; *)
+END_IF;
+IF g_bDualAxis1Config AND g_bDualStationModeEnable THEN
+	IF DualAxis1.NCTOPLC.POSSOFTWARN AND g_NCMoveData.NCAXISDATA[0].AxisHomeDone  THEN
+      g_Alarm.alarmArray[668] := 1363;
+    ELSE
+      g_Alarm.alarmArray[668] := 0;
+    END_IF;
+    
+    IF DualAxis1.NCTOPLC.NEGSOFTWARN AND g_NCMoveData.NCAXISDATA[0].AxisHomeDone THEN
+      g_Alarm.alarmArray[669] := 1364;
+    ELSE
+      g_Alarm.alarmArray[669] := 0;
+    END_IF;
+
+    IF NOT DualAxis1.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[670] := 1365;
+    ELSE
+      g_Alarm.alarmArray[670] := 0;
+    END_IF;
+	IF g_NCMoveData.NCAXISDATA[0].AxisHomeMode = 1 THEN
+      IF g_NCMoveData.NCAXISDATA[0].AxisPosLimit AND ListenBoardInputConfig[535] THEN
+			g_Alarm.alarmArray[671] := 1366;
+		ELSE
+			g_Alarm.alarmArray[671] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[0].AxisNegLimit AND ListenBoardInputConfig[536] THEN
+		  g_Alarm.alarmArray[672] := 1367;
+		ELSE
+		  g_Alarm.alarmArray[672] := 0;
+		END_IF;
+      
+      
+    ELSE
+      IF g_NCMoveData.NCAXISDATA[0].AxisPosLimit AND DualAxis1.NCTOPLC.AXISSTATE<>5 AND ListenBoardInputConfig[535] THEN
+		g_Alarm.alarmArray[671] := 1366;
+		ELSE
+		  g_Alarm.alarmArray[671] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[0].AxisNegLimit AND DualAxis1.NCTOPLC.AXISSTATE<>5 AND ListenBoardInputConfig[536] THEN
+		  g_Alarm.alarmArray[672] := 1367;
+		ELSE
+		  g_Alarm.alarmArray[672] := 0;
+		END_IF;
+    END_IF;
+END_IF;
+
+IF g_bDualAxis2Config AND g_bDualStationModeEnable  THEN
+  IF DualAxis2.NCTOPLC.POSSOFTWARN AND g_NCMoveData.NCAXISDATA[1].AxisHomeDone  THEN
+      g_Alarm.alarmArray[673] := 1368;
+    ELSE
+      g_Alarm.alarmArray[673] := 0;
+    END_IF;
+    
+    IF DualAxis2.NCTOPLC.NEGSOFTWARN AND g_NCMoveData.NCAXISDATA[1].AxisHomeDone THEN
+      g_Alarm.alarmArray[674] := 1369;
+    ELSE
+      g_Alarm.alarmArray[674] := 0;
+    END_IF;
+
+    IF NOT DualAxis2.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[675] := 1370;
+    ELSE
+      g_Alarm.alarmArray[675] := 0;
+    END_IF;
+	IF g_NCMoveData.NCAXISDATA[1].AxisHomeMode = 1 THEN
+      IF g_NCMoveData.NCAXISDATA[1].AxisPosLimit AND ListenBoardInputConfig[538] THEN
+			g_Alarm.alarmArray[676] := 1371;
+		ELSE
+			g_Alarm.alarmArray[676] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[1].AxisNegLimit AND ListenBoardInputConfig[539] THEN
+		  g_Alarm.alarmArray[677] := 1372;
+		ELSE
+		  g_Alarm.alarmArray[677] := 0;
+		END_IF;
+      
+      
+    ELSE
+      IF g_NCMoveData.NCAXISDATA[1].AxisPosLimit AND DualAxis2.NCTOPLC.AXISSTATE<>5 AND ListenBoardInputConfig[538] THEN
+		g_Alarm.alarmArray[676] := 1371;
+		ELSE
+		  g_Alarm.alarmArray[676] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[1].AxisNegLimit AND DualAxis2.NCTOPLC.AXISSTATE<>5 AND ListenBoardInputConfig[539] THEN
+		  g_Alarm.alarmArray[677] := 1372;
+		ELSE
+		  g_Alarm.alarmArray[677] := 0;
+		END_IF;
+    END_IF;
+END_IF;
+
+IF g_bDualAxis3Config AND g_bDualStationModeEnable  THEN
+  IF DualAxis3.NCTOPLC.POSSOFTWARN AND g_NCMoveData.NCAXISDATA[2].AxisHomeDone  THEN
+      g_Alarm.alarmArray[678] := 1373;
+    ELSE
+      g_Alarm.alarmArray[678] := 0;
+    END_IF;
+    
+    IF DualAxis3.NCTOPLC.NEGSOFTWARN AND g_NCMoveData.NCAXISDATA[2].AxisHomeDone THEN
+      g_Alarm.alarmArray[679] := 1374;
+    ELSE
+      g_Alarm.alarmArray[679] := 0;
+    END_IF;
+
+    IF NOT DualAxis3.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[680] := 1375;
+    ELSE
+      g_Alarm.alarmArray[680] := 0;
+    END_IF;
+	IF g_NCMoveData.NCAXISDATA[2].AxisHomeMode = 1 THEN
+      IF g_NCMoveData.NCAXISDATA[2].AxisPosLimit AND ListenBoardInputConfig[541] THEN
+			g_Alarm.alarmArray[681] := 1376;
+		ELSE
+			g_Alarm.alarmArray[681] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[2].AxisNegLimit AND ListenBoardInputConfig[542] THEN
+		  g_Alarm.alarmArray[682] := 1377;
+		ELSE
+		  g_Alarm.alarmArray[682] := 0;
+		END_IF;
+      
+      
+    ELSE
+      IF g_NCMoveData.NCAXISDATA[2].AxisPosLimit AND DualAxis3.NCTOPLC.AXISSTATE<>5 AND ListenBoardInputConfig[541] THEN
+		g_Alarm.alarmArray[681] := 1376;
+		ELSE
+		  g_Alarm.alarmArray[681] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[2].AxisNegLimit AND DualAxis3.NCTOPLC.AXISSTATE<>5 AND ListenBoardInputConfig[542] THEN
+		  g_Alarm.alarmArray[682] := 1377;
+		ELSE
+		  g_Alarm.alarmArray[682] := 0;
+		END_IF;
+    END_IF;
+END_IF;
+
+IF g_bDualAxis4Config AND g_bDualStationModeEnable  THEN
+  IF DualAxis4.NCTOPLC.POSSOFTWARN AND g_NCMoveData.NCAXISDATA[3].AxisHomeDone  THEN
+      g_Alarm.alarmArray[683] := 1378;
+    ELSE
+      g_Alarm.alarmArray[683] := 0;
+    END_IF;
+    
+    IF DualAxis4.NCTOPLC.NEGSOFTWARN AND g_NCMoveData.NCAXISDATA[3].AxisHomeDone THEN
+      g_Alarm.alarmArray[684] := 1379;
+    ELSE
+      g_Alarm.alarmArray[684] := 0;
+    END_IF;
+
+    IF NOT DualAxis4.NCTOPLC.HOMINGSTATE THEN
+      g_Alarm.alarmArray[685] := 1380;
+    ELSE
+      g_Alarm.alarmArray[685] := 0;
+    END_IF;
+	IF g_NCMoveData.NCAXISDATA[3].AxisHomeMode = 1 THEN
+      IF g_NCMoveData.NCAXISDATA[3].AxisPosLimit AND ListenBoardInputConfig[544] THEN
+			g_Alarm.alarmArray[686] := 1381;
+		ELSE
+			g_Alarm.alarmArray[686] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[3].AxisNegLimit AND ListenBoardInputConfig[545] THEN
+		  g_Alarm.alarmArray[687] := 1382;
+		ELSE
+		  g_Alarm.alarmArray[687] := 0;
+		END_IF;
+      
+      
+    ELSE
+      IF g_NCMoveData.NCAXISDATA[3].AxisPosLimit AND DualAxis4.NCTOPLC.AXISSTATE<>5 AND ListenBoardInputConfig[544] THEN
+		g_Alarm.alarmArray[686] := 1381;
+		ELSE
+		  g_Alarm.alarmArray[686] := 0;
+		END_IF;
+
+		IF g_NCMoveData.NCAXISDATA[3].AxisNegLimit AND DualAxis4.NCTOPLC.AXISSTATE<>5 AND ListenBoardInputConfig[545] THEN
+		  g_Alarm.alarmArray[687] := 1382;
+		ELSE
+		  g_Alarm.alarmArray[687] := 0;
+		END_IF;
+    END_IF;
+END_IF;
+IF g_bFullTravelChuckWillInterferenceAlarm THEN
+  g_Alarm.alarmArray[688] := 1383;
+  g_bFullTravelChuckWillInterferenceAlarm := FALSE;
+END_IF;
+IF g_bBeamAvoidAxisOverPosSoftLimitAlarm THEN
+  g_Alarm.alarmArray[689] := 1384;
+  g_bBeamAvoidAxisOverPosSoftLimitAlarm := FALSE;
+END_IF;
+IF g_bBeamAvoidAxisZeroScrapCutCannotPerformedAlarm THEN
+  g_Alarm.alarmArray[690] := 1385;
+  g_bBeamAvoidAxisZeroScrapCutCannotPerformedAlarm := FALSE;
+END_IF;
+IF g_bBeamAvoidAxisCheckClampStateAlarm THEN
+  g_Alarm.alarmArray[691] := 1386;
+  g_bBeamAvoidAxisCheckClampStateAlarm := FALSE;
+END_IF;
+IF g_bNotLastPartNeedAvoidAlarm THEN
+  g_Alarm.alarmArray[692] := 1387;
+  g_bNotLastPartNeedAvoidAlarm := FALSE;
+END_IF;
+IF g_bAvoidAxisOverAvoidLimitPosAlarm THEN
+   g_Alarm.alarmArray[693] := 1388;
+  g_bAvoidAxisOverAvoidLimitPosAlarm := FALSE;
+END_IF;
+IF g_bS7AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[740] := 1437;
+ELSE
+  g_Alarm.alarmArray[740] := 0;
+END_IF;
+IF g_bS8AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[741] := 1438;
+ELSE
+  g_Alarm.alarmArray[741] := 0;
+END_IF;
+IF g_bS9AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[742] := 1439;
+ELSE
+  g_Alarm.alarmArray[742] := 0;
+END_IF;
+IF g_bS10AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[743] := 1440;
+ELSE
+  g_Alarm.alarmArray[743] := 0;
+END_IF;
+IF g_bS11AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[744] := 1441;
+ELSE
+  g_Alarm.alarmArray[744] := 0;
+END_IF;
+IF g_bS12AxisPosErrorAlarm THEN
+  g_Alarm.alarmArray[745] := 1442;
+ELSE
+  g_Alarm.alarmArray[745] := 0;
+END_IF;
+(*IF g_bAxisIsMoveAlarm THEN
+  g_Alarm.alarmArray[746] := 1443;
+  g_bAxisIsMoveAlarm := FALSE;
+END_IF;*)
+IF g_bIsNotImportTubeDrawingAlarm THEN
+  g_Alarm.alarmArray[747] := 1444;
+  g_bIsNotImportTubeDrawingAlarm := FALSE;
+END_IF;
+(*报警容量为1000,数量满时要HMI和PLC一并修改*)
+(*下一个报警从g_Alarm.alarmArray[748] 开始,报警号从1445开始*)
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[报警处理模块]]></xhtml:p>
+  </documentation>
+</pou>

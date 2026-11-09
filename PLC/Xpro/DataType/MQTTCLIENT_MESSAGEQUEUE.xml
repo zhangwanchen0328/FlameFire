@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MQTTCLIENT_MESSAGEQUEUE">
+  <baseType>
+    <struct>
+      <variable name="ALREADYREAD">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+      <variable name="MESSAGECOUNT">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+      <variable name="MESSAGEQUEUE">
+        <type>
+          <array>
+            <dimension lower="0" upper="4"/>
+            <baseType>
+              <string/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="OVERWRITEFLAG">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

@@ -1,0 +1,357 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_TurnUpDown" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bTurnCylinder1Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder2Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder3Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder4Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder5Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder1Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder2Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder3Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder4Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder5Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnState1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnState2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnState3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnState4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnState5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinderEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnUpDownOpenM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnUpDownCloseM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boTurnUpDownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnUpDownOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnUpDownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nTurnTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_nTurnType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nTurnCylNum">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3CylForbid">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bCheckFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nTurnState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nTurnType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="dDynamicCoordTemp">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bTurnCylFloatDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger1(CLK := g_bTurnUpDownOpenM OR g_bTurnUpDownOpen);
+R_Trigger2(CLK := g_bTurnUpDownCloseM);
+
+IF R_Trigger1.Q THEN
+  IF g_bTurnUpDownOpenM THEN
+    nTurnType := LREAL_TO_INT(g_nTurnTypeM);
+    g_bTurnUpDownOpenM := FALSE;
+  ELSIF g_bTurnUpDownOpen THEN
+    nTurnType := g_nTurnType;
+  END_IF;
+  g_boTurnUpDownDone := FALSE;
+  g_bTurnUpDownDone := FALSE;
+  g_bTurnUpDownOpen := FALSE;
+  nTurnState := 1;
+  dDynamicCoordTemp := g_diYMachineCoordinate;
+END_IF;
+
+IF R_Trigger2.Q THEN
+  g_boTurnUpDownDone := FALSE;
+  g_bTurnUpDownDone := FALSE;
+  g_bTurnUpDownCloseM := FALSE;
+  nTurnState := 0;
+END_IF;
+
+IF g_bClaw3CylForbid THEN
+  g_boTurnUpDownDone := TRUE;
+  g_bTurnUpDownDone := TRUE;
+  M.ENABLE[226] := 0;
+  nTurnState := 0;
+ELSIF g_bTurnCylinderEnable THEN
+  CASE nTurnState OF
+    0:
+      nTurnState := 0;
+    1:
+      IF nTurnType = 0 THEN
+        nTurnState := 10;
+      ELSIF nTurnType = 1 THEN
+        nTurnState := 20;
+      ELSIF nTurnType = 2 THEN
+        nTurnState := 100;
+      END_IF;
+    10:
+      IF g_nTurnCylNum >= 1 THEN
+        g_bTurnCylinder1Close := TRUE;
+      END_IF;
+      IF g_nTurnCylNum >= 2 THEN
+        g_bTurnCylinder2Close := TRUE;
+      END_IF;
+      IF g_nTurnCylNum >= 3 THEN
+        g_bTurnCylinder3Close := TRUE;
+      END_IF;
+      IF g_nTurnCylNum >= 4 THEN
+        g_bTurnCylinder4Close := TRUE;
+      END_IF;
+      IF g_nTurnCylNum >= 5 THEN
+        g_bTurnCylinder5Close := TRUE;
+      END_IF;
+      nTurnState := 11;
+    11:
+      bCheckFlag := TRUE;
+      IF g_nTurnCylNum >= 1 AND g_bTurnState1 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 2 AND g_bTurnState2 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 3 AND g_bTurnState3 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 4 AND g_bTurnState4 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 5 AND g_bTurnState5 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF bCheckFlag THEN
+        nTurnState := 30;
+      END_IF;
+    20:
+      IF g_nTurnCylNum >= 1 THEN
+        g_bTurnCylinder1Open:= TRUE;
+      END_IF;
+      IF g_nTurnCylNum >= 2 THEN
+        g_bTurnCylinder2Open := TRUE;
+      END_IF;
+      IF g_nTurnCylNum >= 3 THEN
+        g_bTurnCylinder3Open := TRUE;
+      END_IF;
+      IF g_nTurnCylNum >= 4 THEN
+        g_bTurnCylinder4Open := TRUE;
+      END_IF;
+      IF g_nTurnCylNum >= 5 THEN
+        g_bTurnCylinder5Open := TRUE;
+      END_IF;
+      nTurnState := 21;
+    21:
+      bCheckFlag := TRUE;
+      IF g_nTurnCylNum >= 1 AND (NOT g_bTurnState1) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 2 AND (NOT g_bTurnState2) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 3 AND (NOT g_bTurnState3) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 4 AND (NOT g_bTurnState4) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 5 AND (NOT g_bTurnState5) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF bCheckFlag THEN
+        nTurnState := 30;
+      END_IF;
+    30:
+      bTurnCylFloatDone := FALSE;
+      g_boTurnUpDownDone := TRUE;
+      g_bTurnUpDownDone := TRUE;
+      g_bTurnCylinder1Open := FALSE;
+      g_bTurnCylinder2Open := FALSE;
+      g_bTurnCylinder3Open := FALSE;
+      g_bTurnCylinder4Open := FALSE;
+      g_bTurnCylinder5Open := FALSE;
+      g_bTurnCylinder1Close := FALSE;
+      g_bTurnCylinder2Close := FALSE;
+      g_bTurnCylinder3Close := FALSE;
+      g_bTurnCylinder4Close := FALSE;
+      g_bTurnCylinder5Close := FALSE;
+      nTurnState := 0;
+      M.ENABLE[226] := 0;
+    100:
+      M.ENABLE[226] := 0;
+      bTurnCylFloatDone := TRUE;
+      IF g_nTurnCylNum >= 1 THEN
+        nTurnState := 110;
+      ELSE
+        nTurnState := 0;
+      END_IF;  
+    110:
+      IF g_nMotionMode = 2 THEN
+        IF g_diYMachineCoordinate - dDynamicCoordTemp >= g_dTurnCyl1FloatDistance THEN
+          g_bTurnCylinder1Open := TRUE;
+          g_bTurnCylinder1Close := FALSE;
+        END_IF;
+        IF g_diYMachineCoordinate - dDynamicCoordTemp >= g_dTurnCyl2FloatDistance THEN
+          g_bTurnCylinder2Open := TRUE;
+          g_bTurnCylinder2Close := FALSE;
+        END_IF;
+        IF g_diYMachineCoordinate - dDynamicCoordTemp >= g_dTurnCyl3FloatDistance THEN
+          g_bTurnCylinder3Open := TRUE;
+          g_bTurnCylinder3Close := FALSE;
+        END_IF;
+        IF g_diYMachineCoordinate - dDynamicCoordTemp >= g_dTurnCyl4FloatDistance THEN
+          g_bTurnCylinder4Open := TRUE;
+          g_bTurnCylinder4Close := FALSE;
+        END_IF;
+        IF g_diYMachineCoordinate - dDynamicCoordTemp >= g_dTurnCyl5FloatDistance THEN
+          g_bTurnCylinder5Open := TRUE;
+          g_bTurnCylinder5Close := FALSE;
+        END_IF;
+     END_IF;   
+  END_CASE;
+ELSE
+  g_boTurnUpDownDone := TRUE;
+  g_bTurnUpDownDone := TRUE;
+  nTurnState := 0;
+  M.ENABLE[226] := 0;
+END_IF;
+
+IF g_bPlcResetBuffer OR g_bPlcEndM THEN
+  bTurnCylFloatDone := FALSE;
+  g_bTurnCylinder1Open := FALSE;
+  g_bTurnCylinder2Open := FALSE;
+  g_bTurnCylinder3Open := FALSE;
+  g_bTurnCylinder4Open := FALSE;
+  g_bTurnCylinder5Open := FALSE;
+  g_bTurnCylinder1Close := FALSE;
+  g_bTurnCylinder2Close := FALSE;
+  g_bTurnCylinder3Close := FALSE;
+  g_bTurnCylinder4Close := FALSE;
+  g_bTurnCylinder5Close := FALSE;
+  nTurnState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

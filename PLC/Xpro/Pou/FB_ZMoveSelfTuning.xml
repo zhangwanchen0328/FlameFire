@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ZMoveSelfTuning" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="nMoveSelfTuningState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bMoveSelfTuningStart">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+CASE nMoveSelfTuningState OF 
+  0:
+    IF bMoveSelfTuningStart THEN
+      nMoveSelfTuningState := 10;
+      bMoveSelfTuningStart := FALSE;
+      g_bZSelfTuningDone := FALSE;
+    END_IF;
+  10:
+    g_ZAxisMoveSelfTuning.EXECUTE := TRUE;
+    IF g_ZAxisMoveSelfTuning.DONE THEN
+      g_ZAxisMoveSelfTuning.EXECUTE := FALSE;
+      g_dZAxisSelfTuningCF := g_ZAxisMoveSelfTuning.CF;
+      g_dZAxisSelfTuningFH := g_ZAxisMoveSelfTuning.FH;
+      g_dZAxisSelfTuningACC := g_ZAxisMoveSelfTuning.ACCELERATION;
+      nMoveSelfTuningState := 0;
+      g_bZSelfTuningDone := TRUE;
+    END_IF;
+    IF g_ZAxisMoveSelfTuning.COMMANDABORTED OR g_ZAxisMoveSelfTuning.ERROR THEN
+      nMoveSelfTuningState := 20;
+      g_ZAxisMoveSelfTuning.EXECUTE := FALSE;
+    END_IF;
+    IF  g_bPlcResetBuffer THEN
+      nMoveSelfTuningState := 20;
+    END_IF;
+    
+  20:
+      g_ZMoveStop.Execute := TRUE;
+      IF g_ZMoveStop.Done  THEN
+        g_ZMoveStop.Execute := FALSE;
+        nMoveSelfTuningState := 0;
+        g_bZLiftExecute := TRUE;
+      END_IF;
+      IF g_ZMoveStop.CommandAborted OR g_ZMoveStop.Error THEN
+        g_ZMoveStop.Execute := FALSE;
+        nMoveSelfTuningState := 0;
+      END_IF;
+    IF g_bPlcResetBuffer THEN
+      g_ZMoveStop.Execute := FALSE;
+      nMoveSelfTuningState := 0;
+    END_IF;
+END_CASE;
+IF g_bPlcResetBuffer THEN
+  g_ZAxisMoveSelfTuning.EXECUTE := FALSE;
+  g_bZSelfTuningDone := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

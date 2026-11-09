@@ -1,0 +1,487 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_LaserCutting" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_noULaserPowerValue">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：激光器输出功率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noUPwmFreq">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：激光输出pwm频率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noUPwmDuty">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出应缴：激光输出pwm占空比]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boLaserEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：激光使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLaserExportEnableM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入引脚：m代码发出光命令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLaserCuttingEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光切割flag plc用]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bLaserCuttingEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="false"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[激光切割flag hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nLaserBrand">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光器品牌选择（0~5 --IPG,创鑫,nLight,锐科,通快），HMI给，]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nLaserOpenLightDelayTime">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[创鑫专用延时时间，HMI给]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nMaxFreq">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最大频率 HMI]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nMaxPower">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最大功率 HMI]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nMaxVoltage">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最大电压 HMI]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nPower">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出功率 hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nPower">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出功率 hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nPwmFreq">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出pwm频率 hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nPwmFreq">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出pwm频率 hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nPwmDuty">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出pwm占空比 hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nPwmDuty">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出pwm占空比 hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Ton0">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[定时器 创鑫延时计时]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nLaserPowerValueTmp">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[创鑫专用的输出功率临时变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCuttingType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[根据激光器不同切割方式不同]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCuttingState">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[切割状态（0不操作，1关闭切割，2，切割）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="rTrigExport">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="fTrigExport">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nCXState">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[创鑫激光器状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_niLaserPowerFB">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[创鑫激光器状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dLaserPowerFB">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[创鑫激光器状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bExportEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bCloseLaserEnableM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="rTrigLaserOFF">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[光激光的上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nPiercingStatus">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[穿孔状态 1表示在穿孔中]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dLaserControlPowerScale">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dLaserControlFreqScale">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dLaserControlDutyScale">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bDryRunEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="GetSpeedPowerScale">
+        <type>
+          <derived name="FB_PowerSpeedCtl"/>
+        </type>
+      </variable>
+      <variable name="GetSpeedDutyScale">
+        <type>
+          <derived name="FB_DutySpeedCtl"/>
+        </type>
+      </variable>
+      <variable name="GetSpeedFreScale">
+        <type>
+          <derived name="FB_FreSpeedCtl"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="dPowerScale">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDutyScale">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFreScale">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*激光出光（切割，穿孔）*)
+
+rTrigExport(CLK := (g_bLaserCuttingEnable OR g_bLaserExportEnableM));
+fTrigExport(CLK := g_bLaserCuttingEnable);
+rTrigLaserOFF(CLK := g_bCloseLaserEnableM);
+
+IF g_nPiercingStatus=1 THEN 
+  nPower:= g_nPower;
+  nPwmFreq:= g_nPwmFreq;
+  nPwmDuty:= g_nPwmDuty;
+ELSE
+  nPower:= g_nPower;
+  nPwmFreq:= g_nPwmFreq;
+  nPwmDuty:= g_nPwmDuty;
+END_IF;
+
+
+IF rTrigExport.Q THEN(*界面给出光命令，plc或m代码控制引脚出光需要出光*)
+  g_bLaserExportEnableM := FALSE;
+  IF g_bDryRunEnable=FALSE AND g_bDebugMode=FALSE THEN
+    nCuttingState := 2;
+    g_bLaserCuttingEnable := true;  (*再次给个true，以防M代码开的光，界面关光的时候抓不到下降沿不能关光*)
+  END_IF;
+END_IF;
+
+IF fTrigExport.Q  OR rTrigLaserOFF.Q THEN
+  g_bCloseLaserEnableM := FALSE;
+  nCuttingState := 1;
+  g_bLaserCuttingEnable := FALSE;(*以防plc开光的时候，M代码关光了，导致plc再次开光的时候抓不到上升沿*)
+END_IF;
+
+
+(*加入功率控制，需满足的条件1：当前的刀具开了功率控制，2：电子关闸已经打开 3：目前处于切割状态*)
+(*获取速度==功率的控制比例*)
+IF g_nCurCutState =1  AND g_TechData.multilTechData[g_nToolNum-1].POWER_DATA.bOpenPowerCtl THEN
+ GetSpeedPowerScale(dScale => dPowerScale);
+ELSE
+  
+  dPowerScale :=1.0;  
+END_IF;
+
+
+(*获取速度==占空比的控制比例*)
+IF  g_nCurCutState =1 AND g_TechData.multilTechData[g_nToolNum-1].POWER_DATA.bOpenDutyCtl THEN
+  GetSpeedDutyScale(dScale => dDutyScale);
+ELSE
+  dDutyScale :=1.0;
+END_IF;
+ (*GetSpeedDutyScale(dScale => dDutyScale);*)
+
+(*获取速度==频率的控制比例*)
+IF  g_nCurCutState =1 AND g_TechData.multilTechData[g_nToolNum-1].POWER_DATA.bOpenFreCtl THEN
+ GetSpeedFreScale(dScale => dFreScale);
+ELSE
+  dFreScale :=1.0;
+END_IF;
+
+
+(*一开始处于等待状态，收到true命令根据激光器出光时序出光，收到false命令，关闭出光并回到等待状态*)
+CASE nCuttingState OF
+  0:(*等待状态*)
+    nCuttingState := 0;
+  1:(*关闭出光操作*)
+    IF g_nLaserBrand=1 THEN
+        g_noULaserPowerValue := 3276;
+    ELSIF g_nLaserBrand=3 THEN
+      (*不操作*)
+      g_nLaserBrand := 3;
+    ELSE
+      g_noULaserPowerValue := 0;
+    END_IF;  
+    g_boLaserEnable := FALSE;
+    g_noUPwmFreq :=0;
+    g_noUPwmDuty :=0;
+    Ton0(IN := FALSE);
+    nCXState := 0;
+    nCuttingState := 0;
+    M.ENABLE[173] := 0;
+
+  2:(*开启切割操作*)
+        (*输出功率计算*)
+        IF nPower>g_nMaxPower THEN
+          g_noULaserPowerValue := LREAL_TO_UINT(32767.0*g_nMaxVoltage/10.0);
+        ELSIF nPower<0 THEN
+          g_noULaserPowerValue :=0;
+        ELSE
+          g_noULaserPowerValue := LREAL_TO_UINT(32767.0*UINT_TO_LREAL(nPower)*g_nMaxVoltage/(10.0*UINT_TO_LREAL(g_nMaxPower)));
+        END_IF;
+        g_noULaserPowerValue := LREAL_TO_UINT(UINT_TO_LREAL(g_noULaserPowerValue)*dPowerScale);
+        
+        (*输出频率计算*)
+        IF nPwmFreq> 20000 THEN
+          g_noUPwmFreq := 65535;
+        ELSIF nPwmFreq<=0 THEN
+          g_noUPwmFreq := 0;
+        ELSE
+          g_noUPwmFreq := LREAL_TO_UINT(65535.0*UINT_TO_LREAL(nPwmFreq)/20000.0);
+        END_IF;
+         g_noUPwmFreq := LREAL_TO_UINT(UINT_TO_LREAL(g_noUPwmFreq)*dFreScale);
+         (*输出功率不能越界，最小为10%，QCW另算*)
+         IF g_noULaserPowerValue <3276 AND NOT g_bQCWType THEN
+           g_noULaserPowerValue := 3276;
+         ELSIF g_noULaserPowerValue >32767 THEN
+            g_noULaserPowerValue := 32767;
+         END_IF;
+         
+        (*输出占空比计算*)                
+        IF nPwmDuty>100 THEN
+          g_noUPwmDuty := 65535;
+        ELSIF nPwmDuty<0 THEN
+          g_noUPwmDuty := 0;
+        ELSE
+          g_noUPwmDuty := LREAL_TO_UINT((UINT_TO_LREAL(nPwmDuty)/100.0)* 65535.0);
+        END_IF;
+        g_noUPwmDuty := LREAL_TO_UINT(UINT_TO_LREAL(g_noUPwmDuty)*dDutyScale);
+        IF g_bDutyCycleFollowPendulum THEN
+          g_noUPwmDuty := g_noUPwmDuty * LREAL_TO_UINT((1.0/COS(g_dPendulumAngleSfterFilter * 3.1415926/180.0)));
+          IF g_noUPwmDuty > 65535 THEN
+            g_noUPwmDuty := 65535;
+          END_IF;
+        END_IF;
+        (*飞切的PWM也在这里处理*)
+        g_noPwmFreqFly:=UINT_TO_UDINT(g_noUPwmFreq);
+        g_noPwmDutyFly:=UINT_TO_UDINT(g_noUPwmDuty);
+        (*普通微联关光关PWM波*)
+        IF g_dNotraceMicroEnable = 1.0 AND g_nToolNum <> 5 THEN
+          g_noNotraceMicroDuty := g_nNotraceMicroDuty;
+        ELSE
+          g_noNotraceMicroDuty := 0;
+        END_IF;
+        IF g_bMicroConnectEnable THEN
+            g_noUPwmFreq :=0;
+            g_noUPwmDuty :=0;
+        END_IF;
+        (**)
+        g_boLaserEnable :=TRUE;
+        M.ENABLE[172] := 0;
+END_CASE;
+
+(*输出功率反馈*)
+g_dLaserPowerFB := UINT_TO_LREAL(g_niLaserPowerFB)*10.0*UINT_TO_LREAL(g_nMaxPower)/(32767.0*g_nMaxVoltage);
+
+bExportEnable:=g_boLaserEnable;
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[激光出光（切割穿孔)]]></xhtml:p>
+  </documentation>
+</pou>

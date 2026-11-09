@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FourSidesCenter" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_TringOpen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TringClose">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TringSetValue">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TringManual">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="dFourSidesCenterCompensationA">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFourSidesCenterCompensationB">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFourSidesCenterCompensationC">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFourSidesCenterCompensationD">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFourSidesCenterCompensationOffsetA">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFourSidesCenterCompensationOffsetB">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFourSidesCenterCompensationOffsetC">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFourSidesCenterCompensationOffsetD">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nfoursidesstate">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bNegationHMI">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bManulaModifyValue">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_TringOpen(CLK := g_bFourSidesCenterOpenM);
+R_TringClose(CLK := g_bFourSidesCenterCloseM);
+R_TringSetValue(CLK := g_bFourSidesCenterSetValueM);
+R_TringManual(CLK := bManulaModifyValue);
+IF R_TringOpen.Q THEN
+  g_bFourSidesCenterOpenM := FALSE;
+  nfoursidesstate := 10;
+  g_dUseSideCenterType := 4.0;
+  g_bExecuteSingeSideOnAFace := FALSE;
+  g_bExecuteSingeSideOnBFace := FALSE;
+  g_bExecuteSingeSideOnCFace := FALSE;
+  g_bExecuteSingeSideOnDFace := FALSE;
+END_IF;
+IF R_TringClose.Q THEN
+  g_bFourSidesCenterCloseM := FALSE;
+  nfoursidesstate := 20;
+END_IF;
+IF R_TringManual.Q THEN
+  g_dInformHmiUpdateValue := 5.0;
+  bManulaModifyValue := FALSE;
+END_IF;
+g_dFourSidesCompensationValueA := g_dFourSidesCenterCompensationA; 
+g_dFourSidesCompensationValueB := g_dFourSidesCenterCompensationB; 
+g_dFourSidesCompensationValueC := g_dFourSidesCenterCompensationC; 
+g_dFourSidesCompensationValueD := g_dFourSidesCenterCompensationD; 
+CASE nfoursidesstate OF
+  0:
+    nfoursidesstate := 0;
+  10:
+    IF R_TringSetValue.Q THEN
+      IF g_nFourSidesCenterSetValueP = 0 THEN
+        dFourSidesCenterCompensationA := g_dFourSidesCenterSetValueQ;
+      ELSIF g_nFourSidesCenterSetValueP = 1 THEN
+        dFourSidesCenterCompensationB := g_dFourSidesCenterSetValueQ;
+      ELSIF g_nFourSidesCenterSetValueP = 2 THEN
+        dFourSidesCenterCompensationC := g_dFourSidesCenterSetValueQ;
+      ELSIF g_nFourSidesCenterSetValueP = 3 THEN
+        dFourSidesCenterCompensationD := g_dFourSidesCenterSetValueQ;
+      END_IF;
+    END_IF;
+    g_bFourSidesCenterSetValueM := FALSE;
+    IF g_bPlcPauseBuffer THEN
+      nfoursidesstate := 30;
+    END_IF;
+  20:
+  g_dFourSidesCenterCompensationA := dFourSidesCenterCompensationA - g_dBeamCenterPos;
+  g_dFourSidesCenterCompensationB := dFourSidesCenterCompensationB - g_dBeamCenterPos;
+  g_dFourSidesCenterCompensationC := dFourSidesCenterCompensationC - g_dBeamCenterPos;
+  g_dFourSidesCenterCompensationD := dFourSidesCenterCompensationD - g_dBeamCenterPos;
+  
+  IF bNegationHMI THEN
+    g_dFourSidesCenterCompensationA := g_dFourSidesCenterCompensationA * (-1.0);
+    g_dFourSidesCenterCompensationB := g_dFourSidesCenterCompensationB * (-1.0);
+    g_dFourSidesCenterCompensationC := g_dFourSidesCenterCompensationC * (-1.0);
+    g_dFourSidesCenterCompensationD := g_dFourSidesCenterCompensationD * (-1.0);
+  END_IF;
+  g_dInformHmiUpdateValue := 5.0;
+  nfoursidesstate := 0;
+  IF ABS(g_dFourSidesCenterCompensationA)>g_dCompensationThreshold OR ABS(g_dFourSidesCenterCompensationB) > g_dCompensationThreshold 
+    OR ABS(g_dFourSidesCenterCompensationC)>g_dCompensationThreshold OR ABS(g_dFourSidesCenterCompensationD) > g_dCompensationThreshold THEN
+    g_bExcessiveDeviationOfCentringCompensationAlarm := TRUE;
+  END_IF;
+  30:
+  IF g_bPlcStartBuffer THEN
+    nfoursidesstate :=10;
+  END_IF;
+END_CASE;  
+  IF g_bPlcResetBuffer OR g_bPlcEndM THEN
+    nfoursidesstate := 0;
+  END_IF;
+  ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

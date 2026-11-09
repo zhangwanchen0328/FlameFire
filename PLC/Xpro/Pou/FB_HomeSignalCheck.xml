@@ -1,0 +1,379 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_HomeSignalCheck" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_biXAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biXAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biYAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biYAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biZAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biZAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biUAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biUAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biCNCUAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biCNCUAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFeedingPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFeedingNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biGeneral1PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biGeneral1NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biGeneral2PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biGeneral2NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boXAxisHomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boYAxisHomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boZAxisHomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFAxisHomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boUAxisHomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boCNCUAxisHomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFeedingAxisHomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boGeneralAxis1HomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boGeneralAxis2HomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biXAxisHomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biYAxisHomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biZAxisHomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFAxisHomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biUAxisHomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biCNCUAxisHomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFeedingHomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biGeneralAxis1HomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biGeneralAxis2HomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="XAxisHomeSignal">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="YAxisHomeSignal">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="ZAxisHomeSignal">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="FAxisHomeSignal">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="CNCUAxisHomeSignal">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="FeedingAxisHomeSignal">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="DDAxisHomeSignal">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="GeneralAxis1HomeSignal">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="GeneralAxis2HomeSignal">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biDDAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biDDAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boDDAxisHomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biDDAxisHomeSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="AAxisHomeSignal">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF XAxisHomeSignal = 0 THEN
+  g_boXAxisHomeSignal := g_biFilter_XAxisZero;
+ELSIF XAxisHomeSignal = 1 THEN
+  g_boXAxisHomeSignal := g_biFilter_XAxisPosLimit;
+ELSE
+  g_boXAxisHomeSignal := g_biFilter_XAxisNegLimit;
+END_IF;
+
+IF YAxisHomeSignal = 0 THEN
+  g_boYAxisHomeSignal := g_biFilter_YAxisZero;
+ELSIF YAxisHomeSignal = 1 THEN
+  g_boYAxisHomeSignal := g_biFilter_YAxisPosLimit;
+ELSE
+  g_boYAxisHomeSignal := g_biFilter_YAxisNegLimit;
+END_IF;
+
+IF ZAxisHomeSignal = 0 THEN
+  g_boZAxisHomeSignal := g_biZAxisHomeSignal;
+ELSIF ZAxisHomeSignal = 1 THEN
+  g_boZAxisHomeSignal := g_biZAxisPosLimit;
+ELSE
+  g_boZAxisHomeSignal := g_biZAxisNegLimit;
+END_IF;
+
+(*IF g_bFAxisEnable=TRUE AND g_nFAxisControlType=1 THEN
+  IF FAxisHomeSignal = 0 THEN
+    g_boFAxisHomeSignal := g_biFAxisHomeSignal;
+  ELSIF FAxisHomeSignal = 1 THEN
+    g_boFAxisHomeSignal := g_biFAxisPosLimit;
+  ELSE
+    g_boFAxisHomeSignal := g_biFAxisNegLimit;
+  END_IF;
+END_IF;*)
+
+
+IF CNCUAxisHomeSignal = 0 THEN
+  g_boCNCUAxisHomeSignal := g_bUAxisHomeZeroSignalNoFilter;
+  ELSIF CNCUAxisHomeSignal = 1 THEN
+    g_boCNCUAxisHomeSignal := g_bUAxisHomePosSignalNoFilter;
+  ELSE
+    g_boCNCUAxisHomeSignal := g_bUAxisHomeNegSignalNoFilter;
+END_IF;
+
+
+IF AAxisHomeSignal = 0 THEN
+  g_boAAxisHomeSignal := g_boFilter_AAxisZero;
+ELSIF AAxisHomeSignal = 1 THEN
+  g_boAAxisHomeSignal := g_boFilter_AAxisPosLimit;
+ELSE
+  g_boAAxisHomeSignal := g_boFilter_AAxisNegLimit;
+END_IF;
+
+IF g_nMachineType = 1 OR g_nMachineType = 7 THEN
+  IF FeedingAxisHomeSignal = 0 THEN
+    g_boFeedingAxisHomeSignal := g_biFeedingHomeSignal;
+  ELSIF FeedingAxisHomeSignal = 1 THEN
+    g_boFeedingAxisHomeSignal := g_biFeedingPosLimit;
+  ELSE
+    g_boFeedingAxisHomeSignal := g_biFeedingNegLimit;
+  END_IF;
+END_IF; 
+
+IF g_nMachineType = 4 OR g_nMachineType = 9 THEN
+  (*鼎点和博恩德新增轴的回零处理*)
+  IF DDAxisHomeSignal = 0 THEN
+    g_boDDAxisHomeSignal := g_biFeedingHomeSignal;
+  ELSIF DDAxisHomeSignal = 1 THEN
+    g_boDDAxisHomeSignal := g_biDDAxisPosLimit;
+  ELSE
+    g_boDDAxisHomeSignal := g_biDDAxisNegLimit;
+  END_IF;
+END_IF;
+ (*通用轴*)
+(*IF g_nGeneralAxisCount<>0 THEN
+  IF GeneralAxis1HomeSignal = 0 THEN
+    g_boGeneralAxis1HomeSignal := g_biGeneralAxis1HomeSignal;
+  ELSIF GeneralAxis1HomeSignal = 1 THEN
+    g_boGeneralAxis1HomeSignal := g_biGeneral1PosLimit;
+  ELSE
+    g_boGeneralAxis1HomeSignal := g_biGeneral1NegLimit;
+  END_IF;
+
+  IF GeneralAxis2HomeSignal = 0 THEN
+    g_boGeneralAxis2HomeSignal := g_biGeneralAxis2HomeSignal;
+  ELSIF GeneralAxis2HomeSignal = 1 THEN
+    g_boGeneralAxis2HomeSignal := g_biGeneral2PosLimit;
+  ELSE
+    g_boGeneralAxis2HomeSignal := g_biGeneral2NegLimit;
+  END_IF;
+END_IF;*)
+
+IF g_nAntiRejectionFun = 2 THEN
+  (*防甩轴*)
+  IF g_AntiRejection1HomeSignal = 0 THEN
+    g_boAntiRejection1HomeSignal := g_biAntiRejection1HomeSignal;
+  ELSIF g_AntiRejection1HomeSignal = 1 THEN
+    g_boAntiRejection1HomeSignal := g_biAntiRejection1PosLimit;
+  ELSE
+    g_boAntiRejection1HomeSignal := g_biAntiRejection1NegLimit;
+  END_IF;
+END_IF;
+
+
+
+g_nZAxisHomeSignal := ZAxisHomeSignal;
+g_XAxisHomeSignal := XAxisHomeSignal;
+g_YAxisHomeSignal := YAxisHomeSignal;
+g_CNCUAxisHomeSignal := CNCUAxisHomeSignal;
+g_DDAxisHomeSignal := DDAxisHomeSignal;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[回零信号处理（限位回零）]]></xhtml:p>
+  </documentation>
+</pou>

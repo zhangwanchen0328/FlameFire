@@ -1,0 +1,737 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ZAxisFollowControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_fZAxisHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Z轴高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[暂停]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZFollowExecuteM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动开始引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZFollowCloseM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动关闭引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZFollowExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZFollowClose">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动关闭全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fZFollowHeighM">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动高度输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fZFollowHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动高度全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boZFollowDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动完成输出引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZFollowDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动完成全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZFollowIn">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN2"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开随动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZFollowOut">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关随动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_ZReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boZFollowOutDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_diCurrentSpeedX">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[CNC中X轴速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_diCurrentSpeedY">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[CNC中Y轴速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_diCurrentSpeedU">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[CNC中U轴速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_U">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[NC中U2轴结构体]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_Z">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[NC中U2轴结构体]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiZFollowCoord">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[CNC中Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZFollowOutDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZFollowWarning">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动到位超时时间]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bFollowStart">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bFollowStop">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动关闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fFollowHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bFollowDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bFollowClose">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动关闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nFollowState">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fSetHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="FTrigger">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bFollowOutDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dLastCoord">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bLaserOnCornerM2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLaserOutCornerM2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLaserOnPlane">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLaserOnCorner">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dFactorsCornerArray">
+        <type>
+          <derived name="ST_Factors"/>
+        </type>
+      </variable>
+      <variable name="dEllipseFactorsCornerArray">
+        <type>
+          <derived name="ST_Factors"/>
+        </type>
+      </variable>
+      <variable name="dWaistFactorsCornerArray">
+        <type>
+          <derived name="ST_Factors"/>
+        </type>
+      </variable>
+      <variable name="dFactorsPlaneArray">
+        <type>
+          <derived name="ST_Factors"/>
+        </type>
+      </variable>
+      <variable name="Rtrigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtrigger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boPreHeight">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_boAfterHeight">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_nPipeType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_fUWorkCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fPlaneX_Site">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_TechData">
+        <type>
+          <derived name="ST_MULTIL_TECGDATA"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nToolNum">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[图层号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bPlcFollowEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="FALSE"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[监控随动2个全局变量的本地随动开关]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_foXsite">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dCornerHighCompen">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[拐角高度补偿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCalcTemp">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[拐角工件坐标取余]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCalcCornerNeedHighCompen">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[计算得出的拐角高度变化量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*随动控制三种方式：
+1、引脚控制，分为开随动引脚、关随动引脚，两个引脚都检测上升沿；
+2、全局变量控制，分为开随动全局变量、关随动全局变量2个变量，2个变量都监测上升沿；
+3、局部变量控制，分为开随动变量、关随动变量，两个变量都是检测上升沿。*)
+RTrigger1(CLK := g_bZFollowExecuteM OR g_bZFollowExecute OR bFollowStart OR g_bSmoothFollowEnable);
+RTrigger2(CLK := g_bZFollowCloseM OR bFollowStop OR g_bZFollowClose);
+(*进拐角、出拐角上升沿检测*)
+Rtrigger3(CLK := g_bLaserOnCornerM2 OR g_biLaserOnCorner);
+Rtrigger4(CLK := g_bLaserOutCornerM2 OR g_biLaserOutCorner);
+
+nToolNum := g_nToolNum;
+IF Rtrigger3.Q THEN
+  g_bLaserOnCorner := TRUE;
+  g_bLaserOnCornerM2 := FALSE;
+END_IF;
+IF Rtrigger4.Q THEN
+  g_bLaserOnCorner := FALSE;
+  g_bLaserOutCornerM2 := FALSE;
+END_IF;
+
+IF RTrigger1.Q THEN
+  IF Axis_Z.NCTOPLC.AXISSTATE = 2 THEN
+    g_boZFollowDone := FALSE;
+    g_bZFollowDone := FALSE;
+    bFollowDone := FALSE;
+    g_boZFollowOutDone := FALSE;
+    g_bZFollowOutDone := FALSE;
+    bFollowOutDone := FALSE;
+    g_ZFollowOut.Execute := FALSE;
+    g_bOpenFollowMFlag := FALSE;
+    IF g_bZFollowExecuteM THEN
+      nFollowState := 1;
+      g_bOpenFollowMFlag := TRUE;
+      g_bZFollowExecuteM := FALSE;
+    ELSIF g_bZFollowExecute THEN
+      nFollowState := 2;
+      bPlcFollowEnable:=TRUE;
+      g_bZFollowExecute := FALSE;
+    ELSE
+      nFollowState := 1;
+    END_IF;
+    bFollowClose := FALSE;
+  ELSE(*可能会出现在关随动过程中有来了开随动的指令,会卡住程序,因为拿不到随动到位*)
+      nFollowState := 50; 
+  END_IF;
+  IF g_bSmoothFollowEnable THEN
+    g_boZFollowDone := FALSE;
+    g_bZFollowDone := FALSE;
+    bFollowDone := FALSE;
+    nFollowState := 2;
+    bPlcFollowEnable:=TRUE;
+    g_bSmoothFollowEnable := FALSE;
+  END_IF;
+END_IF;
+
+IF RTrigger2.Q THEN
+  g_bZFollowCloseM := FALSE;
+  IF Axis_Z.NCTOPLC.AXISSTATE <> 9 THEN
+    g_boZFollowOutDone := TRUE;
+    g_bZFollowOutDone := TRUE;
+    bFollowOutDone := TRUE;
+    M.ENABLE[157] := 0;
+  ELSE
+    nFollowState := 3;
+    bFollowClose := TRUE;
+    g_boZFollowOutDone := FALSE;
+    g_bZFollowOutDone := FALSE;
+    bFollowOutDone := FALSE;
+    bPlcFollowEnable:=FALSE;
+    g_bSmoothFollowEnable := FALSE;
+  END_IF;
+END_IF;
+IF bFollowClose THEN
+  g_boZFollowDone := FALSE;
+  g_bZFollowDone := FALSE;
+  bFollowDone := FALSE; 
+END_IF;
+
+IF g_bZFollowExecuteM1 THEN
+  g_bZFollowExecuteM1 := FALSE;
+  fSetHeight := g_fZFollowHeighM;
+  IF g_bLaserOnCorner THEN
+    fSetHeight := fSetHeight + g_TechData.multilTechData[nToolNum-1].CornerCompen.dHighCompen;
+  END_IF;
+ELSIF bPlcFollowEnable  THEN
+  fSetHeight := g_fZFollowHeight;
+    (*方管暂时保留原来的高度计算公式，可选择性使用*)
+    IF g_nPipeType = 2 THEN
+      IF g_bRectanglePipeUseHeightCompensation THEN
+        (*新算法*)
+        fSetHeight := FUN_RETURNZPOSITION2(fSetHeight,g_diRotateAxisMachineCoordinate,g_dAaxisSetAngle,g_dAaxisSetHeight);
+        dCornerHighCompen := g_TechData.multilTechData[nToolNum-1].CornerCompen.dHighCompen;
+        dCalcTemp := ABS(FUN_FMOD(g_fUWorkCoordinate,TRUE));
+        dCalcCornerNeedHighCompen := 1.0 - EXPT(dCalcTemp-45.0,2) / EXPT(45.0,2);
+        IF g_bLaserOnCorner THEN
+          fSetHeight := fSetHeight + dCornerHighCompen * dCalcCornerNeedHighCompen;
+        END_IF;
+      ELSE
+        (*旧算法*)
+        IF g_bLaserOnCorner THEN  
+          fSetHeight := fSetHeight * FUN_ReturnZPosition(FUN_FMOD(g_fUWorkCoordinate,TRUE),dFactorsCornerArray);    
+        ELSIF g_bLaserOnPlane THEN
+          fSetHeight := fSetHeight * FUN_ReturnZPosition(g_fPlaneX_Site ,dFactorsPlaneArray);    
+        END_IF;
+        IF g_bLaserOnCorner THEN
+          fSetHeight := fSetHeight + g_TechData.multilTechData[nToolNum-1].CornerCompen.dHighCompen;
+        END_IF;
+      END_IF;
+    END_IF;
+  IF g_nPipeType = 10 OR g_nPipeType = 11 THEN 
+    IF g_bLaserOnCorner THEN  
+      fSetHeight := fSetHeight * FUN_ReturnZPosition(FUN_FMOD(g_fUWorkCoordinate,TRUE),dFactorsCornerArray);    
+    ELSIF g_bLaserOnPlane THEN
+      fSetHeight := fSetHeight * FUN_ReturnZPosition(g_fPlaneX_Site ,dFactorsPlaneArray);    
+    END_IF;
+    IF g_bLaserOnCorner THEN
+      fSetHeight := fSetHeight + g_TechData.multilTechData[nToolNum-1].CornerCompen.dHighCompen;
+    END_IF;
+  END_IF;
+  (*腰管和椭圆管全程使用系数计算的高度*)
+  IF g_nPipeType = 3 THEN 
+    fSetHeight := fSetHeight * FUN_ReturnZPosition(FUN_FMOD1(g_fUWorkCoordinate,g_nPipeType),dWaistFactorsCornerArray);
+  END_IF;
+  IF  g_nPipeType = 4 THEN 
+    fSetHeight := fSetHeight * FUN_ReturnZPosition1(FUN_FMOD1(g_fUWorkCoordinate,3),dEllipseFactorsCornerArray);
+  END_IF;
+  IF g_nPipeType = 12 THEN
+     IF ABS(g_diCurrentSpeedU) > 0.000001 THEN
+       fSetHeight := fSetHeight + g_TechData.multilTechData[nToolNum-1].CornerCompen.dHighCompen;
+     END_IF;
+   END_IF;  
+  (*HMI一键随动不改变随动高度，先做圆管*)
+  IF g_nPipeType = 1 THEN
+    fSetHeight := FUN_RETURNZPOSITION2(fSetHeight,g_diRotateAxisMachineCoordinate,g_dAaxisSetAngle,g_dAaxisSetHeight);
+  END_IF;
+ELSIF bFollowStart THEN
+  fSetHeight := fFollowHeight;
+  IF g_bLaserOnCorner THEN
+    fSetHeight := fSetHeight + g_TechData.multilTechData[nToolNum-1].CornerCompen.dHighCompen;
+  END_IF;
+END_IF;
+(*打印*)
+g_boPreHeight := fSetHeight;
+g_foXsite := g_fPlaneX_Site;
+IF g_bLaserOnCorner  THEN
+  g_boAfterHeight := 200.0;
+ELSIF g_bLaserOnPlane  THEN
+  g_boAfterHeight := 100.0;
+ELSE 
+  g_boAfterHeight := 0.0;
+END_IF;
+  
+g_ZFollowIn.CurHeight := g_fZAxisHeight;
+g_ZFollowIn.SetHeight := fSetHeight; 
+ IF g_bUseNewVelAddModule THEN
+    g_ZFollowIn.Distance := 0.0;
+  ELSE
+    g_ZFollowIn.Distance := g_fiZFollowCoord - dLastCoord;
+    
+  END_IF;
+  
+IF g_bModifyFollowUpSpeed THEN
+   g_ZFollowIn.VELOCITY :=g_dManualFollowUpSpeed;
+ELSE
+   g_ZFollowIn.VELOCITY :=0.0;
+END_IF;
+
+g_foZFollowHeight := g_ZFollowIn.SetHeight;
+g_foZCurHeight := g_ZFollowIn.CurHeight;
+g_foZFollowDistance := g_ZFollowIn.Distance;
+
+CASE nFollowState OF
+  0:
+    nFollowState := 0;
+  1:
+    g_ZFollowIn.Execute := TRUE;
+    IF g_zFollowIn.Done THEN
+      g_boZFollowDone := TRUE;
+      g_bZFollowDone := TRUE;
+      bFollowDone := TRUE;
+      M.ENABLE[156] := 0;(*随动完成到位*)
+    END_IF;
+    IF g_ZFollowIn.Error THEN
+      g_nFollowStateToHmi := g_nFollowState;
+      g_nZErrorIDToHmi := USINT_TO_INT(g_ZFollowIn.ErrorId);
+      IF g_ZFollowIn.ErrorId = 112 THEN
+         g_bZFollowWarning := TRUE;
+      END_IF;
+      g_ZFollowIn.Execute := FALSE;
+      nFollowState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nFollowState := 10;
+    END_IF;
+  2:
+    g_ZFollowIn.Execute := TRUE;
+    g_ZFollowIn.SetHeight := fSetHeight;
+    IF g_zFollowIn.Done THEN
+      g_boZFollowDone := TRUE;
+      g_bZFollowDone := TRUE;
+      bFollowDone := TRUE;
+    END_IF;
+    IF g_ZFollowIn.Error THEN
+      g_nFollowStateToHmi := g_nFollowState;
+      g_nZErrorIDToHmi := USINT_TO_INT(g_ZFollowIn.ErrorId);
+      g_ZFollowIn.Execute := FALSE;
+      nFollowState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nFollowState := 11;
+    END_IF; 
+  3:
+    g_ZFollowOut.Execute := TRUE;
+    g_ZFollowIn.Execute := FALSE;
+    IF g_ZFollowOut.Done OR g_ZFollowOut.Error THEN
+      g_ZFollowOut.Execute := FALSE;
+      g_boZFollowOutDone := TRUE;
+      g_bZFollowOutDone := TRUE;
+      bFollowOutDone := TRUE;
+      M.ENABLE[157] := 0;(*关随动完成*)
+      nFollowState := 0;
+    END_IF;
+  10:
+    IF ABS(g_diCurrentSpeedX) < 0.01 AND ABS(g_diCurrentSpeedY) < 0.01 AND ABS(g_diCurrentSpeedU) < 0.01 AND ABS(Axis_U.NCTOPLC.SETVELO) < 0.01 THEN
+      nFollowState := 20;
+    END_IF;
+  11:
+    IF ABS(g_diCurrentSpeedX) < 0.01 AND ABS(g_diCurrentSpeedY) < 0.01 AND ABS(g_diCurrentSpeedU) < 0.01 AND ABS(Axis_U.NCTOPLC.SETVELO) < 0.01 THEN
+      nFollowState := 21;
+    END_IF;
+  20:
+    g_ZFollowIn.Execute := FALSE;
+    g_ZFollowOut.Execute := TRUE;
+    IF g_bPlcStartBuffer AND g_ZFollowOut.Done AND Axis_Z.NCTOPLC.AXISSTATE = 2 THEN
+      g_ZFollowOut.Execute := FALSE;
+      nFollowState := 1;    
+    END_IF;
+    IF g_ZFollowOut.Error OR g_ZFollowOut.Commandaborted THEN
+      g_ZFollowOut.Execute := FALSE;
+      nFollowState := 0;
+      g_boZFollowDone := FALSE;
+      g_bZFollowDone := FALSE;
+      bFollowDone := FALSE;
+    END_IF;
+  21:
+    g_boZFollowDone := FALSE;
+    g_bZFollowDone := FALSE;
+    bFollowDone := FALSE;
+    g_ZFollowIn.Execute := FALSE;
+    g_ZFollowOut.Execute := TRUE;
+    IF g_ZFollowOut.Done THEN
+      g_ZFollowOut.Execute := FALSE;
+      nFollowState := 0;
+    END_IF;
+    IF g_ZFollowOut.Error OR g_ZFollowOut.Commandaborted THEN
+      g_ZFollowOut.Execute := FALSE;
+      nFollowState := 0;
+    END_IF;
+  50:
+	IF g_ZFollowOut.EXECUTE THEN
+      g_ZFollowOut.EXECUTE := FALSE;
+    END_IF;
+    IF g_ZFollowIn.EXECUTE THEN
+      g_ZFollowIn.EXECUTE := FALSE;
+    END_IF;
+    g_ZMoveStop.Execute := TRUE;
+      IF g_ZMoveStop.Done THEN
+        g_ZMoveStop.Execute := FALSE;
+        g_boZFollowDone := FALSE;
+		g_bZFollowDone := FALSE;
+		bFollowDone := FALSE;
+		g_boZFollowOutDone := FALSE;
+		g_bZFollowOutDone := FALSE;
+		bFollowOutDone := FALSE;
+		g_ZFollowOut.Execute := FALSE;
+		g_bOpenFollowMFlag := FALSE;
+		IF g_bZFollowExecuteM THEN
+		  nFollowState := 1;
+		  g_bOpenFollowMFlag := TRUE;
+          g_bZFollowExecuteM := FALSE;
+		ELSIF g_bZFollowExecute THEN
+		  nFollowState := 2;
+		  bPlcFollowEnable:=TRUE;
+          g_bZFollowExecute := FALSE;
+		ELSE
+		  nFollowState := 1;
+		END_IF;
+		bFollowClose := FALSE;
+      END_IF;
+      IF g_ZMoveStop.CommandAborted OR g_ZMoveStop.Error THEN
+        g_ZMoveStop.Execute := FALSE;
+      END_IF; 
+      
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nFollowState := 0;
+  g_nFollowStateToHmi := 0;
+  g_ZFollowIn.Execute := FALSE;
+  g_ZFollowOut.Execute := FALSE;
+  g_boZFollowDone := FALSE;
+  g_bZFollowDone := FALSE;
+  bFollowDone := FALSE;
+  g_bLaserOnPlane := FALSE;
+  g_bLaserOnCorner := FALSE;
+  bPlcFollowEnable:=FALSE;
+  g_bSmoothFollowEnable := FALSE;
+END_IF;
+
+dLastCoord := g_fiZFollowCoord;
+g_noFollowState_ZAxisFollow := nFollowState;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

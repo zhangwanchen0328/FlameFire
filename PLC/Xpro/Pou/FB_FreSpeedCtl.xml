@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FreSpeedCtl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="bEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dSpeed">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dVarA">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dVarB">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dVarC">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dVarD">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dXActual">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <outputVars>
+      <variable name="dScale">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </outputVars>
+    <localVars>
+      <variable name="i">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dCmdSpeed">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dy">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="idx">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nToolNum">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[nToolNum :=g_nToolNum;
+IF nToolNum <= 0 THEN
+  nToolNum:=1;
+END_IF;
+
+(*是否开启占空比-速度曲线*)
+bEnable := g_TechData.multilTechData[nToolNum-1].POWER_DATA.bOpenFreCtl;
+
+(*获取当前的速度比，也就是当前X轴坐标的位置*)
+dSpeed := g_fiXYCurrentSpeedBuff * 60.0 / 1000.0;
+dCmdSpeed :=g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Speed;
+dXActual := dSpeed / dCmdSpeed *100.0;
+
+
+
+
+IF NOT bEnable THEN(*不开启功率控制的比例计算,默认为1.0*)
+  dScale := 1.0;
+ELSE(*开启功率控制的比例计算*)
+      idx := 5; 
+      FOR i := 0 TO 5 BY 1 DO
+           IF(dXActual >= g_TechData.multilTechData[nToolNum-1].POWER_DATA.dFreXPt[i] AND dXActual <= g_TechData.multilTechData[nToolNum-1].POWER_DATA.dFreXPt[i+1]) THEN
+                idx := i;
+           END_IF;
+      END_FOR;
+      
+      IF idx >= 0 THEN
+          dVarA := g_TechData.multilTechData[nToolNum-1].POWER_DATA.dFreA[idx];
+          dVarB := g_TechData.multilTechData[nToolNum-1].POWER_DATA.dFreB[idx]*(dXActual - g_TechData.multilTechData[nToolNum-1].POWER_DATA.dFreXPt[idx]);
+          dVarC := g_TechData.multilTechData[nToolNum-1].POWER_DATA.dFreC[idx]*(dXActual - g_TechData.multilTechData[nToolNum-1].POWER_DATA.dFreXPt[idx])
+                                                                              *(dXActual - g_TechData.multilTechData[nToolNum-1].POWER_DATA.dFreXPt[idx]);
+          dVarD := g_TechData.multilTechData[nToolNum-1].POWER_DATA.dFreD[idx]*(dXActual - g_TechData.multilTechData[nToolNum-1].POWER_DATA.dFreXPt[idx])
+                                                                              *(dXActual - g_TechData.multilTechData[nToolNum-1].POWER_DATA.dFreXPt[idx])
+                                                                              *(dXActual - g_TechData.multilTechData[nToolNum-1].POWER_DATA.dFreXPt[idx]);
+     
+          dy := dVarA + dVarB + dVarC + dVarD;
+      
+    
+         (*判断计算出的Y轴值是否合理*)
+         IF  dy > g_TechData.multilTechData[nToolNum-1].POWER_DATA.dFreYPt[idx+1] THEN
+            dy := g_TechData.multilTechData[nToolNum-1].POWER_DATA.dFreYPt[idx+1];
+         ELSIF  dy < g_TechData.multilTechData[nToolNum-1].POWER_DATA.dFreYPt[idx] THEN
+            dy := g_TechData.multilTechData[nToolNum-1].POWER_DATA.dFreYPt[idx];
+         END_IF;
+      
+        (*转化成百分比*)
+        dScale := dy / 100.0;
+      END_IF;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

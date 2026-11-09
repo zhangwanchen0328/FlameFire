@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DustAxisJog" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="D_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="DustAxisJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bDustAxisForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustAxisBackward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFast">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAntiRejection3Forward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAntiRejection3Backward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF bFast THEN
+  DustAxisJog.Mode := 1;
+ELSE
+  DustAxisJog.Mode := 0;
+END_IF;
+
+DustAxisJog.JogForward := bDustAxisForward;
+DustAxisJog.JogBackwards := bDustAxisBackward;
+
+  (*防甩轴3=抽尘轴2*)
+IF bFast THEN
+  g_AntiRejection3Jog.Mode := 1;
+ELSE
+  g_AntiRejection3Jog.Mode := 0;
+END_IF;
+
+  g_AntiRejection3Jog.JogForward := bAntiRejection3Forward;
+  g_AntiRejection3Jog.JogBackwards := bAntiRejection3Backward;
+
+
+
+IF g_bPlcResetBuffer THEN
+  bDustAxisForward := FALSE;
+  bDustAxisBackward := FALSE;
+  bAntiRejection3Forward := FALSE;
+  bAntiRejection3Backward := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_RealTimeCalibrate" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_tringRealTimeCaliStart">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[实时标定开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R_tringRealTimeCaliStop">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[实时标定关闭’]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_RealTimeCalibrate">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[实时标定定时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nRealTimeState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[实时标定状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Ton_RealTimeCalibrate();
+g_ZAxisRealTimeCalibrate.ENABLE := g_bRealTimeCalibrate;
+R_tringRealTimeCaliStart(CLk := g_bProcessStartForRealTimeCalibrate);
+IF R_tringRealTimeCaliStart.Q AND g_bRealTimeCalibrate THEN
+  Ton_RealTimeCalibrate.IN := FALSE;
+  nRealTimeState := 5;
+  g_bProcessStartForRealTimeCalibrate := FALSE;
+END_IF;
+
+R_tringRealTimeCaliStop(CLK := g_bProcessEndForRealTimeCalibrate);
+IF R_tringRealTimeCaliStop.Q THEN
+  Ton_RealTimeCalibrate.IN := FALSE;
+  g_bRealTimeCAlibrateStarting := FALSE;
+  g_bProcessEndForRealTimeCalibrate := FALSE;
+  nRealTimeState := 0;
+END_IF;
+
+CASE nRealTimeState OF 
+  0:
+    nRealTimeState := 0;
+  5:
+    Ton_RealTimeCalibrate.PT := LREAL_TO_TIME(g_dRealTimeCalibration);  
+    Ton_RealTimeCalibrate.IN := TRUE;
+    IF Ton_RealTimeCalibrate.Q THEN
+      g_bRealTimeCAlibrateStarting := TRUE;
+      Ton_RealTimeCalibrate.IN := FALSE;
+      nRealTimeState := 10;
+    END_IF;
+  10:
+    IF NOT g_bRealTimeCAlibrateStarting THEN
+      nRealTimeState := 5;
+    END_IF;
+END_CASE;
+IF g_bPlcResetBuffer THEN
+  g_bProcessStartForRealTimeCalibrate := FALSE;
+  g_bProcessEndForRealTimeCalibrate := FALSE;
+  nRealTimeState := 0;
+  Ton_RealTimeCalibrate.IN := FALSE;
+END_IF;
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

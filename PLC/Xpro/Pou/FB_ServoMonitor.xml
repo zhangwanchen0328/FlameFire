@@ -1,0 +1,420 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ServoMonitor" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_niDriverError0">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="g_niDriverError1">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="g_niDriverError2">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="g_niDriverError3">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="g_niDriverError4">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="g_niDriverError5">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="g_niDriverError6">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="g_niDriverError7">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="g_niDriverError8">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="g_niDriverError9">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="g_nDriverBrand">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器品牌，由引擎传值 0 高创 1 台达 2 松下 3 松下 4 汇川 5 施耐德 6欧姆龙7三洋]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nServoError0">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传递给engine 第一个servo错误id]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nServoError1">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传递给engine 第一个servo错误id]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nServoError2">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传递给engine 第一个servo错误id]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nServoError3">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传递给engine 第一个servo错误id]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nServoError4">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传递给engine 第一个servo错误id]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nServoError5">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传递给engine 第一个servo错误id]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nServoError6">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传递给engine 第一个servo错误id]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nServoError7">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传递给engine 第一个servo错误id]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nServoError8">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传递给engine 第一个servo错误id]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nServoError9">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[传递给engine 第一个servo错误id]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nAxisNumber">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[用于遍历10个驱动器]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fiDriverVelcity0">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverVelcity1">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverVelcity2">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverVelcity3">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverVelcity4">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverVelcity5">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverVelcity6">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverVelcity7">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverVelcity8">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverVelcity9">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoVelcity0">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoVelcity1">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoVelcity2">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoVelcity3">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoVelcity4">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoVelcity5">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoVelcity6">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoVelcity7">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoVelcity8">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoVelcity9">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverTorque0">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverTorque1">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverTorque2">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverTorque3">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverTorque4">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverTorque5">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverTorque6">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverTorque7">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverTorque8">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fiDriverTorque9">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoTorque0">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoTorque1">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoTorque2">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoTorque3">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoTorque4">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoTorque5">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoTorque6">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoTorque7">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoTorque8">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+      <variable name="g_fServoTorque9">
+        <type>
+          <REAL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*默认为10个驱动器，监控它们的错误id,扭力值，速度反馈值*)
+CASE g_nDriverBrand OF
+  0:
+    FOR nAxisNumber := 0 TO 9 BY 1 DO
+       CASE nAxisNumber OF
+        0:
+           g_nServoError0   := g_niDriverError0;
+           g_fServoTorque0  := g_fiDriverTorque0;
+           g_fServoVelcity0 := g_fiDriverVelcity0;
+        1:
+           g_nServoError1   := g_niDriverError1;
+           g_fServoTorque1  := g_fiDriverTorque1;
+           g_fServoVelcity1 := g_fiDriverVelcity1;
+        2:
+           g_nServoError2   := g_niDriverError2;
+           g_fServoTorque2  := g_fiDriverTorque2;
+           g_fServoVelcity2 := g_fiDriverVelcity2;
+        3:
+           g_nServoError3   := g_niDriverError3;
+           g_fServoTorque3  := g_fiDriverTorque3;
+           g_fServoVelcity3 := g_fiDriverVelcity3;
+        4:
+           g_nServoError4   := g_niDriverError4;
+           g_fServoTorque4  := g_fiDriverTorque4;
+           g_fServoVelcity5 := g_fiDriverVelcity4;
+        5:
+           g_nServoError5   := g_niDriverError5;
+           g_fServoTorque5  := g_fiDriverTorque5;
+           g_fServoVelcity5 := g_fiDriverVelcity5;
+        6:
+           g_nServoError6   := g_niDriverError6;
+           g_fServoTorque6  := g_fiDriverTorque6;
+           g_fServoVelcity6 := g_fiDriverVelcity6;
+        7:
+           g_nServoError7   := g_niDriverError7;
+           g_fServoTorque7  := g_fiDriverTorque7;
+           g_fServoVelcity7 := g_fiDriverVelcity7;
+        8:
+           g_nServoError8   := g_niDriverError8;
+           g_fServoTorque8  := g_fiDriverTorque8;
+           g_fServoVelcity8 := g_fiDriverVelcity8;
+        9:
+           g_nServoError9   := g_niDriverError9;
+           g_fServoTorque9  := g_fiDriverTorque9;
+           g_fServoVelcity9 := g_fiDriverVelcity9;
+      END_CASE;
+    END_FOR;
+END_CASE;
+
+
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[监控驱动器模块]]></xhtml:p>
+  </documentation>
+</pou>

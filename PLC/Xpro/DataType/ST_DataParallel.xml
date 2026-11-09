@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ST_DataParallel">
+  <baseType>
+    <struct>
+      <variable name="TriggerFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="FinishFlag">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="ChangeFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="P">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Q">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="I">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="J">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="K">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

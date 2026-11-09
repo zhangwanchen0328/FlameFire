@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_VESetValue" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Channel">
+        <type>
+          <derived name="XCNC_CHAN_REF"/>
+        </type>
+      </variable>
+      <variable name="nIndex">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dAvoidAxisCurrentPoint">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FOR nIndex := 0 TO 95 BY 1 DO
+  XCNC_SETLREALVALUE(Channel,nIndex,TRUE,BOOL_TO_LREAL(BoardInPutArray.BoolArr[DINT_TO_INT(nIndex)]));
+END_FOR;
+XCNC_SETLREALVALUE(Channel,96,TRUE,BOOL_TO_LREAL(g_bIsProofingMode));
+XCNC_SETLREALVALUE(Channel,97,TRUE,BOOL_TO_LREAL(g_bShortPartsAllowAvoidFlag));
+XCNC_SETLREALVALUE(Channel,98,TRUE, g_diXMachineCoordinate);
+XCNC_SETLREALVALUE(Channel,99,TRUE, g_diUMachineCoordinate);
+XCNC_SETLREALVALUE(Channel,100,TRUE, g_dGeneral1Coordinate);
+XCNC_SETLREALVALUE(Channel,101,TRUE, g_dGeneral2Coordinate);
+XCNC_SETLREALVALUE(Channel,102,TRUE, g_DDAxisCoordinate);
+XCNC_SETLREALVALUE(Channel,103,TRUE, g_dYStartCutPosition);
+XCNC_SETLREALVALUE(Channel,104,TRUE, BOOL_TO_LREAL(g_bAvoidResetIsMoveXAxis));(*避让归位:只判断后两种方式*)
+XCNC_SETLREALVALUE(Channel,105,TRUE, g_dCurrentCutPartLength);
+XCNC_SETLREALVALUE(Channel,106,TRUE, BOOL_TO_LREAL(g_bAntiRejection6AbsDone));(*横梁移动避让轴绝对运动到位*)
+XCNC_SETLREALVALUE(Channel,107,TRUE, BOOL_TO_LREAL(g_bM329AutoTrrigerToBreakMode));   (*M329触发零尾料轴的Y置零点*)
+XCNC_SETLREALVALUE(Channel,108,TRUE, BOOL_TO_LREAL(g_bAntiRejection5AbsDone));(*中卡避让轴绝对运动到位*)
+XCNC_SETLREALVALUE(Channel,109,TRUE, g_dTotalFeedPipeLengthSetValue);(*上料参数中设置的管长*)
+XCNC_SETLREALVALUE(Channel,110,TRUE, g_dAntiRejection5Coordinate);(*中卡避让轴机械坐标*)
+XCNC_SETLREALVALUE(Channel,111,TRUE, g_fAvoidCoordY);(*卡盘避让极限坐标*)
+
+
+IF g_bAvoidEnable THEN
+  IF g_nAvoidType = 2 THEN
+    dAvoidAxisCurrentPoint := g_dAntiRejection5Coordinate;
+  ELSIF g_nAvoidType = 3 THEN
+    dAvoidAxisCurrentPoint := g_dAntiRejection6Coordinate;
+  END_IF;
+END_IF; 
+XCNC_SETLREALVALUE(Channel,112,TRUE, dAvoidAxisCurrentPoint);(*统称避让轴坐标*)
+XCNC_SETLREALVALUE(Channel,113,TRUE, g_dTailMaterialLength);(*尾料长度*)
+XCNC_SETLREALVALUE(Channel,114,TRUE, BOOL_TO_LREAL(g_bIsFristCycle));(*首次循环加工标志*)
+
+XCNC_SETLREALVALUE(Channel,115,TRUE, BOOL_TO_LREAL(g_bBackCardIsJiaJin));(*U1夹持状态:0 松开 1 夹紧*)
+XCNC_SETLREALVALUE(Channel,116,TRUE, BOOL_TO_LREAL(g_bFrontCardIsJiaJin));(*U2夹持状态:0 松开 1 夹紧*)
+(*117-212 输出口有效判断*)
+FOR nIndex := 117 TO 212 BY 1 DO
+  XCNC_SETLREALVALUE(Channel,nIndex,TRUE,BOOL_TO_LREAL(BoardOutPutArray.BoolArr[DINT_TO_INT(nIndex-117)]));
+END_FOR;
+XCNC_SETLREALVALUE(Channel,213,TRUE, BOOL_TO_LREAL(g_bDualStation1IsCuttingStatus));
+XCNC_SETLREALVALUE(Channel,214,TRUE, BOOL_TO_LREAL(g_bDualStation2IsCuttingStatus));
+XCNC_SETLREALVALUE(Channel,215,TRUE, g_dBeamCenterPos);
+XCNC_SETLREALVALUE(Channel,216,TRUE, BOOL_TO_LREAL(g_bDualStation1ExternalSignalTriggered));
+XCNC_SETLREALVALUE(Channel,217,TRUE, BOOL_TO_LREAL(g_bDualStation2ExternalSignalTriggered));
+XCNC_SETLREALVALUE(Channel,218,TRUE, BOOL_TO_LREAL(g_bIsFullTravelCutModeNeedChange));(*全行程切换模式*)
+XCNC_SETLREALVALUE(Channel,219,TRUE, g_dAvoidFarthestPos);(*全行程切割轮廓的最远点*)
+XCNC_SETLREALVALUE(Channel,220,TRUE, g_dFullTravelNodePartYCoord);(*全行程切割记录的零件开始坐标*)
+XCNC_SETLREALVALUE(Channel,221,TRUE, BOOL_TO_LREAL(g_bIsFullTravelCutModeChangeDone));
+XCNC_SETLREALVALUE(Channel,222,TRUE, BOOL_TO_LREAL(g_bBeamAvoidAxisNeedToChangeZeroTailMode));(*横梁零尾料模式切割开始前标记是否会进零尾料模式*)
+XCNC_SETLREALVALUE(Channel,223,TRUE, g_dProcessStartYMachineCoord);(*切割开始时的Y轴坐标*)
+XCNC_SETLREALVALUE(Channel,224,TRUE, BOOL_TO_LREAL(g_bShortPartNotCrossSpanCut));(*短零件不执行避让只打开中卡*)
+XCNC_SETLREALVALUE(Channel,225,TRUE, BOOL_TO_LREAL(g_bModbusSignal1));(*Modbus信号1*)
+XCNC_SETLREALVALUE(Channel,226,TRUE, BOOL_TO_LREAL(g_bModbusSignal2));(*Modbus信号2*)
+XCNC_SETLREALVALUE(Channel,227,TRUE, BOOL_TO_LREAL(g_bModbusSignal3));(*Modbus信号3*)
+XCNC_SETLREALVALUE(Channel,228,TRUE, BOOL_TO_LREAL(g_bModbusSignal4));(*Modbus信号4*)
+XCNC_SETLREALVALUE(Channel,229,TRUE, BOOL_TO_LREAL(g_bModbusSignal5));(*Modbus信号5*)
+XCNC_SETLREALVALUE(Channel,230,TRUE, BOOL_TO_LREAL(g_bModbusSignal6));(*Modbus信号6*)
+XCNC_SETLREALVALUE(Channel,231,TRUE, BOOL_TO_LREAL(g_bModbusSignal7));(*Modbus信号7*)
+XCNC_SETLREALVALUE(Channel,232,TRUE, BOOL_TO_LREAL(g_bModbusSignal8));(*Modbus信号8*)
+XCNC_SETLREALVALUE(Channel,233,TRUE, BOOL_TO_LREAL(g_bModbusSignal9));(*Modbus信号9*)
+XCNC_SETLREALVALUE(Channel,234,TRUE, BOOL_TO_LREAL(g_bModbusSignal10));(*Modbus信号10*)
+XCNC_SETLREALVALUE(Channel,235,TRUE, DINT_TO_LREAL(g_nNeedRotatoAngle));(*焊缝识别相机识别内壁结束后需要旋转的角度*)
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

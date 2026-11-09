@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AvoidCylAndAxisListen" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBAvoidCylidner">
+        <type>
+          <derived name="FB_AvoidCylinderControl"/>
+        </type>
+      </variable>
+      <variable name="FBAvoidAxis">
+        <type>
+          <derived name="FB_AvoidAxisControl"/>
+        </type>
+      </variable>
+      <variable name="FBAvoidAxisCheckMode">
+        <type>
+          <derived name="FB_CheckAvoidMode"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+IF g_bIsConfigAvoidAxis THEN
+   FBAvoidAxis();
+END_IF;
+
+IF g_bIsConfigAvoidCylinder THEN
+  FBAvoidCylidner(); (*避让特有的气缸*)
+END_IF;
+
+FBAvoidAxisCheckMode();
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

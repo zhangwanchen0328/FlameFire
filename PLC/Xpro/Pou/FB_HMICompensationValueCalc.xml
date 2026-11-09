@@ -1,0 +1,688 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_HMICompensationValueCalc" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="bPosCheckStart">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[正向出边检测]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bNegCheckStart">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[负向出边检测]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bHMIExecuteFinished">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检测完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bHMIExecuteStart">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检测开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fParalleBorderHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检测阶跃]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fParalleZFollowHeight">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[出边高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dM312Pvalue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[出边高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="XoverShootPosA">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单面正向出边记录X轴坐标A]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="XoverShootPosB">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单面正向出边记录X轴坐标B]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="XoverShootPosC">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单面正向出边记录X轴坐标C]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="XoverShootPosD">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单面正向出边记录X轴坐标D]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="XoverShootNegA">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单面负向出边记录X轴坐标A]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="XoverShootNegB">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单面负向出边记录X轴坐标B]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="XoverShootNegC">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单面负向出边记录X轴坐标C]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="XoverShootNegD">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单面负向出边记录X轴坐标D]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_Pos">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_Neg">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_Finished">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_Start">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nCheckState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="Rtring_ClearSingleSideSurfaceFlag">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[除了单面寻中外的其他分中方式需要清除单面寻中记录的执行面标志]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bClearSingleSideSurfaceFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bFirstPointCheck">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第一个点开始记录Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFirstPointZAxisCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第一个点记录Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_FirstPointCheck">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第一个点记录Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSecondPointCheck">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第二个点开始记录Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSecondPointZAxisCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第二个点记录Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_SecondPointCheck">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第二个点记录Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bThirdPointCheck">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第三个点开始记录Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dThirdPointZAxisCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第三个点记录Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_ThirdPointCheck">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第三个点记录Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bFourthPointCheck">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第四个点开始记录Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFourthPointZAxisCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第四个点记录Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_FourthPointCheck">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[第四个点记录Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSquareLenght">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dSquareWidth">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCompensateA">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCompensateB">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dUWordCoord">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bCheckEdgeDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCheckEdgeAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Rtring_Alarm">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_GetFirstPoint">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[五点寻中获取第一个点的X轴和Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGetFirstPoint">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[五点寻中获取第一个点的X轴和Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_GetSecondPoint">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[五点寻中获取第二个点的X轴和Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGetSecondPoint">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[五点寻中获取第二个点的X轴和Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fMarkZPoint2Value">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fMarkZPoint1Value">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fMarkXPoint2Value">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fMarkXPoint1Value">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fAngle">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[水平角度偏差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_GetAngleAgain">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bGetAngleAgain">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring_Alarm(CLK := bCheckEdgeAlarm);
+IF Rtring_Alarm.Q THEN
+  g_Alarm.alarmArray[552] := 1269;
+  bCheckEdgeAlarm := FALSE;
+END_IF;
+
+
+
+dUWordCoord := FUN_FMOD(g_fUWorkCoordinate,FALSE);
+IF dUWordCoord < 0.0 THEN
+  dUWordCoord := dUWordCoord + 360.0;
+END_IF;
+
+Rtring_ClearSingleSideSurfaceFlag(CLK := bClearSingleSideSurfaceFlag);
+IF Rtring_ClearSingleSideSurfaceFlag.Q THEN
+  nCheckState := 500;
+  bClearSingleSideSurfaceFlag := FALSE;
+END_IF;
+
+
+
+Rtring_Start(bHMIExecuteStart);
+
+(*寻中开始记录下M312执行的分中类型*)
+IF Rtring_Start.Q THEN
+ dM312Pvalue := M.PARAMETER_P[312];
+ nIndex := 0;
+ bHMIExecuteStart := FALSE;
+ (*对取余后的坐标值进行判断*)
+  IF (dUWordCoord >=0.0 AND dUWordCoord <= 0.5) OR (dUWordCoord >=359.5 AND dUWordCoord <= 360.5) THEN
+    g_noCurrentAngleOnSurface := 0.0;
+  ELSIF  (dUWordCoord >=89.5 AND dUWordCoord <= 90.5) THEN
+    g_noCurrentAngleOnSurface := 90.0;
+  ELSIF  (dUWordCoord >=179.5 AND dUWordCoord <= 180.5) THEN
+    g_noCurrentAngleOnSurface := 180.0; 
+  ELSIF  (dUWordCoord >=269.5 AND dUWordCoord <= 270.5) THEN
+    g_noCurrentAngleOnSurface := 270.0;
+  END_IF;
+  dFirstPointZAxisCoordinate := 0.0;
+  dSecondPointZAxisCoordinate := 0.0;
+  dThirdPointZAxisCoordinate := 0.0;
+  dFourthPointZAxisCoordinate := 0.0;
+  XoverShootPosA := 0.0;
+  XoverShootPosB := 0.0;
+  XoverShootPosC := 0.0;
+  XoverShootPosD := 0.0;
+  XoverShootNegA := 0.0;
+  XoverShootNegB := 0.0;
+  XoverShootNegC := 0.0;
+  XoverShootNegD := 0.0;
+END_IF;
+Rtring_GetAngleAgain(CLK :=bGetAngleAgain);
+IF Rtring_GetAngleAgain.Q THEN
+  IF (dUWordCoord >=0.0 AND dUWordCoord <= 0.5) OR (dUWordCoord >=359.5 AND dUWordCoord <= 360.5) THEN
+    g_noCurrentAngleOnSurface := 0.0;
+  ELSIF  (dUWordCoord >=89.5 AND dUWordCoord <= 90.5) THEN
+    g_noCurrentAngleOnSurface := 90.0;
+  ELSIF  (dUWordCoord >=179.5 AND dUWordCoord <= 180.5) THEN
+    g_noCurrentAngleOnSurface := 180.0; 
+  ELSIF  (dUWordCoord >=269.5 AND dUWordCoord <= 270.5) THEN
+    g_noCurrentAngleOnSurface := 270.0;
+  END_IF;
+  bGetAngleAgain := FALSE;
+END_IF;
+
+
+Rtring_Finished(bHMIExecuteFinished);
+IF Rtring_Finished.Q THEN
+  IF dM312Pvalue = 1.0 THEN(*单面补偿*)
+    g_dSingleSideCompensation := (XoverShootPosA+XoverShootNegA)/2.0 - g_dBeamCenterPos;
+    IF g_noCurrentAngleOnSurface = 0.0 THEN
+      g_dSingleSideAngleAValue :=g_dSingleSideCompensation;
+      g_bExecuteSingeSideOnAFace := TRUE;
+    ELSIF g_noCurrentAngleOnSurface = 90.0 THEN
+      g_dSingleSideAngleBValue :=g_dSingleSideCompensation;
+      g_bExecuteSingeSideOnBFace := TRUE;
+    ELSIF g_noCurrentAngleOnSurface = 180.0 THEN
+      g_dSingleSideAngleCValue :=g_dSingleSideCompensation;
+      g_bExecuteSingeSideOnCFace := TRUE;
+    ELSIF g_noCurrentAngleOnSurface = 270.0 THEN
+      g_dSingleSideAngleDValue :=g_dSingleSideCompensation;
+      g_bExecuteSingeSideOnDFace := TRUE;
+    END_IF;
+    g_dInformHmiUpdateValue := 3.0;(*计算出补偿值。通知引擎更新数据*)
+    IF ABS(g_dSingleSideCompensation)>g_dCompensationThreshold THEN
+      g_bExcessiveDeviationOfCentringCompensationAlarm := TRUE;
+    END_IF;
+  ELSIF dM312Pvalue = 2.0 THEN(*两面补偿*)
+    IF g_nPipeType = 10 THEN(*工字钢两面只对0°面、180°面生效  其他管型只对180°、270°面生效*)
+      IF  g_noCurrentAngleOnSurface = 0.0 THEN
+        g_dTwoSidesCenterCompensationA := (XoverShootPosA+XoverShootNegA)/2.0 - g_dBeamCenterPos;
+        g_dTwoSidesCenterCompensationB := (XoverShootPosB+XoverShootNegB)/2.0 - g_dBeamCenterPos;
+      ELSIF  g_noCurrentAngleOnSurface = 180.0 THEN
+        g_dTwoSidesCenterCompensationB := (XoverShootPosA+XoverShootNegA)/2.0 - g_dBeamCenterPos;
+        g_dTwoSidesCenterCompensationA := (XoverShootPosB+XoverShootNegB)/2.0 - g_dBeamCenterPos;
+      END_IF;  
+    ELSE
+      IF  g_noCurrentAngleOnSurface = 0.0 THEN
+        g_dTwoSidesCenterCompensationB := (XoverShootPosA+XoverShootNegA)/2.0 - g_dBeamCenterPos;
+        g_dTwoSidesCenterCompensationA := (XoverShootPosB+XoverShootNegB)/2.0 - g_dBeamCenterPos;
+      ELSIF  g_noCurrentAngleOnSurface = 180.0 THEN
+        g_dTwoSidesCenterCompensationA := (XoverShootPosA+XoverShootNegA)/2.0 - g_dBeamCenterPos;
+        g_dTwoSidesCenterCompensationB := (XoverShootPosB+XoverShootNegB)/2.0 - g_dBeamCenterPos;
+      ELSIF  g_noCurrentAngleOnSurface = 270.0 THEN
+        g_dTwoSidesCenterCompensationB := (XoverShootPosA+XoverShootNegA)/2.0 - g_dBeamCenterPos;
+        g_dTwoSidesCenterCompensationA := (XoverShootPosB+XoverShootNegB)/2.0 - g_dBeamCenterPos;
+      END_IF; 
+    END_IF;    
+    g_dInformHmiUpdateValue := 4.0;(*计算出补偿值。通知引擎更新数据*)
+    IF ABS(g_dTwoSidesCenterCompensationA)>g_dCompensationThreshold OR ABS(g_dTwoSidesCenterCompensationB)>g_dCompensationThreshold THEN
+      g_bExcessiveDeviationOfCentringCompensationAlarm := TRUE;
+    END_IF;
+  ELSIF dM312Pvalue = 3.0 THEN(*两点补偿*)
+     IF g_nPipeType = 2 THEN
+      dSquareLenght:= g_dSquareWidth;
+      dSquareWidth:=g_dSquareLenght;
+    ELSIF g_nPipeType = 11 THEN
+      dSquareLenght:= g_dSquareLenght;
+      dSquareWidth:=g_dSquareWidth;
+    ELSIF g_nPipeType = 10 THEN
+      dSquareLenght:= g_dSquareLenght;
+      dSquareWidth:=g_dSquareLenght;
+    END_IF;
+    (*实际值：Z轴实际坐标-随动高度,默认为1,两面分中时随动高度改变此处需要修改*)
+    (*理论值：卡盘中心+高度或宽度的1/2*)
+    dCompensateA:= (dSecondPointZAxisCoordinate-1.0) - (g_dChuckCenterInZpos+ (dSquareWidth/2.0));(*实际值 - 理论值*)
+    dCompensateB:= (dFirstPointZAxisCoordinate-1.0) - (g_dChuckCenterInZpos+ (dSquareLenght/2.0));(*实际值 - 理论值*)
+  
+    (*拿到的补偿值默认取反*)
+    dCompensateA := dCompensateA*(-1.0);
+    dCompensateB := dCompensateB*(-1.0);
+    IF g_bTwoSideCenterCompensationInversion THEN
+      dCompensateB := dCompensateB*(-1.0);
+    END_IF;
+    g_dTwoSideCompensationA:=dCompensateA;
+    g_dTwoSideCompensationB:=dCompensateB;
+    g_dInformHmiUpdateValue := 2.0;(*计算出补偿值。通知引擎更新数据*)
+    IF ABS(dCompensateA)>g_dCompensationThreshold OR ABS(dCompensateB) > g_dCompensationThreshold THEN
+      g_bExcessiveDeviationOfCentringCompensationAlarm := TRUE;
+    END_IF;
+  ELSIF dM312Pvalue = 4.0 THEN(*四面补偿*)
+    g_dFourSidesCenterCompensationA := (XoverShootPosA+XoverShootNegA)/2.0 - g_dBeamCenterPos;
+    g_dFourSidesCenterCompensationB := (XoverShootPosB+XoverShootNegB)/2.0 - g_dBeamCenterPos;
+    g_dFourSidesCenterCompensationC := (XoverShootPosC+XoverShootNegC)/2.0 - g_dBeamCenterPos;
+    g_dFourSidesCenterCompensationD := (XoverShootPosD+XoverShootNegD)/2.0 - g_dBeamCenterPos;
+    g_dInformHmiUpdateValue := 5.0;
+    IF ABS(g_dFourSidesCenterCompensationA)>g_dCompensationThreshold OR ABS(g_dFourSidesCenterCompensationB) > g_dCompensationThreshold 
+      OR ABS(g_dFourSidesCenterCompensationC)>g_dCompensationThreshold OR ABS(g_dFourSidesCenterCompensationD) > g_dCompensationThreshold THEN
+      g_bExcessiveDeviationOfCentringCompensationAlarm := TRUE;
+    END_IF;
+  ELSIF dM312Pvalue = 5.0 THEN(*四点补偿*)
+    dCompensateA := (dThirdPointZAxisCoordinate - dFirstPointZAxisCoordinate)/2.0;
+    dCompensateB := (dFourthPointZAxisCoordinate - dSecondPointZAxisCoordinate)/2.0;
+  
+    (*拿到的补偿值默认取反*)
+    dCompensateA := dCompensateA*(-1.0);
+    dCompensateB := dCompensateB*(-1.0);
+    
+    g_dFourSideCompensationA := dCompensateB;
+    g_dFourSideCompensationC := dCompensateB*(-1.0);
+    g_dFourSideCompensationB := dCompensateA*(-1.0); 
+    g_dFourSideCompensationD := dCompensateA;
+    g_dInformHmiUpdateValue := 1.0;
+    IF ABS(dCompensateA)>g_dCompensationThreshold OR ABS(dCompensateB) > g_dCompensationThreshold THEN
+      g_bExcessiveDeviationOfCentringCompensationAlarm := TRUE;
+    END_IF;
+  ELSIF dM312Pvalue = 6.0 THEN(*五点补偿*)
+    dCompensateA := (dThirdPointZAxisCoordinate - dFirstPointZAxisCoordinate)/2.0;
+    dCompensateB := (dFourthPointZAxisCoordinate - dSecondPointZAxisCoordinate)/2.0;
+    (*拿到的补偿值默认取反*)
+    dCompensateA := dCompensateA*(-1.0);
+    dCompensateB := dCompensateB*(-1.0);
+    g_dLevelAndSideCenterCompensationA := dCompensateB;
+    g_dLevelAndSideCenterCompensationC := dCompensateB*(-1.0);
+    g_dLevelAndSideCenterCompensationB := dCompensateA*(-1.0); 
+    g_dLevelAndSideCenterCompensationD := dCompensateA;
+    g_dInformHmiUpdateValue := 7.0;
+    IF ABS(dCompensateA)>g_dCompensationThreshold OR ABS(dCompensateB) > g_dCompensationThreshold THEN
+      g_bExcessiveDeviationOfCentringCompensationAlarm := TRUE;
+    END_IF;
+  ELSIF dM312Pvalue = 7.0 THEN(*三面分中 只对0、90、270°面生效*)
+    g_dThreeSidesCenterCompensationA := (XoverShootPosA+XoverShootNegA)/2.0 - g_dBeamCenterPos;
+    g_dThreeSidesCenterCompensationB := (XoverShootPosB+XoverShootNegB)/2.0 - g_dBeamCenterPos;
+    g_dThreeSidesCenterCompensationD := (XoverShootPosC+XoverShootNegC)/2.0 - g_dBeamCenterPos;
+    g_dInformHmiUpdateValue := 8.0;
+    IF ABS(g_dThreeSidesCenterCompensationA)>g_dCompensationThreshold OR ABS(g_dThreeSidesCenterCompensationB) > g_dCompensationThreshold 
+      OR ABS(g_dThreeSidesCenterCompensationD)>g_dCompensationThreshold  THEN
+      g_bExcessiveDeviationOfCentringCompensationAlarm := TRUE;
+    END_IF;
+  END_IF;
+  bHMIExecuteFinished := FALSE;
+END_IF;
+
+Rtring_Pos(CLK := bPosCheckStart);
+Rtring_Neg(CLK := bNegCheckStart);
+(*单面正向出边检测*)
+IF Rtring_Pos.Q THEN
+  bPosCheckStart := FALSE;
+  nCheckState := 10;
+  nIndex := nIndex+1;
+  bCheckEdgeDone := FALSE;
+END_IF;
+(*单面负向出边检测*)
+IF Rtring_Neg.Q THEN
+  bNegCheckStart := FALSE;
+  nCheckState := 20;
+  bCheckEdgeDone := FALSE;
+END_IF;
+
+Rtring_FirstPointCheck(CLK := bFirstPointCheck);
+IF Rtring_FirstPointCheck.Q THEN
+  bFirstPointCheck := FALSE;
+  nCheckState := 100;
+  nIndex := nIndex+1;
+END_IF;
+Rtring_SecondPointCheck(CLK := bSecondPointCheck);
+IF Rtring_SecondPointCheck.Q THEN
+  bSecondPointCheck := FALSE;
+  nCheckState := 100;
+  nIndex := nIndex+1;
+END_IF;
+Rtring_ThirdPointCheck(CLK := bThirdPointCheck);
+IF Rtring_ThirdPointCheck.Q THEN
+  bThirdPointCheck := FALSE;
+  nCheckState := 100;
+  nIndex := nIndex+1;
+END_IF;
+Rtring_FourthPointCheck(CLK := bFourthPointCheck);
+IF Rtring_FourthPointCheck.Q THEN
+  bFourthPointCheck := FALSE;
+  nCheckState := 100;
+  nIndex := nIndex+1;
+END_IF;
+
+Rtring_GetFirstPoint(CLK := bGetFirstPoint);
+IF Rtring_GetFirstPoint.Q THEN
+  fMarkXPoint1Value := g_diXMachineCoordinate;      
+  fMarkZPoint1Value := g_fZCoordinate; 
+  bGetFirstPoint := FALSE;
+END_IF;    
+  Rtring_GetSecondPoint(CLK := bGetSecondPoint);
+IF Rtring_GetFirstPoint.Q THEN
+  fMarkXPoint2Value := g_diXMachineCoordinate;      
+  fMarkZPoint2Value := g_fZCoordinate;
+  bGetSecondPoint := FALSE;
+  nCheckState := 200;
+END_IF;         
+                
+
+
+CASE nCheckState OF
+  0:
+    nCheckState := 0;
+  10:
+    IF (g_nAutoParalleType=0 AND g_fZAxisHeight > (fParalleBorderHeight+fParalleZFollowHeight) ) OR (g_nAutoParalleType=1 AND g_bAutoParalleInfraedSensor=FALSE) THEN
+      bCheckEdgeDone := TRUE;
+      g_boCNCMoveDisable := TRUE;
+      IF nIndex = 1 THEN
+        XoverShootPosA := g_diXMachineCoordinate;(*探到边纪录下当前X轴坐标*)
+      ELSIF nIndex = 2 THEN
+        XoverShootPosB := g_diXMachineCoordinate;(*探到边纪录下当前X轴坐标*)
+      ELSIF nIndex = 3 THEN
+        XoverShootPosC := g_diXMachineCoordinate;(*探到边纪录下当前X轴坐标*)
+      ELSIF nIndex = 4 THEN
+        XoverShootPosD := g_diXMachineCoordinate;(*探到边纪录下当前X轴坐标*)
+      END_IF;
+       nCheckState := 0;
+    END_IF;
+  20:
+    IF (g_nAutoParalleType=0 AND g_fZAxisHeight > (fParalleBorderHeight+fParalleZFollowHeight) ) OR (g_nAutoParalleType=1 AND g_bAutoParalleInfraedSensor=FALSE) THEN
+      bCheckEdgeDone := TRUE;
+      g_boCNCMoveDisable := TRUE;
+      IF nIndex = 1 THEN
+        XoverShootNegA := g_diXMachineCoordinate;(*探到边纪录下当前X轴坐标*)
+      ELSIF nIndex = 2 THEN
+        XoverShootNegB := g_diXMachineCoordinate;(*探到边纪录下当前X轴坐标*)
+      ELSIF nIndex = 3 THEN
+        XoverShootNegC := g_diXMachineCoordinate;(*探到边纪录下当前X轴坐标*)
+      ELSIF nIndex = 4 THEN
+        XoverShootNegD := g_diXMachineCoordinate;(*探到边纪录下当前X轴坐标*)
+      END_IF;
+      nCheckState := 0;
+    END_IF;
+  100:
+    IF nIndex = 1 THEN
+      dFirstPointZAxisCoordinate := g_fZCoordinate;
+    ELSIF nIndex = 2 THEN
+      dSecondPointZAxisCoordinate := g_fZCoordinate;
+    ELSIF nIndex = 3 THEN
+      dThirdPointZAxisCoordinate := g_fZCoordinate;
+    ELSIF nIndex = 4 THEN
+      dFourthPointZAxisCoordinate := g_fZCoordinate;
+    END_IF;
+    nCheckState := 0;
+  200:(*五点分中计算水平偏差角度*)
+    IF ABS(fMarkXPoint2Value-fMarkXPoint1Value) <= 0.01 THEN
+      fAngle:=0.0;
+    ELSE  
+      fAngle :=ATAN((fMarkZPoint2Value-fMarkZPoint1Value)/(fMarkXPoint2Value-fMarkXPoint1Value))/3.14159*180.0;
+    END_IF;  
+  500:
+    g_bExecuteSingeSideOnAFace := FALSE;
+    g_bExecuteSingeSideOnBFace := FALSE;
+    g_bExecuteSingeSideOnCFace := FALSE;
+    g_bExecuteSingeSideOnDFace := FALSE;
+    nCheckState := 0;
+END_CASE;
+    ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

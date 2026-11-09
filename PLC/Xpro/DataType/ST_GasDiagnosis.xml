@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ST_GasDiagnosis">
+  <baseType>
+    <struct>
+      <variable name="Pressuer">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="StableTm">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[稳定时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RiseTm">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="StandardDeviation">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[均方差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="MaxPre">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气压最大值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="MinPre">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气压最小值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Done">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[完成]]></xhtml:p>
+        </documentation>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

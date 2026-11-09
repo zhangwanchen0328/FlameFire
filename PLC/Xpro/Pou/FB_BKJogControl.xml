@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BKJogControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Feeding_Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="FixedLen_Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="Dust_Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bJogFast">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFeedingJogForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFixedLenJogForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustJogForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFeedingBackForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFixedLenBackForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustBackForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_noerrorid">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+      <variable name="g_noerrorid0">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*送料轴点动*)
+IF bJogFast THEN
+  Feeding_Jog.Mode := 1;
+ELSE
+  Feeding_Jog.Mode := 0;
+END_IF;
+
+Feeding_Jog.JogForward := bFeedingJogForward;
+Feeding_Jog.JogBackwards := bFeedingBackForward;
+g_noerrorid := Feeding_Jog.errorid;
+g_noerrorid := Feeding_Jog.errorid;
+(*定长轴点动*)
+IF bJogFast THEN
+  FixedLen_Jog.Mode := 1;
+ELSE
+  FixedLen_Jog.Mode := 0;
+END_IF;
+
+FixedLen_Jog.JogForward := bFixedLenJogForward;
+FixedLen_Jog.JogBackwards := bFixedLenBackForward;
+
+(*抽尘轴点动*)
+IF bJogFast THEN
+  Dust_Jog.Mode := 1;
+ELSE
+  Dust_Jog.Mode := 0;
+END_IF;
+
+Dust_Jog.JogForward := bDustJogForward;
+Dust_Jog.JogBackwards := bDustBackForward;
+
+
+IF g_bPlcResetBuffer THEN
+  bDustJogForward := FALSE;
+  bDustBackForward := FALSE;
+  bFixedLenJogForward := FALSE;
+  bFixedLenBackForward := FALSE;
+  bFeedingJogForward := FALSE;
+  bFeedingBackForward := FALSE; 
+END_IF; ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

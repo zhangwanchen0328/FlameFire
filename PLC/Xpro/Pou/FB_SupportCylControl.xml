@@ -1,0 +1,1192 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SupportCylControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_SupCylUp1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_SupCylUp2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_SupCylUp3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_SupCylUp4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_SupCylDown1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_SupCylDown2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_SupCylDown3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_SupCylDown4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bSupCylUp1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupCylUp2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupCylUp3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupCylUp4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupCylDown1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupCylDown2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupCylDown3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSupCylDown4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="fDelayTime1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fDelayTime2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fDelayTime3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fDelayTime4">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="DelayTon1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon_Up1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon_Up2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon_Up3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon_Up4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon_Down1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon_Down2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon_Down3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="DelayTon_Down4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Cyl1FilterTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="Cyl2FilterTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="Cyl3FilterTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="Cyl4FilterTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="Filter_1">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_2">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_3">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_4">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_5">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_6">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_7">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_8">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="bCYl1UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCYl2UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCYl3UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCYl4UpState">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl1DownSignalNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl2DownSignalNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl3DownSignalNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl4DownSignalNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl1UpSignalNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl2UpSignalNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl3UpSignalNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCyl4UpSignalNoFilter">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bLoadSupportCyl1UpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料支撑气缸1 上升到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLoadSupportCyl2UpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料支撑气缸2 上升到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLoadSupportCyl3UpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料支撑气缸3 上升到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLoadSupportCyl4UpNoSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料支撑气缸3 上升到位超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupCyl1State">
+        <type>
+          <derived name="FB_CylStateControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料支撑气缸1  到位状态切换]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupCyl2State">
+        <type>
+          <derived name="FB_CylStateControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料支撑气缸2  到位状态切换]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupCyl3State">
+        <type>
+          <derived name="FB_CylStateControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料支撑气缸3  到位状态切换]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SupCyl4State">
+        <type>
+          <derived name="FB_CylStateControl"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料支撑气缸3  到位状态切换]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*森峰-余云安需求：支撑气缸根据零件避让下落，具备夹持中的功能，但是运行过程中不动作，不执行避让*)
+R_SupCylUp1(CLK :=(g_bSupCyl2Up1 OR bSupCylUp1));      (*支撑气缸1上升*)
+R_SupCylDown1(CLK :=(g_bSupCyl2Down1 OR bSupCylDown1));  (*支撑气缸1下降*)
+
+(*------------------------------命令输出部分---------------------------*)
+(*1、命令输出有到位信号，先等到位信号，在使用延时时间，没到位信号，只使用延时时间*)
+(*2、学BC，也不使用界面反馈信号灯了，只管输出*)
+(*3 是否加入滤波，对硬件的输入信号，进行滤波*)
+IF R_SupCylUp1.Q THEN
+  IF g_boSupCyl2Up1 AND g_boSupCyl2Down1=FALSE THEN(*如果已经输出完成了，就不发送输出命令了*)
+    DelayTon1(IN :=FALSE);
+    M.ENABLE[267] := 0;
+    g_bExecuteFinishedM267 := FALSE;
+    g_bFinishedM267_1 := FALSE;
+    g_boSupCyl2Up_Done1 := TRUE;  
+    g_boSupCyl2Down_Done1 := FALSE;
+  ELSE
+    IF g_bUseSup2Cyl1 THEN(*使用了这个气缸*)
+      g_noSupCyl2Switch1 := 10;
+      (*重置输出完成信号*)
+      g_boSupCyl2Up_Done1 := FALSE;  
+      g_boSupCyl2Down_Done1 := FALSE;
+    ELSE(*未使用这个气缸，则直接给完成信号*)
+      g_noSupCyl2Switch1 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_1 := FALSE;
+      g_boSupCyl2Up_Done1 := TRUE;  
+      g_boSupCyl2Down_Done1 := FALSE;
+    END_IF;
+  END_IF;
+  IF g_fSup2Cy1InYCoor1-g_fCurrentCoordYBuffer < g_fSup2CylDownDis1 AND g_biAxIsYisHome AND g_bSenF_SupportIsAvoid1 THEN
+     g_noSupCyl2Switch1 := 0;
+     M.ENABLE[267] := 0;
+     g_bExecuteFinishedM267 := FALSE;
+     g_bFinishedM267_1 := FALSE;
+     g_boSupCyl2Up_Done1 := TRUE;  
+     g_boSupCyl2Down_Done1 := TRUE;
+  END_IF;  
+  DelayTon1(IN :=FALSE);
+  bSupCylUp1 := FALSE;  
+  g_bSupCyl2Up1 := FALSE;
+  DelayTon_Down1(IN := FALSE);
+  g_bLoadSupportCyl1DownNoSignalAlarm := FALSE;
+  g_nDownCmdCount1 := 0;
+END_IF; 
+
+IF R_SupCylDown1.Q THEN
+  IF g_boSupCyl2Up1=FALSE AND g_boSupCyl2Down1 THEN(*如果已经输出完成了，就不发送输出命令了*)
+    DelayTon1(IN :=FALSE);
+    M.ENABLE[267] := 0;
+    g_bExecuteFinishedM267 := FALSE;
+    g_bFinishedM267_1 := FALSE;
+    g_boSupCyl2Up_Done1 := FALSE;  
+    g_boSupCyl2Down_Done1 := TRUE; 
+  ELSE
+    IF g_bUseSup2Cyl1 THEN(*使用了这个气缸*)
+      g_noSupCyl2Switch1 := 50;
+        (*重置输出完成信号*)
+      g_boSupCyl2Up_Done1 := FALSE;  
+      g_boSupCyl2Down_Done1 := FALSE;  
+    ELSE(*未使用这个气缸，则直接给完成信号*)
+      g_noSupCyl2Switch1 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_1 := FALSE;
+      g_boSupCyl2Up_Done1 := FALSE;  
+      g_boSupCyl2Down_Done1 := TRUE;  
+    END_IF;
+  END_IF;
+  DelayTon1(IN :=FALSE);
+  bSupCylDown1 := FALSE;  
+  g_bSupCyl2Down1 := FALSE;
+  bLoadSupportCyl1UpNoSignalAlarm := FALSE;
+END_IF; 
+
+CASE g_noSupCyl2Switch1 OF
+  0:
+   g_noSupCyl2Switch1 := 0;
+  10:(*上升命令输出*)
+    g_boSupCyl2Up1 := TRUE;
+    g_boSupCyl2Down1 := FALSE;
+    DelayTon_Down1(IN := FALSE);
+    g_bLoadSupportCyl1DownNoSignalAlarm := FALSE;
+    DelayTon_Up1(IN := FALSE);
+    fDelayTime1 := g_fSupCyl2Up_DelayTime1;
+    IF g_bSupCyl2Up_UseINPOS1 THEN(*使用到位信号*)
+      g_noSupCyl2Switch1 := 20;
+    ELSE(*使用延时信号*)
+      g_noSupCyl2Switch1 := 30;
+    END_IF;
+  20:(*等待到位信号*)
+    IF g_bSupCyl2Up_INPOS1 THEN
+      g_boSupCyl2Up_Done1 := TRUE;
+      g_nSupCyl2CMD1 := 1;
+      g_noSupCyl2Switch1 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_1 := FALSE;
+      g_bUseSup2CylState1 := TRUE;
+      bCYl1UpState := TRUE;
+      bLoadSupportCyl1UpNoSignalAlarm := FALSE;
+      DelayTon_Up1(IN := FALSE);
+    ELSE
+      IF NOT bCYl1UpState THEN
+        DelayTon_Up1(IN := TRUE,PT := LREAL_TO_TIME(g_fSupCyl2Up_DelayTime1/1000.0));
+        IF DelayTon_Up1.Q THEN
+           DelayTon_Up1(IN := FALSE);
+           bLoadSupportCyl1UpNoSignalAlarm := TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+  30:(*延时并输出完成信号*)
+    DelayTon1(IN :=TRUE,PT := LREAL_TO_TIME(fDelayTime1/1000.0));
+    IF DelayTon1.Q THEN
+      g_boSupCyl2Up_Done1 := TRUE;
+      g_nSupCyl2CMD1 := 1;
+      DelayTon1(IN :=FALSE);
+      g_noSupCyl2Switch1 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_1 := FALSE;
+      g_bUseSup2CylState1 := TRUE;
+      bCYl1UpState := TRUE;
+    END_IF;
+    
+  50:(*下降命令输出*)
+    g_boSupCyl2Up1 := FALSE;
+    g_boSupCyl2Down1 := TRUE;
+    bLoadSupportCyl1UpNoSignalAlarm := FALSE;
+    DelayTon_Up1(IN := FALSE);
+    fDelayTime1 := g_fSupCyl2Down_DelayTime1;
+    IF g_bSupCyl2Down_UseINPOS1 THEN(*使用到位信号*)
+      g_noSupCyl2Switch1 := 60;
+    ELSE(*使用延时信号*)
+      g_noSupCyl2Switch1 := 70;
+    END_IF;
+  60: (*等待到位信号*)
+    IF g_bSupCyl2Down_INPOS1 THEN
+      g_boSupCyl2Down_Done1 := TRUE;
+      g_nSupCyl2CMD1 := -1;
+      g_noSupCyl2Switch1 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_1 := FALSE;
+      g_bUseSup2CylState1 := FALSE;
+      DelayTon_Down1(IN := FALSE);
+      g_bLoadSupportCyl1DownNoSignalAlarm := FALSE;
+      bCYl1UpState := FALSE;
+    ELSE
+      IF bCYl1UpState THEN
+        DelayTon_Down1(IN := TRUE,PT := LREAL_TO_TIME(g_fSupCyl2Down_DelayTime1/1000.0));
+        IF DelayTon_Down1.Q THEN
+           DelayTon_Down1(IN := FALSE);
+           g_bLoadSupportCyl1DownNoSignalAlarm := TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+  70:(*延时并输出完成信号*)
+    DelayTon1(IN :=TRUE,PT := LREAL_TO_TIME(fDelayTime1/1000.0));
+    IF DelayTon1.Q THEN
+      g_boSupCyl2Down_Done1 := TRUE;
+      g_nSupCyl2CMD1 := -1;
+      DelayTon1(IN :=FALSE);
+      g_noSupCyl2Switch1 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_1 := FALSE;
+      g_bUseSup2CylState1 := FALSE;
+      bCYl1UpState := FALSE;
+    END_IF;
+END_CASE;
+
+
+(*新加的气缸状态切换,气缸到位超时报警和目前默认到位时间用的一个时间*)
+SupCyl1State(
+  bUseUpSignal := g_bSupCyl2Up_UseINPOS1,
+  bUseDownSignal := g_bSupCyl2Down_UseINPOS1,
+  boCylUp := g_boSupCyl2Up1,
+  boCylDown := g_boSupCyl2Down1,
+  bUpInplace := g_bSupCyl2Up_INPOS1,
+  bDownInplace := g_bSupCyl2Down_INPOS1,
+  bUpInplaceNoFilter := bCyl1UpSignalNoFilter,
+  bDownInplaceNoFilter := bCyl1DownSignalNoFilter,
+  bArrayConfigOutputUp := ArrayConfigOutputNumber[124],
+  bArrayConfigOutputDown := ArrayConfigOutputNumber[127],
+  dClylinderUpDelayTime := LREAL_TO_DINT(g_fSupCyl2Up_DelayTime1),
+  dClylinderDownDelayTime := LREAL_TO_DINT(g_fSupCyl2Down_DelayTime1),
+  dClylinderUpOverDelayTime := LREAL_TO_DINT(g_fSupCyl2Up_DelayTime1),
+  dClylinderDownOverDelayTime := LREAL_TO_DINT(g_fSupCyl2Down_DelayTime1),
+  bCylState  => bCYl1UpState,
+  bCylStateToHMI => g_bUseSup2CylState1,
+  bCylUpNoSignalAlarm => bLoadSupportCyl1UpNoSignalAlarm,
+  bCylDownNoSignalAlarm => g_bLoadSupportCyl1DownNoSignalAlarm,
+  bArrayConfigOutputUp_FB => ArrayConfigOutputNumber[124],
+  bArrayConfigOutputDown_FB => ArrayConfigOutputNumber[127]
+);
+
+R_SupCylUp2(CLK :=(g_bSupCyl2Up2 OR bSupCylUp2));      (*支撑气缸2上升*)
+R_SupCylDown2(CLK :=(g_bSupCyl2Down2 OR bSupCylDown2));  (*支撑气缸2下降*)
+
+IF R_SupCylUp2.Q THEN
+  IF g_boSupCyl2Up2 AND g_boSupCyl2Down2=FALSE THEN(*如果已经输出完成了，就不发送输出命令了*)
+    DelayTon2(IN :=FALSE);
+    M.ENABLE[267] := 0;
+    g_bExecuteFinishedM267 := FALSE;
+    g_bFinishedM267_2 := FALSE;
+    g_boSupCyl2Up_Done2 := TRUE;  
+    g_boSupCyl2Down_Done2 := FALSE;
+  ELSE
+    IF g_bUseSup2Cyl2 THEN(*使用了这个气缸*)
+      g_noSupCyl2Switch2 := 10;
+        (*重置输出完成信号*)
+      g_boSupCyl2Up_Done2 := FALSE;  
+      g_boSupCyl2Down_Done2 := FALSE;
+    ELSE(*未使用这个气缸，则直接给完成信号*)
+      g_noSupCyl2Switch2 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_2 := FALSE;
+      g_boSupCyl2Up_Done2 := TRUE;  
+      g_boSupCyl2Down_Done2 := FALSE;
+    END_IF;
+  END_IF;
+  
+  IF g_fSup2Cy1InYCoor2-g_fCurrentCoordYBuffer < g_fSup2CylDownDis2 AND g_biAxIsYisHome AND g_bSenF_SupportIsAvoid2 THEN
+    DelayTon2(IN :=FALSE);
+    M.ENABLE[267] := 0;
+    g_bExecuteFinishedM267 := FALSE;
+    g_bFinishedM267_2 := FALSE;
+    g_boSupCyl2Up_Done2 := TRUE;  
+    g_boSupCyl2Down_Done2 := TRUE;
+    g_noSupCyl2Switch2 := 0;
+  END_IF;  
+  
+  DelayTon2(IN :=FALSE);
+  bSupCylUp2 := FALSE;  
+  g_bSupCyl2Up2 := FALSE;
+  DelayTon_Down2(IN := FALSE);
+  g_bLoadSupportCyl2DownNoSignalAlarm := FALSE;
+  g_nDownCmdCount2 := 0;
+END_IF; 
+
+IF R_SupCylDown2.Q THEN
+  IF g_boSupCyl2Up2=FALSE AND g_boSupCyl2Down2 THEN(*如果已经输出完成了，就不发送输出命令了*)
+    DelayTon2(IN :=FALSE);
+    M.ENABLE[267] := 0;
+    g_bExecuteFinishedM267 := FALSE;
+    g_bFinishedM267_2 := FALSE;
+    g_boSupCyl2Up_Done2 := FALSE;  
+    g_boSupCyl2Down_Done2 := TRUE;
+  ELSE
+    IF g_bUseSup2Cyl2 THEN(*使用了这个气缸*)
+      g_noSupCyl2Switch2 := 50;
+        (*重置输出完成信号*)
+      g_boSupCyl2Up_Done2 := FALSE;  
+      g_boSupCyl2Down_Done2 := FALSE;
+    ELSE(*未使用这个气缸，则直接给完成信号*)
+      g_noSupCyl2Switch2 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_2 := FALSE;
+      g_boSupCyl2Up_Done2 := FALSE;  
+      g_boSupCyl2Down_Done2 := TRUE;
+    END_IF;
+  END_IF;
+  
+  DelayTon2(IN :=FALSE);
+  bSupCylDown2 := FALSE;  
+  g_bSupCyl2Down2 := FALSE;
+  bLoadSupportCyl2UpNoSignalAlarm := FALSE;
+END_IF; 
+
+CASE g_noSupCyl2Switch2 OF
+  0:
+   g_noSupCyl2Switch2 := 0;
+  10:(*上升命令输出*)
+    g_boSupCyl2Up2 := TRUE;
+    g_boSupCyl2Down2 := FALSE;
+     DelayTon_Down2(IN := FALSE);
+    g_bLoadSupportCyl2DownNoSignalAlarm := FALSE;
+    DelayTon_Up2(IN := FALSE);
+    fDelayTime2 := g_fSupCyl2Up_DelayTime2;
+    IF g_bSupCyl2Up_UseINPOS2 THEN(*使用到位信号*)
+      g_noSupCyl2Switch2 := 20;
+    ELSE(*使用延时信号*)
+      g_noSupCyl2Switch2 := 30;
+    END_IF;
+  20:(*等待到位信号*)
+    IF g_bSupCyl2Up_INPOS2 THEN
+       g_boSupCyl2Up_Done2 := TRUE;
+      g_noSupCyl2Switch2 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_2 := FALSE;
+      g_bUseSup2CylState2 := TRUE;
+      bCYl2UpState := TRUE;
+      bLoadSupportCyl2UpNoSignalAlarm := FALSE;
+      DelayTon_Up2(IN := FALSE);
+    ELSE
+      IF NOT bCYl2UpState THEN
+        DelayTon_Up2(IN := TRUE,PT := LREAL_TO_TIME(g_fSupCyl2Up_DelayTime2/1000.0));
+        IF DelayTon_Up2.Q THEN
+           DelayTon_Up2(IN := FALSE);
+           bLoadSupportCyl2UpNoSignalAlarm := TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+  30:(*延时并输出完成信号*)
+    DelayTon2(IN :=TRUE,PT := LREAL_TO_TIME(fDelayTime2/1000.0));
+    IF DelayTon2.Q THEN
+      g_boSupCyl2Up_Done2 := TRUE;
+      DelayTon2(IN :=FALSE);
+      g_noSupCyl2Switch2 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_2 := FALSE;
+      g_bUseSup2CylState2 := TRUE;
+      bCYl2UpState := TRUE;
+    END_IF;
+    
+  50:(*下降命令输出*)
+    g_boSupCyl2Up2 := FALSE;
+    g_boSupCyl2Down2 := TRUE;
+    bLoadSupportCyl2UpNoSignalAlarm := FALSE;
+    DelayTon_Up2(IN := FALSE);
+    fDelayTime2 := g_fSupCyl2Down_DelayTime2;
+    IF g_bSupCyl2Down_UseINPOS2 THEN(*使用到位信号*)
+      g_noSupCyl2Switch2 := 60;
+    ELSE(*使用延时信号*)
+      g_noSupCyl2Switch2 := 70;
+    END_IF;
+  60: (*等待到位信号*)
+    IF g_bSupCyl2Down_INPOS2 THEN
+       g_boSupCyl2Down_Done2 := TRUE;
+      g_noSupCyl2Switch2 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_2 := FALSE;
+      g_bUseSup2CylState2 := FALSE;
+      DelayTon_Down2(IN := FALSE);
+      g_bLoadSupportCyl2DownNoSignalAlarm := FALSE;
+      bCYl2UpState := FALSE;
+    ELSE
+      IF bCYl2UpState THEN
+        DelayTon_Down2(IN := TRUE,PT := LREAL_TO_TIME(g_fSupCyl2Down_DelayTime2/1000.0));
+        IF DelayTon_Down2.Q THEN
+           DelayTon_Down2(IN := FALSE);
+           g_bLoadSupportCyl2DownNoSignalAlarm := TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+  70:(*延时并输出完成信号*)
+    DelayTon2(IN :=TRUE,PT := LREAL_TO_TIME(fDelayTime2/1000.0));
+    IF DelayTon2.Q THEN
+      g_boSupCyl2Down_Done2 := TRUE;
+      DelayTon2(IN :=FALSE);
+      g_noSupCyl2Switch2 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_2 := FALSE;
+      g_bUseSup2CylState2 := FALSE;
+      bCYl2UpState := FALSE;
+    END_IF;
+END_CASE;
+
+
+SupCyl2State(
+  bUseUpSignal := g_bSupCyl2Up_UseINPOS2,
+  bUseDownSignal := g_bSupCyl2Down_UseINPOS2,
+  boCylUp := g_boSupCyl2Up2,
+  boCylDown := g_boSupCyl2Down2,
+  bUpInplace := g_bSupCyl2Up_INPOS2,
+  bDownInplace := g_bSupCyl2Down_INPOS2,
+  bUpInplaceNoFilter := bCyl2UpSignalNoFilter,
+  bDownInplaceNoFilter := bCyl2DownSignalNoFilter,
+  bArrayConfigOutputUp := ArrayConfigOutputNumber[125],
+  bArrayConfigOutputDown := ArrayConfigOutputNumber[128],
+  dClylinderUpDelayTime := LREAL_TO_DINT(g_fSupCyl2Up_DelayTime2),
+  dClylinderDownDelayTime := LREAL_TO_DINT(g_fSupCyl2Down_DelayTime2),
+  dClylinderUpOverDelayTime := LREAL_TO_DINT(g_fSupCyl2Up_DelayTime2),
+  dClylinderDownOverDelayTime := LREAL_TO_DINT(g_fSupCyl2Down_DelayTime2),
+  bCylState  => bCYl2UpState,
+  bCylStateToHMI => g_bUseSup2CylState2,
+  bCylUpNoSignalAlarm => bLoadSupportCyl2UpNoSignalAlarm,
+  bCylDownNoSignalAlarm => g_bLoadSupportCyl2DownNoSignalAlarm,
+  bArrayConfigOutputUp_FB => ArrayConfigOutputNumber[125],
+  bArrayConfigOutputDown_FB => ArrayConfigOutputNumber[128]
+);
+
+R_SupCylUp3(CLK :=(g_bSupCyl2Up3 OR bSupCylUp3));      (*支撑气缸3上升*)
+R_SupCylDown3(CLK :=(g_bSupCyl2Down3 OR bSupCylDown3));  (*支撑气缸3下降*)
+
+IF R_SupCylUp3.Q THEN
+  IF g_boSupCyl2Up3 AND g_boSupCyl2Down3=FALSE THEN(*如果已经输出完成了，就不发送输出命令了*)
+    DelayTon3(IN :=FALSE);
+    M.ENABLE[267] := 0;
+    g_bExecuteFinishedM267 := FALSE;
+    g_bFinishedM267_3 := FALSE;
+    g_boSupCyl2Up_Done3 := TRUE;  
+    g_boSupCyl2Down_Done3 := FALSE;
+  ELSE
+    IF g_bUseSup2Cyl3 THEN(*使用了这个气缸*)
+      g_noSupCyl2Switch3 := 10;
+        (*重置输出完成信号*)
+      g_boSupCyl2Up_Done3 := FALSE;  
+      g_boSupCyl2Down_Done3 := FALSE;
+    ELSE
+      g_noSupCyl2Switch3 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_3 := FALSE;
+      g_boSupCyl2Up_Done3 := TRUE;  
+      g_boSupCyl2Down_Done3 := TRUE;
+    END_IF;
+  END_IF;
+  
+  IF g_fSup2Cy1InYCoor3-g_fCurrentCoordYBuffer < g_fSup2CylDownDis3 AND g_biAxIsYisHome AND g_bSenF_SupportIsAvoid3 THEN
+      g_noSupCyl2Switch3 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_3 := FALSE;
+      g_boSupCyl2Up_Done3 := TRUE;  
+      g_boSupCyl2Down_Done3 := TRUE;
+  END_IF;  
+  DelayTon3(IN :=FALSE);
+  bSupCylUp3 := FALSE;  
+  g_bSupCyl2Up3 := FALSE;
+  DelayTon_Down3(IN := FALSE);
+  g_bLoadSupportCyl3DownNoSignalAlarm := FALSE;
+  g_nDownCmdCount3 := 0;
+END_IF; 
+
+IF R_SupCylDown3.Q THEN
+  IF g_boSupCyl2Up3=FALSE AND g_boSupCyl2Down3 THEN(*如果已经输出完成了，就不发送输出命令了*)
+    DelayTon3(IN :=FALSE);
+    M.ENABLE[267] := 0;
+    g_bExecuteFinishedM267 := FALSE;
+    g_bFinishedM267_3 := FALSE;
+    g_boSupCyl2Up_Done3 := FALSE;  
+    g_boSupCyl2Down_Done3 := TRUE;
+  ELSE
+    IF g_bUseSup2Cyl3 THEN(*使用了这个气缸*)
+      g_noSupCyl2Switch3 := 50;
+      (*重置输出完成信号*)
+      g_boSupCyl2Up_Done3 := FALSE;  
+      g_boSupCyl2Down_Done3 := FALSE;  
+    ELSE
+      g_noSupCyl2Switch3 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_3 := FALSE;
+      g_boSupCyl2Up_Done3 := FALSE;  
+      g_boSupCyl2Down_Done3 := TRUE;  
+    END_IF;
+  END_IF;
+  DelayTon3(IN :=FALSE);
+  bSupCylDown3 := FALSE;  
+  g_bSupCyl2Down3 := FALSE;
+  bLoadSupportCyl3UpNoSignalAlarm := FALSE;
+END_IF; 
+
+CASE g_noSupCyl2Switch3 OF
+  0:
+   g_noSupCyl2Switch3 := 0;
+  10:(*上升命令输出*)
+    g_boSupCyl2Up3 := TRUE;
+    g_boSupCyl2Down3 := FALSE;
+     DelayTon_Down3(IN := FALSE);
+    g_bLoadSupportCyl3DownNoSignalAlarm := FALSE;
+    DelayTon_Up3(IN := FALSE);
+    fDelayTime3 := g_fSupCyl2Up_DelayTime3;
+    IF g_bSupCyl2Up_UseINPOS3 THEN(*使用到位信号*)
+      g_noSupCyl2Switch3 := 20;
+    ELSE(*使用延时信号*)
+      g_noSupCyl2Switch3 := 30;
+    END_IF;
+  20:(*等待到位信号*)
+    IF g_bSupCyl2Up_INPOS3 THEN
+      g_boSupCyl2Up_Done3 := TRUE;
+      g_noSupCyl2Switch3 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_3 := FALSE;
+      g_bUseSup2CylState3 := TRUE;
+      bCYl3UpState := TRUE;
+      bLoadSupportCyl3UpNoSignalAlarm := FALSE;
+      DelayTon_Up3(IN := FALSE);
+    ELSE
+      IF NOT bCYl3UpState THEN
+        DelayTon_Up3(IN := TRUE,PT := LREAL_TO_TIME(g_fSupCyl2Up_DelayTime3/1000.0));
+        IF DelayTon_Up3.Q THEN
+           DelayTon_Up3(IN := FALSE);
+           bLoadSupportCyl3UpNoSignalAlarm := TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+  30:(*延时并输出完成信号*)
+    DelayTon3(IN :=TRUE,PT := LREAL_TO_TIME(fDelayTime3/1000.0));
+    IF DelayTon3.Q THEN
+      g_boSupCyl2Up_Done3 := TRUE;
+      DelayTon3(IN :=FALSE);
+      g_noSupCyl2Switch3 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_3 := FALSE;
+      g_bUseSup2CylState3 := TRUE;
+       bCYl3UpState := TRUE;
+    END_IF;
+    
+  50:(*下降命令输出*)
+    g_boSupCyl2Up3 := FALSE;
+    g_boSupCyl2Down3 := TRUE;
+    bLoadSupportCyl3UpNoSignalAlarm := FALSE;
+    DelayTon_Up3(IN := FALSE);
+    fDelayTime3 := g_fSupCyl2Down_DelayTime3;
+    IF g_bSupCyl2Down_UseINPOS3 THEN(*使用到位信号*)
+      g_noSupCyl2Switch3 := 60;
+    ELSE(*使用延时信号*)
+      g_noSupCyl2Switch3 := 70;
+    END_IF;
+  60: (*等待到位信号*)
+    IF g_bSupCyl2Down_INPOS3 THEN
+       g_boSupCyl2Down_Done3 := TRUE;
+      g_noSupCyl2Switch3 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_3 := FALSE;
+      g_bUseSup2CylState3 := FALSE;
+      DelayTon_Down3(IN := FALSE);
+      g_bLoadSupportCyl3DownNoSignalAlarm := FALSE;
+      bCYl3UpState := FALSE;
+    ELSE
+      IF bCYl3UpState THEN
+        DelayTon_Down3(IN := TRUE,PT := LREAL_TO_TIME(g_fSupCyl2Down_DelayTime3/1000.0));
+        IF DelayTon_Down3.Q THEN
+          DelayTon_Down3(IN := FALSE);
+          g_bLoadSupportCyl3DownNoSignalAlarm := TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+  70:(*延时并输出完成信号*)
+    DelayTon3(IN :=TRUE,PT := LREAL_TO_TIME(fDelayTime3/1000.0));
+    IF DelayTon3.Q THEN
+      g_boSupCyl2Down_Done3 := TRUE;
+      DelayTon3(IN :=FALSE);
+      g_noSupCyl2Switch3 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_3 := FALSE;
+      g_bUseSup2CylState3 := FALSE;
+      bCYl3UpState := FALSE;
+    END_IF;
+END_CASE;
+
+
+
+(*新加的气缸状态切换,气缸到位超时报警和目前默认到位时间用的一个时间*)
+SupCyl3State(
+  bUseUpSignal := g_bSupCyl2Up_UseINPOS3,
+  bUseDownSignal := g_bSupCyl2Down_UseINPOS3,
+  boCylUp := g_boSupCyl2Up3,
+  boCylDown := g_boSupCyl2Down3,
+  bUpInplace := g_bSupCyl2Up_INPOS3,
+  bDownInplace := g_bSupCyl2Down_INPOS3,
+  bUpInplaceNoFilter := bCyl3UpSignalNoFilter,
+  bDownInplaceNoFilter := bCyl3DownSignalNoFilter,
+  bArrayConfigOutputUp := ArrayConfigOutputNumber[126],
+  bArrayConfigOutputDown := ArrayConfigOutputNumber[129],
+  dClylinderUpDelayTime := LREAL_TO_DINT(g_fSupCyl2Up_DelayTime3),
+  dClylinderDownDelayTime := LREAL_TO_DINT(g_fSupCyl2Down_DelayTime3),
+  dClylinderUpOverDelayTime := LREAL_TO_DINT(g_fSupCyl2Up_DelayTime3),
+  dClylinderDownOverDelayTime := LREAL_TO_DINT(g_fSupCyl2Down_DelayTime3),
+  bCylState  => bCYl3UpState,
+  bCylStateToHMI => g_bUseSup2CylState3,
+  bCylUpNoSignalAlarm => bLoadSupportCyl3UpNoSignalAlarm,
+  bCylDownNoSignalAlarm => g_bLoadSupportCyl3DownNoSignalAlarm,
+  bArrayConfigOutputUp_FB => ArrayConfigOutputNumber[126],
+  bArrayConfigOutputDown_FB => ArrayConfigOutputNumber[129]
+);
+
+
+R_SupCylUp4(CLK :=(g_bSupCyl2Up4 OR bSupCylUp4));      (*支撑气缸4上升*)
+R_SupCylDown4(CLK :=(g_bSupCyl2Down4 OR bSupCylDown4));  (*支撑气缸4下降*)
+
+IF R_SupCylUp4.Q THEN
+  IF g_boSupCyl2Up4 AND g_boSupCyl2Down4=FALSE THEN(*如果已经输出完成了，就不发送输出命令了*)
+    DelayTon4(IN :=FALSE);
+    M.ENABLE[267] := 0;
+    g_bExecuteFinishedM267 := FALSE;
+    g_bFinishedM267_4 := FALSE;
+    g_boSupCyl2Up_Done4 := TRUE;  
+    g_boSupCyl2Down_Done4 := FALSE;
+  ELSE
+    IF g_bUseSup2Cyl4 THEN(*使用了这个气缸*)
+      g_noSupCyl2Switch4 := 10;
+        (*重置输出完成信号*)
+      g_boSupCyl2Up_Done4 := FALSE;  
+      g_boSupCyl2Down_Done4 := FALSE;
+    ELSE
+      g_noSupCyl2Switch4 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_4 := FALSE;
+      g_boSupCyl2Up_Done4 := TRUE;  
+      g_boSupCyl2Down_Done4 := TRUE;
+    END_IF;
+  END_IF;
+  
+  IF g_fSup2Cy1InYCoor4-g_fCurrentCoordYBuffer < g_fSup2CylDownDis4 AND g_biAxIsYisHome AND g_bSenF_SupportIsAvoid4 THEN
+      g_noSupCyl2Switch4 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_4 := FALSE;
+      g_boSupCyl2Up_Done4 := TRUE;  
+      g_boSupCyl2Down_Done4 := TRUE;
+  END_IF;  
+  DelayTon4(IN :=FALSE);
+  bSupCylUp4 := FALSE;  
+  g_bSupCyl2Up4 := FALSE;
+  DelayTon_Down4(IN := FALSE);
+  g_bLoadSupportCyl4DownNoSignalAlarm := FALSE;
+  g_nDownCmdCount4 := 0;
+END_IF; 
+
+IF R_SupCylDown4.Q THEN
+  IF g_boSupCyl2Up4=FALSE AND g_boSupCyl2Down4 THEN(*如果已经输出完成了，就不发送输出命令了*)
+    DelayTon4(IN :=FALSE);
+    M.ENABLE[267] := 0;
+    g_bExecuteFinishedM267 := FALSE;
+    g_bFinishedM267_4 := FALSE;
+    g_boSupCyl2Up_Done4 := FALSE;  
+    g_boSupCyl2Down_Done4 := TRUE;
+  ELSE
+    IF g_bUseSup2Cyl4 THEN(*使用了这个气缸*)
+      g_noSupCyl2Switch4 := 50;
+      (*重置输出完成信号*)
+      g_boSupCyl2Up_Done4 := FALSE;  
+      g_boSupCyl2Down_Done4 := FALSE;  
+    ELSE
+      g_noSupCyl2Switch4 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_4 := FALSE;
+      g_boSupCyl2Up_Done4 := FALSE;  
+      g_boSupCyl2Down_Done4 := TRUE;  
+    END_IF;
+  END_IF;
+  DelayTon4(IN :=FALSE);
+  bSupCylDown4 := FALSE;  
+  g_bSupCyl2Down4 := FALSE;
+  bLoadSupportCyl4UpNoSignalAlarm := FALSE;
+END_IF; 
+
+CASE g_noSupCyl2Switch4 OF
+  0:
+   g_noSupCyl2Switch4 := 0;
+  10:(*上升命令输出*)
+    g_boSupCyl2Up4 := TRUE;
+    g_boSupCyl2Down4 := FALSE;
+     DelayTon_Down4(IN := FALSE);
+    g_bLoadSupportCyl4DownNoSignalAlarm := FALSE;
+    DelayTon_Up4(IN := FALSE);
+    fDelayTime4 := g_fSupCyl2Up_DelayTime4;
+    IF g_bSupCyl2Up_UseINPOS4 THEN(*使用到位信号*)
+      g_noSupCyl2Switch4 := 20;
+    ELSE(*使用延时信号*)
+      g_noSupCyl2Switch4 := 30;
+    END_IF;
+  20:(*等待到位信号*)
+    IF g_bSupCyl2Up_INPOS4 THEN
+      g_boSupCyl2Up_Done4 := TRUE;
+      g_noSupCyl2Switch4 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_4 := FALSE;
+      g_bUseSup2CylState4 := TRUE;
+      bCYl4UpState := TRUE;
+      bLoadSupportCyl4UpNoSignalAlarm := FALSE;
+      DelayTon_Up4(IN := FALSE);
+    ELSE
+      IF NOT bCYl4UpState THEN
+        DelayTon_Up4(IN := TRUE,PT := LREAL_TO_TIME(g_fSupCyl2Up_DelayTime4/1000.0));
+        IF DelayTon_Up4.Q THEN
+           DelayTon_Up4(IN := FALSE);
+           bLoadSupportCyl4UpNoSignalAlarm := TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+  30:(*延时并输出完成信号*)
+    DelayTon4(IN :=TRUE,PT := LREAL_TO_TIME(fDelayTime4/1000.0));
+    IF DelayTon4.Q THEN
+      g_boSupCyl2Up_Done4 := TRUE;
+      DelayTon4(IN :=FALSE);
+      g_noSupCyl2Switch4 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_4 := FALSE;
+      g_bUseSup2CylState4 := TRUE;
+       bCYl4UpState := TRUE;
+    END_IF;
+    
+  50:(*下降命令输出*)
+    g_boSupCyl2Up4 := FALSE;
+    g_boSupCyl2Down4 := TRUE;
+    bLoadSupportCyl4UpNoSignalAlarm := FALSE;
+    DelayTon_Up4(IN := FALSE);
+    fDelayTime4 := g_fSupCyl2Down_DelayTime4;
+    IF g_bSupCyl2Down_UseINPOS4 THEN(*使用到位信号*)
+      g_noSupCyl2Switch4 := 60;
+    ELSE(*使用延时信号*)
+      g_noSupCyl2Switch4 := 70;
+    END_IF;
+  60: (*等待到位信号*)
+    IF g_bSupCyl2Down_INPOS4 THEN
+       g_boSupCyl2Down_Done4 := TRUE;
+      g_noSupCyl2Switch4 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_4 := FALSE;
+      g_bUseSup2CylState4 := FALSE;
+      DelayTon_Down4(IN := FALSE);
+      g_bLoadSupportCyl4DownNoSignalAlarm := FALSE;
+      bCYl4UpState := FALSE;
+    ELSE
+      IF bCYl4UpState THEN
+        DelayTon_Down4(IN := TRUE,PT := LREAL_TO_TIME(g_fSupCyl2Down_DelayTime4/1000.0));
+        IF DelayTon_Down4.Q THEN
+          DelayTon_Down4(IN := FALSE);
+          g_bLoadSupportCyl4DownNoSignalAlarm := TRUE;
+        END_IF;
+      END_IF;
+    END_IF;
+  70:(*延时并输出完成信号*)
+    DelayTon4(IN :=TRUE,PT := LREAL_TO_TIME(fDelayTime4/1000.0));
+    IF DelayTon4.Q THEN
+      g_boSupCyl2Down_Done4 := TRUE;
+      DelayTon4(IN :=FALSE);
+      g_noSupCyl2Switch4 := 0;
+      M.ENABLE[267] := 0;
+      g_bExecuteFinishedM267 := FALSE;
+      g_bFinishedM267_4 := FALSE;
+      g_bUseSup2CylState4 := FALSE;
+      bCYl4UpState := FALSE;
+    END_IF;
+END_CASE;
+
+
+
+(*新加的气缸状态切换,气缸到位超时报警和目前默认到位时间用的一个时间*)
+SupCyl4State(
+  bUseUpSignal := g_bSupCyl2Up_UseINPOS4,
+  bUseDownSignal := g_bSupCyl2Down_UseINPOS4,
+  boCylUp := g_boSupCyl2Up4,
+  boCylDown := g_boSupCyl2Down4,
+  bUpInplace := g_bSupCyl2Up_INPOS4,
+  bDownInplace := g_bSupCyl2Down_INPOS4,
+  bUpInplaceNoFilter := bCyl4UpSignalNoFilter,
+  bDownInplaceNoFilter := bCyl4DownSignalNoFilter,
+  bArrayConfigOutputUp := ArrayConfigOutputNumber[186],
+  bArrayConfigOutputDown := ArrayConfigOutputNumber[187],
+  dClylinderUpDelayTime := LREAL_TO_DINT(g_fSupCyl2Up_DelayTime4),
+  dClylinderDownDelayTime := LREAL_TO_DINT(g_fSupCyl2Down_DelayTime4),
+  dClylinderUpOverDelayTime := LREAL_TO_DINT(g_fSupCyl2Up_DelayTime4),
+  dClylinderDownOverDelayTime := LREAL_TO_DINT(g_fSupCyl2Down_DelayTime4),
+  bCylState  => bCYl4UpState,
+  bCylStateToHMI => g_bUseSup2CylState4,
+  bCylUpNoSignalAlarm => bLoadSupportCyl4UpNoSignalAlarm,
+  bCylDownNoSignalAlarm => g_bLoadSupportCyl4DownNoSignalAlarm,
+  bArrayConfigOutputUp_FB => ArrayConfigOutputNumber[186],
+  bArrayConfigOutputDown_FB => ArrayConfigOutputNumber[187]
+);
+
+
+(*添加信号滤波*)
+Filter_4(LREAL_TO_TIME(FUN_MSTOS(Cyl1FilterTime)),g_bSupCyl2Up_NONC1,g_biSupCyl2Up_INPOS1,g_bSupCyl2Up_INPOS1);
+g_bSupCyl2Up_INPOS1 := FUN_SingalLogic(g_bSupCyl2Up_INPOS1,g_bSupCyl2Up_NONC1);
+Filter_1(LREAL_TO_TIME(FUN_MSTOS(Cyl1FilterTime)),g_bSupCyl2Down_NONC1,g_biSupCyl2Down_INPOS1,g_bSupCyl2Down_INPOS1);
+g_bSupCyl2Down_INPOS1 := FUN_SingalLogic(g_bSupCyl2Down_INPOS1,g_bSupCyl2Down_NONC1);
+
+bCyl1UpSignalNoFilter := FUN_SingalLogic(g_biSupCyl2Up_INPOS1,g_bSupCyl2Up_NONC1);
+bCyl1DownSignalNoFilter := FUN_SingalLogic(g_biSupCyl2Down_INPOS1,g_bSupCyl2Down_NONC1);
+
+Filter_5(LREAL_TO_TIME(FUN_MSTOS(Cyl2FilterTime)),g_bSupCyl2Up_NONC2,g_biSupCyl2Up_INPOS2,g_bSupCyl2Up_INPOS2);
+g_bSupCyl2Up_INPOS2 := FUN_SingalLogic(g_bSupCyl2Up_INPOS2,g_bSupCyl2Up_NONC2);
+Filter_2(LREAL_TO_TIME(FUN_MSTOS(Cyl2FilterTime)),g_bSupCyl2Down_NONC2,g_biSupCyl2Down_INPOS2,g_bSupCyl2Down_INPOS2);
+g_bSupCyl2Down_INPOS2 := FUN_SingalLogic(g_bSupCyl2Down_INPOS2,g_bSupCyl2Down_NONC2);
+
+bCyl2UpSignalNoFilter := FUN_SingalLogic(g_biSupCyl2Up_INPOS2,g_bSupCyl2Up_NONC2);
+bCyl2DownSignalNoFilter := FUN_SingalLogic(g_biSupCyl2Down_INPOS2,g_bSupCyl2Down_NONC2);
+
+Filter_6(LREAL_TO_TIME(FUN_MSTOS(Cyl3FilterTime)),g_bSupCyl2Up_NONC3,g_biSupCyl2Up_INPOS3,g_bSupCyl2Up_INPOS3);
+g_bSupCyl2Up_INPOS3 := FUN_SingalLogic(g_bSupCyl2Up_INPOS3,g_bSupCyl2Up_NONC3);
+Filter_3(LREAL_TO_TIME(FUN_MSTOS(Cyl3FilterTime)),g_bSupCyl2Down_NONC3,g_biSupCyl2Down_INPOS3,g_bSupCyl2Down_INPOS3);
+g_bSupCyl2Down_INPOS3 := FUN_SingalLogic(g_bSupCyl2Down_INPOS3,g_bSupCyl2Down_NONC3);
+
+bCyl3UpSignalNoFilter := FUN_SingalLogic(g_biSupCyl2Up_INPOS3,g_bSupCyl2Up_NONC3);
+bCyl3DownSignalNoFilter := FUN_SingalLogic(g_biSupCyl2Down_INPOS3,g_bSupCyl2Down_NONC3);
+
+
+Filter_7(LREAL_TO_TIME(FUN_MSTOS(Cyl4FilterTime)),g_bSupCyl2Up_NONC4,g_biSupCyl2Up_INPOS4,g_bSupCyl2Up_INPOS4);
+g_bSupCyl2Up_INPOS4 := FUN_SingalLogic(g_bSupCyl2Up_INPOS4,g_bSupCyl2Up_NONC4);
+Filter_8(LREAL_TO_TIME(FUN_MSTOS(Cyl4FilterTime)),g_bSupCyl2Down_NONC4,g_biSupCyl2Down_INPOS4,g_bSupCyl2Down_INPOS4);
+g_bSupCyl2Down_INPOS4 := FUN_SingalLogic(g_bSupCyl2Down_INPOS4,g_bSupCyl2Down_NONC4);
+
+bCyl4UpSignalNoFilter := FUN_SingalLogic(g_biSupCyl2Up_INPOS4,g_bSupCyl2Up_NONC4);
+bCyl4DownSignalNoFilter := FUN_SingalLogic(g_biSupCyl2Down_INPOS4,g_bSupCyl2Down_NONC4);
+
+
+(*添加上料支撑气缸报警*)
+IF bLoadSupportCyl1UpNoSignalAlarm THEN
+  g_Alarm.alarmArray[528] := 1241;
+ELSE
+   g_Alarm.alarmArray[528] := 0;
+END_IF;
+IF bLoadSupportCyl2UpNoSignalAlarm THEN
+  g_Alarm.alarmArray[529] := 1242;
+ELSE
+   g_Alarm.alarmArray[529] := 0;
+END_IF;
+IF bLoadSupportCyl3UpNoSignalAlarm THEN
+  g_Alarm.alarmArray[530] := 1243;
+ELSE
+  g_Alarm.alarmArray[530] := 0;
+END_IF;
+
+IF bLoadSupportCyl4UpNoSignalAlarm THEN
+  g_Alarm.alarmArray[593] := 1308;
+ELSE
+  g_Alarm.alarmArray[593] := 0;
+END_IF;
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[支撑气缸避让2(新)]]></xhtml:p>
+  </documentation>
+</pou>

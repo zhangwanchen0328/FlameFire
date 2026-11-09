@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AntiRejectionPower" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_AntiRejection1Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴1使能]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAntiRejection1Enable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴1使能局部变量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bAntiRejection1PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴1正限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejection1NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴1负限位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_AntiRejection1SetOverRide">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[防甩轴1进给]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*防甩轴1*)
+g_AntiRejection1Power.Enable := bAntiRejection1Enable;
+
+  g_AntiRejection1Power.EnablePosition := NOT g_bAntiRejection1PosLimit;
+  g_AntiRejection1Power.EnableNegative := NOT g_bAntiRejection1NegLimit;
+
+
+IF g_AntiRejection1Power.error THEN
+  bAntiRejection1Enable := FALSE;
+END_IF;
+g_AntiRejection1SetOverRide.Enable := TRUE;
+g_AntiRejection1SetOverRide.VelFactor := g_dCurOverride;
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_GeneralJogControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_General2_Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+      <variable name="g_General1_Jog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bJogFast">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bGeneral2JogForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bGeneral2BackForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bGeneral1JogForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bGeneral1BackForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_noGeneral1Errorid">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+      <variable name="g_noGeneral2Errorid">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*送料轴点动*)
+IF bJogFast THEN
+  g_General1_Jog.Mode := 1;
+ELSE
+  g_General1_Jog.Mode := 0;
+END_IF;
+
+g_General1_Jog.JogForward := bGeneral1JogForward;
+g_General1_Jog.JogBackwards := bGeneral1BackForward;
+g_noGeneral1Errorid := g_General1_Jog.errorid;
+
+(*顶料轴点动*)
+IF bJogFast THEN
+  g_General2_Jog.Mode := 1;
+ELSE
+  g_General2_Jog.Mode := 0;
+END_IF;
+
+g_General2_Jog.JogForward := bGeneral2JogForward;
+g_General2_Jog.JogBackwards := bGeneral2BackForward;
+g_noGeneral2Errorid := g_General2_Jog.errorid;
+
+IF g_bPlcResetBuffer THEN
+  bGeneral1JogForward := FALSE;
+  bGeneral1BackForward := FALSE;
+  bGeneral2JogForward := FALSE;
+  bGeneral2BackForward := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

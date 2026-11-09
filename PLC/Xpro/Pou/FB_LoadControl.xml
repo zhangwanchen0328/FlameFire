@@ -1,0 +1,4158 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_LoadControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_boLoadCyl01Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl11Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl21Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl31Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl41Up">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl01Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl11Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl21Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl31Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl41Down">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl01UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl02UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl03UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl04UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl11UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl12UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl13UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl14UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl21UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl22UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl23UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl24UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl31UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl32UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl33UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl34UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl41UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl42UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl43UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl44UpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl01DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl02DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl03DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl04DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl11DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl12DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl13DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl14DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl21DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl22DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl23DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl24DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl31DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl32DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl33DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl34DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl41DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl42DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl43DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl44DownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadSensor01">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadSensor02">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadSensor03">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadSensor04">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadSensor11">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadSensor12">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadSensor13">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadSensor14">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadSensor21">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadSensor22">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadSensor23">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadSensor24">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadSensor0">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadSensor1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadSensor2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bNoPipeWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bNoPipeM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl0DownOpenM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl1DownOpenM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl2DownOpenM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl3DownOpenM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl4DownOpenM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl0DownCloseM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl1DownCloseM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl2DownCloseM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl3DownCloseM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadCyl4DownCloseM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl0DownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl1DownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl2DownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl3DownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boLoadCyl4DownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fLoadCyl0MoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fLoadCyl1MoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fLoadCyl2MoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fLoadCyl3MoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fLoadCyl4MoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fLoadCyl5MoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fLoadCyl6MoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fLoadCyl7MoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fLoadCyl8MoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fLoadCyl9MoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fLoadCyl10MoveTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterial1DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterial2DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterial3DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterial4DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterial5DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterial6DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterial7DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterial8DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterial9DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterial10DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLoadMaterial11DelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="InPlaceDelay0">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay6">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay7">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay8">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay9">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InPlaceDelay10">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl01">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl11">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl02">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl12">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl21">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl22">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl31">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl32">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl41">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl42">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl51">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl52">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl61">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl62">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl71">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl72">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl81">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl82">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl91">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl92">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl101">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerCyl102">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTriggerNoPipe">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nCyl0DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl1DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl2DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl3DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl4DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl5DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl6DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl7DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl8DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl9DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl10DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="RtringAllControl">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nAllCylState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bCheckFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl1UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl2UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl3UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl4UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl5UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl6UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl7UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl8UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl9UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl10UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl11UpIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl1DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl2DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl3DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl4DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl5DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl6DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl7DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl8DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl9DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl10DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nLoadCyl11DownIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm0">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm6">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm7">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm8">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm9">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InUpPlaceAlarm10">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm0">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm6">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm7">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm8">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm9">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="InDownPlaceAlarm10">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nCyl0DownState_Bak">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl1DownState_Bak">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl2DownState_Bak">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl3DownState_Bak">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl4DownState_Bak">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl5DownState_Bak">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl6DownState_Bak">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl7DownState_Bak">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl8DownState_Bak">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl9DownState_Bak">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCyl10DownState_Bak">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTriggerCyl01(CLK := g_bLoadCyl0DownOpenM);
+RTriggerCyl02(CLK := g_bLoadCyl0DownCloseM);
+
+RTriggerCyl11(CLK := g_bLoadCyl1DownOpenM);
+RTriggerCyl12(CLK := g_bLoadCyl1DownCloseM);
+
+RTriggerCyl21(CLK := g_bLoadCyl2DownOpenM);
+RTriggerCyl22(CLK := g_bLoadCyl2DownCloseM);
+
+RTriggerCyl31(CLK := g_bLoadCyl3DownOpenM);
+RTriggerCyl32(CLK := g_bLoadCyl3DownCloseM);
+
+RTriggerCyl41(CLK := g_bLoadCyl4DownOpenM);
+RTriggerCyl42(CLK := g_bLoadCyl4DownCloseM);
+
+RTriggerCyl51(CLK := g_bLoadCyl5DownOpenM);
+RTriggerCyl52(CLK := g_bLoadCyl5DownCloseM);
+
+RTriggerCyl61(CLK := g_bLoadCyl6DownOpenM);
+RTriggerCyl62(CLK := g_bLoadCyl6DownCloseM);
+
+RTriggerCyl71(CLK := g_bLoadCyl7DownOpenM);
+RTriggerCyl72(CLK := g_bLoadCyl7DownCloseM);
+
+RTriggerCyl81(CLK := g_bLoadCyl8DownOpenM);
+RTriggerCyl82(CLK := g_bLoadCyl8DownCloseM);
+
+RTriggerCyl91(CLK := g_bLoadCyl9DownOpenM);
+RTriggerCyl92(CLK := g_bLoadCyl9DownCloseM);
+
+RTriggerCyl101(CLK := g_bLoadCyl10DownOpenM);
+RTriggerCyl102(CLK := g_bLoadCyl10DownCloseM);
+
+RTriggerNoPipe(CLK := g_bNoPipeM);
+IF RTriggerNoPipe.Q THEN
+  g_bNoPipeWarn:= TRUE;
+  g_bNoPipeM := FALSE;
+END_IF;
+
+(*第零组气缸*)
+IF RTriggerCyl01.Q THEN
+  nCyl0DownState := 1;
+  g_boLoadCyl0DownDone := FALSE;
+  g_bLoadCyl0DownOpenM := FALSE;
+  g_bLoadMaterial1DelayFlag := TRUE;
+  g_bLoadCylinder1UpDone := FALSE;
+  g_bLoadCylinder1DownDone := FALSE;
+END_IF;
+
+IF RTriggerCyl02.Q THEN
+  g_boLoadCyl0DownDone := FALSE;
+  g_bLoadCyl0DownCloseM := FALSE;
+  nCyl0DownState := 0;
+  g_bLoadMaterial1DelayFlag := TRUE;
+END_IF;
+
+CASE nCyl0DownState OF
+  0:
+    nCyl0DownState := 0;
+  1:
+    IF LREAL_TO_INT(g_fLoadCyl0MoveTypeM) = 0 THEN
+      nCyl0DownState := 2;
+    ELSIF LREAL_TO_INT(g_fLoadCyl0MoveTypeM) = 1 THEN
+      nCyl0DownState := 3;
+    END_IF;
+  2:
+    IF g_dLoadCylinder1WaitBoardInputSignalM = 0.0 THEN
+      nCyl0DownState := 10;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl0DownState := 15;
+    END_IF;
+  10:
+    IF g_dLoadCylinder1WaitSignalM = 0.0 OR g_dLoadCylinder1WaitSignalM = 1.0 THEN
+         nCyl0DownState := 20;
+      ELSIF g_dLoadCylinder1WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi2 THEN
+          nCyl0DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi3 THEN
+          nCyl0DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi4 THEN
+          nCyl0DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi5 THEN
+          nCyl0DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi6 THEN
+          nCyl0DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi7 THEN
+          nCyl0DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi8 THEN
+          nCyl0DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi9 THEN
+          nCyl0DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi10 THEN
+          nCyl0DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi11 THEN
+          nCyl0DownState := 20;
+        END_IF;
+      END_IF; 
+  15:
+    nLoadCyl1DownIndex :=LREAL_TO_INT(g_dLoadCylinder1WaitSignalM) - 1;
+    IF g_dLoadCylinder1WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl1DownIndex] THEN
+        nCyl0DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder1WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl1DownIndex + 24] THEN
+        nCyl0DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder1WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl1DownIndex + 48] THEN
+        nCyl0DownState := 20;
+      END_IF;
+    END_IF;
+  20:
+    g_boLoadCyl01Up := FALSE;
+    g_boLoadCyl01Down := TRUE;
+    nCyl0DownState_Bak :=20;
+    IF g_bLoadMaterialDownInPlaceSignal1 THEN
+      IF g_bLoadCylinder1DownSignalInplaceTimeoutAlarm THEN
+        nCyl0DownState := 45;
+      END_IF;
+      IF g_bLoadCyl01DownInPlace AND g_bLoadCyl02DownInPlace AND g_bLoadCyl03DownInPlace AND g_bLoadCyl04DownInPlace THEN
+        g_boLoadCyl0DownDone := TRUE;
+        nCyl0DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_0 := FALSE;
+        END_IF;
+        g_bLoadCylinder1UpDone := FALSE;
+        g_bLoadCylinder1DownDone := TRUE;
+        g_bLoadMaterialStateHmi1:= FALSE;
+      END_IF;
+    ELSE
+      InPlaceDelay0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay1)));
+      IF InPlaceDelay0.Q THEN
+        InPlaceDelay0(IN :=FALSE);
+        g_boLoadCyl0DownDone := TRUE;
+        nCyl0DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_0 := FALSE;
+        END_IF;
+        g_bLoadCylinder1UpDone := FALSE;
+        g_bLoadCylinder1DownDone := TRUE;
+        g_bLoadMaterialStateHmi1:= FALSE;
+      END_IF;
+    END_IF;
+  3:
+    IF g_dLoadCylinder1WaitBoardInputSignalM = 0.0 THEN
+      nCyl0DownState := 30;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl0DownState := 40;
+    END_IF; 
+  30:
+     IF g_dLoadCylinder1WaitSignalM = 0.0 OR g_dLoadCylinder1WaitSignalM = 1.0 THEN
+         nCyl0DownState := 35;
+      ELSIF g_dLoadCylinder1WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi2 THEN
+          nCyl0DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi3 THEN
+          nCyl0DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi4 THEN
+          nCyl0DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi5 THEN
+          nCyl0DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi6 THEN
+          nCyl0DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi7 THEN
+          nCyl0DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi8 THEN
+          nCyl0DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi9 THEN
+          nCyl0DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi10 THEN
+          nCyl0DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder1WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi11 THEN
+          nCyl0DownState := 35;
+        END_IF;
+      END_IF; 
+  35:
+    g_boLoadCyl01Up := TRUE;
+    g_boLoadCyl01Down := FALSE;
+    nCyl0DownState_Bak :=35;
+    IF g_bLoadMaterialUpInPlaceSignal1 THEN
+      IF g_bLoadCylinder1UpSignalInplaceTimeoutAlarm THEN
+        nCyl0DownState := 45;
+      END_IF;
+      IF g_bLoadCyl01UpInPlace AND g_bLoadCyl02UpInPlace AND g_bLoadCyl03UpInPlace AND g_bLoadCyl04UpInPlace THEN
+        g_boLoadCyl0DownDone := TRUE;
+        nCyl0DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_0 := FALSE;
+        END_IF;
+        g_bLoadCylinder1UpDone := TRUE;
+        g_bLoadCylinder1DownDone := FALSE;
+        g_bLoadMaterialStateHmi1:= TRUE;
+      END_IF;
+    ELSE
+      InPlaceDelay0(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay1)));
+      IF InPlaceDelay0.Q THEN
+        InPlaceDelay0(IN :=FALSE);
+        g_boLoadCyl0DownDone := TRUE;
+        nCyl0DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_0 := FALSE;
+        END_IF;
+        g_bLoadCylinder1UpDone := TRUE;
+        g_bLoadCylinder1DownDone := FALSE;
+        g_bLoadMaterialStateHmi1:= TRUE;
+      END_IF;
+    END_IF;
+  40:
+    nLoadCyl1UpIndex := LREAL_TO_INT(g_dLoadCylinder1WaitSignalM) - 1;
+    IF g_dLoadCylinder1WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl1UpIndex] THEN
+        nCyl0DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder1WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl1UpIndex + 24] THEN
+        nCyl0DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder1WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl1UpIndex + 48] THEN
+        nCyl0DownState := 35;
+      END_IF;
+    END_IF;
+  45:
+    IF g_bPlcStartBuffer THEN
+      nCyl0DownState :=nCyl0DownState_Bak;  
+    END_IF;  
+END_CASE;
+
+(*第一组气缸*)
+IF RTriggerCyl11.Q THEN
+  nCyl1DownState := 1;
+  g_boLoadCyl1DownDone := FALSE;
+  g_bLoadCyl1DownOpenM := FALSE;
+  g_bLoadMaterial2DelayFlag := TRUE;
+  g_bLoadCylinder2UpDone := FALSE;
+  g_bLoadCylinder2DownDone := FALSE;
+END_IF;
+
+IF RTriggerCyl12.Q THEN
+  g_boLoadCyl1DownDone := FALSE;
+    g_bLoadCyl1DownCloseM := FALSE;
+  nCyl1DownState := 0;
+  g_bLoadMaterial2DelayFlag := TRUE;
+END_IF;
+
+CASE nCyl1DownState OF
+  0:
+    nCyl1DownState := 0;
+  1:
+    IF LREAL_TO_INT(g_fLoadCyl1MoveTypeM) = 0 THEN
+      nCyl1DownState := 2;
+    ELSIF LREAL_TO_INT(g_fLoadCyl1MoveTypeM) = 1 THEN
+      nCyl1DownState := 3;
+    END_IF;
+  2:
+    IF g_dLoadCylinder2WaitBoardInputSignalM = 0.0 THEN
+      nCyl1DownState := 10;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl1DownState := 15;
+    END_IF;
+  10:
+    IF g_dLoadCylinder2WaitSignalM = 0.0 OR g_dLoadCylinder2WaitSignalM = 2.0 THEN
+         nCyl1DownState := 20;
+      ELSIF g_dLoadCylinder2WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi1 THEN
+          nCyl1DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi3 THEN
+          nCyl1DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi4 THEN
+          nCyl1DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi5 THEN
+          nCyl1DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi6 THEN
+          nCyl1DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi7 THEN
+          nCyl1DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi8 THEN
+          nCyl1DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi9 THEN
+          nCyl1DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi10 THEN
+          nCyl1DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi11 THEN
+          nCyl1DownState := 20;
+        END_IF;
+      END_IF; 
+  15:
+    nLoadCyl2DownIndex := LREAL_TO_INT(g_dLoadCylinder2WaitSignalM) - 1;
+    IF g_dLoadCylinder2WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl2DownIndex] THEN
+        nCyl1DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder2WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl2DownIndex + 24] THEN
+        nCyl1DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder2WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl2DownIndex + 48] THEN
+        nCyl1DownState := 20;
+      END_IF;
+    END_IF;
+  20:
+    g_boLoadCyl11Up := FALSE;
+    g_boLoadCyl11Down := TRUE;
+    nCyl1DownState_Bak :=20;
+    IF g_bLoadMaterialDownInPlaceSignal2 THEN
+      IF g_bLoadCylinder2DownSignalInplaceTimeoutAlarm THEN
+         nCyl1DownState := 45;
+      END_IF;  
+      IF g_bLoadCyl11DownInPlace AND g_bLoadCyl12DownInPlace AND g_bLoadCyl13DownInPlace AND g_bLoadCyl14DownInPlace THEN
+        g_boLoadCyl1DownDone := TRUE;
+        nCyl1DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_1 := FALSE;
+        END_IF;
+        g_bLoadCylinder2UpDone := FALSE;
+        g_bLoadCylinder2DownDone := TRUE;
+        g_bLoadMaterialStateHmi2:= FALSE;
+      END_IF;
+    ELSE
+      InPlaceDelay1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay2)));
+      IF InPlaceDelay1.Q THEN
+        InPlaceDelay1(IN :=FALSE);
+        g_boLoadCyl1DownDone := TRUE;
+        nCyl1DownState := 0;
+         IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_1 := FALSE;
+        END_IF;
+        g_bLoadCylinder2UpDone := FALSE;
+        g_bLoadCylinder2DownDone := TRUE;
+        g_bLoadMaterialStateHmi2:= FALSE;
+      END_IF;
+    END_IF;
+  3:
+    IF g_dLoadCylinder2WaitBoardInputSignalM = 0.0 THEN
+      nCyl1DownState := 30;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl1DownState := 40;
+    END_IF; 
+  30:
+     IF g_dLoadCylinder2WaitSignalM = 0.0 OR g_dLoadCylinder2WaitSignalM = 2.0 THEN
+         nCyl1DownState := 35;
+      ELSIF g_dLoadCylinder2WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi1 THEN
+          nCyl1DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi3 THEN
+          nCyl1DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi4 THEN
+          nCyl1DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi5 THEN
+          nCyl1DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi6 THEN
+          nCyl1DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi7 THEN
+          nCyl1DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi8 THEN
+          nCyl1DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi9 THEN
+          nCyl1DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi10 THEN
+          nCyl1DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder2WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi11 THEN
+          nCyl1DownState := 35;
+        END_IF;
+      END_IF; 
+  35:
+    g_boLoadCyl11Up := TRUE;
+    g_boLoadCyl11Down := FALSE;
+    nCyl1DownState_Bak :=35;
+    IF g_bLoadMaterialUpInPlaceSignal2 THEN
+      IF g_bLoadCylinder2UpSignalInplaceTimeoutAlarm THEN
+         nCyl1DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl11UpInPlace AND g_bLoadCyl12UpInPlace AND g_bLoadCyl13UpInPlace AND g_bLoadCyl14UpInPlace THEN
+        g_boLoadCyl1DownDone := TRUE;
+        nCyl1DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_1 := FALSE;
+        END_IF;
+        g_bLoadCylinder2UpDone := TRUE;
+        g_bLoadCylinder2DownDone := FALSE;
+        g_bLoadMaterialStateHmi2:= TRUE;
+      END_IF;
+    ELSE
+      InPlaceDelay1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay2)));
+      IF InPlaceDelay1.Q THEN
+        InPlaceDelay1(IN :=FALSE);
+        g_boLoadCyl1DownDone := TRUE;
+        nCyl1DownState := 0;
+       IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_1 := FALSE;
+        END_IF;
+        g_bLoadCylinder2UpDone := TRUE;
+        g_bLoadCylinder2DownDone := FALSE;
+        g_bLoadMaterialStateHmi2:= TRUE;
+      END_IF;
+    END_IF;
+  40:
+    nLoadCyl2UpIndex:= LREAL_TO_INT(g_dLoadCylinder2WaitSignalM) - 1;
+    IF g_dLoadCylinder2WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl2UpIndex] THEN
+        nCyl1DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder2WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl2UpIndex + 24] THEN
+        nCyl1DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder2WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl2UpIndex + 48] THEN
+        nCyl1DownState := 35;
+      END_IF;
+    END_IF;
+  45:
+    IF g_bPlcStartBuffer THEN
+      nCyl1DownState :=nCyl1DownState_Bak;  
+    END_IF; 
+END_CASE;
+
+
+(*第二组气缸*)
+IF RTriggerCyl21.Q THEN
+  nCyl2DownState := 1;
+  g_boLoadCyl2DownDone := FALSE;
+  g_bLoadCyl2DownOpenM := FALSE;
+  g_bLoadMaterial3DelayFlag := TRUE;
+  g_bLoadCylinder3UpDone := FALSE;
+  g_bLoadCylinder3DownDone := FALSE;
+END_IF;
+
+IF RTriggerCyl22.Q THEN
+  g_boLoadCyl2DownDone := FALSE;
+  g_bLoadCyl2DownCloseM := FALSE;
+  nCyl2DownState := 0;
+  g_bLoadMaterial3DelayFlag := TRUE;
+END_IF;
+
+CASE nCyl2DownState OF
+  0:
+    nCyl2DownState := 0;
+  1:
+    IF LREAL_TO_INT(g_fLoadCyl2MoveTypeM) = 0 THEN
+      nCyl2DownState := 2;
+    ELSIF LREAL_TO_INT(g_fLoadCyl2MoveTypeM) = 1 THEN
+      nCyl2DownState := 3;
+    END_IF;
+  2:
+    IF g_dLoadCylinder3WaitBoardInputSignalM = 0.0 THEN
+      nCyl2DownState := 10;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl2DownState := 15;
+    END_IF;
+  10:
+    IF g_dLoadCylinder3WaitSignalM = 0.0 OR g_dLoadCylinder3WaitSignalM = 3.0 THEN
+         nCyl2DownState := 20;
+      ELSIF g_dLoadCylinder3WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi1 THEN
+          nCyl2DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi2 THEN
+          nCyl2DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi4 THEN
+          nCyl2DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi5 THEN
+          nCyl2DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi6 THEN
+          nCyl2DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi7 THEN
+          nCyl2DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi8 THEN
+          nCyl2DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi9 THEN
+          nCyl2DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi10 THEN
+          nCyl2DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi11 THEN
+          nCyl2DownState := 20;
+        END_IF;
+      END_IF; 
+  15:
+    nLoadCyl3DownIndex := LREAL_TO_INT(g_dLoadCylinder3WaitSignalM) - 1;
+    IF g_dLoadCylinder3WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl3DownIndex] THEN
+        nCyl2DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder3WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl3DownIndex + 24] THEN
+        nCyl2DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder3WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl3DownIndex + 48] THEN
+        nCyl2DownState := 20;
+      END_IF;
+    END_IF;
+  20:
+    g_boLoadCyl21Up := FALSE;
+    g_boLoadCyl21Down := TRUE;
+    nCyl2DownState_Bak :=20;
+    IF g_bLoadMaterialDownInPlaceSignal3 THEN
+      IF g_bLoadCylinder3DownSignalInplaceTimeoutAlarm THEN
+        nCyl2DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl21DownInPlace AND g_bLoadCyl22DownInPlace AND g_bLoadCyl23DownInPlace AND g_bLoadCyl24DownInPlace THEN
+        g_boLoadCyl2DownDone := TRUE;
+        nCyl2DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_2 := FALSE;
+        END_IF;
+        g_bLoadCylinder3UpDone := FALSE;
+        g_bLoadCylinder3DownDone := TRUE;
+        g_bLoadMaterialStateHmi3:= FALSE;
+      END_IF;
+    ELSE
+      InPlaceDelay2(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay3)));
+      IF InPlaceDelay2.Q THEN
+        InPlaceDelay2(IN :=FALSE);
+        g_boLoadCyl2DownDone := TRUE;
+        nCyl2DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_2 := FALSE;
+        END_IF;
+        g_bLoadCylinder3UpDone := FALSE;
+        g_bLoadCylinder3DownDone := TRUE;
+        g_bLoadMaterialStateHmi3:= FALSE;
+      END_IF;
+    END_IF;
+  3:
+    IF g_dLoadCylinder3WaitBoardInputSignalM = 0.0 THEN
+      nCyl2DownState := 30;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl2DownState := 40;
+    END_IF; 
+  30:
+     IF g_dLoadCylinder3WaitSignalM = 0.0 OR g_dLoadCylinder3WaitSignalM = 3.0 THEN
+         nCyl2DownState := 35;
+      ELSIF g_dLoadCylinder3WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi1 THEN
+          nCyl2DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi2 THEN
+          nCyl2DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi4 THEN
+          nCyl2DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi5 THEN
+          nCyl2DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi6 THEN
+          nCyl2DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi7 THEN
+          nCyl2DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi8 THEN
+          nCyl2DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi9 THEN
+          nCyl2DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi10 THEN
+          nCyl2DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder3WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi11 THEN
+          nCyl2DownState := 35;
+        END_IF;
+      END_IF; 
+  35:
+    g_boLoadCyl21Up := TRUE;
+    g_boLoadCyl21Down := FALSE;
+    nCyl2DownState_Bak :=35;
+    IF g_bLoadMaterialUpInPlaceSignal3 THEN
+      IF g_bLoadCylinder3UpSignalInplaceTimeoutAlarm THEN
+         nCyl2DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl21UpInPlace AND g_bLoadCyl22UpInPlace AND g_bLoadCyl23UpInPlace AND g_bLoadCyl24UpInPlace THEN
+        g_boLoadCyl2DownDone := TRUE;
+        nCyl2DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_2 := FALSE;
+        END_IF;
+        g_bLoadCylinder3UpDone := TRUE;
+        g_bLoadCylinder3DownDone := FALSE;
+        g_bLoadMaterialStateHmi3:= TRUE;
+      END_IF;
+    ELSE
+      InPlaceDelay2(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay3)));
+      IF InPlaceDelay2.Q THEN
+        InPlaceDelay2(IN :=FALSE);
+        g_boLoadCyl2DownDone := TRUE;
+        nCyl2DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_2 := FALSE;
+        END_IF;
+        g_bLoadCylinder3UpDone := TRUE;
+        g_bLoadCylinder3DownDone := FALSE;
+        g_bLoadMaterialStateHmi3:= TRUE;
+      END_IF;
+    END_IF;
+  40:
+    nLoadCyl3UpIndex := LREAL_TO_INT(g_dLoadCylinder3WaitSignalM) - 1;
+    IF g_dLoadCylinder3WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl3UpIndex] THEN
+        nCyl2DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder3WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl3UpIndex + 24] THEN
+        nCyl2DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder3WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl3UpIndex + 48] THEN
+        nCyl2DownState := 35;
+      END_IF;
+    END_IF;
+    
+  45:
+    IF g_bPlcStartBuffer THEN
+      nCyl2DownState :=nCyl2DownState_Bak;  
+    END_IF; 
+END_CASE;
+
+(*第三组气缸*)
+IF RTriggerCyl31.Q THEN
+  nCyl3DownState := 1;
+  g_boLoadCyl3DownDone := FALSE;
+  g_bLoadCyl3DownOpenM := FALSE;
+  g_bLoadMaterial4DelayFlag := TRUE;
+  g_bLoadCylinder4UpDone := FALSE;
+  g_bLoadCylinder4DownDone := FALSE;
+END_IF;
+
+IF RTriggerCyl32.Q THEN
+  g_boLoadCyl3DownDone := FALSE;
+  g_bLoadCyl3DownCloseM := FALSE;
+  nCyl3DownState := 0;
+  g_bLoadMaterial4DelayFlag := TRUE;
+END_IF;
+
+CASE nCyl3DownState OF
+  0:
+    nCyl3DownState := 0;
+  1:
+    IF LREAL_TO_INT(g_fLoadCyl3MoveTypeM) = 0 THEN
+      nCyl3DownState := 2;
+    ELSIF LREAL_TO_INT(g_fLoadCyl3MoveTypeM) = 1 THEN
+      nCyl3DownState := 3;
+    END_IF;
+  2:
+     IF g_dLoadCylinder4WaitBoardInputSignalM = 0.0 THEN
+      nCyl3DownState := 10;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl3DownState := 15;
+    END_IF;
+  10:
+    IF g_dLoadCylinder4WaitSignalM = 0.0 OR g_dLoadCylinder4WaitSignalM = 4.0 THEN
+         nCyl3DownState := 20;
+      ELSIF g_dLoadCylinder4WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi1 THEN
+          nCyl3DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi2 THEN
+          nCyl3DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi3 THEN
+          nCyl3DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi5 THEN
+          nCyl3DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi6 THEN
+          nCyl3DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi7 THEN
+          nCyl3DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi8 THEN
+          nCyl3DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi9 THEN
+          nCyl3DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi10 THEN
+          nCyl3DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi11 THEN
+          nCyl3DownState := 20;
+        END_IF;
+      END_IF; 
+  15:
+    nLoadCyl4DownIndex := LREAL_TO_INT(g_dLoadCylinder4WaitSignalM) - 1;
+    IF g_dLoadCylinder4WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl4DownIndex] THEN
+        nCyl3DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder4WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl4DownIndex + 24] THEN
+        nCyl3DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder4WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl4DownIndex + 48] THEN
+        nCyl3DownState := 20;
+      END_IF;
+    END_IF;
+  20:
+    g_boLoadCyl31Up := FALSE;
+    g_boLoadCyl31Down := TRUE;
+    nCyl3DownState_Bak :=20;
+    IF g_bLoadMaterialDownInPlaceSignal4 THEN
+      IF g_bLoadCylinder4DownSignalInplaceTimeoutAlarm THEN
+        nCyl3DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl31DownInPlace AND g_bLoadCyl32DownInPlace AND g_bLoadCyl33DownInPlace AND g_bLoadCyl34DownInPlace THEN
+        g_boLoadCyl3DownDone := TRUE;
+        nCyl3DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_3 := FALSE;
+        END_IF;
+        g_bLoadCylinder4UpDone := FALSE;
+        g_bLoadCylinder4DownDone := TRUE;
+        g_bLoadMaterialStateHmi4:= FALSE;
+      END_IF;
+    ELSE
+      InPlaceDelay3(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay4)));
+      IF InPlaceDelay3.Q THEN
+        InPlaceDelay3(IN :=FALSE);
+        g_boLoadCyl3DownDone := TRUE;
+        nCyl3DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_3 := FALSE;
+        END_IF;
+        g_bLoadCylinder4UpDone := FALSE;
+        g_bLoadCylinder4DownDone := TRUE;
+        g_bLoadMaterialStateHmi4:= FALSE;
+      END_IF;
+    END_IF;
+  3:
+    IF g_dLoadCylinder4WaitBoardInputSignalM = 0.0 THEN
+      nCyl3DownState := 30;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl3DownState := 40;
+    END_IF; 
+  30:
+     IF g_dLoadCylinder4WaitSignalM = 0.0 OR g_dLoadCylinder4WaitSignalM = 4.0 THEN
+         nCyl3DownState := 35;
+      ELSIF g_dLoadCylinder4WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi1 THEN
+          nCyl3DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi2 THEN
+          nCyl3DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi3 THEN
+          nCyl3DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi5 THEN
+          nCyl3DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi6 THEN
+          nCyl3DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi7 THEN
+          nCyl3DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi8 THEN
+          nCyl3DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi9 THEN
+          nCyl3DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi10 THEN
+          nCyl3DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder4WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi11 THEN
+          nCyl3DownState := 35;
+        END_IF;
+      END_IF; 
+  35:
+    g_boLoadCyl31Up := TRUE;
+    g_boLoadCyl31Down := FALSE;
+    nCyl3DownState_Bak :=35;
+    IF g_bLoadMaterialUpInPlaceSignal4 THEN
+      IF g_bLoadCylinder4UpSignalInplaceTimeoutAlarm THEN
+         nCyl3DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl31UpInPlace AND g_bLoadCyl32UpInPlace AND g_bLoadCyl33UpInPlace AND g_bLoadCyl34UpInPlace THEN
+        g_boLoadCyl3DownDone := TRUE;
+        nCyl3DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_3 := FALSE;
+        END_IF;
+        g_bLoadCylinder4UpDone := TRUE;
+        g_bLoadCylinder4DownDone := FALSE;
+        g_bLoadMaterialStateHmi4:= TRUE;
+      END_IF;
+    ELSE
+      InPlaceDelay3(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay4)));
+      IF InPlaceDelay3.Q THEN
+        InPlaceDelay3(IN :=FALSE);
+        g_boLoadCyl3DownDone := TRUE;
+        nCyl3DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_3 := FALSE;
+        END_IF;
+        g_bLoadCylinder4UpDone := TRUE;
+        g_bLoadCylinder4DownDone := FALSE;
+        g_bLoadMaterialStateHmi4:= TRUE;
+      END_IF;
+    END_IF;
+  40:
+    nLoadCyl4UpIndex := LREAL_TO_INT(g_dLoadCylinder4WaitSignalM) - 1;
+    IF g_dLoadCylinder4WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl4UpIndex] THEN
+        nCyl3DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder4WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl4UpIndex + 24] THEN
+        nCyl3DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder4WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl4UpIndex + 48] THEN
+        nCyl3DownState := 35;
+      END_IF;
+    END_IF;
+    
+  45:
+    IF g_bPlcStartBuffer THEN
+      nCyl3DownState :=nCyl3DownState_Bak;  
+    END_IF; 
+    
+END_CASE;
+
+(*第四组气缸*)
+IF RTriggerCyl41.Q THEN
+  nCyl4DownState := 1;
+  g_boLoadCyl4DownDone := FALSE;
+  g_bLoadCyl4DownOpenM := FALSE;
+  g_bLoadMaterial5DelayFlag := TRUE;
+  g_bLoadCylinder5UpDone := FALSE;
+  g_bLoadCylinder5DownDone := FALSE;
+END_IF;
+
+IF RTriggerCyl42.Q THEN
+  g_boLoadCyl4DownDone := FALSE;
+  g_bLoadCyl4DownCloseM := FALSE;
+  nCyl4DownState := 0;
+  g_bLoadMaterial5DelayFlag := TRUE;
+END_IF;
+
+CASE nCyl4DownState OF
+  0:
+    nCyl4DownState := 0;
+  1:
+    IF LREAL_TO_INT(g_fLoadCyl4MoveTypeM) = 0 THEN
+      nCyl4DownState := 2;
+    ELSIF LREAL_TO_INT(g_fLoadCyl4MoveTypeM) = 1 THEN
+      nCyl4DownState := 3;
+    END_IF;
+  2:
+    IF g_dLoadCylinder5WaitBoardInputSignalM = 0.0 THEN
+      nCyl4DownState := 10;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl4DownState := 15;
+    END_IF;
+  10:
+    IF g_dLoadCylinder5WaitSignalM = 0.0 OR g_dLoadCylinder5WaitSignalM = 5.0 THEN
+         nCyl4DownState := 20;
+      ELSIF g_dLoadCylinder5WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi1 THEN
+          nCyl4DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi2 THEN
+          nCyl4DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi3 THEN
+          nCyl4DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi4 THEN
+          nCyl4DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi6 THEN
+          nCyl4DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi7 THEN
+          nCyl4DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi8 THEN
+          nCyl4DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi9 THEN
+          nCyl4DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi10 THEN
+          nCyl4DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi11 THEN
+          nCyl4DownState := 20;
+        END_IF;
+      END_IF; 
+  15:
+    nLoadCyl5DownIndex := LREAL_TO_INT(g_dLoadCylinder5WaitSignalM) - 1;
+    IF g_dLoadCylinder5WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl5DownIndex] THEN
+        nCyl4DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder5WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl5DownIndex + 24] THEN
+        nCyl4DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder5WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl5DownIndex + 48] THEN
+        nCyl4DownState := 20;
+      END_IF;
+    END_IF;
+  20:
+    g_boLoadCyl41Up := FALSE;
+    g_boLoadCyl41Down := TRUE;
+    nCyl4DownState_Bak :=20;
+    IF g_bLoadMaterialDownInPlaceSignal5 THEN
+      IF g_bLoadCylinder5DownSignalInplaceTimeoutAlarm THEN
+        nCyl4DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl41DownInPlace AND g_bLoadCyl42DownInPlace AND g_bLoadCyl43DownInPlace AND g_bLoadCyl44DownInPlace THEN
+        g_boLoadCyl4DownDone := TRUE;
+        nCyl4DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_4 := FALSE;
+        END_IF;
+        g_bLoadCylinder5UpDone := FALSE;
+        g_bLoadCylinder5DownDone := TRUE;
+        g_bLoadMaterialStateHmi5:= FALSE;
+      END_IF;
+    ELSE
+      InPlaceDelay4(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay5)));
+      IF InPlaceDelay4.Q THEN
+        InPlaceDelay4(IN :=FALSE);
+        g_boLoadCyl4DownDone := TRUE;
+        nCyl4DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_4 := FALSE;
+        END_IF;
+        g_bLoadCylinder5UpDone := FALSE;
+        g_bLoadCylinder5DownDone := TRUE;
+        g_bLoadMaterialStateHmi5:= FALSE;
+      END_IF;
+    END_IF;
+  3:
+    IF g_dLoadCylinder5WaitBoardInputSignalM = 0.0 THEN
+      nCyl4DownState := 30;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl4DownState := 40;
+    END_IF; 
+  30:
+     IF g_dLoadCylinder5WaitSignalM = 0.0 OR g_dLoadCylinder5WaitSignalM = 5.0 THEN
+         nCyl4DownState := 35;
+      ELSIF g_dLoadCylinder5WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi1 THEN
+          nCyl4DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi2 THEN
+          nCyl4DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi3 THEN
+          nCyl4DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi4 THEN
+          nCyl4DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi6 THEN
+          nCyl4DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi7 THEN
+          nCyl4DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi8 THEN
+          nCyl4DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi9 THEN
+          nCyl4DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi10 THEN
+          nCyl4DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder5WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi11 THEN
+          nCyl4DownState := 35;
+        END_IF;
+      END_IF; 
+  35:
+    g_boLoadCyl41Up := TRUE;
+    g_boLoadCyl41Down := FALSE;
+    nCyl4DownState_Bak :=35;
+    IF g_bLoadMaterialUpInPlaceSignal5 THEN
+      IF g_bLoadCylinder5UpSignalInplaceTimeoutAlarm THEN
+         nCyl4DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl41UpInPlace AND g_bLoadCyl42UpInPlace AND g_bLoadCyl43UpInPlace AND g_bLoadCyl44UpInPlace THEN
+        g_boLoadCyl4DownDone := TRUE;
+        nCyl4DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_4 := FALSE;
+        END_IF;
+        g_bLoadCylinder5UpDone := TRUE;
+        g_bLoadCylinder5DownDone := FALSE;
+        g_bLoadMaterialStateHmi5:= TRUE;
+      END_IF;
+    ELSE
+      InPlaceDelay4(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay5)));
+      IF InPlaceDelay4.Q THEN
+        InPlaceDelay4(IN :=FALSE);
+        g_boLoadCyl4DownDone := TRUE;
+        nCyl4DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_4 := FALSE;
+        END_IF;
+        g_bLoadCylinder5UpDone := TRUE;
+        g_bLoadCylinder5DownDone := FALSE;
+        g_bLoadMaterialStateHmi5:= TRUE;
+      END_IF;
+    END_IF;
+  40:
+    nLoadCyl5UpIndex := LREAL_TO_INT(g_dLoadCylinder5WaitSignalM) - 1;
+    IF g_dLoadCylinder5WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl5UpIndex] THEN
+        nCyl4DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder5WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl5UpIndex + 24] THEN
+        nCyl4DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder5WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl5UpIndex + 48] THEN
+        nCyl4DownState := 35;
+      END_IF;
+    END_IF;
+    
+  45:
+    IF g_bPlcStartBuffer THEN
+      nCyl4DownState :=nCyl4DownState_Bak;  
+    END_IF; 
+END_CASE;
+(*第五组气缸*)
+IF RTriggerCyl51.Q THEN
+  nCyl5DownState := 1;
+  g_boLoadCyl5DownDone := FALSE;
+  g_bLoadCyl5DownOpenM := FALSE;
+  g_bLoadMaterial7DelayFlag := TRUE;
+  g_bLoadCylinder6UpDone := FALSE;
+  g_bLoadCylinder6DownDone := FALSE;
+END_IF;
+
+IF RTriggerCyl52.Q THEN
+  g_boLoadCyl5DownDone := FALSE;
+  g_bLoadCyl5DownCloseM := FALSE;
+  nCyl5DownState := 0;
+  g_bLoadMaterial7DelayFlag := TRUE;
+END_IF;
+
+CASE nCyl5DownState OF
+  0:
+    nCyl5DownState := 0;
+  1:
+    IF LREAL_TO_INT(g_fLoadCyl5MoveTypeM) = 0 THEN
+      nCyl5DownState := 2;
+    ELSIF LREAL_TO_INT(g_fLoadCyl5MoveTypeM) = 1 THEN
+      nCyl5DownState := 3;
+    END_IF;
+  2:
+    IF g_dLoadCylinder6WaitBoardInputSignalM = 0.0 THEN
+      nCyl5DownState := 10;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl5DownState := 15;
+    END_IF;
+  10:
+    IF g_dLoadCylinder6WaitSignalM = 0.0 OR g_dLoadCylinder6WaitSignalM = 6.0 THEN
+         nCyl5DownState := 20;
+      ELSIF g_dLoadCylinder6WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi1 THEN
+          nCyl5DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi2 THEN
+          nCyl5DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi3 THEN
+          nCyl5DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi4 THEN
+          nCyl5DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi5 THEN
+          nCyl5DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi7 THEN
+          nCyl5DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi8 THEN
+          nCyl5DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi9 THEN
+          nCyl5DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi10 THEN
+          nCyl5DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi11 THEN
+          nCyl5DownState := 20;
+        END_IF;
+      END_IF; 
+  15:
+    nLoadCyl6DownIndex := LREAL_TO_INT(g_dLoadCylinder6WaitSignalM) - 1;
+    IF g_dLoadCylinder6WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl6DownIndex] THEN
+        nCyl5DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder6WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl6DownIndex + 24] THEN
+        nCyl5DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder6WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl6DownIndex + 48] THEN
+        nCyl5DownState := 20;
+      END_IF;
+    END_IF;
+  20:
+    g_boLoadCyl51Up := FALSE;
+    g_boLoadCyl51Down := TRUE;
+    nCyl5DownState_Bak :=20;
+    IF g_bLoadMaterialDownInPlaceSignal6 THEN
+      IF g_bLoadCylinder6DownSignalInplaceTimeoutAlarm THEN
+        nCyl5DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl51DownInPlace AND g_bLoadCyl52DownInPlace AND g_bLoadCyl53DownInPlace AND g_bLoadCyl54DownInPlace THEN
+        g_boLoadCyl5DownDone := TRUE;
+        nCyl5DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_5 := FALSE;
+        END_IF;
+        g_bLoadCylinder6UpDone := FALSE;
+        g_bLoadCylinder6DownDone := TRUE;
+        g_bLoadMaterialStateHmi6:= FALSE;
+      END_IF;
+    ELSE
+      InPlaceDelay5(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay6)));
+      IF InPlaceDelay5.Q THEN
+        InPlaceDelay5(IN :=FALSE);
+        g_boLoadCyl5DownDone := TRUE;
+        nCyl5DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_5 := FALSE;
+        END_IF;
+        g_bLoadCylinder6UpDone := FALSE;
+        g_bLoadCylinder6DownDone := TRUE;
+        g_bLoadMaterialStateHmi6:= FALSE;
+      END_IF;
+    END_IF;
+  3:
+    IF g_dLoadCylinder6WaitBoardInputSignalM = 0.0 THEN
+      nCyl5DownState := 30;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl5DownState := 40;
+    END_IF; 
+  30:
+     IF g_dLoadCylinder6WaitSignalM = 0.0 OR g_dLoadCylinder6WaitSignalM = 6.0 THEN
+         nCyl5DownState := 35;
+      ELSIF g_dLoadCylinder6WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi1 THEN
+          nCyl5DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi2 THEN
+          nCyl5DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi3 THEN
+          nCyl5DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi4 THEN
+          nCyl5DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi5 THEN
+          nCyl5DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi7 THEN
+          nCyl5DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi8 THEN
+          nCyl5DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi9 THEN
+          nCyl5DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi10 THEN
+          nCyl5DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder6WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi11 THEN
+          nCyl5DownState := 35;
+        END_IF;
+      END_IF; 
+  35:
+    g_boLoadCyl51Up := TRUE;
+    g_boLoadCyl51Down := FALSE;
+    nCyl5DownState_Bak :=35;
+    IF g_bLoadMaterialUpInPlaceSignal6 THEN
+      IF g_bLoadCylinder6UpSignalInplaceTimeoutAlarm THEN
+         nCyl5DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl51UpInPlace AND g_bLoadCyl52UpInPlace AND g_bLoadCyl53UpInPlace AND g_bLoadCyl54UpInPlace THEN
+        g_boLoadCyl5DownDone := TRUE;
+        nCyl5DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_5 := FALSE;
+        END_IF;
+        g_bLoadCylinder6UpDone := TRUE;
+        g_bLoadCylinder6DownDone := FALSE;
+        g_bLoadMaterialStateHmi6:= TRUE;
+      END_IF;
+    ELSE
+      InPlaceDelay5(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay6)));
+      IF InPlaceDelay5.Q THEN
+        InPlaceDelay5(IN :=FALSE);
+        g_boLoadCyl5DownDone := TRUE;
+        nCyl5DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_5 := FALSE;
+        END_IF;
+        g_bLoadCylinder6UpDone := TRUE;
+        g_bLoadCylinder6DownDone := FALSE;
+        g_bLoadMaterialStateHmi6:= TRUE;
+      END_IF;
+    END_IF;
+  40:
+    nLoadCyl6UpIndex := LREAL_TO_INT(g_dLoadCylinder6WaitSignalM) - 1;
+    IF g_dLoadCylinder6WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl6UpIndex] THEN
+        nCyl5DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder6WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl6UpIndex + 24] THEN
+        nCyl5DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder6WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl6UpIndex + 48] THEN
+        nCyl5DownState := 35;
+      END_IF;
+    END_IF;
+    
+  45:
+    IF g_bPlcStartBuffer THEN
+      nCyl5DownState :=nCyl5DownState_Bak;  
+    END_IF; 
+    
+END_CASE;
+(*第六组气缸*)
+IF RTriggerCyl61.Q THEN
+  nCyl6DownState := 1;
+  g_boLoadCyl6DownDone := FALSE;
+  g_bLoadCyl6DownOpenM := FALSE;
+  g_bLoadMaterial7DelayFlag := TRUE;
+  g_bLoadCylinder7UpDone := TRUE;
+  g_bLoadCylinder7DownDone := FALSE;
+END_IF;
+
+IF RTriggerCyl62.Q THEN
+  g_boLoadCyl6DownDone := FALSE;
+  g_bLoadCyl6DownCloseM := FALSE;
+  nCyl6DownState := 0;
+  g_bLoadMaterial7DelayFlag := TRUE;
+END_IF;
+
+CASE nCyl6DownState OF
+  0:
+    nCyl6DownState := 0;
+  1:
+    IF LREAL_TO_INT(g_fLoadCyl6MoveTypeM) = 0 THEN
+      nCyl6DownState := 2;
+    ELSIF LREAL_TO_INT(g_fLoadCyl6MoveTypeM) = 1 THEN
+      nCyl6DownState := 3;
+    END_IF;
+  2:
+    IF g_dLoadCylinder7WaitBoardInputSignalM = 0.0 THEN
+      nCyl6DownState := 10;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl6DownState := 15;
+    END_IF;
+  10:
+    IF g_dLoadCylinder7WaitSignalM = 0.0 OR g_dLoadCylinder7WaitSignalM = 7.0 THEN
+         nCyl6DownState := 20;
+      ELSIF g_dLoadCylinder7WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi1 THEN
+          nCyl6DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi2 THEN
+          nCyl6DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi3 THEN
+          nCyl6DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi4 THEN
+          nCyl6DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi5 THEN
+          nCyl6DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi6 THEN
+          nCyl6DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi8 THEN
+          nCyl6DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi9 THEN
+          nCyl6DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi10 THEN
+          nCyl6DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi11 THEN
+          nCyl6DownState := 20;
+        END_IF;
+      END_IF; 
+  15:
+    nLoadCyl7DownIndex := LREAL_TO_INT(g_dLoadCylinder7WaitSignalM) - 1;
+    IF g_dLoadCylinder7WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl7DownIndex] THEN
+        nCyl6DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder7WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl7DownIndex + 24] THEN
+        nCyl6DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder7WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl7DownIndex + 48] THEN
+        nCyl6DownState := 20;
+      END_IF;
+    END_IF;
+  20:
+    g_boLoadCyl61Up := FALSE;
+    g_boLoadCyl61Down := TRUE;
+    nCyl6DownState_Bak :=20;
+    IF g_bLoadMaterialDownInPlaceSignal7 THEN
+      IF g_bLoadCylinder7DownSignalInplaceTimeoutAlarm THEN
+        nCyl6DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl61DownInPlace AND g_bLoadCyl62DownInPlace AND g_bLoadCyl63DownInPlace AND g_bLoadCyl64DownInPlace THEN
+        g_boLoadCyl6DownDone := TRUE;
+        nCyl6DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_6 := FALSE;
+        END_IF;
+        g_bLoadCylinder7UpDone := FALSE;
+        g_bLoadCylinder7DownDone := TRUE;
+        g_bLoadMaterialStateHmi7:= FALSE;
+      END_IF;
+    ELSE
+      InPlaceDelay6(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay7)));
+      IF InPlaceDelay6.Q THEN
+        InPlaceDelay6(IN :=FALSE);
+        g_boLoadCyl6DownDone := TRUE;
+        nCyl6DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_6 := FALSE;
+        END_IF;
+        g_bLoadCylinder7UpDone := FALSE;
+        g_bLoadCylinder7DownDone := TRUE;
+        g_bLoadMaterialStateHmi7:= FALSE;
+      END_IF;
+    END_IF;
+  3:
+    IF g_dLoadCylinder7WaitBoardInputSignalM = 0.0 THEN
+      nCyl6DownState := 30;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl6DownState := 40;
+    END_IF; 
+  30:
+     IF g_dLoadCylinder7WaitSignalM = 0.0 OR g_dLoadCylinder7WaitSignalM = 7.0 THEN
+         nCyl6DownState := 35;
+      ELSIF g_dLoadCylinder7WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi1 THEN
+          nCyl6DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi2 THEN
+          nCyl6DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi3 THEN
+          nCyl6DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi4 THEN
+          nCyl6DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi5 THEN
+          nCyl6DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi6 THEN
+          nCyl6DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi8 THEN
+          nCyl6DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi9 THEN
+          nCyl6DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi10 THEN
+          nCyl6DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder7WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi11 THEN
+          nCyl6DownState := 35;
+        END_IF;
+      END_IF; 
+  35:
+    g_boLoadCyl61Up := TRUE;
+    g_boLoadCyl61Down := FALSE;
+    nCyl6DownState_Bak :=35;
+    IF g_bLoadMaterialUpInPlaceSignal7 THEN
+      IF g_bLoadCylinder7UpSignalInplaceTimeoutAlarm THEN
+         nCyl6DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl61UpInPlace AND g_bLoadCyl62UpInPlace AND g_bLoadCyl63UpInPlace AND g_bLoadCyl64UpInPlace THEN
+        g_boLoadCyl6DownDone := TRUE;
+        nCyl6DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_6 := FALSE;
+        END_IF;
+        g_bLoadCylinder7UpDone := TRUE;
+        g_bLoadCylinder7DownDone := FALSE;
+        g_bLoadMaterialStateHmi7:= TRUE;
+      END_IF;
+    ELSE
+      InPlaceDelay6(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay7)));
+      IF InPlaceDelay6.Q THEN
+        InPlaceDelay6(IN :=FALSE);
+        g_boLoadCyl6DownDone := TRUE;
+        nCyl6DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+        END_IF;
+        g_bExecuteFinishedM183 := FALSE;
+        g_bFinishedM183_6 := FALSE;
+        g_bLoadCylinder7UpDone := TRUE;
+        g_bLoadCylinder7DownDone := FALSE;
+        g_bLoadMaterialStateHmi7:= TRUE;
+      END_IF;
+    END_IF;
+  40:
+    nLoadCyl7UpIndex := LREAL_TO_INT(g_dLoadCylinder7WaitSignalM) - 1;
+    IF g_dLoadCylinder7WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl7UpIndex] THEN
+        nCyl6DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder7WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl7UpIndex + 24] THEN
+        nCyl6DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder7WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl7UpIndex + 48] THEN
+        nCyl6DownState := 35;
+      END_IF;
+    END_IF;
+    
+    45:
+    IF g_bPlcStartBuffer THEN
+      nCyl6DownState :=nCyl6DownState_Bak;  
+    END_IF; 
+    
+END_CASE;
+(*第七组气缸*)
+IF RTriggerCyl71.Q THEN
+  nCyl7DownState := 1;
+  g_boLoadCyl7DownDone := FALSE;
+  g_bLoadCyl7DownOpenM := FALSE;
+  g_bLoadMaterial8DelayFlag := TRUE;
+  g_bLoadCylinder7UpDone := FALSE;
+   g_bLoadCylinder7DownDone := FALSE;
+END_IF;
+
+IF RTriggerCyl72.Q THEN
+  g_boLoadCyl7DownDone := FALSE;
+  g_bLoadCyl7DownCloseM := FALSE;
+  nCyl7DownState := 0;
+  g_bLoadMaterial8DelayFlag := TRUE;
+END_IF;
+
+CASE nCyl7DownState OF
+  0:
+    nCyl7DownState := 0;
+  1:
+    IF LREAL_TO_INT(g_fLoadCyl7MoveTypeM) = 0 THEN
+      nCyl7DownState := 2;
+    ELSIF LREAL_TO_INT(g_fLoadCyl7MoveTypeM) = 1 THEN
+      nCyl7DownState := 3;
+    END_IF;
+  2:
+    IF g_dLoadCylinder8WaitBoardInputSignalM = 0.0 THEN
+      nCyl7DownState := 10;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl7DownState := 15;
+    END_IF;
+  10:
+    IF g_dLoadCylinder8WaitSignalM = 0.0 OR g_dLoadCylinder8WaitSignalM = 8.0 THEN
+         nCyl7DownState := 20;
+      ELSIF g_dLoadCylinder8WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi1 THEN
+          nCyl7DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi2 THEN
+          nCyl7DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi3 THEN
+          nCyl7DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi4 THEN
+          nCyl7DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi5 THEN
+          nCyl7DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi6 THEN
+          nCyl7DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi7 THEN
+          nCyl7DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi9 THEN
+          nCyl7DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi10 THEN
+          nCyl7DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi11 THEN
+          nCyl7DownState := 20;
+        END_IF;
+      END_IF; 
+  15:
+    nLoadCyl8DownIndex := LREAL_TO_INT(g_dLoadCylinder8WaitSignalM) - 1;
+    IF g_dLoadCylinder8WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl8DownIndex] THEN
+        nCyl7DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder8WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl8DownIndex + 24] THEN
+        nCyl7DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder8WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl8DownIndex + 48] THEN
+        nCyl7DownState := 20;
+      END_IF;
+    END_IF;
+  20:
+    g_boLoadCyl71Up := FALSE;
+    g_boLoadCyl71Down := TRUE;
+    nCyl7DownState_Bak :=20;
+    IF g_bLoadMaterialDownInPlaceSignal8 THEN
+      IF g_bLoadCylinder8DownSignalInplaceTimeoutAlarm THEN
+        nCyl7DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl71DownInPlace AND g_bLoadCyl72DownInPlace AND g_bLoadCyl73DownInPlace AND g_bLoadCyl74DownInPlace THEN
+        g_boLoadCyl7DownDone := TRUE;
+        nCyl7DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_7 := FALSE;
+        END_IF;
+        g_bLoadCylinder8UpDone := FALSE;
+        g_bLoadCylinder8DownDone := TRUE;
+        g_bLoadMaterialStateHmi8:= FALSE;
+      END_IF;
+    ELSE
+      InPlaceDelay7(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay8)));
+      IF InPlaceDelay7.Q THEN
+        InPlaceDelay7(IN :=FALSE);
+        g_boLoadCyl7DownDone := TRUE;
+        nCyl7DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_7 := FALSE;
+        END_IF;
+        g_bLoadCylinder8UpDone := FALSE;
+        g_bLoadCylinder8DownDone := TRUE;
+        g_bLoadMaterialStateHmi8:= FALSE;
+      END_IF;
+    END_IF;
+  3:
+    IF g_dLoadCylinder8WaitBoardInputSignalM = 0.0 THEN
+      nCyl7DownState := 30;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl7DownState := 40;
+    END_IF; 
+  30:
+     IF g_dLoadCylinder8WaitSignalM = 0.0 OR g_dLoadCylinder8WaitSignalM = 8.0 THEN
+         nCyl7DownState := 35;
+      ELSIF g_dLoadCylinder8WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi1 THEN
+          nCyl7DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi2 THEN
+          nCyl7DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi3 THEN
+          nCyl7DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi4 THEN
+          nCyl7DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi5 THEN
+          nCyl7DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi6 THEN
+          nCyl7DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi8 THEN
+          nCyl7DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi9 THEN
+          nCyl7DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi10 THEN
+          nCyl7DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder8WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi11 THEN
+          nCyl7DownState := 35;
+        END_IF;
+      END_IF; 
+  35:
+    g_boLoadCyl71Up := TRUE;
+    g_boLoadCyl71Down := FALSE;
+    nCyl7DownState_Bak :=35;
+    IF g_bLoadMaterialUpInPlaceSignal8 THEN  
+      IF g_bLoadCylinder8UpSignalInplaceTimeoutAlarm THEN
+         nCyl7DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl71UpInPlace AND g_bLoadCyl72UpInPlace AND g_bLoadCyl73UpInPlace AND g_bLoadCyl74UpInPlace THEN
+        g_boLoadCyl7DownDone := TRUE;
+        nCyl7DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_7 := FALSE;
+        END_IF;
+        g_bLoadCylinder8UpDone := TRUE;
+        g_bLoadCylinder8DownDone := FALSE;
+        g_bLoadMaterialStateHmi8:= TRUE;
+      END_IF;
+    ELSE
+      InPlaceDelay7(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay8)));
+      IF InPlaceDelay7.Q THEN
+        InPlaceDelay7(IN :=FALSE);
+        g_boLoadCyl7DownDone := TRUE;
+        nCyl7DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_7 := FALSE;
+        END_IF;
+        g_bLoadCylinder8UpDone := TRUE;
+        g_bLoadCylinder8DownDone := FALSE;
+        g_bLoadMaterialStateHmi8:= TRUE;
+      END_IF;
+    END_IF;
+  40:
+    nLoadCyl8UpIndex := LREAL_TO_INT(g_dLoadCylinder8WaitSignalM) - 1;
+    IF g_dLoadCylinder8WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl8UpIndex] THEN
+        nCyl7DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder8WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl8UpIndex + 24] THEN
+        nCyl7DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder8WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl8UpIndex + 48] THEN
+        nCyl7DownState := 35;
+      END_IF;
+    END_IF;
+    
+  45:
+    IF g_bPlcStartBuffer THEN
+      nCyl7DownState :=nCyl7DownState_Bak;  
+    END_IF; 
+END_CASE;
+(*第八组气缸*)
+IF RTriggerCyl81.Q THEN
+  nCyl8DownState := 1;
+  g_boLoadCyl8DownDone := FALSE;
+  g_bLoadCyl8DownOpenM := FALSE;
+  g_bLoadMaterial9DelayFlag := TRUE;
+  g_bLoadCylinder9UpDone := FALSE;
+  g_bLoadCylinder9DownDone := TRUE;
+END_IF;
+
+IF RTriggerCyl82.Q THEN
+  g_boLoadCyl8DownDone := FALSE;
+  g_bLoadCyl8DownCloseM := FALSE;
+  nCyl8DownState := 0;
+  g_bLoadMaterial9DelayFlag := TRUE;
+END_IF;
+
+CASE nCyl8DownState OF
+  0:
+    nCyl8DownState := 0;
+  1:
+    IF LREAL_TO_INT(g_fLoadCyl8MoveTypeM) = 0 THEN
+      nCyl8DownState := 2;
+    ELSIF LREAL_TO_INT(g_fLoadCyl8MoveTypeM) = 1 THEN
+      nCyl8DownState := 3;
+    END_IF;
+  2:
+     IF g_dLoadCylinder9WaitBoardInputSignalM = 0.0 THEN
+      nCyl8DownState := 10;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl8DownState := 15;
+    END_IF;
+  10:
+    IF g_dLoadCylinder9WaitSignalM = 0.0 OR g_dLoadCylinder9WaitSignalM = 9.0 THEN
+         nCyl8DownState := 20;
+      ELSIF g_dLoadCylinder9WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi1 THEN
+          nCyl8DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi2 THEN
+          nCyl8DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi3 THEN
+          nCyl8DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi4 THEN
+          nCyl8DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi5 THEN
+          nCyl8DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi6 THEN
+          nCyl8DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi7 THEN
+          nCyl8DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi8 THEN
+          nCyl8DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi10 THEN
+          nCyl8DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi11 THEN
+          nCyl8DownState := 20;
+        END_IF;
+      END_IF; 
+  15:
+    nLoadCyl9DownIndex := LREAL_TO_INT(g_dLoadCylinder9WaitSignalM) - 1;
+    IF g_dLoadCylinder9WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl9DownIndex] THEN
+        nCyl8DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder9WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl9DownIndex + 24] THEN
+        nCyl8DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder9WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl9DownIndex + 48] THEN
+        nCyl8DownState := 20;
+      END_IF;
+    END_IF;
+  20:
+    g_boLoadCyl81Up := FALSE;
+    g_boLoadCyl81Down := TRUE;
+    nCyl8DownState_Bak :=20;
+    IF g_bLoadMaterialDownInPlaceSignal9 THEN
+      IF g_bLoadCylinder9DownSignalInplaceTimeoutAlarm THEN
+        nCyl8DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl81DownInPlace AND g_bLoadCyl82DownInPlace AND g_bLoadCyl83DownInPlace AND g_bLoadCyl84DownInPlace THEN
+        g_boLoadCyl8DownDone := TRUE;
+        nCyl8DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_8 := FALSE;
+        END_IF;
+        g_bLoadCylinder9UpDone := FALSE;
+        g_bLoadCylinder9DownDone := TRUE;
+        g_bLoadMaterialStateHmi9:= FALSE;
+      END_IF;
+    ELSE
+      InPlaceDelay8(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay9)));
+      IF InPlaceDelay8.Q THEN
+        InPlaceDelay8(IN :=FALSE);
+        g_boLoadCyl8DownDone := TRUE;
+        nCyl8DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_8 := FALSE;
+        END_IF;
+        g_bLoadCylinder9UpDone := FALSE;
+        g_bLoadCylinder9DownDone := TRUE;
+        g_bLoadMaterialStateHmi9:= FALSE;
+      END_IF;
+    END_IF;
+  3:
+    IF g_dLoadCylinder9WaitBoardInputSignalM = 0.0 THEN
+      nCyl8DownState := 30;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl8DownState := 40;
+    END_IF; 
+  30:
+     IF g_dLoadCylinder9WaitSignalM = 0.0 OR g_dLoadCylinder9WaitSignalM = 9.0 THEN
+         nCyl8DownState := 35;
+      ELSIF g_dLoadCylinder9WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi1 THEN
+          nCyl8DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi2 THEN
+          nCyl8DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi3 THEN
+          nCyl8DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi4 THEN
+          nCyl8DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi5 THEN
+          nCyl8DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi6 THEN
+          nCyl8DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi7 THEN
+          nCyl8DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi8 THEN
+          nCyl8DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi10 THEN
+          nCyl8DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder9WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi11 THEN
+          nCyl8DownState := 35;
+        END_IF;
+      END_IF; 
+  35:
+    g_boLoadCyl81Up := TRUE;
+    g_boLoadCyl81Down := FALSE;
+    nCyl8DownState_Bak :=35;
+    IF g_bLoadMaterialUpInPlaceSignal9 THEN
+      IF g_bLoadCylinder9UpSignalInplaceTimeoutAlarm THEN
+         nCyl8DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl81UpInPlace AND g_bLoadCyl82UpInPlace AND g_bLoadCyl83UpInPlace AND g_bLoadCyl84UpInPlace THEN
+        g_boLoadCyl8DownDone := TRUE;
+        nCyl8DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_8 := FALSE;
+        END_IF;
+        g_bLoadCylinder9UpDone := TRUE;
+        g_bLoadCylinder9DownDone := FALSE;
+        g_bLoadMaterialStateHmi9:= TRUE;
+      END_IF;
+    ELSE
+      InPlaceDelay8(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay9)));
+      IF InPlaceDelay8.Q THEN
+        InPlaceDelay8(IN :=FALSE);
+        g_boLoadCyl8DownDone := TRUE;
+        nCyl8DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_8 := FALSE;
+        END_IF;
+        g_bLoadCylinder9UpDone := TRUE;
+        g_bLoadCylinder9DownDone := FALSE;
+        g_bLoadMaterialStateHmi9:= TRUE;
+      END_IF;
+    END_IF;
+  40:
+    nLoadCyl9UpIndex := LREAL_TO_INT(g_dLoadCylinder9WaitSignalM) - 1;
+    IF g_dLoadCylinder9WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl9UpIndex] THEN
+        nCyl8DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder9WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl9UpIndex + 24] THEN
+        nCyl8DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder9WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl9UpIndex + 48] THEN
+        nCyl8DownState := 35;
+      END_IF;
+    END_IF;
+    
+  45:
+    IF g_bPlcStartBuffer THEN
+      nCyl8DownState :=nCyl8DownState_Bak;  
+    END_IF; 
+    
+END_CASE;
+(*第九组气缸*)
+IF RTriggerCyl91.Q THEN
+  nCyl9DownState := 1;
+  g_boLoadCyl9DownDone := FALSE;
+  g_bLoadCyl9DownOpenM := FALSE;
+  g_bLoadMaterial6DelayFlag := TRUE;
+  g_bLoadCylinder10UpDone := TRUE;
+  g_bLoadCylinder10DownDone := FALSE;
+END_IF;
+
+IF RTriggerCyl92.Q THEN
+  g_boLoadCyl9DownDone := FALSE;
+  g_bLoadCyl9DownCloseM := FALSE;
+  nCyl9DownState := 0;
+  g_bLoadMaterial6DelayFlag := TRUE;
+END_IF;
+
+CASE nCyl9DownState OF
+  0:
+    nCyl9DownState := 0;
+  1:
+    IF LREAL_TO_INT(g_fLoadCyl9MoveTypeM) = 0 THEN
+      nCyl9DownState := 2;
+    ELSIF LREAL_TO_INT(g_fLoadCyl9MoveTypeM) = 1 THEN
+      nCyl9DownState := 3;
+    END_IF;
+  2:
+    IF g_dLoadCylinder10WaitBoardInputSignalM = 0.0 THEN
+      nCyl9DownState := 10;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl9DownState := 15;
+    END_IF;
+  10:
+    IF g_dLoadCylinder10WaitSignalM = 0.0 OR g_dLoadCylinder10WaitSignalM = 10.0 THEN
+         nCyl9DownState := 20;
+      ELSIF g_dLoadCylinder10WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi1 THEN
+          nCyl9DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi2 THEN
+          nCyl9DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi3 THEN
+          nCyl9DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi4 THEN
+          nCyl9DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi5 THEN
+          nCyl9DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi6 THEN
+          nCyl9DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi7 THEN
+          nCyl9DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi8 THEN
+          nCyl9DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi9 THEN
+          nCyl9DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi11 THEN
+          nCyl9DownState := 20;
+        END_IF;
+      END_IF; 
+  15:
+    nLoadCyl10DownIndex := LREAL_TO_INT(g_dLoadCylinder10WaitSignalM) - 1;
+    IF g_dLoadCylinder10WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl10DownIndex] THEN
+        nCyl9DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder10WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl10DownIndex + 24] THEN
+        nCyl9DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder10WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl10DownIndex + 48] THEN
+        nCyl9DownState := 20;
+      END_IF;
+    END_IF;
+  20:
+    g_boLoadCyl91Up := FALSE;
+    g_boLoadCyl91Down := TRUE;
+    nCyl9DownState_Bak :=20;
+    IF g_bLoadMaterialDownInPlaceSignal10 THEN
+      IF g_bLoadCylinder10DownSignalInplaceTimeoutAlarm THEN
+        nCyl9DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl91DownInPlace AND g_bLoadCyl92DownInPlace AND g_bLoadCyl93DownInPlace AND g_bLoadCyl94DownInPlace THEN
+        g_boLoadCyl9DownDone := TRUE;
+        nCyl9DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_9 := FALSE;
+        END_IF;
+        g_bLoadCylinder10UpDone := FALSE;
+        g_bLoadCylinder10DownDone := TRUE;
+        g_bLoadMaterialStateHmi10:= FALSE;
+      END_IF;
+    ELSE
+      InPlaceDelay9(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay10)));
+      IF InPlaceDelay9.Q THEN
+        InPlaceDelay9(IN :=FALSE);
+        g_boLoadCyl9DownDone := TRUE;
+        nCyl9DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_9 := FALSE;
+        END_IF;
+        g_bLoadCylinder10UpDone := FALSE;
+        g_bLoadCylinder10DownDone := TRUE;
+        g_bLoadMaterialStateHmi10:= FALSE;
+      END_IF;
+    END_IF;
+  3:
+    IF g_dLoadCylinder10WaitBoardInputSignalM = 0.0 THEN
+      nCyl9DownState := 30;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl9DownState := 40;
+    END_IF; 
+  30:
+     IF g_dLoadCylinder10WaitSignalM = 0.0 OR g_dLoadCylinder10WaitSignalM = 10.0 THEN
+         nCyl9DownState := 35;
+      ELSIF g_dLoadCylinder10WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi1 THEN
+          nCyl9DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi2 THEN
+          nCyl9DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi3 THEN
+          nCyl9DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi4 THEN
+          nCyl9DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi5 THEN
+          nCyl9DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi6 THEN
+          nCyl9DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi7 THEN
+          nCyl9DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi8 THEN
+          nCyl9DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi9 THEN
+          nCyl9DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder10WaitSignalM = 11.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi11 THEN
+          nCyl9DownState := 35;
+        END_IF;
+      END_IF; 
+  35:
+    g_boLoadCyl91Up := TRUE;
+    g_boLoadCyl91Down := FALSE;
+    nCyl9DownState_Bak :=35;
+    IF g_bLoadMaterialUpInPlaceSignal10 THEN
+      IF g_bLoadCylinder10UpSignalInplaceTimeoutAlarm THEN
+         nCyl9DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl91UpInPlace AND g_bLoadCyl92UpInPlace AND g_bLoadCyl93UpInPlace AND g_bLoadCyl94UpInPlace THEN
+        g_boLoadCyl9DownDone := TRUE;
+        nCyl9DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_9 := FALSE;
+        END_IF;
+        g_bLoadCylinder10UpDone := TRUE;
+        g_bLoadCylinder10DownDone := FALSE;
+        g_bLoadMaterialStateHmi10:= TRUE;
+      END_IF;
+    ELSE
+      InPlaceDelay9(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay10)));
+      IF InPlaceDelay9.Q THEN
+        InPlaceDelay9(IN :=FALSE);
+        g_boLoadCyl9DownDone := TRUE;
+        nCyl9DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_9 := FALSE;
+        END_IF;
+        g_bLoadCylinder10UpDone := TRUE;
+        g_bLoadCylinder10DownDone := FALSE;
+        g_bLoadMaterialStateHmi10:= TRUE;
+      END_IF;
+    END_IF;
+  40:
+    nLoadCyl10UpIndex := LREAL_TO_INT(g_dLoadCylinder10WaitSignalM) - 1;
+    IF g_dLoadCylinder10WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl10UpIndex] THEN
+        nCyl9DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder10WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl10UpIndex + 24] THEN
+        nCyl9DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder10WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl10UpIndex + 48] THEN
+        nCyl9DownState := 35;
+      END_IF;
+    END_IF;
+    
+  45:
+    IF g_bPlcStartBuffer THEN
+      nCyl9DownState :=nCyl9DownState_Bak;  
+    END_IF; 
+    
+END_CASE;
+(*第十组气缸*)
+IF RTriggerCyl101.Q THEN
+  nCyl10DownState := 1;
+  g_boLoadCyl10DownDone := FALSE;
+  g_bLoadCyl10DownOpenM := FALSE;
+  g_bLoadMaterial11DelayFlag := TRUE;
+  g_bLoadCylinder11UpDone := FALSE;
+  g_bLoadCylinder11DownDone := TRUE;
+END_IF;
+
+IF RTriggerCyl102.Q THEN
+  g_boLoadCyl10DownDone := FALSE;
+  g_bLoadCyl10DownCloseM := FALSE;
+  nCyl10DownState := 0;
+  g_bLoadMaterial11DelayFlag := TRUE;
+END_IF;
+
+CASE nCyl10DownState OF
+  0:
+    nCyl10DownState := 0;
+  1:
+    IF LREAL_TO_INT(g_fLoadCyl10MoveTypeM) = 0 THEN
+      nCyl10DownState := 2;
+    ELSIF LREAL_TO_INT(g_fLoadCyl10MoveTypeM) = 1 THEN
+      nCyl10DownState := 3;
+    END_IF;
+  2:
+    IF g_dLoadCylinder11WaitBoardInputSignalM = 0.0 THEN
+      nCyl10DownState := 10;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl10DownState := 15;
+    END_IF;
+  10:
+    IF g_dLoadCylinder11WaitSignalM = 0.0 OR g_dLoadCylinder11WaitSignalM = 11.0 THEN
+         nCyl10DownState := 20;
+      ELSIF g_dLoadCylinder11WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi1 THEN
+          nCyl10DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi2 THEN
+          nCyl10DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi3 THEN
+          nCyl10DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi4 THEN
+          nCyl10DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi5 THEN
+          nCyl10DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi6 THEN
+          nCyl10DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi7 THEN
+          nCyl10DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi8 THEN
+          nCyl10DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi9 THEN
+          nCyl10DownState := 20;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF NOT g_bLoadMaterialStateHmi10 THEN
+          nCyl10DownState := 20;
+        END_IF;
+      END_IF; 
+  15:
+    nLoadCyl11DownIndex := LREAL_TO_INT(g_dLoadCylinder11WaitSignalM) - 1;
+    IF g_dLoadCylinder11WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl11DownIndex] THEN
+        nCyl10DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder11WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl11DownIndex + 24] THEN
+        nCyl10DownState := 20;
+      END_IF;
+    ELSIF g_dLoadCylinder11WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl11DownIndex + 48] THEN
+        nCyl10DownState := 20;
+      END_IF;
+    END_IF;
+  20:
+    g_boLoadCyl101Up := FALSE;
+    g_boLoadCyl101Down := TRUE;
+    nCyl10DownState_Bak :=20;
+    IF g_bLoadMaterialDownInPlaceSignal11 THEN
+      IF g_bLoadCylinder11DownSignalInplaceTimeoutAlarm THEN
+        nCyl10DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl101DownInPlace AND g_bLoadCyl102DownInPlace AND g_bLoadCyl103DownInPlace AND g_bLoadCyl104DownInPlace THEN
+        g_boLoadCyl10DownDone := TRUE;
+        nCyl10DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_10 := FALSE;
+        END_IF;
+        g_bLoadCylinder11UpDone := FALSE;
+        g_bLoadCylinder11DownDone := TRUE;
+        g_bLoadMaterialStateHmi11:= FALSE;
+      END_IF;
+    ELSE
+      InPlaceDelay10(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialDownInPlaceDelay11)));
+      IF InPlaceDelay10.Q THEN
+        InPlaceDelay10(IN :=FALSE);
+        g_boLoadCyl10DownDone := TRUE;
+        nCyl10DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_10 := FALSE;
+        END_IF;
+        g_bLoadCylinder11UpDone := FALSE;
+        g_bLoadCylinder11DownDone := TRUE;
+        g_bLoadMaterialStateHmi11:= FALSE;
+      END_IF;
+    END_IF;
+  3:
+    IF g_dLoadCylinder11WaitBoardInputSignalM = 0.0 THEN
+      nCyl10DownState := 30;
+    ELSE
+      M.ENABLE[183] := 0;
+      nCyl10DownState := 40;
+    END_IF; 
+  30:
+     IF g_dLoadCylinder11WaitSignalM = 0.0 OR g_dLoadCylinder11WaitSignalM = 11.0 THEN
+         nCyl10DownState := 35;
+      ELSIF g_dLoadCylinder11WaitSignalM = 1.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi1 THEN
+          nCyl10DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 2.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi2 THEN
+          nCyl10DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 3.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi3 THEN
+          nCyl10DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 4.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi4 THEN
+          nCyl10DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 5.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi5 THEN
+          nCyl10DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 6.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi6 THEN
+          nCyl10DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 7.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi7 THEN
+          nCyl10DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 8.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi8 THEN
+          nCyl10DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 9.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi9 THEN
+          nCyl10DownState := 35;
+        END_IF;
+      ELSIF g_dLoadCylinder11WaitSignalM = 10.0 THEN
+        M.ENABLE[183] := 0;
+        IF g_bLoadMaterialStateHmi10 THEN
+          nCyl10DownState := 35;
+        END_IF;
+      END_IF; 
+  35:
+    g_boLoadCyl101Up := TRUE;
+    g_boLoadCyl101Down := FALSE;
+    nCyl10DownState_Bak :=35;
+    IF g_bLoadMaterialUpInPlaceSignal11 THEN
+      IF g_bLoadCylinder11UpSignalInplaceTimeoutAlarm THEN
+         nCyl10DownState := 45;
+      END_IF; 
+      IF g_bLoadCyl101UpInPlace AND g_bLoadCyl102UpInPlace AND g_bLoadCyl103UpInPlace AND g_bLoadCyl104UpInPlace THEN
+        g_boLoadCyl10DownDone := TRUE;
+        nCyl10DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_10 := FALSE;
+        END_IF;
+        g_bLoadCylinder11UpDone := TRUE;
+        g_bLoadCylinder11DownDone := FALSE;
+        g_bLoadMaterialStateHmi11:= TRUE;
+      END_IF;
+    ELSE
+      InPlaceDelay10(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_nLoadMaterialUpInPlaceDelay11)));
+      IF InPlaceDelay10.Q THEN
+        InPlaceDelay10(IN :=FALSE);
+        g_boLoadCyl10DownDone := TRUE;
+        nCyl10DownState := 0;
+        IF NOT g_bLoadCylinderOneKeyFlag THEN
+          M.ENABLE[183] := 0;
+          g_bExecuteFinishedM183 := FALSE;
+          g_bFinishedM183_10 := FALSE;
+        END_IF;
+        
+        g_bLoadCylinder11UpDone := TRUE;
+        g_bLoadCylinder11DownDone := FALSE;
+        g_bLoadMaterialStateHmi11:= TRUE;
+      END_IF;
+    END_IF;
+  40:
+    nLoadCyl11UpIndex := LREAL_TO_INT(g_dLoadCylinder11WaitSignalM) - 1;
+    IF g_dLoadCylinder11WaitBoardInputSignalM = 1.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl11UpIndex] THEN
+        nCyl10DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder11WaitBoardInputSignalM = 2.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl11UpIndex + 24] THEN
+        nCyl10DownState := 35;
+      END_IF;
+    ELSIF g_dLoadCylinder11WaitBoardInputSignalM = 3.0 THEN
+      IF BoardInPutArray.BoolArr[nLoadCyl11UpIndex + 48] THEN
+        nCyl10DownState := 35;
+      END_IF;
+    END_IF;
+    
+  45:
+    IF g_bPlcStartBuffer THEN
+      nCyl10DownState :=nCyl10DownState_Bak;  
+    END_IF; 
+    
+END_CASE;
+
+(*上料气缸一键控制*)
+RtringAllControl(CLK := g_bAllLoadCylControlM);
+IF RtringAllControl.Q THEN
+  g_bAllLoadCylControlM := FALSE;
+  g_bLoadCylinderOneKeyFlag := TRUE;
+  g_bExecuteFinishedM183 := TRUE;
+  g_bFinishedM183_11 := TRUE;
+  nAllCylState := 10;
+END_IF;
+CASE nAllCylState OF
+  0:
+  nAllCylState := 0;
+  10:
+    IF g_nLoadMaterialNum >= 1 THEN
+        g_fLoadCyl0MoveTypeM :=g_dAllLoadCylControlTypeM;
+        g_bLoadCyl0DownOpenM := TRUE;
+        g_dLoadCylinder1WaitSignalM := 0.0;
+        g_dLoadCylinder1WaitBoardInputSignalM := 0.0;
+        g_boLoadCyl0DownDone := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 2 THEN
+        g_fLoadCyl1MoveTypeM :=g_dAllLoadCylControlTypeM;
+        g_bLoadCyl1DownOpenM := TRUE;
+        g_dLoadCylinder2WaitSignalM := 0.0;
+        g_dLoadCylinder2WaitBoardInputSignalM := 0.0;
+        g_boLoadCyl1DownDone := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 3 THEN
+        g_fLoadCyl2MoveTypeM :=g_dAllLoadCylControlTypeM;
+        g_bLoadCyl2DownOpenM := TRUE;
+        g_dLoadCylinder3WaitSignalM := 0.0;
+        g_dLoadCylinder3WaitBoardInputSignalM := 0.0;
+        g_boLoadCyl2DownDone := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 4 THEN
+        g_fLoadCyl3MoveTypeM :=g_dAllLoadCylControlTypeM;
+        g_bLoadCyl3DownOpenM := TRUE;
+        g_dLoadCylinder4WaitSignalM := 0.0;
+        g_dLoadCylinder4WaitBoardInputSignalM := 0.0;
+        g_boLoadCyl3DownDone := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 5 THEN
+        g_fLoadCyl4MoveTypeM :=g_dAllLoadCylControlTypeM;
+        g_bLoadCyl4DownOpenM := TRUE;
+        g_dLoadCylinder5WaitSignalM := 0.0;
+        g_dLoadCylinder5WaitBoardInputSignalM := 0.0;
+        g_boLoadCyl4DownDone := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 6 THEN
+        g_fLoadCyl5MoveTypeM :=g_dAllLoadCylControlTypeM;
+        g_bLoadCyl5DownOpenM := TRUE;
+        g_dLoadCylinder6WaitSignalM := 0.0;
+        g_dLoadCylinder6WaitBoardInputSignalM := 0.0;
+        g_boLoadCyl5DownDone := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 7 THEN
+        g_fLoadCyl6MoveTypeM :=g_dAllLoadCylControlTypeM;
+        g_bLoadCyl6DownOpenM := TRUE;
+        g_dLoadCylinder7WaitSignalM := 0.0;
+        g_dLoadCylinder7WaitBoardInputSignalM := 0.0;
+        g_boLoadCyl6DownDone := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 8 THEN
+        g_fLoadCyl7MoveTypeM :=g_dAllLoadCylControlTypeM;
+        g_bLoadCyl7DownOpenM := TRUE;
+        g_dLoadCylinder8WaitSignalM := 0.0;
+        g_dLoadCylinder8WaitBoardInputSignalM := 0.0;
+        g_boLoadCyl7DownDone := FALSE;
+      END_IF;
+       IF g_nLoadMaterialNum >= 9 THEN
+        g_fLoadCyl8MoveTypeM :=g_dAllLoadCylControlTypeM;
+        g_bLoadCyl8DownOpenM := TRUE;
+        g_dLoadCylinder9WaitSignalM := 0.0;
+        g_dLoadCylinder9WaitBoardInputSignalM := 0.0;
+        g_boLoadCyl8DownDone := FALSE;
+      END_IF;
+       IF g_nLoadMaterialNum >= 10 THEN
+        g_fLoadCyl9MoveTypeM :=g_dAllLoadCylControlTypeM;
+        g_bLoadCyl9DownOpenM := TRUE;
+        g_dLoadCylinder10WaitSignalM := 0.0;
+        g_dLoadCylinder10WaitBoardInputSignalM := 0.0;
+        g_boLoadCyl9DownDone := FALSE;
+      END_IF;
+       IF g_nLoadMaterialNum >= 11 THEN
+        g_fLoadCyl10MoveTypeM :=g_dAllLoadCylControlTypeM;
+        g_bLoadCyl10DownOpenM := TRUE;
+        g_dLoadCylinder11WaitSignalM := 0.0;
+        g_dLoadCylinder11WaitBoardInputSignalM := 0.0;
+        g_boLoadCyl10DownDone := FALSE;
+      END_IF;
+      IF g_dAllLoadCylControlTypeM = 1.0 THEN
+        nAllCylState := 15;
+      ELSE
+        nAllCylState := 20;
+      END_IF;
+     
+  15:
+     bCheckFlag := TRUE;
+     g_bExecuteFinishedM183 := TRUE;
+     g_bFinishedM183_11 := TRUE;
+      IF g_nLoadMaterialNum >= 1 AND (NOT g_boLoadCyl0DownDone) AND NOT g_bLoadMaterialStateHmi1 AND g_nLoadMaterialNum >= 1 THEN
+        bCheckFlag := FALSE; 
+      END_IF;
+      IF g_nLoadMaterialNum >= 2 AND (NOT g_boLoadCyl1DownDone) AND NOT g_bLoadMaterialStateHmi2 AND g_nLoadMaterialNum >= 2 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 3 AND (NOT g_boLoadCyl2DownDone) AND NOT g_bLoadMaterialStateHmi3 AND g_nLoadMaterialNum >= 3 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 4 AND (NOT g_boLoadCyl3DownDone) AND NOT g_bLoadMaterialStateHmi4 AND g_nLoadMaterialNum >= 4 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 5 AND (NOT g_boLoadCyl4DownDone) AND NOT g_bLoadMaterialStateHmi5 AND g_nLoadMaterialNum >= 5 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 6 AND (NOT g_boLoadCyl5DownDone) AND NOT g_bLoadMaterialStateHmi6 AND g_nLoadMaterialNum >= 6 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 7 AND (NOT g_boLoadCyl6DownDone) AND NOT g_bLoadMaterialStateHmi7 AND g_nLoadMaterialNum >= 7 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 8 AND (NOT g_boLoadCyl7DownDone) AND NOT g_bLoadMaterialStateHmi8 AND g_nLoadMaterialNum >= 8 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 9 AND (NOT g_boLoadCyl8DownDone) AND NOT g_bLoadMaterialStateHmi9 AND g_nLoadMaterialNum >= 9 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 10 AND (NOT g_boLoadCyl9DownDone) AND NOT g_bLoadMaterialStateHmi10 AND g_nLoadMaterialNum >= 10 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 11 AND (NOT g_boLoadCyl10DownDone) AND NOT g_bLoadMaterialStateHmi11 AND g_nLoadMaterialNum >= 11 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF bCheckFlag THEN
+        nAllCylState := 40;
+      END_IF;
+  20:
+     bCheckFlag := TRUE;
+     g_bExecuteFinishedM183 := TRUE;
+     g_bFinishedM183_11 := TRUE;
+      IF g_nLoadMaterialNum >= 1 AND (NOT g_boLoadCyl0DownDone) AND  g_bLoadMaterialStateHmi1 AND g_nLoadMaterialNum >= 1 THEN
+        bCheckFlag := FALSE; 
+      END_IF;
+      IF g_nLoadMaterialNum >= 2 AND (NOT g_boLoadCyl1DownDone) AND  g_bLoadMaterialStateHmi2 AND g_nLoadMaterialNum >= 2 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 3 AND (NOT g_boLoadCyl2DownDone) AND  g_bLoadMaterialStateHmi3 AND g_nLoadMaterialNum >= 3 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 4 AND (NOT g_boLoadCyl3DownDone) AND  g_bLoadMaterialStateHmi4 AND g_nLoadMaterialNum >= 4 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 5 AND (NOT g_boLoadCyl4DownDone) AND  g_bLoadMaterialStateHmi5 AND g_nLoadMaterialNum >= 5 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 6 AND (NOT g_boLoadCyl5DownDone) AND  g_bLoadMaterialStateHmi6 AND g_nLoadMaterialNum >= 6 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 7 AND (NOT g_boLoadCyl6DownDone) AND  g_bLoadMaterialStateHmi7 AND g_nLoadMaterialNum >= 7 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 8 AND (NOT g_boLoadCyl7DownDone) AND  g_bLoadMaterialStateHmi8 AND g_nLoadMaterialNum >= 8 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 9 AND (NOT g_boLoadCyl8DownDone) AND  g_bLoadMaterialStateHmi9 AND g_nLoadMaterialNum >= 9 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 10 AND (NOT g_boLoadCyl9DownDone) AND  g_bLoadMaterialStateHmi10 AND g_nLoadMaterialNum >= 10 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nLoadMaterialNum >= 11 AND (NOT g_boLoadCyl10DownDone) AND  g_bLoadMaterialStateHmi11 AND g_nLoadMaterialNum >= 11 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF bCheckFlag THEN
+        nAllCylState := 40;
+      END_IF;
+  40:
+    nAllCylState := 0;
+    M.ENABLE[183] := 0;
+    g_bExecuteFinishedM183 := FALSE;
+    g_bFinishedM183_11 := FALSE;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nCyl0DownState :=0;
+  nCyl1DownState :=0;
+  nCyl2DownState :=0;
+  nCyl3DownState :=0;
+  nCyl4DownState :=0;
+  nCyl5DownState :=0;
+  nCyl6DownState :=0;
+  nCyl7DownState :=0;
+  nCyl8DownState :=0;
+  nCyl9DownState :=0;
+  nCyl10DownState :=0;
+  InUpPlaceAlarm0(IN :=FALSE);
+  InDownPlaceAlarm0(IN :=FALSE);
+  InUpPlaceAlarm1(IN :=FALSE);
+  InDownPlaceAlarm1(IN :=FALSE);
+  InUpPlaceAlarm2(IN :=FALSE);
+  InDownPlaceAlarm2(IN :=FALSE);
+  InUpPlaceAlarm3(IN :=FALSE);
+  InDownPlaceAlarm3(IN :=FALSE);
+  InUpPlaceAlarm4(IN :=FALSE);
+  InDownPlaceAlarm4(IN :=FALSE);
+  InUpPlaceAlarm5(IN :=FALSE);
+  InDownPlaceAlarm5(IN :=FALSE);
+  InUpPlaceAlarm6(IN :=FALSE);
+  InDownPlaceAlarm6(IN :=FALSE);
+  InUpPlaceAlarm7(IN :=FALSE);
+  InDownPlaceAlarm7(IN :=FALSE);
+  InUpPlaceAlarm8(IN :=FALSE);
+  InDownPlaceAlarm8(IN :=FALSE);
+  InUpPlaceAlarm9(IN :=FALSE);
+  InDownPlaceAlarm9(IN :=FALSE);
+  InUpPlaceAlarm10(IN :=FALSE);
+  InDownPlaceAlarm10(IN :=FALSE);
+  g_bExecuteFinishedM183 := FALSE;
+  g_bFinishedM183_0 := FALSE;
+  g_bFinishedM183_1 := FALSE;
+  g_bFinishedM183_2 := FALSE;
+  g_bFinishedM183_3 := FALSE;
+  g_bFinishedM183_4 := FALSE;
+  g_bFinishedM183_5 := FALSE;
+  g_bFinishedM183_6 := FALSE;
+  g_bFinishedM183_7 := FALSE;
+  g_bFinishedM183_8 := FALSE;
+  g_bFinishedM183_9 := FALSE;
+  g_bFinishedM183_10 := FALSE;
+  g_bFinishedM183_11 := FALSE;
+END_IF;
+
+
+g_boLoadSensor0 := (g_bLoadSensor01 AND g_bLoadSensor02 AND g_bLoadSensor03 AND g_bLoadSensor04);
+g_boLoadSensor1 := (g_bLoadSensor11 AND g_bLoadSensor12 AND g_bLoadSensor13 AND g_bLoadSensor14);
+g_boLoadSensor2 := (g_bLoadSensor21 AND g_bLoadSensor22 AND g_bLoadSensor23 AND g_bLoadSensor24);]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[M代码控制上料机气缸]]></xhtml:p>
+  </documentation>
+</pou>

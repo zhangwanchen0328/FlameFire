@@ -1,0 +1,562 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AutoAntiRejection" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="LocalVar0">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nAntiRejectionFun">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trriger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biAntiRejectionOneKUpDown">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入触发引脚：一键夹紧或一键松开]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionOneKUpDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出完成引脚：一键夹紧完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejectionOneKDownDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出完成引脚：一键松开完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionOneKUpDown">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[一键夹紧或一键松开 plc触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionOneKUpDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[一键夹紧或一键松开完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejectionOneKDownDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[一键夹紧或一键松开完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiAntiRejectionOneKUpDownMoveType">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[0松开  1夹紧 引脚传值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nAntiRejectionOneKUpDownMoveType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 0松开  1夹紧 plc触发]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nMoveType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[ 0松开  1夹紧]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nAntiRejectionCylNum">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面开启气缸数量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nAntiRejectionCylSwitch">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气缸的状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bCylAntiRejectionClose1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylAntiRejectionClose8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bCylAntiRejectionOpen8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAntiRejectionCylClampDone1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAntiRejectionCylClampDone2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAntiRejectionCylClampDone3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAntiRejectionCylClampDone4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAntiRejectionCylClampDone5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAntiRejectionCylClampDone6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAntiRejectionCylClampDone7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAntiRejectionCylClampDone8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone6">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone7">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAntiRejectionCylLoosenDone8">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bCheckFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+R_Trriger1(CLK := g_biAntiRejectionOneKUpDown OR g_bAntiRejectionOneKUpDown OR g_bAntiRejectionOneKUpDownM);
+R_Trriger2(CLK := g_bAntiRejectionOneKUpDownCloseM);
+
+IF R_Trriger1.Q THEN
+  nAntiRejectionCylSwitch:=0;
+  g_boAntiRejectionOneKUpDone:=FALSE;
+  g_boAntiRejectionOneKDownDone:=FALSE;
+  g_bAntiRejectionOneKUpDone:=FALSE;
+  g_bAntiRejectionOneKDownDone:=FALSE;
+  
+  IF g_nAntiRejectionFun=1 THEN
+    IF g_biAntiRejectionOneKUpDown THEN
+      nMoveType:=LREAL_TO_INT(g_fiAntiRejectionOneKUpDownMoveType);
+    ELSIF g_bAntiRejectionOneKUpDownM THEN
+      nMoveType:=g_nAntiRejectionOneKUpDownMoveTypeM;      
+    ELSIF g_bAntiRejectionOneKUpDown THEN
+      nMoveType:=g_nAntiRejectionOneKUpDownMoveType;
+    END_IF;
+    nAntiRejectionCylSwitch:=5;
+    g_bAntiRejectionOneKUpDown:=FALSE;
+    g_bAntiRejectionOneKUpDownM:=FALSE;
+  ELSIF g_nAntiRejectionFun=2 THEN
+    nAntiRejectionCylSwitch:=0;
+  ELSE
+    M.ENABLE[185] := 0;  
+    g_boAntiRejectionOneKUpDone:=TRUE;
+    g_boAntiRejectionOneKDownDone:=TRUE;
+    g_bAntiRejectionOneKUpDone:=TRUE;
+    g_bAntiRejectionOneKDownDone:=TRUE;
+  END_IF;
+END_IF;
+
+IF R_Trriger2.Q THEN(*清除到位信号*)
+  nAntiRejectionCylSwitch:=0;
+  g_bAntiRejectionOneKUpDownCloseM:=FALSE;
+  g_boAntiRejectionOneKUpDone:=FALSE;
+  g_boAntiRejectionOneKDownDone:=FALSE;
+  g_bAntiRejectionOneKUpDone:=FALSE;
+  g_bAntiRejectionOneKDownDone:=FALSE;
+END_IF;
+
+IF g_nAntiRejectionFun=1 THEN(*气缸*)
+  CASE nAntiRejectionCylSwitch OF 
+    0:
+      nAntiRejectionCylSwitch:=0;
+    5:
+      IF nMoveType = 0 THEN(*降*)
+        nAntiRejectionCylSwitch := 10;
+      ELSIF nMoveType = 1 THEN(*升*)
+        nAntiRejectionCylSwitch := 50;
+      END_IF;
+      IF g_nAntiRejectionCylNum=0 THEN
+        g_boAntiRejectionOneKUpDone:=TRUE;
+        g_boAntiRejectionOneKDownDone:=TRUE;
+        g_bAntiRejectionOneKUpDone:=TRUE;
+        g_bAntiRejectionOneKDownDone:=TRUE;
+        nAntiRejectionCylSwitch:=100;
+        M.ENABLE[185] := 0; 
+        g_bFinishedM185_100 := FALSE;
+      END_IF;
+    10:
+      IF g_nAntiRejectionCylNum>=1 THEN
+        g_bCylAntiRejectionClose1:=TRUE;
+        g_bAntiRejectionCylLoosenDone1 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=2 THEN
+        g_bCylAntiRejectionClose2:=TRUE;
+        g_bAntiRejectionCylLoosenDone2 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=3 THEN
+        g_bCylAntiRejectionClose3:=TRUE;
+        g_bAntiRejectionCylLoosenDone3 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=4 THEN
+        g_bCylAntiRejectionClose4:=TRUE;
+        g_bAntiRejectionCylLoosenDone4 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=5 THEN
+        g_bCylAntiRejectionClose5:=TRUE;
+        g_bAntiRejectionCylLoosenDone5 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=6 THEN
+        g_bCylAntiRejectionClose6:=TRUE;
+        g_bAntiRejectionCylLoosenDone6 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=7 THEN
+        g_bCylAntiRejectionClose7:=TRUE;
+        g_bAntiRejectionCylLoosenDone7 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=8 THEN
+        g_bCylAntiRejectionClose8:=TRUE;
+        g_bAntiRejectionCylLoosenDone8 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=9 THEN
+        g_bCylAntiRejectionClose9:=TRUE;
+        g_bAntiRejectionCylLoosenDone9 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=10 THEN
+        g_bCylAntiRejectionClose10:=TRUE;
+        g_bAntiRejectionCylLoosenDone10 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=11 THEN
+        g_bCylAntiRejectionClose11:=TRUE;
+        g_bAntiRejectionCylLoosenDone11 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=12 THEN
+        g_bCylAntiRejectionClose12:=TRUE;
+        g_bAntiRejectionCylLoosenDone12 := FALSE;
+      END_IF;
+      nAntiRejectionCylSwitch:=15;
+    15:
+      bCheckFlag := TRUE;
+      IF g_nAntiRejectionCylNum>=1 AND (NOT g_bAntiRejectionCylLoosenDone1) THEN
+        bCheckFlag:= FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=2 AND (NOT g_bAntiRejectionCylLoosenDone2) THEN
+        bCheckFlag:= FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=3 AND (NOT g_bAntiRejectionCylLoosenDone3) THEN
+        bCheckFlag:= FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=4 AND (NOT g_bAntiRejectionCylLoosenDone4) THEN
+        bCheckFlag:= FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=5 AND (NOT g_bAntiRejectionCylLoosenDone5) THEN
+        bCheckFlag:= FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=6 AND (NOT g_bAntiRejectionCylLoosenDone6) THEN
+        bCheckFlag:= FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=7 AND (NOT g_bAntiRejectionCylLoosenDone7) THEN
+        bCheckFlag:= FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=8 AND (NOT g_bAntiRejectionCylLoosenDone8) THEN
+        bCheckFlag:= FALSE;
+      END_IF; 
+      IF g_nAntiRejectionCylNum>=9 AND (NOT g_bAntiRejectionCylLoosenDone9) THEN
+        bCheckFlag:= FALSE;
+      END_IF; 
+      IF g_nAntiRejectionCylNum>=10 AND (NOT g_bAntiRejectionCylLoosenDone10) THEN
+        bCheckFlag:= FALSE;
+      END_IF; 
+      IF g_nAntiRejectionCylNum>=11 AND (NOT g_bAntiRejectionCylLoosenDone11) THEN
+        bCheckFlag:= FALSE;
+      END_IF; 
+      IF g_nAntiRejectionCylNum>=12 AND (NOT g_bAntiRejectionCylLoosenDone12) THEN
+        bCheckFlag:= FALSE;
+      END_IF; 
+      IF bCheckFlag THEN
+        nAntiRejectionCylSwitch:=100;
+        g_boAntiRejectionOneKDownDone:=TRUE;
+        g_bAntiRejectionOneKDownDone:=TRUE;
+      END_IF;
+      
+    50:
+      IF g_nAntiRejectionCylNum>=1 THEN
+        g_bCylAntiRejectionOpen1:=TRUE;
+        g_bAntiRejectionCylClampDone1 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=2 THEN
+        g_bCylAntiRejectionOpen2:=TRUE;
+        g_bAntiRejectionCylClampDone2 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=3 THEN
+        g_bCylAntiRejectionOpen3:=TRUE;
+        g_bAntiRejectionCylClampDone3 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=4 THEN
+        g_bCylAntiRejectionOpen4:=TRUE;
+        g_bAntiRejectionCylClampDone4 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=5 THEN
+        g_bCylAntiRejectionOpen5:=TRUE;
+        g_bAntiRejectionCylClampDone5 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=6 THEN
+        g_bCylAntiRejectionOpen6:=TRUE;
+        g_bAntiRejectionCylClampDone6 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=7 THEN
+        g_bCylAntiRejectionOpen7:=TRUE;
+        g_bAntiRejectionCylClampDone7 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=8 THEN
+        g_bCylAntiRejectionOpen8:=TRUE;
+        g_bAntiRejectionCylClampDone8 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=9 THEN
+        g_bCylAntiRejectionOpen9:=TRUE;
+        g_bAntiRejectionCylClampDone9 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=10 THEN
+        g_bCylAntiRejectionOpen10:=TRUE;
+        g_bAntiRejectionCylClampDone10 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=11 THEN
+        g_bCylAntiRejectionOpen11:=TRUE;
+        g_bAntiRejectionCylClampDone11 := FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=12 THEN
+        g_bCylAntiRejectionOpen12:=TRUE;
+        g_bAntiRejectionCylClampDone12 := FALSE;
+      END_IF;
+      nAntiRejectionCylSwitch:=55;
+    55:
+      bCheckFlag := TRUE;
+      IF g_nAntiRejectionCylNum>=1 AND (NOT g_bAntiRejectionCylClampDone1) THEN
+        bCheckFlag:= FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=2 AND (NOT g_bAntiRejectionCylClampDone2) THEN
+        bCheckFlag:= FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=3 AND (NOT g_bAntiRejectionCylClampDone3) THEN
+        bCheckFlag:= FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=4 AND (NOT g_bAntiRejectionCylClampDone4) THEN
+        bCheckFlag:= FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=5 AND (NOT g_bAntiRejectionCylClampDone5) THEN
+        bCheckFlag:= FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=6 AND (NOT g_bAntiRejectionCylClampDone6) THEN
+        bCheckFlag:= FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=7 AND (NOT g_bAntiRejectionCylClampDone7) THEN
+        bCheckFlag:= FALSE;
+      END_IF;
+      IF g_nAntiRejectionCylNum>=8 AND (NOT g_bAntiRejectionCylClampDone8) THEN
+        bCheckFlag:= FALSE;
+      END_IF;  
+      IF g_nAntiRejectionCylNum>=9 AND (NOT g_bAntiRejectionCylClampDone9) THEN
+        bCheckFlag:= FALSE;
+      END_IF;  
+      IF g_nAntiRejectionCylNum>=10 AND (NOT g_bAntiRejectionCylClampDone10) THEN
+        bCheckFlag:= FALSE;
+      END_IF;  
+      IF g_nAntiRejectionCylNum>=11 AND (NOT g_bAntiRejectionCylClampDone11) THEN
+        bCheckFlag:= FALSE;
+      END_IF;  
+      IF g_nAntiRejectionCylNum>=12 AND (NOT g_bAntiRejectionCylClampDone12) THEN
+        bCheckFlag:= FALSE;
+      END_IF;     
+      IF bCheckFlag THEN
+        nAntiRejectionCylSwitch:=100;
+        g_boAntiRejectionOneKUpDone:=TRUE;
+        g_bAntiRejectionOneKUpDone:=TRUE;
+      END_IF;
+    
+    100:
+      M.ENABLE[185] := 0; 
+      nAntiRejectionCylSwitch:=0;
+      g_bFinishedM185_100 := FALSE;
+  END_CASE;
+  
+ELSIF g_nAntiRejectionFun=2 THEN(*轴*)
+  bCheckFlag:= FALSE;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[一键控制左右防甩气缸或支撑轴升降]]></xhtml:p>
+  </documentation>
+</pou>

@@ -1,0 +1,1627 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_U3ActMove_Motion" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Axis_U3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴结构体]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Axis_C">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[C轴结构体]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fU3Coordinate">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fU3Velocity">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3MoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3MoveRel">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[相对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3MoveVel">
+        <type>
+          <derived name="MC_MOVEVELOCITY"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[匀速运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3Home">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3MoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3MoveJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3GearIn">
+        <type>
+          <derived name="MC_GEARIN"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴电子齿轮耦合模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3GearOut">
+        <type>
+          <derived name="MC_GEAROUT"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴电子齿轮解耦模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_CReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[C轴复位运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_U3Override">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <FBD>
+      <block localId="1" typeName="MC_MOVEABSOLUTE" instanceName="g_U3MoveAbs" executionOrderId="0" height="271" width="232">
+        <position x="1575" y="58"/>
+        <inputVariables>
+          <variable formalParameter="EXECUTE">
+            <connectionPointIn>
+              <relPosition x="0" y="33"/>
+              <connection refLocalId="74">
+                <position x="1575" y="91"/>
+                <position x="1565" y="91"/>
+                <position x="1565" y="91"/>
+                <position x="1568" y="91"/>
+                <position x="1568" y="92"/>
+                <position x="1558" y="92"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="POSITION">
+            <connectionPointIn>
+              <relPosition x="0" y="60"/>
+              <connection refLocalId="75">
+                <position x="1575" y="118"/>
+                <position x="1565" y="118"/>
+                <position x="1565" y="118"/>
+                <position x="1569" y="118"/>
+                <position x="1569" y="119"/>
+                <position x="1559" y="119"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="VELOCITY">
+            <connectionPointIn>
+              <relPosition x="0" y="87"/>
+              <connection refLocalId="76">
+                <position x="1575" y="145"/>
+                <position x="1565" y="145"/>
+                <position x="1565" y="145"/>
+                <position x="1566" y="145"/>
+                <position x="1566" y="146"/>
+                <position x="1556" y="146"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="ACCELERATION">
+            <connectionPointIn>
+              <relPosition x="0" y="114"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="DECELERATION">
+            <connectionPointIn>
+              <relPosition x="0" y="141"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="JERK">
+            <connectionPointIn>
+              <relPosition x="0" y="168"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="DIRECTION">
+            <connectionPointIn>
+              <relPosition x="0" y="195"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="BUFFERMODE">
+            <connectionPointIn>
+              <relPosition x="0" y="222"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="AXIS">
+            <connectionPointIn>
+              <relPosition x="0" y="249"/>
+              <connection refLocalId="77">
+                <position x="1575" y="307"/>
+                <position x="1563" y="307"/>
+                <position x="1563" y="307"/>
+                <position x="1569" y="307"/>
+                <position x="1569" y="308"/>
+                <position x="1559" y="308"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="DONE">
+            <connectionPointOut>
+              <relPosition x="232" y="33"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="BUSY">
+            <connectionPointOut>
+              <relPosition x="232" y="60"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ACTIVE">
+            <connectionPointOut>
+              <relPosition x="232" y="87"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="COMMANDABORTED">
+            <connectionPointOut>
+              <relPosition x="232" y="114"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="232" y="141"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="232" y="168"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTAXIS">
+            <connectionPointOut>
+              <relPosition x="232" y="195"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <block localId="2" typeName="MC_MOVERELATIVE" instanceName="g_U3MoveRel" executionOrderId="0" height="255" width="272">
+        <position x="926" y="64"/>
+        <inputVariables>
+          <variable formalParameter="EXECUTE">
+            <connectionPointIn>
+              <relPosition x="0" y="33"/>
+              <connection refLocalId="20">
+                <position x="926" y="97"/>
+                <position x="915" y="97"/>
+                <position x="915" y="98"/>
+                <position x="904" y="98"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="CONTINUOUSUPDATE">
+            <connectionPointIn>
+              <relPosition x="0" y="59"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="DISTANCE">
+            <connectionPointIn>
+              <relPosition x="0" y="85"/>
+              <connection refLocalId="21">
+                <position x="926" y="149"/>
+                <position x="915" y="149"/>
+                <position x="915" y="150"/>
+                <position x="905" y="150"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="VELOCITY">
+            <connectionPointIn>
+              <relPosition x="0" y="111"/>
+              <connection refLocalId="22">
+                <position x="926" y="175"/>
+                <position x="914" y="175"/>
+                <position x="914" y="176"/>
+                <position x="902" y="176"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="ACCELERATION">
+            <connectionPointIn>
+              <relPosition x="0" y="137"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="DECELERATION">
+            <connectionPointIn>
+              <relPosition x="0" y="163"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="JERK">
+            <connectionPointIn>
+              <relPosition x="0" y="189"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="BUFFERMODE">
+            <connectionPointIn>
+              <relPosition x="0" y="215"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="AXIS">
+            <connectionPointIn>
+              <relPosition x="0" y="241"/>
+              <connection refLocalId="24">
+                <position x="926" y="305"/>
+                <position x="915" y="305"/>
+                <position x="915" y="306"/>
+                <position x="905" y="306"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="DONE">
+            <connectionPointOut>
+              <relPosition x="272" y="33"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="BUSY">
+            <connectionPointOut>
+              <relPosition x="272" y="59"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ACTIVE">
+            <connectionPointOut>
+              <relPosition x="272" y="85"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="COMMANDABORTED">
+            <connectionPointOut>
+              <relPosition x="272" y="111"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="272" y="137"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="272" y="163"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTAXIS">
+            <connectionPointOut>
+              <relPosition x="272" y="189"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <block localId="3" typeName="MC_MOVEVELOCITY" instanceName="g_U3MoveVel" executionOrderId="0" height="256" width="272">
+        <position x="303" y="398"/>
+        <inputVariables>
+          <variable formalParameter="EXECUTE">
+            <connectionPointIn>
+              <relPosition x="0" y="33"/>
+              <connection refLocalId="7">
+                <position x="303" y="431"/>
+                <position x="293" y="431"/>
+                <position x="293" y="431"/>
+                <position x="294" y="431"/>
+                <position x="294" y="432"/>
+                <position x="284" y="432"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="CONTINUOUSUPDATE">
+            <connectionPointIn>
+              <relPosition x="0" y="59"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="VELOCITY">
+            <connectionPointIn>
+              <relPosition x="0" y="85"/>
+              <connection refLocalId="10">
+                <position x="303" y="483"/>
+                <position x="292" y="483"/>
+                <position x="292" y="484"/>
+                <position x="282" y="484"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="ACCELERATION">
+            <connectionPointIn>
+              <relPosition x="0" y="111"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="DECELERATION">
+            <connectionPointIn>
+              <relPosition x="0" y="137"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="JERK">
+            <connectionPointIn>
+              <relPosition x="0" y="163"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="DIRECTION">
+            <connectionPointIn>
+              <relPosition x="0" y="189"/>
+              <connection refLocalId="11">
+                <position x="303" y="587"/>
+                <position x="293" y="587"/>
+                <position x="293" y="587"/>
+                <position x="297" y="587"/>
+                <position x="297" y="588"/>
+                <position x="287" y="588"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="BUFFERMODE">
+            <connectionPointIn>
+              <relPosition x="0" y="215"/>
+              <connection refLocalId="12">
+                <position x="303" y="613"/>
+                <position x="293" y="613"/>
+                <position x="293" y="613"/>
+                <position x="300" y="613"/>
+                <position x="300" y="614"/>
+                <position x="290" y="614"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="AXIS">
+            <connectionPointIn>
+              <relPosition x="0" y="241"/>
+              <connection refLocalId="8">
+                <position x="303" y="639"/>
+                <position x="291" y="639"/>
+                <position x="291" y="639"/>
+                <position x="296" y="639"/>
+                <position x="296" y="640"/>
+                <position x="286" y="640"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="INVELOCITY">
+            <connectionPointOut>
+              <relPosition x="272" y="33"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="BUSY">
+            <connectionPointOut>
+              <relPosition x="272" y="59"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ACTIVE">
+            <connectionPointOut>
+              <relPosition x="272" y="85"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="COMMANDABORTED">
+            <connectionPointOut>
+              <relPosition x="272" y="111"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="272" y="137"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="272" y="163"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTAXIS">
+            <connectionPointOut>
+              <relPosition x="272" y="189"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <block localId="4" typeName="MC_HOME" instanceName="g_U3Home" executionOrderId="0" height="226" width="258">
+        <position x="925" y="402"/>
+        <inputVariables>
+          <variable formalParameter="EXECUTE">
+            <connectionPointIn>
+              <relPosition x="0" y="34"/>
+              <connection refLocalId="47">
+                <position x="925" y="436"/>
+                <position x="911" y="436"/>
+                <position x="911" y="437"/>
+                <position x="897" y="437"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="POSITION">
+            <connectionPointIn>
+              <relPosition x="0" y="63"/>
+              <connection refLocalId="48">
+                <position x="925" y="465"/>
+                <position x="911" y="465"/>
+                <position x="911" y="466"/>
+                <position x="898" y="466"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="HOMINGMODE">
+            <connectionPointIn>
+              <relPosition x="0" y="92"/>
+              <connection refLocalId="49">
+                <position x="925" y="494"/>
+                <position x="915" y="494"/>
+                <position x="915" y="494"/>
+                <position x="918" y="494"/>
+                <position x="918" y="495"/>
+                <position x="908" y="495"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="BUFFERMODE">
+            <connectionPointIn>
+              <relPosition x="0" y="121"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="BCALIBRATIONCAM">
+            <connectionPointIn>
+              <relPosition x="0" y="150"/>
+              <connection refLocalId="50">
+                <position x="925" y="552"/>
+                <position x="915" y="552"/>
+                <position x="915" y="553"/>
+                <position x="905" y="553"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="AXIS">
+            <connectionPointIn>
+              <relPosition x="0" y="179"/>
+              <connection refLocalId="51">
+                <position x="925" y="581"/>
+                <position x="911" y="581"/>
+                <position x="911" y="582"/>
+                <position x="901" y="582"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="DONE">
+            <connectionPointOut>
+              <relPosition x="258" y="34"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="BUSY">
+            <connectionPointOut>
+              <relPosition x="258" y="63"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ACTIVE">
+            <connectionPointOut>
+              <relPosition x="258" y="92"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="COMMANDABORTED">
+            <connectionPointOut>
+              <relPosition x="258" y="121"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="258" y="150"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="258" y="179"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTAXIS">
+            <connectionPointOut>
+              <relPosition x="258" y="208"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <block localId="5" typeName="MC_STOP" instanceName="g_U3MoveStop" executionOrderId="0" height="213" width="232">
+        <position x="1574" y="410"/>
+        <inputVariables>
+          <variable formalParameter="EXECUTE">
+            <connectionPointIn>
+              <relPosition x="0" y="36"/>
+              <connection refLocalId="16">
+                <position x="1574" y="446"/>
+                <position x="1549" y="446"/>
+                <position x="1549" y="447"/>
+                <position x="1525" y="447"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="DECELERATION">
+            <connectionPointIn>
+              <relPosition x="0" y="68"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="JERK">
+            <connectionPointIn>
+              <relPosition x="0" y="100"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="AXIS">
+            <connectionPointIn>
+              <relPosition x="0" y="132"/>
+              <connection refLocalId="18">
+                <position x="1574" y="542"/>
+                <position x="1547" y="542"/>
+                <position x="1547" y="543"/>
+                <position x="1527" y="543"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="DONE">
+            <connectionPointOut>
+              <relPosition x="232" y="36"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="BUSY">
+            <connectionPointOut>
+              <relPosition x="232" y="68"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="COMMANDABORTED">
+            <connectionPointOut>
+              <relPosition x="232" y="100"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="232" y="132"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="232" y="164"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTAXIS">
+            <connectionPointOut>
+              <relPosition x="232" y="196"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <block localId="6" typeName="MC_POWER" instanceName="g_U3Power" executionOrderId="0" height="158" width="175">
+        <position x="354" y="104"/>
+        <inputVariables>
+          <variable formalParameter="ENABLE">
+            <connectionPointIn>
+              <relPosition x="0" y="33"/>
+              <connection refLocalId="85">
+                <position x="354" y="137"/>
+                <position x="342" y="137"/>
+                <position x="342" y="134"/>
+                <position x="350" y="134"/>
+                <position x="350" y="125"/>
+                <position x="320" y="125"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="ENABLEPOSITION">
+            <connectionPointIn>
+              <relPosition x="0" y="60"/>
+              <connection refLocalId="87">
+                <position x="354" y="164"/>
+                <position x="341" y="164"/>
+                <position x="341" y="165"/>
+                <position x="328" y="165"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="ENABLENEGATIVE">
+            <connectionPointIn>
+              <relPosition x="0" y="87"/>
+              <connection refLocalId="88">
+                <position x="354" y="191"/>
+                <position x="340" y="191"/>
+                <position x="340" y="192"/>
+                <position x="327" y="192"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="AXIS">
+            <connectionPointIn>
+              <relPosition x="0" y="114"/>
+              <connection refLocalId="89">
+                <position x="354" y="218"/>
+                <position x="340" y="218"/>
+                <position x="340" y="219"/>
+                <position x="330" y="219"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="STATUS">
+            <connectionPointOut>
+              <relPosition x="175" y="33"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="VALID">
+            <connectionPointOut>
+              <relPosition x="175" y="60"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="175" y="87"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="175" y="114"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTAXIS">
+            <connectionPointOut>
+              <relPosition x="175" y="141"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <inVariable localId="7" executionOrderId="0" height="27" width="146" negated="false">
+        <position x="145" y="419"/>
+        <connectionPointOut>
+          <relPosition x="146" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3MoveVel.EXECUTE</expression>
+      </inVariable>
+      <inVariable localId="8" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="232" y="627"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>Axis_U3</expression>
+      </inVariable>
+      <inVariable localId="10" executionOrderId="0" height="27" width="150" negated="false">
+        <position x="139" y="471"/>
+        <connectionPointOut>
+          <relPosition x="150" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3MoveVel.VELOCITY</expression>
+      </inVariable>
+      <inVariable localId="11" executionOrderId="0" height="27" width="160" negated="false">
+        <position x="134" y="575"/>
+        <connectionPointOut>
+          <relPosition x="160" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3MoveVel.DIRECTION</expression>
+      </inVariable>
+      <inVariable localId="12" executionOrderId="0" height="27" width="175" negated="false">
+        <position x="122" y="601"/>
+        <connectionPointOut>
+          <relPosition x="175" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3MoveVel.BUFFERMODE</expression>
+      </inVariable>
+      <inVariable localId="16" executionOrderId="0" height="27" width="155" negated="false">
+        <position x="1377" y="434"/>
+        <connectionPointOut>
+          <relPosition x="155" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3MoveStop.EXECUTE</expression>
+      </inVariable>
+      <inVariable localId="18" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="1473" y="530"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>Axis_U3</expression>
+      </inVariable>
+      <inVariable localId="20" executionOrderId="0" height="27" width="146" negated="false">
+        <position x="765" y="85"/>
+        <connectionPointOut>
+          <relPosition x="146" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3MoveRel.EXECUTE</expression>
+      </inVariable>
+      <inVariable localId="21" executionOrderId="0" height="27" width="153" negated="false">
+        <position x="759" y="137"/>
+        <connectionPointOut>
+          <relPosition x="153" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3MoveRel.DISTANCE</expression>
+      </inVariable>
+      <inVariable localId="22" executionOrderId="0" height="27" width="150" negated="false">
+        <position x="759" y="163"/>
+        <connectionPointOut>
+          <relPosition x="150" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3MoveRel.VELOCITY</expression>
+      </inVariable>
+      <inVariable localId="24" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="851" y="293"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>Axis_U3</expression>
+      </inVariable>
+      <block localId="39" typeName="MC_RESET" instanceName="g_U3Reset" executionOrderId="0" height="167" width="122">
+        <position x="355" y="805"/>
+        <inputVariables>
+          <variable formalParameter="EXECUTE">
+            <connectionPointIn>
+              <relPosition x="0" y="34"/>
+              <connection refLocalId="40">
+                <position x="355" y="839"/>
+                <position x="340" y="839"/>
+                <position x="340" y="840"/>
+                <position x="325" y="840"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="AXIS">
+            <connectionPointIn>
+              <relPosition x="0" y="63"/>
+              <connection refLocalId="41">
+                <position x="355" y="868"/>
+                <position x="341" y="868"/>
+                <position x="341" y="869"/>
+                <position x="331" y="869"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="DONE">
+            <connectionPointOut>
+              <relPosition x="122" y="34"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="BUSY">
+            <connectionPointOut>
+              <relPosition x="122" y="63"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="122" y="92"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="122" y="121"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTAXIS">
+            <connectionPointOut>
+              <relPosition x="122" y="150"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <inVariable localId="40" executionOrderId="0" height="27" width="127" negated="false">
+        <position x="205" y="827"/>
+        <connectionPointOut>
+          <relPosition x="127" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3Reset.EXECUTE</expression>
+      </inVariable>
+      <inVariable localId="41" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="277" y="856"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>Axis_U3</expression>
+      </inVariable>
+      <inVariable localId="47" executionOrderId="0" height="27" width="130" negated="false">
+        <position x="774" y="424"/>
+        <connectionPointOut>
+          <relPosition x="130" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3Home.EXECUTE</expression>
+      </inVariable>
+      <inVariable localId="48" executionOrderId="0" height="27" width="136" negated="false">
+        <position x="769" y="453"/>
+        <connectionPointOut>
+          <relPosition x="136" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3Home.POSITION</expression>
+      </inVariable>
+      <inVariable localId="49" executionOrderId="0" height="27" width="169" negated="false">
+        <position x="746" y="482"/>
+        <connectionPointOut>
+          <relPosition x="169" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3Home.HOMINGMODE</expression>
+      </inVariable>
+      <inVariable localId="50" executionOrderId="0" height="27" width="194" negated="false">
+        <position x="718" y="540"/>
+        <connectionPointOut>
+          <relPosition x="194" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3Home.BCALIBRATIONCAM</expression>
+      </inVariable>
+      <inVariable localId="51" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="847" y="569"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>Axis_U3</expression>
+      </inVariable>
+      <block localId="59" typeName="MC_JOG" instanceName="g_U3MoveJog" executionOrderId="0" height="264" width="241">
+        <position x="934" y="740"/>
+        <inputVariables>
+          <variable formalParameter="JOGFORWARD">
+            <connectionPointIn>
+              <relPosition x="0" y="33"/>
+              <connection refLocalId="60">
+                <position x="934" y="773"/>
+                <position x="924" y="773"/>
+                <position x="924" y="773"/>
+                <position x="936" y="773"/>
+                <position x="936" y="771"/>
+                <position x="922" y="771"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="JOGBACKWARDS">
+            <connectionPointIn>
+              <relPosition x="0" y="60"/>
+              <connection refLocalId="61">
+                <position x="934" y="800"/>
+                <position x="924" y="800"/>
+                <position x="924" y="800"/>
+                <position x="937" y="800"/>
+                <position x="937" y="801"/>
+                <position x="927" y="801"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="MODE">
+            <connectionPointIn>
+              <relPosition x="0" y="87"/>
+              <connection refLocalId="62">
+                <position x="934" y="827"/>
+                <position x="924" y="827"/>
+                <position x="924" y="827"/>
+                <position x="935" y="827"/>
+                <position x="935" y="828"/>
+                <position x="925" y="828"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="POSITION">
+            <connectionPointIn>
+              <relPosition x="0" y="114"/>
+              <connection refLocalId="63">
+                <position x="934" y="854"/>
+                <position x="924" y="854"/>
+                <position x="924" y="854"/>
+                <position x="933" y="854"/>
+                <position x="933" y="855"/>
+                <position x="923" y="855"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="VELOCITY">
+            <connectionPointIn>
+              <relPosition x="0" y="141"/>
+              <connection refLocalId="64">
+                <position x="934" y="881"/>
+                <position x="923" y="881"/>
+                <position x="923" y="881"/>
+                <position x="930" y="881"/>
+                <position x="930" y="882"/>
+                <position x="920" y="882"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="ACCELERATION">
+            <connectionPointIn>
+              <relPosition x="0" y="168"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="DECELERATION">
+            <connectionPointIn>
+              <relPosition x="0" y="195"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="JERK">
+            <connectionPointIn>
+              <relPosition x="0" y="222"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="AXIS">
+            <connectionPointIn>
+              <relPosition x="0" y="249"/>
+              <connection refLocalId="65">
+                <position x="934" y="989"/>
+                <position x="921" y="989"/>
+                <position x="921" y="989"/>
+                <position x="926" y="989"/>
+                <position x="926" y="990"/>
+                <position x="916" y="990"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="DONE">
+            <connectionPointOut>
+              <relPosition x="241" y="33"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="BUSY">
+            <connectionPointOut>
+              <relPosition x="241" y="60"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ACTIVE">
+            <connectionPointOut>
+              <relPosition x="241" y="87"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="COMMANDABORTED">
+            <connectionPointOut>
+              <relPosition x="241" y="114"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="241" y="141"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="241" y="168"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTAXIS">
+            <connectionPointOut>
+              <relPosition x="241" y="195"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <inVariable localId="60" executionOrderId="0" height="27" width="181" negated="false">
+        <position x="741" y="758"/>
+        <connectionPointOut>
+          <relPosition x="181" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3MoveJog.JOGFORWARD</expression>
+      </inVariable>
+      <inVariable localId="61" executionOrderId="0" height="27" width="196" negated="false">
+        <position x="731" y="788"/>
+        <connectionPointOut>
+          <relPosition x="196" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3MoveJog.JOGBACKWARDS</expression>
+      </inVariable>
+      <inVariable localId="62" executionOrderId="0" height="27" width="134" negated="false">
+        <position x="791" y="815"/>
+        <connectionPointOut>
+          <relPosition x="134" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3MoveJog.MODE</expression>
+      </inVariable>
+      <inVariable localId="63" executionOrderId="0" height="27" width="155" negated="false">
+        <position x="768" y="842"/>
+        <connectionPointOut>
+          <relPosition x="155" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3MoveJog.POSITION</expression>
+      </inVariable>
+      <inVariable localId="64" executionOrderId="0" height="27" width="153" negated="false">
+        <position x="767" y="869"/>
+        <connectionPointOut>
+          <relPosition x="153" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3MoveJog.VELOCITY</expression>
+      </inVariable>
+      <inVariable localId="65" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="862" y="977"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>Axis_U3</expression>
+      </inVariable>
+      <inVariable localId="74" executionOrderId="0" height="27" width="150" negated="false">
+        <position x="1415" y="79"/>
+        <connectionPointOut>
+          <relPosition x="150" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3MoveAbs.EXECUTE</expression>
+      </inVariable>
+      <inVariable localId="75" executionOrderId="0" height="27" width="156" negated="false">
+        <position x="1410" y="106"/>
+        <connectionPointOut>
+          <relPosition x="156" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3MoveAbs.POSITION</expression>
+      </inVariable>
+      <inVariable localId="76" executionOrderId="0" height="27" width="154" negated="false">
+        <position x="1409" y="133"/>
+        <connectionPointOut>
+          <relPosition x="154" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3MoveAbs.VELOCITY</expression>
+      </inVariable>
+      <inVariable localId="77" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="1505" y="295"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>Axis_U3</expression>
+      </inVariable>
+      <inVariable localId="85" executionOrderId="0" height="27" width="124" negated="false">
+        <position x="196" y="112"/>
+        <connectionPointOut>
+          <relPosition x="124" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3Power.ENABLE</expression>
+      </inVariable>
+      <inVariable localId="87" executionOrderId="0" height="27" width="183" negated="false">
+        <position x="152" y="152"/>
+        <connectionPointOut>
+          <relPosition x="183" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3Power.ENABLEPOSITION</expression>
+      </inVariable>
+      <inVariable localId="88" executionOrderId="0" height="27" width="184" negated="false">
+        <position x="150" y="179"/>
+        <connectionPointOut>
+          <relPosition x="184" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3Power.ENABLENEGATIVE</expression>
+      </inVariable>
+      <inVariable localId="89" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="276" y="206"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>Axis_U3</expression>
+      </inVariable>
+      <outVariable localId="103" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="550" y="233"/>
+        <connectionPointIn>
+          <relPosition x="0" y="13"/>
+          <connection refLocalId="6" formalParameter="OUTAXIS">
+            <position x="550" y="246"/>
+            <position x="539" y="246"/>
+            <position x="539" y="245"/>
+            <position x="529" y="245"/>
+          </connection>
+        </connectionPointIn>
+        <expression>Axis_U3</expression>
+      </outVariable>
+      <inVariable localId="104" executionOrderId="0" height="27" width="154" negated="false">
+        <position x="1517" y="1098"/>
+        <connectionPointOut>
+          <relPosition x="154" y="13"/>
+        </connectionPointOut>
+        <expression>Axis_U3.NcToPlc.ACTPOS</expression>
+      </inVariable>
+      <outVariable localId="105" executionOrderId="0" height="27" width="108" negated="false">
+        <position x="1696" y="1098"/>
+        <connectionPointIn>
+          <relPosition x="0" y="13"/>
+          <connection refLocalId="104">
+            <position x="1696" y="1111"/>
+            <position x="1664" y="1111"/>
+          </connection>
+        </connectionPointIn>
+        <expression>g_fU3Coordinate</expression>
+      </outVariable>
+      <inVariable localId="106" executionOrderId="0" height="27" width="159" negated="false">
+        <position x="1511" y="1138"/>
+        <connectionPointOut>
+          <relPosition x="159" y="13"/>
+        </connectionPointOut>
+        <expression>Axis_U3.NcToPlc.SETVELO</expression>
+      </inVariable>
+      <outVariable localId="107" executionOrderId="0" height="27" width="88" negated="false">
+        <position x="1696" y="1138"/>
+        <connectionPointIn>
+          <relPosition x="0" y="13"/>
+          <connection refLocalId="106">
+            <position x="1696" y="1151"/>
+            <position x="1663" y="1151"/>
+          </connection>
+        </connectionPointIn>
+        <expression>g_fU3Velocity</expression>
+      </outVariable>
+      <block localId="108" typeName="MC_GEARIN" instanceName="g_U3GearIn" executionOrderId="0" height="333" width="277">
+        <position x="283" y="1108"/>
+        <inputVariables>
+          <variable formalParameter="EXECUTE">
+            <connectionPointIn>
+              <relPosition x="0" y="34"/>
+              <connection refLocalId="112">
+                <position x="283" y="1142"/>
+                <position x="269" y="1142"/>
+                <position x="269" y="1143"/>
+                <position x="255" y="1143"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="CONTINUOUSUPDATE">
+            <connectionPointIn>
+              <relPosition x="0" y="62"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="RATIONUMERATOR">
+            <connectionPointIn>
+              <relPosition x="0" y="90"/>
+              <connection refLocalId="113">
+                <position x="283" y="1198"/>
+                <position x="272" y="1198"/>
+                <position x="272" y="1199"/>
+                <position x="262" y="1199"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="RATIODENOMINATOR">
+            <connectionPointIn>
+              <relPosition x="0" y="118"/>
+              <connection refLocalId="114">
+                <position x="283" y="1226"/>
+                <position x="273" y="1226"/>
+                <position x="273" y="1226"/>
+                <position x="274" y="1226"/>
+                <position x="274" y="1227"/>
+                <position x="264" y="1227"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="MASTERVALUESOURCE">
+            <connectionPointIn>
+              <relPosition x="0" y="146"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="ACCELERATION">
+            <connectionPointIn>
+              <relPosition x="0" y="174"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="DECELERATION">
+            <connectionPointIn>
+              <relPosition x="0" y="202"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="JERK">
+            <connectionPointIn>
+              <relPosition x="0" y="230"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="BUFFERMODE">
+            <connectionPointIn>
+              <relPosition x="0" y="258"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="MASTER">
+            <connectionPointIn>
+              <relPosition x="0" y="286"/>
+              <connection refLocalId="119">
+                <position x="283" y="1394"/>
+                <position x="267" y="1394"/>
+                <position x="267" y="1395"/>
+                <position x="252" y="1395"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="SLAVE">
+            <connectionPointIn>
+              <relPosition x="0" y="314"/>
+              <connection refLocalId="110">
+                <position x="283" y="1422"/>
+                <position x="269" y="1422"/>
+                <position x="269" y="1423"/>
+                <position x="259" y="1423"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="INGEAR">
+            <connectionPointOut>
+              <relPosition x="277" y="34"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="BUSY">
+            <connectionPointOut>
+              <relPosition x="277" y="62"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ACTIVE">
+            <connectionPointOut>
+              <relPosition x="277" y="90"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="COMMANDABORTED">
+            <connectionPointOut>
+              <relPosition x="277" y="118"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="277" y="146"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="277" y="174"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTMASTER">
+            <connectionPointOut>
+              <relPosition x="277" y="202"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTSLAVE">
+            <connectionPointOut>
+              <relPosition x="277" y="230"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <block localId="109" typeName="MC_GEAROUT" instanceName="g_U3GearOut" executionOrderId="0" height="216" width="194">
+        <position x="949" y="1156"/>
+        <inputVariables>
+          <variable formalParameter="EXECUTE">
+            <connectionPointIn>
+              <relPosition x="0" y="34"/>
+              <connection refLocalId="115">
+                <position x="949" y="1190"/>
+                <position x="936" y="1190"/>
+                <position x="936" y="1191"/>
+                <position x="924" y="1191"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="SLAVE">
+            <connectionPointIn>
+              <relPosition x="0" y="62"/>
+              <connection refLocalId="111">
+                <position x="949" y="1218"/>
+                <position x="938" y="1218"/>
+                <position x="938" y="1219"/>
+                <position x="928" y="1219"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="DONE">
+            <connectionPointOut>
+              <relPosition x="194" y="34"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="BUSY">
+            <connectionPointOut>
+              <relPosition x="194" y="62"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ACTIVE">
+            <connectionPointOut>
+              <relPosition x="194" y="90"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="COMMANDABORTED">
+            <connectionPointOut>
+              <relPosition x="194" y="118"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="194" y="146"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="194" y="174"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTSLAVE">
+            <connectionPointOut>
+              <relPosition x="194" y="202"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <inVariable localId="110" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="205" y="1410"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>Axis_U3</expression>
+      </inVariable>
+      <inVariable localId="111" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="874" y="1206"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>Axis_U3</expression>
+      </inVariable>
+      <inVariable localId="112" executionOrderId="0" height="27" width="134" negated="false">
+        <position x="128" y="1130"/>
+        <connectionPointOut>
+          <relPosition x="134" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3GearIn.EXECUTE</expression>
+      </inVariable>
+      <inVariable localId="113" executionOrderId="0" height="27" width="197" negated="false">
+        <position x="72" y="1186"/>
+        <connectionPointOut>
+          <relPosition x="197" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3GearIn.RATIONUMERATOR</expression>
+      </inVariable>
+      <inVariable localId="114" executionOrderId="0" height="27" width="213" negated="false">
+        <position x="58" y="1214"/>
+        <connectionPointOut>
+          <relPosition x="213" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3GearIn.RATIODENOMINATOR</expression>
+      </inVariable>
+      <inVariable localId="115" executionOrderId="0" height="27" width="144" negated="false">
+        <position x="787" y="1178"/>
+        <connectionPointOut>
+          <relPosition x="144" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3GearOut.EXECUTE</expression>
+      </inVariable>
+      <block localId="116" typeName="MC_RESET" instanceName="g_CReset" executionOrderId="0" height="190" width="122">
+        <position x="1653" y="1237"/>
+        <inputVariables>
+          <variable formalParameter="EXECUTE">
+            <connectionPointIn>
+              <relPosition x="0" y="37"/>
+              <connection refLocalId="117">
+                <position x="1653" y="1274"/>
+                <position x="1639" y="1274"/>
+                <position x="1639" y="1275"/>
+                <position x="1626" y="1275"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="AXIS">
+            <connectionPointIn>
+              <relPosition x="0" y="71"/>
+              <connection refLocalId="118">
+                <position x="1653" y="1308"/>
+                <position x="1639" y="1308"/>
+                <position x="1639" y="1309"/>
+                <position x="1625" y="1309"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="DONE">
+            <connectionPointOut>
+              <relPosition x="122" y="37"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="BUSY">
+            <connectionPointOut>
+              <relPosition x="122" y="71"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="122" y="105"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="122" y="139"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTAXIS">
+            <connectionPointOut>
+              <relPosition x="122" y="173"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <inVariable localId="117" executionOrderId="0" height="27" width="119" negated="false">
+        <position x="1507" y="1262"/>
+        <connectionPointOut>
+          <relPosition x="119" y="13"/>
+        </connectionPointOut>
+        <expression>g_CReset.EXECUTE</expression>
+      </inVariable>
+      <inVariable localId="118" executionOrderId="0" height="27" width="46" negated="false">
+        <position x="1579" y="1296"/>
+        <connectionPointOut>
+          <relPosition x="46" y="13"/>
+        </connectionPointOut>
+        <expression>Axis_C</expression>
+      </inVariable>
+      <inVariable localId="119" executionOrderId="0" height="27" width="46" negated="false">
+        <position x="206" y="1382"/>
+        <connectionPointOut>
+          <relPosition x="46" y="13"/>
+        </connectionPointOut>
+        <expression>Axis_C</expression>
+      </inVariable>
+      <block localId="120" typeName="MC_SETOVERRIDE" instanceName="g_U3Override" executionOrderId="0" height="206" width="237">
+        <position x="1490" y="766"/>
+        <inputVariables>
+          <variable formalParameter="ENABLE">
+            <connectionPointIn>
+              <relPosition x="0" y="38"/>
+              <connection refLocalId="121">
+                <position x="1490" y="804"/>
+                <position x="1454" y="804"/>
+                <position x="1454" y="802"/>
+                <position x="1419" y="802"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="VELFACTOR">
+            <connectionPointIn>
+              <relPosition x="0" y="75"/>
+              <connection refLocalId="122">
+                <position x="1490" y="841"/>
+                <position x="1457" y="841"/>
+                <position x="1457" y="858"/>
+                <position x="1425" y="858"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="ACCFACTOR">
+            <connectionPointIn>
+              <relPosition x="0" y="112"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="JERKFACTOR">
+            <connectionPointIn>
+              <relPosition x="0" y="149"/>
+            </connectionPointIn>
+          </variable>
+          <variable formalParameter="AXIS">
+            <connectionPointIn>
+              <relPosition x="0" y="186"/>
+              <connection refLocalId="123">
+                <position x="1490" y="952"/>
+                <position x="1456" y="952"/>
+                <position x="1456" y="956"/>
+                <position x="1423" y="956"/>
+              </connection>
+            </connectionPointIn>
+          </variable>
+        </inputVariables>
+        <inOutVariables/>
+        <outputVariables>
+          <variable formalParameter="ENABLED">
+            <connectionPointOut>
+              <relPosition x="237" y="38"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="BUSY">
+            <connectionPointOut>
+              <relPosition x="237" y="75"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERROR">
+            <connectionPointOut>
+              <relPosition x="237" y="112"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="ERRORID">
+            <connectionPointOut>
+              <relPosition x="237" y="149"/>
+            </connectionPointOut>
+          </variable>
+          <variable formalParameter="OUTAXIS">
+            <connectionPointOut>
+              <relPosition x="237" y="186"/>
+            </connectionPointOut>
+          </variable>
+        </outputVariables>
+      </block>
+      <inVariable localId="121" executionOrderId="0" height="27" width="139" negated="false">
+        <position x="1280" y="789"/>
+        <connectionPointOut>
+          <relPosition x="139" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3Override.ENABLE</expression>
+      </inVariable>
+      <inVariable localId="122" executionOrderId="0" height="27" width="161" negated="false">
+        <position x="1264" y="845"/>
+        <connectionPointOut>
+          <relPosition x="161" y="13"/>
+        </connectionPointOut>
+        <expression>g_U3Override.VELFACTOR</expression>
+      </inVariable>
+      <inVariable localId="123" executionOrderId="0" height="27" width="54" negated="false">
+        <position x="1369" y="943"/>
+        <connectionPointOut>
+          <relPosition x="54" y="13"/>
+        </connectionPointOut>
+        <expression>Axis_U3</expression>
+      </inVariable>
+    </FBD>
+  </body>
+</pou>

@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CornerLaserExportCtrl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bLaserOnCornerM1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLaserOutCornerM1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boCNCMoveDisable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bLaserCuttingEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="CornerIn_Ton">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="CornerOut_Ton">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nCornerInSwitch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCornerOutSwitch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="r_Trrriger_In">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="r_Trrriger_Out">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_foInCornerCoolTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_foOutCornerCoolTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*进出拐角关光延时*)
+r_Trrriger_In(CLK := g_bLaserOnCornerM1 OR g_biLaserOnCorner);
+r_Trrriger_Out(CLK := g_bLaserOutCornerM1 OR g_biLaserOutCorner);
+
+IF r_Trrriger_In.Q THEN
+  g_bLaserOnCornerM1 := FALSE;
+  IF g_nPlcState <> 2 THEN
+    nCornerInSwitch := 1;
+  END_IF;
+END_IF;
+
+IF r_Trrriger_Out.Q THEN
+  g_bLaserOutCornerM1 := FALSE;
+  IF g_nPlcState <> 2 THEN
+    nCornerOutSwitch := 1;
+  END_IF;
+END_IF;
+
+(*进拐角延时*)
+CASE nCornerInSwitch OF
+  0:
+  nCornerInSwitch := 0;
+  1:
+  IF g_foInCornerCoolTime <> 0.0 THEN
+    g_bLaserCuttingEnable := FALSE;
+    g_boCNCMoveDisable := TRUE;
+    CornerIn_Ton(IN :=TRUE,PT := LREAL_TO_TIME(g_foInCornerCoolTime));
+    IF CornerIn_Ton.Q THEN
+      CornerIn_Ton(IN := FALSE);
+      g_bLaserCuttingEnable := TRUE;
+      g_boCNCMoveDisable := FALSE;
+      nCornerInSwitch := 0;
+    END_IF;
+  ELSIF g_foInCornerCoolTime = 0.0 THEN
+    nCornerInSwitch := 0;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer OR g_nPlcState=2 THEN
+    CornerIn_Ton(IN := FALSE);
+    g_bLaserCuttingEnable := FALSE;
+    g_boCNCMoveDisable := TRUE;
+    nCornerInSwitch := 10;
+  END_IF;
+  10:
+  IF g_bPlcStartBuffer THEN
+    nCornerInSwitch := 0;
+  END_IF;
+END_CASE;
+
+(*出拐角延时*)
+CASE nCornerOutSwitch OF
+  0:
+  nCornerOutSwitch := 0;
+  1:
+  IF g_foOutCornerCoolTime <> 0.0 THEN
+    g_bLaserCuttingEnable := FALSE;
+    g_boCNCMoveDisable := TRUE;
+    CornerOut_Ton(IN :=TRUE,PT := LREAL_TO_TIME(g_foOutCornerCoolTime));
+    IF CornerOut_Ton.Q THEN
+      CornerOut_Ton(IN := FALSE);
+      g_bLaserCuttingEnable := TRUE;
+      g_boCNCMoveDisable := FALSE;
+      nCornerOutSwitch := 0;
+    END_IF;
+  ELSIF g_foOutCornerCoolTime = 0.0 THEN
+    nCornerOutSwitch := 0;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer OR g_nPlcState=2 THEN
+    CornerOut_Ton(IN := FALSE);
+    g_bLaserCuttingEnable := FALSE;
+    g_boCNCMoveDisable := TRUE;
+    nCornerOutSwitch := 10;
+  END_IF;
+  10:
+  IF g_bPlcStartBuffer THEN
+    nCornerOutSwitch := 0;
+  END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nCornerInSwitch := 0;
+  nCornerOutSwitch := 0;
+  CornerIn_Ton(IN := FALSE);
+  CornerOut_Ton(IN := FALSE);
+  g_bLaserCuttingEnable := FALSE;
+  g_boCNCMoveDisable := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[进出拐角关光延时]]></xhtml:p>
+  </documentation>
+</pou>

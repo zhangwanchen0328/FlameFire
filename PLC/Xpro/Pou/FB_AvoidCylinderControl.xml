@@ -1,0 +1,555 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AvoidCylinderControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Rtring_CylUp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_CylDown">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bAvoidCylUp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAvoidCylDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAvoidCylUseUpSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nAvoidCylUpSignalLogic">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAvoidCylUseDownSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nAvoidCylDownSignalLogic">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nCylUpDoneTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nCylControlTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nCylDownDoneTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nCylFilterTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="Ton_Up">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_CylTime">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Cyl1Alarm">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Filter_Down">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_Up">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="bDownFilterSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUpFilterSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bPreIsUpStateCyl">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinderNoDownSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinderNoUpSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinderUpDownSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bCylinderDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUpNoFilterInplace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDownNoFilterInplace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bM309RtingFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[触发气缸动作的标志 防止M309关闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bRtingAlarmFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Rtring_AutoControlM">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Filter_Up20ms">
+        <type>
+          <derived name="FB_Filter20ms"/>
+        </type>
+      </variable>
+      <variable name="Filter_Down20ms">
+        <type>
+          <derived name="FB_Filter20ms"/>
+        </type>
+      </variable>
+      <variable name="Rtring_CylinderAutoCheck">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="CylinderAutoCheck">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nCheckState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bCylinderStateChangeFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Ftring_HMIToDown">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_HMIToUp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bCyclinderUpDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[伸出到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCyclinderDownDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[缩回到位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring_CylUp(CLK := bAvoidCylUp);
+Rtring_CylDown(CLK := bAvoidCylDown);
+Rtring_AutoControlM(CLK := g_bAvoidCylAndAxisMoveControlM);
+
+IF Rtring_AutoControlM.Q THEN
+  g_bAvoidCylAndAxisMoveControlM := FALSE;
+  IF bUpInPlace AND bDownInPlace AND bAvoidCylUseUpSignal AND bAvoidCylUseDownSignal THEN
+    bCylinderUpDownSignalAlarm := TRUE;
+    bRtingAlarmFlag:= TRUE;
+    bAvoidCylUp := FALSE;
+    RETURN;
+  END_IF;
+  Ton_CylTime(IN := FALSE);
+  (*Q:1上升0:下降2:坐标检测,坐标小于等于避让坐标后自动缩回3:检测是否缩回到位*)
+  IF M.PARAMETER_Q[309] = 2.0 OR M.PARAMETER_Q[309] = 3.0 THEN
+      CylinderAutoCheck := TRUE;
+  ELSIF M.PARAMETER_Q[309] = 1.0 THEN
+    bAvoidCylUp := TRUE;
+    bAvoidCylDown := FALSE;
+    g_boAvoidCylinderUp := TRUE;
+	g_boAvoidCylinderDown := FALSE;
+    nCheckState :=0;
+	bCyclinderDownDone := FALSE;
+    bCyclinderUpDone := FALSE;
+  ELSE
+    bAvoidCylDown := TRUE;
+    bAvoidCylUp := FALSE;
+    g_boAvoidCylinderUp := FALSE;
+	g_boAvoidCylinderDown := TRUE;
+    nCheckState :=0;
+  bCyclinderDownDone := FALSE;
+    bCyclinderUpDone := FALSE;
+  END_IF;
+  bM309RtingFlag := TRUE;
+END_IF;
+
+
+Rtring_CylinderAutoCheck(CLK := CylinderAutoCheck);
+IF Rtring_CylinderAutoCheck.Q THEN
+  CylinderAutoCheck := FALSE;
+  IF M.PARAMETER_Q[309] = 2.0 THEN
+		nCheckState :=10;
+  ELSIF M.PARAMETER_Q[309] = 3.0 THEN
+		nCheckState :=20;
+  END_IF;
+END_IF;
+Rtring_HMIToUp(CLK := g_bAvoidCylinderStateHmi);
+Ftring_HMIToDown(CLK := g_bAvoidCylinderStateHmi);
+IF Rtring_HMIToUp.Q THEN
+  bCylinderStateChangeFlag := FALSE;
+END_IF;
+IF Ftring_HMIToDown.Q THEN
+  bCylinderStateChangeFlag := TRUE;
+END_IF;
+CASE nCheckState OF
+  0:
+	nCheckState :=0;
+  10:
+	IF  g_diYMachineCoordinate <= g_fAvoidCoordY  THEN
+		bAvoidCylDown := TRUE;
+		g_boAvoidCylinderUp := FALSE;
+		g_boAvoidCylinderDown := TRUE;
+        nCheckState :=0;
+        bCyclinderDownDone := FALSE;
+        bCyclinderUpDone := FALSE;
+    END_IF;
+    M.ENABLE[309] := 0;
+  20:(*检测是否缩回到位*)
+	IF bCylinderStateChangeFlag THEN
+		M.ENABLE[309] := 0;
+        nCheckState :=0;
+    END_IF;
+  
+END_CASE;
+
+
+IF Rtring_CylUp.Q THEN
+  IF bUpInPlace AND bDownInPlace AND bAvoidCylUseUpSignal AND bAvoidCylUseDownSignal THEN
+    bCylinderUpDownSignalAlarm := TRUE;
+    bRtingAlarmFlag:= TRUE;
+    bAvoidCylUp := FALSE;
+    RETURN;
+  END_IF;  
+  bAvoidCylUp := FALSE;
+  g_boAvoidCylinderUp := TRUE;
+  g_boAvoidCylinderDown := FALSE;
+  bCylinderDelayFlag := TRUE;
+  Ton_Cyl1Alarm(IN := FALSE);
+  Ton_CylTime(IN := FALSE);
+  bCylinderNoDownSignalAlarm := FALSE;
+    nCheckState :=0;
+  bCyclinderDownDone := FALSE;
+    bCyclinderUpDone := FALSE;
+END_IF;
+
+IF Rtring_CylDown.Q THEN
+  IF bUpInPlace AND bDownInPlace AND bAvoidCylUseUpSignal AND bAvoidCylUseDownSignal THEN
+    bCylinderUpDownSignalAlarm := TRUE;
+    bRtingAlarmFlag:= TRUE;
+    bAvoidCylDown := FALSE;
+    RETURN;
+  END_IF; 
+  bAvoidCylDown := FALSE;
+  g_boAvoidCylinderUp := FALSE;
+  g_boAvoidCylinderDown := TRUE;
+  bCylinderDelayFlag := TRUE;
+  Ton_Cyl1Alarm(IN := FALSE);
+  Ton_CylTime(IN := FALSE);
+  bCylinderNoUpSignalAlarm := FALSE;
+  nCheckState :=0;
+  bCyclinderDownDone := FALSE;
+    bCyclinderUpDone := FALSE;
+END_IF;
+
+(*重启内核后输出状态清除,此时气缸状态要重新给一下*)
+IF g_boAvoidCylinderUp AND g_boAvoidCylinderDown THEN
+  IF bUpInPlace AND bDownInPlace AND bAvoidCylUseUpSignal AND bAvoidCylUseDownSignal THEN
+    bCylinderUpDownSignalAlarm := TRUE;
+    bRtingAlarmFlag:= TRUE;
+    bAvoidCylDown := FALSE;
+  END_IF;
+  IF  bUpInPlace AND bAvoidCylUseUpSignal THEN
+		g_bAvoidCylinderStateHmi:= TRUE;
+        bPreIsUpStateCyl := TRUE;
+  ELSE
+		g_bAvoidCylinderStateHmi:= FALSE;
+  END_IF;
+END_IF;
+
+
+
+
+
+
+
+
+
+
+
+(*hmi状态灯显示*)
+IF bAvoidCylUseUpSignal AND (g_boAvoidCylinderUp OR bCyclinderUpDone ) THEN(*使用到位信号*)
+  bCylinderNoDownSignalAlarm := FALSE;
+  Ton_CylTime(IN := g_boAvoidCylinderUp,PT := LREAL_TO_TIME(FUN_MStoS(nCylControlTime)));
+  IF NOT bPreIsUpStateCyl THEN
+    IF bUpInPlace THEN
+      IF Ton_CylTime.Q  THEN
+        Ton_CylTime(IN := FALSE);
+        g_bAvoidCylinderStateHmi:= TRUE;
+        bPreIsUpStateCyl := TRUE;
+        Ton_Cyl1Alarm(IN := FALSE);
+        bCylinderNoUpSignalAlarm := FALSE;
+        IF bM309RtingFlag THEN
+          M.ENABLE[309] := 0;
+          bM309RtingFlag:= FALSE;
+        END_IF;
+        bCyclinderUpDone := TRUE; 
+         bCyclinderDownDone := FALSE; 
+        IF g_bAvoidCylinderCloseOutputAfterDone THEN
+			g_boAvoidCylinderUp := FALSE;
+        END_IF;
+      END_IF; 
+    ELSE
+      Ton_Cyl1Alarm(IN := g_boAvoidCylinderUp,PT := LREAL_TO_TIME(FUN_MStoS(nCylUpDoneTime)));
+      IF Ton_Cyl1Alarm.Q  THEN
+        Ton_Cyl1Alarm(IN := FALSE);
+        bCylinderNoUpSignalAlarm := TRUE;
+      END_IF;
+    END_IF;
+  ELSE
+    IF bUpNoFilterInplace THEN
+      bCylinderNoUpSignalAlarm := FALSE;
+      IF bM309RtingFlag THEN
+        M.ENABLE[309] := 0;
+        bM309RtingFlag:= FALSE;
+      END_IF;  
+    ELSE
+      bCylinderNoUpSignalAlarm := TRUE;
+    END_IF; 
+  END_IF;     
+ELSIF bAvoidCylUseDownSignal AND (g_boAvoidCylinderDown OR bCyclinderDownDone ) THEN
+  Ton_CylTime(IN := g_boAvoidCylinderDown,PT := LREAL_TO_TIME(FUN_MStoS(nCylControlTime)));
+  bCylinderNoUpSignalAlarm := FALSE;
+  IF bPreIsUpStateCyl THEN
+    IF bDownInPlace THEN
+      IF Ton_CylTime.Q  THEN
+        Ton_CylTime(IN := FALSE);
+        g_bAvoidCylinderStateHmi:= FALSE;
+        bPreIsUpStateCyl := FALSE;
+        Ton_Cyl1Alarm(IN := FALSE);
+        bCylinderNoDownSignalAlarm := FALSE;
+        IF bM309RtingFlag THEN
+          M.ENABLE[309] := 0;
+          bM309RtingFlag:= FALSE;
+        END_IF;  
+        bCyclinderDownDone := TRUE;
+         bCyclinderUpDone := FALSE; 
+        IF g_bAvoidCylinderCloseOutputAfterDone THEN
+			g_boAvoidCylinderDown := FALSE;
+        END_IF;
+      END_IF;   
+    ELSE
+      Ton_Cyl1Alarm(IN := g_boAvoidCylinderDown,PT := LREAL_TO_TIME(FUN_MStoS(nCylDownDoneTime)));
+      IF Ton_Cyl1Alarm.Q  THEN
+        Ton_Cyl1Alarm(IN := FALSE);
+        bCylinderNoDownSignalAlarm := TRUE;
+      END_IF;
+    END_IF; 
+  ELSE
+    IF bDownNoFilterInplace THEN
+      bCylinderNoDownSignalAlarm := FALSE;
+      IF bM309RtingFlag THEN
+        M.ENABLE[309] := 0;
+        bM309RtingFlag:= FALSE;
+      END_IF;  
+    ELSE
+      bCylinderNoDownSignalAlarm := TRUE;
+    END_IF;
+  END_IF;
+ELSE(*使用延时信号*)
+  bCylinderNoDownSignalAlarm := FALSE;
+  bCylinderNoUpSignalAlarm := FALSE;
+  IF bCylinderDelayFlag THEN
+    IF g_boBlankingCyl01Up THEN
+      Ton_Up(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nCylUpDoneTime)));
+    ELSE
+      Ton_Up(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nCylDownDoneTime)));
+    END_IF;
+    IF Ton_Up.Q THEN
+       Ton_Up(IN :=FALSE);
+      IF g_boAvoidCylinderUp AND g_boAvoidCylinderDown=FALSE THEN
+        g_bAvoidCylinderStateHmi:= TRUE;
+        bCylinderDelayFlag := FALSE;
+        bPreIsUpStateCyl := TRUE;
+        IF bM309RtingFlag THEN
+          M.ENABLE[309] := 0;
+          bM309RtingFlag:= FALSE;
+        END_IF; 
+        bCyclinderUpDone := TRUE; 
+        bCyclinderDownDone := FALSE; 
+        IF g_bAvoidCylinderCloseOutputAfterDone THEN
+			g_boAvoidCylinderUp := FALSE;
+        END_IF; 
+      END_IF;
+      IF g_boAvoidCylinderDown AND g_boAvoidCylinderUp=FALSE THEN
+        g_bAvoidCylinderStateHmi:= FALSE;
+        bCylinderDelayFlag := FALSE;
+        bPreIsUpStateCyl := FALSE;
+        IF bM309RtingFlag THEN
+          M.ENABLE[309] := 0;
+          bM309RtingFlag:= FALSE;
+        END_IF; 
+        bCyclinderDownDone := TRUE; 
+         bCyclinderUpDone := FALSE; 
+        IF g_bAvoidCylinderCloseOutputAfterDone THEN
+			g_boAvoidCylinderDown := FALSE;
+        END_IF; 
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+
+IF ArrayConfigOutputNumber[174] AND NOT bPreIsUpStateCyl THEN
+  bPreIsUpStateCyl := TRUE;
+  g_bAvoidCylinderStateHmi:= TRUE;
+  ArrayConfigOutputNumber[174] := FALSE;
+  IF g_bAvoidCylinderCloseOutputAfterDone THEN
+	g_boAvoidCylinderUp := FALSE;
+  END_IF;
+END_IF;  
+IF ArrayConfigOutputNumber[175] AND bPreIsUpStateCyl THEN
+  bPreIsUpStateCyl := FALSE;
+  g_bAvoidCylinderStateHmi:= FALSE;
+  ArrayConfigOutputNumber[175] := FALSE;
+  IF g_bAvoidCylinderCloseOutputAfterDone THEN
+	g_boAvoidCylinderDown := FALSE;
+  END_IF;
+END_IF;  
+
+IF bAvoidCylUseDownSignal AND NOT g_boAvoidCylinderUp AND NOT g_boAvoidCylinderDown AND NOT bCyclinderUpDone 
+  AND NOT bCyclinderDownDone THEN
+  IF bDownNoFilterInplace THEN
+    bCylinderNoDownSignalAlarm := FALSE;
+  ELSE
+    bCylinderNoDownSignalAlarm := TRUE;
+  END_IF;
+END_IF;
+
+IF bCylinderNoUpSignalAlarm AND ListenBoardInputConfig[262]  THEN
+  g_Alarm.alarmArray[499] := 1212;
+ELSE
+  g_Alarm.alarmArray[499] := 0;
+END_IF;
+IF bCylinderNoDownSignalAlarm AND ListenBoardInputConfig[263] THEN
+  g_Alarm.alarmArray[500] := 1213;
+ELSE
+  g_Alarm.alarmArray[500] := 0;
+END_IF;
+
+
+(*触发气缸动作时 同时有气缸上升到位以及下降到位  报警*)
+IF bCylinderUpDownSignalAlarm THEN
+  g_Alarm.alarmArray[571] := 1284;
+  bCylinderUpDownSignalAlarm := FALSE;
+END_IF;
+
+
+Filter_Down(LREAL_TO_TIME(FUN_MSTOS(nCylFilterTime)),nAvoidCylDownSignalLogic,g_biAvoidCylinderDownSignal,bDownFilterSignal); 
+bDownInPlace := FUN_SingalLogic(bDownFilterSignal,nAvoidCylDownSignalLogic);
+
+Filter_Down20ms(LREAL_TO_TIME(FUN_MSTOS(20)),nAvoidCylDownSignalLogic,g_biAvoidCylinderDownSignal,bDownNoFilterInplace);
+
+
+
+
+Filter_Up(LREAL_TO_TIME(FUN_MSTOS(nCylFilterTime)),nAvoidCylUpSignalLogic,g_biAvoidCylinderUpSignal,bUpFilterSignal); 
+bUpInPlace := FUN_SingalLogic(bUpFilterSignal,nAvoidCylUpSignalLogic);
+
+Filter_Up20ms(LREAL_TO_TIME(FUN_MSTOS(20)),nAvoidCylUpSignalLogic,g_biAvoidCylinderUpSignal,bUpNoFilterInplace);
+IF g_bPlcStartBuffer AND M.ENABLE[309]=1 AND bRtingAlarmFlag AND NOT g_bAvoidCylAndAxisMoveControlM THEN
+  g_bAvoidCylAndAxisMoveControlM := TRUE;
+  bRtingAlarmFlag := FALSE;
+END_IF;  
+IF g_bPlcResetBuffer THEN
+  M.ENABLE[309]:=0;
+  bRtingAlarmFlag := FALSE;
+END_IF;  ]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[气缸移动避让和横梁移动避让]]></xhtml:p>
+  </documentation>
+</pou>

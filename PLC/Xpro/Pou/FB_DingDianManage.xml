@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DingDianManage" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_nMachineType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_biDDCylinerGoOnInPlace">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[机器人松开到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bDDInPlaceDelayTimeM">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[机器人松开到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boDDCylinerGoOnInPlace">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[机器人松开到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bDDDelayOpenM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[M代码开始计时]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Rtrig0">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nDelayErrorState">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+      <variable name="TonDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bDDGoOnNoInPlaceError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtrig0(CLK := g_bDDDelayOpenM);
+
+IF g_nMachineType=4 THEN(*鼎点*)
+
+  IF Rtrig0.Q THEN
+    g_bDDDelayOpenM:=FALSE;
+    nDelayErrorState:=1;
+    g_boDDCylinerGoOnInPlace:=FALSE;
+    g_bDDGoOnNoInPlaceError:=FALSE;
+    TonDelay(IN := FALSE);
+  END_IF;
+
+  CASE nDelayErrorState OF
+    0:
+    nDelayErrorState:=0;
+    1:
+      IF g_biDDCylinerGoOnInPlace THEN
+        nDelayErrorState:=0;
+        g_boDDCylinerGoOnInPlace:=TRUE;
+        TonDelay(IN := FALSE);
+      ELSE
+        TonDelay(IN := TRUE,PT := LREAL_TO_TIME(g_bDDInPlaceDelayTimeM));
+        IF TonDelay.Q THEN
+          g_bDDGoOnNoInPlaceError:=TRUE;
+          TonDelay(IN := FALSE);
+          nDelayErrorState:=0;
+        END_IF;
+      END_IF;
+  END_CASE;
+
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[济南鼎点功能块]]></xhtml:p>
+  </documentation>
+</pou>

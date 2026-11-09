@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DDAxisControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBDDAxisAct">
+        <type>
+          <derived name="FB_DingDianAxisAct"/>
+        </type>
+      </variable>
+      <variable name="FBDDAxisPower">
+        <type>
+          <derived name="FB_DDAxisPower"/>
+        </type>
+      </variable>
+      <variable name="FBDDAxisHome">
+        <type>
+          <derived name="FB_DDAxisHome"/>
+        </type>
+      </variable>
+      <variable name="FBDDAxisJog">
+        <type>
+          <derived name="FB_DDAxisJog"/>
+        </type>
+      </variable>
+      <variable name="FBDDAxisRel">
+        <type>
+          <derived name="FB_DDAxisRel"/>
+        </type>
+      </variable>
+      <variable name="FBDDAxisAbs">
+        <type>
+          <derived name="FB_DDAxisAbs"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_DDAxisReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nState">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[W轴移动正向状态值HMI用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nState1">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[W轴移动负向状态值HMI用]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biDDAxisPos">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[W轴正向移动输入信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biDDAxisNeg">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[W轴负向移动输入信号]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAxisErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[W轴负向移动输入信号]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[nState := g_biDDAxisPos;
+nState1 := g_biDDAxisNeg;
+FBDDAxisAct();
+FBDDAxisPower();
+FBDDAxisHome();
+FBDDAxisJog();
+FBDDAxisRel();
+FBDDAxisAbs();
+
+
+bAxisErrorAlarm :=  DDAxis.NCTOPLC.POWERPOSWARN OR DDAxis.NCTOPLC.POWERNEGWARN 
+     OR DDAxis.NCTOPLC.ERRORCODE <>0;
+
+IF bAxisErrorAlarm AND g_bPlcResetBuffer THEN
+  g_DDAxisReset.Execute := TRUE;
+ELSE
+  g_DDAxisReset.Execute := FALSE;   
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[鼎点轴控制模块]]></xhtml:p>
+  </documentation>
+</pou>

@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FlyPowerON" pouType="functionBlock">
+  <interface>
+    <inputVars>
+      <variable name="bOn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nPwmFreq">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="nPwmDuty">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </inputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[if(bOn = true) then
+
+  g_nPower := LREAL_TO_UINT(UINT_TO_LREAL(g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.nCutting_Power));
+  g_boLaserEnable :=TRUE;
+     
+  IF g_nPower>g_nMaxPower THEN
+    g_noULaserPowerValue := LREAL_TO_UINT(32767.0*g_nMaxVoltage/10.0);
+  ELSIF g_nPower<0 THEN
+    g_noULaserPowerValue :=0;
+  ELSE
+    g_noULaserPowerValue := LREAL_TO_UINT(32767.0*UINT_TO_LREAL(g_nPower)*g_nMaxVoltage/(10.0*UINT_TO_LREAL(g_nMaxPower)));
+  END_IF;
+  g_noULaserPowerValue := LREAL_TO_UINT(UINT_TO_LREAL(g_noULaserPowerValue)*dPowerScale);
+
+  (*功率不能越界，最小是10%的功率*)
+  IF g_noULaserPowerValue<3276 and  NOT g_bQCWType THEN
+      g_noULaserPowerValue := 3276;
+  ELSIF g_noULaserPowerValue> 32767 THEN
+      g_noULaserPowerValue :=32767;
+  END_IF; 
+  (*输出频率计算*)
+  nPwmFreq := LREAL_TO_UINT(UINT_TO_LREAL(g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.nCutting_Frequency));
+  IF nPwmFreq> 20000 THEN
+    g_noUPwmFreq := 65535;
+  ELSIF nPwmFreq<=0 THEN
+    g_noUPwmFreq := 0;
+  ELSE
+    g_noUPwmFreq := LREAL_TO_UINT(65535.0*UINT_TO_LREAL(nPwmFreq)/20000.0);
+  END_IF;     
+  g_noUPwmFreq := LREAL_TO_UINT(UINT_TO_LREAL(g_noUPwmFreq) *dFreScale);
+  
+  nPwmDuty := UINT_TO_LREAL(g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.nCutting_Duty);
+  (*输出占空比计算*)
+  IF nPwmDuty>100.0 THEN
+    g_noUPwmDuty := 65535;
+  ELSIF nPwmDuty<0.0 THEN
+    g_noUPwmDuty := 0;
+  ELSE
+    g_noUPwmDuty := LREAL_TO_UINT((nPwmDuty/100.0)* 65535.0);
+  END_IF;
+  g_noUPwmDuty := LREAL_TO_UINT(UINT_TO_LREAL(g_noUPwmDuty) * dDutyScale);
+  
+  (*功率不能越界，最小是10%的功率*)
+  IF g_noULaserPowerValue<3276 and  NOT g_bQCWType THEN
+      g_noULaserPowerValue := 3276;
+  ELSIF g_noULaserPowerValue> 32767 THEN
+      g_noULaserPowerValue :=32767;
+  END_IF; 
+
+  (*频率不能越界*)
+  IF g_noUPwmFreq<0 THEN
+      g_noUPwmFreq := 0;
+  ELSIF g_noUPwmFreq > 65535 THEN
+      g_noUPwmFreq :=65535;
+  END_IF; 
+
+  (*占空比不能越界*)
+  IF g_noUPwmDuty<0 THEN
+      g_noUPwmDuty := 0;
+  ELSIF g_noUPwmDuty > 65535 THEN
+      g_noUPwmDuty :=65535;
+  END_IF; 
+    
+else
+  g_noULaserPowerValue :=0;
+  g_boLaserEnable :=0;
+  g_noUPwmFreq:=0;
+  g_noUPwmDuty:=0;
+end_if; ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

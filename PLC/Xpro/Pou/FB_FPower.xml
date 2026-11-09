@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FPower" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_FPower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bFPowerEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bFAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="F_PowerOff">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[F_PowerOff(CLK := g_bDriveEnable);
+IF F_PowerOff.Q THEN
+  bFPowerEnable := FALSE;
+END_IF;
+
+
+g_FPower.Enable := bFPowerEnable;
+g_FPower.EnablePosition := NOT g_bFAxisPosLimit;
+g_FPower.EnableNegative := NOT g_bFAxisNegLimit;
+
+(*NC轴在选择限位回零的情况下，需在回零过程中，屏蔽掉相应的限位报警*)
+IF  g_FAxis.NCTOPLC.AXISSTATE =5 AND g_nFAxisHomeSignal <>0 AND g_nFHomeMode <> 1 THEN
+  g_FPower.EnablePosition :=TRUE;
+  g_FPower.EnableNegative := TRUE;
+END_IF;
+
+
+IF g_FPower.Error THEN
+  bFPowerEnable := false;
+END_IF;
+IF ABS(g_FAxis.NCTOPLC.ACTPOS - g_FAxis.NCTOPLC.SETPOS) > g_fFAxisMaxPosError THEN
+  g_bFAxisPosErrorAlarm := TRUE;
+ELSE
+  g_bFAxisPosErrorAlarm := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

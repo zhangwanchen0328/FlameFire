@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PLCTONC_AXIS_REF">
+  <baseType>
+    <struct>
+      <variable name="GEARRATIO">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MASTERID">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FrontSustainControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBFrontSustainPower">
+        <type>
+          <derived name="FB_FrontSustainPower"/>
+        </type>
+      </variable>
+      <variable name="FBFrontSustainJogControl">
+        <type>
+          <derived name="FB_FrontSustainJogControl"/>
+        </type>
+      </variable>
+      <variable name="FBFrontSustainAct">
+        <type>
+          <derived name="FB_FrontSustainAct"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_Sustain4Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain5Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_Sustain6Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBFrontSustainInchControl">
+        <type>
+          <derived name="FB_FrontSustainInchControl"/>
+        </type>
+      </variable>
+      <variable name="FBFrontSustainFollowControlExt">
+        <type>
+          <derived name="FB_FrontSustainFollowControlExt"/>
+        </type>
+      </variable>
+      <variable name="FBFrontSustainFollowControl">
+        <type>
+          <derived name="FB_FrontSustainFollowControl"/>
+        </type>
+      </variable>
+      <variable name="FBFrontSustainAbsolute">
+        <type>
+          <derived name="FB_FrontSustainAbsolute"/>
+        </type>
+      </variable>
+      <variable name="FBFrontSustainHome">
+        <type>
+          <derived name="FB_FrontSustainHome"/>
+        </type>
+      </variable>
+      <variable name="FBFrontSustainDown">
+        <type>
+          <derived name="FB_FrontSustainDown"/>
+        </type>
+      </variable>
+      <variable name="FBFrontSustainVelAdd">
+        <type>
+          <derived name="FB_FrontVelAdd"/>
+        </type>
+      </variable>
+      <variable name="bAxis1ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis2ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis3ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis4ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF g_bFrontSustainEnable THEN
+  FBFrontSustainPower();
+  FBFrontSustainJogControl();
+  FBFrontSustainFollowControl();
+  FBFrontSustainAct();
+  FBFrontSustainInchControl();
+  FBFrontSustainAbsolute();
+  FBFrontSustainHome();
+  FBFrontSustainVelAdd();
+  
+  
+  bAxis1ErrorAlarm :=  Axis_Sustain4.NCTOPLC.POWERPOSWARN OR Axis_Sustain4.NCTOPLC.POWERNEGWARN 
+     OR Axis_Sustain4.NCTOPLC.ERRORCODE <>0;
+     
+	bAxis2ErrorAlarm :=  Axis_Sustain5.NCTOPLC.POWERPOSWARN OR Axis_Sustain5.NCTOPLC.POWERNEGWARN 
+     OR Axis_Sustain5.NCTOPLC.ERRORCODE <>0;
+     
+	bAxis3ErrorAlarm :=  Axis_Sustain6.NCTOPLC.POWERPOSWARN OR Axis_Sustain6.NCTOPLC.POWERNEGWARN 
+     OR Axis_Sustain6.NCTOPLC.ERRORCODE <>0;
+     
+     bAxis4ErrorAlarm :=  AntiRejection2.NCTOPLC.POWERPOSWARN OR AntiRejection2.NCTOPLC.POWERNEGWARN 
+     OR AntiRejection2.NCTOPLC.ERRORCODE <>0;
+  
+  
+  
+  
+  
+  
+  IF bAxis1ErrorAlarm AND g_bPlcResetBuffer THEN
+    g_Sustain4Reset.Execute := TRUE;
+  ELSE
+    g_Sustain4Reset.Execute := FALSE;
+  END_IF;
+  
+   IF bAxis2ErrorAlarm AND g_bPlcResetBuffer THEN
+    g_Sustain5Reset.Execute := TRUE;
+  ELSE
+    g_Sustain5Reset.Execute := FALSE;
+  END_IF;
+  
+   IF bAxis3ErrorAlarm AND g_bPlcResetBuffer THEN
+    g_Sustain6Reset.Execute := TRUE;
+  ELSE
+    g_Sustain6Reset.Execute := FALSE;
+  END_IF;
+  
+   IF bAxis4ErrorAlarm AND g_bPlcResetBuffer THEN
+    g_AntiRejection2Reset.Execute := TRUE;
+  ELSE
+    g_AntiRejection2Reset.Execute := FALSE;
+  END_IF;
+END_IF;
+
+
+
+FBFrontSustainFollowControlExt();
+FBFrontSustainDown();
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

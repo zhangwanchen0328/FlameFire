@@ -1,0 +1,638 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SustainFollowControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_SustainFollowIn1">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开随动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_SustainFollowIn2">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开随动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_SustainFollowIn3">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开随动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_SustainFollowIn7">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开随动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_SustainFollowIn8">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开随动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_SustainFollowIn9">
+        <type>
+          <derived name="MC_MOVEFOLLOWIN"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开随动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_SustainFollowOut1">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关随动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_SustainFollowOut2">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关随动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_SustainFollowOut3">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关随动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_SustainFollowOut7">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关随动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_SustainFollowOut8">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关随动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_SustainFollowOut9">
+        <type>
+          <derived name="MC_MOVEFOLLOWOUT"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关随动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nFollowState1">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nFollowState2">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nFollowState3">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nFollowState7">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nFollowState8">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nFollowState9">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger7">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger8">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger9">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="FTrigger1">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="FTrigger2">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="FTrigger3">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="FTrigger7">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="FTrigger8">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="FTrigger9">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="dLastCoord">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fSetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bSustain1Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain2Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain3Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain7Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain8Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain9Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bSustain1Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustain2Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustain3Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustain7Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustain8Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustain9Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bSustain1InFollow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain2InFollow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain3InFollow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain7InFollow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain8InFollow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain9InFollow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fSustainTargetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*开浮动*)
+RTrigger1(CLK := g_bSustain1Follow OR bSustain1Follow);
+RTrigger2(CLK := g_bSustain2Follow OR bSustain2Follow);
+RTrigger3(CLK := g_bSustain3Follow OR bSustain3Follow);
+RTrigger7(CLK := g_bSustain7Follow OR bSustain7Follow);
+RTrigger8(CLK := g_bSustain8Follow OR bSustain8Follow);
+RTrigger9(CLK := g_bSustain9Follow OR bSustain9Follow);
+
+(*关浮动*)
+FTrigger1(CLK := g_bSustain1Follow OR bSustain1Follow );
+FTrigger2(CLK := g_bSustain2Follow OR bSustain2Follow);
+FTrigger3(CLK := g_bSustain3Follow OR bSustain3Follow);
+FTrigger7(CLK := g_bSustain7Follow OR bSustain7Follow);
+FTrigger8(CLK := g_bSustain8Follow OR bSustain8Follow);
+FTrigger9(CLK := g_bSustain9Follow OR bSustain9Follow);
+     
+IF RTrigger1.Q THEN
+  IF g_bSustain1Follow THEN
+    nFollowState1 := 1;
+  ELSE
+    nFollowState1 := 2;
+  END_IF;
+END_IF;
+IF RTrigger2.Q THEN
+  IF g_bSustain2Follow THEN
+    nFollowState2 := 1;
+  ELSE
+    nFollowState2 := 2;
+  END_IF;
+END_IF;
+IF RTrigger3.Q THEN
+  IF g_bSustain3Follow THEN
+    nFollowState3 := 1;
+  ELSE
+    nFollowState3 := 2;
+  END_IF;
+END_IF;
+IF RTrigger7.Q THEN
+  IF g_bSustain7Follow THEN
+    nFollowState7 := 1;
+  ELSE
+    nFollowState7 := 2;
+  END_IF;
+END_IF;
+IF RTrigger8.Q THEN
+  IF g_bSustain8Follow THEN
+    nFollowState8 := 1;
+  ELSE
+    nFollowState8 := 2;
+  END_IF;
+END_IF;
+IF RTrigger9.Q THEN
+ IF g_bSustain9Follow THEN
+    nFollowState9 := 1;
+  ELSE
+    nFollowState9 := 2;
+  END_IF;
+END_IF;
+
+IF FTrigger1.Q THEN
+  nFollowState1 := 3;
+END_IF;
+IF FTrigger2.Q THEN
+  nFollowState2 := 3;
+END_IF;
+IF FTrigger3.Q THEN
+  nFollowState3 := 3;
+END_IF;
+IF FTrigger7.Q THEN
+  nFollowState7 := 3;
+END_IF;
+IF FTrigger8.Q THEN
+  nFollowState8 := 3;
+END_IF;
+IF FTrigger9.Q THEN
+  nFollowState9 := 3;
+END_IF;
+
+g_SustainFollowIn1.CurHeight := 1.0;
+g_SustainFollowIn2.CurHeight := 1.0;
+g_SustainFollowIn3.CurHeight := 1.0;
+g_SustainFollowIn7.CurHeight := 1.0;
+g_SustainFollowIn8.CurHeight := 1.0;
+g_SustainFollowIn9.CurHeight := 1.0;
+g_SustainFollowIn1.SetHeight := g_SustainFollowIn1.CurHeight;
+g_SustainFollowIn2.SetHeight := g_SustainFollowIn2.CurHeight;
+g_SustainFollowIn3.SetHeight := g_SustainFollowIn3.CurHeight;
+g_SustainFollowIn7.SetHeight := g_SustainFollowIn7.CurHeight;
+g_SustainFollowIn8.SetHeight := g_SustainFollowIn8.CurHeight;
+g_SustainFollowIn9.SetHeight := g_SustainFollowIn9.CurHeight;
+fSetPos := g_fSustainTargetPos;
+g_SustainFollowIn1.Distance := -(fSetPos - dLastCoord);
+g_SustainFollowIn2.Distance := -(fSetPos - dLastCoord);
+g_SustainFollowIn3.Distance := -(fSetPos - dLastCoord);
+g_SustainFollowIn7.Distance := -(fSetPos - dLastCoord);
+g_SustainFollowIn8.Distance := -(fSetPos - dLastCoord);
+g_SustainFollowIn9.Distance := -(fSetPos - dLastCoord);
+dLastCoord := fSetPos;
+
+CASE nFollowState1 OF
+  0:
+    nFollowState1 := 0;
+  1:
+    g_SustainFollowIn1.Execute := TRUE;
+    IF g_SustainFollowIn1.Done THEN
+      g_bSustain1InFollow := TRUE;
+    END_IF;
+    IF g_SustainFollowIn1.Error THEN
+      (*IF g_SustainFollowIn1.ErrorId = 112 THEN
+         ;
+      END_IF;*)
+      g_bSustain1InFollow := FALSE;
+      g_SustainFollowIn1.Execute := FALSE;
+      nFollowState1 := 0;
+    END_IF;
+  2:
+    IF g_bSustain1AbsDone THEN
+      nFollowState1 := 1; 
+    END_IF;
+  3:
+    g_SustainFollowOut1.Execute := TRUE;
+    g_SustainFollowIn1.Execute := FALSE;
+    IF g_SustainFollowOut1.Done OR g_SustainFollowOut1.Error THEN
+      g_bSustain1InFollow := FALSE;
+      g_SustainFollowOut1.Execute := FALSE;
+      nFollowState1 := 0;
+    END_IF;
+END_CASE;
+
+CASE nFollowState2 OF
+  0:
+    nFollowState2 := 0;
+  1:
+    g_SustainFollowIn2.Execute := TRUE;
+    IF g_SustainFollowIn2.Done THEN
+      g_bSustain2InFollow := TRUE;
+    END_IF;
+    IF g_SustainFollowIn2.Error THEN
+      (*IF g_SustainFollowIn2.ErrorId = 112 THEN
+         ;
+      END_IF;*)
+      g_bSustain2InFollow := FALSE;
+      g_SustainFollowIn2.Execute := FALSE;
+      nFollowState2 := 0;
+    END_IF;
+  2:
+    IF g_bSustain2AbsDone THEN
+      nFollowState2 := 1;
+    END_IF;
+  3:
+    g_SustainFollowOut2.Execute := TRUE;
+    g_SustainFollowIn2.Execute := FALSE;
+    IF g_SustainFollowOut2.Done OR g_SustainFollowOut2.Error THEN
+      g_bSustain2InFollow := FALSE;
+      g_SustainFollowOut2.Execute := FALSE;
+      nFollowState2 := 0;
+    END_IF;
+END_CASE;
+
+CASE nFollowState3 OF
+  0:
+    nFollowState3 := 0;
+  1:
+    g_SustainFollowIn3.Execute := TRUE;
+    IF g_SustainFollowIn3.Done THEN
+      g_bSustain3InFollow := TRUE;
+    END_IF;
+    IF g_SustainFollowIn3.Error THEN
+      (*IF g_SustainFollowIn3.ErrorId = 112 THEN
+         ;
+      END_IF;*)
+      g_bSustain3InFollow := FALSE;
+      g_SustainFollowIn3.Execute := FALSE;
+      nFollowState3 := 0;
+    END_IF;
+  2:
+    IF g_bSustain3AbsDone THEN
+      nFollowState3 := 1;
+    END_IF;
+  3:
+    g_SustainFollowOut3.Execute := TRUE;
+    g_SustainFollowIn3.Execute := FALSE;
+    IF g_SustainFollowOut3.Done OR g_SustainFollowOut3.Error THEN
+      g_bSustain3InFollow := FALSE;
+      g_SustainFollowOut3.Execute := FALSE;
+      nFollowState3 := 0;
+    END_IF;
+END_CASE;
+
+CASE nFollowState7 OF
+  0:
+    nFollowState7 := 0;
+  1:
+    g_SustainFollowIn7.Execute := TRUE;
+    IF g_SustainFollowIn7.Done THEN
+      g_bSustain7InFollow := TRUE;
+    END_IF;
+    IF g_SustainFollowIn7.Error THEN
+      (*IF g_SustainFollowIn3.ErrorId = 112 THEN
+         ;
+      END_IF;*)
+      g_bSustain7InFollow := FALSE;
+      g_SustainFollowIn7.Execute := FALSE;
+      nFollowState7 := 0;
+    END_IF;
+  2:
+    IF g_bSustain7AbsDone THEN
+      nFollowState7 := 1;
+    END_IF;
+  3:
+    g_SustainFollowOut7.Execute := TRUE;
+    g_SustainFollowIn7.Execute := FALSE;
+    IF g_SustainFollowOut7.Done OR g_SustainFollowOut7.Error THEN
+      g_bSustain7InFollow := FALSE;
+      g_SustainFollowOut7.Execute := FALSE;
+      nFollowState7 := 0;
+    END_IF;
+END_CASE;
+
+CASE nFollowState8 OF
+  0:
+    nFollowState8 := 0;
+  1:
+    g_SustainFollowIn8.Execute := TRUE;
+    IF g_SustainFollowIn8.Done THEN
+      g_bSustain8InFollow := TRUE;
+    END_IF;
+    IF g_SustainFollowIn8.Error THEN
+      (*IF g_SustainFollowIn3.ErrorId = 112 THEN
+         ;
+      END_IF;*)
+      g_bSustain8InFollow := FALSE;
+      g_SustainFollowIn8.Execute := FALSE;
+      nFollowState8 := 0;
+    END_IF;
+  2:
+    IF g_bSustain8AbsDone THEN
+      nFollowState8 := 1;
+    END_IF;
+  3:
+    g_SustainFollowOut8.Execute := TRUE;
+    g_SustainFollowIn8.Execute := FALSE;
+    IF g_SustainFollowOut8.Done OR g_SustainFollowOut8.Error THEN
+      g_bSustain8InFollow := FALSE;
+      g_SustainFollowOut8.Execute := FALSE;
+      nFollowState8 := 0;
+    END_IF;
+END_CASE;
+
+CASE nFollowState9 OF
+  0:
+    nFollowState9 := 0;
+  1:
+    g_SustainFollowIn9.Execute := TRUE;
+    IF g_SustainFollowIn9.Done THEN
+      g_bSustain9InFollow := TRUE;
+    END_IF;
+    IF g_SustainFollowIn9.Error THEN
+      (*IF g_SustainFollowIn3.ErrorId = 112 THEN
+         ;
+      END_IF;*)
+      g_bSustain9InFollow := FALSE;
+      g_SustainFollowIn9.Execute := FALSE;
+      nFollowState9 := 0;
+    END_IF;
+  2:
+    IF g_bSustain9AbsDone THEN
+      nFollowState9 := 1;
+    END_IF;
+  3:
+    g_SustainFollowOut9.Execute := TRUE;
+    g_SustainFollowIn9.Execute := FALSE;
+    IF g_SustainFollowOut9.Done OR g_SustainFollowOut9.Error THEN
+      g_bSustain9InFollow := FALSE;
+      g_SustainFollowOut9.Execute := FALSE;
+      nFollowState9 := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  g_SustainFollowIn1.Execute := FALSE;
+  g_SustainFollowIn2.Execute := FALSE;
+  g_SustainFollowIn3.Execute := FALSE;
+  g_SustainFollowIn7.Execute := FALSE;
+  g_SustainFollowIn8.Execute := FALSE;
+  g_SustainFollowIn9.Execute := FALSE;
+  g_SustainFollowOut1.Execute := FALSE;
+  g_SustainFollowOut2.Execute := FALSE;
+  g_SustainFollowOut3.Execute := FALSE;
+  g_SustainFollowOut7.Execute := FALSE;
+  g_SustainFollowOut8.Execute := FALSE;
+  g_SustainFollowOut9.Execute := FALSE;
+  g_bSustain1InFollow := FALSE;
+  g_bSustain2InFollow := FALSE;
+  g_bSustain3InFollow := FALSE;
+  g_bSustain7InFollow := FALSE;
+  g_bSustain8InFollow := FALSE;
+  g_bSustain9InFollow := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

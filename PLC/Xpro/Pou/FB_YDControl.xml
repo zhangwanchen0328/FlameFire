@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_YDControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBYDTopMaterialAdjust">
+        <type>
+          <derived name="FB_YDTopMaterialAdjust"/>
+        </type>
+      </variable>
+      <variable name="FBYDFeedingAbsAdjust">
+        <type>
+          <derived name="FB_YDFeedingAbsAdjust"/>
+        </type>
+      </variable>
+      <variable name="FBYDClawControl">
+        <type>
+          <derived name="FB_YDClawControl"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBYDTopMaterialAdjust();
+FBYDFeedingAbsAdjust();
+FBYDClawControl();]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

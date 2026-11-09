@@ -1,0 +1,432 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ServoEnableControl" pouType="functionBlock">
+  <interface>
+    <inputVars>
+      <variable name="bDriveReset">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位命令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使能命令下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nStatusWord">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态字]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <outputVars>
+      <variable name="nControlWord">
+        <type>
+          <UDINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="6"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[控制字，默认给一个6.]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDriveStatus">
+        <type>
+          <UDINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器状态反馈]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAxisEnableStatus">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器使能状态]]></xhtml:p>
+        </documentation>
+      </variable>
+    </outputVars>
+    <localVars>
+      <variable name="nControlWord0">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[位移操作变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nControlWord1">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[类型转换变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TonA">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonTimeOut">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能的7状态机的延时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TonEn15">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能的15状态机的延时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TonDis15">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下使能的15状态机的延时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TonDis7">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下使能的7状态机的延时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TonDis6">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下使能的6状态机的延时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TonEn31">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能的31状态机的延时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TonReset60">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位的60状态机的延时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="rtDriveEnable">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使能命令上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <outputVars>
+      <variable name="nEnableStates">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使能命令状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDisableStates">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下使能命令状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nResetStates">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位命令状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </outputVars>
+    <localVars>
+      <variable name="nStatusWord0">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[类型转换变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDefault">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[类型转换变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDefault0">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[类型转换变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bPowerReady">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使能运行状态判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bPowerOpeartion">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使能运行状态判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bPowerSwitchOn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使能运行状态判断]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPowerReady">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[位移操作变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPowerReady0">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[位操作变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPowerSwitchOn">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[位移操作变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPowerSwitchOn0">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[位操作变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPowerOpeartion">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[位移操作变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPowerOpeartion0">
+        <type>
+          <DWORD/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[位操作变量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <outputVars>
+      <variable name="bDriveError">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[驱动器的报警判断]]></xhtml:p>
+        </documentation>
+      </variable>
+    </outputVars>
+    <localVars>
+      <variable name="bResetDefault">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警判断变量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="bSTO">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[STO开启信号]]></xhtml:p>
+        </documentation>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="nBackState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[发完复位后返回原状态]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[nPowerReady := SHL(1,0);
+nPowerSwitchOn := SHL(1,1);
+nPowerOpeartion := SHL(1,2);
+nDefault := SHL(1,3);
+nStatusWord0 := UDINT_TO_DWORD(nStatusWord);
+nPowerReady0 := AND(nStatusWord0,nPowerReady);
+nPowerSwitchOn0 := AND(nStatusWord0,nPowerSwitchOn);
+nPowerOpeartion0 := AND(nStatusWord0,nPowerOpeartion);
+nDefault0 := AND(nStatusWord0,nDefault);
+bPowerReady := DWORD_TO_BOOL(nPowerReady0);
+bPowerSwitchOn := DWORD_TO_BOOL(nPowerSwitchOn0);
+bPowerOpeartion := DWORD_TO_BOOL(nPowerOpeartion0);
+bDriveError := DWORD_TO_BOOL(nDefault0);
+  
+IF bPowerReady AND bPowerSwitchOn AND bPowerOpeartion THEN
+   bAxisEnableStatus := TRUE;
+ELSE
+   bAxisEnableStatus := FALSE;
+END_IF;
+
+rtDriveEnable(clk:=bEnable);
+(*上使能状态机*)
+CASE nEnableStates OF
+    0:
+      nControlWord := 6;
+      IF rtDriveEnable.Q then
+         IF bDriveError then
+           nEnableStates:= 200;
+           nBackState:=0;
+           TonA(IN := FALSE);
+         ELSE
+			 nEnableStates:= 10;
+			 TonTimeOut(IN := FALSE);
+         END_IF;
+      end_if;
+      IF bDriveReset THEN
+        nEnableStates:= 200;
+        nBackState:=0;
+        TonA(IN := FALSE);
+      END_IF;
+    10:
+      IF bPowerReady THEN
+        nControlWord := 7;
+      END_IF;
+      IF bPowerReady AND bPowerSwitchOn THEN
+        nControlWord := 15;
+      END_IF;
+      IF bAxisEnableStatus THEN
+        nControlWord := 31;
+        nEnableStates:= 90; 
+      END_IF;
+      TonTimeOut(IN := TRUE,PT := T#5000ms);
+      IF TonTimeOut.Q THEN 
+        TonTimeOut(IN := FALSE);       
+        nEnableStates:= 99;
+        nControlWord := 6; 
+      END_IF; 
+    90:(*正常使能状态*)
+      IF bDriveReset THEN
+        nEnableStates:= 200;
+        nBackState:=90;
+        TonA(IN := FALSE);
+      ELSIF NOT bEnable THEN
+        nEnableStates:=0; 
+      ELSIF bDriveError OR (NOT bAxisEnableStatus) THEN
+        TonTimeOut(IN := FALSE); 
+        nEnableStates := 95;
+        TonTimeOut(IN := false);
+      END_IF;
+    95:
+      TonTimeOut(IN := TRUE,PT := T#100ms);
+      IF TonTimeOut.Q THEN
+        IF bSTO THEN
+           nEnableStates:= 300;
+        ELSE
+           nEnableStates:= 99;
+        END_IF;
+      END_IF;
+    99:
+      IF NOT bEnable THEN
+        nEnableStates :=0;
+      ELSIF bDriveReset THEN
+        nControlWord := 6;
+        nEnableStates:= 200;
+        nBackState:=0;
+        TonA(IN := FALSE);
+      END_IF; 
+    200:
+      nControlWord0 := SHL(1,7);
+      nControlWord1 := UDINT_TO_DWORD(nControlWord);
+      nControlWord := DWORD_TO_UDINT(OR(nControlWord1,nControlWord0));
+      (*给驱动器发复位之后 10MS后给驱动的复位位置回0*)
+      TonA(IN := TRUE,PT := T#50ms);       
+      IF TonA.Q THEN
+        TonA(IN := FALSE);  
+        nControlWord0 := 127;
+        nControlWord1 := UDINT_TO_DWORD(nControlWord);
+        nControlWord := DWORD_TO_UDINT(AND(nControlWord1,nControlWord0));
+        nEnableStates:= nBackState; (*复位后,返回预设的状态*)       
+      END_IF; 
+    300:
+     nControlWord := 6;
+     IF (NOT bSTO) AND bEnable THEN
+        nEnableStates:=200;
+        nBackState:=10;(*STO信号移除后,发复位,再上使能*)
+        TonA(IN := FALSE);
+     END_IF;
+     IF NOT bEnable THEN
+        nEnableStates :=0;
+     END_IF;
+    
+END_CASE;
+
+IF bSTO AND bEnable THEN 
+	bAxisEnableStatus:=TRUE;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_LaserRedLight" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_boLaserRedLight">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：激光红点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLaserRedLight">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光红点，hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="rTrigRed">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[红点上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fTrigRed">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[红点下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nRedLightState">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[红光状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+rTrigRed( CLK := (g_bLaserRedLight));
+fTrigRed(CLK := (g_bLaserRedLight));
+
+IF rTrigRed.Q THEN(*激光红点*)
+  nRedLightState := 2;
+END_IF;
+
+IF fTrigRed.Q THEN
+  nRedLightState := 1;
+END_IF;
+
+CASE nRedLightState OF
+  0:(*空闲状态*)
+    nRedLightState:= 0;
+  1:(*关闭红光*)
+    g_boLaserRedLight := FALSE;
+    nRedLightState:= 0;
+  2:(*开启红光*)
+    g_boLaserRedLight := TRUE;
+    nRedLightState:= 0;
+END_CASE;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[激光红点]]></xhtml:p>
+  </documentation>
+</pou>

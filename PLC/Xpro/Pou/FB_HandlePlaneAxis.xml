@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_HandlePlaneAxis" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_foYPlaneAxisPosCmd">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[平面Y轴位置命令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_foY1PlaneAxisPosCmd">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[平面Y1轴位置命令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiYPlaneAxisActPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[平面Y轴实际位置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiY1PlaneAxisActPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[平面Y1轴实际位置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bDriveEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上使能全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="fYPlaneAxisPosCmd">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fY1PlaneAxisPosCmd">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF g_bDriveEnable=FALSE THEN
+  fYPlaneAxisPosCmd := g_fiYPlaneAxisActPos;
+  fY1PlaneAxisPosCmd := g_fiY1PlaneAxisActPos;
+END_IF;
+
+g_foYPlaneAxisPosCmd := fYPlaneAxisPosCmd;
+g_foY1PlaneAxisPosCmd := fY1PlaneAxisPosCmd;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[处理平面龙门轴漂的问题]]></xhtml:p>
+  </documentation>
+</pou>

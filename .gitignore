@@ -1,0 +1,15 @@
+# 忽略所有目录下 bin 和 obj
+[Dd]ebug/
+[Rr]elease/
+bin/
+obj/
+
+# 递归匹配所有子文件夹里面的 bin obj
+**/bin/
+**/obj/
+
+# 额外 .NET 常用忽略项（C# WinForms项目，顺带加上）
+*.user
+*.suo
+*.log
+.vs/

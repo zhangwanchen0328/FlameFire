@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CNCZAxisVelAdd" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_fLastCoord">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bVelAddUpEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bVelAddDownEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*叠加CNC的Z轴速度到NC的Z轴*)
+(*如果CNC轴向上走到了设置的安全位置就停止CNC的速度合成*)
+IF g_bDryRunEnable OR g_bDebugMode OR g_bFallBackStatusFb OR g_bAutoExecuteFallBack THEN
+  RETURN;
+END_IF;
+bVelAddDownEnable := (g_fiZFollowCoord -  g_fLastCoord)<0.0 AND Axis_Z.NCTOPLC.AXISSTATE = 9;
+bVelAddUpEnable :=  ((((g_fiZFollowCoord -  g_fLastCoord)<0.0) OR ((g_fiZFollowCoord -  g_fLastCoord)>0.0 AND  Axis_Z.NCTOPLC.ACTPOS < g_fLiftCoord - 0.5 )));
+
+
+
+g_ZCNCAxisVelAdd.ENABLE := bVelAddUpEnable OR bVelAddDownEnable;
+g_ZCNCAxisVelAdd.VELADDITIVEMODE := 1;
+g_ZCNCAxisVelAdd.DISTANCE := (g_fiZFollowCoord -  g_fLastCoord);
+
+g_doNewVelAddDicstance := g_ZCNCAxisVelAdd.DISTANCE;
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

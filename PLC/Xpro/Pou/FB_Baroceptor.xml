@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Baroceptor" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="AheadCutGasPressureSet">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Ton1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Rrg_GasEnable">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="BaroceptorState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nAheadCutGasPressureSetLast">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="GasPressureLastSet">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nCheckGasAlarmTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="bOpenCheckEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*不开启气压传感器直接RETURN*) 
+IF NOT g_bBaroceptorEnable THEN
+  g_bBaroceptorAlarm1 := FALSE;     
+  g_bBaroceptorAlarm2 := FALSE;
+  g_bBaroceptorAlarm3 := FALSE;
+  g_bgasPressuerQualified := TRUE;
+  RETURN;
+END_IF;
+
+
+CASE g_ugas_type OF  
+  0:
+	 IF g_bAirAOEnable THEN 
+      AheadCutGasPressureSet := g_nAheadCutGasPressureSet; (*有比例阀,工艺设置气压*)
+    ELSE                
+      AheadCutGasPressureSet := g_dNoAOGasAlarmPressure;  (*无比例阀,默认0.3bar气压*)
+    END_IF;
+  1:
+	 IF g_bOxygenAOEnable THEN
+      AheadCutGasPressureSet := g_nAheadCutGasPressureSet;
+    ELSE
+      AheadCutGasPressureSet := g_dNoAOGasAlarmPressure;
+    END_IF;	
+  2:
+	 IF g_bNirtogenAOEnable THEN
+      AheadCutGasPressureSet := g_nAheadCutGasPressureSet;
+    ELSE
+      AheadCutGasPressureSet := g_dNoAOGasAlarmPressure;
+    END_IF;
+END_CASE;
+
+
+
+(*开气时,进行气体传感器检测*)
+Rrg_GasEnable(CLK := g_bgas_enable);
+IF Rrg_GasEnable.Q THEN
+  Ton1(IN:= FALSE);
+  Ton2(IN:= FALSE);
+  Ton3(IN:= FALSE);
+  Ton4(IN:= FALSE);
+  nAheadCutGasPressureSetLast := AheadCutGasPressureSet;
+  g_bgasPressuerQualified := FALSE;
+  BaroceptorState := 10;
+END_IF;
+ 
+IF NOT g_bgas_enable THEN
+  g_bBaroceptorAlarm1 := FALSE;
+  g_bBaroceptorAlarm2 := FALSE;
+  g_bBaroceptorAlarm3 := FALSE;
+  g_bgasPressuerQualified := FALSE;
+  BaroceptorState := 0;
+END_IF;
+
+CASE BaroceptorState OF
+  0:
+    BaroceptorState := 0;  
+  10:(*开气时,开气延时后或出光时,实际气压>=开气允许偏差*)
+    IF g_nAheadCutGasPressureAct >= AheadCutGasPressureSet*(1.0-g_OpenGasDeviation/100.0) THEN
+      g_bgasPressuerQualified := TRUE;  (*气压达到设定压力*)
+    ELSE
+      g_bgasPressuerQualified := FALSE;  
+    END_IF;
+    Ton1(IN:= TRUE,PT :=LREAL_TO_TIME(FUN_MStoS(g_OpenGasDeviationTime)));    
+    IF Ton1.Q THEN
+      IF g_bgasPressuerQualified THEN
+        Ton1(IN:= FALSE);
+        BaroceptorState := 20; 
+      ELSE
+        g_bBaroceptorAlarm1 := TRUE;     (*开气欠压报警*) 
+        BaroceptorState := 40;    
+        Ton1(IN:= FALSE);                                   
+      END_IF;       
+    END_IF;
+   (*如果检测过程中设置气压变了,重新检测*)
+    Ton4(IN:= g_noUPwmDuty<>0 AND NOT g_bgasPressuerQualified AND g_bLaserPowerOnEnable,PT :=LREAL_TO_TIME(FUN_MStoS(nCheckGasAlarmTime)));
+   IF AheadCutGasPressureSet > nAheadCutGasPressureSetLast THEN
+     Ton1(IN:= FALSE);
+     Ton3(IN:= FALSE);
+     GasPressureLastSet := nAheadCutGasPressureSetLast;
+     BaroceptorState := 30;
+    (*出光前,欠压报警*) 
+    ELSIF Ton4.Q AND bOpenCheckEnable THEN
+      g_bBaroceptorAlarm3 := TRUE;
+      g_bLaserCuttingEnable := FALSE;
+      g_boLaserEnable :=FALSE;
+      g_noUPwmFreq := 0;
+      g_noUPwmDuty := 0;
+      g_noNotraceMicroDuty := 0;
+      g_noULaserPowerValue := 0;       
+      BaroceptorState := 40;    
+      Ton1(IN:= FALSE); 
+    END_IF;  
+    
+  20:(*过程中,气压小于过程允许偏差并且持续时间报警*)
+    IF g_nAheadCutGasPressureAct >= AheadCutGasPressureSet*(1.0-g_ProcessAllowableDeviation/100.0) THEN
+      g_bgasPressuerQualified := TRUE;  (*气压达到设定压力*)
+    ELSE
+      g_bgasPressuerQualified := FALSE;  
+    END_IF;
+    Ton2(IN:= (NOT g_bgasPressuerQualified),PT :=LREAL_TO_TIME(FUN_MStoS(g_DurationDeviationTime))); 
+    IF Ton2.Q THEN
+      Ton2(IN:= FALSE);
+      g_bBaroceptorAlarm2 := TRUE;         (*切割气欠压报警*)
+      BaroceptorState := 40;
+    END_IF; 
+   (*检测过程中设置气压变大,重新检测*)
+    Ton4(IN:=g_noUPwmDuty<>0 AND g_nAheadCutGasPressureAct < 0.7*AheadCutGasPressureSet*(1.0-g_ProcessAllowableDeviation/100.0) AND g_bLaserPowerOnEnable,PT :=LREAL_TO_TIME(FUN_MStoS(nCheckGasAlarmTime)));
+   IF AheadCutGasPressureSet > nAheadCutGasPressureSetLast THEN
+     Ton2(IN:= FALSE);
+     Ton3(IN:= FALSE); 
+     GasPressureLastSet := nAheadCutGasPressureSetLast;
+     BaroceptorState := 30;
+   ELSIF Ton4.Q AND bOpenCheckEnable THEN
+      g_bBaroceptorAlarm3 := TRUE;
+      BaroceptorState := 40;    
+      Ton2(IN:= FALSE);     
+   END_IF; 
+  30:(*检测过程中设置气压变大,按变化前气压检测,延时200ms后过程检测*)
+    Ton1(IN:= FALSE);
+    Ton2(IN:= FALSE); 
+    IF g_nAheadCutGasPressureAct >= AheadCutGasPressureSet*(1.0-g_ProcessAllowableDeviation/100.0) THEN
+      g_bgasPressuerQualified := TRUE;  (*气压达到设定压力*)
+    ELSE
+      g_bgasPressuerQualified := FALSE;  
+    END_IF;
+     Ton4(IN:=g_noUPwmDuty<>0 AND g_nAheadCutGasPressureAct < 0.7*AheadCutGasPressureSet*(1.0-g_ProcessAllowableDeviation/100.0) AND g_bLaserPowerOnEnable,PT :=LREAL_TO_TIME(FUN_MStoS(nCheckGasAlarmTime)));
+            
+    IF Ton4.Q AND bOpenCheckEnable THEN
+      g_bBaroceptorAlarm3 := TRUE;      (*出光,欠压报警*) 
+      BaroceptorState := 40;    
+    END_IF;
+    Ton3(IN:= TRUE,PT :=T#300ms);
+    IF Ton3.Q OR g_bgasPressuerQualified THEN
+      Ton3(IN:= FALSE);
+      BaroceptorState := 20;
+    END_IF; 
+   (*如果检测过程中设置气压变大,重新检测*)
+   IF AheadCutGasPressureSet > nAheadCutGasPressureSetLast THEN
+     GasPressureLastSet := nAheadCutGasPressureSetLast;
+     BaroceptorState := 32;
+   END_IF; 
+  32:
+    Ton3(IN:= FALSE);
+    BaroceptorState := 30;
+  40: 
+   Ton4(IN:= FALSE);
+    BaroceptorState := 40;
+END_CASE;
+IF g_bPlcResetBuffer THEN
+  g_bBaroceptorAlarm1 := FALSE;
+  g_bBaroceptorAlarm2 := FALSE;
+  g_bBaroceptorAlarm3 := FALSE;
+END_IF;
+nAheadCutGasPressureSetLast := AheadCutGasPressureSet;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[气压传感器]]></xhtml:p>
+  </documentation>
+</pou>

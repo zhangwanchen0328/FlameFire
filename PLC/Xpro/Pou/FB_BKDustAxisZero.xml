@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BKDustAxisZero" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Dust_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Dust_Home">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+      </variable>
+      <variable name="Dust_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_biDustHomeOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bDustHomeOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biDustHomeClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boDustHomeDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bHomeDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="R_Trriger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nSwitchState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dHomePosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nHomingMode">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bDustNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trriger1(CLK := g_biDustHomeOpen OR bDustHomeOpen);
+R_Trriger2(CLK := g_biDustHomeClose);
+
+IF R_Trriger1.Q THEN
+  bHomeDone := FALSE;
+  g_boDustHomeDone := FALSE;
+  nSwitchState := 1;
+END_IF;
+
+IF R_Trriger2.Q THEN
+  g_boDustHomeDone := FALSE;
+END_IF;
+
+CASE nSwitchState OF
+  0:
+  nSwitchState := 0;
+  1:
+  Dust_Home.Execute := TRUE;
+  Dust_Home.Position := dHomePosition;
+  Dust_Home.HomingMode := nHomingMode;
+  Dust_Home.bCalibrationCam := g_bDustNegLimit;
+  IF Dust_Home.Done THEN
+    Dust_Home.Execute := FALSE;
+    bHomeDone := TRUE;
+    g_boDustHomeDone := TRUE;
+    nSwitchState := 0;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer THEN
+    nSwitchState := 10;
+  END_IF;
+  
+  IF Dust_Home.CommandAborted OR Dust_Home.Error THEN
+    Dust_Home.Execute := FALSE;
+    g_boDustHomeDone := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  10:
+  Dust_Home.Execute := FALSE;
+  Dust_Stop.Execute := TRUE;
+  IF Dust_Stop.Done AND g_bPlcStartBuffer THEN
+    Dust_Stop.Execute := FALSE;
+    nSwitchState := 1;
+  END_IF;
+  
+  IF Dust_Stop.CommandAborted OR Dust_Stop.Error THEN
+    Dust_Stop.Execute := FALSE;
+    nSwitchState := 0;
+  END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nSwitchState := 0;
+  bHomeDone := TRUE;
+  Dust_Home.Execute := FALSE;
+  Dust_Stop.Execute := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

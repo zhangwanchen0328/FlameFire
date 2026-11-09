@@ -1,0 +1,3375 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SustainFollowControlExt" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[暂停]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bSustainFollowExecuteM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动开始引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bSustainFollowCloseM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动关闭引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nFollowState1">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nFollowState2">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger6">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger7">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger8">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger9">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger10">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger11">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger12">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger13">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger14">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger15">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[M代码触发单个支撑轴开关浮动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger16">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger17">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger18">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger19">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger20">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger21">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger22">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger23">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger24">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger25">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger26">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigger27">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="FBRectangleTubeCurve">
+        <type>
+          <derived name="FB_RectangleTubeCurve"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fCurrentCoordYBuffer">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fCornerRadius">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dSquareLenght">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dSquareWidth">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fUWorkCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustainTargetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder1CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder2CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder3CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder4CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder5CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder6CoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder1DownDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder2DownDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder3DownDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder4DownDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder5DownDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fClylinder6DownDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain1ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain2ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain3ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain7ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain8ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fSustain9ToChuckDist">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain1">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain2">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain7">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain8">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Sustain9">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_bSustain1Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain2Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain3Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain7Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain8Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain9Follow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bSustainAxis1SafeDownFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis2SafeDownFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis3SafeDownFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis7SafeDownFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis8SafeDownFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis9SafeDownFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS7SafeDownFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS8SafeDownFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS9SafeDownFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS10SafeDownFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS11SafeDownFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS12SafeDownFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis1SafeDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis2SafeDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis3SafeDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis7SafeDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis8SafeDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis9SafeDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS7SafeDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS8SafeDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS9SafeDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS10SafeDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS11SafeDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS12SafeDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bSustainAxis1UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainAxis2UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainAxis3UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainAxis7UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainAxis8UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainAxis9UpFeedSafe">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bSustainAxesFloatUp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis1FloatEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis2FloatEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis3FloatEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis7FloatEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis8FloatEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis9FloatEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS7FloatEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS8FloatEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS9FloatEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS10FloatEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS11FloatEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS12FloatEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis1Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis2Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis3Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis7Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis8Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxis9Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS7Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS8Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS9Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS10Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS11Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSustainAxisS12Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nSustainNum">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bSustain1Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain2Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain3Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain7Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain8Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain9Abs">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain1AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain2AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain3AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain7AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain8AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain9AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain1AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain2AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain3AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain7AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain8AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain9AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nFollowStep">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="fActPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bSustain1InFollow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain2InFollow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain3InFollow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain7InFollow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain8InFollow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain9InFollow">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainUpDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustainUpDownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nSustainMoveType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nClylinderCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bClylinderEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nSusutainCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bSustainEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nSustainSignalM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_boSustainFollowDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biAxIsYisHome">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain1Switch">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[是否开启程序开始时支撑轴下降]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bSustain2Switch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain3Switch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain7Switch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain8Switch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bSustain9Switch">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bCheckFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nSustain1DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nSustain2DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nSustain3DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nSustain4DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nSustain5DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nSustain6DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nSustain7DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nSustain8DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nSustain9DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nSustain10DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nSustain11DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nSustain12DownState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="R_TrrigerM319">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bCheckAllDownFinish">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[所有支撑轴下降完成标志]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustainAxis1FollowState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴1浮动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustainAxis2FollowState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴2浮动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustainAxis3FollowState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴3浮动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustainAxis4FollowState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴4浮动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustainAxis5FollowState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴5浮动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustainAxis6FollowState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴6浮动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustainAxis7FollowState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴7浮动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustainAxis8FollowState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴8浮动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustainAxis9FollowState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴9浮动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustainAxis10FollowState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴10浮动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustainAxis11FollowState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴11浮动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSustainAxis12FollowState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[支撑轴12浮动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF g_nSusutainCount >= 1 THEN
+  bSustainAxis1Enable := TRUE;
+  IF g_biAxIsYisHome AND NOT g_bSupportAxis1ShieldFlag THEN
+    (*支撑轴1下降标志位 = Y轴当前坐标 -（支撑轴1在Y上坐标 - 支撑轴1提前下降距离）*)
+    bSustainAxis1SafeDownFlag := g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY1 - g_fSupAxisDownDis1);
+  ELSE
+    bSustainAxis1SafeDownFlag := FALSE;
+  END_IF;
+  bSustainAxis1SafeDown := bSustainAxis1SafeDownFlag AND NOT g_bSustain1InFollow;(*支撑轴1已经达到下降条件，并且浮动已关闭*)
+  g_bSustainAxis1UpFeedSafe := NOT bSustainAxis1SafeDownFlag;(*支撑轴1可浮动*)
+  bSustainAxis1FloatEnable := g_bSustainAxis1UpFeedSafe AND bSustainAxis1Enable AND (NOT g_bSustain1Switch);(*能不能开浮动标志位*)
+END_IF;
+IF g_nSusutainCount >= 2 THEN
+  bSustainAxis2Enable := TRUE;
+  IF g_biAxIsYisHome AND NOT g_bSupportAxis2ShieldFlag THEN
+    bSustainAxis2SafeDownFlag := g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY2 - g_fSupAxisDownDis2);
+  ELSE
+    bSustainAxis2SafeDownFlag := FALSE;
+  END_IF;
+  bSustainAxis2SafeDown := bSustainAxis2SafeDownFlag AND NOT g_bSustain2InFollow;
+  g_bSustainAxis2UpFeedSafe := NOT bSustainAxis2SafeDownFlag;
+  bSustainAxis2FloatEnable := g_bSustainAxis2UpFeedSafe AND bSustainAxis2Enable AND (NOT g_bSustain2Switch);
+END_IF;
+IF g_nSusutainCount >= 3 THEN 
+  bSustainAxis3Enable := TRUE;
+  IF g_biAxIsYisHome AND NOT g_bSupportAxis3ShieldFlag THEN
+    bSustainAxis3SafeDownFlag := g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY3 - g_fSupAxisDownDis3);
+  ELSE
+    bSustainAxis3SafeDownFlag := FALSE;
+  END_IF;
+  bSustainAxis3SafeDown := bSustainAxis3SafeDownFlag AND NOT g_bSustain3InFollow;
+  g_bSustainAxis3UpFeedSafe := NOT bSustainAxis3SafeDownFlag;
+  bSustainAxis3FloatEnable := g_bSustainAxis3UpFeedSafe AND bSustainAxis3Enable AND (NOT g_bSustain3Switch);
+END_IF;
+IF g_nSusutainCount >= 4 THEN 
+  bSustainAxis7Enable := TRUE;
+  IF g_biAxIsYisHome AND NOT g_bSupportAxis4ShieldFlag THEN
+    bSustainAxis7SafeDownFlag := g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY4 - g_fSupAxisDownDis4);
+  ELSE
+    bSustainAxis7SafeDownFlag := FALSE;
+  END_IF;
+  bSustainAxis7SafeDown := bSustainAxis7SafeDownFlag AND NOT g_bSustain7InFollow;
+  g_bSustainAxis7UpFeedSafe := NOT bSustainAxis7SafeDownFlag;
+  bSustainAxis7FloatEnable := g_bSustainAxis7UpFeedSafe AND bSustainAxis7Enable AND (NOT g_bSustain7Switch);
+END_IF;
+IF g_nSusutainCount >= 5 THEN 
+  bSustainAxis8Enable := TRUE;
+  IF g_biAxIsYisHome AND NOT g_bSupportAxis5ShieldFlag THEN
+    bSustainAxis8SafeDownFlag := g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY5 - g_fSupAxisDownDis5);
+  ELSE
+    bSustainAxis8SafeDownFlag := FALSE;
+  END_IF;
+  bSustainAxis8SafeDown := bSustainAxis8SafeDownFlag AND NOT g_bSustain8InFollow;
+  g_bSustainAxis8UpFeedSafe := NOT bSustainAxis8SafeDownFlag;
+  bSustainAxis8FloatEnable := g_bSustainAxis8UpFeedSafe AND bSustainAxis8Enable AND (NOT g_bSustain8Switch);
+END_IF;
+IF g_nSusutainCount >= 6 THEN 
+  bSustainAxis9Enable := TRUE;
+  IF g_biAxIsYisHome AND NOT g_bSupportAxis6ShieldFlag THEN
+    bSustainAxis9SafeDownFlag := g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY6 - g_fSupAxisDownDis6);
+  ELSE
+    bSustainAxis9SafeDownFlag := FALSE;
+  END_IF;
+  bSustainAxis9SafeDown := bSustainAxis9SafeDownFlag AND NOT g_bSustain9InFollow;
+  g_bSustainAxis9UpFeedSafe := NOT bSustainAxis9SafeDownFlag;
+  bSustainAxis9FloatEnable := g_bSustainAxis9UpFeedSafe AND bSustainAxis9Enable AND (NOT g_bSustain9Switch);
+END_IF;
+IF g_nSusutainCount >= 7 THEN 
+  bSustainAxisS7Enable := TRUE;
+  IF g_biAxIsYisHome AND NOT g_bSupportAxis7ShieldFlag THEN
+    bSustainAxisS7SafeDownFlag := g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY7 - g_fSupAxisDownDis7);
+  ELSE
+    bSustainAxisS7SafeDownFlag := FALSE;
+  END_IF;
+  bSustainAxisS7SafeDown := bSustainAxisS7SafeDownFlag ;
+  g_bSustainAxisS7UpFeedSafe := NOT bSustainAxisS7SafeDownFlag;
+  bSustainAxisS7FloatEnable := g_bSustainAxisS7UpFeedSafe AND bSustainAxisS7Enable ;
+END_IF;
+IF g_nSusutainCount >= 8 THEN 
+  bSustainAxisS8Enable := TRUE;
+  IF g_biAxIsYisHome AND NOT g_bSupportAxis8ShieldFlag THEN
+    bSustainAxisS8SafeDownFlag := g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY8 - g_fSupAxisDownDis8);
+  ELSE
+    bSustainAxisS8SafeDownFlag := FALSE;
+  END_IF;
+  bSustainAxisS8SafeDown := bSustainAxisS8SafeDownFlag ;
+  g_bSustainAxisS8UpFeedSafe := NOT bSustainAxisS8SafeDownFlag;
+  bSustainAxisS8FloatEnable := g_bSustainAxisS8UpFeedSafe AND bSustainAxisS8Enable ;
+END_IF;
+IF g_nSusutainCount >= 9 THEN 
+  bSustainAxisS9Enable := TRUE;
+  IF g_biAxIsYisHome AND NOT g_bSupportAxis9ShieldFlag THEN
+    bSustainAxisS9SafeDownFlag := g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY9 - g_fSupAxisDownDis9);
+  ELSE
+    bSustainAxisS9SafeDownFlag := FALSE;
+  END_IF;
+  bSustainAxisS9SafeDown := bSustainAxisS9SafeDownFlag ;
+  g_bSustainAxisS9UpFeedSafe := NOT bSustainAxisS9SafeDownFlag;
+  bSustainAxisS9FloatEnable := g_bSustainAxisS9UpFeedSafe AND bSustainAxisS9Enable ;
+END_IF;
+IF g_nSusutainCount >= 10 THEN 
+  bSustainAxisS10Enable := TRUE;
+  IF g_biAxIsYisHome AND NOT g_bSupportAxis10ShieldFlag THEN
+    bSustainAxisS10SafeDownFlag := g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY10 - g_fSupAxisDownDis10);
+  ELSE
+    bSustainAxisS10SafeDownFlag := FALSE;
+  END_IF;
+  bSustainAxisS10SafeDown := bSustainAxisS10SafeDownFlag ;
+  g_bSustainAxisS10UpFeedSafe := NOT bSustainAxisS10SafeDownFlag;
+  bSustainAxisS10FloatEnable := g_bSustainAxisS10UpFeedSafe AND bSustainAxisS10Enable ;
+END_IF;
+IF g_nSusutainCount >= 11 THEN 
+  bSustainAxisS11Enable := TRUE;
+  IF g_biAxIsYisHome AND NOT g_bSupportAxis11ShieldFlag THEN
+    bSustainAxisS11SafeDownFlag := g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY11 - g_fSupAxisDownDis11);
+  ELSE
+    bSustainAxisS11SafeDownFlag := FALSE;
+  END_IF;
+  bSustainAxisS11SafeDown := bSustainAxisS11SafeDownFlag ;
+  g_bSustainAxisS11UpFeedSafe := NOT bSustainAxisS11SafeDownFlag;
+  bSustainAxisS11FloatEnable := g_bSustainAxisS11UpFeedSafe AND bSustainAxisS11Enable ;
+END_IF;
+IF g_nSusutainCount >= 12 THEN 
+  bSustainAxisS12Enable := TRUE;
+  IF g_biAxIsYisHome AND NOT g_bSupportAxis12ShieldFlag THEN
+    bSustainAxisS12SafeDownFlag := g_fCurrentCoordYBuffer >= (g_fSupAxisCoordY12 - g_fSupAxisDownDis12);
+  ELSE
+    bSustainAxisS12SafeDownFlag := FALSE;
+  END_IF;
+  bSustainAxisS12SafeDown := bSustainAxisS12SafeDownFlag ;
+  g_bSustainAxisS12UpFeedSafe := NOT bSustainAxisS12SafeDownFlag;
+  bSustainAxisS12FloatEnable := g_bSustainAxisS12UpFeedSafe AND bSustainAxisS12Enable ;
+END_IF;
+
+RTrigger1(CLK := bSustainAxis1SafeDownFlag AND bSustainAxis1Enable);(*达到下降条件，支撑轴1下降*)
+RTrigger2(CLK := bSustainAxis2SafeDownFlag AND bSustainAxis2Enable);
+RTrigger3(CLK := bSustainAxis3SafeDownFlag AND bSustainAxis3Enable);
+RTrigger9(CLK := bSustainAxis7SafeDownFlag AND bSustainAxis7Enable);
+RTrigger10(CLK := bSustainAxis8SafeDownFlag AND bSustainAxis8Enable);
+RTrigger11(CLK := bSustainAxis9SafeDownFlag AND bSustainAxis9Enable);
+RTrigger16(CLK := bSustainAxisS7SafeDownFlag AND bSustainAxisS7Enable);
+RTrigger17(CLK := bSustainAxisS8SafeDownFlag AND bSustainAxisS8Enable);
+RTrigger18(CLK := bSustainAxisS9SafeDownFlag AND bSustainAxisS9Enable);
+RTrigger19(CLK := bSustainAxisS10SafeDownFlag AND bSustainAxisS10Enable);
+RTrigger20(CLK := bSustainAxisS11SafeDownFlag AND bSustainAxisS11Enable);
+RTrigger21(CLK := bSustainAxisS12SafeDownFlag AND bSustainAxisS12Enable);
+
+IF RTrigger1.Q THEN
+	g_dSupportAxis1ActPos := Axis_Sustain1.NCTOPLC.ACTPOS;
+    IF g_bSustainAxis1VelAddEnable THEN
+      g_bSustainAxis1VelAddEnable := FALSE;
+      g_Sustain1Stop.EXECUTE := TRUE;
+      nSustain1DownState := 10;
+    ELSE
+      IF Axis_Sustain1.NCTOPLC.ACTPOS >= 0.00000001 THEN
+        g_bSustain1AbsPosition := 0.0;
+		g_bSustain1Abs := TRUE;
+      END_IF;
+    END_IF;
+	g_bSupportAxisMoveLossenAntiCyl1 := TRUE;
+END_IF;
+
+
+
+CASE nSustain1DownState OF
+  0:
+	nSustain1DownState := 0;
+  10:
+	IF g_Sustain1Stop.DONE THEN
+		g_Sustain1Stop.EXECUTE := FALSE;
+		IF Axis_Sustain1.NCTOPLC.ACTPOS >= 0.00000001 THEN
+			g_bSustain1AbsPosition := 0.0;
+			g_bSustain1Abs := TRUE;
+		END_IF;
+		nSustain1DownState := 0;
+    END_IF;
+END_CASE;
+
+
+    
+
+
+IF RTrigger2.Q THEN
+  g_dSupportAxis2ActPos := Axis_Sustain2.NCTOPLC.ACTPOS;
+  IF g_bSustainAxis2VelAddEnable THEN
+      g_bSustainAxis2VelAddEnable := FALSE;
+      g_Sustain2Stop.EXECUTE := TRUE;
+      nSustain2DownState := 10;
+    ELSE
+      IF Axis_Sustain2.NCTOPLC.ACTPOS >= 0.00000001 THEN
+		  g_bSustain2AbsPosition := 0.0;
+		  g_bSustain2Abs := TRUE;
+		  
+		END_IF;
+    END_IF;
+   g_bSupportAxisMoveLossenAntiCyl2 := TRUE;
+END_IF;
+
+CASE nSustain2DownState OF
+  0:
+	nSustain2DownState := 0;
+  10:
+	IF g_Sustain2Stop.DONE THEN
+		g_Sustain2Stop.EXECUTE := FALSE;
+		IF Axis_Sustain2.NCTOPLC.ACTPOS >= 0.00000001 THEN
+			g_bSustain2AbsPosition := 0.0;
+			g_bSustain2Abs := TRUE;
+		END_IF;
+		nSustain2DownState := 0;
+    END_IF;
+END_CASE;
+
+
+IF RTrigger3.Q THEN
+  g_dSupportAxis3ActPos := Axis_Sustain3.NCTOPLC.ACTPOS;
+  IF g_bSustainAxis3VelAddEnable THEN
+      g_bSustainAxis3VelAddEnable := FALSE;
+      g_Sustain3Stop.EXECUTE := TRUE;
+      nSustain3DownState := 10;
+    ELSE
+      IF Axis_Sustain3.NCTOPLC.ACTPOS >= 0.00000001 THEN
+		  g_bSustain3AbsPosition := 0.0;
+		  g_bSustain3Abs := TRUE;
+		 
+		END_IF;
+    END_IF;
+    g_bSupportAxisMoveLossenAntiCyl3 := TRUE;
+END_IF;
+
+
+CASE nSustain3DownState OF
+  0:
+	nSustain3DownState := 0;
+  10:
+	IF g_Sustain3Stop.DONE THEN
+		g_Sustain3Stop.EXECUTE := FALSE;
+		IF Axis_Sustain3.NCTOPLC.ACTPOS >= 0.00000001 THEN
+			g_bSustain3AbsPosition := 0.0;
+			g_bSustain3Abs := TRUE;
+		END_IF;
+		nSustain3DownState := 0;
+    END_IF;
+END_CASE;
+
+
+
+IF RTrigger9.Q THEN
+  g_dSupportAxis4ActPos := Axis_Sustain7.NCTOPLC.ACTPOS;
+   
+  IF g_bSustainAxis4VelAddEnable THEN
+      g_bSustainAxis4VelAddEnable := FALSE;
+      g_Sustain7Stop.EXECUTE := TRUE;
+      nSustain4DownState := 10;
+    ELSE
+      IF Axis_Sustain7.NCTOPLC.ACTPOS >= 0.00000001 THEN
+		  g_bSustain7AbsPosition := 0.0;
+		  g_bSustain7Abs := TRUE;
+		  
+		END_IF;
+    END_IF;
+    g_bSupportAxisMoveLossenAntiCyl4 := TRUE;
+END_IF;
+
+
+CASE nSustain4DownState OF
+  0:
+	nSustain4DownState := 0;
+  10:
+	IF g_Sustain7Stop.DONE THEN
+		g_Sustain7Stop.EXECUTE := FALSE;
+		IF Axis_Sustain7.NCTOPLC.ACTPOS >= 0.00000001 THEN
+			g_bSustain7AbsPosition := 0.0;
+			g_bSustain7Abs := TRUE;
+		END_IF;
+		nSustain4DownState := 0;
+    END_IF;
+END_CASE;
+
+IF RTrigger10.Q THEN
+  g_dSupportAxis5ActPos := Axis_Sustain8.NCTOPLC.ACTPOS;
+    IF g_bSustainAxis5VelAddEnable THEN
+      g_bSustainAxis5VelAddEnable := FALSE;
+      g_Sustain8Stop.EXECUTE := TRUE;
+      nSustain5DownState := 10;
+    ELSE
+      IF Axis_Sustain8.NCTOPLC.ACTPOS >= 0.00000001 THEN
+		  g_bSustain8AbsPosition := 0.0;
+		  g_bSustain8Abs := TRUE;
+		 
+		END_IF;
+    END_IF;
+     g_bSupportAxisMoveLossenAntiCyl5 := TRUE;
+END_IF;
+CASE nSustain5DownState OF
+  0:
+	nSustain5DownState := 0;
+  10:
+	IF g_Sustain8Stop.DONE THEN
+		g_Sustain8Stop.EXECUTE := FALSE;
+		IF Axis_Sustain8.NCTOPLC.ACTPOS >= 0.00000001 THEN
+			g_bSustain8AbsPosition := 0.0;
+			g_bSustain8Abs := TRUE;
+		END_IF;
+		nSustain5DownState := 0;
+    END_IF;
+END_CASE;
+
+
+IF RTrigger11.Q THEN
+  g_dSupportAxis6ActPos := Axis_Sustain9.NCTOPLC.ACTPOS;
+   
+    IF g_bSustainAxis6VelAddEnable THEN
+      g_bSustainAxis6VelAddEnable := FALSE;
+      g_Sustain9Stop.EXECUTE := TRUE;
+      nSustain6DownState := 10;
+    ELSE
+      IF Axis_Sustain9.NCTOPLC.ACTPOS >= 0.00000001 THEN
+		  g_bSustain9AbsPosition := 0.0;
+		  g_bSustain9Abs := TRUE;
+		  
+		END_IF;
+    END_IF;
+    g_bSupportAxisMoveLossenAntiCyl6 := TRUE;
+END_IF;
+
+CASE nSustain6DownState OF
+  0:
+	nSustain6DownState := 0;
+  10:
+	IF g_Sustain9Stop.DONE THEN
+		g_Sustain9Stop.EXECUTE := FALSE;
+		IF Axis_Sustain9.NCTOPLC.ACTPOS >= 0.00000001 THEN
+			g_bSustain9AbsPosition := 0.0;
+			g_bSustain9Abs := TRUE;
+		END_IF;
+		nSustain6DownState := 0;
+    END_IF;
+END_CASE;
+
+IF RTrigger16.Q THEN
+  g_dSupportAxis7ActPos := Axis_S7.NCTOPLC.ACTPOS;
+    IF g_bSustainAxis7VelAddEnable THEN
+      g_bSustainAxis7VelAddEnable := FALSE;
+      g_NCMoveData.NCAXISCMD[4].NCAxisStop := TRUE;
+      nSustain7DownState := 10;
+    ELSE
+      IF Axis_S7.NCTOPLC.ACTPOS >= 0.00000001 THEN
+		  g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := 0.0;
+          g_NCMoveData.NCAXISCMD[4].NCAxisAbs := TRUE; 
+      END_IF;
+    END_IF;
+END_IF;
+
+CASE nSustain7DownState OF
+  0:
+	nSustain7DownState := 0;
+  10:
+	IF g_NCMoveData.NCAXISDATA[4].AxisStopDone THEN
+		g_NCMoveData.NCAXISCMD[4].NCAxisStop := FALSE;
+		IF Axis_S7.NCTOPLC.ACTPOS >= 0.00000001 THEN
+            g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := 0.0;
+			g_NCMoveData.NCAXISCMD[4].NCAxisAbs := TRUE;  
+		END_IF;
+		nSustain7DownState := 0;
+    END_IF;
+END_CASE;
+
+IF RTrigger17.Q THEN
+  g_dSupportAxis8ActPos := Axis_S8.NCTOPLC.ACTPOS;
+    IF g_bSustainAxis8VelAddEnable THEN
+      g_bSustainAxis8VelAddEnable := FALSE;
+      g_NCMoveData.NCAXISCMD[5].NCAxisStop := TRUE;
+      nSustain8DownState := 10;
+    ELSE
+      IF Axis_S8.NCTOPLC.ACTPOS >= 0.00000001 THEN
+			g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := 0.0;
+			g_NCMoveData.NCAXISCMD[5].NCAxisAbs := TRUE; 
+      END_IF;
+    END_IF;
+END_IF;
+
+CASE nSustain8DownState OF
+  0:
+	nSustain8DownState := 0;
+  10:
+	IF g_NCMoveData.NCAXISDATA[5].AxisStopDone THEN
+		g_NCMoveData.NCAXISCMD[5].NCAxisStop := FALSE;
+		IF Axis_S8.NCTOPLC.ACTPOS >= 0.00000001 THEN
+            g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := 0.0;
+			g_NCMoveData.NCAXISCMD[5].NCAxisAbs := TRUE;  
+		END_IF;
+		nSustain8DownState := 0;
+    END_IF;
+END_CASE;
+
+IF RTrigger18.Q THEN
+  g_dSupportAxis9ActPos := Axis_S9.NCTOPLC.ACTPOS;
+    IF g_bSustainAxis9VelAddEnable THEN
+      g_bSustainAxis9VelAddEnable := FALSE;
+      g_NCMoveData.NCAXISCMD[6].NCAxisStop := TRUE;
+      nSustain9DownState := 10;
+    ELSE
+      IF Axis_S9.NCTOPLC.ACTPOS >= 0.00000001 THEN
+		 g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := 0.0;
+			g_NCMoveData.NCAXISCMD[6].NCAxisAbs := TRUE; 
+      END_IF;
+    END_IF;
+END_IF;
+
+CASE nSustain9DownState OF
+  0:
+	nSustain9DownState := 0;
+  10:
+	IF g_NCMoveData.NCAXISDATA[6].AxisStopDone THEN
+		g_NCMoveData.NCAXISCMD[6].NCAxisStop := FALSE;
+		IF Axis_S9.NCTOPLC.ACTPOS >= 0.00000001 THEN
+            g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := 0.0;
+			g_NCMoveData.NCAXISCMD[6].NCAxisAbs := TRUE;  
+		END_IF;
+		nSustain9DownState := 0;
+    END_IF;
+END_CASE;
+
+IF RTrigger19.Q THEN
+  g_dSupportAxis10ActPos := Axis_S10.NCTOPLC.ACTPOS;
+    IF g_bSustainAxis10VelAddEnable THEN
+      g_bSustainAxis10VelAddEnable := FALSE;
+      g_NCMoveData.NCAXISCMD[7].NCAxisStop := TRUE;
+      nSustain10DownState := 10;
+    ELSE
+      IF Axis_S10.NCTOPLC.ACTPOS >= 0.00000001 THEN
+		  g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := 0.0;
+			g_NCMoveData.NCAXISCMD[7].NCAxisAbs := TRUE; 
+      END_IF;
+    END_IF;
+END_IF;
+
+CASE nSustain10DownState OF
+  0:
+	nSustain10DownState := 0;
+  10:
+	IF g_NCMoveData.NCAXISDATA[7].AxisStopDone THEN
+		g_NCMoveData.NCAXISCMD[7].NCAxisStop := FALSE;
+		IF Axis_S10.NCTOPLC.ACTPOS >= 0.00000001 THEN
+            g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := 0.0;
+			g_NCMoveData.NCAXISCMD[7].NCAxisAbs := TRUE;  
+		END_IF;
+		nSustain10DownState := 0;
+    END_IF;
+END_CASE;
+
+IF RTrigger20.Q THEN
+  g_dSupportAxis11ActPos := Axis_S11.NCTOPLC.ACTPOS;
+    IF g_bSustainAxis11VelAddEnable THEN
+      g_bSustainAxis11VelAddEnable := FALSE;
+      g_NCMoveData.NCAXISCMD[8].NCAxisStop := TRUE;
+      nSustain11DownState := 10;
+    ELSE
+      IF Axis_S11.NCTOPLC.ACTPOS >= 0.00000001 THEN
+		  g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := 0.0;
+			g_NCMoveData.NCAXISCMD[8].NCAxisAbs := TRUE; 
+      END_IF;
+    END_IF;
+END_IF;
+
+CASE nSustain11DownState OF
+  0:
+	nSustain11DownState := 0;
+  10:
+	IF g_NCMoveData.NCAXISDATA[8].AxisStopDone THEN
+		g_NCMoveData.NCAXISCMD[8].NCAxisStop := FALSE;
+		IF Axis_S11.NCTOPLC.ACTPOS >= 0.00000001 THEN
+            g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := 0.0;
+			g_NCMoveData.NCAXISCMD[8].NCAxisAbs := TRUE;  
+		END_IF;
+		nSustain11DownState := 0;
+    END_IF;
+END_CASE;
+
+IF RTrigger21.Q THEN
+  g_dSupportAxis12ActPos := Axis_S12.NCTOPLC.ACTPOS;
+    IF g_bSustainAxis12VelAddEnable THEN
+      g_bSustainAxis12VelAddEnable := FALSE;
+      g_NCMoveData.NCAXISCMD[9].NCAxisStop := TRUE;
+      nSustain12DownState := 10;
+    ELSE
+      IF Axis_S12.NCTOPLC.ACTPOS >= 0.00000001 THEN
+		  g_NCMoveData.NCAXISDATA[9].AxisAbsPosition := 0.0;
+			g_NCMoveData.NCAXISCMD[9].NCAxisAbs := TRUE; 
+      END_IF;
+    END_IF;
+END_IF;
+
+CASE nSustain12DownState OF
+  0:
+	nSustain12DownState := 0;
+  10:
+	IF g_NCMoveData.NCAXISDATA[9].AxisStopDone THEN
+		g_NCMoveData.NCAXISCMD[9].NCAxisStop := FALSE;
+		IF Axis_S12.NCTOPLC.ACTPOS >= 0.00000001 THEN
+            g_NCMoveData.NCAXISDATA[9].AxisAbsPosition := 0.0;
+			g_NCMoveData.NCAXISCMD[9].NCAxisAbs := TRUE;  
+		END_IF;
+		nSustain12DownState := 0;
+    END_IF;
+END_CASE;
+
+R_TrrigerM319(CLK := g_bSupportPendingControlM);
+IF R_TrrigerM319.Q THEN
+  g_bSupportPendingControlM := FALSE;
+  g_bSupportPendingFlag := FALSE;
+  IF NOT g_bSupportFollowEnable OR g_nPipeType =1 THEN
+	M.ENABLE[319] := 0;
+  ELSE
+	  IF M.PARAMETER_P[319] = 0.0 THEN
+		  IF ABS(M.PARAMETER_Q[319]) >= 180.0 THEN
+			IF g_nSusutainCount >= 1 AND g_bSustainAxis1UpFeedSafe AND g_bSustainAxis1VelAddEnable THEN
+				g_bSupportPendingFlag := TRUE;
+                g_bSustain1AbsPosition := g_fSustain1ToChuckDist - SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+                g_bSustain1Abs := TRUE;
+			END_IF;
+              
+			IF g_nSusutainCount >= 2 AND g_bSustainAxis2UpFeedSafe AND g_bSustainAxis2VelAddEnable THEN
+			  g_bSupportPendingFlag := TRUE;
+			  g_bSustain2AbsPosition := g_fSustain2ToChuckDist - SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+			  g_bSustain2Abs := TRUE;
+			END_IF;
+			IF g_nSusutainCount >= 3 AND g_bSustainAxis3UpFeedSafe AND g_bSustainAxis3VelAddEnable THEN
+			  g_bSupportPendingFlag := TRUE;
+			  g_bSustain3AbsPosition := g_fSustain3ToChuckDist - SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+			  g_bSustain3Abs := TRUE;
+			END_IF;
+			IF g_nSusutainCount >= 4 AND g_bSustainAxis7UpFeedSafe AND g_bSustainAxis4VelAddEnable THEN
+			  g_bSupportPendingFlag := TRUE;
+			  g_bSustain7AbsPosition := g_fSustain7ToChuckDist - SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+			  g_bSustain7Abs := TRUE;
+			END_IF;
+			IF g_nSusutainCount >= 5 AND g_bSustainAxis8UpFeedSafe AND g_bSustainAxis5VelAddEnable THEN
+			  g_bSupportPendingFlag := TRUE;
+			  g_bSustain8AbsPosition := g_fSustain8ToChuckDist - SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+			  g_bSustain8Abs := TRUE;
+			END_IF;
+			IF g_nSusutainCount >= 6 AND g_bSustainAxis9UpFeedSafe AND g_bSustainAxis6VelAddEnable THEN
+			  g_bSupportPendingFlag := TRUE;
+			  g_bSustain9AbsPosition := g_fSustain9ToChuckDist - SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+			  g_bSustain9Abs := TRUE;
+			END_IF;
+			IF g_nSusutainCount >= 7 AND g_bSustainAxisS7UpFeedSafe AND g_bSustainAxis7VelAddEnable THEN
+			  g_bSupportPendingFlag := TRUE;
+              g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := g_fSustainS7ToChuckDist - SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+			  g_NCMoveData.NCAXISCMD[4].NCAxisAbs := TRUE; 
+			END_IF;
+			IF g_nSusutainCount >= 8 AND g_bSustainAxisS8UpFeedSafe AND g_bSustainAxis8VelAddEnable THEN
+			  g_bSupportPendingFlag := TRUE;
+              g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := g_fSustainS8ToChuckDist - SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+			  g_NCMoveData.NCAXISCMD[5].NCAxisAbs := TRUE; 
+			END_IF;
+			IF g_nSusutainCount >= 9 AND g_bSustainAxisS9UpFeedSafe AND g_bSustainAxis9VelAddEnable THEN
+			  g_bSupportPendingFlag := TRUE;
+              g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := g_fSustainS9ToChuckDist - SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+			  g_NCMoveData.NCAXISCMD[6].NCAxisAbs := TRUE; 
+			END_IF;
+			IF g_nSusutainCount >= 10 AND g_bSustainAxisS10UpFeedSafe AND g_bSustainAxis10VelAddEnable THEN
+			  g_bSupportPendingFlag := TRUE;
+              g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := g_fSustainS10ToChuckDist - SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+			  g_NCMoveData.NCAXISCMD[7].NCAxisAbs := TRUE; 
+			END_IF;
+			IF g_nSusutainCount >= 11 AND g_bSustainAxisS11UpFeedSafe AND g_bSustainAxis11VelAddEnable THEN
+			  g_bSupportPendingFlag := TRUE;
+              g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := g_fSustainS11ToChuckDist - SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+			  g_NCMoveData.NCAXISCMD[8].NCAxisAbs := TRUE; 
+			END_IF;
+			IF g_nSusutainCount >= 12 AND g_bSustainAxisS12UpFeedSafe AND g_bSustainAxis12VelAddEnable THEN
+			  g_bSupportPendingFlag := TRUE;
+              g_NCMoveData.NCAXISDATA[9].AxisAbsPosition := g_fSustainS12ToChuckDist - SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0);
+			  g_NCMoveData.NCAXISCMD[9].NCAxisAbs := TRUE; 
+			END_IF;
+		  END_IF;
+	  ELSE
+		IF g_nSusutainCount >= 1 AND g_bSustainAxis1UpFeedSafe AND g_bSustainAxis1VelAddEnable THEN
+			g_bSustain1AbsPosition := g_fSustain1ToChuckDist - g_fSustainTargetPos;
+			g_bSustain1Abs := TRUE;
+			g_bSustainAxis1VelAddEnable := NOT bSustainAxis1SafeDownFlag;
+		END_IF;
+		IF g_nSusutainCount >= 2 AND g_bSustainAxis2UpFeedSafe AND g_bSustainAxis2VelAddEnable THEN
+			g_bSustain2AbsPosition := g_fSustain2ToChuckDist - g_fSustainTargetPos;
+			g_bSustain2Abs := TRUE;
+			g_bSustainAxis2VelAddEnable := NOT bSustainAxis2SafeDownFlag;
+		END_IF;
+		IF g_nSusutainCount >= 3 AND g_bSustainAxis3UpFeedSafe AND g_bSustainAxis3VelAddEnable THEN
+			g_bSustain3AbsPosition := g_fSustain3ToChuckDist - g_fSustainTargetPos;
+			g_bSustain3Abs := TRUE;
+			g_bSustainAxis3VelAddEnable := NOT bSustainAxis3SafeDownFlag;
+		END_IF;
+		IF g_nSusutainCount >= 4 AND g_bSustainAxis7UpFeedSafe AND g_bSustainAxis4VelAddEnable THEN
+			g_bSustain7AbsPosition := g_fSustain7ToChuckDist - g_fSustainTargetPos;
+			g_bSustain7Abs := TRUE;
+			g_bSustainAxis4VelAddEnable := NOT bSustainAxis7SafeDownFlag;
+		END_IF;
+		IF g_nSusutainCount >= 5 AND g_bSustainAxis8UpFeedSafe AND g_bSustainAxis5VelAddEnable THEN
+			g_bSustain8AbsPosition := g_fSustain8ToChuckDist - g_fSustainTargetPos;
+			g_bSustain8Abs := TRUE;
+			g_bSustainAxis5VelAddEnable := NOT bSustainAxis8SafeDownFlag;
+		END_IF;
+		IF g_nSusutainCount >= 6 AND g_bSustainAxis9UpFeedSafe AND g_bSustainAxis6VelAddEnable THEN
+			g_bSustain9AbsPosition := g_fSustain9ToChuckDist - g_fSustainTargetPos;
+			g_bSustain9Abs := TRUE;
+			g_bSustainAxis6VelAddEnable := NOT bSustainAxis9SafeDownFlag;
+		END_IF;
+		IF g_nSusutainCount >= 7 AND g_bSustainAxisS7UpFeedSafe AND g_bSustainAxis7VelAddEnable THEN
+              g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := g_fSustainS7ToChuckDist - g_fSustainTargetPos;
+			  g_NCMoveData.NCAXISCMD[4].NCAxisAbs := TRUE; 
+			g_bSustainAxis7VelAddEnable := NOT bSustainAxisS7SafeDownFlag;
+		END_IF;
+		IF g_nSusutainCount >= 8 AND g_bSustainAxisS8UpFeedSafe AND g_bSustainAxis8VelAddEnable THEN
+              g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := g_fSustainS8ToChuckDist - g_fSustainTargetPos;
+			  g_NCMoveData.NCAXISCMD[5].NCAxisAbs := TRUE; 
+			g_bSustainAxis8VelAddEnable := NOT bSustainAxisS8SafeDownFlag;
+		END_IF;
+		IF g_nSusutainCount >= 9 AND g_bSustainAxisS9UpFeedSafe AND g_bSustainAxis9VelAddEnable THEN
+              g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := g_fSustainS9ToChuckDist - g_fSustainTargetPos;
+			  g_NCMoveData.NCAXISCMD[6].NCAxisAbs := TRUE; 
+			g_bSustainAxis9VelAddEnable := NOT bSustainAxisS9SafeDownFlag;
+		END_IF;
+		IF g_nSusutainCount >= 10 AND g_bSustainAxisS10UpFeedSafe AND g_bSustainAxis10VelAddEnable THEN
+              g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := g_fSustainS10ToChuckDist - g_fSustainTargetPos;
+			  g_NCMoveData.NCAXISCMD[7].NCAxisAbs := TRUE; 
+			g_bSustainAxis10VelAddEnable := NOT bSustainAxisS10SafeDownFlag;
+		END_IF;
+		IF g_nSusutainCount >= 11 AND g_bSustainAxisS11UpFeedSafe AND g_bSustainAxis11VelAddEnable THEN
+              g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := g_fSustainS11ToChuckDist - g_fSustainTargetPos;
+			  g_NCMoveData.NCAXISCMD[8].NCAxisAbs := TRUE; 
+			g_bSustainAxis11VelAddEnable := NOT bSustainAxisS11SafeDownFlag;
+		END_IF;
+		IF g_nSusutainCount >= 12 AND g_bSustainAxisS12UpFeedSafe AND g_bSustainAxis12VelAddEnable THEN
+              g_NCMoveData.NCAXISDATA[9].AxisAbsPosition := g_fSustainS12ToChuckDist - g_fSustainTargetPos;
+			  g_NCMoveData.NCAXISCMD[9].NCAxisAbs := TRUE; 
+			g_bSustainAxis12VelAddEnable := NOT bSustainAxisS12SafeDownFlag;
+		END_IF;
+      END_IF;
+    M.ENABLE[319] := 0;
+  END_IF;
+  
+END_IF;
+
+(*开启浮动(仅控制支撑轴）*)
+RTrigger7(CLK := g_bSustainFollowExecuteM);
+RTrigger8(CLK := g_bSustainFollowCloseM);
+
+IF RTrigger7.Q THEN
+  IF g_bSustainEnable AND g_nSusutainCount > 0 THEN(*支撑轴*)
+    IF LREAL_TO_INT(g_nSustainSignalM) = 0 THEN
+      (*关闭浮动*)
+      nFollowStep := 100;
+    ELSIF LREAL_TO_INT(g_nSustainSignalM) = 1 THEN
+      (*浮动*)
+      nFollowStep := 10;
+    END_IF;
+    g_boSustainFollowDone := FALSE;
+  ELSE
+    g_boSustainFollowDone := TRUE;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_1 := FALSE;
+  END_IF;
+  g_bSustainFollowExecuteM := FALSE;
+END_IF;
+
+IF RTrigger8.Q THEN
+  nFollowStep := 0;
+  g_boSustainFollowDone := FALSE;
+  g_bSustainFollowCloseM := FALSE;
+  M.ENABLE[193] := 0;
+  g_bExecuteFinishedM193 := FALSE;
+  g_bFinishedM193_0 := FALSE;
+END_IF;
+
+CASE nFollowStep OF
+  0:
+    nFollowStep := 0;
+  10:
+  IF g_nSusutainCount = 12 THEN
+    IF NOT bSustainAxis1FloatEnable AND NOT bSustainAxis2FloatEnable AND NOT bSustainAxis3FloatEnable  
+       AND NOT bSustainAxis7FloatEnable AND NOT bSustainAxis8FloatEnable AND NOT bSustainAxis9FloatEnable 
+       AND NOT bSustainAxisS7FloatEnable  AND NOT bSustainAxisS8FloatEnable AND NOT bSustainAxisS9FloatEnable 
+       AND NOT bSustainAxisS10FloatEnable AND NOT bSustainAxisS11FloatEnable AND NOT bSustainAxisS12FloatEnable THEN
+      nFollowStep := 0;
+      g_boSustainFollowDone := TRUE;
+      M.ENABLE[193] := 0;
+      g_bExecuteFinishedM193 := FALSE;
+      g_bFinishedM193_1 := FALSE;
+    ELSE
+      fActPos := g_fSustainTargetPos;(*支撑轴上升目标高度*)
+      IF g_bSustain1Switch THEN(*程序开始时支撑轴避让*)
+        g_bSustain1AbsPosition :=0.0;
+      ELSE
+        g_bSustain1AbsPosition := g_fSustain1ToChuckDist - fActPos;
+        g_bSustainAxis1VelAddEnable := NOT bSustainAxis1SafeDownFlag;
+      END_IF;
+      IF g_bSustain2Switch THEN 
+        g_bSustain2AbsPosition := 0.0;
+      ELSE
+        g_bSustain2AbsPosition := g_fSustain2ToChuckDist - fActPos;
+        g_bSustainAxis2VelAddEnable := NOT bSustainAxis2SafeDownFlag;
+      END_IF;
+      IF g_bSustain3Switch THEN 
+        g_bSustain3AbsPosition := 0.0;
+      ELSE
+        g_bSustain3AbsPosition := g_fSustain3ToChuckDist - fActPos;
+        g_bSustainAxis3VelAddEnable := NOT bSustainAxis3SafeDownFlag;
+      END_IF;
+      IF g_bSustain7Switch THEN 
+        g_bSustain7AbsPosition := 0.0;
+      ELSE
+        g_bSustain7AbsPosition := g_fSustain7ToChuckDist - fActPos;
+        g_bSustainAxis4VelAddEnable := NOT bSustainAxis7SafeDownFlag;
+      END_IF;
+      IF g_bSustain8Switch THEN
+        g_bSustain8AbsPosition := 0.0;
+      ELSE
+        g_bSustain8AbsPosition := g_fSustain8ToChuckDist - fActPos;
+        g_bSustainAxis5VelAddEnable := NOT bSustainAxis8SafeDownFlag;
+      END_IF;
+      IF g_bSustain9Switch THEN
+        g_bSustain9AbsPosition := 0.0;
+      ELSE
+        g_bSustain9AbsPosition := g_fSustain9ToChuckDist - fActPos;
+        g_bSustainAxis6VelAddEnable := NOT bSustainAxis9SafeDownFlag;
+      END_IF;
+			g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := g_fSustainS7ToChuckDist - fActPos;
+			g_bSustainAxis7VelAddEnable := NOT bSustainAxisS7SafeDownFlag;
+			g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := g_fSustainS8ToChuckDist - fActPos;
+			g_bSustainAxis8VelAddEnable := NOT bSustainAxisS8SafeDownFlag;
+			g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := g_fSustainS9ToChuckDist - fActPos;
+			g_bSustainAxis9VelAddEnable := NOT bSustainAxisS9SafeDownFlag;
+			g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := g_fSustainS10ToChuckDist - fActPos;
+			g_bSustainAxis10VelAddEnable := NOT bSustainAxisS10SafeDownFlag;
+			g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := g_fSustainS11ToChuckDist - fActPos;
+			g_bSustainAxis11VelAddEnable := NOT bSustainAxisS11SafeDownFlag;
+			g_NCMoveData.NCAXISDATA[9].AxisAbsPosition := g_fSustainS12ToChuckDist - fActPos;
+			g_bSustainAxis12VelAddEnable := NOT bSustainAxisS12SafeDownFlag;
+      
+      bSustainAxesFloatUp := TRUE;
+      nFollowStep := 20;
+    END_IF;
+  ELSIF g_nSusutainCount = 11 THEN
+    IF NOT bSustainAxis1FloatEnable AND NOT bSustainAxis2FloatEnable AND NOT bSustainAxis3FloatEnable  
+       AND NOT bSustainAxis7FloatEnable AND NOT bSustainAxis8FloatEnable AND NOT bSustainAxis9FloatEnable 
+       AND NOT bSustainAxisS7FloatEnable  AND NOT bSustainAxisS8FloatEnable AND NOT bSustainAxisS9FloatEnable 
+       AND NOT bSustainAxisS10FloatEnable AND NOT bSustainAxisS11FloatEnable THEN
+      nFollowStep := 0;
+      g_boSustainFollowDone := TRUE;
+      M.ENABLE[193] := 0;
+      g_bExecuteFinishedM193 := FALSE;
+      g_bFinishedM193_1 := FALSE;
+    ELSE
+      fActPos := g_fSustainTargetPos;(*支撑轴上升目标高度*)
+      IF g_bSustain1Switch THEN(*程序开始时支撑轴避让*)
+        g_bSustain1AbsPosition :=0.0;
+      ELSE
+        g_bSustain1AbsPosition := g_fSustain1ToChuckDist - fActPos;
+        g_bSustainAxis1VelAddEnable := NOT bSustainAxis1SafeDownFlag;
+      END_IF;
+      IF g_bSustain2Switch THEN 
+        g_bSustain2AbsPosition := 0.0;
+      ELSE
+        g_bSustain2AbsPosition := g_fSustain2ToChuckDist - fActPos;
+        g_bSustainAxis2VelAddEnable := NOT bSustainAxis2SafeDownFlag;
+      END_IF;
+      IF g_bSustain3Switch THEN 
+        g_bSustain3AbsPosition := 0.0;
+      ELSE
+        g_bSustain3AbsPosition := g_fSustain3ToChuckDist - fActPos;
+        g_bSustainAxis3VelAddEnable := NOT bSustainAxis3SafeDownFlag;
+      END_IF;
+      IF g_bSustain7Switch THEN 
+        g_bSustain7AbsPosition := 0.0;
+      ELSE
+        g_bSustain7AbsPosition := g_fSustain7ToChuckDist - fActPos;
+        g_bSustainAxis4VelAddEnable := NOT bSustainAxis7SafeDownFlag;
+      END_IF;
+      IF g_bSustain8Switch THEN
+        g_bSustain8AbsPosition := 0.0;
+      ELSE
+        g_bSustain8AbsPosition := g_fSustain8ToChuckDist - fActPos;
+        g_bSustainAxis5VelAddEnable := NOT bSustainAxis8SafeDownFlag;
+      END_IF;
+      IF g_bSustain9Switch THEN
+        g_bSustain9AbsPosition := 0.0;
+      ELSE
+        g_bSustain9AbsPosition := g_fSustain9ToChuckDist - fActPos;
+        g_bSustainAxis6VelAddEnable := NOT bSustainAxis9SafeDownFlag;
+      END_IF;
+			g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := g_fSustainS7ToChuckDist - fActPos;
+			g_bSustainAxis7VelAddEnable := NOT bSustainAxisS7SafeDownFlag;
+			g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := g_fSustainS8ToChuckDist - fActPos;
+			g_bSustainAxis8VelAddEnable := NOT bSustainAxisS8SafeDownFlag;
+			g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := g_fSustainS9ToChuckDist - fActPos;
+			g_bSustainAxis9VelAddEnable := NOT bSustainAxisS9SafeDownFlag;
+			g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := g_fSustainS10ToChuckDist - fActPos;
+			g_bSustainAxis10VelAddEnable := NOT bSustainAxisS10SafeDownFlag;
+			g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := g_fSustainS11ToChuckDist - fActPos;
+			g_bSustainAxis11VelAddEnable := NOT bSustainAxisS11SafeDownFlag;
+      
+      bSustainAxesFloatUp := TRUE;
+      nFollowStep := 20;
+    END_IF;
+  ELSIF g_nSusutainCount = 10 THEN
+    IF NOT bSustainAxis1FloatEnable AND NOT bSustainAxis2FloatEnable AND NOT bSustainAxis3FloatEnable  
+       AND NOT bSustainAxis7FloatEnable AND NOT bSustainAxis8FloatEnable AND NOT bSustainAxis9FloatEnable 
+       AND NOT bSustainAxisS7FloatEnable  AND NOT bSustainAxisS8FloatEnable AND NOT bSustainAxisS9FloatEnable 
+       AND NOT bSustainAxisS10FloatEnable THEN
+      nFollowStep := 0;
+      g_boSustainFollowDone := TRUE;
+      M.ENABLE[193] := 0;
+      g_bExecuteFinishedM193 := FALSE;
+      g_bFinishedM193_1 := FALSE;
+    ELSE
+      fActPos := g_fSustainTargetPos;(*支撑轴上升目标高度*)
+      IF g_bSustain1Switch THEN(*程序开始时支撑轴避让*)
+        g_bSustain1AbsPosition :=0.0;
+      ELSE
+        g_bSustain1AbsPosition := g_fSustain1ToChuckDist - fActPos;
+        g_bSustainAxis1VelAddEnable := NOT bSustainAxis1SafeDownFlag;
+      END_IF;
+      IF g_bSustain2Switch THEN 
+        g_bSustain2AbsPosition := 0.0;
+      ELSE
+        g_bSustain2AbsPosition := g_fSustain2ToChuckDist - fActPos;
+        g_bSustainAxis2VelAddEnable := NOT bSustainAxis2SafeDownFlag;
+      END_IF;
+      IF g_bSustain3Switch THEN 
+        g_bSustain3AbsPosition := 0.0;
+      ELSE
+        g_bSustain3AbsPosition := g_fSustain3ToChuckDist - fActPos;
+        g_bSustainAxis3VelAddEnable := NOT bSustainAxis3SafeDownFlag;
+      END_IF;
+      IF g_bSustain7Switch THEN 
+        g_bSustain7AbsPosition := 0.0;
+      ELSE
+        g_bSustain7AbsPosition := g_fSustain7ToChuckDist - fActPos;
+        g_bSustainAxis4VelAddEnable := NOT bSustainAxis7SafeDownFlag;
+      END_IF;
+      IF g_bSustain8Switch THEN
+        g_bSustain8AbsPosition := 0.0;
+      ELSE
+        g_bSustain8AbsPosition := g_fSustain8ToChuckDist - fActPos;
+        g_bSustainAxis5VelAddEnable := NOT bSustainAxis8SafeDownFlag;
+      END_IF;
+      IF g_bSustain9Switch THEN
+        g_bSustain9AbsPosition := 0.0;
+      ELSE
+        g_bSustain9AbsPosition := g_fSustain9ToChuckDist - fActPos;
+        g_bSustainAxis6VelAddEnable := NOT bSustainAxis9SafeDownFlag;
+      END_IF;
+			g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := g_fSustainS7ToChuckDist - fActPos;
+			g_bSustainAxis7VelAddEnable := NOT bSustainAxisS7SafeDownFlag;
+			g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := g_fSustainS8ToChuckDist - fActPos;
+			g_bSustainAxis8VelAddEnable := NOT bSustainAxisS8SafeDownFlag;
+			g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := g_fSustainS9ToChuckDist - fActPos;
+			g_bSustainAxis9VelAddEnable := NOT bSustainAxisS9SafeDownFlag;
+			g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := g_fSustainS10ToChuckDist - fActPos;
+			g_bSustainAxis10VelAddEnable := NOT bSustainAxisS10SafeDownFlag;
+      
+      bSustainAxesFloatUp := TRUE;
+      nFollowStep := 20;
+    END_IF;
+  ELSIF g_nSusutainCount = 9 THEN
+    IF NOT bSustainAxis1FloatEnable AND NOT bSustainAxis2FloatEnable AND NOT bSustainAxis3FloatEnable  
+       AND NOT bSustainAxis7FloatEnable AND NOT bSustainAxis8FloatEnable AND NOT bSustainAxis9FloatEnable 
+       AND NOT bSustainAxisS7FloatEnable  AND NOT bSustainAxisS8FloatEnable AND NOT bSustainAxisS9FloatEnable THEN
+      nFollowStep := 0;
+      g_boSustainFollowDone := TRUE;
+      M.ENABLE[193] := 0;
+      g_bExecuteFinishedM193 := FALSE;
+      g_bFinishedM193_1 := FALSE;
+    ELSE
+      fActPos := g_fSustainTargetPos;(*支撑轴上升目标高度*)
+      IF g_bSustain1Switch THEN(*程序开始时支撑轴避让*)
+        g_bSustain1AbsPosition :=0.0;
+      ELSE
+        g_bSustain1AbsPosition := g_fSustain1ToChuckDist - fActPos;
+        g_bSustainAxis1VelAddEnable := NOT bSustainAxis1SafeDownFlag;
+      END_IF;
+      IF g_bSustain2Switch THEN 
+        g_bSustain2AbsPosition := 0.0;
+      ELSE
+        g_bSustain2AbsPosition := g_fSustain2ToChuckDist - fActPos;
+        g_bSustainAxis2VelAddEnable := NOT bSustainAxis2SafeDownFlag;
+      END_IF;
+      IF g_bSustain3Switch THEN 
+        g_bSustain3AbsPosition := 0.0;
+      ELSE
+        g_bSustain3AbsPosition := g_fSustain3ToChuckDist - fActPos;
+        g_bSustainAxis3VelAddEnable := NOT bSustainAxis3SafeDownFlag;
+      END_IF;
+      IF g_bSustain7Switch THEN 
+        g_bSustain7AbsPosition := 0.0;
+      ELSE
+        g_bSustain7AbsPosition := g_fSustain7ToChuckDist - fActPos;
+        g_bSustainAxis4VelAddEnable := NOT bSustainAxis7SafeDownFlag;
+      END_IF;
+      IF g_bSustain8Switch THEN
+        g_bSustain8AbsPosition := 0.0;
+      ELSE
+        g_bSustain8AbsPosition := g_fSustain8ToChuckDist - fActPos;
+        g_bSustainAxis5VelAddEnable := NOT bSustainAxis8SafeDownFlag;
+      END_IF;
+      IF g_bSustain9Switch THEN
+        g_bSustain9AbsPosition := 0.0;
+      ELSE
+        g_bSustain9AbsPosition := g_fSustain9ToChuckDist - fActPos;
+        g_bSustainAxis6VelAddEnable := NOT bSustainAxis9SafeDownFlag;
+      END_IF;
+			g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := g_fSustainS7ToChuckDist - fActPos;
+			g_bSustainAxis7VelAddEnable := NOT bSustainAxisS7SafeDownFlag;
+			g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := g_fSustainS8ToChuckDist - fActPos;
+			g_bSustainAxis8VelAddEnable := NOT bSustainAxisS8SafeDownFlag;
+			g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := g_fSustainS9ToChuckDist - fActPos;
+			g_bSustainAxis9VelAddEnable := NOT bSustainAxisS9SafeDownFlag;
+      
+      bSustainAxesFloatUp := TRUE;
+      nFollowStep := 20;
+    END_IF;
+  ELSIF g_nSusutainCount = 8 THEN
+    IF NOT bSustainAxis1FloatEnable AND NOT bSustainAxis2FloatEnable AND NOT bSustainAxis3FloatEnable  
+       AND NOT bSustainAxis7FloatEnable AND NOT bSustainAxis8FloatEnable AND NOT bSustainAxis9FloatEnable 
+       AND NOT bSustainAxisS7FloatEnable  AND NOT bSustainAxisS8FloatEnable THEN
+      nFollowStep := 0;
+      g_boSustainFollowDone := TRUE;
+      M.ENABLE[193] := 0;
+      g_bExecuteFinishedM193 := FALSE;
+      g_bFinishedM193_1 := FALSE;
+    ELSE
+      fActPos := g_fSustainTargetPos;(*支撑轴上升目标高度*)
+      IF g_bSustain1Switch THEN(*程序开始时支撑轴避让*)
+        g_bSustain1AbsPosition :=0.0;
+      ELSE
+        g_bSustain1AbsPosition := g_fSustain1ToChuckDist - fActPos;
+        g_bSustainAxis1VelAddEnable := NOT bSustainAxis1SafeDownFlag;
+      END_IF;
+      IF g_bSustain2Switch THEN 
+        g_bSustain2AbsPosition := 0.0;
+      ELSE
+        g_bSustain2AbsPosition := g_fSustain2ToChuckDist - fActPos;
+        g_bSustainAxis2VelAddEnable := NOT bSustainAxis2SafeDownFlag;
+      END_IF;
+      IF g_bSustain3Switch THEN 
+        g_bSustain3AbsPosition := 0.0;
+      ELSE
+        g_bSustain3AbsPosition := g_fSustain3ToChuckDist - fActPos;
+        g_bSustainAxis3VelAddEnable := NOT bSustainAxis3SafeDownFlag;
+      END_IF;
+      IF g_bSustain7Switch THEN 
+        g_bSustain7AbsPosition := 0.0;
+      ELSE
+        g_bSustain7AbsPosition := g_fSustain7ToChuckDist - fActPos;
+        g_bSustainAxis4VelAddEnable := NOT bSustainAxis7SafeDownFlag;
+      END_IF;
+      IF g_bSustain8Switch THEN
+        g_bSustain8AbsPosition := 0.0;
+      ELSE
+        g_bSustain8AbsPosition := g_fSustain8ToChuckDist - fActPos;
+        g_bSustainAxis5VelAddEnable := NOT bSustainAxis8SafeDownFlag;
+      END_IF;
+      IF g_bSustain9Switch THEN
+        g_bSustain9AbsPosition := 0.0;
+      ELSE
+        g_bSustain9AbsPosition := g_fSustain9ToChuckDist - fActPos;
+        g_bSustainAxis6VelAddEnable := NOT bSustainAxis9SafeDownFlag;
+      END_IF;
+			g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := g_fSustainS7ToChuckDist - fActPos;
+			g_bSustainAxis7VelAddEnable := NOT bSustainAxisS7SafeDownFlag;
+			g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := g_fSustainS8ToChuckDist - fActPos;
+			g_bSustainAxis8VelAddEnable := NOT bSustainAxisS8SafeDownFlag;
+      
+      bSustainAxesFloatUp := TRUE;
+      nFollowStep := 20;
+    END_IF;
+  ELSIF g_nSusutainCount = 7 THEN
+    IF NOT bSustainAxis1FloatEnable AND NOT bSustainAxis2FloatEnable AND NOT bSustainAxis3FloatEnable  
+       AND NOT bSustainAxis7FloatEnable AND NOT bSustainAxis8FloatEnable AND NOT bSustainAxis9FloatEnable 
+       AND NOT bSustainAxisS7FloatEnable  THEN
+      nFollowStep := 0;
+      g_boSustainFollowDone := TRUE;
+      M.ENABLE[193] := 0;
+      g_bExecuteFinishedM193 := FALSE;
+      g_bFinishedM193_1 := FALSE;
+    ELSE
+      fActPos := g_fSustainTargetPos;(*支撑轴上升目标高度*)
+      IF g_bSustain1Switch THEN(*程序开始时支撑轴避让*)
+        g_bSustain1AbsPosition :=0.0;
+      ELSE
+        g_bSustain1AbsPosition := g_fSustain1ToChuckDist - fActPos;
+        g_bSustainAxis1VelAddEnable := NOT bSustainAxis1SafeDownFlag;
+      END_IF;
+      IF g_bSustain2Switch THEN 
+        g_bSustain2AbsPosition := 0.0;
+      ELSE
+        g_bSustain2AbsPosition := g_fSustain2ToChuckDist - fActPos;
+        g_bSustainAxis2VelAddEnable := NOT bSustainAxis2SafeDownFlag;
+      END_IF;
+      IF g_bSustain3Switch THEN 
+        g_bSustain3AbsPosition := 0.0;
+      ELSE
+        g_bSustain3AbsPosition := g_fSustain3ToChuckDist - fActPos;
+        g_bSustainAxis3VelAddEnable := NOT bSustainAxis3SafeDownFlag;
+      END_IF;
+      IF g_bSustain7Switch THEN 
+        g_bSustain7AbsPosition := 0.0;
+      ELSE
+        g_bSustain7AbsPosition := g_fSustain7ToChuckDist - fActPos;
+        g_bSustainAxis4VelAddEnable := NOT bSustainAxis7SafeDownFlag;
+      END_IF;
+      IF g_bSustain8Switch THEN
+        g_bSustain8AbsPosition := 0.0;
+      ELSE
+        g_bSustain8AbsPosition := g_fSustain8ToChuckDist - fActPos;
+        g_bSustainAxis5VelAddEnable := NOT bSustainAxis8SafeDownFlag;
+      END_IF;
+      IF g_bSustain9Switch THEN
+        g_bSustain9AbsPosition := 0.0;
+      ELSE
+        g_bSustain9AbsPosition := g_fSustain9ToChuckDist - fActPos;
+        g_bSustainAxis6VelAddEnable := NOT bSustainAxis9SafeDownFlag;
+      END_IF;
+			g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := g_fSustainS7ToChuckDist - fActPos;
+			g_bSustainAxis7VelAddEnable := NOT bSustainAxisS7SafeDownFlag;
+      bSustainAxesFloatUp := TRUE;
+      nFollowStep := 20;
+    END_IF;
+  ELSIF g_nSusutainCount = 6 THEN
+    IF NOT bSustainAxis1FloatEnable AND NOT bSustainAxis2FloatEnable AND NOT bSustainAxis3FloatEnable  AND NOT bSustainAxis7FloatEnable AND NOT bSustainAxis8FloatEnable AND NOT bSustainAxis9FloatEnable THEN
+      nFollowStep := 0;
+      g_boSustainFollowDone := TRUE;
+      M.ENABLE[193] := 0;
+      g_bExecuteFinishedM193 := FALSE;
+      g_bFinishedM193_1 := FALSE;
+    ELSE
+      fActPos := g_fSustainTargetPos;(*支撑轴上升目标高度*)
+      IF g_bSustain1Switch THEN(*程序开始时支撑轴避让*)
+        g_bSustain1AbsPosition :=0.0;
+      ELSE
+        g_bSustain1AbsPosition := g_fSustain1ToChuckDist - fActPos;
+        g_bSustainAxis1VelAddEnable := NOT bSustainAxis1SafeDownFlag;
+      END_IF;
+      IF g_bSustain2Switch THEN 
+        g_bSustain2AbsPosition := 0.0;
+      ELSE
+        g_bSustain2AbsPosition := g_fSustain2ToChuckDist - fActPos;
+        g_bSustainAxis2VelAddEnable := NOT bSustainAxis2SafeDownFlag;
+      END_IF;
+      IF g_bSustain3Switch THEN 
+        g_bSustain3AbsPosition := 0.0;
+      ELSE
+        g_bSustain3AbsPosition := g_fSustain3ToChuckDist - fActPos;
+        g_bSustainAxis3VelAddEnable := NOT bSustainAxis3SafeDownFlag;
+      END_IF;
+      IF g_bSustain7Switch THEN 
+        g_bSustain7AbsPosition := 0.0;
+      ELSE
+        g_bSustain7AbsPosition := g_fSustain7ToChuckDist - fActPos;
+        g_bSustainAxis4VelAddEnable := NOT bSustainAxis7SafeDownFlag;
+      END_IF;
+      IF g_bSustain8Switch THEN
+        g_bSustain8AbsPosition := 0.0;
+      ELSE
+        g_bSustain8AbsPosition := g_fSustain8ToChuckDist - fActPos;
+        g_bSustainAxis5VelAddEnable := NOT bSustainAxis8SafeDownFlag;
+      END_IF;
+      IF g_bSustain9Switch THEN
+        g_bSustain9AbsPosition := 0.0;
+      ELSE
+        g_bSustain9AbsPosition := g_fSustain9ToChuckDist - fActPos;
+        g_bSustainAxis6VelAddEnable := NOT bSustainAxis9SafeDownFlag;
+      END_IF;
+      
+      
+      bSustainAxesFloatUp := TRUE;
+      nFollowStep := 20;
+    END_IF;
+  ELSIF g_nSusutainCount = 5 THEN
+    IF NOT bSustainAxis1FloatEnable AND NOT bSustainAxis2FloatEnable AND NOT bSustainAxis3FloatEnable AND NOT bSustainAxis7FloatEnable AND NOT bSustainAxis8FloatEnable THEN
+      nFollowStep := 0;
+      g_boSustainFollowDone := TRUE;
+      M.ENABLE[193] := 0;
+      g_bExecuteFinishedM193 := FALSE;
+      g_bFinishedM193_1 := FALSE;
+    ELSE
+      fActPos := g_fSustainTargetPos;
+      IF g_bSustain1Switch THEN
+        g_bSustain1AbsPosition :=0.0;
+      ELSE
+        g_bSustain1AbsPosition := g_fSustain1ToChuckDist - fActPos;
+        g_bSustainAxis1VelAddEnable := NOT bSustainAxis1SafeDownFlag;
+      END_IF;
+      IF g_bSustain2Switch THEN 
+        g_bSustain2AbsPosition := 0.0;
+      ELSE
+        g_bSustain2AbsPosition := g_fSustain2ToChuckDist - fActPos;
+        g_bSustainAxis2VelAddEnable := NOT bSustainAxis2SafeDownFlag;
+      END_IF;
+      IF g_bSustain3Switch THEN 
+        g_bSustain3AbsPosition := 0.0;
+      ELSE
+        g_bSustain3AbsPosition := g_fSustain3ToChuckDist - fActPos;
+        g_bSustainAxis3VelAddEnable := NOT bSustainAxis3SafeDownFlag;
+      END_IF;
+      IF g_bSustain7Switch THEN 
+        g_bSustain7AbsPosition := 0.0;
+      ELSE
+        g_bSustain7AbsPosition := g_fSustain7ToChuckDist - fActPos;
+        g_bSustainAxis4VelAddEnable := NOT bSustainAxis7SafeDownFlag;
+      END_IF;
+      IF g_bSustain8Switch THEN
+        g_bSustain8AbsPosition := 0.0;
+      ELSE
+        g_bSustain8AbsPosition := g_fSustain8ToChuckDist - fActPos;
+        g_bSustainAxis5VelAddEnable := NOT bSustainAxis8SafeDownFlag;
+      END_IF;
+      bSustainAxesFloatUp := TRUE;
+      nFollowStep := 20;
+    END_IF;
+  ELSIF g_nSusutainCount = 4 THEN
+    IF NOT bSustainAxis1FloatEnable AND NOT bSustainAxis2FloatEnable AND NOT bSustainAxis3FloatEnable  AND NOT bSustainAxis7FloatEnable THEN
+      nFollowStep := 0;
+      g_boSustainFollowDone := TRUE;
+      M.ENABLE[193] := 0;
+      g_bExecuteFinishedM193 := FALSE;
+      g_bFinishedM193_1 := FALSE;
+    ELSE
+      fActPos := g_fSustainTargetPos;
+      IF g_bSustain1Switch THEN
+        g_bSustain1AbsPosition :=0.0;
+      ELSE
+        g_bSustain1AbsPosition := g_fSustain1ToChuckDist - fActPos;
+        g_bSustainAxis1VelAddEnable := NOT bSustainAxis1SafeDownFlag;
+      END_IF;
+      IF g_bSustain2Switch THEN 
+        g_bSustain2AbsPosition := 0.0;
+      ELSE
+        g_bSustain2AbsPosition := g_fSustain2ToChuckDist - fActPos;
+        g_bSustainAxis2VelAddEnable := NOT bSustainAxis2SafeDownFlag;
+      END_IF;
+      IF g_bSustain3Switch THEN 
+        g_bSustain3AbsPosition := 0.0;
+      ELSE
+        g_bSustain3AbsPosition := g_fSustain3ToChuckDist - fActPos;
+        g_bSustainAxis3VelAddEnable := NOT bSustainAxis3SafeDownFlag;
+      END_IF;
+      IF g_bSustain7Switch THEN 
+        g_bSustain7AbsPosition := 0.0;
+      ELSE
+        g_bSustain7AbsPosition := g_fSustain7ToChuckDist - fActPos;
+        g_bSustainAxis4VelAddEnable := NOT bSustainAxis7SafeDownFlag;
+      END_IF;
+      bSustainAxesFloatUp := TRUE;
+      nFollowStep := 20;
+    END_IF;
+  ELSIF g_nSusutainCount = 3 THEN
+    IF NOT bSustainAxis1FloatEnable AND NOT bSustainAxis2FloatEnable AND NOT bSustainAxis3FloatEnable THEN
+      nFollowStep := 0;
+      g_boSustainFollowDone := TRUE;
+      M.ENABLE[193] := 0;
+      g_bExecuteFinishedM193 := FALSE;
+      g_bFinishedM193_1 := FALSE;
+    ELSE
+      fActPos := g_fSustainTargetPos;
+      IF g_bSustain1Switch THEN
+        g_bSustain1AbsPosition :=0.0;
+      ELSE
+        g_bSustain1AbsPosition := g_fSustain1ToChuckDist - fActPos;
+        g_bSustainAxis1VelAddEnable := NOT bSustainAxis1SafeDownFlag;
+      END_IF;
+      IF g_bSustain2Switch THEN 
+        g_bSustain2AbsPosition := 0.0;
+      ELSE
+        g_bSustain2AbsPosition := g_fSustain2ToChuckDist - fActPos;
+        g_bSustainAxis2VelAddEnable := NOT bSustainAxis2SafeDownFlag;
+      END_IF;
+      IF g_bSustain3Switch THEN 
+        g_bSustain3AbsPosition := 0.0;
+      ELSE
+        g_bSustain3AbsPosition := g_fSustain3ToChuckDist - fActPos;
+        g_bSustainAxis3VelAddEnable := NOT bSustainAxis3SafeDownFlag;
+      END_IF;
+      bSustainAxesFloatUp := TRUE;
+      nFollowStep := 20;
+    END_IF;
+  ELSIF g_nSusutainCount = 2 THEN
+    IF NOT bSustainAxis1FloatEnable AND NOT bSustainAxis2FloatEnable THEN
+      nFollowStep := 0;
+      g_boSustainFollowDone := TRUE;
+      M.ENABLE[193] := 0;
+      g_bExecuteFinishedM193 := FALSE;
+      g_bFinishedM193_1 := FALSE;
+    ELSE
+      fActPos := g_fSustainTargetPos;
+      IF g_bSustain1Switch THEN
+        g_bSustain1AbsPosition :=0.0;
+      ELSE
+        g_bSustain1AbsPosition := g_fSustain1ToChuckDist - fActPos;
+        g_bSustainAxis1VelAddEnable := NOT bSustainAxis1SafeDownFlag;
+      END_IF;
+      IF g_bSustain2Switch THEN 
+        g_bSustain2AbsPosition := 0.0;
+      ELSE
+        g_bSustain2AbsPosition := g_fSustain2ToChuckDist - fActPos;
+        g_bSustainAxis2VelAddEnable := NOT bSustainAxis2SafeDownFlag;
+      END_IF;
+      bSustainAxesFloatUp := TRUE;
+      nFollowStep := 20;
+    END_IF;
+  ELSIF g_nSusutainCount = 1 THEN
+    IF NOT bSustainAxis1FloatEnable THEN
+      nFollowStep := 0;
+      g_boSustainFollowDone := TRUE;
+      M.ENABLE[193] := 0;
+      g_bExecuteFinishedM193 := FALSE;
+      g_bFinishedM193_1 := FALSE;
+    ELSE
+      fActPos := g_fSustainTargetPos;
+      IF g_bSustain1Switch THEN
+        g_bSustain1AbsPosition :=0.0;
+      ELSE
+        g_bSustain1AbsPosition := g_fSustain1ToChuckDist - fActPos;
+        g_bSustainAxis1VelAddEnable := NOT bSustainAxis1SafeDownFlag;
+      END_IF;
+      bSustainAxesFloatUp := TRUE;
+      nFollowStep := 20;
+    END_IF;
+  END_IF;
+  20:
+  IF g_nSusutainCount = 12 THEN
+    IF ((g_bSustain1AbsDone AND bSustainAxis1FloatEnable ) OR NOT bSustainAxis1FloatEnable)
+        AND ((g_bSustain2AbsDone AND bSustainAxis2FloatEnable ) OR NOT bSustainAxis2FloatEnable)
+        AND ((g_bSustain3AbsDone AND bSustainAxis3FloatEnable ) OR NOT bSustainAxis3FloatEnable)
+        AND ((g_bSustain7AbsDone AND bSustainAxis7FloatEnable ) OR NOT bSustainAxis7FloatEnable)
+        AND ((g_bSustain8AbsDone AND bSustainAxis8FloatEnable ) OR NOT bSustainAxis8FloatEnable)
+        AND ((g_bSustain9AbsDone AND bSustainAxis9FloatEnable ) OR NOT bSustainAxis9FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[4].AxisAbsMoveDone AND bSustainAxisS7FloatEnable ) OR NOT bSustainAxisS7FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[5].AxisAbsMoveDone AND bSustainAxisS8FloatEnable ) OR NOT bSustainAxisS8FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[6].AxisAbsMoveDone AND bSustainAxisS9FloatEnable ) OR NOT bSustainAxisS9FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[7].AxisAbsMoveDone AND bSustainAxisS10FloatEnable ) OR NOT bSustainAxisS10FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[8].AxisAbsMoveDone AND bSustainAxisS11FloatEnable ) OR NOT bSustainAxisS11FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[9].AxisAbsMoveDone AND bSustainAxisS12FloatEnable ) OR NOT bSustainAxisS12FloatEnable) THEN
+        bSustainAxesFloatUp := FALSE;
+        nFollowStep := 30;
+    END_IF;
+  ELSIF g_nSusutainCount = 11 THEN
+    IF ((g_bSustain1AbsDone AND bSustainAxis1FloatEnable ) OR NOT bSustainAxis1FloatEnable)
+        AND ((g_bSustain2AbsDone AND bSustainAxis2FloatEnable ) OR NOT bSustainAxis2FloatEnable)
+        AND ((g_bSustain3AbsDone AND bSustainAxis3FloatEnable ) OR NOT bSustainAxis3FloatEnable)
+        AND ((g_bSustain7AbsDone AND bSustainAxis7FloatEnable ) OR NOT bSustainAxis7FloatEnable)
+        AND ((g_bSustain8AbsDone AND bSustainAxis8FloatEnable ) OR NOT bSustainAxis8FloatEnable)
+        AND ((g_bSustain9AbsDone AND bSustainAxis9FloatEnable ) OR NOT bSustainAxis9FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[4].AxisAbsMoveDone AND bSustainAxisS7FloatEnable ) OR NOT bSustainAxisS7FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[5].AxisAbsMoveDone AND bSustainAxisS8FloatEnable ) OR NOT bSustainAxisS8FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[6].AxisAbsMoveDone AND bSustainAxisS9FloatEnable ) OR NOT bSustainAxisS9FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[7].AxisAbsMoveDone AND bSustainAxisS10FloatEnable ) OR NOT bSustainAxisS10FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[8].AxisAbsMoveDone AND bSustainAxisS11FloatEnable ) OR NOT bSustainAxisS11FloatEnable) THEN
+        bSustainAxesFloatUp := FALSE;
+        nFollowStep := 30;
+    END_IF;
+  ELSIF g_nSusutainCount = 10 THEN
+    IF ((g_bSustain1AbsDone AND bSustainAxis1FloatEnable ) OR NOT bSustainAxis1FloatEnable)
+        AND ((g_bSustain2AbsDone AND bSustainAxis2FloatEnable ) OR NOT bSustainAxis2FloatEnable)
+        AND ((g_bSustain3AbsDone AND bSustainAxis3FloatEnable ) OR NOT bSustainAxis3FloatEnable)
+        AND ((g_bSustain7AbsDone AND bSustainAxis7FloatEnable ) OR NOT bSustainAxis7FloatEnable)
+        AND ((g_bSustain8AbsDone AND bSustainAxis8FloatEnable ) OR NOT bSustainAxis8FloatEnable)
+        AND ((g_bSustain9AbsDone AND bSustainAxis9FloatEnable ) OR NOT bSustainAxis9FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[4].AxisAbsMoveDone AND bSustainAxisS7FloatEnable ) OR NOT bSustainAxisS7FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[5].AxisAbsMoveDone AND bSustainAxisS8FloatEnable ) OR NOT bSustainAxisS8FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[6].AxisAbsMoveDone AND bSustainAxisS9FloatEnable ) OR NOT bSustainAxisS9FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[7].AxisAbsMoveDone AND bSustainAxisS10FloatEnable ) OR NOT bSustainAxisS10FloatEnable) THEN
+        bSustainAxesFloatUp := FALSE;
+        nFollowStep := 30;
+    END_IF;
+  ELSIF g_nSusutainCount = 9 THEN
+    IF ((g_bSustain1AbsDone AND bSustainAxis1FloatEnable ) OR NOT bSustainAxis1FloatEnable)
+        AND ((g_bSustain2AbsDone AND bSustainAxis2FloatEnable ) OR NOT bSustainAxis2FloatEnable)
+        AND ((g_bSustain3AbsDone AND bSustainAxis3FloatEnable ) OR NOT bSustainAxis3FloatEnable)
+        AND ((g_bSustain7AbsDone AND bSustainAxis7FloatEnable ) OR NOT bSustainAxis7FloatEnable)
+        AND ((g_bSustain8AbsDone AND bSustainAxis8FloatEnable ) OR NOT bSustainAxis8FloatEnable)
+        AND ((g_bSustain9AbsDone AND bSustainAxis9FloatEnable ) OR NOT bSustainAxis9FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[4].AxisAbsMoveDone AND bSustainAxisS7FloatEnable ) OR NOT bSustainAxisS7FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[5].AxisAbsMoveDone AND bSustainAxisS8FloatEnable ) OR NOT bSustainAxisS8FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[6].AxisAbsMoveDone AND bSustainAxisS9FloatEnable ) OR NOT bSustainAxisS9FloatEnable) THEN
+        bSustainAxesFloatUp := FALSE;
+        nFollowStep := 30;
+    END_IF;
+  ELSIF g_nSusutainCount = 8 THEN
+    IF ((g_bSustain1AbsDone AND bSustainAxis1FloatEnable ) OR NOT bSustainAxis1FloatEnable)
+        AND ((g_bSustain2AbsDone AND bSustainAxis2FloatEnable ) OR NOT bSustainAxis2FloatEnable)
+        AND ((g_bSustain3AbsDone AND bSustainAxis3FloatEnable ) OR NOT bSustainAxis3FloatEnable)
+        AND ((g_bSustain7AbsDone AND bSustainAxis7FloatEnable ) OR NOT bSustainAxis7FloatEnable)
+        AND ((g_bSustain8AbsDone AND bSustainAxis8FloatEnable ) OR NOT bSustainAxis8FloatEnable)
+        AND ((g_bSustain9AbsDone AND bSustainAxis9FloatEnable ) OR NOT bSustainAxis9FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[4].AxisAbsMoveDone AND bSustainAxisS7FloatEnable ) OR NOT bSustainAxisS7FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[5].AxisAbsMoveDone AND bSustainAxisS8FloatEnable ) OR NOT bSustainAxisS8FloatEnable) THEN
+        bSustainAxesFloatUp := FALSE;
+        nFollowStep := 30;
+    END_IF;
+  ELSIF g_nSusutainCount = 7 THEN
+    IF ((g_bSustain1AbsDone AND bSustainAxis1FloatEnable ) OR NOT bSustainAxis1FloatEnable)
+        AND ((g_bSustain2AbsDone AND bSustainAxis2FloatEnable ) OR NOT bSustainAxis2FloatEnable)
+        AND ((g_bSustain3AbsDone AND bSustainAxis3FloatEnable ) OR NOT bSustainAxis3FloatEnable)
+        AND ((g_bSustain7AbsDone AND bSustainAxis7FloatEnable ) OR NOT bSustainAxis7FloatEnable)
+        AND ((g_bSustain8AbsDone AND bSustainAxis8FloatEnable ) OR NOT bSustainAxis8FloatEnable)
+        AND ((g_bSustain9AbsDone AND bSustainAxis9FloatEnable ) OR NOT bSustainAxis9FloatEnable)
+        AND ((g_NCMoveData.NCAXISDATA[4].AxisAbsMoveDone AND bSustainAxisS7FloatEnable ) OR NOT bSustainAxisS7FloatEnable) THEN
+        bSustainAxesFloatUp := FALSE;
+        nFollowStep := 30;
+    END_IF;
+  ELSIF g_nSusutainCount = 6 THEN
+    IF ((g_bSustain1AbsDone AND bSustainAxis1FloatEnable ) OR NOT bSustainAxis1FloatEnable)
+        AND ((g_bSustain2AbsDone AND bSustainAxis2FloatEnable ) OR NOT bSustainAxis2FloatEnable)
+        AND ((g_bSustain3AbsDone AND bSustainAxis3FloatEnable ) OR NOT bSustainAxis3FloatEnable)
+        AND ((g_bSustain7AbsDone AND bSustainAxis7FloatEnable ) OR NOT bSustainAxis7FloatEnable)
+        AND ((g_bSustain8AbsDone AND bSustainAxis8FloatEnable ) OR NOT bSustainAxis8FloatEnable)
+        AND ((g_bSustain9AbsDone AND bSustainAxis9FloatEnable ) OR NOT bSustainAxis9FloatEnable) THEN
+        bSustainAxesFloatUp := FALSE;
+       (* g_bSustain1Follow := bSustainAxis1FloatEnable;
+        g_bSustain2Follow := bSustainAxis2FloatEnable;
+        g_bSustain3Follow := bSustainAxis3FloatEnable;
+        g_bSustain7Follow := bSustainAxis7FloatEnable;
+        g_bSustain8Follow := bSustainAxis8FloatEnable;
+        g_bSustain9Follow := bSustainAxis9FloatEnable;*)
+        nFollowStep := 30;
+    END_IF;
+  ELSIF g_nSusutainCount = 5 THEN
+    IF ((g_bSustain1AbsDone AND bSustainAxis1FloatEnable (*AND ABS(Axis_Sustain1.NcToPlc.ActPos - g_bSustain1AbsPosition) < 0.0001*)) OR NOT bSustainAxis1FloatEnable)
+        AND ((g_bSustain2AbsDone AND bSustainAxis2FloatEnable (*AND ABS(Axis_Sustain2.NcToPlc.ActPos - g_bSustain2AbsPosition) < 0.0001*)) OR NOT bSustainAxis2FloatEnable)
+        AND ((g_bSustain3AbsDone AND bSustainAxis3FloatEnable (*AND ABS(Axis_Sustain3.NcToPlc.ActPos - g_bSustain3AbsPosition) < 0.0001*)) OR NOT bSustainAxis3FloatEnable)
+        AND ((g_bSustain7AbsDone AND bSustainAxis7FloatEnable (*AND ABS(Axis_Sustain7.NcToPlc.ActPos - g_bSustain7AbsPosition) < 0.0001*)) OR NOT bSustainAxis7FloatEnable)
+        AND ((g_bSustain8AbsDone AND bSustainAxis8FloatEnable (*AND ABS(Axis_Sustain8.NcToPlc.ActPos - g_bSustain8AbsPosition) < 0.0001*)) OR NOT bSustainAxis8FloatEnable) THEN
+        bSustainAxesFloatUp := FALSE;
+       (* g_bSustain1Follow := bSustainAxis1FloatEnable;
+        g_bSustain2Follow := bSustainAxis2FloatEnable;
+        g_bSustain3Follow := bSustainAxis3FloatEnable;
+        g_bSustain7Follow := bSustainAxis7FloatEnable;
+        g_bSustain8Follow := bSustainAxis8FloatEnable;*)
+        nFollowStep := 30;
+    END_IF;
+  ELSIF g_nSusutainCount = 4 THEN
+    IF ((g_bSustain1AbsDone AND bSustainAxis1FloatEnable (*AND ABS(Axis_Sustain1.NcToPlc.ActPos - g_bSustain1AbsPosition) < 0.0001*)) OR NOT bSustainAxis1FloatEnable)
+        AND ((g_bSustain2AbsDone AND bSustainAxis2FloatEnable (*AND ABS(Axis_Sustain2.NcToPlc.ActPos - g_bSustain2AbsPosition) < 0.0001*)) OR NOT bSustainAxis2FloatEnable)
+        AND ((g_bSustain3AbsDone AND bSustainAxis3FloatEnable (*AND ABS(Axis_Sustain3.NcToPlc.ActPos - g_bSustain3AbsPosition) < 0.0001*)) OR NOT bSustainAxis3FloatEnable)
+        AND ((g_bSustain7AbsDone AND bSustainAxis7FloatEnable (*AND ABS(Axis_Sustain7.NcToPlc.ActPos - g_bSustain7AbsPosition) < 0.0001*)) OR NOT bSustainAxis7FloatEnable) THEN
+        bSustainAxesFloatUp := FALSE;
+       (* g_bSustain1Follow := bSustainAxis1FloatEnable;
+        g_bSustain2Follow := bSustainAxis2FloatEnable;
+        g_bSustain3Follow := bSustainAxis3FloatEnable;
+        g_bSustain7Follow := bSustainAxis7FloatEnable;*)
+        nFollowStep := 30;
+    END_IF;
+  ELSIF g_nSusutainCount = 3 THEN
+    IF ((g_bSustain1AbsDone AND bSustainAxis1FloatEnable (*AND ABS(Axis_Sustain1.NcToPlc.ActPos - g_bSustain1AbsPosition) < 0.0001*)) OR NOT bSustainAxis1FloatEnable)
+        AND ((g_bSustain2AbsDone AND bSustainAxis2FloatEnable (*AND ABS(Axis_Sustain2.NcToPlc.ActPos - g_bSustain2AbsPosition) < 0.0001*)) OR NOT bSustainAxis2FloatEnable)
+        AND ((g_bSustain3AbsDone AND bSustainAxis3FloatEnable (*AND ABS(Axis_Sustain3.NcToPlc.ActPos - g_bSustain3AbsPosition) < 0.0001*)) OR NOT bSustainAxis3FloatEnable) THEN
+        bSustainAxesFloatUp := FALSE;
+        (*g_bSustain1Follow := bSustainAxis1FloatEnable;
+        g_bSustain2Follow := bSustainAxis2FloatEnable;
+        g_bSustain3Follow := bSustainAxis3FloatEnable;*)
+        nFollowStep := 30;
+    END_IF;
+  ELSIF g_nSusutainCount = 2 THEN
+    IF ((g_bSustain1AbsDone AND bSustainAxis1FloatEnable (*AND ABS(Axis_Sustain1.NcToPlc.ActPos - g_bSustain1AbsPosition) < 0.0001*)) OR NOT bSustainAxis1FloatEnable)
+        AND ((g_bSustain2AbsDone AND bSustainAxis2FloatEnable (*AND ABS(Axis_Sustain2.NcToPlc.ActPos - g_bSustain2AbsPosition) < 0.0001*)) OR NOT bSustainAxis2FloatEnable) THEN
+        bSustainAxesFloatUp := FALSE;
+       (* g_bSustain1Follow := bSustainAxis1FloatEnable;
+        g_bSustain2Follow := bSustainAxis2FloatEnable;*)
+        nFollowStep := 30;
+    END_IF;
+  ELSIF g_nSusutainCount = 1 THEN
+    IF ((g_bSustain1AbsDone AND bSustainAxis1FloatEnable (*AND ABS(Axis_Sustain1.NcToPlc.ActPos - g_bSustain1AbsPosition) < 0.0001*)) OR NOT bSustainAxis1FloatEnable) THEN
+        bSustainAxesFloatUp := FALSE;
+        (*g_bSustain1Follow := bSustainAxis1FloatEnable;*)
+        nFollowStep := 30;
+    END_IF;
+  END_IF;
+  30:
+    nFollowStep := 0;
+    g_boSustainFollowDone := TRUE;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_1 := FALSE;
+  100:
+    IF g_nSusutainCount >= 1 THEN
+      g_bSustainAxis1VelAddEnable := FALSE;
+    END_IF;
+    IF g_nSusutainCount >= 2 THEN
+      g_bSustainAxis2VelAddEnable := FALSE;
+    END_IF;
+    IF g_nSusutainCount >= 3 THEN
+      g_bSustainAxis3VelAddEnable := FALSE;
+    END_IF;
+    IF g_nSusutainCount >= 4 THEN
+      g_bSustainAxis4VelAddEnable := FALSE;
+    END_IF;
+    IF g_nSusutainCount >= 5 THEN
+      g_bSustainAxis5VelAddEnable := FALSE;
+    END_IF;
+    IF g_nSusutainCount >= 6 THEN
+      g_bSustainAxis6VelAddEnable := FALSE;
+    END_IF;
+    IF g_nSusutainCount >= 7 THEN
+      g_bSustainAxis7VelAddEnable := FALSE;
+    END_IF;
+    IF g_nSusutainCount >= 8 THEN
+      g_bSustainAxis8VelAddEnable := FALSE;
+    END_IF;
+    IF g_nSusutainCount >= 9 THEN
+      g_bSustainAxis9VelAddEnable := FALSE;
+    END_IF;
+    IF g_nSusutainCount >= 10 THEN
+      g_bSustainAxis10VelAddEnable := FALSE;
+    END_IF;
+    IF g_nSusutainCount >= 11 THEN
+      g_bSustainAxis11VelAddEnable := FALSE;
+    END_IF;
+    IF g_nSusutainCount >= 12 THEN
+      g_bSustainAxis12VelAddEnable := FALSE;
+    END_IF;
+    nFollowStep := 110;
+  110:(*关随动后支撑轴下降*)
+  IF g_nSusutainCount >= 1 THEN
+    g_bSustain1Abs := TRUE;
+    IF Axis_Sustain1.NCTOPLC.SETPOS <= 0.0 THEN
+      g_bSustain1AbsPosition := Axis_Sustain1.NCTOPLC.SETPOS;
+    ELSE
+      g_bSustain1AbsPosition := 0.0;
+    END_IF;
+  END_IF;
+  IF g_nSusutainCount >= 2 THEN
+    g_bSustain2Abs := TRUE;
+    IF Axis_Sustain2.NCTOPLC.SETPOS <= 0.0 THEN
+      g_bSustain2AbsPosition := Axis_Sustain2.NCTOPLC.SETPOS;
+    ELSE
+      g_bSustain2AbsPosition := 0.0;
+    END_IF;
+  END_IF;
+  IF g_nSusutainCount >= 3 THEN
+    g_bSustain3Abs := TRUE;
+    IF Axis_Sustain3.NCTOPLC.SETPOS <= 0.0 THEN
+      g_bSustain3AbsPosition := Axis_Sustain3.NCTOPLC.SETPOS;
+    ELSE
+      g_bSustain3AbsPosition := 0.0;
+    END_IF;
+  END_IF;
+  IF g_nSusutainCount >= 4 THEN
+    g_bSustain7Abs := TRUE;
+    IF Axis_Sustain7.NCTOPLC.SETPOS <= 0.0 THEN
+      g_bSustain7AbsPosition := Axis_Sustain7.NCTOPLC.SETPOS;
+    ELSE
+      g_bSustain7AbsPosition := 0.0;
+    END_IF;
+  END_IF;
+  IF g_nSusutainCount >= 5 THEN
+    g_bSustain8Abs := TRUE;
+    IF Axis_Sustain8.NCTOPLC.SETPOS <= 0.0 THEN
+      g_bSustain8AbsPosition := Axis_Sustain8.NCTOPLC.SETPOS;
+    ELSE
+      g_bSustain8AbsPosition := 0.0;
+    END_IF;
+  END_IF;
+  IF g_nSusutainCount >= 6 THEN
+    g_bSustain9Abs := TRUE;
+    IF Axis_Sustain9.NCTOPLC.SETPOS <= 0.0 THEN
+      g_bSustain9AbsPosition := Axis_Sustain9.NCTOPLC.SETPOS;
+    ELSE
+      g_bSustain9AbsPosition := 0.0;
+    END_IF;
+  END_IF;
+  IF g_nSusutainCount >= 7 THEN
+    IF Axis_S7.NCTOPLC.SETPOS <= 0.0 THEN
+      g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := Axis_S7.NCTOPLC.SETPOS;
+    ELSE
+      g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := 0.0;
+    END_IF;
+    g_NCMoveData.NCAXISCMD[4].NCAxisAbs := TRUE;
+  END_IF;
+  IF g_nSusutainCount >= 5 THEN
+    IF Axis_S8.NCTOPLC.SETPOS <= 0.0 THEN
+      g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := Axis_S8.NCTOPLC.SETPOS;
+    ELSE
+      g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := 0.0;
+    END_IF;
+    g_NCMoveData.NCAXISCMD[5].NCAxisAbs := TRUE;
+  END_IF;
+  IF g_nSusutainCount >= 9 THEN
+    IF Axis_S9.NCTOPLC.SETPOS <= 0.0 THEN
+      g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := Axis_S9.NCTOPLC.SETPOS;
+    ELSE
+      g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := 0.0;
+    END_IF;
+    g_NCMoveData.NCAXISCMD[6].NCAxisAbs := TRUE;
+  END_IF;
+  IF g_nSusutainCount >= 10 THEN
+    IF Axis_S10.NCTOPLC.SETPOS <= 0.0 THEN
+      g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := Axis_S10.NCTOPLC.SETPOS;
+    ELSE
+      g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := 0.0;
+    END_IF;
+    g_NCMoveData.NCAXISCMD[7].NCAxisAbs := TRUE;
+  END_IF;
+  IF g_nSusutainCount >= 11 THEN
+    IF Axis_S11.NCTOPLC.SETPOS <= 0.0 THEN
+      g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := Axis_S11.NCTOPLC.SETPOS;
+    ELSE
+      g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := 0.0;
+    END_IF;
+    g_NCMoveData.NCAXISCMD[8].NCAxisAbs := TRUE;
+  END_IF;
+  IF g_nSusutainCount >= 12 THEN
+    IF Axis_S12.NCTOPLC.SETPOS <= 0.0 THEN
+      g_NCMoveData.NCAXISDATA[9].AxisAbsPosition := Axis_S12.NCTOPLC.SETPOS;
+    ELSE
+      g_NCMoveData.NCAXISDATA[9].AxisAbsPosition := 0.0;
+    END_IF;
+    g_NCMoveData.NCAXISCMD[9].NCAxisAbs := TRUE;
+  END_IF;
+  nFollowStep := 130;
+  130: (*等下降轴到位*)
+  bCheckAllDownFinish := TRUE;
+  IF (g_nSusutainCount >= 1 AND g_bSustainAxis1UpFeedSafe) AND NOT(g_bSustain1AbsDone) THEN
+    bCheckAllDownFinish := FALSE;
+  END_IF;
+  IF (g_nSusutainCount >= 2 AND g_bSustainAxis2UpFeedSafe) AND NOT(g_bSustain2AbsDone) THEN
+    bCheckAllDownFinish := FALSE;
+  END_IF;
+  IF (g_nSusutainCount >= 3 AND g_bSustainAxis3UpFeedSafe) AND NOT(g_bSustain3AbsDone) THEN
+    bCheckAllDownFinish := FALSE;
+  END_IF;
+  IF (g_nSusutainCount >= 4 AND g_bSustainAxis7UpFeedSafe) AND NOT(g_bSustain7AbsDone) THEN
+    bCheckAllDownFinish := FALSE;
+  END_IF;
+  IF (g_nSusutainCount >= 5 AND g_bSustainAxis8UpFeedSafe) AND NOT(g_bSustain8AbsDone) THEN
+    bCheckAllDownFinish := FALSE;
+  END_IF;
+  IF (g_nSusutainCount >= 6 AND g_bSustainAxis9UpFeedSafe) AND NOT(g_bSustain9AbsDone) THEN
+    bCheckAllDownFinish := FALSE;
+  END_IF;
+  IF (g_nSusutainCount >= 7 AND g_bSustainAxisS7UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[4].AxisAbsMoveDone) THEN
+    bCheckAllDownFinish := FALSE;
+  END_IF;
+  IF (g_nSusutainCount >= 8 AND g_bSustainAxisS8UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[5].AxisAbsMoveDone) THEN
+    bCheckAllDownFinish := FALSE;
+  END_IF;
+  IF (g_nSusutainCount >= 9 AND g_bSustainAxisS9UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[6].AxisAbsMoveDone) THEN
+    bCheckAllDownFinish := FALSE;
+  END_IF;
+  IF (g_nSusutainCount >= 10 AND g_bSustainAxisS10UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[7].AxisAbsMoveDone) THEN
+    bCheckAllDownFinish := FALSE;
+  END_IF;
+  IF (g_nSusutainCount >= 11 AND g_bSustainAxisS11UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[8].AxisAbsMoveDone) THEN
+    bCheckAllDownFinish := FALSE;
+  END_IF;
+  IF (g_nSusutainCount >= 12 AND g_bSustainAxisS12UpFeedSafe) AND NOT(g_NCMoveData.NCAXISDATA[9].AxisAbsMoveDone) THEN
+    bCheckAllDownFinish := FALSE;
+  END_IF;
+  IF bCheckAllDownFinish THEN
+    g_boSustainUpDownDone := TRUE;
+    g_bSustainUpDownDone := TRUE;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_1 := FALSE;
+    nFollowStep := 0;
+  END_IF;
+END_CASE;
+
+RTrigger15(CLK := g_bSustainAxisFollowControlM);
+(*M代码触发控制单个支撑轴开关浮动*)
+IF RTrigger15.Q THEN
+  g_bSustainAxisFollowControlM := FALSE;
+  IF M.PARAMETER_P[193] = 11.0 THEN
+    IF LREAL_TO_INT(g_nSustainSignalM) = 0 THEN
+      (*关闭浮动*)
+      nSustainAxis1FollowState := 100;
+    ELSIF LREAL_TO_INT(g_nSustainSignalM) = 1 THEN
+      (*浮动*)
+      nSustainAxis1FollowState := 10;
+      IF NOT g_bIsImportTubeDrawing THEN
+        g_bIsNotImportTubeDrawingAlarm := TRUE;
+		nSustainAxis1FollowState := 0;
+      END_IF;
+    END_IF;
+  ELSIF M.PARAMETER_P[193] = 12.0 THEN
+    IF LREAL_TO_INT(g_nSustainSignalM) = 0 THEN
+      (*关闭浮动*)
+      nSustainAxis2FollowState := 100;
+    ELSIF LREAL_TO_INT(g_nSustainSignalM) = 1 THEN
+      nSustainAxis2FollowState := 10;
+      IF NOT g_bIsImportTubeDrawing THEN
+        g_bIsNotImportTubeDrawingAlarm := TRUE;
+		nSustainAxis2FollowState := 0;
+      END_IF;
+    END_IF;
+  ELSIF M.PARAMETER_P[193] = 13.0 THEN
+    IF LREAL_TO_INT(g_nSustainSignalM) = 0 THEN
+      (*关闭浮动*)
+      nSustainAxis3FollowState := 100;
+    ELSIF LREAL_TO_INT(g_nSustainSignalM) = 1 THEN
+      nSustainAxis3FollowState := 10;
+      IF NOT g_bIsImportTubeDrawing THEN
+        g_bIsNotImportTubeDrawingAlarm := TRUE;
+		nSustainAxis3FollowState := 0;
+      END_IF;
+    END_IF;
+  ELSIF M.PARAMETER_P[193] = 14.0 THEN
+    IF LREAL_TO_INT(g_nSustainSignalM) = 0 THEN
+      (*关闭浮动*)
+      nSustainAxis4FollowState := 100;
+    ELSIF LREAL_TO_INT(g_nSustainSignalM) = 1 THEN
+      (*浮动*)
+      nSustainAxis4FollowState := 10;
+      IF NOT g_bIsImportTubeDrawing THEN
+        g_bIsNotImportTubeDrawingAlarm := TRUE;
+		nSustainAxis4FollowState := 0;
+      END_IF;
+    END_IF;
+  ELSIF M.PARAMETER_P[193] = 15.0 THEN
+    IF LREAL_TO_INT(g_nSustainSignalM) = 0 THEN
+      (*关闭浮动*)
+      nSustainAxis5FollowState := 100;
+    ELSIF LREAL_TO_INT(g_nSustainSignalM) = 1 THEN
+      (*浮动*)
+      nSustainAxis5FollowState := 10;
+      IF NOT g_bIsImportTubeDrawing THEN
+        g_bIsNotImportTubeDrawingAlarm := TRUE;
+		nSustainAxis5FollowState := 0;
+      END_IF;
+    END_IF;
+  ELSIF M.PARAMETER_P[193] = 16.0 THEN
+    IF LREAL_TO_INT(g_nSustainSignalM) = 0 THEN
+      (*关闭浮动*)
+      nSustainAxis6FollowState := 100;
+    ELSIF LREAL_TO_INT(g_nSustainSignalM) = 1 THEN
+      (*浮动*)
+      nSustainAxis6FollowState := 10;
+      IF NOT g_bIsImportTubeDrawing THEN
+        g_bIsNotImportTubeDrawingAlarm := TRUE;
+		nSustainAxis6FollowState := 0;
+      END_IF;
+    END_IF;
+  ELSIF M.PARAMETER_P[193] = 17.0 THEN
+    IF LREAL_TO_INT(g_nSustainSignalM) = 0 THEN
+      (*关闭浮动*)
+      nSustainAxis7FollowState := 100;
+    ELSIF LREAL_TO_INT(g_nSustainSignalM) = 1 THEN
+      (*浮动*)
+      nSustainAxis7FollowState := 10;
+      IF NOT g_bIsImportTubeDrawing THEN
+        g_bIsNotImportTubeDrawingAlarm := TRUE;
+		nSustainAxis7FollowState := 0;
+      END_IF;
+    END_IF;
+  ELSIF M.PARAMETER_P[193] = 18.0 THEN
+    IF LREAL_TO_INT(g_nSustainSignalM) = 0 THEN
+      (*关闭浮动*)
+      nSustainAxis8FollowState := 100;
+    ELSIF LREAL_TO_INT(g_nSustainSignalM) = 1 THEN
+      (*浮动*)
+      nSustainAxis8FollowState := 10;
+      IF NOT g_bIsImportTubeDrawing THEN
+        g_bIsNotImportTubeDrawingAlarm := TRUE;
+		nSustainAxis8FollowState := 0;
+      END_IF;
+    END_IF;
+  ELSIF M.PARAMETER_P[193] = 19.0 THEN
+    IF LREAL_TO_INT(g_nSustainSignalM) = 0 THEN
+      (*关闭浮动*)
+      nSustainAxis9FollowState := 100;
+    ELSIF LREAL_TO_INT(g_nSustainSignalM) = 1 THEN
+      (*浮动*)
+      nSustainAxis9FollowState := 10;
+      IF NOT g_bIsImportTubeDrawing THEN
+        g_bIsNotImportTubeDrawingAlarm := TRUE;
+		nSustainAxis9FollowState := 0;
+      END_IF;
+    END_IF;
+  ELSIF M.PARAMETER_P[193] = 20.0 THEN
+    IF LREAL_TO_INT(g_nSustainSignalM) = 0 THEN
+      (*关闭浮动*)
+      nSustainAxis10FollowState := 100;
+    ELSIF LREAL_TO_INT(g_nSustainSignalM) = 1 THEN
+      (*浮动*)
+      nSustainAxis10FollowState := 10;
+      IF NOT g_bIsImportTubeDrawing THEN
+        g_bIsNotImportTubeDrawingAlarm := TRUE;
+		nSustainAxis10FollowState := 0;
+      END_IF;
+    END_IF;
+  ELSIF M.PARAMETER_P[193] = 21.0 THEN
+    IF LREAL_TO_INT(g_nSustainSignalM) = 0 THEN
+      (*关闭浮动*)
+      nSustainAxis11FollowState := 100;
+    ELSIF LREAL_TO_INT(g_nSustainSignalM) = 1 THEN
+      (*浮动*)
+      nSustainAxis11FollowState := 10;
+      IF NOT g_bIsImportTubeDrawing THEN
+        g_bIsNotImportTubeDrawingAlarm := TRUE;
+		nSustainAxis11FollowState := 0;
+      END_IF;
+    END_IF;
+  ELSIF M.PARAMETER_P[193] = 22.0 THEN
+    IF LREAL_TO_INT(g_nSustainSignalM) = 0 THEN
+      (*关闭浮动*)
+      nSustainAxis12FollowState := 100;
+    ELSIF LREAL_TO_INT(g_nSustainSignalM) = 1 THEN
+      (*浮动*)
+      nSustainAxis12FollowState := 10;
+      IF NOT g_bIsImportTubeDrawing THEN
+        g_bIsNotImportTubeDrawingAlarm := TRUE;
+		nSustainAxis12FollowState := 0;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+(*支撑轴1*)
+CASE nSustainAxis1FollowState OF
+  0:
+  nSustainAxis1FollowState := 0;
+  10:
+  IF bSustainAxis1FloatEnable THEN
+	g_bSustain1AbsPosition := g_fSustain1ToChuckDist - g_fSustainTargetPos;
+    g_bSustainAxis1VelAddEnable := TRUE;
+    g_bSustain1Abs := TRUE;
+    nSustainAxis1FollowState := 130;
+  ELSE
+    nSustainAxis1FollowState := 0;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_11 := FALSE;
+  END_IF;
+  100:
+  g_bSustainAxis1VelAddEnable := FALSE;
+  nSustainAxis1FollowState := 110;
+  110:
+  g_bSustain1Abs := TRUE;
+  IF Axis_Sustain1.NCTOPLC.SETPOS <= 0.0 THEN
+    g_bSustain1AbsPosition := Axis_Sustain1.NCTOPLC.SETPOS;
+  ELSE
+    g_bSustain1AbsPosition := 0.0;
+  END_IF;
+  nSustainAxis1FollowState := 130;
+  130:
+  IF g_bSustain1AbsDone THEN
+    g_boSustainUpDownDone := TRUE;
+    g_bSustainUpDownDone := TRUE;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_11 := FALSE;
+    nSustainAxis1FollowState := 0;
+  END_IF;
+END_CASE;
+
+(*支撑轴2*)
+CASE nSustainAxis2FollowState OF
+  0:
+  nSustainAxis2FollowState := 0;
+  10:
+  IF bSustainAxis2FloatEnable THEN
+	g_bSustain2AbsPosition := g_fSustain2ToChuckDist - g_fSustainTargetPos;
+    g_bSustainAxis2VelAddEnable := TRUE;
+    g_bSustain2Abs := TRUE;
+    nSustainAxis2FollowState := 130;
+  ELSE
+    nSustainAxis2FollowState := 0;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_12 := FALSE;
+  END_IF;
+  100:
+  g_bSustainAxis2VelAddEnable := FALSE;
+  nSustainAxis2FollowState := 110;
+  110:
+  g_bSustain2Abs := TRUE;
+  IF Axis_Sustain2.NCTOPLC.SETPOS <= 0.0 THEN
+    g_bSustain2AbsPosition := Axis_Sustain2.NCTOPLC.SETPOS;
+  ELSE
+    g_bSustain2AbsPosition := 0.0;
+  END_IF;
+  nSustainAxis2FollowState := 130;
+  130:
+  IF g_bSustain2AbsDone THEN
+    g_boSustainUpDownDone := TRUE;
+    g_bSustainUpDownDone := TRUE;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_12 := FALSE;
+    nSustainAxis2FollowState := 0;
+  END_IF;
+END_CASE;
+
+(*支撑轴3*)
+CASE nSustainAxis3FollowState OF
+  0:
+  nSustainAxis3FollowState := 0;
+  10:
+  IF bSustainAxis3FloatEnable THEN
+	g_bSustain3AbsPosition := g_fSustain3ToChuckDist - g_fSustainTargetPos;
+    g_bSustainAxis3VelAddEnable := TRUE;
+    g_bSustain3Abs := TRUE;
+    nSustainAxis3FollowState := 130;
+  ELSE
+    nSustainAxis3FollowState := 0;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_13 := FALSE;
+  END_IF;
+  100:
+  g_bSustainAxis3VelAddEnable := FALSE;
+  nSustainAxis3FollowState := 110;
+  110:
+  g_bSustain3Abs := TRUE;
+  IF Axis_Sustain3.NCTOPLC.SETPOS <= 0.0 THEN
+    g_bSustain3AbsPosition := Axis_Sustain3.NCTOPLC.SETPOS;
+  ELSE
+    g_bSustain3AbsPosition := 0.0;
+  END_IF;
+  nSustainAxis3FollowState := 130;
+  130:
+  IF g_bSustain3AbsDone THEN
+    g_boSustainUpDownDone := TRUE;
+    g_bSustainUpDownDone := TRUE;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_13 := FALSE;
+    nSustainAxis3FollowState := 0;
+  END_IF;
+END_CASE;
+
+(*支撑轴4*)
+CASE nSustainAxis4FollowState OF
+  0:
+  nSustainAxis4FollowState := 0;
+  10:
+  IF bSustainAxis7FloatEnable THEN
+	g_bSustain7AbsPosition := g_fSustain7ToChuckDist - g_fSustainTargetPos;
+    g_bSustainAxis4VelAddEnable := TRUE;
+    g_bSustain7Abs := TRUE;
+    nSustainAxis4FollowState := 130;
+  ELSE
+    nSustainAxis4FollowState := 0;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_14 := FALSE;
+  END_IF;
+  100:
+  g_bSustainAxis4VelAddEnable := FALSE;
+  nSustainAxis4FollowState := 110;
+  110:
+  g_bSustain7Abs := TRUE;
+  IF Axis_Sustain7.NCTOPLC.SETPOS <= 0.0 THEN
+    g_bSustain7AbsPosition := Axis_Sustain7.NCTOPLC.SETPOS;
+  ELSE
+    g_bSustain7AbsPosition := 0.0;
+  END_IF;
+  nSustainAxis4FollowState := 130;
+  130:
+  IF g_bSustain7AbsDone THEN
+    g_boSustainUpDownDone := TRUE;
+    g_bSustainUpDownDone := TRUE;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_14 := FALSE;
+    nSustainAxis4FollowState := 0;
+  END_IF;
+END_CASE;
+
+(*支撑轴5*)
+CASE nSustainAxis5FollowState OF
+  0:
+  nSustainAxis5FollowState := 0;
+  10:
+  IF bSustainAxis8FloatEnable THEN
+	g_bSustain8AbsPosition := g_fSustain8ToChuckDist - g_fSustainTargetPos;
+    g_bSustainAxis5VelAddEnable := TRUE;
+    g_bSustain8Abs := TRUE;
+    nSustainAxis5FollowState := 130;
+  ELSE
+    nSustainAxis5FollowState := 0;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_15 := FALSE;
+  END_IF;
+  100:
+  g_bSustainAxis5VelAddEnable := FALSE;
+  nSustainAxis5FollowState := 110;
+  110:
+  g_bSustain8Abs := TRUE;
+  IF Axis_Sustain8.NCTOPLC.SETPOS <= 0.0 THEN
+    g_bSustain8AbsPosition := Axis_Sustain8.NCTOPLC.SETPOS;
+  ELSE
+    g_bSustain8AbsPosition := 0.0;
+  END_IF;
+  nSustainAxis5FollowState := 130;
+  130:
+  IF g_bSustain8AbsDone THEN
+    g_boSustainUpDownDone := TRUE;
+    g_bSustainUpDownDone := TRUE;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_15 := FALSE;
+    nSustainAxis5FollowState := 0;
+  END_IF;
+END_CASE;
+
+(*支撑轴6*)
+CASE nSustainAxis6FollowState OF
+  0:
+  nSustainAxis6FollowState := 0;
+  10:
+  IF bSustainAxis9FloatEnable THEN
+	g_bSustain9AbsPosition := g_fSustain9ToChuckDist - g_fSustainTargetPos;
+    g_bSustainAxis6VelAddEnable := TRUE;
+    g_bSustain9Abs := TRUE;
+    nSustainAxis6FollowState := 130;
+  ELSE
+    nSustainAxis6FollowState := 0;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_16 := FALSE;
+  END_IF;
+  100:
+  g_bSustainAxis6VelAddEnable := FALSE;
+  nSustainAxis6FollowState := 110;
+  110:
+  g_bSustain9Abs := TRUE;
+  IF Axis_Sustain9.NCTOPLC.SETPOS <= 0.0 THEN
+    g_bSustain9AbsPosition := Axis_Sustain9.NCTOPLC.SETPOS;
+  ELSE
+    g_bSustain9AbsPosition := 0.0;
+  END_IF;
+  nSustainAxis6FollowState := 130;
+  130:
+  IF g_bSustain9AbsDone THEN
+    g_boSustainUpDownDone := TRUE;
+    g_bSustainUpDownDone := TRUE;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_16 := FALSE;
+    nSustainAxis6FollowState := 0;
+  END_IF;
+END_CASE;
+
+
+(*支撑轴7*)
+CASE nSustainAxis7FollowState OF
+  0:
+  nSustainAxis7FollowState := 0;
+  10:
+  IF bSustainAxisS7FloatEnable THEN
+	g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := g_fSustainS7ToChuckDist - g_fSustainTargetPos;
+    g_bSustainAxis7VelAddEnable := TRUE;
+    g_NCMoveData.NCAXISCMD[4].NCAxisAbs := TRUE;
+    nSustainAxis7FollowState := 130;
+  ELSE
+    nSustainAxis7FollowState := 0;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_17 := FALSE;
+  END_IF;
+  100:
+  g_bSustainAxis7VelAddEnable := FALSE;
+  nSustainAxis7FollowState := 110;
+  110:
+  g_NCMoveData.NCAXISCMD[4].NCAxisAbs := TRUE;
+  IF Axis_S7.NCTOPLC.SETPOS <= 0.0 THEN
+    g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := Axis_S7.NCTOPLC.SETPOS;
+  ELSE
+    g_NCMoveData.NCAXISDATA[4].AxisAbsPosition := 0.0;
+  END_IF;
+  nSustainAxis7FollowState := 130;
+  130:
+  IF g_NCMoveData.NCAXISDATA[4].AxisAbsMoveDone THEN
+    g_boSustainUpDownDone := TRUE;
+    g_bSustainUpDownDone := TRUE;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_17 := FALSE;
+    nSustainAxis7FollowState := 0;
+  END_IF;
+END_CASE;
+
+
+(*支撑轴8*)
+CASE nSustainAxis8FollowState OF
+  0:
+  nSustainAxis8FollowState := 0;
+  10:
+  IF bSustainAxisS8FloatEnable THEN
+	g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := g_fSustainS8ToChuckDist - g_fSustainTargetPos;
+    g_bSustainAxis8VelAddEnable := TRUE;
+    g_NCMoveData.NCAXISCMD[5].NCAxisAbs := TRUE;
+    nSustainAxis8FollowState := 130;
+  ELSE
+    nSustainAxis8FollowState := 0;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_18 := FALSE;
+  END_IF;
+  100:
+  g_bSustainAxis8VelAddEnable := FALSE;
+  nSustainAxis8FollowState := 110;
+  110:
+  g_NCMoveData.NCAXISCMD[5].NCAxisAbs := TRUE;
+  IF Axis_S8.NCTOPLC.SETPOS <= 0.0 THEN
+    g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := Axis_S8.NCTOPLC.SETPOS;
+  ELSE
+    g_NCMoveData.NCAXISDATA[5].AxisAbsPosition := 0.0;
+  END_IF;
+  nSustainAxis8FollowState := 130;
+  130:
+  IF g_NCMoveData.NCAXISDATA[5].AxisAbsMoveDone THEN
+    g_boSustainUpDownDone := TRUE;
+    g_bSustainUpDownDone := TRUE;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_18 := FALSE;
+    nSustainAxis8FollowState := 0;
+  END_IF;
+END_CASE;
+
+
+(*支撑轴9*)
+CASE nSustainAxis9FollowState OF
+  0:
+  nSustainAxis9FollowState := 0;
+  10:
+  IF bSustainAxis9FloatEnable THEN
+	g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := g_fSustainS9ToChuckDist - g_fSustainTargetPos;
+    g_bSustainAxis9VelAddEnable := TRUE;
+    g_NCMoveData.NCAXISCMD[6].NCAxisAbs := TRUE;
+    nSustainAxis9FollowState := 130;
+  ELSE
+    nSustainAxis9FollowState := 0;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_19 := FALSE;
+  END_IF;
+  100:
+  g_bSustainAxis9VelAddEnable := FALSE;
+  nSustainAxis9FollowState := 110;
+  110:
+  g_NCMoveData.NCAXISCMD[6].NCAxisAbs := TRUE;
+  IF Axis_S9.NCTOPLC.SETPOS <= 0.0 THEN
+    g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := Axis_S9.NCTOPLC.SETPOS;
+  ELSE
+    g_NCMoveData.NCAXISDATA[6].AxisAbsPosition := 0.0;
+  END_IF;
+  nSustainAxis9FollowState := 130;
+  130:
+  IF g_NCMoveData.NCAXISDATA[6].AxisAbsMoveDone THEN
+    g_boSustainUpDownDone := TRUE;
+    g_bSustainUpDownDone := TRUE;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_19 := FALSE;
+    nSustainAxis9FollowState := 0;
+  END_IF;
+END_CASE;
+
+
+(*支撑轴10*)
+CASE nSustainAxis10FollowState OF
+  0:
+  nSustainAxis10FollowState := 0;
+  10:
+  IF bSustainAxisS10FloatEnable THEN
+	g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := g_fSustainS10ToChuckDist - g_fSustainTargetPos;
+    g_bSustainAxis10VelAddEnable := TRUE;
+    g_NCMoveData.NCAXISCMD[7].NCAxisAbs := TRUE;
+    nSustainAxis10FollowState := 130;
+  ELSE
+    nSustainAxis10FollowState := 0;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_20 := FALSE;
+  END_IF;
+  100:
+  g_bSustainAxis10VelAddEnable := FALSE;
+  nSustainAxis10FollowState := 110;
+  110:
+  g_NCMoveData.NCAXISCMD[7].NCAxisAbs := TRUE;
+  IF Axis_S10.NCTOPLC.SETPOS <= 0.0 THEN
+    g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := Axis_S10.NCTOPLC.SETPOS;
+  ELSE
+    g_NCMoveData.NCAXISDATA[7].AxisAbsPosition := 0.0;
+  END_IF;
+  nSustainAxis10FollowState := 130;
+  130:
+  IF g_NCMoveData.NCAXISDATA[7].AxisAbsMoveDone THEN
+    g_boSustainUpDownDone := TRUE;
+    g_bSustainUpDownDone := TRUE;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_20 := FALSE;
+    nSustainAxis10FollowState := 0;
+  END_IF;
+END_CASE;
+
+
+(*支撑轴11*)
+CASE nSustainAxis11FollowState OF
+  0:
+  nSustainAxis11FollowState := 0;
+  10:
+  IF bSustainAxisS11FloatEnable THEN
+	g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := g_fSustainS11ToChuckDist - g_fSustainTargetPos;
+    g_bSustainAxis11VelAddEnable := TRUE;
+    g_NCMoveData.NCAXISCMD[8].NCAxisAbs  := TRUE;
+    nSustainAxis11FollowState := 130;
+  ELSE
+    nSustainAxis11FollowState := 0;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_21 := FALSE;
+  END_IF;
+  100:
+  g_bSustainAxis11VelAddEnable := FALSE;
+  nSustainAxis11FollowState := 110;
+  110:
+  g_NCMoveData.NCAXISCMD[8].NCAxisAbs := TRUE;
+  IF Axis_S11.NCTOPLC.SETPOS <= 0.0 THEN
+    g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := Axis_S11.NCTOPLC.SETPOS;
+  ELSE
+    g_NCMoveData.NCAXISDATA[8].AxisAbsPosition := 0.0;
+  END_IF;
+  nSustainAxis11FollowState := 130;
+  130:
+  IF g_NCMoveData.NCAXISDATA[8].AxisAbsMoveDone THEN
+    g_boSustainUpDownDone := TRUE;
+    g_bSustainUpDownDone := TRUE;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_21 := FALSE;
+    nSustainAxis11FollowState := 0;
+  END_IF;
+END_CASE;
+
+
+(*支撑轴12*)
+CASE nSustainAxis12FollowState OF
+  0:
+  nSustainAxis12FollowState := 0;
+  10:
+  IF bSustainAxisS12FloatEnable THEN
+	g_NCMoveData.NCAXISDATA[9].AxisAbsPosition  := g_fSustainS12ToChuckDist - g_fSustainTargetPos;
+    g_bSustainAxis12VelAddEnable := TRUE;
+    g_NCMoveData.NCAXISCMD[9].NCAxisAbs := TRUE;
+    nSustainAxis12FollowState := 130;
+  ELSE
+    nSustainAxis12FollowState := 0;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_22 := FALSE;
+  END_IF;
+  100:
+  g_bSustainAxis12VelAddEnable := FALSE;
+  nSustainAxis12FollowState := 110;
+  110:
+  g_NCMoveData.NCAXISCMD[9].NCAxisAbs := TRUE;
+  IF Axis_S12.NCTOPLC.SETPOS <= 0.0 THEN
+    g_NCMoveData.NCAXISDATA[9].AxisAbsPosition := Axis_S12.NCTOPLC.SETPOS;
+  ELSE
+    g_NCMoveData.NCAXISDATA[9].AxisAbsPosition := 0.0;
+  END_IF;
+  nSustainAxis12FollowState := 130;
+  130:
+  IF g_NCMoveData.NCAXISDATA[9].AxisAbsMoveDone THEN
+    g_boSustainUpDownDone := TRUE;
+    g_bSustainUpDownDone := TRUE;
+    M.ENABLE[193] := 0;
+    g_bExecuteFinishedM193 := FALSE;
+    g_bFinishedM193_22 := FALSE;
+    nSustainAxis12FollowState := 0;
+  END_IF;
+END_CASE;
+
+IF bSustainAxis1SafeDownFlag AND g_bSustain1Follow THEN
+  g_bSustain1Follow := FALSE; 
+END_IF;
+IF bSustainAxis2SafeDownFlag AND g_bSustain2Follow THEN
+  g_bSustain2Follow := FALSE; 
+END_IF;
+IF bSustainAxis3SafeDownFlag AND g_bSustain3Follow THEN
+  g_bSustain3Follow := FALSE; 
+END_IF;
+IF bSustainAxis7SafeDownFlag AND g_bSustain7Follow THEN
+  g_bSustain7Follow := FALSE; 
+END_IF;
+IF bSustainAxis8SafeDownFlag AND g_bSustain8Follow THEN
+  g_bSustain8Follow := FALSE; 
+END_IF;
+IF bSustainAxis9SafeDownFlag AND g_bSustain9Follow THEN
+  g_bSustain9Follow := FALSE; 
+END_IF;
+
+RTrigger4(CLK := bSustainAxesFloatUp AND bSustainAxis1Enable AND g_bSustainAxis1UpFeedSafe);
+RTrigger5(CLK := bSustainAxesFloatUp AND bSustainAxis2Enable AND g_bSustainAxis2UpFeedSafe);
+RTrigger6(CLK := bSustainAxesFloatUp AND bSustainAxis3Enable AND g_bSustainAxis3UpFeedSafe);
+RTrigger12(CLK := bSustainAxesFloatUp AND bSustainAxis7Enable AND g_bSustainAxis7UpFeedSafe);
+RTrigger13(CLK := bSustainAxesFloatUp AND bSustainAxis8Enable AND g_bSustainAxis8UpFeedSafe);
+RTrigger14(CLK := bSustainAxesFloatUp AND bSustainAxis9Enable AND g_bSustainAxis9UpFeedSafe);
+RTrigger22(CLK := bSustainAxesFloatUp AND bSustainAxisS7Enable AND g_bSustainAxisS7UpFeedSafe);
+RTrigger23(CLK := bSustainAxesFloatUp AND bSustainAxisS8Enable AND g_bSustainAxisS8UpFeedSafe);
+RTrigger24(CLK := bSustainAxesFloatUp AND bSustainAxisS9Enable AND g_bSustainAxisS9UpFeedSafe);
+RTrigger25(CLK := bSustainAxesFloatUp AND bSustainAxisS10Enable AND g_bSustainAxisS10UpFeedSafe);
+RTrigger26(CLK := bSustainAxesFloatUp AND bSustainAxisS11Enable AND g_bSustainAxisS11UpFeedSafe);
+RTrigger27(CLK := bSustainAxesFloatUp AND bSustainAxisS12Enable AND g_bSustainAxisS12UpFeedSafe);
+
+IF RTrigger4.Q THEN
+  g_bSustain1Abs := TRUE;
+END_IF;
+IF RTrigger5.Q THEN
+  g_bSustain2Abs := TRUE;
+END_IF;
+IF RTrigger6.Q THEN
+  g_bSustain3Abs := TRUE;
+END_IF;
+IF RTrigger12.Q THEN
+  g_bSustain7Abs := TRUE;
+END_IF;
+IF RTrigger13.Q THEN
+  g_bSustain8Abs := TRUE;
+END_IF;
+IF RTrigger14.Q THEN
+  g_bSustain9Abs := TRUE;
+END_IF;
+IF RTrigger22.Q THEN
+  g_NCMoveData.NCAXISCMD[4].NCAxisAbs := TRUE;
+END_IF;
+IF RTrigger23.Q THEN
+  g_NCMoveData.NCAXISCMD[5].NCAxisAbs := TRUE;
+END_IF;
+IF RTrigger24.Q THEN
+  g_NCMoveData.NCAXISCMD[6].NCAxisAbs := TRUE;
+END_IF;
+IF RTrigger25.Q THEN
+  g_NCMoveData.NCAXISCMD[7].NCAxisAbs := TRUE;
+END_IF;
+IF RTrigger26.Q THEN
+  g_NCMoveData.NCAXISCMD[8].NCAxisAbs := TRUE;
+END_IF;
+IF RTrigger27.Q THEN
+  g_NCMoveData.NCAXISCMD[9].NCAxisAbs := TRUE;
+END_IF;
+IF g_bPlcResetBuffer THEN
+  nFollowStep := 0;
+  nSustainAxis1FollowState := 0;
+  nSustainAxis2FollowState := 0;
+  nSustainAxis3FollowState := 0;
+  nSustainAxis4FollowState := 0;
+  nSustainAxis5FollowState := 0;
+  nSustainAxis6FollowState := 0;
+  nSustainAxis7FollowState := 0;
+  nSustainAxis8FollowState := 0;
+  nSustainAxis9FollowState := 0;
+  nSustainAxis10FollowState := 0;
+  nSustainAxis11FollowState := 0;
+  nSustainAxis12FollowState := 0;
+  bSustainAxesFloatUp := FALSE;
+  g_bSustain1Follow := FALSE;
+  g_bSustain2Follow := FALSE;
+  g_bSustain3Follow := FALSE;
+  g_bSustain7Follow := FALSE;
+  g_bSustain8Follow := FALSE;
+  g_bSustain9Follow := FALSE;
+  g_bSustainAxis1VelAddEnable := FALSE;
+  g_bSustainAxis2VelAddEnable := FALSE;
+  g_bSustainAxis3VelAddEnable := FALSE;
+  g_bSustainAxis4VelAddEnable := FALSE;
+  g_bSustainAxis5VelAddEnable := FALSE;
+  g_bSustainAxis6VelAddEnable := FALSE;
+  g_bSustainAxis7VelAddEnable := FALSE;
+  g_bSustainAxis8VelAddEnable := FALSE;
+  g_bSustainAxis9VelAddEnable := FALSE;
+  g_bSustainAxis10VelAddEnable := FALSE;
+  g_bSustainAxis11VelAddEnable := FALSE;
+  g_bSustainAxis12VelAddEnable := FALSE;
+  g_bOnlyUseOneKeySupCylFun:= FALSE;
+  g_bExecuteFinishedM193 := FALSE;
+  g_bFinishedM193_0 := FALSE;
+  g_bFinishedM193_1 := FALSE;
+  g_bFinishedM193_11 := FALSE;
+  g_bFinishedM193_12 := FALSE;
+  g_bFinishedM193_13 := FALSE;
+  g_bFinishedM193_14 := FALSE;
+  g_bFinishedM193_15 := FALSE;
+  g_bFinishedM193_16 := FALSE;
+  g_bSustainAxisFollowControlM := FALSE;
+  
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

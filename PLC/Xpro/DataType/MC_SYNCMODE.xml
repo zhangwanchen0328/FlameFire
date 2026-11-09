@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MC_SYNCMODE">
+  <baseType>
+    <struct>
+      <variable name="GEARINSYNCMODE">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="GEARINSYNC_CHECKMASK_MAXACC">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GEARINSYNC_CHECKMASK_MAXDEC">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GEARINSYNC_CHECKMASK_MAXJERK">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GEARINSYNC_CHECKMASK_MAXPOS">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GEARINSYNC_CHECKMASK_MAXVELO">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GEARINSYNC_CHECKMASK_MINPOS">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GEARINSYNC_CHECKMASK_OVERSHOOTPOS">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GEARINSYNC_CHECKMASK_OVERSHOOTVELO">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GEARINSYNC_CHECKMASK_OVERSHOOTVELOZERO">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GEARINSYNC_CHECKMASK_UNDERSHOOTPOS">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GEARINSYNC_CHECKMASK_UNDERSHOOTVELO">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GEARINSYNC_CHECKMASK_UNDERSHOOTVELOZERO">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GEARINSYNC_OPMASK_IGNOREMASTERACC">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GEARINSYNC_OPMASK_INSTANTSTOPINROLLBACK">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GEARINSYNC_OPMASK_PREFERCONSTVELO">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="GEARINSYNC_OPMASK_ROLLBACKLOCK">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

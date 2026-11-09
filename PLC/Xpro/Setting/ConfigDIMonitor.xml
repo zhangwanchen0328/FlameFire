@@ -1,0 +1,1205 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <globalVars>
+    <variable name="g_ConfigMonitorDI_200" address="%IX99.0200">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_201" address="%IX99.0201">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_202" address="%IX99.0202">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_203" address="%IX99.0203">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_204" address="%IX99.0204">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_205" address="%IX99.0205">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_206" address="%IX99.0206">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_207" address="%IX99.0207">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_208" address="%IX99.0208">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_209" address="%IX99.0209">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_210" address="%IX99.0210">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_211" address="%IX99.0211">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_212" address="%IX99.0212">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_213" address="%IX99.0213">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_214" address="%IX99.0214">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_215" address="%IX99.0215">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_216" address="%IX99.0216">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_217" address="%IX99.0217">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_218" address="%IX99.0218">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_219" address="%IX99.0219">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_220" address="%IX99.0220">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_221" address="%IX99.0221">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_222" address="%IX99.0222">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_223" address="%IX99.0223">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_224" address="%IX99.0224">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_225" address="%IX99.0225">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_226" address="%IX99.0226">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_227" address="%IX99.0227">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_228" address="%IX99.0228">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_229" address="%IX99.0229">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_230" address="%IX99.0230">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_231" address="%IX99.0231">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_232" address="%IX99.0232">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_233" address="%IX99.0233">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_234" address="%IX99.0234">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_235" address="%IX99.0235">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_236" address="%IX99.0236">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_237" address="%IX99.0237">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_238" address="%IX99.0238">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_239" address="%IX99.0239">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_240" address="%IX99.0240">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_241" address="%IX99.0241">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_242" address="%IX99.0242">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_243" address="%IX99.0243">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_244" address="%IX99.0244">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_245" address="%IX99.0245">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_246" address="%IX99.0246">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_247" address="%IX99.0247">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_248" address="%IX99.0248">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_249" address="%IX99.0249">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_250" address="%IX99.0250">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_251" address="%IX99.0251">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_252" address="%IX99.0252">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_253" address="%IX99.0253">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_254" address="%IX99.0254">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_255" address="%IX99.0255">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_256" address="%IX99.0256">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_257" address="%IX99.0257">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_258" address="%IX99.0258">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_259" address="%IX99.0259">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_260" address="%IX99.0260">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_261" address="%IX99.0261">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_262" address="%IX99.0262">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_263" address="%IX99.0263">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_264" address="%IX99.0264">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_265" address="%IX99.0265">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_266" address="%IX99.0266">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_267" address="%IX99.0267">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_268" address="%IX99.0268">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_269" address="%IX99.0269">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_270" address="%IX99.0270">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_271" address="%IX99.0271">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_272" address="%IX99.0272">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_273" address="%IX99.0273">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_274" address="%IX99.0274">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_275" address="%IX99.0275">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_276" address="%IX99.0276">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_277" address="%IX99.0277">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_278" address="%IX99.0278">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_279" address="%IX99.0279">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_280" address="%IX99.0280">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_281" address="%IX99.0281">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_282" address="%IX99.0282">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_283" address="%IX99.0283">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_284" address="%IX99.0284">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_285" address="%IX99.0285">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_286" address="%IX99.0286">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_287" address="%IX99.0287">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_288" address="%IX99.0288">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_289" address="%IX99.0289">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_290" address="%IX99.0290">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_291" address="%IX99.0291">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_292" address="%IX99.0292">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_293" address="%IX99.0293">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_294" address="%IX99.0294">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_295" address="%IX99.0295">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_296" address="%IX99.0296">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_297" address="%IX99.0297">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_298" address="%IX99.0298">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_299" address="%IX99.0299">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_300" address="%IX99.0300">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_301" address="%IX99.0301">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_302" address="%IX99.0302">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_303" address="%IX99.0303">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigMonitorDI_304" address="%IX99.0304">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[配置工具 [ DI ] 监控引脚 地址范围为99_0200 ~ 99_0400]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ConfigListenDO_1" address="%QL99.0200">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_2" address="%QL99.0201">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_3" address="%QL99.0202">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_4" address="%QL99.0203">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_5" address="%QL99.0204">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_6" address="%QL99.0205">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_7" address="%QL99.0206">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_8" address="%QL99.0207">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_9" address="%QL99.0208">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_10" address="%QL99.0209">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_11" address="%QL99.0210">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_12" address="%QL99.0211">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_13" address="%QL99.0212">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_14" address="%QL99.0213">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_15" address="%QL99.0214">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_16" address="%QL99.0215">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_17" address="%QL99.0216">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_18" address="%QL99.0217">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_19" address="%QL99.0218">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_20" address="%QL99.0219">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_21" address="%QL99.0220">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_22" address="%QL99.0221">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_23" address="%QL99.0222">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_24" address="%QL99.0223">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_25" address="%QL99.0224">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_26" address="%QL99.0225">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_27" address="%QL99.0226">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_28" address="%QL99.0227">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_29" address="%QL99.0228">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_30" address="%QL99.0229">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_31" address="%QL99.0230">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_32" address="%QL99.0231">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_33" address="%QL99.0232">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_34" address="%QL99.0233">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_35" address="%QL99.0234">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_36" address="%QL99.0235">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_37" address="%QL99.0236">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_38" address="%QL99.0237">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_39" address="%QL99.0238">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_40" address="%QL99.0239">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_41" address="%QL99.0240">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_42" address="%QL99.0241">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_43" address="%QL99.0242">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_44" address="%QL99.0243">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_45" address="%QL99.0244">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_46" address="%QL99.0245">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_47" address="%QL99.0246">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_48" address="%QL99.0247">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_49" address="%QL99.0248">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_50" address="%QL99.0249">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_51" address="%QL99.0250">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_52" address="%QL99.0251">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_53" address="%QL99.0252">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_54" address="%QL99.0253">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_55" address="%QL99.0254">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_56" address="%QL99.0255">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_57" address="%QL99.0256">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_58" address="%QL99.0257">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_59" address="%QL99.0258">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_60" address="%QL99.0259">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_61" address="%QL99.0260">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_62" address="%QL99.0261">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_63" address="%QL99.0262">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_64" address="%QL99.0263">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_65" address="%QL99.0264">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_66" address="%QL99.0265">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_67" address="%QL99.0266">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_68" address="%QL99.0267">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_69" address="%QL99.0268">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_70" address="%QL99.0269">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_71" address="%QL99.0270">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_ConfigListenDO_72" address="%QL99.0271">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+  </globalVars>
+</root>

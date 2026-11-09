@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AvoidAxisPower" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="bEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="F_PowerOff">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[F_PowerOff(CLK := g_bDriveEnable);
+IF F_PowerOff.Q THEN
+  bEnable := FALSE;
+END_IF;
+
+(*防甩轴6*)
+
+IF g_AntiRejection6Power.error THEN
+  bEnable := FALSE;
+END_IF;
+
+AxisPowerBrake(
+	bPower := bEnable,
+    AxisRef := REF(AntiRejection6),
+    HomeSignal :=g_AntiRejection6HomeSignal,
+    HomeMode := g_nAvoidAxisHomeMode,
+    AxisPosLimit := NOT g_bAntiRejection6PosLimit,
+    AxisNegLimit := NOT g_bAntiRejection6NegLimit,
+    AxisPower := REF(g_AntiRejection6Power),
+    OutBrake => g_boAvoidAxisHoldBrake);
+
+
+g_AntiRejection6SetOverRide.Enable := TRUE;
+g_AntiRejection6SetOverRide.VelFactor := g_dCurOverride;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

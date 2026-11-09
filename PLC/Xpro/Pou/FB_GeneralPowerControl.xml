@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_GeneralPowerControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_General2_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[亿得顶料轴]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_General1_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[亿得送料轴]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_General2_Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+      <variable name="g_General1_Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="General2_Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="General1_Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bGeneral1PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral1NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral2NegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral2PosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_General1_Override">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+      </variable>
+      <variable name="g_General2_Override">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="F_PowerOff">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake1">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[F_PowerOff(CLK := g_bDriveEnable);
+IF F_PowerOff.Q THEN
+  General1_Enable := FALSE;
+  General2_Enable := FALSE;
+END_IF;
+
+
+IF g_General1_Power.Error THEN
+  General1_Enable := FALSE;
+END_IF;
+AxisPowerBrake(
+	bPower := General1_Enable,
+    AxisRef := REF(g_General1_Axis),
+    HomeSignal :=g_nGeneralHomeSignal1,
+    HomeMode := g_nT1HomeMode,
+    AxisPosLimit := NOT g_bGeneral1PosLimit,
+    AxisNegLimit := NOT g_bGeneral1NegLimit,
+    AxisPower := REF(g_General1_Power),
+    OutBrake => g_boGeneralAxis1HoldBrake);
+
+IF g_General2_Power.Error THEN
+  General2_Enable := FALSE;
+END_IF;
+AxisPowerBrake1(
+	bPower := General2_Enable,
+    AxisRef := REF(g_General2_Axis),
+    HomeSignal :=g_nGeneralHomeSignal2,
+    HomeMode := g_nT2HomeMode,
+    AxisPosLimit := NOT g_bGeneral2PosLimit,
+    AxisNegLimit := NOT g_bGeneral2NegLimit,
+    AxisPower := REF(g_General2_Power),
+    OutBrake => g_boGeneralAxis2HoldBrake);
+
+g_General1_Override.ENABLE := TRUE;
+g_General2_Override.ENABLE := TRUE;
+
+IF NOT g_bG1_AxisInABS THEN
+  g_General1_Override.VELFACTOR := g_dCurOverride;
+END_IF;
+IF NOT g_bG2_AxisInABS THEN
+  g_General2_Override.VELFACTOR := g_dCurOverride;
+END_IF;
+IF ABS(g_General1_Axis.NCTOPLC.ACTPOS - g_General1_Axis.NCTOPLC.SETPOS) > g_fT1AxisMaxPosError THEN
+  g_bT1AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bT1AxisPosErrorAlarm := FALSE;
+END_IF;
+IF ABS(g_General2_Axis.NCTOPLC.ACTPOS - g_General2_Axis.NCTOPLC.SETPOS) > g_fT2AxisMaxPosError THEN
+  g_bT2AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bT2AxisPosErrorAlarm := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,228 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FollowIgnition" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FollowIgnitionState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点火状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="OffFireState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关火状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTFollowIgnition">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RFIgnition">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTOffFire">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Ton1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton6">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonCombustibleGas_enable">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTFollowIgnition(CLK := g_bIgnition);
+IF RTFollowIgnition.Q THEN 
+  IF g_bIgnitionType = 1.0 THEN (*点火方式:随动点火*)
+    FollowIgnitionState := 10;
+  ELSIF g_bIgnitionType = 0.0 THEN
+    FollowIgnitionState := 20;
+  END_IF;
+  g_bIgnitionDone := FALSE;
+  OffFireState := 0;
+  Ton1(IN :=FALSE);
+  Ton2(IN :=FALSE);
+  Ton3(IN :=FALSE);
+  Ton4(IN :=FALSE);
+  Ton5(IN :=FALSE);     
+END_IF;
+
+RFIgnition(CLK := g_bIgnition);
+TonCombustibleGas_enable(IN :=g_bCombustibleGas_enable AND NOT g_bIgnition ,PT := T#20S); 
+IF RFIgnition.Q THEN
+  IF FollowIgnitionState <>0 THEN (*开火中,复位开火状态机*)
+    FollowIgnitionState := 0;
+    OffFireState := 10;
+  ELSE
+    OffFireState := 20;
+  END_IF;
+ELSIF TonCombustibleGas_enable.Q THEN
+  OffFireState := 15;(*关火状态且出气超20s,强制执行关火*)
+END_IF;
+
+CASE FollowIgnitionState OF
+  0:
+    FollowIgnitionState := 0;
+  10:(*随动点火高度*)
+    g_bZFollowDone := FALSE;
+    g_fZFollowHeight := g_dIgnitionHeight;
+    g_bZFollowExecute := TRUE;
+    g_bFocusDone := FALSE;
+    g_dZoomPosition := g_dIgnitionFocus; 
+    g_bFocusEnable := TRUE;  (*F轴调焦*)    
+    FollowIgnitionState := 12;
+  12:
+    IF g_bZFollowDone THEN
+       g_bZFollowClose := TRUE;
+       g_bZFollowOutDone := FALSE;
+       FollowIgnitionState := 15; 
+    END_IF;
+  15: 
+    IF g_bZFollowOutDone THEN
+      g_ugas_type := 1;
+      g_dmaster_pressure := g_dIgnitionCutGasPressure;
+      g_doxygen_pressure := g_dIgnitionCutGasPressure;
+      g_bgas_enable := TRUE;      
+      FollowIgnitionState := 30;
+    END_IF;
+  20:  
+    g_ugas_type := 1;
+    g_dmaster_pressure := g_dIgnitionCutGasPressure;
+	 g_doxygen_pressure := g_dIgnitionCutGasPressure;
+	 g_bgas_enable := TRUE;
+    FollowIgnitionState := 30;
+  30:(*出切割氧气*)  
+    Ton1(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_dIgnitionCutGasBlowTime)));     
+    IF Ton1.Q THEN
+      Ton1(IN :=FALSE);
+      g_bgas_enable := FALSE;
+      FollowIgnitionState := 35;
+    END_IF;
+  35:(*切割气排空延时*)
+    Ton2(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_dCutGasPurgeDelayT)));     
+    IF Ton2.Q THEN
+      g_dCombustible_pressure :=  g_dCombustible_pressure;
+      g_bCombustibleGas_enable := TRUE;
+      Ton2(IN :=FALSE);
+      FollowIgnitionState := 37;
+    END_IF;    
+  37:(*可燃气开气延时*)  
+    Ton3(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_dOpenCombustibleGasDelayT)));     
+    IF Ton3.Q THEN
+      g_dOxidizing_pressure := g_dOxidizing_pressure;
+      g_bOxidizingGas_enable := TRUE;  
+      Ton3(IN :=FALSE);
+      FollowIgnitionState := 40;
+    END_IF;    
+  40:(*出助燃气*)  
+    Ton4(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_dOpenOxidizingGasDelayT)));     
+    IF Ton4.Q THEN
+      Ton4(IN :=FALSE);
+      FollowIgnitionState := 45;
+    END_IF;        
+  45:(*出光*)
+	  g_nPower :=g_dIgnitionPower;
+	  g_nPwmFreq := g_dIgnitionPwmFreq;
+	  g_nPwmDuty := g_dIgnitionPwmDuty;
+	  g_bLaserCuttingEnable := TRUE;
+    (* g_bLaserNotgasFixed := TRUE;*)
+     FollowIgnitionState := 46;
+  46:
+    Ton5(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_dIgnitionTime)));     
+    IF Ton5.Q THEN
+      Ton5(IN :=FALSE);
+      g_bLaserCuttingEnable := FALSE;
+      (*g_bLaserNotgasFixed := FALSE;*)
+      FollowIgnitionState := 50;
+    END_IF;   
+  50:(*点火成功判断*) 
+    g_bIgnitionDone := TRUE;
+    FollowIgnitionState := 0;
+  100:(*停止*)
+     g_bLaserCuttingEnable := FALSE;
+     g_bgas_enable := FALSE;
+      g_bIgnition := FALSE;
+     FollowIgnitionState := 110;
+  110:
+     FollowIgnitionState := 0;
+           
+END_CASE;
+
+CASE OffFireState OF 
+  10:(*开火执行来了关火命令*) 
+     g_bLaserCuttingEnable := FALSE;
+     g_bgas_enable := FALSE; (*关光关气*) 
+     OffFireState := 20;
+  15:(*关火状态且出气超20s,强制执行关火*)
+     OffFireState := 20;
+  20:(*关可燃气*)
+     g_bCombustibleGas_enable := FALSE;
+     Ton6(IN :=FALSE);
+     OffFireState := 25;
+  25:(*关助燃气*)
+    Ton6(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_dCloseCombustibleGasDelayT)));     
+    IF Ton6.Q THEN
+      Ton6(IN :=FALSE);
+      g_bOxidizingGas_enable := FALSE;
+      OffFireState := 50;
+    END_IF;    
+  50:(*关火完成*)
+    g_bIgnitionDone := FALSE;
+    OffFireState := 0; 
+END_CASE;
+
+
+IF (g_bplcHardwareResetBuffer  OR g_bPlcResetBuffer) AND FollowIgnitionState<>0 THEN
+  FollowIgnitionState := 100;
+END_IF;
+(*可燃气输出中,强制复位,停止,复位,关闭燃气*)
+IF g_bCombustibleGas_enable AND (g_bplcHardwareResetBuffer  OR g_bPlcResetBuffer) THEN
+  g_bIgnition := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[跟随点火]]></xhtml:p>
+  </documentation>
+</pou>

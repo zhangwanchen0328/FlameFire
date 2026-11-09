@@ -1,0 +1,329 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_UAxisGearControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Axis_U">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴轴结构体]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biUGearIn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合开始输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biUGearOut">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合关闭输入引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUGearIn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUGearOut">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合关闭全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boUGearDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUGearDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合完成全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bUGearError">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴耦合误差报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bGearInError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGearOutError">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fiUCncCoord">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[CNC中U轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UGearIn">
+        <type>
+          <derived name="MC_GEARIN"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UGearOut">
+        <type>
+          <derived name="MC_GEAROUT"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[解耦模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_UMoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_noUGearErrorID">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nGearState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nRatioNumerator">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[比例分子]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nRatioDenominator">
+        <type>
+          <USINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[比例分母]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCoordDiff">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合成功时U和U2的坐标差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCoordMaxDiff">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U和U2最大的的坐标差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dStopCoordMaxDiff">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0.2"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[U和U2静止最大的的坐标差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGearIn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGearOut">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合关闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGearDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[耦合完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGearCheck">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[是否检测耦合误差]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="temp_var">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_StopCoordDiff">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTrigger1(CLK := g_biUGearIn OR g_bUGearIn OR bGearIn);
+RTrigger2(CLK := g_biUGearOut OR g_bUGearOut OR bGearOut);
+
+IF RTrigger1.Q THEN
+  IF Axis_U.NCTOPLC.AxisState <> 8 THEN
+    nGearState := 1;
+    g_boUGearDone := FALSE;
+    g_bUGearDone := FALSE;
+    bGearDone := FALSE;
+  END_IF;
+  bGearIn := FALSE;
+  g_bUGearIn := FALSE;
+  Ton_StopCoordDiff(IN := FALSE);
+END_IF;
+
+IF RTrigger2.Q THEN
+  IF Axis_U.NCTOPLC.AxisState = 8 THEN
+    nGearState := 2;
+    g_boUGearDone := FALSE;
+    g_bUGearDone := FALSE;
+    bGearDone := FALSE;
+  END_IF;
+  g_bUGearOut := FALSE;
+  bGearOut := FALSE;
+END_IF;
+
+CASE nGearState OF
+  0:
+    nGearState := 0;
+  1:
+    g_UGearIn.Execute := TRUE;
+    g_UGearIn.RatioNumerator := 1.0;
+    g_UGearIn.RatioDenominator := 1;
+    IF g_UGearIn.InGear THEN
+      g_boUGearDone := TRUE;
+      g_bUGearDone := TRUE;
+      bGearDone := TRUE;
+      nGearState := 30;
+      bGearCheck := TRUE;
+      dCoordDiff := ABS(g_fiUCncCoord - Axis_U.NCTOPLC.ACTPOS);
+    END_IF;
+    IF g_UGearIn.Error OR g_UGearIn.CommandAborted THEN
+      g_UGearIn.Execute := FALSE;
+      g_noUGearErrorID := g_UGearIn.ErrorID;
+      g_bGearInError := TRUE;
+      nGearState := 0;
+    END_IF;
+  2:
+    g_UGearOut.Execute := TRUE;
+    g_UGearIn.Execute := FALSE;
+    IF g_UGearOut.Done THEN
+      g_UGearOut.Execute := FALSE;
+      IF Axis_U.NCTOPLC.AxisState = 2 OR Axis_U.NCTOPLC.AxisState = 1 THEN
+        nGearState := 0;
+      ELSE
+        nGearState := 3;
+      END_IF;
+    END_IF;
+    IF g_UGearOut.Error THEN
+      g_UGearOut.Execute := FALSE;
+      g_bGearInError := TRUE;
+      nGearState := 0;
+      bGearCheck := FALSE;
+    END_IF;
+  3:
+    g_UMoveStop.Execute := TRUE;
+    IF g_UMoveStop.Done THEN
+      g_UMoveStop.Execute := FALSE;
+      nGearState := 0;
+    END_IF;
+    IF g_UMoveStop.Commandaborted OR g_UMoveStop.Error THEN
+      g_UMoveStop.Execute := FALSE;
+      nGearState := 0;
+    END_IF;
+  30:
+    IF Axis_U.NCTOPLC.AxisState = 8 THEN
+      IF ABS(ABS(g_fiUCncCoord - Axis_U.NCTOPLC.ACTPOS) - dCoordDiff) > dCoordMaxDiff AND Axis_U.NCTOPLC.AXISSTATE = 8 AND g_nMotionMode<> 5 THEN
+          g_bUGearError := TRUE;
+      END_IF;
+      temp_var := true;    
+    ELSE
+      temp_var := FALSE;
+    END_IF;
+    (*U轴静止跟随误差*)
+    IF ABS(ABS(g_fiUCncCoord - Axis_U.NCTOPLC.ACTPOS) - dCoordDiff) > dStopCoordMaxDiff AND Axis_U.NCTOPLC.AXISSTATE = 8 AND g_nMotionMode<> 5 AND ABS(g_fUVelocity) < 0.01 THEN
+      Ton_StopCoordDiff(IN := TRUE,PT := T#5s);
+      IF Ton_StopCoordDiff.Q THEN
+        g_bUGearStopError := TRUE;
+      END_IF;
+    ELSE
+      Ton_StopCoordDiff(IN := FALSE);
+    END_IF;
+END_CASE;
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

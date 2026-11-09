@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_OneKeyCenterCyl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_OneKeyCentringUp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_OneKeyCentringDown">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="OneKeyCentringSwitch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*一键夹中控制在PLC写，界面发送命令是如果是一个一个发，气缸收到命令再动作，不连贯*)
+R_OneKeyCentringUp(CLK := g_bOneKeyCentringCylUp);
+R_OneKeyCentringDown(CLK := g_bOneKeyCentringCylDown);
+IF R_OneKeyCentringUp.Q THEN
+  OneKeyCentringSwitch := 10;
+  g_bOneKeyCentringCylUp := FALSE;
+  g_boOneKeyCentringCylUpDone := FALSE;
+  g_boOneKeyCentringCylDownDone := FALSE;
+END_IF;
+
+IF R_OneKeyCentringDown.Q THEN
+  OneKeyCentringSwitch := 50;
+  g_bOneKeyCentringCylDown := FALSE;
+  g_boOneKeyCentringCylUpDone := FALSE;
+  g_boOneKeyCentringCylDownDone := FALSE;
+END_IF;
+
+CASE OneKeyCentringSwitch OF
+  0:
+    OneKeyCentringSwitch := 0;
+  10:
+    g_bCentringCyl2Up1 := TRUE;
+    g_bCentringCyl2Up2 := TRUE;
+    g_bCentringCyl2Up3 := TRUE;
+    g_bCentringCyl2Up4 := TRUE;
+    OneKeyCentringSwitch := 20;
+  20:
+    IF g_boCentringCyl2Up_Done1 AND g_boCentringCyl2Up_Done2 AND g_boCentringCyl2Up_Done3 AND g_boCentringCyl2Up_Done4 THEN
+      g_boOneKeyCentringCylUpDone := TRUE;
+      OneKeyCentringSwitch := 0;
+      M.ENABLE[270] := 0;
+      g_bExecuteFinishedM270 := FALSE;
+    END_IF;
+  50:
+    g_bCentringCyl2Down1 := TRUE;
+    g_bCentringCyl2Down2 := TRUE;
+    g_bCentringCyl2Down3 := TRUE;
+    g_bCentringCyl2Down4 := TRUE;
+    OneKeyCentringSwitch := 60;
+  60:
+    IF g_boCentringCyl2Down_Done1 AND g_boCentringCyl2Down_Done2  AND g_boCentringCyl2Down_Done3 AND g_boCentringCyl2Down_Done4 THEN
+      g_boOneKeyCentringCylDownDone := TRUE;
+      OneKeyCentringSwitch := 0;
+      M.ENABLE[270] := 0;
+      g_bExecuteFinishedM270 := FALSE;
+    END_IF;
+    
+END_CASE;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[一键夹中控制]]></xhtml:p>
+  </documentation>
+</pou>

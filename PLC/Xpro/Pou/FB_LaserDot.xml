@@ -1,0 +1,365 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_LaserDot" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_noULaserPowerValue">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：激光器输出功率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noUPwmFreq">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：激光输出pwm频率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noUPwmDuty">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出应缴：激光输出pwm占空比]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nLaserBrand">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光器品牌选择（0~5 --IPG,创鑫,nLight,锐科,通快），HMI给，]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nOpenLaserTime">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[出光时间，HMI给]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nLaserOpenLightDelayTime">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[创鑫专用延时时间，HMI给]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boLaserEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：激光使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nMaxFreq">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最大频率.从hmi获取]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nMaxPower">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最大功率.从hmi获取]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nMaxVoltage">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[最大电压.从hmi获取]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nDotPower">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出功率 hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nPwmFreq">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出pwm频率 hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPwmDuty">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出pwm占空比 hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bLaserDotEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光打点的flag]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bLaserDotFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="FALSE"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[激光打点的flag,hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton0">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[出光计时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton1">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[延时计时器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nLaserPowerValueTmp">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[创鑫专用的输出功率临时变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDotType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光器类型不同打点方式不同]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nDotSWState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[打点开关的状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nCXState">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[创鑫出光时序状态]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="rTrigDot">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光打点上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fTrigDot">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光打点下降沿]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*激光打点FB*)
+rTrigDot(CLK := (g_bLaserDotEnable OR bLaserDotFlag));
+fTrigDot(CLK := (g_bLaserDotEnable OR bLaserDotFlag));
+IF rTrigDot.Q THEN
+  g_nDotSWState := 2;
+END_IF;
+
+IF fTrigDot.Q THEN
+  g_nDotSWState := 1;
+END_IF;
+
+(*一开始处于等待状态，关闭打点和打点完成最终都会进0等待状态*)
+CASE g_nDotSWState OF
+  (*0等待，1关闭打点，2开启打点*)
+  0:
+  (*等待状态*)
+    g_nDotSWState := 0;
+  1:  
+  (*关闭打点*)
+    IF g_nLaserBrand=1 THEN (*创鑫*) 
+      g_noULaserPowerValue := 3276;
+    ELSIF g_nLaserBrand=3 THEN
+      g_nLaserBrand := 3;(*不操作*)
+    ELSIF g_nLaserBrand=6 THEN (*QCW*)
+      g_noULaserPowerValue := 0;
+    ELSE
+      g_noULaserPowerValue := 0;(*IPG,nLight,锐科,通快等其他激光器*)
+    END_IF;
+    g_boLaserEnable := FALSE;
+    g_noUPwmFreq :=0;
+    g_noUPwmDuty :=0;
+    nCXState := 0;
+    Ton0(IN := FALSE);
+    Ton1(IN := FALSE);
+    g_nDotSWState := 0;
+  
+  2:
+  (*开启打点*)
+  (*根据激光器选择打点方式*)
+    IF g_nLaserBrand=1 THEN(*创鑫*)
+      nDotType := 1;
+    ELSIF g_nLaserBrand=6  THEN(*QCW*)
+      nDotType := 0;
+    ELSE
+      nDotType := 0;(*IPG,nLight,锐科,通快*)
+    END_IF;
+    
+    CASE nDotType OF  (*根据激光器类型选择切割方式*)
+      0:  (*IPG,nLight,锐科,通快激光器直接开光，到时间进入关闭打点状态->等待状态*) 
+        Ton0(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(UINT_TO_DINT(nOpenLaserTime)))); 
+        IF Ton0.Q THEN(*出光时间到，关使能*)
+          Ton0(IN := FALSE);
+          g_bLaserDotEnable :=FALSE;
+          bLaserDotFlag := FALSE;
+          g_nDotSWState := 1;
+        ELSE 
+        (*计时期间出光*)
+        (*输出功率*)
+          IF g_nDotPower> g_nMaxPower THEN
+            g_noULaserPowerValue := LREAL_TO_UINT(32767.0*g_nMaxVoltage/10.0 );
+          ELSIF g_nDotPower<0 THEN
+            g_noULaserPowerValue := 0;
+          ELSE
+            g_noULaserPowerValue := LREAL_TO_UINT(32767.0*UINT_TO_LREAL(g_nDotPower)*g_nMaxVoltage/(10.0*UINT_TO_LREAL(g_nMaxPower)));
+          END_IF;
+        (*输出频率*)
+          IF nPwmFreq>20000 THEN
+            g_noUPwmFreq := 65535;
+          ELSIF nPwmFreq <=0 THEN
+            g_noUPwmFreq := 0;
+          ELSE
+            g_noUPwmFreq := LREAL_TO_UINT(65535.0*UINT_TO_LREAL(nPwmFreq)/20000.0);  
+          END_IF;
+          (*输出占空比*)
+          IF nPwmDuty>=100 THEN
+            g_noUPwmDuty :=65535;
+          ELSIF  nPwmDuty <=0 THEN
+            g_noUPwmDuty :=0;
+          ELSE
+            g_noUPwmDuty :=LREAL_TO_UINT((UINT_TO_LREAL(nPwmDuty)/100.0)*65535.0);
+          END_IF;
+          (**)
+          g_boLaserEnable:= TRUE;
+        END_IF;
+ 	  
+      1:
+      (*创鑫*)(*出光时序：先输出功率,隔50ms后，开电子阀,输出PWM（频率和占空比 ）*)
+      (*创鑫有开光前有50ms延时，此时只输出功率，延时完成后开光时间开始计时，计时完成进入关闭打点状态->等待状态，等待状态nCXState置为0*)
+        CASE nCXState OF
+        0:
+          (*先输出50ms(延时时间)功率*)
+          Ton1(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(UINT_TO_DINT(g_nLaserOpenLightDelayTime))));
+          IF Ton1.Q THEN
+            Ton1(IN := FALSE);
+            nCXState :=1;
+          ELSE
+            (*power*)
+            IF g_nDotPower> g_nMaxPower THEN
+              nLaserPowerValueTmp := LREAL_TO_UINT(32767.0*g_nMaxVoltage/10.0);
+            ELSIF g_nDotPower<0 THEN
+              nLaserPowerValueTmp := 0;
+            ELSE
+              nLaserPowerValueTmp := LREAL_TO_UINT(32767.0*UINT_TO_LREAL(g_nDotPower)*g_nMaxVoltage/(10.0*UINT_TO_LREAL(g_nMaxPower)));
+            END_IF;
+        
+            IF nLaserPowerValueTmp<6553 THEN
+              g_noULaserPowerValue := 6553;
+            ELSE
+              g_noULaserPowerValue := nLaserPowerValueTmp;
+            END_IF;  
+          END_IF;
+        1:(*延时结束后，开启电子阀，输出pwm，频率和占空比*)
+          Ton0(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(UINT_TO_DINT(nOpenLaserTime))));
+          IF Ton0.Q THEN
+            Ton0(IN := FALSE);
+            g_boLaserEnable:= FALSE; 
+            g_bLaserDotEnable :=FALSE;
+            bLaserDotFlag := FALSE;
+            g_nDotSWState :=1;
+          ELSE
+            g_boLaserEnable:= TRUE;
+          
+            (*PWM_FREQ*)
+            IF nPwmFreq>20000 THEN
+              g_noUPwmFreq := 65535;
+            ELSIF nPwmFreq <=0 THEN
+              g_noUPwmFreq := 0;
+            ELSE
+              g_noUPwmFreq := LREAL_TO_UINT(65535.0*UINT_TO_LREAL(nPwmFreq)/20000.0);  
+            END_IF;
+            (*DUTY*)
+            IF nPwmDuty>=100 THEN
+              g_noUPwmDuty :=65535;
+            ELSIF  nPwmDuty <=0 THEN
+              g_noUPwmDuty :=0;
+            ELSE
+              g_noUPwmDuty :=LREAL_TO_UINT((UINT_TO_LREAL(nPwmDuty)/100.0)*65535.0);
+            END_IF;
+          END_IF;    
+      
+    END_CASE;
+  
+  END_CASE;
+
+END_CASE;  
+
+  ]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[激光打点]]></xhtml:p>
+  </documentation>
+</pou>

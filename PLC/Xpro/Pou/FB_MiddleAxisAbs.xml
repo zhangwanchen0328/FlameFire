@@ -1,0 +1,569 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_MiddleAxisAbs" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="RTring4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTring5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nARAbsState4">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nARAbsState5">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biAntiRejection4AbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biAntiRejection5AbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejection4AbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejection5AbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAntiRejection4AbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始局部变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejection5AbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动开始局部变量]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boAntiRejection4AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boAntiRejection5AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejection4AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bAntiRejection5AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAntiRejection4AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成局部变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bAntiRejection5AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动完成局部变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dARTargetPos4">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置，中间缓存]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dARTargetPos5">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置，中间缓存]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dARTargetVel4">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标速度，中间缓存]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dARTargetVel5">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标速度，中间缓存]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fiARTargetPos4">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiARTargetPos5">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiARTargetVel4">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标速度引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiARTargetVel5">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标速度引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dARAbsPosition4">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置共享内存，一般被HMI使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dARAbsPosition5">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动目标位置共享内存，一般被HMI使用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dARAbsVelocity4">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dARAbsVelocity5">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fARAbsPosition4">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fARAbsPosition5">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fARAbsVelocity4">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fARAbsVelocity5">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动速度绝对运动速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_AntiRejection4Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_AntiRejection5Abs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_AntiRejection4Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动停止模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_AntiRejection5Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[绝对运动停止模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC暂停]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC复位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Rtring_AxisStop">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴停止]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_AxisStop1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[并行轴停止]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring_AxisStop(CLK :=g_bAxisStopFlag);
+IF Rtring_AxisStop.Q THEN
+  IF g_nAxisStopP = 14 THEN
+      nARAbsState5 := 100;
+      g_bAxisStopFlag := FALSE;
+  END_IF;
+END_IF;
+
+Rtring_AxisStop1(CLK :=g_bAxisStopFlag_14);
+IF Rtring_AxisStop1.Q THEN
+  nARAbsState5 := 100;
+  g_bAxisStopFlag_14 := FALSE;
+END_IF;
+
+(*零尾料避让主卡轴*)
+RTring4(CLK := g_biAntiRejection4AbsExecute OR bAntiRejection4AbsExecute OR g_bAntiRejection4AbsExecute OR g_bMiddleAvoidAxis1AbsM);
+
+IF RTring4.Q THEN
+  nARAbsState4 := 1;
+  g_boAntiRejection4AbsDone := FALSE;
+  g_bAntiRejection4AbsDone := FALSE;
+  bAntiRejection4AbsDone := FALSE;
+  IF g_biAntiRejection4AbsExecute THEN
+    dARTargetPos4 := g_fiARTargetPos4; 
+    dARTargetVel4 := g_fiARTargetVel4;
+  ELSIF bAntiRejection4AbsExecute THEN
+    dARTargetPos4 := dARAbsPosition4;
+    dARTargetVel4 := 0.0;
+    bAntiRejection4AbsExecute := FALSE;
+    IF g_bPowerOffMoveToTargetPosSetSpeedFlag THEN
+      dARTargetVel4 := g_dPowerOffMoveToTargetPosSpeed;
+    END_IF;
+  ELSIF g_bMiddleAvoidAxis1AbsM THEN
+    dARTargetPos4 := g_dMiddleAvoidAxis1AbsTarGetPosM;
+    dARTargetVel4 := g_dMiddleAvoidAxis1AbsVelM;
+    g_bMiddleAvoidAxis1AbsM := FALSE;
+  ELSE
+    dARTargetPos4 := g_fARAbsPosition4;
+    dARTargetVel4 := g_fARAbsVelocity4;
+    g_bAntiRejection4AbsExecute := FALSE;
+  END_IF;
+  IF dARTargetVel4 = 0.0 THEN
+    dARTargetVel4 := dARAbsVelocity4;
+  END_IF;
+END_IF;
+
+
+
+CASE nARAbsState4 OF
+  0:
+    nARAbsState4 := 0;
+  1:
+	IF AntiRejection4.NCTOPLC.AXISSTATE = 8 THEN
+      nARAbsState4 := 2;
+      g_bMiddleAvoidAxis1GearOutM := TRUE;
+    ELSE
+      nARAbsState4 := 10;
+    END_IF;
+  2:
+	  IF AntiRejection4.NCTOPLC.AXISSTATE <> 8 THEN
+		nARAbsState4 := 10;
+	  END_IF;
+  
+  10:
+    g_AntiRejection4Abs.Execute := TRUE;
+    g_AntiRejection4Abs.Velocity := dARTargetVel4;
+    g_AntiRejection4Abs.Position := dARTargetPos4;
+    IF g_AntiRejection4Abs.Done THEN
+      g_AntiRejection4Abs.Execute := FALSE;
+      g_boAntiRejection4AbsDone := TRUE;
+      g_bAntiRejection4AbsDone := TRUE;
+      bAntiRejection4AbsDone := TRUE;
+      nARAbsState4 := 0;
+      M.ENABLE[316] := 0;
+      g_bFinishedM316_1 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nARAbsState4 := 20;
+    END_IF;
+    IF g_AntiRejection4Abs.CommandAborted OR g_AntiRejection4Abs.Error THEN
+      g_AntiRejection4Abs.Execute := FALSE;
+      bAntiRejection4AbsDone := FALSE;
+      nARAbsState4 := 0;
+    END_IF;
+    IF g_bAvoidEnable AND g_nAvoidType = 3 AND g_bBeamAvoidZeroTailEnable THEN
+		IF g_dBeamAvoidZeroTailChangeMainAxisPos - g_dBeamAvoidZeroTailBackSafeDistance > AntiRejection4.NCTOPLC.ACTPOS THEN
+			
+			M.ENABLE[316] := 0;
+        END_IF; 
+    END_IF;
+  20:
+    g_AntiRejection4Abs.Execute := FALSE;
+    g_AntiRejection4Stop.Execute := TRUE;
+    IF g_AntiRejection4Stop.Done AND g_bPlcStartBuffer THEN
+      g_AntiRejection4Stop.Execute := FALSE;
+      nARAbsState4 := 1;
+      M.ENABLE[316] := 0;
+    END_IF;
+    IF g_AntiRejection4Stop.CommandAborted OR g_AntiRejection4Stop.Error THEN
+      g_AntiRejection4Stop.Execute := FALSE;
+      nARAbsState4 := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nARAbsState4 := 0;
+  g_AntiRejection4Abs.Execute := FALSE;
+  g_AntiRejection4Stop.Execute := FALSE;
+  g_bAntiRejection4AbsExecute := FALSE;
+  bAntiRejection4AbsExecute := FALSE;
+  g_bAntiRejection4AbsExecute := FALSE;
+END_IF;
+(*零尾料避让中卡移动轴*)
+RTring5(CLK := g_biAntiRejection5AbsExecute OR bAntiRejection5AbsExecute OR g_bAntiRejection5AbsExecute OR g_bMiddleAvoidAxis2AbsM);
+
+IF RTring5.Q THEN
+  nARAbsState5 := 1;
+  g_boAntiRejection5AbsDone := FALSE;
+  g_bAntiRejection5AbsDone := FALSE;
+  bAntiRejection5AbsDone := FALSE;
+  g_bMiddleMoveAxisDone := FALSE;
+  IF g_biAntiRejection1AbsExecute THEN
+    dARTargetPos5 := g_fiARTargetPos5; 
+    dARTargetVel5 := g_fiARTargetVel5;
+  ELSIF bAntiRejection5AbsExecute THEN
+    dARTargetPos5 := dARAbsPosition5;
+    dARTargetVel5 := 0.0;
+    IF g_bPowerOffMoveToTargetPosSetSpeedFlag THEN
+      dARTargetVel5 := g_dPowerOffMoveToTargetPosSpeed;
+    END_IF;
+  ELSIF g_bMiddleAvoidAxis2AbsM THEN
+    dARTargetPos5 := g_dMiddleAvoidAxis2AbsTarGetPosM;
+    dARTargetVel5 := g_dMiddleAvoidAxis2AbsVelM;
+    IF g_bAvoidMiddleAxisNewAbsMoveCmdFlag THEN
+      nARAbsState5 := 200;
+    END_IF;
+  ELSE
+    dARTargetPos5 := g_fARAbsPosition5;
+    dARTargetVel5 := g_fARAbsVelocity5;
+  END_IF;
+  IF g_bSetAuxiliaryAxisSpeed THEN
+      dARTargetVel5 := g_nAuxiliaryAxisSpeed;
+      g_bSetAuxiliaryAxisSpeed := FALSE;
+  END_IF;
+  IF dARTargetVel5 = 0.0 THEN
+    dARTargetVel5 := dARAbsVelocity5;
+  END_IF;
+  bAntiRejection5AbsExecute := FALSE;
+  g_bMiddleAvoidAxis2AbsM := FALSE;
+  g_bAntiRejection5AbsExecute := FALSE;
+END_IF;
+
+CASE nARAbsState5 OF
+  0:
+    nARAbsState5 := 0;
+  1:
+    g_AntiRejection5Abs.Execute := TRUE;
+    g_AntiRejection5Abs.Velocity := dARTargetVel5;
+    g_AntiRejection5Abs.Position := dARTargetPos5;
+    IF g_AntiRejection5Abs.Done THEN
+      g_AntiRejection5Abs.Execute := FALSE;
+      g_boAntiRejection5AbsDone := TRUE;
+      g_bAntiRejection5AbsDone := TRUE;
+      bAntiRejection5AbsDone := TRUE;
+      nARAbsState5 := 0;
+      M.ENABLE[316] := 0;
+      g_bMiddleMoveAxisDone := TRUE;
+      g_bFinishedM316_2 := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nARAbsState5 := 20;
+    END_IF;
+    IF g_AntiRejection5Abs.CommandAborted OR g_AntiRejection5Abs.Error THEN
+      g_AntiRejection5Abs.Execute := FALSE;
+      bAntiRejection5AbsDone := FALSE;
+      nARAbsState5 := 0;
+    END_IF;
+  20:
+    g_AntiRejection5Abs.Execute := FALSE;
+    g_AntiRejection5Stop.Execute := TRUE;
+    IF g_AntiRejection5Stop.Done AND g_bPlcStartBuffer THEN
+      g_AntiRejection5Stop.Execute := FALSE;
+      nARAbsState5 := 1;
+      M.ENABLE[316] := 0;
+    END_IF;
+    IF g_AntiRejection5Stop.CommandAborted OR g_AntiRejection5Stop.Error THEN
+      g_AntiRejection5Stop.Execute := FALSE;
+      nARAbsState5 := 0;
+    END_IF;
+  100:
+	 g_AntiRejection5Abs.Execute := FALSE;
+     g_AntiRejection5Stop.Execute := TRUE;
+	IF g_AntiRejection5Stop.Done THEN
+		g_AntiRejection5Stop.Execute := FALSE;
+		nARAbsState5 := 0;
+		M.ENABLE[325] := 0;
+        g_bMiddleMoveAxisDone := TRUE;
+		g_bFinishedM325_14 := FALSE;
+	END_IF;
+	IF g_AntiRejection5Stop.CommandAborted OR g_AntiRejection5Stop.Error THEN
+		g_AntiRejection5Stop.Execute := FALSE;
+		nARAbsState5 := 0;
+		g_bFinishedM325_14 := FALSE;
+		M.ENABLE[325] := 0;
+	END_IF;
+  200:(*一直等待主轴坐标小于避让坐标时才执行绝对运动到0的操作*)
+	IF  g_diYMachineCoordinate <= g_fAvoidCoordY  THEN
+		dARTargetPos5 := 0.0;
+         nARAbsState5 := 1;
+         dARTargetVel5 := dARAbsVelocity5;
+    END_IF;
+    M.ENABLE[316] := 0;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nARAbsState5 := 0;
+  g_AntiRejection5Abs.Execute := FALSE;
+  g_AntiRejection5Stop.Execute := FALSE;
+  g_bAntiRejection5AbsExecute := FALSE;
+  bAntiRejection5AbsExecute := FALSE;
+  g_bAntiRejection5AbsExecute := FALSE;
+  
+END_IF;
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

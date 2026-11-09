@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FAxisListen" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FAxisHome">
+        <type>
+          <derived name="FB_FAxisHome"/>
+        </type>
+      </variable>
+      <variable name="FJogContMotion">
+        <type>
+          <derived name="FB_FJogContIncr"/>
+        </type>
+      </variable>
+      <variable name="FAbsoluteMotion">
+        <type>
+          <derived name="FB_FAbsolute"/>
+        </type>
+      </variable>
+      <variable name="FRelativeMotion">
+        <type>
+          <derived name="FB_FRelative"/>
+        </type>
+      </variable>
+      <variable name="FActMotion">
+        <type>
+          <derived name="FB_FAct_Motion"/>
+        </type>
+      </variable>
+      <variable name="FPower">
+        <type>
+          <derived name="FB_FPower"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_FReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FAxisAnalogCtl">
+        <type>
+          <derived name="FB_FAxisMotionCtrl"/>
+        </type>
+      </variable>
+      <variable name="bAxisErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FActMotion();
+FPower();
+FAxisHome();
+FJogContMotion();
+FAbsoluteMotion();
+FRelativeMotion();
+FAxisAnalogCtl();
+
+bAxisErrorAlarm :=  g_FAxis.NCTOPLC.POWERPOSWARN OR g_FAxis.NCTOPLC.POWERNEGWARN 
+     OR g_FAxis.NCTOPLC.ERRORCODE <>0;
+
+
+IF bAxisErrorAlarm AND (g_bClearAlarmButtonClickedBuffer OR g_bplcHardwareResetBuffer) THEN
+  g_FReset.Execute := TRUE;
+ELSE
+  g_FReset.Execute := FALSE;   
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

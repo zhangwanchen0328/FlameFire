@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_MiddleAxisMoveDetection" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Rtring">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="dMiddleAvoidAxisPosDetection">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中卡避让轴位置检测]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMiddleAvoidBackAxisPosDetection">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0.5"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[中卡避让轴后退位置检测]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMiddleAvoidAxisBackPosLessThan">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中卡避主卡轴后退坐标小于该位置切割继续]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMiddleAvoidAxisRelSafePos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中卡避让轴相对安全位置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dMiddleAvoidAxisSafePosAllowErrorValue">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="1.0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[中卡避让轴安全位置允许误差值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nCheckState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSaveCheckState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMiddleAvoidAxisForward">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中卡轴前进标志]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMiddleAvoidAxisbackward">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中卡轴后退标志]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring(CLK := g_bMiddleAvoidAxisM317Enbale);
+IF Rtring.Q THEN
+  IF M.PARAMETER_P[317] = 1.0 THEN (*检测中卡位置*)
+    g_bMiddleAvoidZCannotMoveAlarm := FALSE;
+    IF M.PARAMETER_Q[317] = 0.0 THEN(*0:前进检测是否小于设置的坐标值报警*)
+      bMiddleAvoidAxisForward := TRUE;
+      bMiddleAvoidAxisbackward := FALSE;(*1:后退检测是否大于0报警*)
+    ELSIF M.PARAMETER_Q[317] = 1.0 THEN
+      bMiddleAvoidAxisForward := FALSE;
+      bMiddleAvoidAxisbackward := TRUE;
+    END_IF;
+    nCheckState := 10;
+  ELSIF M.PARAMETER_P[317] = 2.0 THEN(*检测主卡后退位置*)
+    nCheckState := 100;
+  ELSIF M.PARAMETER_P[317] = 3.0 THEN(*检测主卡绝对运动完成*)
+    nCheckState := 20;
+  ELSIF M.PARAMETER_P[317] = 4.0 THEN(*检测中卡绝对运动完成*)
+    nCheckState := 30;  
+  ELSIF M.PARAMETER_P[317] = 10.0 THEN (*检测中卡位置是不是在安全位置或者0位上 不在就报警*)  
+    g_bMiddleAvoidZCannotMoveAlarm := FALSE;
+    nCheckState := 200;
+  END_IF;
+  g_bMiddleAvoidAxisM317Enbale := FALSE;
+END_IF;
+
+CASE nCheckState OF
+  0:
+	nCheckState := 0;
+  10:
+	IF bMiddleAvoidAxisForward THEN
+		IF g_dAntiRejection5Coordinate <= dMiddleAvoidAxisPosDetection-0.5 THEN
+		  g_bMiddleAvoidZCannotMoveAlarm := TRUE;
+		  nCheckState := 0;
+		ELSE
+		  M.ENABLE[317] := 0;
+		  nCheckState := 0;
+		END_IF;
+    ELSE
+		IF g_dAntiRejection5Coordinate >= dMiddleAvoidBackAxisPosDetection THEN
+		  g_bMiddleAvoidZCannotMoveAlarm := TRUE;
+		  nCheckState := 0;
+		ELSE
+		  M.ENABLE[317] := 0;
+		  nCheckState := 0;
+		END_IF;
+    END_IF;
+  20:
+	IF g_bAntiRejection4AbsDone THEN
+      M.ENABLE[317] := 0;
+      nCheckState := 0;
+    END_IF;
+  30:
+	IF g_bAntiRejection5AbsDone THEN
+      M.ENABLE[317] := 0;
+      nCheckState := 0;
+    END_IF;
+  
+  100:
+	IF g_dAntiRejection4Coordinate <= dMiddleAvoidAxisBackPosLessThan THEN
+		  M.ENABLE[317] := 0;
+    END_IF;
+  200:
+    IF (0.0+dMiddleAvoidAxisSafePosAllowErrorValue >=g_dAntiRejection5Coordinate AND  g_dAntiRejection5Coordinate >= 0.0-dMiddleAvoidAxisSafePosAllowErrorValue) OR 
+      (dMiddleAvoidAxisRelSafePos+dMiddleAvoidAxisSafePosAllowErrorValue >=g_dAntiRejection5Coordinate AND g_dAntiRejection5Coordinate >= dMiddleAvoidAxisRelSafePos-dMiddleAvoidAxisSafePosAllowErrorValue) THEN
+      g_bMiddleAvoidZCannotMoveAlarm := FALSE;
+      nCheckState := 0; 
+      M.ENABLE[317] := 0;
+    ELSE
+      IF g_bIsConfigMiddleAvoidAxis2 AND NOT g_bIsConfigMiddleAvoidAxis1 THEN
+        nSaveCheckState:=nCheckState; 
+        g_bMiddleAvoidZCannotMoveAlarm := TRUE;
+        nCheckState := 0;  
+      ELSE
+        g_bMiddleAvoidZCannotMoveAlarm := FALSE;
+        nCheckState := 0; 
+        M.ENABLE[317] := 0;
+      END_IF;  
+    END_IF;  
+END_CASE;
+
+IF g_bPlcStartBuffer THEN
+  nCheckState:=nSaveCheckState;
+END_IF;
+IF g_bPlcPauseBuffer THEN
+  nSaveCheckState := nCheckState;
+  
+END_IF;
+IF g_bPlcResetBuffer THEN
+  nCheckState := 0;
+  nSaveCheckState:= 0;
+  g_bMiddleAvoidAxisM317Enbale := FALSE;
+  M.ENABLE[317] := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[零尾料避让检测]]></xhtml:p>
+  </documentation>
+</pou>

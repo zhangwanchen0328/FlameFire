@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FUN_FMOD" pouType="function">
+  <interface>
+    <returnType>
+      <LREAL/>
+    </returnType>
+    <inputVars>
+      <variable name="InputVar">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="LocalVar1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="LocalVar2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="LocalVar3">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="LocalVar4">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="bVar">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </inputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+IF bVar THEN
+LocalVar1 := LREAL_TO_DINT(InputVar);
+LocalVar2 := InputVar - DINT_TO_LREAL(LocalVar1);
+LocalVar3 := MOD(LocalVar1,90);
+LocalVar4 := LocalVar2 + DINT_TO_LREAL(LocalVar3);
+
+IF LocalVar4 > 0.0 THEN
+  LocalVar4 := LocalVar4 -90.0;
+END_IF;  
+FUN_FMOD := LocalVar4;
+
+ELSE
+LocalVar1 := LREAL_TO_DINT(InputVar);
+LocalVar2 := InputVar - DINT_TO_LREAL(LocalVar1);
+LocalVar3 := MOD(LocalVar1,360);
+LocalVar4 := LocalVar2 + DINT_TO_LREAL(LocalVar3);
+
+FUN_FMOD := LocalVar4;  
+  
+END_IF;  ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

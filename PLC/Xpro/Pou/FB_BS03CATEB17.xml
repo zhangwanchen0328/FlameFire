@@ -1,0 +1,314 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BS03CATEB17" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="ToFAlarm203">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm204">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm205">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm206">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm210">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm224">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm225">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm297">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm318">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm319">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm320">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ToFAlarm347">
+        <type>
+          <derived name="TOF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[报警延时取消]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="AheadCutTemperAct">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[切割温度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDewPointTemper">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[露点报警温]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bTopProtectWindowTemSensor">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[有无上保护镜温度传感器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bFocusLensTemSensor">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[有无聚焦镜镜温度传感器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bBottomProtectWindowTemSensor">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[有无下保护镜温度传感器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCavityTemSensor">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[有无腔体温度传感器]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDewPointTemSensor">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[有无露点温度传感器]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*头子PID识别: 03CAT:EB17=60183,BM110E:EB36 = 60214*)
+CASE g_nCutAheadPID OF
+  60183:
+    bTopProtectWindowTemSensor := FALSE;     
+    bFocusLensTemSensor := FALSE;
+    bBottomProtectWindowTemSensor := TRUE;
+    bCavityTemSensor := FALSE;
+    bDewPointTemSensor := FALSE;
+  60214:
+    bTopProtectWindowTemSensor := FALSE;     
+    bFocusLensTemSensor := FALSE;
+    bBottomProtectWindowTemSensor := FALSE;
+    bCavityTemSensor := FALSE;
+    bDewPointTemSensor := FALSE;   
+END_CASE;
+(*上保护镜温度提示*)
+IF g_niBS12KTopProtectiveWindowTemper > g_nProtectiveWindowTipsTemperHMI AND g_bBSKEProtectLensTemperAlarmEnable AND bTopProtectWindowTemSensor THEN
+  g_Alarm.alarmArray[435] := 1146;   
+  (*g_Alarm.alarmValueArray[308] := INT_TO_REAL(g_niBS12KTopProtectiveWindowTemper)/100.0;  *)
+ELSE
+   g_Alarm.alarmArray[435] := 0; 
+END_IF; 
+(*聚焦镜温度提示*)
+IF g_niBS12KFocusLensTemperature > g_nProtectiveWindowTipsTemperHMI AND g_bBSKEProtectLensTemperAlarmEnable AND bFocusLensTemSensor THEN
+  g_Alarm.alarmArray[436] := 1147; 
+ (* g_Alarm.alarmValueArray[309] := INT_TO_REAL(g_niBS12KFocusLensTemperature)/100.0;  *)
+ELSE
+  g_Alarm.alarmArray[436] := 0; 
+END_IF;
+(*下保护镜温度提示*)
+IF g_niBS12KBottomProtectiveWindowTemper > g_nProtectiveWindowTipsTemperHMI AND g_bBSKEProtectLensTemperAlarmEnable AND bBottomProtectWindowTemSensor THEN
+ g_Alarm.alarmArray[437] := 1148; 
+  (*g_Alarm.alarmValueArray[310] := INT_TO_REAL(g_niBS12KBottomProtectiveWindowTemper)/100.0;  *)
+ELSE
+  g_Alarm.alarmArray[437] := 0; 
+END_IF; 
+(*腔体温度提示*)
+IF g_niBS12KCavityTemperature > g_nCavityTipsTemperHMI AND g_bClosedCavityTemperatureAlarm_BS12K AND bCavityTemSensor THEN
+  g_Alarm.alarmArray[438] := 1149;  
+  (*g_Alarm.alarmValueArray[311] := INT_TO_REAL(g_niBS12KCavityTemperature)/100.0; *) 
+ELSE
+  g_Alarm.alarmArray[438] := 0;  
+END_IF;
+
+(*上保护镜温度报警*)
+ToFAlarm203(IN := g_niBS12KTopProtectiveWindowTemper > g_nProtectiveWindowAlarmTemperHMI, PT := T#1s); 
+IF ToFAlarm203.Q AND g_bBSKEProtectLensTemperAlarmEnable AND bTopProtectWindowTemSensor THEN
+  g_Alarm.alarmArray[358] := 1086;  
+ELSE
+  g_Alarm.alarmArray[358] := 0; 
+END_IF;
+  (*腔体温度报警*)
+ToFAlarm204(IN := g_niBS12KCavityTemperature > g_nCavityAlarmTemperHMI, PT := T#1s); 
+IF ToFAlarm204.Q AND g_bClosedCavityTemperatureAlarm_BS12K AND bCavityTemSensor THEN
+  g_Alarm.alarmArray[359] := 1087;  
+ELSE
+ g_Alarm.alarmArray[359] := 0; 
+END_IF;
+(*聚焦镜温度报警*)
+ToFAlarm205(IN := g_niBS12KFocusLensTemperature > g_nProtectiveWindowAlarmTemperHMI, PT := T#1s); 
+IF ToFAlarm205.Q AND g_bBSKEProtectLensTemperAlarmEnable AND bFocusLensTemSensor THEN
+  g_Alarm.alarmArray[363] := 1091;
+ELSE
+  g_Alarm.alarmArray[363] := 0;
+END_IF;
+(*下保护镜温度IW1.030报警*)
+ToFAlarm206(IN := g_niBS12KBottomProtectiveWindowTemper > g_nProtectiveWindowAlarmTemperHMI, PT := T#1s);   
+IF ToFAlarm206.Q AND g_bBSKEProtectLensTemperAlarmEnable AND bBottomProtectWindowTemSensor THEN
+  g_Alarm.alarmArray[360] := 1088;  
+ELSE
+  g_Alarm.alarmArray[360] := 0; 
+END_IF; 
+ 
+(*上保护镜温升报警、提示:上保护镜温度-腔体温度*)
+g_nTopProtectiveWindowTemperRise := g_niBS12KTopProtectiveWindowTemper - g_niBS12KCavityTemperature;
+ToFAlarm318(IN := g_nTopProtectiveWindowTemperRise > g_nProtectiveWindowTemperAlarmRiseHMI, PT := T#1s); 
+IF ToFAlarm318.Q AND g_bBSKEProtectLensTemperAlarmEnable AND bCavityTemSensor THEN
+   g_Alarm.alarmArray[439] := 1150;
+  (* g_Alarm.alarmValueArray[318] := INT_TO_REAL(g_nTopProtectiveWindowTemperRise)*0.01;*)
+ELSIF g_nTopProtectiveWindowTemperRise > g_nProtectiveWindowTemperTipsRiseHMI AND g_bBSKEProtectLensTemperAlarmEnable AND bCavityTemSensor THEN
+   g_Alarm.alarmArray[439] := 1151;
+   (*g_Alarm.alarmValueArray[318] := INT_TO_REAL(g_nTopProtectiveWindowTemperRise)*0.01;*)
+ELSE
+  g_Alarm.alarmArray[439] := 0;
+END_IF;
+(*下保护镜温升报警、提示:下保护镜温度-腔体温度*)
+g_nBottomProtectiveWindowTemperRise := g_niBS12KBottomProtectiveWindowTemper - g_niBS12KCavityTemperature;
+ToFAlarm319(IN := g_nBottomProtectiveWindowTemperRise > g_nProtectiveWindowTemperAlarmRiseHMI, PT := T#1s); 
+IF ToFAlarm319.Q AND g_bBSKEProtectLensTemperAlarmEnable AND bCavityTemSensor THEN
+   g_Alarm.alarmArray[440] := 1152;
+   (*g_Alarm.alarmValueArray[319] := INT_TO_REAL(g_nBottomProtectiveWindowTemperRise)*0.01;*)
+ELSIF g_nBottomProtectiveWindowTemperRise > g_nProtectiveWindowTemperTipsRiseHMI AND g_bBSKEProtectLensTemperAlarmEnable AND bCavityTemSensor THEN
+  g_Alarm.alarmArray[440] := 1153;
+   (*g_Alarm.alarmValueArray[319] := INT_TO_REAL(g_nBottomProtectiveWindowTemperRise)*0.01;*)
+ELSE
+  g_Alarm.alarmArray[440] := 0;
+END_IF;
+(*聚焦镜温升报警、提示:聚焦镜温度-腔体温度*)
+g_nFocusLensTemperatureRise := g_niBS12KFocusLensTemperature - g_niBS12KCavityTemperature;
+ToFAlarm320(IN := g_nFocusLensTemperatureRise > g_nProtectiveWindowTemperAlarmRiseHMI, PT := T#1s);
+IF ToFAlarm320.Q AND g_bBSKEProtectLensTemperAlarmEnable AND bCavityTemSensor THEN
+   g_Alarm.alarmArray[441] := 1154;
+   (*g_Alarm.alarmValueArray[320] := INT_TO_REAL(g_nFocusLensTemperatureRise)*0.01;*)
+ELSIF g_nFocusLensTemperatureRise > g_nProtectiveWindowTemperTipsRiseHMI AND g_bBSKEProtectLensTemperAlarmEnable AND bCavityTemSensor THEN
+   g_Alarm.alarmArray[441] := 1155;
+   (*g_Alarm.alarmValueArray[320] := INT_TO_REAL(g_nFocusLensTemperatureRise)*0.01;*)
+ELSE
+  g_Alarm.alarmArray[441] := 0;
+END_IF;
+
+(*切割气压IW1.036*)
+g_nAheadCutGasPressureAct := INT_TO_LREAL(g_niBS12KCuttingGasPressure)/100.0;
+(*切割气温度IW0.69*)
+AheadCutTemperAct := INT_TO_LREAL(g_biBSKECutTemper)/100.0;
+
+(*电机故障代码*)  
+ToFAlarm210(IN := g_niCATFocusMotorErrorCode <>0, PT := T#1s); 
+IF ToFAlarm210.Q THEN
+   g_Alarm.alarmArray[361] := 1089; 
+ELSE
+   g_Alarm.alarmArray[361] := 0; 
+END_IF;
+(*测碰撞g_biBS12KEbodyIX2_114*)
+ToFAlarm225(IN := g_biBS12KEbody, PT := T#1s);
+IF ToFAlarm225.Q THEN
+  g_Alarm.alarmArray[430] := 1141;
+ELSE
+  g_Alarm.alarmArray[430] := 0;
+END_IF;
+(*下保护镜温度传感器故障g_biBS12KELink_DownIX2_123*)
+ToFAlarm224(IN := g_biBS12KELink_Down, PT := T#1s);
+IF ToFAlarm224.Q THEN
+  g_Alarm.alarmArray[429] := 1140; 
+ELSE
+  g_Alarm.alarmArray[429] := 0;
+END_IF;
+(*切割传感器故障g_biBS12KELink_CutIX2_127*)
+ToFAlarm297(IN := g_biBS12KELink_Cut, PT := T#1s); 
+IF ToFAlarm297.Q THEN
+  g_Alarm.alarmArray[434] := 1145;
+ELSE
+	g_Alarm.alarmArray[434] := 0; 
+END_IF;
+(*露点报警,当镜片温度<露点报警温度,会结露*)
+nDewPointTemper := g_niBS12KEHum + g_bDewPointOffsetHMI;
+ToFAlarm347(IN:=nDewPointTemper>g_niBS12KTopProtectiveWindowTemper OR nDewPointTemper>g_niBS12KFocusLensTemperature OR nDewPointTemper>g_niBS12KBottomProtectiveWindowTemper,PT:= T#1s);
+IF ToFAlarm347.Q AND g_bDewPointAlarmEnableHMI AND bDewPointTemSensor THEN
+ g_Alarm.alarmArray[445] := 1159;
+ELSE
+  g_Alarm.alarmArray[445] := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

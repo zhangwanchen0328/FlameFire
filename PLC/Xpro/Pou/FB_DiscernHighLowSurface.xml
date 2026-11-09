@@ -1,0 +1,327 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DiscernHighLowSurface" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bHighLowSurfaceEnableM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[高地面识别使能控制，引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bFlatNumEnableM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[随动到位，记录Z轴坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bHighLowSurfaceCloseM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[高地面识别使能关闭，引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fFlatNumM">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[平面数，引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_foHighLowIsrotate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fZCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fHighLowAngle">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[高低面旋转补偿]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="fZAxisHeightSurfaceA">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0.0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[标记面A的高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fZAxisHeightSurfaceB">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="0.0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[标记面B的高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nHighLowSurfaceState">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[高地面状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger0">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bDiscernHeightUpLiftM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boDiscernHeightDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Axis_Z">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_dSquareLenght">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dSquareWidth">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fZRelDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fLiftCoord">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fZRelVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bZRelExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZRelDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bZUpLift">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dMaxHeight">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dUpLiftheight">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dLiftVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dHeightSurFaceA">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[A面高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dHeightSurFaceB">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[B面高度]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger(CLK := g_bHighLowSurfaceEnableM);
+R_Trigger0(CLK := g_bFlatNumEnableM);
+R_Trigger1(CLK := g_bHighLowSurfaceCloseM);
+R_Trigger2(CLK := g_bDiscernHeightUpLiftM);
+R_Trigger3(CLK := g_bContinueCutNoUseDisSurfaceEnableM);
+
+IF R_Trigger.Q THEN
+  nHighLowSurfaceState := 1;
+  g_bHighLowSurfaceEnableM := FALSE;
+END_IF;
+
+IF R_Trigger1.Q THEN
+  nHighLowSurfaceState := 2;
+  g_bHighLowSurfaceCloseM := FALSE;
+END_IF;
+
+IF R_Trigger2.Q THEN
+  bZUpLift := TRUE;
+  g_bZRelExecute := FALSE;
+  g_bZRelDone := FALSE;
+  g_boDiscernHeightDone := FALSE;
+  g_bDiscernHeightUpLiftM := FALSE;
+END_IF;
+
+IF R_Trigger3.Q THEN
+  nHighLowSurfaceState := 20;
+  g_bContinueCutNoUseDisSurfaceEnableM := FALSE;
+END_IF;
+CASE nHighLowSurfaceState OF
+  0:
+  nHighLowSurfaceState := 0;
+  1:
+    IF R_Trigger0.Q THEN
+      IF LREAL_TO_INT(g_fFlatNumM) = 1 THEN
+        fZAxisHeightSurfaceA := g_fZCoordinate;
+        dHeightSurFaceA := fZAxisHeightSurfaceA;
+      ELSIF LREAL_TO_INT(g_fFlatNumM) = 2 THEN
+        fZAxisHeightSurfaceB := g_fZCoordinate;
+        dHeightSurFaceB := fZAxisHeightSurfaceB;
+      END_IF;
+      g_bFlatNumEnableM := FALSE;
+    END_IF;
+    
+    IF g_bPlcPauseBuffer THEN
+      nHighLowSurfaceState := 10;
+    END_IF;
+  2:
+    IF fZAxisHeightSurfaceA-fZAxisHeightSurfaceB >= 0.0 THEN
+      g_foHighLowIsrotate:=0.0;(*A面比B面高，不旋转*)
+      g_fHighLowAngle := 90.0;
+    ELSE
+      g_foHighLowIsrotate:=1.0;
+    END_IF;
+    nHighLowSurfaceState := 0;
+  10:
+    IF g_bPlcStartBuffer THEN
+      nHighLowSurfaceState := 1;
+    END_IF;
+  20:
+  IF dHeightSurFaceA - dHeightSurFaceB >= 0.0 THEN
+    g_foHighLowIsrotate:=0.0;(*A面比B面高，不旋转*)
+    g_fHighLowAngle := 90.0;
+  ELSE
+    g_foHighLowIsrotate:=1.0;
+  END_IF;
+  nHighLowSurfaceState := 0;
+END_CASE;
+
+IF bZUpLift THEN
+  dMaxHeight := SQRT(g_dSquareLenght*g_dSquareLenght/4.0 + g_dSquareWidth*g_dSquareWidth/4.0) - MIN(g_dSquareLenght,g_dSquareWidth)/2.0;
+
+  IF (Axis_Z.NCTOPLC.ACTPOS + dUpLiftheight + dMaxHeight) <= g_fLiftCoord THEN
+    g_fZRelDistance := dUpLiftheight + dMaxHeight;
+  ELSIF (Axis_Z.NCTOPLC.ACTPOS + dUpLiftheight + dMaxHeight) > g_fLiftCoord AND (Axis_Z.NCTOPLC.ACTPOS + dMaxHeight) < g_fLiftCoord THEN
+    g_fZRelDistance := g_fLiftCoord - Axis_Z.NCTOPLC.ACTPOS;
+  ELSIF (Axis_Z.NCTOPLC.ACTPOS + dMaxHeight) >= g_fLiftCoord THEN
+    g_fZRelDistance := dMaxHeight;
+  END_IF;
+  g_fZRelVelocity := dLiftVelocity;
+  g_bZRelExecute := TRUE;
+  
+  IF g_bZRelDone THEN
+    g_bZRelExecute := FALSE;
+    g_boDiscernHeightDone := TRUE;
+    M.ENABLE[221] := 0;
+    bZUpLift := FALSE;
+  END_IF;
+END_IF;
+
+IF g_bPlcResetBuffer THEN
+  nHighLowSurfaceState := 0;
+  fZAxisHeightSurfaceA :=0.0;
+  fZAxisHeightSurfaceB :=0.0;
+  g_foHighLowIsrotate:=0.0;
+  g_fHighLowAngle := 0.0;
+  g_boDiscernHeightDone := FALSE;
+  bZUpLift := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[区分矩形管的高低面]]></xhtml:p>
+  </documentation>
+</pou>

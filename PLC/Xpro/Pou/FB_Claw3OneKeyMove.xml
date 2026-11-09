@@ -1,0 +1,364 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Claw3OneKeyMove" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAvoidOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAvoidDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY2AbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY3AbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY2AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY3AbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fY2AbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fY3AbsVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fY2AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fY3AbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Axis_Y2">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Axis_Y3">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_dY2ZeroDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y2轴零位和Y轴零位距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dY2Y3ZeroDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y2轴零位和Y3轴零位距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dY2CoorInY">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y2轴在Y轴上坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_dY3CoorInY">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Y3轴在Y轴上坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_diYMachineCoordinate">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dY1Y2MinDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dY2Y3MinDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fY2AvoidVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fY3AvoidVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_biOneKeyEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bOneKeyEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boOneKeyDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bOneKeyDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fiOneKeyClaw">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fOneKeyClaw">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_fiOneKeyPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fOneKeyPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger_autotoload">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nY2State">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nY3State">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nUpdateState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dY2TargetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dY3TargetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dY2TargetPosInY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dY3TargetPosInY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nOneKeyClaw">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dOneKeyPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger(CLK := g_biOneKeyEnable OR g_bOneKeyEnable OR g_bClaw3OneKeyEnableM);
+R_Trigger_autotoload(CLK := g_bClaw3ImformUpdateM);
+IF NOT g_bOneKeyEnable THEN
+  g_bOneKeyDone := FALSE;
+END_IF;
+
+IF R_Trigger_autotoload.Q THEN
+  nUpdateState := 1;
+  g_bClaw3ImformUpdateM := FALSE;
+  
+END_IF;
+
+IF R_Trigger.Q THEN
+  g_boOneKeyDone := FALSE;
+  g_bOneKeyDone := FALSE;
+  IF g_bOneKeyEnable THEN
+    nOneKeyClaw := g_fOneKeyClaw;
+    dOneKeyPos := g_fOneKeyPos;
+  ELSIF g_biOneKeyEnable THEN
+    nOneKeyClaw := LREAL_TO_INT(g_fiOneKeyClaw);
+    dOneKeyPos := g_fiOneKeyPos;
+  ELSIF g_bClaw3OneKeyEnableM THEN
+    nOneKeyClaw := LREAL_TO_INT(g_fClaw3OneKeyClawM);
+    dOneKeyPos := g_fClaw3OneKeyPosM;
+    g_bClaw3OneKeyEnableM := FALSE;
+  END_IF;
+  IF nOneKeyClaw = 2 THEN
+    dY2TargetPos := dOneKeyPos;
+    IF nY2State = 0 AND nY3State = 0 THEN
+      dY2TargetPosInY := dY2TargetPos + g_dY2ZeroDistance;
+      IF (dY2TargetPosInY - g_diYMachineCoordinate > g_dY1Y2MinDis) AND
+        (g_dY3CoorInY - dY2TargetPosInY > g_dY2Y3MinDis)  THEN
+        nY2State := 1;    
+      ELSE
+        g_bOneKeyDone := TRUE;
+        g_boOneKeyDone := TRUE;
+        M.ENABLE[504] := 0;
+      END_IF;
+    END_IF;
+  ELSIF nOneKeyClaw = 3 THEN    
+     dY3TargetPos := dOneKeyPos;
+    IF nY2State = 0 AND nY3State = 0 THEN
+      dY3TargetPosInY := dY3TargetPos + g_dY2ZeroDistance + g_dY2Y3ZeroDistance;
+      IF dY3TargetPosInY - g_dY2CoorInY > g_dY2Y3MinDis THEN
+        nY3State := 1;
+      ELSE
+        g_bOneKeyDone := TRUE;
+        g_boOneKeyDone := TRUE;
+        M.ENABLE[504] := 0;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+CASE nY2State OF
+  0:
+    nY2State := 0;
+  1:
+    g_bAvoidOpen := TRUE;
+    nY2State := 10;
+  10:
+    IF g_bAvoidDone THEN
+      nY2State := 20;
+      g_bY2AbsDone:=FALSE;
+      g_bY2AbsExecute := FALSE;
+    END_IF;
+  20:
+    g_bY2AbsExecute := TRUE;
+    g_fY2AbsVelocity := g_fY2AvoidVel;
+    g_fY2AbsPosition := dY2TargetPos;
+    IF g_bY2AbsDone THEN
+      g_bY2AbsExecute := FALSE;
+      g_fY2AbsVelocity := 0.0;
+      g_boOneKeyDone := TRUE;
+      g_bOneKeyDone := TRUE;
+      M.ENABLE[504] := 0;
+      nY2State := 0;
+    END_IF;
+END_CASE;
+
+CASE nY3State OF
+  0:
+    nY3State := 0;
+  1:
+    g_bAvoidOpen := TRUE;
+    nY3State := 10;
+  10:
+    IF g_bAvoidDone THEN
+      nY3State := 20;
+      g_bY3AbsDone:=FALSE;
+      g_bY3AbsExecute := FALSE;
+    END_IF;
+  20:
+    g_bY3AbsExecute := TRUE;
+    g_fY3AbsVelocity := g_fY3AvoidVel;
+    g_fY3AbsPosition := dY3TargetPos;
+    IF g_bY3AbsDone THEN
+      g_bY3AbsExecute := FALSE;
+      g_fY3AbsVelocity := 0.0;
+      g_boOneKeyDone := TRUE;
+      g_bOneKeyDone := TRUE;
+      M.ENABLE[504] := 0;
+      nY3State := 0;
+    END_IF;
+END_CASE;
+
+CASE nUpdateState OF
+  0:
+    nUpdateState := 0;
+  1:
+    g_dInformHmiUpdateValue := 4.0;
+    nUpdateState := 10;
+  10:
+    IF g_dInformHmiUpdateValue=0.0 THEN
+      nUpdateState := 0;
+      M.ENABLE[511] := 0; 
+    END_IF;  
+END_CASE;
+
+
+
+IF g_bPlcResetBuffer THEN
+  nY2State := 0;
+  nY3State := 0;
+  nUpdateState := 0;
+  g_fY2AbsVelocity := 0.0;
+  g_fY3AbsVelocity := 0.0;
+  g_bY2AbsExecute := FALSE;
+  g_bY3AbsExecute := FALSE;
+  g_bOneKeyEnable := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[三卡盘 Y2Y3一键移动FB]]></xhtml:p>
+  </documentation>
+</pou>

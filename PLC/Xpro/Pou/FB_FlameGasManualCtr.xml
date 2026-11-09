@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FlameGasManualCtr" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="nCombustibleManualState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="R_OpenGas">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_CloseGas">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_CloseHMI">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="TonOpenGas">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nOxidizingManualState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="R_OpenGas2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_CloseGas2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="TonOpenGas2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_OpenGas(CLK := g_bOpenManualCombustibleGas);
+R_CloseGas(CLK := g_bCloseManualCombustibleGas);
+R_CloseHMI(CLK := g_bCloseFlameManualHMI);
+
+IF R_CloseHMI.Q THEN
+  nCombustibleManualState := 25;
+  nOxidizingManualState := 25;
+  g_bCloseFlameManualHMI := FALSE;
+END_IF;
+
+IF R_OpenGas.Q THEN
+  g_bOpenManualCombustibleGas := FALSE;
+  nCombustibleManualState := 5;
+END_IF;
+IF R_CloseGas.Q THEN
+  g_bCloseManualCombustibleGas := FALSE;
+  nCombustibleManualState := 25;
+END_IF;
+
+CASE nCombustibleManualState OF
+  0:
+    nCombustibleManualState := 0;
+  5:
+    TonOpenGas(IN := FALSE);
+    nCombustibleManualState := 10;
+  10:
+    g_dCombustible_pressure := g_dManualCombustiblePre;
+    g_bCombustibleGas_enable := TRUE;
+    nCombustibleManualState := 20;
+  20:
+    TonOpenGas(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_TManualCombustibleTime)));
+    IF TonOpenGas.Q THEN
+      TonOpenGas(IN := FALSE);
+      nCombustibleManualState := 25;
+    END_IF;
+  25:
+    g_bCombustibleGas_enable := FALSE;
+    nCombustibleManualState := 0; 
+END_CASE;
+
+
+
+R_OpenGas2(CLK := g_bOpenManualOxidizingGas);
+R_CloseGas2(CLK := g_bCloseManualOxidizingGas);
+IF R_OpenGas2.Q  THEN
+  g_bOpenManualOxidizingGas := FALSE;
+  nOxidizingManualState := 5;
+END_IF;
+IF R_CloseGas2.Q THEN
+  g_bCloseManualOxidizingGas := FALSE;
+  nOxidizingManualState := 25;
+END_IF;
+
+CASE nOxidizingManualState OF
+  0:
+    nOxidizingManualState := 0;
+  5:
+    TonOpenGas2(IN := FALSE);
+    nOxidizingManualState := 10;
+  10:
+    g_dOxidizing_pressure := g_dManualOxidizingPre;
+    g_bOxidizingGas_enable := TRUE;
+    nOxidizingManualState := 20;
+  20:
+    TonOpenGas2(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(g_TManualOxidizingTime)));
+    IF TonOpenGas2.Q THEN
+      TonOpenGas2(IN := FALSE);
+      nOxidizingManualState := 25;
+    END_IF;
+  25:
+    g_bOxidizingGas_enable := FALSE;
+    nOxidizingManualState := 0;
+END_CASE;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

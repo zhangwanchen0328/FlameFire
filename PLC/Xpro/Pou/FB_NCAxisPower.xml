@@ -1,0 +1,245 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_NCAxisPower" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="F_PowerOff">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrrigerPowerON">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <inputVars>
+      <variable name="AxisName">
+        <type>
+          <derived name="REF_TO AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="Enable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="HomeMode">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="HomeSignal">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="AxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="AxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="bAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bPower">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Axis_power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+    </localVars>
+    <outputVars>
+      <variable name="Error">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+      <variable name="OutBrake">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </outputVars>
+    <localVars>
+      <variable name="TonDelayBrakeOpen">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonPowerOFF">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nAxisPowerReady">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="nAxisPowerSwitchOn">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="nAxisPowerOpeartion">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="nAxisnDefault">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="nAxisnDefault0">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="bDefalut">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="byteFlag1">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="byteFlag2">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="byteFlag3">
+        <type>
+          <DWORD/>
+        </type>
+      </variable>
+      <variable name="bFirstOK">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSecondOK">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bThridOK">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nPowerId">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+F_PowerOff(CLK := Enable);
+ RTrrigerPowerON(CLK := Enable);
+
+IF RTrrigerPowerON.Q THEN
+  bPower := TRUE;
+  nPowerId := 100;
+  TonPowerOFF(IN := FALSE);
+ELSIF F_PowerOff.Q THEN
+  TonPowerOFF(IN := FALSE);
+  nPowerId := 200;
+END_IF;
+
+bAxisPosLimit := AxisPosLimit;
+bAxisNegLimit := AxisNegLimit;
+(*NC轴在选择限位回零的情况下，需在回零过程中，屏蔽掉相应的限位报警*)
+IF  AxisName^.NCTOPLC.AXISSTATE =5 AND HomeSignal <>0 AND HomeMode <> 1 THEN
+	 bAxisPosLimit :=TRUE;
+	 bAxisNegLimit := TRUE;
+ELSE
+  bAxisPosLimit := NOT AxisPosLimit;
+  bAxisNegLimit := NOT AxisNegLimit;
+END_IF;
+
+
+
+  (*轴下使能逻辑：先抱闸,延时100s，下使能*)
+case nPowerId OF
+      0:
+      ;
+    100:
+      IF bFirstOK AND bSecondOK AND bThridOK THEN (*状态字后3位都为1 才代表上使能了*)
+        nPowerId := 150;
+      END_IF;   
+    150:
+      TonDelayBrakeOpen(IN := TRUE, PT := T#800ms);   
+      IF TonDelayBrakeOpen.Q THEN
+        OutBrake := TRUE;(*只要驱动器上使能了，就解除抱闸*)
+        nPowerId := 500;
+        TonDelayBrakeOpen(IN:=FALSE);
+      END_IF;    
+    200: (*先输出抱闸信号，然后延时500ms下使能*)
+        OutBrake := FALSE;
+        TonPowerOFF(IN := TRUE, PT := T#500ms);
+        IF TonPowerOFF.Q THEN
+           nPowerId := 300; 
+        END_IF;
+    300:
+       bPower := FALSE;
+        nPowerId := 500;
+    500:
+       bPower := Enable;(*最后统一进的状态机，防止界面狂点上下使能，导致实际使能状态和界面显示不一致的情况*)
+END_CASE;
+  
+(*Z轴状态字判断*)
+  nAxisnDefault := SHL(1,3);
+  nAxisnDefault0 := AND(INT_TO_DWORD(AxisName^.NcToPlc.DRIVESTATE),nAxisnDefault);
+  bDefalut := DWORD_TO_BOOL(nAxisnDefault0);
+  
+  byteFlag1 := SHL(1,0);
+  byteFlag2 := SHL(1,1);
+  byteFlag3 := SHL(1,2);
+  bFirstOK := DWORD_TO_BOOL(AND(INT_TO_DWORD(AxisName^.NcToPlc.DRIVESTATE),byteFlag1));
+  bSecondOK := DWORD_TO_BOOL(AND(INT_TO_DWORD(AxisName^.NcToPlc.DRIVESTATE),byteFlag2));
+  bThridOK := DWORD_TO_BOOL(AND(INT_TO_DWORD(AxisName^.NcToPlc.DRIVESTATE),byteFlag3));
+  
+  IF bDefalut THEN     (*驱动器报错，抱闸打开*)
+     OutBrake := FALSE;
+     bPower := FALSE;
+  END_IF;
+  
+  
+ Axis_power(
+     ENABLE := bPower(*BOOL*),
+     ENABLEPOSITION := bAxisPosLimit(*BOOL*),
+     ENABLENEGATIVE := bAxisNegLimit(*BOOL*),
+     AXIS := AxisName^(*AXIS_REF*),
+     OUTAXIS => AxisName^(*AXIS_REF*));
+     
+      
+Error := Axis_power.ERRORID; ]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

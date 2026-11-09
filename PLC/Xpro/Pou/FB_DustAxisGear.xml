@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DustAxisGear" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nGearState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bGearDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bGearIn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bGearOut">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dCoordDiff">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCoordMaxDiff">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="20.0"/>
+        </initialValue>
+      </variable>
+      <variable name="nDirect">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="-1.0"/>
+        </initialValue>
+      </variable>
+      <variable name="bGearCheck">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dCoordY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCoordD">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*外部控制耦合方向*)
+IF g_diDustGearDirect =1.0 THEN
+  nDirect := 1.0;
+END_IF;
+IF dCoordMaxDiff <=0.0 THEN
+  dCoordMaxDiff := 20.0;
+END_IF;
+  
+R_Trigger1(CLK := g_biDAxisGearIn OR g_bDAxisGearIn OR bGearIn);
+R_Trigger2(CLK := g_biDAxisGearOut OR g_bDAxisGearOut OR bGearOut);
+IF R_Trigger1.Q THEN
+  IF D_Axis.NCTOPLC.AxisState <> 8 THEN
+    nGearState := 10;
+    g_bDAxisGearDone :=FALSE;
+    g_boDAxisGearDone :=FALSE;
+    bGearDone :=FALSE;
+  END_IF;
+  bGearIn := FALSE;
+END_IF;
+IF R_Trigger2.Q THEN
+  IF D_Axis.NCTOPLC.AxisState = 8 THEN
+    nGearState := 20;
+    g_bDAxisGearDone :=FALSE;                                                                                                                
+    g_boDAxisGearDone :=FALSE;
+    bGearDone :=FALSE;
+    bGearOut :=FALSE;
+  END_IF;
+END_IF;
+CASE nGearState OF
+  0:
+    nGearState :=0;
+  10:
+    DustAxis_GearIn.EXECUTE :=TRUE;
+    DustAxis_GearIn.RATIONUMERATOR := 1.0*nDirect;
+    DustAxis_GearIn.RATIODENOMINATOR := 1;
+    IF DustAxis_GearIn.InGear THEN
+      g_bDAxisGearDone :=TRUE;
+      g_boDAxisGearDone :=TRUE;
+      bGearDone :=TRUE;
+      dCoordY := g_fCurrentCoordYBuffer;
+      dCoordD := D_Axis.NCTOPLC.ACTPOS;
+      dCoordDiff := ABS(g_fCurrentCoordYBuffer - D_Axis.NCTOPLC.ACTPOS);
+      bGearCheck := TRUE;
+      nGearState := 40;
+    END_IF;
+    IF DustAxis_GearIn.Error OR DustAxis_GearIn.CommandAborted THEN
+      DustAxis_GearIn.Execute := FALSE;
+      g_noDAxisGearErrorID := DustAxis_GearIn.ERRORID;
+      g_bDAxisGearInError := TRUE;
+      nGearState := 0;
+    END_IF;
+  20:
+    DustAxis_GearIn.Execute := FALSE;
+    DustAxis_GearOut.Execute := TRUE;
+    IF DustAxis_GearOut.Done THEN
+      DustAxis_GearOut.Execute := FALSE;
+      IF D_Axis.NCTOPLC.AxisState = 2 THEN
+        bGearCheck := FALSE;
+        nGearState := 0;
+      ELSE
+        nGearState := 30;
+      END_IF;
+    END_IF;
+    IF DustAxis_GearOut.Error THEN
+      DustAxis_GearOut.Execute := FALSE;
+      g_bDAxisGearInError := TRUE;
+      bGearCheck := FALSE;
+      nGearState := 0;
+    END_IF;
+  30:
+    DustAxis_Stop.Execute := TRUE;
+    IF DustAxis_Stop.Done THEN
+      DustAxis_Stop.Execute := FALSE;
+      nGearState := 0;
+    END_IF;
+    IF DustAxis_Stop.Commandaborted OR DustAxis_Stop.Error THEN
+      DustAxis_Stop.Execute := FALSE;
+      nGearState := 0;
+    END_IF;
+    bGearCheck := FALSE;
+  40:
+    IF D_Axis.NCTOPLC.AxisState = 8 THEN
+      IF ABS(ABS(g_fCurrentCoordYBuffer-dCoordY)-ABS(D_Axis.NCTOPLC.ACTPOS-dCoordD))> dCoordMaxDiff THEN
+          g_bDAxisGearError := TRUE;
+      END_IF;
+    ELSE
+      bGearCheck := FALSE;
+      nGearState := 0;
+    END_IF;
+END_CASE;
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

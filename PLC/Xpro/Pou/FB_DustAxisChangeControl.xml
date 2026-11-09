@@ -1,0 +1,351 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DustAxisChangeControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="nDust1SetPartNumber">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘1设置的零件判断数量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDust2SetPartNumber">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘2设置的零件判断数量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMachineTest">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[圆弧检测]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_DustForwardCheck">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_DustBackwardCheck">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nCurrentPartNumber">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前记录的零件数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDust1ChangedFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前是否轮到抽尘1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDust2ChangedFlag">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[当前是否轮到抽尘2]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nDust2ChangeState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nDustAxisMoveToDockPostionState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bDustChangeCylUseUpInplace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDustChangeCylUseDownInplace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dNestingDistanceToGo">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dNestingMotionAngle">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dDustAxis1ChangeMoveInadvance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘1提前切换的最小抽尘轴2机床坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDustAxis2ChangeMoveInadvance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[抽尘2提前切换的最小抽尘轴1机床坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*裁切、圆弧检测除外*)
+IF g_bCropStatusFb OR bMachineTest THEN
+  RETURN;
+END_IF;
+Rtring_DustForwardCheck(CLK := g_bAutoChangeDustForwardM);
+Rtring_DustBackwardCheck(CLK := g_bAutoChangeDustBackwardM);
+IF Rtring_DustBackwardCheck.Q THEN
+  g_bAutoChangeDustBackwardM := FALSE;
+  nCurrentPartNumber := nCurrentPartNumber+1.0;
+  nDust2ChangeState := 30;
+  dNestingDistanceToGo := M.PARAMETER_I[282];
+  dNestingMotionAngle := M.PARAMETER_J[282];
+END_IF;
+(*抽尘未到设置数量,切割开始前先控制气缸伸缩
+切换下一个时先去零位丢料,然后去停靠位待出渣
+在切换的过程中不必等到回到零位再控制气缸,根据参数设置的最小切换坐标判断*)
+
+IF Rtring_DustForwardCheck.Q THEN
+  g_bAutoChangeDustForwardM := FALSE;
+  (*抽尘1未到设置数量,切割开始前先把气缸缩回去,然后抽尘轴1运动到抽尘位*)
+  IF NOT bDust1ChangedFlag THEN
+    IF nCurrentPartNumber < nDust1SetPartNumber THEN
+      nDust2ChangeState := 10;
+    ELSE
+      bDust2ChangedFlag := FALSE;
+      nCurrentPartNumber :=0.0;
+      IF nDust2SetPartNumber <>0.0 THEN
+		nDust2ChangeState := 100;
+         bDust1ChangedFlag := TRUE;
+      ELSE
+        nDust2ChangeState := 10;
+      END_IF;
+    END_IF;
+  ELSE
+    IF nCurrentPartNumber < nDust2SetPartNumber THEN
+      nDust2ChangeState := 100;
+    ELSE
+      nCurrentPartNumber :=0.0;
+      IF nDust1SetPartNumber <>0.0 THEN
+		nDust2ChangeState := 10;
+        bDust2ChangedFlag := TRUE;
+        bDust1ChangedFlag := FALSE;
+      ELSE
+        nDust2ChangeState := 100;
+      END_IF;
+    END_IF;
+  END_IF;
+  IF nCurrentPartNumber >= nDust1SetPartNumber AND nCurrentPartNumber >= nDust2SetPartNumber THEN
+    nDust2ChangeState := 0;
+    M.ENABLE[282] :=0;
+  END_IF;
+END_IF;
+
+
+
+
+CASE nDust2ChangeState OF
+  0:
+	nDust2ChangeState := 0;
+  10:(*第一步先把气缸缩回去*)
+	IF bDustChangeCylUseDownInplace THEN
+      IF NOT g_bDoubleDustChangeCylState AND g_CylAllStateUpDate.BoolArr[93] THEN
+        g_bDoubleDustChangeCylDownDone := TRUE;
+      ELSE
+        g_bDoubleDustChangeCylDownDone := FALSE;
+		g_bDoubleDustChangeCylDownControl := TRUE;
+      END_IF;
+    ELSE
+      IF NOT g_bDoubleDustChangeCylState AND g_boDustChangeCylinderDown THEN
+        g_bDoubleDustChangeCylDownDone := TRUE;
+      ELSE
+        g_bDoubleDustChangeCylDownDone := FALSE;
+		g_bDoubleDustChangeCylDownControl := TRUE;
+      END_IF;
+    END_IF;
+    nDust2ChangeState := 15;
+  15:(*第二步气缸缩回完成,抽尘轴1运动到抽尘位*)
+	IF g_bDoubleDustChangeCylDownDone THEN
+      g_boDustAxisAbsDone := FALSE;
+      g_bDustAxisAbsOpenM := TRUE;
+      g_fDustTypeM := 2.0;
+      nDust2ChangeState := 20;
+    END_IF;
+    
+  20:(*等待抽尘1运动到位*)
+	IF  g_boDustAxisAbsDone THEN
+      nDust2ChangeState := 0;
+      M.ENABLE[282] :=0;
+    END_IF;
+  30:(*判断设置数量是否完成,如果都完成就都回到抽尘起始位*)
+    IF dNestingDistanceToGo =0.0 AND dNestingMotionAngle=0.0 THEN
+      g_boDustAxisAbsDone := FALSE;
+      g_bDustAxisAbsOpenM := TRUE;
+      g_fDustTypeM := 1.0;
+      g_bAntiRejection3AbsDone := FALSE;
+      g_fDustAxis2AbsTypeM := 1.0;
+      g_bDustAxis2AbsControlM := TRUE;
+      nDust2ChangeState := 53;
+      nDustAxisMoveToDockPostionState := 0;
+    ELSE
+      IF NOT bDust1ChangedFlag THEN
+		IF nCurrentPartNumber >= nDust1SetPartNumber  THEN
+			g_boDustAxisAbsDone := FALSE;
+			g_bDustAxisAbsOpenM := TRUE;
+			g_fDustTypeM := 1.0;
+			nDust2ChangeState := 31;
+            IF nDust2SetPartNumber <> 0.0 THEN
+				nDustAxisMoveToDockPostionState := 10;
+            ELSE
+				bDust1ChangedFlag := FALSE;
+            END_IF;
+        ELSE
+			nDust2ChangeState := 0;
+			M.ENABLE[282] :=0;
+		END_IF;
+    ELSIF NOT bDust2ChangedFlag THEN
+      IF nCurrentPartNumber >= nDust2SetPartNumber THEN
+			g_bAntiRejection3AbsDone := FALSE;
+			g_fDustAxis2AbsTypeM := 1.0;
+			g_bDustAxis2AbsControlM := TRUE;
+			nDust2ChangeState := 32;
+			IF nDust1SetPartNumber <> 0.0 THEN
+              nDustAxisMoveToDockPostionState := 50;
+            ELSE
+              bDust2ChangedFlag := FALSE;
+            END_IF;
+        ELSE
+			nDust2ChangeState := 0;
+			M.ENABLE[282] :=0;
+		END_IF;
+    END_IF;
+      
+     
+    END_IF;
+  31: (*1.就是抽尘轴2需要提前移动的判断步骤
+  2.判断抽尘轴1的机床坐标是否小于设置的切换最小坐标*)
+  IF nDust2SetPartNumber <> 0.0 THEN
+    IF g_DustAxisCoordinate <= dDustAxis2ChangeMoveInadvance   THEN
+		(*先切换气缸伸出去,然后让抽尘轴2移动到抽尘位*)
+		nDust2ChangeState := 100;
+	END_IF;
+  ELSE
+     nDust2ChangeState := 51;
+  END_IF;
+	
+  32:(*1.就是抽尘轴1需要提前移动的判断步骤
+  2.判断抽尘轴2的机床坐标是否小于设置的切换最小坐标*)
+  IF  nDust1SetPartNumber<> 0.0 THEN
+    	(*先切换气缸伸出去,然后让抽尘轴2移动到抽尘位*)
+      IF g_dAntiRejection3Coordinate <= dDustAxis1ChangeMoveInadvance  THEN
+		nDust2ChangeState := 10;
+		
+	END_IF;
+  ELSE
+    nDust2ChangeState := 52;
+  END_IF;
+	
+	
+  51:
+	IF  g_boDustAxisAbsDone THEN
+      nDust2ChangeState := 0;
+      M.ENABLE[282] :=0;
+    END_IF;
+  52:
+	IF  g_bAntiRejection3AbsDone THEN
+      nDust2ChangeState := 0;
+      M.ENABLE[282] :=0;
+    END_IF;
+  53:
+	IF  g_bAntiRejection3AbsDone AND g_boDustAxisAbsDone THEN
+      nDust2ChangeState := 0;
+      M.ENABLE[282] :=0;
+    END_IF;
+  100:(*第一步先把气缸伸出*)	
+	IF bDustChangeCylUseUpInplace THEN
+      IF  g_bDoubleDustChangeCylState AND g_CylAllStateUpDate.BoolArr[92] THEN
+        g_bDoubleDustChangeCylUpDone := TRUE;
+      ELSE
+        g_bDoubleDustChangeCylUpDone := FALSE;
+		g_bDoubleDustChangeCylUpControl := TRUE;
+      END_IF;
+    ELSE
+      IF g_bDoubleDustChangeCylState AND g_boDustChangeCylinderUp THEN
+        g_bDoubleDustChangeCylUpDone := TRUE;
+      ELSE
+        g_bDoubleDustChangeCylUpDone := FALSE;
+		g_bDoubleDustChangeCylUpControl := TRUE;
+      END_IF;
+    END_IF;
+    nDust2ChangeState := 110;
+  110:(*第二步气缸伸出完成,抽尘轴2运动到抽尘位*)
+	IF g_bDoubleDustChangeCylUpDone THEN
+      g_bAntiRejection3AbsDone := FALSE;
+      g_fDustAxis2AbsTypeM := 2.0;
+      g_bDustAxis2AbsControlM := TRUE;
+      nDust2ChangeState := 120;
+    END_IF;
+  120:
+	IF  g_bAntiRejection3AbsDone THEN
+      nDust2ChangeState := 0;
+      M.ENABLE[282] :=0;
+    END_IF; 
+END_CASE;
+
+
+CASE nDustAxisMoveToDockPostionState OF
+  0:
+  nDustAxisMoveToDockPostionState := 0;
+  10:
+	IF  g_boDustAxisAbsDone THEN
+      g_boDustAxisAbsDone := FALSE;
+      g_bDustAxisAbsOpenM := TRUE;
+      g_fDustTypeM := 3.0;
+      nDustAxisMoveToDockPostionState := 0;
+	END_IF;
+  50:
+	IF  g_bAntiRejection3AbsDone THEN
+      g_bAntiRejection3AbsDone := FALSE;
+      g_fDustAxis2AbsTypeM := 3.0;
+      g_bDustAxis2AbsControlM := TRUE;
+      nDustAxisMoveToDockPostionState := 0;
+	END_IF;
+  
+END_CASE;
+
+
+IF g_bPlcResetBuffer THEN
+  nDust2ChangeState := 0;
+  nDustAxisMoveToDockPostionState := 0;
+  nCurrentPartNumber :=0.0;
+  bDust2ChangedFlag := FALSE;
+  bDust1ChangedFlag := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[抽尘切换]]></xhtml:p>
+  </documentation>
+</pou>

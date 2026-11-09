@@ -1,0 +1,483 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_LaserPowerOnControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_boLaserPowerOn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚，激光上电]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boMainsOn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：nLight 激光器上电时序信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boExtenIn">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：nLight 激光器上电时序信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boLaserActivate">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：通快 激光器上电时序-激活信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boLaserPowerSig">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：通快 激光器上电时序-上电信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boLaserAskSig">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：通快 激光器上电时序-请求信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boLaserPowerLed">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：通快 激光器上电时序-led灯]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boLaserReset">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：激光复位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_noULaserPowerValue">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输出引脚：激光输出模拟量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biLaserActivateReply">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入引脚：通快 激光器上电时序-已激活信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biLaserPowerSigReply">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入引脚：通快 激光器上电时序-已上电信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biLaserAskSigReply">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[输入引脚：通快 激光器上电时序-收到请求信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bLaserPowerOnEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光上电的Flag，plc用]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_nLaserBrand">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光器品牌选择（0~5 --IPG,创鑫,nLight,锐科,通快），HMI给，]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bLaserPowerOn">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="false"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[激光上电，HMI给]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLaserActivateReply">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="false"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[通快激活失败报警，给引擎]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLaserPowerSigReply">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="false"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[通快上电失败报警，给引擎]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLaserAskSigReply">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="false"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[通快请求失败报警，给引擎]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTriggerPowerOn">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光上电上升沿触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FTriggerPowerOn">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[激光上电下降沿触发]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nLaserTKState">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[激光器通快上电的状态机变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton0">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[定时器0]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton1">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[定时器，激活]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton2">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[定时器，上电]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton3">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[定时器，请求]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nTKLed">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[通快激光器的灯的状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nLaserState">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[激光器上电状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nErrorId">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[通快上电错误号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nTKTimeOut">
+        <type>
+          <INT/>
+        </type>
+        <initialValue>
+          <simpleValue value="60"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[通快超时时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bLaserReset">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="false"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[激光复位,hmi]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_LaserReset">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_LaserResetTime">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="150"/>
+        </initialValue>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*激光上电*)
+RTriggerPowerOn(CLK := bLaserPowerOn OR g_bLaserPowerOnEnable);(*hmi 按下捕捉到上升沿信号*)
+FTriggerPowerOn(CLK := bLaserPowerOn OR g_bLaserPowerOnEnable);(*hmi 再按下捕捉到下降沿信号*)
+
+(**************************激光复位*****************************************)
+(*复位比上电优先级高，上电过程中点击复位，上电失效*)
+
+Ton_LaserReset(IN := bLaserReset,PT := LREAL_TO_TIME(FUN_MStoS(Ton_LaserResetTime)));
+IF bLaserReset THEN(*激光复位*)
+  g_boLaserReset := TRUE;
+  IF g_nLaserBrand=3 THEN
+    g_noULaserPowerValue :=0;
+  END_IF;
+  IF Ton_LaserReset.Q THEN
+    bLaserReset := FALSE;
+    g_boLaserReset := FALSE;
+  END_IF;
+END_IF; 
+(**************************激光复位*****************************************)
+
+
+IF RTriggerPowerOn.Q THEN 
+    (*hmi激光上电上升沿触发，和plc给true时上电*)
+    nLaserState :=2;
+    nLaserTKState :=1;
+END_IF; 
+
+IF FTriggerPowerOn.Q THEN 
+    (*激光上电下降沿触发*)
+    nLaserState :=1;
+END_IF;  
+  
+
+CASE nLaserState OF
+  0:(*等待状态*)
+    nLaserState := 0;
+  1:
+  (*激光下电*)
+    g_boLaserPowerOn := 0;
+    g_boMainsOn := 0;
+    g_boExtenIn := 0;
+    nTKLed :=0;
+    nErrorId := 0;
+    nLaserTKState := 0;
+    g_boLaserPowerLed :=0;
+    g_boLaserActivate :=0;
+    g_boLaserPowerSig :=0;
+    g_boLaserAskSig :=0;
+    bLaserActivateReply :=FALSE;
+    bLaserPowerSigReply:=FALSE;
+    bLaserAskSigReply:=FALSE;
+    Ton0(IN := FALSE);
+    Ton1(IN := FALSE);
+    Ton2(IN := FALSE);
+    Ton3(IN := FALSE);
+    nLaserState := 0;
+  
+  2:
+  (*激光上电*)
+    g_boLaserPowerOn := 1;
+  CASE g_nLaserBrand OF 
+    0:
+    (*IPG*) 
+      nLaserState := 0;(*上电完成，跳回等待状态*)
+    1:
+    (*创鑫*)
+      nLaserState := 0;(*上电完成，跳回等待状态*)
+    2:
+    (*nLight*)(*上电时序：引脚输出g_boMainsOn=1，3000ms后引脚输出g_boExtenIn=1*)
+      g_boMainsOn := 1;
+      (*延时3000ms*)
+      Ton0(IN := TRUE,PT := T#3000ms);
+      IF Ton0.Q THEN
+        g_boExtenIn := 1;
+        Ton0(IN := FALSE);
+        nLaserState := 0;(*上电完成，跳回等待状态*)
+      END_IF;
+    3:
+    (*锐科*)
+       nLaserState := 0;(*上电完成，跳回等待状态*)
+    4:
+    (*通快*)
+      (*通快上电控制*)
+      CASE nLaserTKState OF
+        0:(*空闲状态*)
+          nLaserTKState:=0;
+        1:(*初始状态*)
+          g_boLaserPowerLed :=0;
+          g_boLaserActivate :=0;
+          g_boLaserPowerSig :=0;
+          g_boLaserAskSig :=0;
+          bLaserActivateReply :=FALSE;
+          bLaserPowerSigReply:=FALSE;
+          bLaserAskSigReply:=FALSE;
+          Ton1(IN := FALSE);
+          Ton2(IN := FALSE);
+          Ton3(IN := FALSE);
+          nTKLed := 1;(*灯闪亮*)
+          nErrorId := 0;
+          nLaserTKState := 2;
+        2:(*激活*)
+          g_boLaserActivate := 1;(*输出激活信号*)
+          IF g_biLaserActivateReply THEN(*收到已激活信号*)
+            Ton0(IN := FALSE);
+            nLaserTKState := 3;
+          ELSE
+            Ton0(IN := TRUE,PT := INT_TO_TIME(nTKTimeOut));(*60秒超时*)
+            IF Ton0.Q THEN
+              Ton0(IN := FALSE);
+              nErrorId :=501;
+              nLaserTKState := 50;
+            END_IF;
+          END_IF;
+        3:(*上电*)
+          g_boLaserPowerSig := true;(*输出上电信号*)
+          IF g_biLaserPowerSigReply THEN(*收到已上电信号*)
+            Ton1(IN := FALSE);
+            nLaserTKState :=4;
+          ELSE
+            Ton1(IN := TRUE,PT := INT_TO_TIME(nTKTimeOut));(*超时*)
+            IF Ton1.Q THEN
+              Ton1(IN := FALSE);
+              nErrorId :=502;
+              nLaserTKState := 50;
+            END_IF;
+          END_IF;
+        4:(*请求*)
+          g_boLaserAskSig:= 1;(*输出请求信号*)
+          IF  g_biLaserAskSigReply THEN(*收到请求信号*)
+            Ton2(IN := FALSE);
+            nLaserTKState := 6;
+          ELSE
+            Ton2(IN := TRUE,PT := INT_TO_TIME(nTKTimeOut));(*超时*)
+            IF Ton2.Q THEN
+            Ton2(IN := FALSE);
+            nErrorId :=503;
+            nLaserTKState := 50;
+            END_IF;
+          END_IF; 
+        6:(*通快激光器上电完成*)
+          nTKLed := 2;(*灯长亮*)
+          nLaserTKState := 0;
+          nLaserState := 0;(*上电完成，跳回等待状态*)
+        50:(*错误状态*)
+          IF nErrorId=501 THEN
+            bLaserActivateReply :=TRUE;(*激活报错1*)
+          ELSIF nErrorId=502 THEN
+            bLaserPowerSigReply :=TRUE;(*上电报错2*)
+          ELSIF nErrorId=503 THEN
+            bLaserAskSigReply :=TRUE;(*请求报错3*)
+          END_IF;
+          nLaserTKState := 0;
+          nTKLed := 3;(*关灯*)
+          nLaserState := 0;(*通快上电失败，跳转到最外层的等待状态*)
+      END_CASE;
+      (*通快激光器的灯控制*)
+      CASE nTKLed OF
+        0:(*空闲状态*)
+          nTKLed := 0;
+        1:(*灯闪亮*)
+          Ton3(IN := TRUE,PT := T#1s);(*1秒为周期暗灭*)
+          IF Ton3.Q THEN
+            Ton3(IN := FALSE);
+            g_boLaserPowerLed := NOT g_boLaserPowerLed;(*取反*)
+          END_IF;
+        2:(*灯长亮*)
+          g_boLaserPowerLed :=1;
+          Ton3(IN := FALSE);
+          nTKLed := 0;
+        3:(*关灯*)
+          g_boLaserPowerLed :=0;
+          Ton3(IN := FALSE);
+          nTKLed := 0;
+      END_CASE;
+
+  END_CASE;
+END_CASE;
+
+
+
+
+  
+
+  ]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[激光上电控制]]></xhtml:p>
+  </documentation>
+</pou>

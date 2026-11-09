@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_EDS3000XFCOutRingBuffer" pouType="functionBlock">
+  <interface>
+    <inputVars>
+      <variable name="nPWMOutData3">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="nPWMOutData2">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="nPWMOutData1">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="nPWMOutData0">
+        <type>
+          <UDINT/>
+        </type>
+      </variable>
+      <variable name="iCount">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="nPWMOutDataBuff0">
+        <type>
+          <array>
+            <dimension lower="0" upper="1000"/>
+            <baseType>
+              <UDINT/>
+            </baseType>
+          </array>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保存输出输出0的，前1000个]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPWMOutDataBuff1">
+        <type>
+          <array>
+            <dimension lower="0" upper="1000"/>
+            <baseType>
+              <UDINT/>
+            </baseType>
+          </array>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保存输出输出1的，前1000个]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPWMOutDataBuff2">
+        <type>
+          <array>
+            <dimension lower="0" upper="1000"/>
+            <baseType>
+              <UDINT/>
+            </baseType>
+          </array>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保存输出输出2的，前1000个]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPWMOutDataBuff3">
+        <type>
+          <array>
+            <dimension lower="0" upper="1000"/>
+            <baseType>
+              <UDINT/>
+            </baseType>
+          </array>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[保存输出输出3的，前1000个]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[nPWMOutDataBuff0[iCount] := nPWMOutData0;
+nPWMOutDataBuff1[iCount] := nPWMOutData1;
+nPWMOutDataBuff2[iCount] := nPWMOutData2;
+nPWMOutDataBuff3[iCount] := nPWMOutData3;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

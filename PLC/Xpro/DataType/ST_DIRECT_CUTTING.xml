@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ST_DIRECT_CUTTING">
+  <baseType>
+    <struct>
+      <variable name="fCutting_Height">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[直接切割高度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fCutting_Speed">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nCutting_Gas">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="fCutting_Gas_Pressure">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nCutting_Power">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="nCutting_Frequency">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="nCutting_Duty">
+        <type>
+          <UINT/>
+        </type>
+      </variable>
+      <variable name="fCutting_Focus">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nCutting_PreCutDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nCutting_PauseStopLaserDelay">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nSlowStartCutEnable">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开启慢速起刀 0关闭 1开启]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSlowStartCutDis">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[慢速起刀距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSpeedRatio">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[慢速起刀倍率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCuttingLongBlows">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[长吹气]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bSlowStartControlOpen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[慢速起刀功率控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSlowStartFrequency">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[慢速起刀切割频率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSlowStartDuty">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[慢速起刀占空比]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bPrefectEndCutEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开启收刀工艺 ]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dPerfectEndCutDis">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[收到距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nPrefectEndCutFrequency">
+        <type>
+          <DINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[收刀切割频率]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dPrefectEndCutDuty">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[收刀切割占空比]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bPrefectEndCutControlOpen">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[收刀PWM控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dPrefectEndCutVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[收刀速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dPerfectKRType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[收刀PWM的控制方式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCutHeadCoolEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[切割头冷却气]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="fCutHeadCoolCloseTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[冷却气开启时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bFixedHeightCutting">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[是否开启定高切割（不探板）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bFixedHeightCuttingProbe">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[是否开启定高切割（探板）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="FlameCutEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[开启火焰切割]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="CombustibleGasPressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[可燃气气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="OxidizingGasPressure">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_TricolorLight" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_boRedLight">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[三色灯红灯引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bRedLight">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[三色灯红灯信号是否输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boYellowLight">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[三色灯黄灯引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bYellowLight">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[三色灯黄灯信号是否输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boGreenLight">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[三色灯绿灯引脚]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bGreenLight">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[三色灯绿灯信号是否输出]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FB_Buzzer">
+        <type>
+          <derived name="FB_HeadrtLightAndBuzzer"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[蜂鸣器输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCloseBuzzerOutput">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关闭蜂鸣器输出]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[g_boRedLight := g_bRedLight;
+g_boYellowLight := g_bYellowLight;
+g_boGreenLight  := g_bGreenLight;
+
+
+
+FB_Buzzer(
+ bInput := g_bBuzzerControlEnable AND bCloseBuzzerOutput,
+ bSparkle := g_bBuzzerSparkleEnable,
+ nStartTime := g_nBuzzerSparkleStartTime,
+ nStopTime := g_nBuzzerSparkleStopTime,
+ bOutput => g_boBuzzerControlOpen
+);]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[三色灯]]></xhtml:p>
+  </documentation>
+</pou>

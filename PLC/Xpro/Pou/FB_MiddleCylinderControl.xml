@@ -1,0 +1,320 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_MiddleCylinderControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Rtring_MiddleCylUp">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_MiddleCylDown">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bMiddleCylUp">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bMiddleCylDown">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bMiddleCylUseUpSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nMiddleCylUpSignalLogic">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bMiddleCylUseDownSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nMiddleCylDownSignalLogic">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nMiddleCylUpDoneTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nMiddleCylDownDoneTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nMiddleCylFilterTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="Ton_Up">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_MiddleCyl1Alarm">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Filter_Down">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="Filter_Up">
+        <type>
+          <derived name="FB_Filter"/>
+        </type>
+      </variable>
+      <variable name="bMiddleDownFilterSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bMiddleUpFilterSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bMiddleDownInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bMiddleUpInPlace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bPreIsUpStateCyl">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bMiddleCylinderNoDownSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bMiddleCylinderNoUpSignalAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bMiddleCylinderDelayFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bUpNoFilterInplace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDownNoFilterInplace">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Rtring_AutoControlM">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Filter_Up20ms">
+        <type>
+          <derived name="FB_Filter20ms"/>
+        </type>
+      </variable>
+      <variable name="Filter_Down20ms">
+        <type>
+          <derived name="FB_Filter20ms"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring_MiddleCylUp(CLK := bMiddleCylUp);
+Rtring_MiddleCylDown(CLK := bMiddleCylDown);
+Rtring_AutoControlM(CLK := g_bMiddleCylControlM);
+
+IF Rtring_AutoControlM.Q THEN
+  g_bMiddleCylControlM := FALSE;
+  
+  IF M.PARAMETER_Q[321] = 1.0 THEN
+    bMiddleCylUp := TRUE;
+    g_boMiddleCylinderUp := TRUE;
+	g_boMiddleCylinderDown := FALSE;
+  ELSE
+    bMiddleCylDown := TRUE;
+    g_boMiddleCylinderUp := FALSE;
+    g_boMiddleCylinderDown := TRUE;
+  END_IF;
+END_IF;
+
+IF Rtring_MiddleCylUp.Q THEN
+  bMiddleCylUp := FALSE;
+  g_boMiddleCylinderUp := TRUE;
+  g_boMiddleCylinderDown := FALSE;
+  bMiddleCylinderDelayFlag := TRUE;
+  Ton_MiddleCyl1Alarm(IN := FALSE);
+  bMiddleCylinderNoDownSignalAlarm := FALSE;
+END_IF;
+
+IF Rtring_MiddleCylDown.Q THEN
+  bMiddleCylDown := FALSE;
+  g_boMiddleCylinderUp := FALSE;
+  g_boMiddleCylinderDown := TRUE;
+  bMiddleCylinderDelayFlag := TRUE;
+  Ton_MiddleCyl1Alarm(IN := FALSE);
+  bMiddleCylinderNoUpSignalAlarm := FALSE;
+END_IF;
+
+
+
+
+
+
+
+
+
+
+(*hmi状态灯显示*)
+IF bMiddleCylUseUpSignal AND g_boMiddleCylinderUp THEN(*使用到位信号*)
+   bMiddleCylinderNoDownSignalAlarm := FALSE;
+  IF NOT bPreIsUpStateCyl THEN
+    IF bMiddleUpInPlace THEN
+      g_bMiddleCylinderStateHmi:= TRUE;
+      bPreIsUpStateCyl := TRUE;
+      Ton_MiddleCyl1Alarm(IN := FALSE);
+      bMiddleCylinderNoUpSignalAlarm := FALSE;
+      M.ENABLE[321] := 0;
+    ELSE
+      Ton_MiddleCyl1Alarm(IN := g_boMiddleCylinderUp,PT := LREAL_TO_TIME(FUN_MStoS(nMiddleCylUpDoneTime)));
+      IF Ton_MiddleCyl1Alarm.Q  THEN
+        Ton_MiddleCyl1Alarm(IN := FALSE);
+        bMiddleCylinderNoUpSignalAlarm := TRUE;
+      END_IF;
+    END_IF;
+  ELSE
+    IF bUpNoFilterInplace THEN
+      bMiddleCylinderNoUpSignalAlarm := FALSE;
+      M.ENABLE[321] := 0;
+    ELSE
+      bMiddleCylinderNoUpSignalAlarm := TRUE;
+    END_IF; 
+  END_IF;
+ELSIF bMiddleCylUseDownSignal AND g_boMiddleCylinderDown THEN
+   bMiddleCylinderNoUpSignalAlarm := FALSE;
+  IF bPreIsUpStateCyl THEN
+    IF bMiddleDownInPlace THEN
+      g_bMiddleCylinderStateHmi:= FALSE;
+      bPreIsUpStateCyl := FALSE;
+      Ton_MiddleCyl1Alarm(IN := FALSE);
+      bMiddleCylinderNoDownSignalAlarm := FALSE;
+      M.ENABLE[321] := 0;
+    ELSE
+      Ton_MiddleCyl1Alarm(IN := g_boMiddleCylinderDown,PT := LREAL_TO_TIME(FUN_MStoS(nMiddleCylDownDoneTime)));
+      IF Ton_MiddleCyl1Alarm.Q  THEN
+        Ton_MiddleCyl1Alarm(IN := FALSE);
+        bMiddleCylinderNoDownSignalAlarm := TRUE;
+      END_IF;
+    END_IF; 
+  ELSE
+    IF bDownNoFilterInplace THEN
+      bMiddleCylinderNoDownSignalAlarm := FALSE;
+      M.ENABLE[321] := 0;
+    ELSE
+      bMiddleCylinderNoDownSignalAlarm := TRUE;
+    END_IF;
+  END_IF;
+ELSE(*使用延时信号*)
+  bMiddleCylinderNoDownSignalAlarm := FALSE;
+  bMiddleCylinderNoUpSignalAlarm := FALSE;
+  IF bMiddleCylinderDelayFlag THEN
+    IF g_boBlankingCyl01Up THEN
+      Ton_Up(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nMiddleCylUpDoneTime)));
+    ELSE
+      Ton_Up(IN :=TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nMiddleCylDownDoneTime)));
+    END_IF;
+    IF Ton_Up.Q THEN
+       Ton_Up(IN :=FALSE);
+      IF g_boMiddleCylinderUp AND g_boMiddleCylinderDown=FALSE THEN
+        g_bMiddleCylinderStateHmi:= TRUE;
+        bMiddleCylinderDelayFlag := FALSE;
+        bPreIsUpStateCyl := TRUE;
+        M.ENABLE[321] := 0;
+      END_IF;
+      IF g_boMiddleCylinderDown AND g_boMiddleCylinderUp=FALSE THEN
+        g_bMiddleCylinderStateHmi:= FALSE;
+        bMiddleCylinderDelayFlag := FALSE;
+        bPreIsUpStateCyl := FALSE;
+        M.ENABLE[321] := 0;
+      END_IF;
+    END_IF;
+  END_IF;
+END_IF;
+
+IF bMiddleCylUseDownSignal AND NOT g_boMiddleCylinderUp AND NOT g_boMiddleCylinderDown THEN
+  IF bDownNoFilterInplace THEN
+    bMiddleCylinderNoDownSignalAlarm := FALSE;
+  ELSE
+    bMiddleCylinderNoDownSignalAlarm := TRUE;
+  END_IF;
+END_IF;
+
+(*打开输出口控制 气缸使用延时的状态切换  182-183 零尾料气缸的状态切换*)
+IF ArrayConfigOutputNumber[182] AND NOT bPreIsUpStateCyl THEN
+  bPreIsUpStateCyl := TRUE;
+  g_bMiddleCylinderStateHmi:= TRUE;
+  ArrayConfigOutputNumber[182] := FALSE;
+END_IF;  
+IF ArrayConfigOutputNumber[183] AND bPreIsUpStateCyl THEN
+  bPreIsUpStateCyl := FALSE;
+  g_bMiddleCylinderStateHmi:= FALSE;
+  ArrayConfigOutputNumber[183] := FALSE;
+END_IF;  
+
+IF bMiddleCylinderNoUpSignalAlarm THEN
+  g_Alarm.alarmArray[572] := 1285;
+ELSE
+  g_Alarm.alarmArray[572] := 0;
+END_IF;
+IF bMiddleCylinderNoDownSignalAlarm THEN
+  g_Alarm.alarmArray[573] := 1286;
+ELSE
+  g_Alarm.alarmArray[573] := 0;
+END_IF;
+Filter_Down(LREAL_TO_TIME(FUN_MSTOS(nMiddleCylFilterTime)),nMiddleCylDownSignalLogic,g_biMiddleCylinderDownSignal,bMiddleDownFilterSignal); 
+bMiddleDownInPlace := FUN_SingalLogic(bMiddleDownFilterSignal,nMiddleCylDownSignalLogic);
+
+Filter_Down20ms(LREAL_TO_TIME(FUN_MSTOS(20)),nMiddleCylDownSignalLogic,g_biMiddleCylinderDownSignal,bDownNoFilterInplace);
+
+
+
+
+Filter_Up(LREAL_TO_TIME(FUN_MSTOS(nMiddleCylFilterTime)),nMiddleCylUpSignalLogic,g_biMiddleCylinderUpSignal,bMiddleUpFilterSignal); 
+bMiddleUpInPlace := FUN_SingalLogic(bMiddleUpFilterSignal,nMiddleCylUpSignalLogic);
+
+Filter_Up20ms(LREAL_TO_TIME(FUN_MSTOS(20)),nMiddleCylUpSignalLogic,g_biMiddleCylinderUpSignal,bUpNoFilterInplace);
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[气缸移动避让和横梁移动避让]]></xhtml:p>
+  </documentation>
+</pou>

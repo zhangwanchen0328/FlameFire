@@ -1,0 +1,4878 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CncMControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="M">
+        <type>
+          <derived name="CNC_MCONTROL"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R105">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R150">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R151">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R152">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R153">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R154">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R155">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R156">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R157">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R158">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R159">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R160">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R161">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R162">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R163">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R164">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R165">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R166">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R167">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R168">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R169">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R170">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R171">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R172">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R173">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R174">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R175">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R176">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R177">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R178">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R179">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R180">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R181">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R182">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R183">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R184">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R185">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R186">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R187">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R188">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R189">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R190">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R191">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R192">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R193">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R194">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R195">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R196">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R197">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R198">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R200">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Ft200Close">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R201">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R202">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R203">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R204">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R206">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R216">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R218">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R221">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R222">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R223">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R224">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R225">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R226">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R227">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R229">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R230">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R231">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R233">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R234">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R235">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R236">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R237">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R238">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R239">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R240">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R241">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R242">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R243">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R244">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R245">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R246">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R247">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R248">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R249">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R250">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R251">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R252">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R253">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R254">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R255">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R256">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R257">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R258">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R259">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R260">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R261">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R262">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R263">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R264">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R265">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R266">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R267">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R268">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R269">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R270">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R271">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R272">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R273">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R274">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R275">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="F275">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R276">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检查是否在切割范围内]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R277">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[检查外部传感器是否检测到夹住管子]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R278">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[加工计划中的整管计数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R279">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R280">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R281">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R282">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R283">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R300">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R301">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R302">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R303">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="F300">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R304">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R305">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R306">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R307">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R308">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R309">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R310">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R311">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R312">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R313">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R314">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R315">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R316">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R317">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R318">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R319">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R320">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R321">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R322">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R323">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R324">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[对边电容异常检测]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R325">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴停止指令]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R326">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[设置辅助轴速度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R327">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R328">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R329">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R330">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R331">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R332">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R333">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R334">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R335">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R336">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R337">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R338">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R339">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R340">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R341">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Modbus P1-10 Q置位1复位0]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R342">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Modbus P1-10 Q信号有效1信号无效0 I超时报警1超时继续0]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R343">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[Modbus P1-10 Q信号有效1信号无效0 I超时报警1超时继续0]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_triggerForHMI">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R500_DingDian">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R504_Claw3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R500_Claw3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R501_Claw3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R502_Claw3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R503_Claw3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R505_Claw3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R506_Claw3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R510_Claw3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R511_Claw3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nCycle">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="Ton_ProcessEndToThirdPlc">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="R263Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[接收信号关闭M263]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dM263IsCloseOutput">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[接收M263的Q值1：关闭输出信号0：不关闭]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R502_GuanLi">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管力非标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R500_GuanLi">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管力非标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ProcessStartTon">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管力非标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="M308Ton">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管力非标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="M314Ton">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[管力非标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dPreNotePos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录传进来的下个零件最远点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bR308Trigger">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录传进来的下个零件最远点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bR314Trigger">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录传进来的下个零件最远点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bR307Trigger">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录传进来的下个零件最远点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dM308PValue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录传进来的下个零件最远点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dM314PValue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录传进来的下个零件最远点]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dM320PValue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用于区分当前等待绝对运动到位还是相对运动到位]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dPrePartFarY">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录上一个M276传来的PartFarY]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bM312FTrigger">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[M312关闭Enable]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="Ft328Close">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关闭328Enable]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ft329Close">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关闭329Enable]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ft196P3Close">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关闭196P3的Enable]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bM263CloseTrriger">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自输出引脚是否触发关闭信号]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_PLCParaOutTimeAlarm">
+        <type>
+          <derived name="TON"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[并行过程执行时间超时报警]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCheckPLCParaOutTimeAlarmStart">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[并行过程执行时间超时报警检测开始]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCheckPLCParaAlarmTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[并行过程执行超时时间]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCheckPLCParaIndex">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="UserDefineIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bM336CheckAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bHMIExecuteAxis">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡住M代码，让HMI检测一下是否存在轴干涉]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bGetSystemTime">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bM178P999">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bFirstGetSystemTime">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="True"/>
+        </initialValue>
+      </variable>
+      <variable name="nSystemTime">
+        <type>
+          <ULINT/>
+        </type>
+      </variable>
+      <variable name="UpdateSystemTime">
+        <type>
+          <ULINT/>
+        </type>
+      </variable>
+      <variable name="AxisStop">
+        <type>
+          <derived name="FB_AllAxisStopOperate"/>
+        </type>
+      </variable>
+      <variable name="Rtring_MCodeExecute">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[M代码触发保存]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Rtring_MCodeParallelExecute">
+        <type>
+          <array>
+            <dimension lower="0" upper="11"/>
+            <baseType>
+              <derived name="R_TRIG"/>
+            </baseType>
+          </array>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[M代码并行触发保存]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SaveMCodeExecute">
+        <type>
+          <derived name="FB_SaveMControlExecute"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[M代码触发保存]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="SaveMCodeParallelExecute">
+        <type>
+          <array>
+            <dimension lower="0" upper="11"/>
+            <baseType>
+              <derived name="FB_SaveMControlExecute"/>
+            </baseType>
+          </array>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[M代码并行触发保存]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nParallelindex">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[M代码并行轮询下标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="ParallelMCode">
+        <type>
+          <array>
+            <dimension lower="0" upper="11"/>
+            <baseType>
+              <derived name="ST_MCodeParallel"/>
+            </baseType>
+          </array>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[并行M代码信息]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="R599">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[并行M代码信息]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*注意：1、相同的M代码不能连续使用,连用会造成有几率卡主的问题，非要这么使用，可以嵌套一个M180 P0*)
+
+(*计算G00时间*)
+R105(CLK := INT_TO_BOOL(M.ENABLE[105]));
+IF R105.Q THEN
+  g_nCurMCode := 105;
+  M.ENABLE[105] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+
+
+(*M150:程序开始*)
+R150(CLK := INT_TO_BOOL(M.ENABLE[150]));
+IF R150.Q THEN
+  g_bPlcStartM := TRUE;
+  g_nCurMCode := 150;
+  M.ENABLE[150] := 0;
+  g_bStartCountTime := TRUE;
+  g_bM502Flag :=TRUE;
+ g_bProfileProbeCompletionFlag := FALSE;
+  g_bCloseGasInAdvance := FALSE;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+ProcessStartTon(IN := g_bOProcessStart,PT := T#300ms);
+(*M151:程序结束*)
+R151(CLK := INT_TO_BOOL(M.ENABLE[151]));
+IF R151.Q THEN
+  g_bPlcEndM := TRUE;
+   g_nCurMCode := 151;
+  M.ENABLE[151] := 0;
+  g_bProcessEndM := TRUE;
+  (*给功能完成标志位反馈*)
+  IF g_bHMISimpleMode THEN
+    g_bDryRunEnable := FALSE;(*空运行状态标志位*)
+    g_bBackToCenterStatusFb:= FALSE;(*回中状态标志位*)
+    g_bContinueStatusFb:= FALSE;(*续切状态标志位*)
+    g_bBackToLoadPointStatusFb:= FALSE;(*回上料点状态标志位*)
+    g_bOneKeyLoadStatusFb:= FALSE;(*一键上料状态标志位*)
+  ELSE
+   
+    g_bRollBackStatusFb:= FALSE;(*回退状态标志位*)
+    g_bContinueStatusFb:= FALSE;(*续切状态标志位*)
+    g_bBackToCenterStatusFb:= FALSE;(*回中状态标志位*)
+    g_bBackToLoadPointStatusFb:= FALSE;(*回上料点状态标志位*)
+    g_bCheckLevelSideStatusFb:= FALSE;(*校水平状态标志位*)
+    g_bOneSideCenterStatusFb:= FALSE;(*校横梁状态标志位*)
+    g_bOneKeyLoadStatusFb:= FALSE;(*一键上料状态标志位*)
+  
+    g_bSingleSideStatusFb := FALSE;(*单面分中状态位*)
+    g_bFourSideCenterStatusFb:= FALSE;(*四面分中状态标志位*)
+    g_bTwoSideCenterStatusFb:= FALSE;(*两面分中状态标志位*)
+    g_bFourSidesCenterStatusFb:= FALSE;(*四面寻中标志位*)
+    g_bTwoSidesCenterStatusFb:= FALSE;(*两面寻中*)
+    g_bThreeSidesCenterStatusFb:= FALSE;(*两面寻中*)
+  END_IF;
+  g_bOneKeyUnLoadStatusFb:= FALSE;(*一键下料状态标志位*)
+  g_boProcessEndToThirdPlc :=TRUE;
+  g_bExecuteAvoidanceFB := FALSE;
+  g_boIsExecuteAvoidFlag := FALSE;
+  g_bCycleDustRelMoveEnable := TRUE;
+  FOR UserDefineIndex := 0 TO 79 BY 1 DO
+    g_UserDefineProcessState[UserDefineIndex]^ := FALSE; 
+  END_FOR;
+  dPreNotePos := 0.0;
+  g_bWeldCheckStateFb := FALSE;
+  IF  g_bRealTimeUpdateParallePLCExecuteFlag  THEN
+		IF g_nRealTimeUpdateParallePLCIndex <> 1 THEN
+          g_bParallePLC1Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 2 THEN
+          g_bParallePLC2Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 3 THEN
+          g_bParallePLC3Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 4 THEN
+          g_bParallePLC4Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 5 THEN
+          g_bParallePLC5Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 6 THEN
+          g_bParallePLC6Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 7 THEN
+          g_bParallePLC7Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 8 THEN
+          g_bParallePLC8Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 9 THEN
+          g_bParallePLC9Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 10 THEN
+          g_bParallePLC10Start := FALSE;
+        END_IF;  
+  ELSE
+	  g_bParallePLC1Start := FALSE;
+	  g_bParallePLC2Start := FALSE;
+	  g_bParallePLC3Start := FALSE;
+	  g_bParallePLC4Start := FALSE;
+	  g_bParallePLC5Start := FALSE;
+	  g_bParallePLC6Start := FALSE;
+	  g_bParallePLC7Start := FALSE;
+	  g_bParallePLC8Start := FALSE;
+	  g_bParallePLC9Start := FALSE;
+	  g_bParallePLC10Start := FALSE;
+  END_IF;
+  g_bAlignTubeHeadStatusFb := FALSE;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*输出给第三方PLC的，延时2秒后自动关闭*)
+Ton_ProcessEndToThirdPlc(IN:=g_boProcessEndToThirdPlc, PT :=T#2000ms);
+IF Ton_ProcessEndToThirdPlc.Q  THEN
+  Ton_ProcessEndToThirdPlc(IN := FALSE);
+  g_boProcessEndToThirdPlc := FALSE;
+END_IF;
+
+
+(*M152:刀具号*)
+R152(CLK := INT_TO_BOOL(M.ENABLE[152]));
+R599(CLK := INT_TO_BOOL(M.ENABLE[599]));
+IF R152.Q THEN
+  g_nCurMCode := 152;
+  M.ENABLE[152] := 0;
+  g_nToolNum := LREAL_TO_INT(M.PARAMETER_P[152]);
+  ParallelMCode[0].bExecute := TRUE;
+  IF g_nToolNum < 1 THEN
+    g_nToolNum := 1;
+  END_IF;
+  g_fCuttingType :=BOOL_TO_INT(g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.bFixedHeightCutting);
+END_IF;
+IF R599.Q THEN
+  g_nCurMCode := 599;
+  M.ENABLE[599] := 0;
+  g_nToolNum := LREAL_TO_INT(M.PARAMETER_P[599]);
+  g_bChangeCutToolNumberM := TRUE;
+  IF g_nToolNum < 1 THEN
+    g_nToolNum := 1;
+  END_IF;
+  g_fCuttingType :=BOOL_TO_INT(g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.bFixedHeightCutting);
+END_IF;
+
+(*M153：轮廓开始*)
+R153(CLK := INT_TO_BOOL(M.ENABLE[153]));
+IF R153.Q THEN
+   g_bLayerStartM := TRUE;
+   g_bLayerStartM1 := TRUE;
+  g_nCurMCode := 153;
+  M.ENABLE[153] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+  g_dM153LayserStartPValue := M.PARAMETER_P[153];
+END_IF;
+
+(*M154：轮廓结束 下个轮廓运动剩余距离和运动剩余角度*)
+R154(CLK := INT_TO_BOOL(M.ENABLE[154]));
+IF R154.Q THEN
+   g_bLayerEndM := TRUE;
+  g_nCurMCode := 154;
+  g_dNestingDistanceToGoM := M.PARAMETER_P[154];(*运动剩余距离*)
+  g_dNestingMotionAngleM := M.PARAMETER_Q[154];(*运动剩余角度*)
+  g_bNestingIsPartEnd := LREAL_TO_BOOL(M.PARAMETER_I[154]);(*套料传的最后一个零件标志位*)
+  g_doLeapfrogNesttingDistance := g_dNestingDistanceToGoM;
+  g_doLeapfrogNesttingAngle := g_dNestingMotionAngleM;
+  g_bRealTimeDynamicOPen := TRUE;
+  M.ENABLE[154] := 0;
+  IF g_dNestingDistanceToGoM = 0.0 AND g_dNestingMotionAngleM = 0.0 THEN
+    g_bLastPartCutEndCloseSlowEnable := TRUE;
+  END_IF; 
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M155：标定*)(*阻塞/非阻塞*)
+R155(CLK := INT_TO_BOOL(M.ENABLE[155]));
+IF R155.Q THEN
+  g_bZCalibrateEnableM := TRUE;
+  g_nCurMCode := 155;
+  IF M.PARAMETER_H[155] = 0.0 THEN
+    M.ENABLE[155] := 0;
+  END_IF;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M156：开随动*)(*阻塞/非阻塞*)
+R156(CLK := INT_TO_BOOL(M.ENABLE[156]));
+IF R156.Q THEN
+  g_bZFollowExecuteM := TRUE;
+  g_bZFollowExecuteM1 := TRUE;
+  g_nCurMCode := 156;
+  g_fZFollowHeighM := M.PARAMETER_P[156];
+  IF M.PARAMETER_H[156] = 0.0 THEN
+    M.ENABLE[156] := 0;
+  END_IF;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M157：关随动*)(*阻塞*)
+R157(CLK := INT_TO_BOOL(M.ENABLE[157]));
+IF R157.Q THEN
+  g_nCurMCode := 157;
+  g_bZFollowCloseM := TRUE;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+
+(*M158：z轴上抬*)(*阻塞/非阻塞*)
+R158(CLK := INT_TO_BOOL(M.ENABLE[158]));
+IF R158.Q THEN
+  g_bZLiftExecuteM := TRUE;
+  g_nCurMCode := 158;
+  IF M.PARAMETER_H[158] = 0.0 THEN
+    M.ENABLE[158] := 0;
+  END_IF;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M159:Z轴上抬关闭*)(*阻塞*)
+R159(CLK := INT_TO_BOOL(M.ENABLE[159]));
+IF R159.Q THEN
+  g_bZLiftCloseM := TRUE;
+  g_nCurMCode := 159;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M160:Z轴匀速运动*)
+R160(CLK := INT_TO_BOOL(M.ENABLE[160]));
+IF R160.Q THEN
+  g_bZJogEnableM := TRUE;
+  g_fZJogVelocityM := M.PARAMETER_P[160];
+  g_nCurMCode := 160;
+  M.ENABLE[160] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+
+(*M161:Z轴匀速运动关闭*)
+R161(CLK := INT_TO_BOOL(M.ENABLE[161]));
+IF R161.Q THEN
+  g_bZJogCloseM := TRUE;
+  g_nCurMCode := 161;
+  M.ENABLE[161] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M162:开启探边*)
+R162(CLK := INT_TO_BOOL(M.ENABLE[162]));
+IF R162.Q THEN
+  g_bAutoParalleEnableM := TRUE;
+  g_nCurMCode := 162;
+  g_nEdgeCode := 1;
+  g_bOpenGetZMaxPosM := TRUE;(*探边时 获取z轴最大值*)
+  g_fParalleZFollowHeightM := M.PARAMETER_P[162];(*随动高度*)
+  g_fParalleBorderHeightM := M.PARAMETER_Q[162];(*随动跳动阶跃*)
+  g_fAutoParalleDirectionM := M.PARAMETER_I[162];(*对边轴向 0和1表示Y轴 2表示X轴*)
+  M.ENABLE[162] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+
+(*M163:关闭探边*)(*将对边的某些标志位清零操作*)
+R163(CLK := INT_TO_BOOL(M.ENABLE[163]));
+IF R163.Q THEN
+  g_nCurMCode := 163;
+  g_nEdgeCode := 0;
+  g_bAutoParalleCloseM := TRUE;
+  g_bCloseGetZMaxPosM := TRUE;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+
+(*M164:开启Z轴相对运动*)(*阻塞/非阻塞*)
+R164(CLK := INT_TO_BOOL(M.ENABLE[164]));
+IF R164.Q THEN
+  g_bZRelExecuteM := TRUE;
+  g_nCurMCode := 164;
+  g_bZAxisMoveDoneM320 := FALSE;
+  g_fZRelDistanceM := M.PARAMETER_P[164];(*移动距离*)
+  g_fZRelVelocityM := M.PARAMETER_Q[164];(*移动速度*)
+  IF M.PARAMETER_H[164] = 0.0 THEN
+    M.ENABLE[164] := 0;
+  END_IF;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M165:关闭Z轴相对运动*)(*将某些标志位清零操作*)
+R165(CLK := INT_TO_BOOL(M.ENABLE[165]));
+IF R165.Q THEN
+  g_bZRelCloseM := TRUE;
+  g_nCurMCode := 165;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M166:校水平时用来记录两个点的X和Z坐标*)
+R166(CLK := INT_TO_BOOL(M.ENABLE[166]));
+IF R166.Q THEN
+  g_bMarkPointM := TRUE;
+  g_fMarkPointIdM := M.PARAMETER_P[166];(*取点id*)
+  g_fMarkXPointValueM := M.PARAMETER_Q[166];(*id对应的X坐标值*)
+  g_nCurMCode := 166;
+  M.ENABLE[166] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M167:横梁中心X坐标*)(*nc代码里计算出横梁中心，传进来*)
+R167(CLK := INT_TO_BOOL(M.ENABLE[167]));
+IF R167.Q THEN
+  g_bBeamCenterM := TRUE;
+  g_fBeamCenterXM := M.PARAMETER_P[167];(*横梁中心*)
+  g_nCurMCode := 167;
+  M.ENABLE[167] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M168:开启四面分中*)(*通知plc执行四面分中，进入四面分中取点的状态机*)
+R168(CLK := INT_TO_BOOL(M.ENABLE[168]));
+IF R168.Q THEN
+  IF M.PARAMETER_P[168] = 0.0 THEN
+    g_bConcentricityEnableM := TRUE;
+  ELSE
+    g_bLevelAndSideCenterEnableM := TRUE;
+  END_IF;
+  g_nCurMCode := 168;
+  M.ENABLE[168] := 0;
+  g_bIsCanClickForwarnOrBackwardState := TRUE;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M169:关闭四面分中*)(*通知plc取点完成，跳到四面分中计算的状态机计算出偏差数据*)
+R169(CLK := INT_TO_BOOL(M.ENABLE[169]));
+IF R169.Q THEN
+  IF M.PARAMETER_P[169] = 0.0 THEN
+    g_bConcentricityCloseM := TRUE;
+  ELSE
+    g_bLevelAndSideCenterCloseM := TRUE;
+  END_IF;
+  g_nCurMCode := 169;
+  M.ENABLE[169] := 0;
+  g_bIsCanClickForwarnOrBackwardState := FALSE;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M170:四面分中记录点坐标*)(*通知plc记录当前点数的Z轴坐标*)
+R170(CLK := INT_TO_BOOL(M.ENABLE[170]));
+IF R170.Q THEN
+  g_bFlatNumEnableM := TRUE;
+  g_fFlatNumM := M.PARAMETER_P[170];(*点数ID*)
+  g_nCurMCode := 170;
+  M.ENABLE[170] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M171:首点吹气*)
+R171(CLK := INT_TO_BOOL(M.ENABLE[171]));
+IF R171.Q THEN
+  g_bStartRunOpenGasM := TRUE;
+  g_nCurMCode := 171;
+  M.ENABLE[171] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+
+(*M172:触发开光*)(*可能短暂阻塞*)
+R172(CLK := INT_TO_BOOL(M.ENABLE[172]));
+IF R172.Q THEN
+  g_bLaserExportEnableM := TRUE;
+  g_nCurMCode := 172;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+
+(*M173:触发关光*)
+R173(CLK := INT_TO_BOOL(M.ENABLE[173]));
+IF R173.Q THEN
+  g_bCloseLaserEnableM := TRUE;
+  g_nCurMCode := 173;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M174:开启高地面识别*)
+R174(CLK := INT_TO_BOOL(M.ENABLE[174]));
+IF R174.Q THEN
+  g_bHighLowSurfaceEnableM := TRUE;
+  g_nCurMCode := 174;
+  M.ENABLE[174] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M175:关闭高地面识别*)(*计算数值*)
+R175(CLK := INT_TO_BOOL(M.ENABLE[175]));
+IF R175.Q THEN
+  g_bHighLowSurfaceCloseM := TRUE;
+  g_nCurMCode := 175;
+  M.ENABLE[175] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M176:四面分中两面分中上抬*)(*阻塞/非阻塞*)
+R176(CLK := INT_TO_BOOL(M.ENABLE[176]));
+IF R176.Q THEN
+  g_bFourSideUpLiftM := TRUE;
+  g_nCurMCode := 176;
+  IF M.PARAMETER_H[176] = 0.0 THEN
+    M.ENABLE[176] := 0;
+  END_IF;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M177:支撑控制*)(*阻塞/非阻塞*)(**)
+R177(CLK := INT_TO_BOOL(M.ENABLE[177]));
+IF R177.Q THEN
+  
+  g_nCurMCode := 177;
+  g_fSustainMoveTypeM := M.PARAMETER_P[177];(*操控标志位 0下降 1上升 2是否开启程序开始时支撑设备下降*)
+  IF M.PARAMETER_K[177] = 100.0 THEN
+    g_bSupportForceLimitM := TRUE;
+  ELSE
+    g_bSustainUpDownM := TRUE;
+  END_IF;
+  IF M.PARAMETER_H[177] = 0.0 THEN
+    M.ENABLE[177] := 0;
+  END_IF;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M178:触发焊缝检测*)(*阻塞/非阻塞*)
+R178(CLK := INT_TO_BOOL(M.ENABLE[178]));
+IF R178.Q THEN
+  g_nCurMCode := 178;
+  IF M.PARAMETER_P[178] = 999.0 THEN
+    bM178P999 := TRUE;
+  ELSE
+    g_bWeldCheckEnableM := TRUE;
+    g_dM178PassedPValue := M.PARAMETER_P[178];
+    IF M.PARAMETER_H[178] = 0.0 THEN
+      M.ENABLE[178] := 0;
+    END_IF;
+  END_IF;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+IF g_nCurMCode = 178 AND M.PARAMETER_P[178] = 999.0 AND NOT bM178P999 THEN
+	M.ENABLE[178] := 0;
+END_IF;
+
+(*M179:焊缝结束或2次检测*)
+R179(CLK := INT_TO_BOOL(M.ENABLE[179]));
+IF R179.Q THEN
+  g_bWeldCheckDisenableM := TRUE;
+  g_nCurMCode := 179;
+  M.ENABLE[179] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M180:零件号传入plc*)
+R180(CLK := INT_TO_BOOL(M.ENABLE[180]));
+IF R180.Q THEN
+  g_bNextComponentM := TRUE;
+  g_fComponentNumberM := M.PARAMETER_P[180];
+  g_nCurMCode := 180;
+  M.ENABLE[180] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M181:进拐角*)
+R181(CLK := INT_TO_BOOL(M.ENABLE[181]));
+IF R181.Q THEN
+  g_bLaserOnCornerM := TRUE;
+  g_bLaserOnCornerM1 := TRUE;
+  g_bLaserOnCornerM2 := TRUE;
+  g_nCurMCode := 181;
+  M.ENABLE[181] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M182:出拐角*)
+R182(CLK := INT_TO_BOOL(M.ENABLE[182]));
+IF R182.Q THEN
+  g_bLaserOutCornerM := TRUE;
+  g_bLaserOutCornerM1 := TRUE;
+  g_bLaserOutCornerM2 := TRUE;
+  g_nCurMCode := 182;
+  M.ENABLE[182] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M183:上料机气缸控制*)(*0~4*)(*阻塞/非阻塞*)
+(*P:第几个气缸Q:1:上升0:下降 I:是否等待信号后动作0:只等自己的到位信号1~11等待同组气缸中哪一个到位后J:是否是等待输入信号0:不等1~3等待对应板卡的输入信号*)
+R183(CLK := INT_TO_BOOL(M.ENABLE[183]));
+IF R183.Q THEN
+  g_nCurMCode := 183;
+  g_bLoadCylinderOneKeyFlag := FALSE;
+  IF M.PARAMETER_P[183] = 0.0 THEN(*控制气缸0,即第一组气缸*)
+    g_bLoadCyl0DownOpenM := TRUE;
+    g_fLoadCyl0MoveTypeM := M.PARAMETER_Q[183];(*控制 0下降 1上升*)
+    g_dLoadCylinder1WaitSignalM := M.PARAMETER_I[183];
+    g_dLoadCylinder1WaitBoardInputSignalM := M.PARAMETER_J[183];
+  ELSIF M.PARAMETER_P[183] = 1.0 THEN
+    g_bLoadCyl1DownOpenM := TRUE;
+    g_fLoadCyl1MoveTypeM := M.PARAMETER_Q[183];
+    g_dLoadCylinder2WaitSignalM := M.PARAMETER_I[183];
+    g_dLoadCylinder2WaitBoardInputSignalM := M.PARAMETER_J[183];
+  ELSIF M.PARAMETER_P[183] = 2.0 THEN
+    g_bLoadCyl2DownOpenM := TRUE;
+    g_fLoadCyl2MoveTypeM := M.PARAMETER_Q[183];
+    g_dLoadCylinder3WaitSignalM := M.PARAMETER_I[183];
+    g_dLoadCylinder3WaitBoardInputSignalM := M.PARAMETER_J[183];
+  ELSIF M.PARAMETER_P[183] = 3.0 THEN
+    g_bLoadCyl3DownOpenM := TRUE;
+    g_fLoadCyl3MoveTypeM := M.PARAMETER_Q[183]; 
+    g_dLoadCylinder4WaitSignalM := M.PARAMETER_I[183];
+    g_dLoadCylinder4WaitBoardInputSignalM := M.PARAMETER_J[183];   
+  ELSIF M.PARAMETER_P[183] = 4.0 THEN
+    g_bLoadCyl4DownOpenM := TRUE;
+    g_fLoadCyl4MoveTypeM := M.PARAMETER_Q[183];
+    g_dLoadCylinder5WaitSignalM := M.PARAMETER_I[183];
+    g_dLoadCylinder5WaitBoardInputSignalM := M.PARAMETER_J[183];
+  ELSIF M.PARAMETER_P[183] = 5.0 THEN
+    g_bLoadCyl5DownOpenM := TRUE;
+    g_fLoadCyl5MoveTypeM := M.PARAMETER_Q[183];
+    g_dLoadCylinder6WaitSignalM := M.PARAMETER_I[183];
+    g_dLoadCylinder6WaitBoardInputSignalM := M.PARAMETER_J[183];
+  ELSIF M.PARAMETER_P[183] = 6.0 THEN 
+    g_bLoadCyl6DownOpenM := TRUE;
+    g_fLoadCyl6MoveTypeM := M.PARAMETER_Q[183];
+    g_dLoadCylinder7WaitSignalM := M.PARAMETER_I[183];
+    g_dLoadCylinder7WaitBoardInputSignalM := M.PARAMETER_J[183];
+  ELSIF M.PARAMETER_P[183] = 7.0 THEN 
+    g_bLoadCyl7DownOpenM := TRUE;
+    g_fLoadCyl7MoveTypeM := M.PARAMETER_Q[183];
+    g_dLoadCylinder8WaitSignalM := M.PARAMETER_I[183];
+    g_dLoadCylinder8WaitBoardInputSignalM := M.PARAMETER_J[183];
+  ELSIF M.PARAMETER_P[183] = 8.0 THEN 
+    g_bLoadCyl8DownOpenM := TRUE;
+    g_fLoadCyl8MoveTypeM := M.PARAMETER_Q[183];
+    g_dLoadCylinder9WaitSignalM := M.PARAMETER_I[183];
+    g_dLoadCylinder9WaitBoardInputSignalM := M.PARAMETER_J[183];
+  ELSIF M.PARAMETER_P[183] = 9.0 THEN 
+    g_bLoadCyl9DownOpenM := TRUE;
+    g_fLoadCyl9MoveTypeM := M.PARAMETER_Q[183];
+    g_dLoadCylinder10WaitSignalM := M.PARAMETER_I[183];
+    g_dLoadCylinder10WaitBoardInputSignalM := M.PARAMETER_J[183];
+  ELSIF M.PARAMETER_P[183] = 10.0 THEN
+    g_bLoadCyl10DownOpenM := TRUE;
+    g_fLoadCyl10MoveTypeM := M.PARAMETER_Q[183];
+    g_dLoadCylinder11WaitSignalM := M.PARAMETER_I[183];
+    g_dLoadCylinder11WaitBoardInputSignalM := M.PARAMETER_J[183];
+  ELSIF M.PARAMETER_P[183] = 11.0 THEN (*控制全部气缸*)
+    g_bAllLoadCylControlM := TRUE;
+    g_dAllLoadCylControlTypeM := M.PARAMETER_Q[183];
+  END_IF;
+ 
+  IF M.PARAMETER_H[183]=0.0 OR g_nLoadMaterialNum = 0 THEN
+    M.ENABLE[183] := 0;
+  END_IF;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M184:上料气缸到位信号清零*)(*0表示气缸0的到位清零，以此类推，如果要全部气缸清零，P5*)
+R184(CLK := INT_TO_BOOL(M.ENABLE[184]));
+IF R184.Q THEN
+  IF M.PARAMETER_P[184] = 0.0 THEN
+    g_bLoadCyl0DownCloseM := TRUE;
+  ELSIF M.PARAMETER_P[184] = 1.0 THEN
+    g_bLoadCyl1DownCloseM := TRUE;
+  ELSIF M.PARAMETER_P[184] = 2.0 THEN
+    g_bLoadCyl2DownCloseM := TRUE;
+  ELSIF M.PARAMETER_P[184] = 3.0 THEN
+    g_bLoadCyl3DownCloseM := TRUE;
+  ELSIF M.PARAMETER_P[184] = 4.0 THEN
+    g_bLoadCyl4DownCloseM := TRUE;
+  ELSIF M.PARAMETER_P[184] = 5.0 THEN
+    g_bLoadCyl0DownCloseM := TRUE;
+    g_bLoadCyl1DownCloseM := TRUE;
+    g_bLoadCyl2DownCloseM := TRUE;
+    g_bLoadCyl3DownCloseM := TRUE;
+    g_bLoadCyl4DownCloseM := TRUE;
+  END_IF;
+  g_nCurMCode := 184;
+  M.ENABLE[184] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M185:左右夹持气缸操控 M185 P1 Q1 H1*)
+R185(CLK := INT_TO_BOOL(M.ENABLE[185]));
+IF R185.Q THEN
+  g_nCurMCode := 185;
+  g_nAntiRejectionOneKUpDownMoveTypeM := LREAL_TO_INT(M.PARAMETER_Q[185]);(*操控标志位 0松开 1夹紧 *)
+  IF M.PARAMETER_P[185]=0.0 THEN(*0 清除到位信号 1控制*)
+    g_bAntiRejectionOneKUpDownCloseM := TRUE;
+    M.ENABLE[185] := 0;
+  ELSIF M.PARAMETER_P[185]=100.0 THEN
+    g_bAntiRejectionOneKUpDownM := TRUE;
+  ELSIF M.PARAMETER_P[185]=1.0 THEN
+		IF g_nAntiRejectionOneKUpDownMoveTypeM=0 then
+			g_bCylAntiRejectionClose1M := TRUE;
+        ELSE
+			g_bCylAntiRejectionOpen1M := TRUE;
+        END_IF;
+  ELSIF M.PARAMETER_P[185]=2.0 THEN
+		IF g_nAntiRejectionOneKUpDownMoveTypeM=0 then
+			g_bCylAntiRejectionClose2M := TRUE;
+        ELSE
+			g_bCylAntiRejectionOpen2M := TRUE;
+        END_IF;
+  ELSIF M.PARAMETER_P[185]=3.0 THEN
+		IF g_nAntiRejectionOneKUpDownMoveTypeM=0 then
+			g_bCylAntiRejectionClose3M := TRUE;
+        ELSE
+			g_bCylAntiRejectionOpen3M := TRUE;
+        END_IF;
+  ELSIF M.PARAMETER_P[185]=4.0 THEN
+		IF g_nAntiRejectionOneKUpDownMoveTypeM=0 then
+			g_bCylAntiRejectionClose4M := TRUE;
+        ELSE
+			g_bCylAntiRejectionOpen4M := TRUE;
+        END_IF;
+  ELSIF M.PARAMETER_P[185]=5.0 THEN
+		IF g_nAntiRejectionOneKUpDownMoveTypeM=0 then
+			g_bCylAntiRejectionClose5M := TRUE;
+        ELSE
+			g_bCylAntiRejectionOpen5M := TRUE;
+        END_IF;
+  ELSIF M.PARAMETER_P[185]=6.0 THEN
+		IF g_nAntiRejectionOneKUpDownMoveTypeM=0 then
+			g_bCylAntiRejectionClose6M := TRUE;
+        ELSE
+			g_bCylAntiRejectionOpen6M := TRUE;
+        END_IF;
+  ELSIF M.PARAMETER_P[185]=7.0 THEN
+		IF g_nAntiRejectionOneKUpDownMoveTypeM=0 then
+			g_bCylAntiRejectionClose7M := TRUE;
+        ELSE
+			g_bCylAntiRejectionOpen7M := TRUE;
+        END_IF;     
+  ELSIF M.PARAMETER_P[185]=8.0 THEN
+		IF g_nAntiRejectionOneKUpDownMoveTypeM=0 then
+			g_bCylAntiRejectionClose8M := TRUE;
+        ELSE
+			g_bCylAntiRejectionOpen8M := TRUE;
+        END_IF;
+  ELSIF M.PARAMETER_P[185]=9.0 THEN
+		IF g_nAntiRejectionOneKUpDownMoveTypeM=0 then
+			g_bCylAntiRejectionClose9M := TRUE;
+        ELSE
+			g_bCylAntiRejectionOpen9M := TRUE;
+        END_IF;
+  ELSIF M.PARAMETER_P[185]=10.0 THEN
+		IF g_nAntiRejectionOneKUpDownMoveTypeM=0 then
+			g_bCylAntiRejectionClose10M := TRUE;
+        ELSE
+			g_bCylAntiRejectionOpen10M := TRUE;
+        END_IF;
+  ELSIF M.PARAMETER_P[185]=11.0 THEN
+		IF g_nAntiRejectionOneKUpDownMoveTypeM=0 then
+			g_bCylAntiRejectionClose11M := TRUE;
+        ELSE
+			g_bCylAntiRejectionOpen11M := TRUE;
+        END_IF;
+  ELSIF M.PARAMETER_P[185]=12.0 THEN
+		IF g_nAntiRejectionOneKUpDownMoveTypeM=0 then
+			g_bCylAntiRejectionClose12M := TRUE;
+        ELSE
+			g_bCylAntiRejectionOpen12M := TRUE;
+        END_IF;
+  END_IF;
+  
+  IF M.PARAMETER_H[185] = 0.0 THEN
+      M.ENABLE[185] := 0;
+    END_IF;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M186:Y2轴耦合解耦控制v*)
+R186(CLK := INT_TO_BOOL(M.ENABLE[186]));
+IF R186.Q THEN
+  g_nCurMCode := 186;
+  IF M.PARAMETER_P[186]=0.0 THEN(*0 Y2解耦 1耦*)
+    g_bY2GearOutM := TRUE;
+  ELSE  
+    g_bY2GearInM := TRUE;
+  END_IF;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M187:板外切割-profile_Cutting 对标layer_start ,开光开气定高切割*)
+R187(CLK := INT_TO_BOOL(M.ENABLE[187]));
+IF R187.Q THEN
+  g_bProfileLaserGasM := TRUE;
+  g_nCurMCode := 187;
+  M.ENABLE[187] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M188:上料信号1关闭/开启*)(*注意：相同的M代码不能连续使用*)
+R188(CLK := INT_TO_BOOL(M.ENABLE[188]));
+IF R188.Q THEN
+  IF M.PARAMETER_P[188] = 0.0 THEN
+    g_boLoadSinglePutOut1 := FALSE;
+  ELSE
+    g_boLoadSinglePutOut1 := TRUE;
+  END_IF;
+  g_nCurMCode := 188;
+  M.ENABLE[188] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M189:上料信号2关闭/开启*)(*注意：相同的M代码不能连续使用*)
+R189(CLK := INT_TO_BOOL(M.ENABLE[189]));
+IF R189.Q THEN
+  IF M.PARAMETER_P[189] = 0.0 THEN
+    g_boLoadSinglePutOut2 := FALSE;
+  ELSE
+    g_boLoadSinglePutOut2 := TRUE;
+  END_IF;
+  g_nCurMCode := 189;
+  M.ENABLE[189] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M190:上料信号3关闭/开启*)(*注意：相同的M代码不能连续使用*)
+R190(CLK := INT_TO_BOOL(M.ENABLE[190]));
+IF R190.Q THEN
+  IF M.PARAMETER_P[190] = 0.0 THEN
+    g_boLoadSinglePutOut3 := FALSE;
+  ELSE
+    g_boLoadSinglePutOut3 := TRUE;
+  END_IF;
+  g_nCurMCode := 190;
+  M.ENABLE[190] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M191:上料信号1  （复位自动关闭）关闭/开启*)(*注意：相同的M代码不能连续使用*)
+R191(CLK := INT_TO_BOOL(M.ENABLE[191]));
+IF R191.Q THEN
+  IF M.PARAMETER_P[191] = 0.0 THEN
+    g_boLoadSinglePutOutCanReset1 := FALSE;
+  ELSE
+    g_boLoadSinglePutOutCanReset1 := TRUE;
+  END_IF;
+  g_nCurMCode := 191;
+  M.ENABLE[191] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M192:上料信号2  （复位自动关闭）关闭/开启*)(*注意：相同的M代码不能连续使用*)
+R192(CLK := INT_TO_BOOL(M.ENABLE[192]));
+IF R192.Q THEN
+  IF M.PARAMETER_P[192] = 0.0 THEN
+    g_boLoadSinglePutOutCanReset2 := FALSE;
+  ELSE
+    g_boLoadSinglePutOutCanReset2 := TRUE;
+  END_IF;
+  g_nCurMCode := 192;
+  M.ENABLE[192] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+
+(*M193:支撑配置开启/关闭浮动*)(*阻塞/非阻塞*)
+R193(CLK := INT_TO_BOOL(M.ENABLE[193]));
+IF R193.Q THEN
+  g_nCurMCode := 193;
+  IF M.PARAMETER_P[193] = 0.0 THEN(*支撑配置到位信号清零操作*)
+    g_bSustainFollowCloseM := TRUE;
+    M.ENABLE[193] := 0;
+  ELSIF M.PARAMETER_P[193] = 1.0 THEN(*支撑配置控制*)
+    g_bSustainFollowExecuteM := TRUE;
+    g_nSustainSignalM := M.PARAMETER_Q[193];(*0关闭浮动 1开启浮动*)
+      IF NOT g_bIsImportTubeDrawing AND g_nSustainSignalM = 1.0 THEN
+        g_bIsNotImportTubeDrawingAlarm := TRUE;
+		g_bSustainFollowExecuteM := FALSE;
+      END_IF;
+    IF M.PARAMETER_H[193] = 0.0 THEN
+      M.ENABLE[193] := 0;
+    END_IF;
+  ELSIF M.PARAMETER_P[193] >= 11.0 AND M.PARAMETER_P[193] <= 22.0 THEN
+    g_bSustainAxisFollowControlM := TRUE;
+    g_nSustainSignalM := M.PARAMETER_Q[193];(*0关闭浮动 1开启浮动*)
+    IF M.PARAMETER_H[193] = 0.0 THEN
+      M.ENABLE[193] := 0;
+    END_IF;
+  END_IF;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M194:上料信号3  （复位自动关闭）关闭/开启*)(*注意：相同的M代码不能连续使用*)
+R194(CLK := INT_TO_BOOL(M.ENABLE[194]));
+IF R194.Q THEN
+  IF M.PARAMETER_P[194] = 0.0 THEN
+    g_boLoadSinglePutOutCanReset3 := FALSE;
+  ELSE
+    g_boLoadSinglePutOutCanReset3 := TRUE;
+  END_IF;
+  g_nCurMCode := 194;
+  M.ENABLE[194] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+(*M195:关闭支撑到位信号*)
+R195(CLK := INT_TO_BOOL(M.ENABLE[195]));
+IF R195.Q THEN
+  g_bSustainUpDownDoneM := TRUE;
+  g_nCurMCode := 195;
+  M.ENABLE[195] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M196:通知plc报警*)
+R196(CLK := INT_TO_BOOL(M.ENABLE[196]));
+IF R196.Q THEN
+  IF M.PARAMETER_P[196] = 1.0 THEN
+    g_bNoPipeM := TRUE;(*通知plc报 没有检测到管子的报警到界面*)
+    M.ENABLE[196] := 0;
+  ELSIF M.PARAMETER_P[196] = 2.0 THEN
+    g_bFindEageM := TRUE;(*对探针引脚复位清零*)
+    M.ENABLE[196] := 0;
+  ELSIF M.PARAMETER_P[196] = 3.0 THEN
+    g_bPipeNoLevelWaringM := TRUE;
+    M.ENABLE[196] := 0;
+  ELSIF M.PARAMETER_P[196] = 4.0 THEN(*Modubus通知HMI取值*)
+    g_bModbusNotificateHMIGetValueFlag := TRUE;
+  END_IF;
+  g_nCurMCode := 196;
+  ParallelMCode[0].bExecute := TRUE;
+  
+END_IF;
+Ft196P3Close(CLK := g_bModbusNotificateHMIGetValueFlag);
+IF Ft196P3Close.Q THEN
+  M.ENABLE[196] := 0;
+END_IF;
+(*M197:卡盘控制  P表示哪个卡盘 1主卡 2中卡 3尾卡 10所有卡盘一键上升一键下降 Q表示上升下降  *)
+R197(CLK := INT_TO_BOOL(M.ENABLE[197]));
+IF R197.Q THEN
+  g_nCurMCode := 197;
+  IF M.PARAMETER_P[197] = 0.0 THEN(*卡爪1 后卡*)
+    g_bAllClawCylControlFlagM := FALSE;
+    IF M.PARAMETER_Q[197] = 1.0 THEN(*0 松开 1夹紧*)
+      g_bClaw1EnableM := TRUE;
+    ELSIF M.PARAMETER_Q[197] = 0.0 THEN
+      g_bClaw1EnableOffM := TRUE;
+    END_IF;
+  ELSIF M.PARAMETER_P[197] = 1.0 THEN(*卡爪2 前卡*)
+    g_bAllClawCylControlFlagM := FALSE;
+    IF M.PARAMETER_Q[197] = 1.0 THEN(*0 松开 1夹紧*)
+      g_bClaw2EnableM := TRUE;
+    ELSIF M.PARAMETER_Q[197] = 0.0 THEN
+      g_bClaw2EnableOffM := TRUE;
+    END_IF;    
+  ELSIF M.PARAMETER_P[197] = 2.0 THEN(*卡爪3 中卡*)
+    g_bAllClawCylControlFlagM := FALSE;
+    IF M.PARAMETER_Q[197] = 1.0 THEN(*0 松开 1夹紧*)
+      g_bClaw3EnableM := TRUE;
+    ELSIF M.PARAMETER_Q[197] = 0.0 THEN
+      g_bClaw3EnableOffM := TRUE;
+    END_IF; 
+  ELSIF M.PARAMETER_P[197] = 10.0 THEN
+    g_bAllClawCylControlFlagM := TRUE;
+    g_bAllClawCylControlM := TRUE;
+    g_dAllClawCylControlTypeM := M.PARAMETER_Q[197];
+  END_IF;
+  g_dM197SetKValue := M.PARAMETER_K[197];
+  IF M.PARAMETER_H[197] = 0.0 THEN
+    M.ENABLE[197] := 0;
+  END_IF;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+(*M198 新增,程序开始的时候,Z轴抬到最高位置的时候，检测Z轴当前的高度是否大于标定高度*0.5，否则报警提示重新标定*)
+R198(CLK := INT_TO_BOOL(M.ENABLE[198]));
+IF R198.Q THEN
+  g_nCurMCode := 198;
+  IF g_bHmiCloseFollow OR g_bDryRunEnable OR g_bDebugMode THEN
+    ;
+  ELSE
+      IF g_nCalibrationType = 1 THEN  (*NC内部标定,标定高度与其他标定高度不是一个变量*)
+        IF g_bOpenCheckZaxisHeightAbnormalError AND g_fZAxisHeight < (g_nNCCalibrateHeight * g_dZaxisCalHeightCoefficient) THEN
+           g_bZaxisHeightAbnormalError := TRUE;  (*Z轴高度异常报警,只报一次*)
+        END_IF;        
+      ELSE
+        IF g_bOpenCheckZaxisHeightAbnormalError AND g_fZAxisHeight < (g_dCalibrateHeight * g_dZaxisCalHeightCoefficient) THEN
+           g_bZaxisHeightAbnormalError := TRUE;  (*Z轴高度异常报警,只报一次*)
+        END_IF;
+      END_IF;
+  END_IF;
+  M.ENABLE[198] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+
+(*M200:用于暂停程序的执行==相当于点击了暂停按钮*)
+R200(CLK := INT_TO_BOOL(M.ENABLE[200]));
+IF R200.Q THEN
+  g_nCurMCode := 200;
+  g_bM200AutoTrigPause := TRUE;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M200关闭，由界面把标志位g_bM200AutoTrigPause设置为flase*)
+Ft200Close(CLK := g_bM200AutoTrigPause);
+IF Ft200Close.Q THEN
+  M.ENABLE[200] := 0;
+END_IF;
+
+
+
+(*M201：抽尘轴控制 M201 P1 Q1 I1 J1 K1 H1*)(*阻塞/非阻塞*)
+R201(CLK := INT_TO_BOOL(M.ENABLE[201]));
+IF R201.Q THEN
+  g_nCurMCode := 201;
+  ParallelMCode[0].bExecute := TRUE;
+  IF NOT g_bDustEnable THEN
+      M.ENABLE[201] := 0;
+      RETURN;
+  END_IF;
+  IF M.PARAMETER_P[201] = 0.0 THEN(*抽尘轴到位信号清零操作*)
+    g_bDustAxisAbsCloseM := TRUE;
+    g_bDustAxis1MoveDoneM320 := FALSE;
+    g_bDustAxis2MoveDoneM320 := FALSE;
+    M.ENABLE[201] := 0;
+  ELSIF M.PARAMETER_P[201] = 1.0 THEN(*抽尘轴控制*)
+    g_bDustAxis1MoveDoneM320 := FALSE;
+    g_bDustAxisAbsOpenM := TRUE;
+    g_fDustTypeM := M.PARAMETER_Q[201];(*0自输入坐标控制 1读取界面坐标控制*)
+    g_fDustAxisAbsPosM := M.PARAMETER_I[201];(*自输入坐标*)
+    g_fDustAxisAbsVelTypeM := M.PARAMETER_J[201];(*0自输入速度控制 1读取界面速度控制，当速度为0时，默认去自动速度*)
+    g_fDustAxisAbsVelM := M.PARAMETER_K[201];(*自输入速度*)
+  ELSIF M.PARAMETER_P[201] = 2.0 THEN(*抽尘轴2控制*)
+    g_bDustAxis2MoveDoneM320 := FALSE;
+    g_bDustAxis2AbsControlM := TRUE;
+    g_fDustAxis2AbsTypeM := M.PARAMETER_Q[201];(*0自输入坐标控制 1读取界面坐标控制*)
+    g_fDustAxis2AbsPosM := M.PARAMETER_I[201];(*自输入坐标*)
+    g_fDustAxis2AbsVelM := M.PARAMETER_K[201];(*自输入速度*) 
+  END_IF;
+  IF M.PARAMETER_H[201] = 0.0 THEN
+      M.ENABLE[201] := 0;
+    END_IF;
+END_IF;
+
+(*202:P 100:蛙跳提前结束*)
+R202(CLK := INT_TO_BOOL(M.ENABLE[202]));
+IF R202.Q THEN
+  g_bIsM202Triggered := LREAL_TO_BOOL(M.PARAMETER_P[202]);
+  g_dM202KValue := M.PARAMETER_K[202];
+  IF M.PARAMETER_H[202] = 0.0 THEN
+    M.ENABLE[202] := 0;
+  END_IF;  
+  g_nCurMCode := 202;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+(*203 Z轴绝对运动M代码*)
+R203(CLK := INT_TO_BOOL(M.ENABLE[203]));
+IF R203.Q THEN
+  g_nCurMCode := 203;
+  g_bZAbsMoveMControl := TRUE;
+  g_bZAxisMoveDoneM320 := FALSE;
+  g_dZAbsMovePositionM := M.PARAMETER_P[203];
+  IF M.ENABLE[203] = 0 THEN
+    M.ENABLE[203] := 0;
+  END_IF;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+
+(*M204：自定义IO口输出 M204 P16 Q1 P表示自定义IO Q 1表示输出 0表示不输出*)
+R204(CLK := INT_TO_BOOL(M.ENABLE[204]));
+IF R204.Q THEN
+  g_nCurMCode := 204;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_P[204] = 16.0 THEN(*16口*)
+    IF M.PARAMETER_Q[204] = 0.0 THEN(*16口 关闭输出*)
+      g_bDefineOutputEnableOutOFF16M := TRUE;
+    ELSIF M.PARAMETER_Q[204] = 1.0 THEN(*16口 输出*)
+      g_bDefineOutputEnableOut16M := TRUE;
+    END_IF;
+    g_dUserDefineIoOut16WaitSignalM := M.PARAMETER_I[204];
+    g_dUserDefineIoOut16WaitBoardInputSignalM := M.PARAMETER_J[204]; 
+  ELSIF  M.PARAMETER_P[204] = 1.0 THEN(*1口*)
+    IF M.PARAMETER_Q[204] = 0.0 THEN(*1口 关闭输出*)
+      g_bDefineOutputEnableOutOFF1M := TRUE;
+    ELSIF M.PARAMETER_Q[204] = 1.0 THEN(*15口 输出*)
+      g_bDefineOutputEnableOut1M := TRUE;
+    END_IF;
+    g_dUserDefineIoOut1WaitSignalM := M.PARAMETER_I[204];
+    g_dUserDefineIoOut1WaitBoardInputSignalM := M.PARAMETER_J[204];
+  ELSIF  M.PARAMETER_P[204] = 2.0 THEN(*2口*)
+    IF M.PARAMETER_Q[204] = 0.0 THEN(*2口 关闭输出*)
+      g_bDefineOutputEnableOutOFF2M := TRUE;
+    ELSIF M.PARAMETER_Q[204] = 1.0 THEN(*15口 输出*)
+      g_bDefineOutputEnableOut2M := TRUE;
+    END_IF;
+    g_dUserDefineIoOut2WaitSignalM := M.PARAMETER_I[204];
+    g_dUserDefineIoOut2WaitBoardInputSignalM := M.PARAMETER_J[204];      
+  ELSIF  M.PARAMETER_P[204] = 3.0 THEN(*3口*)
+    IF M.PARAMETER_Q[204] = 0.0 THEN(*3口 关闭输出*)
+      g_bDefineOutputEnableOutOFF3M := TRUE;
+    ELSIF M.PARAMETER_Q[204] = 1.0 THEN(*15口 输出*)
+      g_bDefineOutputEnableOut3M := TRUE;
+    END_IF;
+    g_dUserDefineIoOut3WaitSignalM := M.PARAMETER_I[204];
+    g_dUserDefineIoOut3WaitBoardInputSignalM := M.PARAMETER_J[204]; 
+  ELSIF  M.PARAMETER_P[204] = 4.0 THEN(*4口*)
+    IF M.PARAMETER_Q[204] = 0.0 THEN(*4口 关闭输出*)
+      g_bDefineOutputEnableOutOFF4M := TRUE;
+    ELSIF M.PARAMETER_Q[204] = 1.0 THEN(*15口 输出*)
+      g_bDefineOutputEnableOut4M := TRUE;
+    END_IF;
+    g_dUserDefineIoOut4WaitSignalM := M.PARAMETER_I[204];
+    g_dUserDefineIoOut4WaitBoardInputSignalM := M.PARAMETER_J[204]; 
+  ELSIF  M.PARAMETER_P[204] = 5.0 THEN(*5口*)
+    IF M.PARAMETER_Q[204] = 0.0 THEN(*5口 关闭输出*)
+      g_bDefineOutputEnableOutOFF5M := TRUE;
+    ELSIF M.PARAMETER_Q[204] = 1.0 THEN(*15口 输出*)
+      g_bDefineOutputEnableOut5M := TRUE;
+    END_IF;
+    g_dUserDefineIoOut5WaitSignalM := M.PARAMETER_I[204];
+    g_dUserDefineIoOut5WaitBoardInputSignalM := M.PARAMETER_J[204]; 
+  ELSIF  M.PARAMETER_P[204] = 6.0 THEN(*6口*)
+    IF M.PARAMETER_Q[204] = 0.0 THEN(*6口 关闭输出*)
+      g_bDefineOutputEnableOutOFF6M := TRUE;
+    ELSIF M.PARAMETER_Q[204] = 1.0 THEN(*15口 输出*)
+      g_bDefineOutputEnableOut6M := TRUE;
+    END_IF; 
+    g_dUserDefineIoOut6WaitSignalM := M.PARAMETER_I[204];
+    g_dUserDefineIoOut6WaitBoardInputSignalM := M.PARAMETER_J[204];                 
+  ELSIF  M.PARAMETER_P[204] = 7.0 THEN(*7口*)
+    IF M.PARAMETER_Q[204] = 0.0 THEN(*7口 关闭输出*)
+      g_bDefineOutputEnableOutOFF7M := TRUE;
+    ELSIF M.PARAMETER_Q[204] = 1.0 THEN(*15口 输出*)
+      g_bDefineOutputEnableOut7M := TRUE;
+    END_IF; 
+    g_dUserDefineIoOut7WaitSignalM := M.PARAMETER_I[204];
+    g_dUserDefineIoOut7WaitBoardInputSignalM := M.PARAMETER_J[204];                                  
+  ELSIF  M.PARAMETER_P[204] = 8.0 THEN(*8口*)
+    IF M.PARAMETER_Q[204] = 0.0 THEN(*8口 关闭输出*)
+      g_bDefineOutputEnableOutOFF8M := TRUE;
+    ELSIF M.PARAMETER_Q[204] = 1.0 THEN(*15口 输出*)
+      g_bDefineOutputEnableOut8M := TRUE;
+    END_IF; 
+    g_dUserDefineIoOut8WaitSignalM := M.PARAMETER_I[204];
+    g_dUserDefineIoOut8WaitBoardInputSignalM := M.PARAMETER_J[204]; 
+  ELSIF  M.PARAMETER_P[204] = 9.0 THEN(*9口*)
+    IF M.PARAMETER_Q[204] = 0.0 THEN(*9口 关闭输出*)
+      g_bDefineOutputEnableOutOFF9M := TRUE;
+    ELSIF M.PARAMETER_Q[204] = 1.0 THEN(*15口 输出*)
+      g_bDefineOutputEnableOut9M := TRUE;
+    END_IF;
+    g_dUserDefineIoOut9WaitSignalM := M.PARAMETER_I[204];
+    g_dUserDefineIoOut8WaitBoardInputSignalM := M.PARAMETER_J[204]; 
+  ELSIF  M.PARAMETER_P[204] = 10.0 THEN(*10口*)
+    IF M.PARAMETER_Q[204] = 0.0 THEN(*10口 关闭输出*)
+      g_bDefineOutputEnableOutOFF10M := TRUE;
+    ELSIF M.PARAMETER_Q[204] = 1.0 THEN(*15口 输出*)
+      g_bDefineOutputEnableOut10M := TRUE;
+    END_IF; 
+    g_dUserDefineIoOut10WaitSignalM := M.PARAMETER_I[204];
+    g_dUserDefineIoOut10WaitBoardInputSignalM := M.PARAMETER_J[204]; 
+  ELSIF  M.PARAMETER_P[204] = 11.0 THEN(*11口*)
+    IF M.PARAMETER_Q[204] = 0.0 THEN(*14口 关闭输出*)
+      g_bDefineOutputEnableOutOFF11M := TRUE;
+    ELSIF M.PARAMETER_Q[204] = 1.0 THEN(*14口 输出*)
+      g_bDefineOutputEnableOut11M := TRUE;
+    END_IF;
+    g_dUserDefineIoOut11WaitSignalM := M.PARAMETER_I[204];
+    g_dUserDefineIoOut11WaitBoardInputSignalM := M.PARAMETER_J[204]; 
+  ELSIF  M.PARAMETER_P[204] = 12.0 THEN(*12口*)
+    IF M.PARAMETER_Q[204] = 0.0 THEN(*12口 关闭输出*)
+      g_bDefineOutputEnableOutOFF12M := TRUE;
+    ELSIF M.PARAMETER_Q[204] = 1.0 THEN(*12口 输出*)
+      g_bDefineOutputEnableOut12M := TRUE;
+    END_IF;
+    g_dUserDefineIoOut12WaitSignalM := M.PARAMETER_I[204];
+    g_dUserDefineIoOut12WaitBoardInputSignalM := M.PARAMETER_J[204]; 
+  ELSIF  M.PARAMETER_P[204] = 13.0 THEN(*13口*)
+    IF M.PARAMETER_Q[204] = 0.0 THEN(*13口 关闭输出*)
+      g_bDefineOutputEnableOutOFF13M := TRUE;
+    ELSIF M.PARAMETER_Q[204] = 1.0 THEN(*13口 输出*)
+      g_bDefineOutputEnableOut13M := TRUE;
+    END_IF;
+    g_dUserDefineIoOut13WaitSignalM := M.PARAMETER_I[204];
+    g_dUserDefineIoOut13WaitBoardInputSignalM := M.PARAMETER_J[204]; 
+  ELSIF  M.PARAMETER_P[204] = 14.0 THEN(*14口*)
+    IF M.PARAMETER_Q[204] = 0.0 THEN(*14口 关闭输出*)
+      g_bDefineOutputEnableOutOFF14M := TRUE;
+    ELSIF M.PARAMETER_Q[204] = 1.0 THEN(*14口 输出*)
+      g_bDefineOutputEnableOut14M := TRUE;
+    END_IF;
+    g_dUserDefineIoOut14WaitSignalM := M.PARAMETER_I[204];
+    g_dUserDefineIoOut14WaitBoardInputSignalM := M.PARAMETER_J[204]; 
+  ELSIF  M.PARAMETER_P[204] = 15.0 THEN(*15口*)
+    IF M.PARAMETER_Q[204] = 0.0 THEN(*15口 关闭输出*)
+      g_bDefineOutputEnableOutOFF15M := TRUE;
+    ELSIF M.PARAMETER_Q[204] = 1.0 THEN(*15口 输出*)
+      g_bDefineOutputEnableOut15M := TRUE;
+    END_IF;
+    g_dUserDefineIoOut15WaitSignalM := M.PARAMETER_I[204];
+    g_dUserDefineIoOut15WaitBoardInputSignalM := M.PARAMETER_J[204];                                                                                                                                                                                                                                                    
+  END_IF;
+  IF  M.PARAMETER_H[204] = 0.0 THEN
+    M.ENABLE[204] := 0;
+  END_IF;
+END_IF;
+
+(*M206：下料机气缸控制 M206 P1 Q1 I0 H1*)
+(*P:0:到位信号清零1:控制气缸Q:气缸数量I:0和1只等自己的到位2-5等待同组气缸到位信号J:0:下降1:上升K:0不等待板卡输入信号1-3等待对应板卡的输入信号*)
+R206(CLK := INT_TO_BOOL(M.ENABLE[206]));
+IF R206.Q THEN
+  g_nCurMCode := 206;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_P[206] = 0.0 THEN(*下料机气缸到位信号清零*)
+    IF M.PARAMETER_Q[206] = 0.0 THEN(*下料机气缸0到位信号清零*)
+      g_bBlankingCyl0DownCloseM := TRUE;
+    ELSIF M.PARAMETER_Q[206] = 1.0 THEN(*下料机气缸1到位信号清零*)
+      g_bBlankingCyl1DownCloseM := TRUE;
+    ELSIF M.PARAMETER_Q[206] = 2.0 THEN(*下料机气缸2到位信号清零*)
+      g_bBlankingCyl2DownCloseM := TRUE;
+    ELSIF M.PARAMETER_Q[206] = 3.0 THEN(*下料机气缸3到位信号清零*)
+      g_bBlankingCyl3DownCloseM := TRUE; 
+    ELSIF M.PARAMETER_Q[206] = 4.0 THEN(*下料机气缸4到位信号清零*)
+      g_bBlankingCyl4DownCloseM := TRUE;  
+    ELSIF M.PARAMETER_Q[206] = 5.0 THEN(*下料机气缸0~4到位信号清零*)  
+      g_bBlankingCyl0DownCloseM := TRUE;
+      g_bBlankingCyl1DownCloseM := TRUE;  
+      g_bBlankingCyl2DownCloseM := TRUE;
+      g_bBlankingCyl3DownCloseM := TRUE; 
+      g_bBlankingCyl4DownCloseM := TRUE; 
+    END_IF;
+    M.ENABLE[206] := 0;
+  ELSIF M.PARAMETER_P[206] = 1.0 THEN(*下料气缸控制*)
+    IF M.PARAMETER_Q[206] = 0.0 THEN(*下料气缸0控制  0 下降 1 上升*)
+      g_bBlankingCyl0DownOpenM := TRUE;
+      g_fBlankingCyl0MoveTypeM := M.PARAMETER_J[206];
+      g_dBlankingCylinder1WaitSignalM := M.PARAMETER_I[206];
+      g_dBlankingCylinder1WaitBoardInputSignalM := M.PARAMETER_K[206];
+    ELSIF M.PARAMETER_Q[206] = 1.0 THEN(*下料气缸1控制  0 下降 1 上升*) 
+      g_bBlankingCyl1DownOpenM := TRUE;
+      g_fBlankingCyl1MoveTypeM := M.PARAMETER_J[206]; 
+      g_dBlankingCylinder2WaitSignalM := M.PARAMETER_I[206];
+      g_dBlankingCylinder2WaitBoardInputSignalM := M.PARAMETER_K[206];
+    ELSIF M.PARAMETER_Q[206] = 2.0 THEN(*下料气缸2控制  0 下降 1 上升*)  
+      g_bBlankingCyl2DownOpenM := TRUE;
+      g_fBlankingCyl2MoveTypeM := M.PARAMETER_J[206]; 
+      g_dBlankingCylinder3WaitSignalM := M.PARAMETER_I[206];
+      g_dBlankingCylinder3WaitBoardInputSignalM := M.PARAMETER_K[206];
+    ELSIF M.PARAMETER_Q[206] = 3.0 THEN(*下料气缸3控制  0 下降 1 上升*)  
+      g_bBlankingCyl3DownOpenM := TRUE;
+      g_fBlankingCyl3MoveTypeM := M.PARAMETER_J[206]; 
+      g_dBlankingCylinder4WaitSignalM := M.PARAMETER_I[206];
+      g_dBlankingCylinder4WaitBoardInputSignalM := M.PARAMETER_K[206];
+    ELSIF M.PARAMETER_Q[206] = 4.0 THEN(*下料气缸4控制  0 下降 1 上升*)  
+      g_bBlankingCyl4DownOpenM := TRUE;
+      g_fBlankingCyl4MoveTypeM := M.PARAMETER_J[206]; 
+      g_dBlankingCylinder5WaitSignalM := M.PARAMETER_I[206];
+      g_dBlankingCylinder5WaitBoardInputSignalM := M.PARAMETER_K[206];
+    END_IF;
+    
+    IF  M.PARAMETER_H[206] = 0.0 THEN
+      M.ENABLE[206] := 0;
+    END_IF;
+  END_IF;
+END_IF;
+
+(*M216：零件数加1 M216*)
+R216(CLK := INT_TO_BOOL(M.ENABLE[216]));
+IF R216.Q THEN
+  g_bPartCountM := TRUE;
+  g_nCurMCode := 216;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M218：标准版抽尘气缸控制 M218 P1 H1*)
+R218(CLK := INT_TO_BOOL(M.ENABLE[218]));
+IF R218.Q THEN
+  g_nCurMCode := 218;
+  ParallelMCode[0].bExecute := TRUE;
+  IF NOT g_bDustCylinderEnable THEN
+    M.ENABLE[218] := 0;
+    RETURN;
+  END_IF;
+  IF M.PARAMETER_P[218] = 0.0 THEN (*抽尘气缸下降*)
+    IF M.PARAMETER_Q[218] = 1.0 THEN
+      g_bGeneralDustCylinder1CloseM := TRUE;
+    ELSIF M.PARAMETER_Q[218] = 2.0 THEN
+      g_bGeneralDustCylinder2CloseM := TRUE;
+    ELSIF M.PARAMETER_Q[218] = 3.0 THEN
+      g_bGeneralDustCylinder3CloseM := TRUE;
+    ELSE
+      g_bGeneralDustCylinder1CloseM := TRUE;
+      g_bGeneralDustCylinder2CloseM := TRUE;
+      g_bGeneralDustCylinder3CloseM := TRUE;
+    END_IF;
+  ELSIF M.PARAMETER_P[218] = 1.0 THEN(*抽尘气缸上升*)
+    IF M.PARAMETER_Q[218] = 1.0 THEN
+      g_bGeneralDustCylinder1OpenM := TRUE;
+    ELSIF M.PARAMETER_Q[218] = 2.0 THEN
+      g_bGeneralDustCylinder2OpenM := TRUE;
+    ELSIF M.PARAMETER_Q[218] = 3.0 THEN
+      g_bGeneralDustCylinder3OpenM := TRUE;
+    ELSE
+      g_bGeneralDustCylinder1OpenM := TRUE;
+      g_bGeneralDustCylinder2OpenM := TRUE;
+      g_bGeneralDustCylinder3OpenM := TRUE;
+    END_IF;
+  END_IF;
+  IF  M.PARAMETER_H[218] = 0.0 THEN
+    M.ENABLE[218] := 0;
+  END_IF;
+END_IF;
+
+(*M221：高低面 上抬 M221 H1*)
+R221(CLK := INT_TO_BOOL(M.ENABLE[221]));
+IF R221.Q THEN
+  g_nCurMCode := 221;
+  ParallelMCode[0].bExecute := TRUE;
+  g_bDiscernHeightUpLiftM := TRUE;
+  IF  M.PARAMETER_H[221] = 0.0 THEN
+    M.ENABLE[221] := 0;
+  END_IF;
+END_IF;
+
+(*M222：前浮动支撑轴浮动控制 M222 P1 H1*)
+R222(CLK := INT_TO_BOOL(M.ENABLE[222]));
+IF R222.Q THEN
+  g_nCurMCode := 222;
+  ParallelMCode[0].bExecute := TRUE;
+  g_nFrontSustainSignalM := M.PARAMETER_P[222];(* 0关闭浮动 1开启浮动 11托料轴1开浮动 12托料轴1关浮动 13,14托料轴2  15,16托料轴3 17,18托料轴4*)
+  g_dFrontSustainAxisFloatControlIValueM := M.PARAMETER_I[222];
+  IF g_nFrontSustainSignalM > 10.0 THEN
+    g_bFrontSustainAxisFollowControlM := TRUE;
+  ELSE
+    IF g_dFrontSustainAxisFloatControlIValueM = 0.0 THEN
+		g_bFrontSustainFollowExecuteM := TRUE;
+    ELSE
+      g_bFrontSustainAxisFloatControlM := TRUE;
+    END_IF;
+  END_IF;
+  IF  M.PARAMETER_H[222] = 0.0 THEN
+    M.ENABLE[222] := 0;
+  END_IF;
+END_IF;
+
+(*M223：前浮动支撑气缸控制 M223 P1 Q1 H1*)
+R223(CLK := INT_TO_BOOL(M.ENABLE[223]));
+IF R223.Q THEN
+  g_nCurMCode := 223;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_P[223] = 0.0 THEN(*到位信号清零*)
+    M.ENABLE[223] := 0;
+    g_bFrontSustainUpDownDoneM := TRUE;
+  ELSIF M.PARAMETER_P[223] = 1.0 THEN(*控制*)
+    g_bFrontSustainUpDownM := TRUE;
+    g_fFrontSustainMoveTypeM := M.PARAMETER_Q[223];(* 若使用气缸 0:气缸下落  1:气缸上抬  2:气缸动态上抬 若使用轴 0:下落  1:上抬*)
+    IF  M.PARAMETER_H[223] = 0.0 THEN
+      M.ENABLE[223] := 0;
+    END_IF;
+  END_IF;
+END_IF;
+
+(*M224：传入管头的工件坐标和下个轮廓最远点 M224 P1 Q1*)
+R224(CLK := INT_TO_BOOL(M.ENABLE[224]));
+IF R224.Q THEN
+  g_nCurMCode := 224;
+  ParallelMCode[0].bExecute := TRUE;
+  g_fPipeHeadCoordM := M.PARAMETER_P[224];(*管头的工件坐标*)
+  g_fNextFasterPointM := M.PARAMETER_Q[224];(*下个轮廓最远点*)
+  
+  M.ENABLE[224] := 0;
+  
+END_IF;
+
+(*M225：两卡盘坐标避让2获取到传入管头的工件坐标和下个轮廓最远点M225*)
+R225(CLK := INT_TO_BOOL(M.ENABLE[225]));
+IF R225.Q THEN
+  g_b2ClawAvoidCheckM := TRUE;
+  g_nCurMCode := 225;
+  ParallelMCode[0].bExecute := TRUE;
+  g_dM225AvoidType := M.PARAMETER_P[225];
+  IF  M.PARAMETER_H[225] = 0.0 THEN
+    M.ENABLE[225] := 0;
+  END_IF;
+END_IF;
+
+(*M226：翻转气缸控制*)
+R226(CLK := INT_TO_BOOL(M.ENABLE[226]));
+IF R226.Q THEN
+  g_nCurMCode := 226;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_P[226] = 0.0 THEN(*到位信号清零*)
+    g_bTurnUpDownCloseM := TRUE;
+    M.ENABLE[226] := 0;
+  ELSIF  M.PARAMETER_P[226] = 1.0 THEN(*控制 0下降 1上升*)
+    g_bTurnUpDownOpenM := TRUE;
+    g_nTurnTypeM := M.PARAMETER_Q[226];
+    IF  M.PARAMETER_H[226] = 0.0 THEN
+      M.ENABLE[226] := 0;
+    END_IF;
+  END_IF;
+END_IF;
+
+(*M227：抽尘气阀控制*)
+R227(CLK := INT_TO_BOOL(M.ENABLE[227]));
+IF R227.Q THEN
+  g_nCurMCode := 227;
+  ParallelMCode[0].bExecute := TRUE;
+  IF NOT g_bDustEnable AND NOT g_bDustCylinderEnable THEN
+    M.ENABLE[227] := 0;
+    RETURN;
+  END_IF;
+  IF M.PARAMETER_P[227] = 0.0 THEN
+     g_bDustGasValveCloseM := TRUE;
+  ELSIF M.PARAMETER_P[227] = 1.0 THEN
+    g_bDustGasValveOpenM := TRUE;
+  END_IF;
+  M.ENABLE[227] := 0;
+END_IF;
+
+(*M229：微连接*)
+R229(CLK := INT_TO_BOOL(M.ENABLE[229]));
+IF R229.Q THEN
+  g_nCurMCode := 229;
+  ParallelMCode[0].bExecute := TRUE;
+  g_fMicroConnectEnableM := M.PARAMETER_P[229];
+  M.ENABLE[229] := 0;
+END_IF;
+
+(*M230：板外切割轮廓开始*)
+R230(CLK := INT_TO_BOOL(M.ENABLE[230]));
+IF R230.Q THEN
+  g_bProfileStartM := TRUE;
+  g_nCurMCode := 230;
+  ParallelMCode[0].bExecute := TRUE;
+  IF  M.PARAMETER_H[230] = 0.0 THEN
+    M.ENABLE[230] := 0;
+  END_IF;
+END_IF;
+
+(*M231：四面分中补偿值的开启关闭*)
+R231(CLK := INT_TO_BOOL(M.ENABLE[231]));
+IF R231.Q THEN
+  IF M.PARAMETER_P[231] = 0.0 THEN(*关闭*)
+     g_bFivePointsCenterEnable := FALSE;
+     g_bUseSplitComValueM := FALSE;
+     g_bRealTimeDynamicOPen := FALSE;
+     g_bRealTimeDynamicClose := TRUE;
+     g_bClearSplitComValueM := TRUE;
+     g_bProcessEndForRealTimeCalibrate := TRUE;
+     g_bSupportCylinder1IsAvoidFlag := FALSE;
+     g_bSupportCylinder2IsAvoidFlag := FALSE;
+     g_bSupportCylinder3IsAvoidFlag := FALSE;
+     g_bSupportCylinder4IsAvoidFlag := FALSE;
+     g_bSupportCylinder5IsAvoidFlag := FALSE;
+     g_bSupportCylinder6IsAvoidFlag := FALSE;
+     g_bSupportCylinder7IsAvoidFlag := FALSE;
+     g_bSupportCylinder8IsAvoidFlag := FALSE;
+  ELSIF M.PARAMETER_P[231] = 1.0 THEN(*开启*)
+    g_bFivePointsCenterEnable := TRUE;
+    g_bUseSplitComValueM := TRUE;
+     g_bProcessStartForRealTimeCalibrate := TRUE;
+  END_IF;
+  g_nCurMCode := 231;
+  M.ENABLE[231] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+  g_bIsCanExecuteFallBack := LREAL_TO_BOOL(M.PARAMETER_P[231]);
+END_IF;
+
+(*M233：卡盘避让监测触发*)
+R233(CLK := INT_TO_BOOL(M.ENABLE[233]));
+IF R233.Q THEN
+  g_bChunkAvoidStartM := TRUE;
+  g_nCurMCode := 233;
+  M.ENABLE[233] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M234：获取卡盘中心Z轴坐标*)
+R234(CLK := INT_TO_BOOL(M.ENABLE[234]));
+IF R234.Q THEN
+  g_bBeamCenterFlatNumEnableM := TRUE;
+  g_fAngleIronFollowHeightM := M.PARAMETER_P[234];(*当前随动的高度*)
+  g_fAngleIronFlatNumM := M.PARAMETER_Q[234];(*获取点数*)
+  g_nCurMCode := 234;
+  M.ENABLE[234] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M235：两面分中开始*)
+R235(CLK := INT_TO_BOOL(M.ENABLE[235]));
+IF R235.Q THEN
+  g_bAngleIronEnableM := TRUE;
+  g_nCurMCode := 235;
+  M.ENABLE[235] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M236：两面分中结束*)
+R236(CLK := INT_TO_BOOL(M.ENABLE[236]));
+IF R236.Q THEN
+  g_bAngleIronCloseM := TRUE;
+  g_nCurMCode := 236;
+  M.ENABLE[236] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M237：电动推杆控制 M237 P0 Q0 H1*)
+R237(CLK := INT_TO_BOOL(M.ENABLE[237]));
+IF R237.Q THEN
+  g_bLinearActuatorEnablM := TRUE;
+  g_nCurMCode := 237;
+  ParallelMCode[0].bExecute := TRUE;
+  g_dLinearActuatorDirectionM := M.PARAMETER_P[237];(*运动方向 0前进  1 后退*)
+  g_dLinearActuatorBeZeroM := M.PARAMETER_Q[237];(*0使用正常移动时间 1使用移动到极限位的时间*)
+  IF  M.PARAMETER_H[237] = 0.0 THEN
+    M.ENABLE[237] := 0;
+  END_IF;
+END_IF;
+
+(*标定，z轴缓慢下降-匀速*)
+R238(CLK := INT_TO_BOOL(M.ENABLE[238]));
+IF R238.Q THEN
+  g_bZAxisPresterVelMoveM := TRUE;
+  g_dZAxisPresterVelMoveVelM := m.PARAMETER_P[238]; 
+  g_nCurMCode := 238;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*普雷斯特标定状态*)
+R239(CLK := INT_TO_BOOL(M.ENABLE[239]));
+IF R239.Q THEN
+ g_nPresterZAxisClibrtaState := LREAL_TO_INT(m.PARAMETER_P[239]);
+ g_nCurMCode := 239;
+  ParallelMCode[0].bExecute := TRUE;
+ IF g_nPresterZAxisClibrtaState=0 THEN
+   M.ENABLE[239]:=0;
+ END_IF; 
+END_IF;
+(*探完*)
+R240(CLK := INT_TO_BOOL(M.ENABLE[240]));
+IF R240.Q THEN  
+ g_bFindEageCoord := g_fCurrentCoordYBuffer;
+ g_nCurMCode := 240;
+  ParallelMCode[0].bExecute := TRUE;
+  M.ENABLE[240] := 0;
+  g_bAutoParaDoneEnable := TRUE;
+  IF M.PARAMETER_K[240] = 1.0 THEN(*只有对边才能给这个赋值*)
+    g_foYOverShootPosition := g_fYOverShootPosition;
+  END_IF;
+END_IF;
+(*单面分中*)
+R241(CLK := INT_TO_BOOL(M.ENABLE[241]));
+IF R241.Q THEN
+  g_bSingleSideOpenM := TRUE;
+  g_nCurMCode := 241;
+  M.ENABLE[241] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+R242(CLK := INT_TO_BOOL(M.ENABLE[242]));
+IF R242.Q THEN
+  g_bSingleSideCloseM := TRUE;
+  g_bAutoSigleSideFlag := FALSE;
+  g_nCurMCode := 242;
+  M.ENABLE[242] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+(*记录高低面识别后U轴坐标*)
+R243(CLK := INT_TO_BOOL(M.ENABLE[243]));
+IF R243.Q THEN
+  g_dBackDissurfaceUCoord := g_fiUCncCoord;
+  g_nCurMCode := 243;
+  M.ENABLE[243] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+(*续切不执行高低面识别的动作，但要保持和高低面识别一样的拐角曲线*)
+R244(CLK := INT_TO_BOOL(M.ENABLE[244]));
+IF R244.Q THEN
+  g_bContinueCutNoUseDisSurfaceEnableM := TRUE;
+  g_nCurMCode := 244;
+  M.ENABLE[244] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+(*自动运行单面分中时控制进给*)
+R245(CLK := INT_TO_BOOL(M.ENABLE[245]));
+IF R245.Q THEN
+  g_bAutoSigleSideFlag := TRUE;
+  g_nCurMCode := 245;
+  M.ENABLE[245] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+(*下个轮廓是否有分中，配合M154使用*)
+R246(CLK := INT_TO_BOOL(M.ENABLE[246]));
+IF R246.Q THEN
+  g_dNestingIsUseSideCenterM := M.PARAMETER_P[246];(*下个轮廓有分中*)
+  g_dNestingIsPullerM := M.PARAMETER_Q[246];(*判断下个轮廓是否要拉料0：不拉1：拉料*)
+  g_bOffSiteCloseFrogFlagM := LREAL_TO_BOOL(M.PARAMETER_I[246]);(*下个轮廓是否板外*)
+  g_dNextToolNum := LREAL_TO_INT(M.PARAMETER_J[246]);(*下个轮廓的刀具号*)
+  IF g_dNextToolNum < 1 THEN
+    g_dNextToolNum := 1;
+  END_IF;
+  IF g_TechData.multilTechData[g_dNextToolNum-1].DIRECUT_CUTTING.bFixedHeightCutting THEN
+    g_fCuttingType := 1;
+  ELSE
+    g_fCuttingType := 0;
+  END_IF;
+  g_nCurMCode := 246;
+  M.ENABLE[246] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+(*四面寻中开始*)
+R247(CLK := INT_TO_BOOL(M.ENABLE[247]));
+IF R247.Q THEN
+  g_bFourSidesCenterOpenM := TRUE;
+  g_nCurMCode := 247;
+  M.ENABLE[247] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+(*四面寻中结束*)
+R248(CLK := INT_TO_BOOL(M.ENABLE[248]));
+IF R248.Q THEN
+  g_bFourSidesCenterCloseM := TRUE;
+  g_bAutoSigleSideFlag := FALSE;
+  g_nCurMCode := 248;
+  M.ENABLE[248] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+(*四面寻中上传的值*)
+R249(CLK := INT_TO_BOOL(M.ENABLE[249]));
+IF R249.Q THEN
+  g_bFourSidesCenterSetValueM := TRUE;
+  g_nFourSidesCenterSetValueP :=LREAL_TO_INT(M.PARAMETER_P[249]);(*采集的是第几个点数据*)
+  g_dFourSidesCenterSetValueQ := M.PARAMETER_Q[249];(*采集到的数值*)
+  g_nCurMCode := 249;
+  M.ENABLE[249] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+R250(CLK := INT_TO_BOOL(M.ENABLE[250]));
+IF R250.Q THEN
+  g_bTwoSidesCenterOpenM := TRUE;
+  g_nCurMCode := 250;
+  M.ENABLE[250] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+R251(CLK := INT_TO_BOOL(M.ENABLE[251]));
+IF R251.Q THEN
+  g_bTwoSidesCenterCloseM := TRUE;
+  g_bAutoSigleSideFlag := FALSE;
+  g_nCurMCode := 251;
+  M.ENABLE[251] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+R252(CLK := INT_TO_BOOL(M.ENABLE[252]));
+IF R252.Q THEN
+  g_bSlowcutEnableM := LREAL_TO_BOOL(M.PARAMETER_P[252]);
+  g_dSlowcutLengthM := M.PARAMETER_Q[252];
+  g_nCurMCode := 252;
+  M.ENABLE[252] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+(*机床测试Z轴往复运动*)
+R253(CLK := INT_TO_BOOL(M.ENABLE[253]));
+IF R253.Q THEN
+  g_bZCycleZRelEnable := LREAL_TO_BOOL(M.PARAMETER_I[253]);
+  IF g_bZCycleZRelEnable=FALSE THEN
+    g_bCycleZRelMoveEnableM := TRUE;
+    g_dCycleZRelMoveDisM := M.PARAMETER_P[253];
+    g_dCycleZRelMoveVelM := M.PARAMETER_Q[253];
+  END_IF;
+  g_nCurMCode := 253;
+  M.ENABLE[253] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*探边随动响应度*)
+R254(CLK := INT_TO_BOOL(M.ENABLE[254]));
+IF R254.Q THEN
+  g_bZFollowResponeChaneExecuteM := TRUE;
+  g_bZFollowResponeChangeM := LREAL_TO_BOOL(M.PARAMETER_P[254]);(*0 恢复原随动响应度 1使用探边随动响应度*)
+  IF  M.PARAMETER_H[254] = 0.0 THEN
+      M.ENABLE[254] := 0;
+  END_IF;
+  IF M.PARAMETER_P[254] = 1.0 THEN
+    g_bIsCanClickForwarnOrBackwardState := TRUE;
+  ELSE
+    g_bIsCanClickForwarnOrBackwardState := FALSE;
+  END_IF;
+  g_nCurMCode := 254;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*探边上抬响应度*)
+R255(CLK := INT_TO_BOOL(M.ENABLE[255]));
+IF R255.Q THEN
+  g_bZFollowKPChaneExecuteM := TRUE;
+  g_bZFollowKPChangeM := LREAL_TO_BOOL(M.PARAMETER_P[255]);(*0 恢复原上抬响应度 1使用探边上抬响应度*)
+  IF  M.PARAMETER_H[255] = 0.0 THEN
+      M.ENABLE[255] := 0;
+  END_IF;
+  g_nCurMCode := 255;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M256：轮廓开始但不开光*)
+R256(CLK := INT_TO_BOOL(M.ENABLE[256]));
+IF R256.Q THEN
+  g_bLayerStartOffLaserM := TRUE;
+  g_nCurMCode := 256;
+  M.ENABLE[256] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M257：圆管360度检测水平*)
+R257(CLK := INT_TO_BOOL(M.ENABLE[257]));
+IF R257.Q THEN
+  IF M.PARAMETER_P[257] = 0.0 THEN(*关闭并上传数据*)
+    g_bCircle360CenterCloseM := TRUE;
+  ELSIF M.PARAMETER_P[257] = 1.0 THEN(*开启并记录数据*)
+    g_bCircle360CenterM := TRUE;
+  END_IF;
+  g_nCurMCode := 257;
+  M.ENABLE[257] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M258：获取在圆管上的点*)
+R258(CLK := INT_TO_BOOL(M.ENABLE[258]));
+IF R258.Q THEN
+  g_bCircleFindToperPointM := TRUE;
+  g_fCircleFindToperPointM := M.PARAMETER_P[258];
+  g_nCurMCode := 258;
+  M.ENABLE[258] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M259：计算在圆管上左右找最高点*)
+R259(CLK := INT_TO_BOOL(M.ENABLE[259]));
+IF R259.Q THEN
+  g_bCircleFindToperM:=TRUE;
+  g_nCurMCode := 259;
+  M.ENABLE[259] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M260：计算在圆管上左右找最高点*)
+R260(CLK := INT_TO_BOOL(M.ENABLE[260]));
+IF R260.Q THEN
+  g_bCircleFindTopM:=TRUE;
+  g_nCurMCode := 260;
+  M.ENABLE[260] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+(*M261:用于输出信号1-10,*)
+R261(CLK := INT_TO_BOOL(M.ENABLE[261]));
+IF R261.Q THEN
+  IF M.PARAMETER_P[261] = 1.0 THEN
+    g_boCustomOutPut1 := TRUE;
+  ELSIF M.PARAMETER_P[261] = 2.0 THEN
+    g_boCustomOutPut2 := TRUE;
+  ELSIF M.PARAMETER_P[261] = 3.0 THEN
+    g_boCustomOutPut3 := TRUE;
+  ELSIF M.PARAMETER_P[261] = 4.0 THEN
+    g_boCustomOutPut4 := TRUE;
+  ELSIF M.PARAMETER_P[261] = 5.0 THEN
+    g_boCustomOutPut5 := TRUE;
+  ELSIF M.PARAMETER_P[261] = 6.0 THEN
+    g_boCustomOutPut6 := TRUE;
+  ELSIF M.PARAMETER_P[261] = 7.0 THEN
+    g_boCustomOutPut7 := TRUE;
+  ELSIF M.PARAMETER_P[261] = 8.0 THEN
+    g_boCustomOutPut8 := TRUE;
+  ELSIF M.PARAMETER_P[261] = 9.0 THEN
+    g_boCustomOutPut9 := TRUE;
+  ELSIF M.PARAMETER_P[261] = 10.0 THEN
+    g_boCustomOutPut10 := TRUE;
+  END_IF;
+  g_nCurMCode := 261;
+  IF M.PARAMETER_H[261] = 0.0 THEN
+    M.ENABLE[261] :=0;
+  END_IF;
+  ParallelMCode[0].bExecute := TRUE;
+  
+END_IF;
+(*M262用来关闭M261的输出信号*)
+R262(CLK := INT_TO_BOOL(M.ENABLE[262]));
+IF R262.Q THEN
+  IF M.PARAMETER_P[262] = 1.0 THEN
+    g_boCustomOutPut1 := FALSE;
+  ELSIF M.PARAMETER_P[262] = 2.0 THEN
+    g_boCustomOutPut2 := FALSE;
+  ELSIF M.PARAMETER_P[262] = 3.0 THEN
+    g_boCustomOutPut3 := FALSE;
+  ELSIF M.PARAMETER_P[262] = 4.0 THEN
+    g_boCustomOutPut4 := FALSE;
+  ELSIF M.PARAMETER_P[262] = 5.0 THEN
+    g_boCustomOutPut5 := FALSE;
+  ELSIF M.PARAMETER_P[262] = 6.0 THEN
+    g_boCustomOutPut6 := FALSE;
+  ELSIF M.PARAMETER_P[262] = 7.0 THEN
+    g_boCustomOutPut7 := FALSE;
+  ELSIF M.PARAMETER_P[262] = 8.0 THEN
+    g_boCustomOutPut8 := FALSE;
+  ELSIF M.PARAMETER_P[262] = 9.0 THEN
+    g_boCustomOutPut9 := FALSE;
+  ELSIF M.PARAMETER_P[262] = 10.0 THEN
+    g_boCustomOutPut10 := FALSE;
+  END_IF;
+  M.ENABLE[262] := 0;
+  g_nCurMCode := 262;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+(*M263：输出一个信号，阻塞主程序代码，只有等到一个反馈信号才关闭M代码，主程序继续执行*)
+R263(CLK := INT_TO_BOOL(M.ENABLE[263]));
+IF R263.Q THEN
+  IF M.PARAMETER_P[263] = 1.0 THEN
+    g_boCustomOutPut1 := TRUE;
+  ELSIF M.PARAMETER_P[263] = 2.0 THEN
+    g_boCustomOutPut2 := TRUE;
+  ELSIF M.PARAMETER_P[263] = 3.0 THEN
+    g_boCustomOutPut3 := TRUE;
+  ELSIF M.PARAMETER_P[263] = 4.0 THEN
+    g_boCustomOutPut4 := TRUE;
+  ELSIF M.PARAMETER_P[263] = 5.0 THEN
+    g_boCustomOutPut5 := TRUE;
+  ELSIF M.PARAMETER_P[263] = 6.0 THEN
+    g_boCustomOutPut6 := TRUE;
+  ELSIF M.PARAMETER_P[263] = 7.0 THEN
+    g_boCustomOutPut7 := TRUE;
+  ELSIF M.PARAMETER_P[263] = 8.0 THEN
+    g_boCustomOutPut8 := TRUE;
+  ELSIF M.PARAMETER_P[263] = 9.0 THEN
+    g_boCustomOutPut9 := TRUE;
+  ELSIF M.PARAMETER_P[263] = 10.0 THEN
+    g_boCustomOutPut10 := TRUE;
+  END_IF;
+  dM263IsCloseOutput := M.PARAMETER_Q[263];
+  g_nCurMCode := 263;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+bM263CloseTrriger := g_biCustomInPut1  OR g_biCustomInPut2 OR g_biCustomInPut3 OR g_biCustomInPut4 OR g_biCustomInPut5 
+OR g_biCustomInPut6 OR g_biCustomInPut7 OR g_biCustomInPut8 OR g_biCustomInPut9 OR g_biCustomInPut10;
+
+
+
+R263Close(CLK := bM263CloseTrriger);
+IF R263Close.Q THEN
+  IF dM263IsCloseOutput = 1.0 THEN
+    IF g_biCustomInPut1 THEN
+      M.ENABLE[263] := 0;
+    ELSIF g_biCustomInPut2 THEN
+      M.ENABLE[263] := 0;
+    ELSIF g_biCustomInPut3 THEN
+      M.ENABLE[263] := 0;
+	ELSIF g_biCustomInPut4 THEN
+      M.ENABLE[263] := 0;
+	ELSIF g_biCustomInPut5 THEN
+      M.ENABLE[263] := 0;
+	ELSIF g_biCustomInPut6 THEN
+      M.ENABLE[263] := 0;
+	ELSIF g_biCustomInPut7 THEN
+      M.ENABLE[263] := 0;
+	ELSIF g_biCustomInPut8 THEN
+      M.ENABLE[263] := 0;
+	ELSIF g_biCustomInPut9 THEN
+      M.ENABLE[263] := 0;
+	ELSIF g_biCustomInPut10 THEN
+      M.ENABLE[263] := 0;
+    END_IF;
+  END_IF;
+  
+END_IF;
+(*支撑气缸单独控制*)
+R264(CLK :=INT_TO_BOOL(M.ENABLE[264]));
+IF R264.Q THEN
+  g_bSupportCylinderControlM := TRUE;
+  g_nCurMCode := 264;
+  IF M.PARAMETER_H[264] = 0.0 THEN
+    M.ENABLE[264] := 0;
+  END_IF;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M265：*)
+R265(CLK := INT_TO_BOOL(M.ENABLE[265]));
+IF R265.Q THEN
+  IF M.PARAMETER_P[265]=0.0 THEN (*关闭关随动圆管寻中*)
+    g_bCircleFindTopNoFollowCloseM := TRUE;
+  ELSIF M.PARAMETER_P[265]=1.0 THEN(*开启关随动圆管寻中*)
+    g_bCircleFindTopNoFollowM := TRUE;
+    g_fCircleFindTopNoFollowModeM := M.PARAMETER_Q[265];
+  END_IF;
+  M.ENABLE[265] := 0;
+  g_nCurMCode := 265;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*R266(CLK := INT_TO_BOOL(M.ENABLE[266])); 该M代码不使用
+IF R266.Q THEN
+   g_bM266ExecuteM := TRUE;
+   IF M.PARAMETER_H[266] = 0.0 THEN
+    M.ENABLE[266] := 0;
+  END_IF;
+END_IF;*)
+
+
+(*控制新支撑单个气缸动作  M267 P1 气缸1  Q 0下落 1上升 H等不等到位*)
+R267(CLK := INT_TO_BOOL(M.ENABLE[267]));
+IF R267.Q THEN
+  IF M.PARAMETER_P[267] = 1.0 THEN
+    IF M.PARAMETER_Q[267] = 0.0 THEN(*下*)
+      g_bSupCyl2Down1 := TRUE;
+    ELSE
+      g_bSupCyl2Up1 := TRUE;
+    END_IF;
+    IF M.PARAMETER_H[267] = 0.0 THEN 
+      M.ENABLE[267] := 0;
+    END_IF;
+  ELSIF M.PARAMETER_P[267] = 2.0 THEN
+    IF M.PARAMETER_Q[267] = 0.0 THEN(*下*)
+      g_bSupCyl2Down2 := TRUE;
+    ELSE
+      g_bSupCyl2Up2 := TRUE;
+    END_IF;
+    IF M.PARAMETER_H[267] = 0.0 THEN 
+      M.ENABLE[267] := 0;
+    END_IF;
+  ELSIF M.PARAMETER_P[267] = 3.0 THEN
+    IF M.PARAMETER_Q[267] = 0.0 THEN(*下*)
+      g_bSupCyl2Down3 := TRUE;
+    ELSE
+      g_bSupCyl2Up3 := TRUE;
+    END_IF;
+    IF M.PARAMETER_H[267] = 0.0 THEN 
+      M.ENABLE[267] := 0;
+    END_IF;
+  ELSIF M.PARAMETER_P[267] = 4.0 THEN
+    IF M.PARAMETER_Q[267] = 0.0 THEN(*下*)
+      g_bSupCyl2Down4 := TRUE;
+    ELSE
+      g_bSupCyl2Up4 := TRUE;
+    END_IF;
+    IF M.PARAMETER_H[267] = 0.0 THEN 
+      M.ENABLE[267] := 0;
+    END_IF;
+  ELSE(*其他直接不认识的气缸数目，将不阻塞直接过*)
+    M.ENABLE[267] := 0;
+  END_IF;
+  
+  g_nCurMCode := 267;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*控制新支撑气缸一键动作  P 0下降 1上升  H等不等到位*)
+R268(CLK := INT_TO_BOOL(M.ENABLE[268]));
+IF R268.Q THEN
+  IF M.PARAMETER_P[268] = 0.0 THEN
+    g_bOneKeySup2CylDown := TRUE;
+  ELSE
+    g_bOneKeySup2CylUp := TRUE;
+  END_IF;
+  IF M.PARAMETER_H[268] = 0.0 THEN 
+    M.ENABLE[268] := 0;
+  END_IF;
+
+  g_nCurMCode := 268;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+(*控制新夹中单个气缸动作  P1 气缸1  Q 0下落 1上升 H等不等到位*)
+R269(CLK := INT_TO_BOOL(M.ENABLE[269]));
+IF R269.Q THEN
+  IF M.PARAMETER_P[269] = 1.0 THEN
+    IF M.PARAMETER_Q[269] = 0.0 THEN(*下*)
+      g_bCentringCyl2Down1 := TRUE;
+    ELSE
+      g_bCentringCyl2Up1 := TRUE;
+    END_IF;
+    IF M.PARAMETER_H[269] = 0.0 THEN 
+      M.ENABLE[269] := 0;
+    END_IF;
+  ELSIF M.PARAMETER_P[269] = 2.0 THEN
+    IF M.PARAMETER_Q[269] = 0.0 THEN(*下*)
+      g_bCentringCyl2Down2 := TRUE;
+    ELSE
+      g_bCentringCyl2Up2 := TRUE;
+    END_IF;
+    IF M.PARAMETER_H[269] = 0.0 THEN 
+      M.ENABLE[269] := 0;
+    END_IF;
+  ELSIF M.PARAMETER_P[269] = 3.0 THEN
+    IF M.PARAMETER_Q[269] = 0.0 THEN(*下*)
+      g_bCentringCyl2Down3 := TRUE;
+    ELSE
+      g_bCentringCyl2Up3 := TRUE;
+    END_IF;
+    IF M.PARAMETER_H[269] = 0.0 THEN 
+      M.ENABLE[269] := 0;
+    END_IF;
+  ELSIF M.PARAMETER_P[269] = 4.0 THEN
+    IF M.PARAMETER_Q[269] = 0.0 THEN(*下*)
+      g_bCentringCyl2Down4 := TRUE;
+    ELSE
+      g_bCentringCyl2Up4 := TRUE;
+    END_IF;
+    IF M.PARAMETER_H[269] = 0.0 THEN 
+      M.ENABLE[269] := 0;
+    END_IF;
+  ELSE(*其他直接不认识的气缸数目，将不阻塞直接过*)
+    M.ENABLE[269] := 0;
+  END_IF;
+  
+  g_nCurMCode := 269;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*控制新夹中气缸一键动作 P1 气缸1  Q 0下落 1上升 H等不等到位*)
+R270(CLK := INT_TO_BOOL(M.ENABLE[270]));
+IF R270.Q THEN
+  IF M.PARAMETER_P[270] = 0.0 THEN
+    g_bOneKeyCentringCylDown := TRUE;
+  ELSE
+    g_bOneKeyCentringCylUp := TRUE;
+  END_IF;
+  IF M.PARAMETER_H[270] = 0.0 THEN 
+    M.ENABLE[270] := 0;
+  END_IF;
+
+  g_nCurMCode := 270;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*控制新夹中森峰单个支撑夹中组合动作 P1 气缸1  Q 0下落 1上升 2夹中松开下落 3夹中松开上升 H等不等到位 *)
+R271(CLK := INT_TO_BOOL(M.ENABLE[271]));
+IF R271.Q THEN
+  IF M.PARAMETER_P[271] = 1.0 THEN
+    IF M.PARAMETER_Q[271] = 0.0 THEN
+      g_bSenFeng_SupDown1 := TRUE;
+      g_fSenFeng_SupCylType1 := 0.0;
+    ELSIF M.PARAMETER_Q[271] = 1.0 THEN
+      g_bSenFeng_SupUp1 := TRUE;
+      g_fSenFeng_SupCylType1 := 0.0;
+    ELSIF M.PARAMETER_Q[271] = 2.0 THEN 
+      g_bSenFeng_SupDown1 := TRUE;
+      g_fSenFeng_SupCylType1 := 1.0; 
+    ELSIF M.PARAMETER_Q[271] = 3.0 THEN 
+      g_bSenFeng_SupUp1 := TRUE;
+      g_fSenFeng_SupCylType1 := 1.0; 
+    END_IF;
+    IF M.PARAMETER_H[271] = 0.0 THEN 
+      M.ENABLE[271] := 0;
+    END_IF;
+  ELSIF M.PARAMETER_P[271] = 2.0 THEN
+    IF M.PARAMETER_Q[271] = 0.0 THEN
+      g_bSenFeng_SupDown2 := TRUE;
+      g_fSenFeng_SupCylType2 := 0.0;
+    ELSIF M.PARAMETER_Q[271] = 1.0 THEN
+      g_bSenFeng_SupUp2 := TRUE;
+      g_fSenFeng_SupCylType2 := 0.0;
+    ELSIF M.PARAMETER_Q[271] = 2.0 THEN 
+      g_bSenFeng_SupDown2 := TRUE;
+      g_fSenFeng_SupCylType2 := 1.0; 
+    ELSIF M.PARAMETER_Q[271] = 3.0 THEN 
+      g_bSenFeng_SupUp2 := TRUE;
+      g_fSenFeng_SupCylType2 := 1.0; 
+    END_IF;
+    IF M.PARAMETER_H[271] = 0.0 THEN 
+      M.ENABLE[271] := 0;
+    END_IF;
+  ELSIF M.PARAMETER_P[271] = 3.0 THEN
+    IF M.PARAMETER_Q[271] = 0.0 THEN
+      g_bSenFeng_SupDown3 := TRUE;
+      g_fSenFeng_SupCylType3 := 0.0;
+    ELSIF M.PARAMETER_Q[271] = 1.0 THEN
+      g_bSenFeng_SupUp3 := TRUE;
+      g_fSenFeng_SupCylType3 := 0.0;
+    ELSIF M.PARAMETER_Q[271] = 2.0 THEN 
+      g_bSenFeng_SupDown3 := TRUE;
+      g_fSenFeng_SupCylType3 := 1.0; 
+    ELSIF M.PARAMETER_Q[271] = 3.0 THEN 
+      g_bSenFeng_SupUp3 := TRUE;
+      g_fSenFeng_SupCylType3 := 1.0; 
+    END_IF;
+    IF M.PARAMETER_H[271] = 0.0 THEN 
+      M.ENABLE[271] := 0;
+    END_IF;
+  ELSE
+     M.ENABLE[271] := 0;
+  END_IF;
+  
+  g_nCurMCode := 271;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*控制新夹中森峰一键支撑夹中组合动作*)
+R272(CLK := INT_TO_BOOL(M.ENABLE[272]));
+IF R272.Q THEN
+  IF M.PARAMETER_P[272] = 0.0 THEN
+    g_bSenFengOneKeySupDown := TRUE;
+  ELSE
+    g_bSenFengOneKeySupUp := TRUE;
+  END_IF;
+  g_nSenFengOneKeySupUpType := M.PARAMETER_Q[272];
+    
+  IF M.PARAMETER_H[272] = 0.0 THEN 
+    M.ENABLE[272] := 0;
+  END_IF;
+
+  g_nCurMCode := 272;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*下料支撑气缸*)
+(*M273 P0 Q1 支撑浮动上升；M273 P0 Q0 支撑浮动下降
+M273 P9 Q1 一键满足条件的全部上升；M273 P9 Q0 一键满足条件的全部下降；
+其他，指定气缸上升下降
+*)
+R273(CLK := INT_TO_BOOL(M.ENABLE[273]));
+IF R273.Q THEN
+  IF M.PARAMETER_H[273] = 0.0 THEN
+    M.ENABLE[273] := 0;
+  END_IF;
+   g_nCurMCode := 273;
+  ParallelMCode[0].bExecute := TRUE;
+   IF g_nUnloadSupportClylinderNum = 0 THEN
+    M.ENABLE[273] := 0;
+    RETURN;
+  END_IF;
+  g_bUnLoadSupportCylinderOneKeyFlag := FALSE;
+  IF M.PARAMETER_P[273] = 0.0 THEN (*浮动*)
+    g_bUnloadSupportcyLinderFollowM := TRUE;
+    g_nUnloadSupportcyLinderUpDownType := LREAL_TO_INT(M.PARAMETER_Q[273]);
+  ELSIF M.PARAMETER_P[273] = 9.0 THEN (*一键升起或下降*)
+    g_bUnloadSupportCylControlM := TRUE;
+     g_bUnLoadSupportCylinderOneKeyFlag := TRUE;
+    g_nUnloadSupportClylinderUpDownNumM := 9;
+    g_nUnloadSupportcyLinderUpDownType := LREAL_TO_INT(M.PARAMETER_Q[273]);
+  ELSE
+    g_bUnloadSupportCylControlM := TRUE;
+    g_nUnloadSupportClylinderUpDownNumM := LREAL_TO_INT(M.PARAMETER_P[273]);
+    g_nUnloadSupportcyLinderUpDownType := LREAL_TO_INT(M.PARAMETER_Q[273]);
+    IF M.PARAMETER_P[273] = 1.0 THEN
+      g_dBlankingSupportCylinder1WaitSignalM := M.PARAMETER_I[273];
+      g_dBlankingSupportCylinder1WaitBoardInputSignalM := M.PARAMETER_J[273];
+    ELSIF M.PARAMETER_P[273] = 2.0 THEN
+      g_dBlankingSupportCylinder2WaitSignalM := M.PARAMETER_I[273];
+      g_dBlankingSupportCylinder2WaitBoardInputSignalM := M.PARAMETER_J[273];
+    ELSIF M.PARAMETER_P[273] = 3.0 THEN
+      g_dBlankingSupportCylinder3WaitSignalM := M.PARAMETER_I[273];
+      g_dBlankingSupportCylinder3WaitBoardInputSignalM := M.PARAMETER_J[273];
+    ELSIF M.PARAMETER_P[273] = 4.0 THEN
+      g_dBlankingSupportCylinder4WaitSignalM := M.PARAMETER_I[273];
+      g_dBlankingSupportCylinder4WaitBoardInputSignalM := M.PARAMETER_J[273];
+    ELSIF M.PARAMETER_P[273] = 5.0 THEN
+      g_dBlankingSupportCylinder5WaitSignalM := M.PARAMETER_I[273];
+      g_dBlankingSupportCylinder5WaitBoardInputSignalM := M.PARAMETER_J[273];
+    ELSIF M.PARAMETER_P[273] = 6.0 THEN
+      g_dBlankingSupportCylinder6WaitSignalM := M.PARAMETER_I[273];
+      g_dBlankingSupportCylinder6WaitBoardInputSignalM := M.PARAMETER_J[273];
+    ELSIF M.PARAMETER_P[273] = 7.0 THEN
+      g_dBlankingSupportCylinder7WaitSignalM := M.PARAMETER_I[273];
+      g_dBlankingSupportCylinder7WaitBoardInputSignalM := M.PARAMETER_J[273];
+    ELSIF M.PARAMETER_P[273] = 8.0 THEN
+      g_dBlankingSupportCylinder8WaitSignalM := M.PARAMETER_I[273];
+      g_dBlankingSupportCylinder8WaitBoardInputSignalM := M.PARAMETER_J[273];
+    END_IF;
+  END_IF;
+  
+END_IF;
+(*M274 P1~3 Q0~1 P:轴号Q:1移动位置0移动到0*)
+R274(CLK := INT_TO_BOOL(M.ENABLE[274]));
+IF R274.Q THEN
+  IF M.PARAMETER_P[274] = 1.0 THEN
+    g_bUniversalAxis1MoveDoneM320 := FALSE;
+    IF M.PARAMETER_I[274] <> 3.0 THEN
+      g_bGeneral1ABSOpenM := TRUE;
+    ELSE
+      g_bGeneralAxis1RelMoveM := TRUE;
+    END_IF;
+  ELSIF M.PARAMETER_P[274] = 2.0 THEN
+    g_bUniversalAxis2MoveDoneM320 := FALSE;
+    IF M.PARAMETER_I[274] <> 3.0 THEN
+      g_bGeneral2ABSOpenM := TRUE;
+    ELSE
+      g_bGeneralAxis2RelMoveM := TRUE;
+    END_IF;
+  ELSIF M.PARAMETER_P[274] = 3.0 THEN
+    g_bUniversalAxis3MoveDoneM320 := FALSE;
+    IF M.PARAMETER_I[274] <> 3.0 THEN
+      g_bGeneral3ABSOpenM := TRUE;
+    ELSE
+      g_bGeneralAxis3RelMoveM := TRUE;
+    END_IF;
+  END_IF;
+  g_dGeneralAxisABSMoveTypeM := M.PARAMETER_I[274];
+  g_dGeneralAxisMoveDistanceM := M.PARAMETER_Q[274];
+  
+  IF M.PARAMETER_H[274] = 0.0 OR (NOT g_bUseCommonAxis1 AND NOT g_bUseCommonAxis2 AND NOT g_bUseCommonAxis3) THEN
+    M.ENABLE[274] := 0;
+  END_IF;
+  g_nCurMCode := 274;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+R275(CLK := INT_TO_BOOL(M.ENABLE[275]));
+IF R275.Q THEN
+  g_bCycleStart := TRUE;
+  g_nCurMCode := 275;
+  ParallelMCode[0].bExecute := TRUE;
+  g_bCropStatusFb:= FALSE;(*裁切状态标志位*)
+END_IF;
+F275(CLK := g_bCycleStart);
+IF F275.Q THEN
+  M.ENABLE[275] := 0;
+END_IF;
+R276(CLK := INT_TO_BOOL(M.ENABLE[276]));
+IF R276.Q THEN
+ g_bCheckCutRangeM := TRUE;
+ g_nCheckCutRangeType := LREAL_TO_INT(M.PARAMETER_P[276]);
+ g_dNextPartCutWorkCoord := M.PARAMETER_Q[276];
+ g_dCurrentCutPartLength := g_dNextPartCutWorkCoord - dPrePartFarY;
+ g_dCheckCutRangeJudgeType := M.PARAMETER_I[276];
+ dPrePartFarY := g_dNextPartCutWorkCoord;
+ g_dCurrentCuttedPartLength := g_diYMachineCoordinate;
+ g_nCurMCode := 276;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+(*P:0-模拟量检测是否管材加到位100-零尾料切割时检测轮廓是否会超限位和中卡轴的相对移动距离*)
+R277(CLK := INT_TO_BOOL(M.ENABLE[277]));
+IF R277.Q THEN
+  g_bCheckSensorIsClampPipeM := TRUE;
+  g_bExecuteFinishedM277 := FALSE;
+  IF M.PARAMETER_H[277] = 0.0 THEN
+    M.ENABLE[277] := 0;
+  END_IF;
+  g_nCurMCode := 277;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+R278(CLK := INT_TO_BOOL(M.ENABLE[278]));
+IF R278.Q THEN
+  g_bProcessDone := LREAL_TO_BOOL(M.PARAMETER_P[278]);
+  g_bProcessCutDoneForWorkPlan := LREAL_TO_BOOL(M.PARAMETER_P[278]);
+  g_nCurMCode := 278;
+  ParallelMCode[0].bExecute := TRUE;
+  M.ENABLE[278] := 0;
+  IF M.PARAMETER_P[278] = 1.0 THEN
+    g_bWholeTubeCountM := TRUE;
+  END_IF;
+  g_dYStartCutPosition :=g_diYMachineCoordinate;
+  dPrePartFarY := 0.0;
+END_IF;
+(*除尘轴往返运动开启 0开启 1关闭*)
+R280(CLK := INT_TO_BOOL(M.ENABLE[280]));
+IF R280.Q THEN
+   g_bCycleDustRelMoveEnable := LREAL_TO_BOOL(M.PARAMETER_P[280]);
+  IF g_bCycleDustRelMoveEnable=FALSE THEN
+    g_bCycleDustRelMoveEnableM := TRUE;
+  END_IF;
+  g_nCurMCode := 280;
+  ParallelMCode[0].bExecute := TRUE;
+  M.ENABLE[280] := 0;
+END_IF;
+(*避让执行过的标志给1 *)
+R281(CLK :=INT_TO_BOOL(M.ENABLE[281]));
+IF R281.Q THEN
+  g_boIsExecuteAvoidFlag := TRUE;
+  g_nCurMCode := 281;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_H[281] = 0.0 THEN
+    M.ENABLE[281] := 0;
+  END_IF;
+END_IF;
+
+R282(CLK :=INT_TO_BOOL(M.ENABLE[282]));
+IF R282.Q THEN
+  g_nCurMCode := 282;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_P[282] = 0.0 THEN (*前进*)
+    g_bAutoChangeDustForwardM := TRUE;
+  ELSIF M.PARAMETER_P[282] = 1.0 THEN(*回退*)
+    g_bAutoChangeDustBackwardM := TRUE;
+  END_IF;
+  IF M.PARAMETER_H[282] = 0.0 THEN
+    M.ENABLE[282] := 0;
+  END_IF;
+END_IF;
+(*回中后和切割开始前的旋转轴旋转角度0:回中前1:准备动作结束后 2:管面轮廓修正提前计算旋转角度*)
+R283(CLK :=INT_TO_BOOL(M.ENABLE[283]));
+IF R283.Q THEN
+  g_nCurMCode := 283;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_P[283] = 0.0 THEN
+    g_bRecordRatoteAngleBeforeCenteringM := TRUE;
+  ELSIF M.PARAMETER_P[283] = 1.0 THEN
+    g_bRecordRatoteAngleBeforCuttingM := TRUE;
+  ELSIF M.PARAMETER_P[283] = 2.0 THEN(*提前计算旋转角度*)
+    g_bCalcRotateAngleInAdvanceM := TRUE;
+  END_IF;
+  IF M.PARAMETER_H[283] = 0.0 THEN
+    M.ENABLE[283] := 0;
+  END_IF;
+  
+END_IF;
+
+R300(CLK := INT_TO_BOOL(M.ENABLE[300]));
+IF R300.Q THEN
+  g_bM300ExecuteFlag := LREAL_TO_BOOL(M.PARAMETER_P[300]);
+  IF M.PARAMETER_H[300] = 0.0 THEN
+    M.ENABLE[300] := 0;
+  END_IF;
+   g_nCurMCode := 300;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+F300(CLK := g_bM300ExecuteFlag);
+IF F300.Q THEN
+  M.ENABLE[300] := 0;
+END_IF;
+(*变频器电机控制,如果不加额外条件,正反转到限位停止,否则就or上添加的条件*)
+R301(CLK := INT_TO_BOOL(M.ENABLE[301]));
+IF R301.Q THEN
+  g_nCurMCode := 301;
+  ParallelMCode[0].bExecute := TRUE;
+  g_bMotorControlM := TRUE;
+  g_dMotorControlNumberM := M.PARAMETER_P[301];
+  g_nConvertState := LREAL_TO_INT(M.PARAMETER_Q[301]);
+  g_dConvertUpTime :=M.PARAMETER_J[301];
+  g_dConvertDownTime :=M.PARAMETER_J[301];
+  g_dMotorControlWaitSignalIndex :=M.PARAMETER_I[301];
+  g_dMotorControlWaitSignalOutTimeAlarmType := M.PARAMETER_K[301];(*0:报警1:继续*)
+  IF M.PARAMETER_H[301] = 0.0 THEN
+    M.ENABLE[301] := 0;
+  END_IF;
+  g_bExecuteFinishedM301 := TRUE;
+END_IF;
+(*等待输入信号是否有效或者无效,超时报警,P输入口数量 Q等待时间 I等待类型 0:输入口有效超时报警1:输入口无效超时报警*)
+R302(CLK := INT_TO_BOOL(M.ENABLE[302]));
+IF R302.Q THEN
+  g_nCurMCode := 302;
+  ParallelMCode[0].bExecute := TRUE;
+  g_bWaitInputPortM := TRUE;
+  g_nWaitInputPortNumber := M.PARAMETER_P[302];(*检测的第几个输入口*)
+  g_nWaitInputPortAlarmTime := M.PARAMETER_Q[302];(*等待时间*)
+  g_nWaitInputPortJudgeType := M.PARAMETER_I[302];(*检测输入口是否有效1:无效0:有效*)
+  g_nWaitInputPortBoardType := M.PARAMETER_J[302];(*检测输入口板子类型1:EDS2000或3000*)
+  g_nWaitInputPortExecuteType := M.PARAMETER_K[302];(*检测输入口执行类型1:继续0:报警*)
+  IF M.PARAMETER_H[302] = 0.0 THEN
+    M.ENABLE[302] := 0;
+  END_IF;
+END_IF;
+(*卡盘移动式避让和横梁移动式避让检测移动距离是否超过了伸出去的管材长度*)
+R303(CLK := INT_TO_BOOL(M.ENABLE[303]));
+IF R303.Q THEN
+  g_nCurMCode := 303;
+  ParallelMCode[0].bExecute := TRUE;
+  g_bAvoidJudgeClampRangeM := TRUE;
+  g_nAvoidJudgeTypeM := M.PARAMETER_P[303];
+  g_bIsLastPart := LREAL_TO_BOOL(M.PARAMETER_Q[303]);
+  g_dNextFarYPositionM := M.PARAMETER_J[303] - dPreNotePos;(*下个零件的最远距离点*)
+  dPreNotePos := M.PARAMETER_J[303];
+  IF M.PARAMETER_H[303] = 0.0 THEN
+    M.ENABLE[303] := 0;
+  END_IF;
+END_IF;
+R304(CLK := INT_TO_BOOL(M.ENABLE[304]));
+IF R304.Q THEN
+  g_bUserDefineControlOutputM := TRUE;
+  g_dUserDefineControlOutputIndexM := M.PARAMETER_P[304];
+  g_dUserDefineControlOutputEnableM := M.PARAMETER_Q[304];
+  g_dUserDefineControlOutputEnableTypeM := M.PARAMETER_I[304];
+  g_nCurMCode := 304;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+(*下料轴运动控制*)
+R305(CLK := INT_TO_BOOL(M.ENABLE[305]));
+IF R305.Q THEN
+  g_nCurMCode := 305;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_P[305] = 1.0 THEN
+    IF g_bFrontAxis1VelAddEnable THEN
+      g_bFrontSustainAxisAbsInFollowAlarm := TRUE;
+      g_Alarm.alarmArray[585] := 1300;
+    ELSE
+      g_bFrontAxis1MoveDoneM320 := FALSE;
+      IF M.PARAMETER_I[305] = 0.0 THEN
+        g_bFrontAxis1AbsMoveEnableM := true;
+        g_dFrontAxisMovePositionM := M.PARAMETER_Q[305];
+      ELSE
+        g_bFrontAxis1RelMoveEnableM := TRUE;
+        g_dFrontAxisMovePositionM := M.PARAMETER_Q[305];
+      END_IF;
+    END_IF;
+  ELSIF M.PARAMETER_P[305] = 2.0 THEN
+    IF g_bFrontAxis2VelAddEnable THEN
+      g_bFrontSustainAxisAbsInFollowAlarm := TRUE;
+      g_Alarm.alarmArray[585] := 1300;
+    ELSE
+      g_bFrontAxis2MoveDoneM320 := FALSE;
+      IF M.PARAMETER_I[305] = 0.0 THEN
+        g_bFrontAxis2AbsMoveEnableM := true;
+        g_dFrontAxisMovePositionM := M.PARAMETER_Q[305];
+      ELSE
+        g_bFrontAxis2RelMoveEnableM := TRUE;
+        g_dFrontAxisMovePositionM := M.PARAMETER_Q[305];
+      END_IF;
+    END_IF;
+  ELSIF M.PARAMETER_P[305] = 3.0 THEN
+    IF g_bFrontAxis3VelAddEnable THEN
+      g_bFrontSustainAxisAbsInFollowAlarm := TRUE;
+      g_Alarm.alarmArray[585] := 1300;
+    ELSE
+      g_bFrontAxis3MoveDoneM320 := FALSE;
+      IF M.PARAMETER_I[305] = 0.0 THEN
+        g_bFrontAxis3AbsMoveEnableM := true;
+        g_dFrontAxisMovePositionM := M.PARAMETER_Q[305];
+      ELSE
+        g_bFrontAxis3RelMoveEnableM := TRUE;
+        g_dFrontAxisMovePositionM := M.PARAMETER_Q[305];
+      END_IF;
+    END_IF;
+  ELSIF M.PARAMETER_P[305] = 4.0 THEN
+    IF g_bFrontAxis4VelAddEnable THEN
+      g_bFrontSustainAxisAbsInFollowAlarm := TRUE;
+      g_Alarm.alarmArray[585] := 1300;
+    ELSE
+      g_bFrontAxis4MoveDoneM320 := FALSE;
+      IF M.PARAMETER_I[305] = 0.0 THEN
+        g_bFrontAxis4AbsMoveEnableM := true;
+        g_dFrontAxisMovePositionM := M.PARAMETER_Q[305];
+      ELSE
+        g_bFrontAxis4RelMoveEnableM := TRUE;
+        g_dFrontAxisMovePositionM := M.PARAMETER_Q[305];
+      END_IF;
+    END_IF;
+  END_IF;
+  IF M.PARAMETER_H[305] = 0.0 THEN
+    M.ENABLE[305] := 0;
+  END_IF;
+END_IF;
+(*支撑轴运动控制*)
+R306(CLK := INT_TO_BOOL(M.ENABLE[306]));
+IF R306.Q THEN
+  g_bSustainAxisMControlTrigged := TRUE;
+  IF M.PARAMETER_H[306] = 0.0 THEN
+    M.ENABLE[306] := 0;
+  END_IF;
+  g_nCurMCode := 306;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+R307(CLK := (INT_TO_BOOL(M.ENABLE[307]) OR bR307Trigger));
+  IF R307.Q THEN
+    g_dM307PassedPValue := M.PARAMETER_P[307];
+    g_dM307PassedQValue := M.PARAMETER_Q[307];
+    IF g_dM307PassedPValue = 1.0 THEN
+        IF g_bRealTimeUpdateParallePLCExecuteFlag THEN
+			IF g_nRealTimeUpdateParallePLCIndex <> 1  THEN
+				g_bParallePLC1Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+            END_IF; 
+        ELSE
+			g_bParallePLC1Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+        END_IF;
+    ELSIF g_dM307PassedPValue = 2.0 THEN
+        IF g_bRealTimeUpdateParallePLCExecuteFlag THEN
+			IF g_nRealTimeUpdateParallePLCIndex <> 21  THEN
+				g_bParallePLC2Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+            END_IF; 
+        ELSE
+			g_bParallePLC2Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+        END_IF;
+    ELSIF g_dM307PassedPValue = 3.0 THEN
+        IF g_bRealTimeUpdateParallePLCExecuteFlag THEN
+			IF g_nRealTimeUpdateParallePLCIndex <> 3  THEN
+				g_bParallePLC3Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+            END_IF; 
+        ELSE
+			g_bParallePLC3Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+        END_IF;
+    ELSIF g_dM307PassedPValue = 4.0 THEN
+        IF g_bRealTimeUpdateParallePLCExecuteFlag THEN
+			IF g_nRealTimeUpdateParallePLCIndex <> 4  THEN
+				g_bParallePLC4Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+            END_IF; 
+        ELSE
+			g_bParallePLC4Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+        END_IF;
+    ELSIF g_dM307PassedPValue = 5.0 THEN
+        IF g_bRealTimeUpdateParallePLCExecuteFlag THEN
+			IF g_nRealTimeUpdateParallePLCIndex <> 5  THEN
+				g_bParallePLC5Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+            END_IF; 
+        ELSE
+			g_bParallePLC5Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+        END_IF;
+    ELSIF g_dM307PassedPValue = 6.0 THEN
+        IF g_bRealTimeUpdateParallePLCExecuteFlag THEN
+			IF g_nRealTimeUpdateParallePLCIndex <> 6  THEN
+				g_bParallePLC6Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+            END_IF; 
+        ELSE
+			g_bParallePLC6Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+        END_IF;
+    ELSIF g_dM307PassedPValue = 7.0 THEN
+        IF g_bRealTimeUpdateParallePLCExecuteFlag THEN
+			IF g_nRealTimeUpdateParallePLCIndex <> 7  THEN
+				g_bParallePLC7Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+            END_IF; 
+        ELSE
+			g_bParallePLC7Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+        END_IF;
+    ELSIF g_dM307PassedPValue = 8.0 THEN
+       IF g_bRealTimeUpdateParallePLCExecuteFlag THEN
+			IF g_nRealTimeUpdateParallePLCIndex <> 8  THEN
+				g_bParallePLC8Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+            END_IF; 
+        ELSE
+			g_bParallePLC8Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+        END_IF;
+    ELSIF g_dM307PassedPValue = 9.0 THEN
+        IF g_bRealTimeUpdateParallePLCExecuteFlag THEN
+			IF g_nRealTimeUpdateParallePLCIndex <> 9  THEN
+				g_bParallePLC9Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+            END_IF; 
+        ELSE
+			g_bParallePLC9Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+        END_IF;
+    ELSIF g_dM307PassedPValue = 10.0 THEN
+        IF g_bRealTimeUpdateParallePLCExecuteFlag THEN
+			IF g_nRealTimeUpdateParallePLCIndex <> 10  THEN
+				g_bParallePLC10Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+            END_IF; 
+        ELSE
+			g_bParallePLC10Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+        END_IF;
+    ELSIF g_dM307PassedPValue = 999.0 THEN
+      IF g_nRealTimeUpdateParallePLCIndex = 1 AND g_bRealTimeUpdateParallePLC THEN
+          g_bParallePLC1Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+      ELSIF g_nRealTimeUpdateParallePLCIndex = 2 AND g_bRealTimeUpdateParallePLC  THEN
+          g_bParallePLC2Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+      ELSIF g_nRealTimeUpdateParallePLCIndex = 3 AND g_bRealTimeUpdateParallePLC  THEN
+          g_bParallePLC3Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+      ELSIF g_nRealTimeUpdateParallePLCIndex = 4 AND g_bRealTimeUpdateParallePLC  THEN
+          g_bParallePLC4Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+      ELSIF g_nRealTimeUpdateParallePLCIndex = 5 AND g_bRealTimeUpdateParallePLC  THEN
+          g_bParallePLC5Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+      ELSIF g_nRealTimeUpdateParallePLCIndex = 6 AND g_bRealTimeUpdateParallePLC  THEN
+          g_bParallePLC6Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+      ELSIF g_nRealTimeUpdateParallePLCIndex = 7 AND g_bRealTimeUpdateParallePLC  THEN
+          g_bParallePLC7Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+      ELSIF g_nRealTimeUpdateParallePLCIndex = 8 AND g_bRealTimeUpdateParallePLC  THEN
+          g_bParallePLC8Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+      ELSIF g_nRealTimeUpdateParallePLCIndex = 9 AND g_bRealTimeUpdateParallePLC  THEN
+          g_bParallePLC9Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+      ELSIF g_nRealTimeUpdateParallePLCIndex = 10 AND g_bRealTimeUpdateParallePLC  THEN
+          g_bParallePLC10Start := LREAL_TO_BOOL(g_dM307PassedQValue);
+      END_IF;
+      IF g_nRealTimeUpdateParallePLCIndex <> 0 AND g_bRealTimeUpdateParallePLC  THEN
+		g_bRealTimeUpdateParallePLCExecuteFlag := LREAL_TO_BOOL(g_dM307PassedQValue);
+      END_IF;
+      
+    END_IF;
+    M.ENABLE[307] := 0;
+    g_bExecuteFinishedM307 := FALSE;
+  g_nCurMCode := 307;
+  ParallelMCode[0].bExecute := TRUE;
+  END_IF;
+   
+R308(CLK := (INT_TO_BOOL(M.ENABLE[308]) OR bR308Trigger));
+IF R308.Q THEN
+  IF M.ENABLE[308] = 1 THEN
+    dM308PValue := M.PARAMETER_P[308];
+    bR308Trigger := TRUE;
+  END_IF;
+  
+  g_nCurMCode := 308;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+M308Ton(IN := bR308Trigger,PT:= LREAL_TO_TIME(dM308PValue));
+IF M308Ton.Q THEN
+  bR308Trigger := FALSE;
+  M.ENABLE[308] := 0;
+  g_bExecuteFinishedM308 := FALSE;
+END_IF;
+
+
+(*避让:中卡前移、横梁移动避让*)
+R309(CLK := INT_TO_BOOL(M.ENABLE[309]));
+IF R309.Q THEN
+  g_nCurMCode := 309;
+  ParallelMCode[0].bExecute := TRUE;
+  g_bAvoidCylAndAxisMoveControlM := TRUE;
+  IF M.PARAMETER_H[309] = 0.0 THEN
+    M.ENABLE[309] := 0;
+  END_IF; 
+END_IF;
+
+(*避让:P表示不同状态 0表示下发避让中的标志 1表示触发避让 2表示重置避让*)
+R310(CLK := INT_TO_BOOL(M.ENABLE[310]));
+IF R310.Q THEN
+  g_nCurMCode := 310;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_P[310] = 0.0 THEN
+    g_bClaw2Aoiding := TRUE;
+    g_bCloseGasInAdvance := TRUE;
+    M.ENABLE[310] := 0;
+  ELSIF M.PARAMETER_P[310] = 1.0 THEN
+    g_bClawAviodAboutMotionM:= TRUE;
+  ELSIF M.PARAMETER_P[310] = 2.0 THEN(*重置避让*)
+    g_bo2ClawAvoidCheckDone := FALSE;
+    g_bExecuteAvoidanceFB := FALSE;
+    g_boIsExecuteAvoidFlag := FALSE;
+    g_bClaw2Aoiding := FALSE;
+    g_bCloseGasInAdvance := FALSE;
+    M.ENABLE[310] := 0;
+  ELSIF M.PARAMETER_P[310] = 3.0 THEN(*避让提示针对气缸移动避让*)
+    g_bCylinderMoveAvoidAlarm := TRUE;
+  ELSIF M.PARAMETER_P[310] = 4.0 THEN(*y轴绝对移动下个位置将超过避让位置*)  
+    g_bNextPosExceedAvoidPosAlarm := TRUE;
+  END_IF;
+  IF M.PARAMETER_H[310] = 0.0 THEN
+    M.ENABLE[310] := 0;
+  END_IF; 
+END_IF;
+
+(*清除回退*)
+R311(CLK := INT_TO_BOOL(M.ENABLE[311]));
+IF R311.Q THEN
+  g_nCurMCode := 311;
+  ParallelMCode[0].bExecute := TRUE;
+  g_bNextComponentM := TRUE;
+  M.ENABLE[311] := 0;
+END_IF;
+(*分中开始触发M代码,判断分中类型 P:1单面2:两面3:两点4:四面5:四点6:五点*)
+R312(CLK := INT_TO_BOOL(M.ENABLE[312]));
+IF R312.Q THEN
+  g_nCurMCode := 312;
+  ParallelMCode[0].bExecute := TRUE;
+  g_bHMIStartExecuteSideCenterM := TRUE;
+  g_dHMIStartExecuteSideCenterType := M.PARAMETER_P[312];
+END_IF;
+IF g_bM312FTrigger THEN
+  M.ENABLE[312] := 0;
+  g_bM312FTrigger := FALSE;
+  g_bHMIStartExecuteSideCenterM := FALSE;
+END_IF;
+R313(CLK := INT_TO_BOOL(M.ENABLE[313]));
+IF R313.Q THEN
+  g_nCurMCode := 313;
+  g_bM313EnableM := TRUE;
+END_IF;
+
+
+
+R314(CLK := (INT_TO_BOOL(M.ENABLE[314]) OR bR314Trigger));
+IF R314.Q THEN
+  g_nCurMCode := 314;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.ENABLE[314] = 1 THEN
+    dM314PValue := M.PARAMETER_P[314];
+    bR314Trigger := TRUE;
+  END_IF;
+END_IF;
+M314Ton(IN := bR314Trigger,PT:= LREAL_TO_TIME(dM314PValue));
+IF M314Ton.Q THEN
+  bR314Trigger := FALSE;
+  M.ENABLE[314] := 0;
+  g_bExecuteFinishedM314 := FALSE;
+END_IF;
+(*工艺设置校平,通知PLC不同步更新水平角度*)
+R315(CLK :=INT_TO_BOOL(M.ENABLE[315]));
+IF R315.Q THEN
+  g_bM315TriggerEnable := TRUE;
+  g_nCurMCode := 315;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_H[315] = 0.0 THEN
+    M.ENABLE[315] :=0;
+  END_IF;
+END_IF;
+(*零尾料避让轴绝对运动控制 P1:主卡轴移动P2:中卡移动轴 Q:移动目标位置 I:移动速度 J:运动类型0-绝对运动1-相对运动*)
+R316(CLK := INT_TO_BOOL(M.ENABLE[316]));
+IF R316.Q THEN
+  g_nCurMCode := 316;
+  ParallelMCode[0].bExecute := TRUE;
+  g_bAvoidMiddleAxisNewAbsMoveCmdFlag := FALSE;
+  IF NOT g_bIsConfigMiddleAvoidAxis1 AND NOT g_bIsConfigMiddleAvoidAxis2 THEN
+    M.ENABLE[316] :=0;
+  ELSE
+    IF M.PARAMETER_P[316] = 1.0 THEN
+		g_bMiddleAvoidAxis1AbsM := TRUE;
+		g_dMiddleAvoidAxis1AbsVelM := M.PARAMETER_I[316];
+		g_dMiddleAvoidAxis1AbsTarGetPosM := M.PARAMETER_Q[316];
+    ELSIF M.PARAMETER_P[316] = 2.0 THEN
+		IF M.PARAMETER_J[316] = 0.0 THEN
+			g_bMiddleAvoidAxis2AbsM := TRUE;
+			g_dMiddleAvoidAxis2AbsVelM := M.PARAMETER_I[316];
+			g_dMiddleAvoidAxis2AbsTarGetPosM := M.PARAMETER_Q[316];
+            IF M.PARAMETER_K[316] = 100.0 THEN
+				g_bAvoidMiddleAxisNewAbsMoveCmdFlag := TRUE;
+            END_IF;
+        ELSE
+			g_bMiddleMoveAxisRelEnableM := TRUE;
+            g_dMiddleMoveAxisRelVel := M.PARAMETER_I[316];
+            g_fARRelDis5 := M.PARAMETER_Q[316];
+        END_IF;
+        g_bMiddleMoveAxisDone := FALSE;
+    END_IF;
+  END_IF;
+  
+  IF M.PARAMETER_H[316] = 0.0 THEN
+    M.ENABLE[316] :=0;
+  END_IF;
+  
+END_IF;
+(*零尾料避让机动M代码 P1:检测避让后中卡移动轴所在位置是否存在切割复位干涉P2:检测零尾料主卡轴运动是否小于设置值*)
+R317(CLK := INT_TO_BOOL(M.ENABLE[317]));
+IF R317.Q THEN
+  IF NOT g_bIsConfigMiddleAvoidAxis1 AND NOT g_bIsConfigMiddleAvoidAxis2 THEN
+    M.ENABLE[317] :=0;
+  ELSE
+    g_bMiddleAvoidAxisM317Enbale := TRUE;
+	g_dMiddleAvoidAxisM317TypeM := M.PARAMETER_P[317];
+  END_IF;
+  
+  g_nCurMCode := 317;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_H[317] = 0.0 THEN
+    M.ENABLE[317] :=0;
+  END_IF;
+END_IF;
+(*两卡零尾料轴耦合操作 P1:避让后卡轴 P2:中卡移动轴 P3:横梁移动避让轴 Q0:耦合Q1解耦*)
+R318(CLK := INT_TO_BOOL(M.ENABLE[318]));
+IF R318.Q THEN
+  g_nCurMCode := 318;
+  ParallelMCode[0].bExecute := TRUE;
+  IF NOT g_bIsConfigMiddleAvoidAxis1 AND NOT g_bIsConfigMiddleAvoidAxis2 THEN
+    M.ENABLE[318] :=0;
+  ELSE
+    IF M.PARAMETER_P[318] = 1.0 THEN
+		IF M.PARAMETER_Q[318] = 0.0 THEN
+		  g_bMiddleAvoidAxis1GearInM := TRUE;
+		  g_bMiddleAvoidAxis1GearOutM := FALSE;
+		ELSE
+		  g_bMiddleAvoidAxis1GearOutM := TRUE;
+		  g_bMiddleAvoidAxis1GearInM := FALSE;
+		END_IF;
+	  ELSIF M.PARAMETER_P[318] = 2.0 THEN
+		IF M.PARAMETER_Q[318] = 0.0 THEN
+		  g_bMiddleAvoidAxis2GearInM := TRUE;
+		  g_bMiddleAvoidAxis2GearOutM := FALSE;
+		ELSE
+		  g_bMiddleAvoidAxis2GearOutM := TRUE;
+		  g_bMiddleAvoidAxis2GearInM := FALSE;
+		END_IF;
+      ELSIF M.PARAMETER_P[318] = 3.0 THEN
+        IF M.PARAMETER_Q[318] = 0.0 THEN
+		  g_bAvoidAxisGearInM := TRUE;
+		  g_bAvoidAxisGearOutM := FALSE;
+		ELSE
+		  g_bAvoidAxisGearOutM := TRUE;
+		  g_bAvoidAxisGearInM := FALSE;
+		END_IF;
+	  END_IF;
+  END_IF;
+  IF M.PARAMETER_H[318] = 0.0 THEN
+    M.ENABLE[318] := 0; 
+  END_IF;
+END_IF;
+(*支撑和前支撑浮动判断U轴的空移角度,超过90度则先下降到管材姿态的最低点,旋转完成后再上抬到支撑位P:0下降1:上升Q:旋转角度*)
+R319(CLK := INT_TO_BOOL(M.ENABLE[319]));
+IF R319.Q THEN
+  g_nCurMCode := 319;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_I[319] = 1.0 THEN
+    IF g_bFrontSupportRealTimeFloatDuringCutting THEN
+		g_bFrontSupportPendingControlM := TRUE;
+    ELSE
+      M.ENABLE[319] := 0;
+    END_IF;
+  ELSIF M.PARAMETER_I[319] = 0.0 THEN
+    IF g_bSupportRealTimeFloatDuringCutting THEN
+		g_bSupportPendingControlM := TRUE;
+    ELSE
+      M.ENABLE[319] := 0;
+    END_IF;
+  END_IF;
+  IF M.PARAMETER_H[319] = 0.0 THEN
+    M.ENABLE[319] := 0;
+  END_IF;
+END_IF;
+
+(*M代码触发nc轴绝对/相对运动到位,需要跟在最近的一次nc轴运动共用  不判断避让轴的到位  防止其余nc轴到位导致避让轴提前到位*)
+R320(CLK := INT_TO_BOOL(M.ENABLE[320]));
+IF R320.Q THEN
+  g_nCurMCode := 320;
+  ParallelMCode[0].bExecute := TRUE;
+  g_bAxisMoveDoneCheckM := TRUE;
+  g_dM320PValue := M.PARAMETER_P[320];
+  IF M.PARAMETER_H[320] = 0.0 THEN
+    M.ENABLE[320] := 0;
+  END_IF;
+END_IF;
+
+(*零尾料对中气缸控制 Q1夹紧 Q0 松开  *)
+R321(CLK := INT_TO_BOOL(M.ENABLE[321]));
+IF R321.Q THEN
+  g_nCurMCode := 321;
+  ParallelMCode[0].bExecute := TRUE;
+  g_bMiddleCylControlM := TRUE;
+  IF M.PARAMETER_H[321] = 0.0 THEN
+    M.ENABLE[321] := 0;
+  END_IF; 
+END_IF;
+
+R322(CLK := INT_TO_BOOL(M.ENABLE[322]));
+IF R322.Q THEN
+  g_bThreeSidesCenterOpenM := TRUE;
+  g_nCurMCode := 322;
+  ParallelMCode[0].bExecute := TRUE;
+  M.ENABLE[322] := 0;
+END_IF;
+R323(CLK := INT_TO_BOOL(M.ENABLE[323]));
+IF R323.Q THEN
+  g_bThreeSidesCenterCloseM := TRUE;
+  g_bAutoSigleSideFlag := FALSE;
+  g_nCurMCode := 323;
+  ParallelMCode[0].bExecute := TRUE;
+  M.ENABLE[323] := 0;
+END_IF;
+
+(*M324用于电容异常检测 P0 关闭电容检测 P1随动后检测电容是否异常 2随边完成后 检测电容是否异常*)
+R324(CLK := INT_TO_BOOL(M.ENABLE[324]));
+IF R324.Q THEN
+  g_nCurMCode := 324;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_P[324] = 1.0 THEN
+    g_bCapacitanceDetection := TRUE;
+  ELSIF M.PARAMETER_P[324] = 2.0 THEN  
+    g_bCapacitorCheckStart := TRUE;
+  ELSIF M.PARAMETER_P[324] = 0.0 THEN  
+    g_bCapacitorCheckEnd := TRUE;
+  END_IF;   
+END_IF;
+
+R325(CLK := INT_TO_BOOL(M.ENABLE[325]));
+IF R325.Q THEN
+   g_nAxisStopP := LREAL_TO_DINT(M.PARAMETER_P[325]);
+  AxisStop(
+  nAxisIndex := g_nAxisStopP,
+  bOutPut => g_bAxisStopFlag);
+  IF NOT g_bAxisStopFlag THEN
+      M.ENABLE[325] := 0;
+  END_IF;
+  g_nCurMCode := 325;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+R326(CLK := INT_TO_BOOL(M.ENABLE[326]));
+IF R326.Q THEN
+  g_bSetAuxiliaryAxisSpeed := TRUE;
+  g_nAuxiliaryAxisSpeed := M.PARAMETER_P[326];(*mm/s*)
+  g_nCurMCode := 326;
+  M.ENABLE[326] := 0;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+R327(CLK := INT_TO_BOOL(M.ENABLE[327]));
+IF R327.Q THEN
+  g_bM327ControlTriggered := TRUE;
+  g_nCurMCode := 327;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M328:用于停止程序的执行==相当于点击了停止按钮*)
+R328(CLK := INT_TO_BOOL(M.ENABLE[328]));
+IF R328.Q THEN
+  g_nCurMCode := 328;
+  g_bM328AutoTrigStop := TRUE;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*M328关闭，由界面把标志位g_bM328AutoTrigStop设置为flase*)
+Ft328Close(CLK := g_bM328AutoTrigStop);
+IF Ft200Close.Q THEN
+  M.ENABLE[328] := 0;
+END_IF;
+(*M329用来零尾料最后一个零件结束后将Y轴的坐标置为和中卡避让进给轴一样的坐标*)
+R329(CLK := INT_TO_BOOL(M.ENABLE[329]));
+IF R329.Q THEN
+  g_nCurMCode := 329;
+  ParallelMCode[0].bExecute := TRUE;
+  g_bM329AutoTrrigerToBreakMode := TRUE;
+END_IF;
+(*M329关闭，由界面把标志位g_bM329AutoTrrigerToBreakMode设置为flase*)
+Ft329Close(CLK := g_bM329AutoTrrigerToBreakMode);
+IF Ft329Close.Q THEN
+  M.ENABLE[329] := 0;
+END_IF;
+(*信号检测 P1:Z轴安全信号 P2:X轴安全信号*)
+R330(CLK := INT_TO_BOOL(M.ENABLE[330]));
+IF R330.Q THEN
+  g_nCurMCode := 330;
+  ParallelMCode[0].bExecute := TRUE;
+  g_bSafeSignalCheckM := true;
+  IF M.PARAMETER_H[330] = 0.0 THEN
+    M.ENABLE[330] := 0;
+  END_IF; 
+END_IF;
+(*加工前检测夹持管材尺寸*)
+R331(CLK := INT_TO_BOOL(M.ENABLE[331]));
+IF R331.Q THEN
+  
+  g_nCurMCode := 331;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_P[331] = 0.0 THEN
+    g_bCheckPipeSizeBeforeCuttingStartM := TRUE;
+  ELSIF M.PARAMETER_P[331] = 1.0 THEN
+    g_bCheckPipeSizeBeforeCuttingEndM := TRUE;
+  END_IF;
+  IF M.PARAMETER_H[331] = 0.0 THEN
+    M.ENABLE[331] := 0;
+  END_IF; 
+END_IF;
+
+(*用于提前吹气取剩余时间,P0表示不提前吹气 P1 表示提前吹气*)
+R332(CLK := INT_TO_BOOL(M.ENABLE[332]));
+IF R332.Q THEN
+  g_nCurMCode := 332;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_P[332] = 0.0 THEN
+    g_bCloseGasInAdvance := FALSE;
+  ELSIF M.PARAMETER_P[332] = 1.0 THEN
+    g_bCloseGasInAdvance := TRUE;
+  END_IF;
+  M.ENABLE[332] := 0;
+END_IF;
+(*支撑关闭避让和到位报警P1-8;Q0:关闭1:开启I:0气缸1:轴*)
+R333(CLK := INT_TO_BOOL(M.ENABLE[333]));
+IF R333.Q THEN
+	g_nCurMCode := 333;
+  ParallelMCode[0].bExecute := TRUE;
+	IF M.PARAMETER_I[333] = 0.0 THEN
+		IF M.PARAMETER_P[333] = 1.0 THEN
+			g_bSupportCylinder1ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 2.0 THEN
+			g_bSupportCylinder2ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 3.0 THEN
+			g_bSupportCylinder3ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 4.0 THEN
+			g_bSupportCylinder4ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 5.0 THEN
+			g_bSupportCylinder5ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 6.0 THEN
+			g_bSupportCylinder6ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 7.0 THEN
+			g_bSupportCylinder7ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 8.0 THEN
+			g_bSupportCylinder8ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 9.0 THEN
+			g_bSupportCylinder9ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 10.0 THEN
+			g_bSupportCylinder10ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 11.0 THEN
+			g_bSupportCylinder11ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 12.0 THEN
+			g_bSupportCylinder12ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 100.0 THEN
+			g_bSupportCylinder1ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportCylinder2ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportCylinder3ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportCylinder4ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportCylinder5ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportCylinder6ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportCylinder7ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportCylinder8ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportCylinder9ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportCylinder10ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportCylinder11ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportCylinder12ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+		END_IF;
+	ELSIF M.PARAMETER_I[333] = 1.0 THEN
+		IF M.PARAMETER_P[333] = 1.0 THEN
+			g_bSupportAxis1ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 2.0 THEN
+			g_bSupportAxis2ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 3.0 THEN
+			g_bSupportAxis3ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 4.0 THEN
+			g_bSupportAxis4ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 5.0 THEN
+			g_bSupportAxis5ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 6.0 THEN
+			g_bSupportAxis6ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 7.0 THEN
+			g_bSupportAxis7ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 8.0 THEN
+			g_bSupportAxis8ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 9.0 THEN
+			g_bSupportAxis9ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 10.0 THEN
+			g_bSupportAxis10ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 11.0 THEN
+			g_bSupportAxis11ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 12.0 THEN
+			g_bSupportAxis12ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+        ELSIF M.PARAMETER_P[333] = 100.0 THEN
+			g_bSupportAxis1ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportAxis2ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportAxis3ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportAxis4ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportAxis5ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportAxis6ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportAxis7ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportAxis8ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportAxis9ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportAxis10ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportAxis11ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+            g_bSupportAxis12ShieldFlag := LREAL_TO_BOOL(M.PARAMETER_Q[333]);
+		END_IF;
+    END_IF;
+	IF M.PARAMETER_H[333] = 0.0 THEN
+		M.ENABLE[333] := 0;
+	END_IF;
+END_IF;
+(*通用轴根据图纸宽度和高度自动移动到指令位置*)
+R334(CLK := INT_TO_BOOL(M.ENABLE[334]));
+IF R334.Q THEN
+  g_nCurMCode := 334;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_P[334] = 1.0 THEN
+	g_bGeneralAxis1AutoMoveControlM:= TRUE;
+    g_dGeneralAxis1AutoMoveDistance :=M.PARAMETER_Q[334];
+    g_dGeneralAxis1AutoMoveType := M.PARAMETER_I[334];
+  ELSIF M.PARAMETER_P[334] = 2.0 THEN
+	g_bGeneralAxis2AutoMoveControlM:= TRUE;
+    g_dGeneralAxis2AutoMoveDistance :=M.PARAMETER_Q[334];
+    g_dGeneralAxis2AutoMoveType := M.PARAMETER_I[334];
+  ELSIF M.PARAMETER_P[334] = 3.0 THEN
+	g_bGeneralAxis3AutoMoveControlM:= TRUE;
+    g_dGeneralAxis3AutoMoveDistance :=M.PARAMETER_Q[334];
+    g_dGeneralAxis3AutoMoveType := M.PARAMETER_I[334];
+  END_IF;
+  IF M.PARAMETER_H[334] = 0.0 THEN
+		M.ENABLE[334] := 0;
+	END_IF;
+END_IF;
+(*给自定义过程的开始和结束打印日志*)
+(*复用时间测量 P500*)
+(*复用日志打印,K=100*)
+R335(CLK := INT_TO_BOOL(M.ENABLE[335]));
+IF R335.Q THEN
+  g_nCurMCode := 335;
+  g_nM335PValue := M.PARAMETER_P[335];
+  g_nM335QValue := M.PARAMETER_Q[335];
+  g_dM335KValue := M.PARAMETER_K[335];
+  g_dM335IValue := M.PARAMETER_I[335];
+  IF g_dM335KValue = 100.0 THEN
+      g_nM335Triggered := TRUE;
+  ELSE
+	IF g_nM335PValue = 99999.0 THEN
+		g_bIsFristCycle := FALSE;
+		g_nM335Triggered := TRUE;
+	ELSE
+		g_nM335Triggered := TRUE;
+	END_IF;
+  END_IF;
+END_IF;
+IF NOT g_nM335Triggered THEN
+  M.ENABLE[335] := 0;
+END_IF;
+
+R336(CLK := INT_TO_BOOL(M.ENABLE[336]));
+IF R336.Q THEN
+    dCheckPLCParaAlarmTime := M.PARAMETER_Q[336];
+    bCheckPLCParaOutTimeAlarmStart := TRUE;
+	dCheckPLCParaIndex := M.PARAMETER_P[336];
+    bM336CheckAlarm := TRUE;
+    g_nCurMCode := 336;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+  (*等待并行执行超时报警*)
+IF  bCheckPLCParaOutTimeAlarmStart THEN
+	Ton_PLCParaOutTimeAlarm(IN := bCheckPLCParaOutTimeAlarmStart,PT:= LREAL_TO_TIME(FUN_MStoS(LREAL_TO_DINT(dCheckPLCParaAlarmTime))));
+	IF Ton_PLCParaOutTimeAlarm.Q THEN
+		Ton_PLCParaOutTimeAlarm(IN :=FALSE);
+		bCheckPLCParaOutTimeAlarmStart := FALSE;
+		IF dCheckPLCParaIndex = 1.0  AND g_bParallePLC1Start THEN
+			g_bPLCParaExecuteOutTimeAlarm := TRUE;
+		ELSIF dCheckPLCParaIndex = 2.0 AND  g_bParallePLC2Start THEN
+			g_bPLCParaExecuteOutTimeAlarm := TRUE;
+		ELSIF dCheckPLCParaIndex = 3.0 AND  g_bParallePLC3Start THEN
+			g_bPLCParaExecuteOutTimeAlarm := TRUE;
+		ELSIF dCheckPLCParaIndex = 4.0 AND  g_bParallePLC4Start THEN
+			g_bPLCParaExecuteOutTimeAlarm := TRUE;
+		ELSIF dCheckPLCParaIndex = 5.0 AND  g_bParallePLC5Start THEN
+			g_bPLCParaExecuteOutTimeAlarm := TRUE;
+		ELSIF dCheckPLCParaIndex = 6.0 AND  g_bParallePLC6Start THEN
+			g_bPLCParaExecuteOutTimeAlarm := TRUE;
+		ELSIF dCheckPLCParaIndex = 7.0 AND  g_bParallePLC7Start THEN
+				g_bPLCParaExecuteOutTimeAlarm := TRUE;
+		ELSIF dCheckPLCParaIndex = 8.0 AND  g_bParallePLC8Start THEN
+		   g_bPLCParaExecuteOutTimeAlarm := TRUE;
+		ELSIF dCheckPLCParaIndex = 9.0 AND  g_bParallePLC9Start THEN
+		   g_bPLCParaExecuteOutTimeAlarm := TRUE;
+		ELSIF dCheckPLCParaIndex = 10.0 AND  g_bParallePLC10Start THEN
+			g_bPLCParaExecuteOutTimeAlarm := TRUE;
+		END_IF;
+        IF NOT g_bPLCParaExecuteOutTimeAlarm THEN
+          bM336CheckAlarm := FALSE;
+        END_IF;
+		
+	END_IF;
+        IF dCheckPLCParaIndex = 1.0  AND NOT g_bParallePLC1Start THEN
+			g_bPLCParaExecuteOutTimeAlarm := FALSE;
+            bM336CheckAlarm := FALSE;
+		ELSIF dCheckPLCParaIndex = 2.0 AND NOT g_bParallePLC2Start THEN
+			g_bPLCParaExecuteOutTimeAlarm := FALSE;
+            bM336CheckAlarm := FALSE;
+		ELSIF dCheckPLCParaIndex = 3.0 AND NOT g_bParallePLC3Start THEN
+			g_bPLCParaExecuteOutTimeAlarm := FALSE;
+            bM336CheckAlarm := FALSE;
+		ELSIF dCheckPLCParaIndex = 4.0 AND NOT g_bParallePLC4Start THEN
+			g_bPLCParaExecuteOutTimeAlarm := FALSE;
+            bM336CheckAlarm := FALSE;
+		ELSIF dCheckPLCParaIndex = 5.0 AND NOT g_bParallePLC5Start THEN
+			g_bPLCParaExecuteOutTimeAlarm := FALSE;
+            bM336CheckAlarm := FALSE;
+		ELSIF dCheckPLCParaIndex = 6.0 AND NOT g_bParallePLC6Start THEN
+			g_bPLCParaExecuteOutTimeAlarm := FALSE;
+            bM336CheckAlarm := FALSE;
+		ELSIF dCheckPLCParaIndex = 7.0 AND NOT g_bParallePLC7Start THEN
+				g_bPLCParaExecuteOutTimeAlarm := FALSE;
+            bM336CheckAlarm := FALSE;
+		ELSIF dCheckPLCParaIndex = 8.0 AND NOT g_bParallePLC8Start THEN
+		   g_bPLCParaExecuteOutTimeAlarm := FALSE;
+            bM336CheckAlarm := FALSE;
+		ELSIF dCheckPLCParaIndex = 9.0 AND NOT g_bParallePLC9Start THEN
+		   g_bPLCParaExecuteOutTimeAlarm := FALSE;
+            bM336CheckAlarm := FALSE;
+		ELSIF dCheckPLCParaIndex = 10.0 AND NOT g_bParallePLC10Start THEN
+			g_bPLCParaExecuteOutTimeAlarm := FALSE;
+            bM336CheckAlarm := FALSE;
+		END_IF;
+        
+        
+		IF NOT bM336CheckAlarm THEN
+			M.ENABLE[336] := 0;
+            bCheckPLCParaOutTimeAlarmStart := FALSE;
+            Ton_PLCParaOutTimeAlarm(IN :=FALSE);
+            g_bFinishedM336 := FALSE;
+		END_IF;
+  
+END_IF;
+  
+  (*M337启用和关闭特殊B轴中心*)
+R337(CLK := INT_TO_BOOL(M.ENABLE[337]));
+IF R337.Q THEN
+  IF M.PARAMETER_P[337] = 1.0 THEN
+    g_dAngle := g_dSpecialAngle;
+    g_dBeamCenterPos := g_dSpecialBeamCenterPos;
+    g_dChuckCenterInZpos := g_dSpecialChuckCenterInZPos;
+  ELSE
+    g_dAngle := g_dPreAngleTemp;
+    g_dBeamCenterPos := g_dPreBeamCenterPosTemp;
+    g_dChuckCenterInZpos := g_dPreChuckCenterInZPosTemp;
+  END_IF;
+  IF NOT g_bSpecialMachineCenter THEN
+    g_dAngle := g_dPreAngleTemp;
+    g_dBeamCenterPos := g_dPreBeamCenterPosTemp;
+    g_dChuckCenterInZpos := g_dPreChuckCenterInZPosTemp;
+  END_IF;
+  M.ENABLE[337] := 0;
+    g_nCurMCode := 337;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+
+(*338双工位卡盘控制*)
+R338(CLK := INT_TO_BOOL(M.ENABLE[338]));
+IF R338.Q THEN
+  IF M.PARAMETER_P[338] = 1.0 THEN(*工位1*)
+    IF M.PARAMETER_Q[338] = 1.0 THEN(*夹紧*)
+		IF M.PARAMETER_I[338] = 1.0 THEN (*卡盘1*)
+			g_bDualStation1Claw1Enable := TRUE;
+            g_bDualStation1Claw1Off := FALSE;
+        ELSE(*卡盘2*)
+			g_bDualStation1Claw2Enable := TRUE;
+            g_bDualStation1Claw2Off := FALSE;
+        END_IF;
+    ELSE(*松开*)
+		IF M.PARAMETER_I[338] = 1.0 THEN (*卡盘1*)
+			g_bDualStation1Claw1Enable := FALSE;
+            g_bDualStation1Claw1Off := TRUE;
+        ELSE(*卡盘2*)
+			g_bDualStation1Claw2Enable := FALSE;
+            g_bDualStation1Claw2Off := TRUE;
+        END_IF;
+    END_IF;
+  ELSIF M.PARAMETER_P[338] = 2.0 THEN(*工位2*)
+    IF M.PARAMETER_Q[338] = 1.0 THEN(*夹紧*)
+		IF M.PARAMETER_I[338] = 1.0 THEN (*卡盘1*)
+			g_bDualStation2Claw1Enable := TRUE;
+            g_bDualStation2Claw1Off := FALSE;
+        ELSE(*卡盘2*)
+			g_bDualStation2Claw2Enable := TRUE;
+            g_bDualStation2Claw2Off := FALSE;
+        END_IF;
+    ELSE(*松开*)
+		IF M.PARAMETER_I[338] = 1.0 THEN (*卡盘1*)
+			g_bDualStation2Claw1Enable := FALSE;
+            g_bDualStation2Claw1Off := TRUE;
+        ELSE(*卡盘2*)
+			g_bDualStation2Claw2Enable := FALSE;
+            g_bDualStation2Claw2Off := TRUE;
+        END_IF;
+    END_IF;
+  ELSIF M.PARAMETER_P[338] = 100.0 THEN(*工位1卡盘一键控制*)
+	IF M.PARAMETER_Q[338] = 1.0 THEN(*夹紧*)
+      g_bDualStation1AllChuckEnable := TRUE;
+      g_bDualStation1AllChuckOff :=FALSE;
+    ELSE
+      g_bDualStation1AllChuckEnable := FALSE;
+      g_bDualStation1AllChuckOff :=TRUE;
+    END_IF;
+  ELSIF M.PARAMETER_P[338] = 200.0 THEN(*工位2卡盘一键控制*)
+    IF M.PARAMETER_Q[338] = 1.0 THEN(*夹紧*)
+      g_bDualStation2AllChuckEnable := TRUE;
+      g_bDualStation2AllChuckOff :=FALSE;
+    ELSE
+      g_bDualStation2AllChuckEnable := FALSE;
+      g_bDualStation2AllChuckOff :=TRUE;
+    END_IF;
+  END_IF;
+  IF M.PARAMETER_H[338] = 0.0 THEN
+    M.ENABLE[338] := 0;
+  END_IF;  
+    g_nCurMCode := 338;
+  ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+(*339: 干涉检测: 用户自定义过程轴运动*)
+R339(Clk := INT_TO_BOOL(M.Enable[339]));
+IF R339.Q THEN
+    g_nCurMCode := 339;
+  ParallelMCode[0].bExecute := TRUE;
+    g_bInterference_UserDefineAxis_Flag := TRUE;
+    g_dUserDefineControlOutputIndexM := M.Parameter_P[339];
+    g_dUserDefineControlOutputEnableM := M.Parameter_Q[339];
+    g_dUserDefineControlOutputEnableTypeM := M.Parameter_I[339];
+END_IF;
+Rtring_triggerForHMI(CLK := bHMIExecuteAxis);
+IF Rtring_triggerForHMI.Q THEN
+    bHMIExecuteAxis := FALSE;
+    g_bInterference_UserDefineAxis_Flag := FALSE;
+    M.Enable[339] := 0;
+END_IF;
+(*横梁移动避让检测全行程*)
+R340(CLK := INT_TO_BOOL(M.ENABLE[340]));
+IF R340.Q THEN
+  g_nCurMCode := 340;
+  ParallelMCode[0].bExecute := TRUE;
+  IF M.PARAMETER_P[340] = 100.0 THEN
+		(*全行程:轮廓超避让极限位置*)
+    g_bAvoidAxisOverAvoidLimitPosAlarm := TRUE;
+  ELSE
+	g_bM340CheckStartM := TRUE;
+  END_IF;
+END_IF;
+R341(CLK := INT_TO_BOOL(M.ENABLE[341]));
+IF R341.Q THEN
+  g_nCurMCode := 341;
+  ParallelMCode[0].bExecute := TRUE;
+  g_nM341P := M.Parameter_P[341];
+  g_nM341Q := M.Parameter_Q[341];
+  g_bFinishedM341 := TRUE;
+END_IF;
+IF NOT g_bFinishedM341 THEN
+	M.Enable[341] := 0;
+END_IF;
+R342(CLK := INT_TO_BOOL(M.ENABLE[342]));
+IF R342.Q THEN
+  g_nCurMCode := 342;
+  ParallelMCode[0].bExecute := TRUE;
+  g_nM342P := M.Parameter_P[342];
+  g_nM342Q := M.Parameter_Q[342];
+  g_nM342I := M.Parameter_I[342];
+  g_nM342J := M.Parameter_J[342];
+  g_bFinishedM342 := TRUE;
+END_IF;
+IF NOT g_bFinishedM342 THEN
+	M.Enable[342] := 0;
+END_IF;
+
+R343(CLK := INT_TO_BOOL(M.ENABLE[343]));
+IF R343.Q THEN
+  	g_nCurMCode := 343;
+	M.Enable[343] := 0;
+ 	ParallelMCode[0].bExecute := TRUE;
+END_IF;
+
+
+(************************************************非标 500+ ****************************************************************)
+IF g_nMachineType = 4 THEN
+  (*鼎点 M500: 等鼎点夹好信号时间*)
+  R500_DingDian(CLK := INT_TO_BOOL(M.ENABLE[500]));
+  IF R500_DingDian.Q THEN
+    g_bDDDelayOpenM := TRUE;
+    g_bDDInPlaceDelayTimeM := M.PARAMETER_P[500];
+    M.ENABLE[500] := 0;
+  END_IF;
+ELSIF g_nMachineType = 6 THEN (*迅镭三卡盘 *)
+  (*迅镭三卡盘 M500: 通知PLC更新下个零件信息*)
+  R500_Claw3(CLK := INT_TO_BOOL(M.ENABLE[500]));
+  IF R500_Claw3.Q THEN
+    g_bY2Y3AvoidCheckM := TRUE;  
+    M.ENABLE[500] := 0;  
+  END_IF;
+   (*迅镭三卡盘 M501: 工件坐标 ，下个零件的最远点，下个零件最近点*)
+  R501_Claw3(CLK := INT_TO_BOOL(M.ENABLE[501]));
+  IF R501_Claw3.Q THEN 
+    g_fPipeHeadCoordM := M.PARAMETER_P[501];
+    g_fNextFasterPointM := M.PARAMETER_Q[501];
+    g_fNextNearestPointM := M.PARAMETER_I[501];
+    M.ENABLE[501] := 0;   
+  END_IF; 
+  
+  (*迅镭三卡盘 M502: 用于避让，NC文件告知PLC Y轴移动完成*)
+  R502_Claw3(CLK := INT_TO_BOOL(M.ENABLE[502]));
+  IF R502_Claw3.Q THEN
+    g_bYMoveDoneM := TRUE;  
+    M.ENABLE[502] := 0;  
+  END_IF; 
+  
+  (*迅镭三卡盘 M503: 用于处理避让和Z轴上抬，等待避让判定完成，通知Layer_EndZ轴上抬*)
+  R503_Claw3(CLK := INT_TO_BOOL(M.ENABLE[503]));
+  IF R503_Claw3.Q THEN
+    g_bLayerEndUpliftM := TRUE;  
+    M.ENABLE[503] := 0;  
+  END_IF;
+  
+  (*迅镭三卡盘 M504: 一键移动*)
+  R504_Claw3(CLK := INT_TO_BOOL(M.ENABLE[504]));
+  IF R504_Claw3.Q THEN
+    g_bClaw3OneKeyEnableM := TRUE;
+    g_fClaw3OneKeyClawM := M.PARAMETER_P[504];
+    g_fClaw3OneKeyPosM := M.PARAMETER_Q[504];
+    IF  M.PARAMETER_H[504] = 0.0 THEN
+      M.ENABLE[504] := 0;
+    END_IF; 
+  END_IF;
+  
+  (*迅镭三卡盘 M505: 中卡和前卡避让状态机开始*)
+  R505_Claw3(CLK := INT_TO_BOOL(M.ENABLE[505]));
+  IF R505_Claw3.Q THEN
+    g_bY2Y3StartM := TRUE; 
+    M.ENABLE[505] := 0; 
+  END_IF;
+  
+ (*迅镭三卡盘 M506: 用于气缸翻转时，Z轴先上抬一段*)
+  R506_Claw3(CLK := INT_TO_BOOL(M.ENABLE[506]));
+  IF R506_Claw3.Q THEN
+    g_bClaw3UpLiftM := TRUE; 
+    M.ENABLE[506] := 0; 
+  END_IF;
+  
+ (*迅镭三卡盘 M510:  用于中卡避让后判断中卡盘是否需要夹紧*)
+  R510_Claw3(CLK := INT_TO_BOOL(M.ENABLE[510]));
+  IF R510_Claw3.Q THEN
+    g_bMiddleClawCheckM := TRUE; 
+    
+  END_IF;
+  
+  (*迅镭三卡盘 M511:  通知界面更新程序结束回上料点子程序，该子程序要获取Y2Y3轴坐标*)
+  R511_Claw3(CLK := INT_TO_BOOL(M.ENABLE[511]));
+  IF R511_Claw3.Q THEN
+    g_bClaw3ImformUpdateM := TRUE; 
+    IF  M.PARAMETER_H[511] = 0.0 THEN
+      M.ENABLE[511] := 0; 
+    END_IF;
+  END_IF;
+ELSIF g_nMachineType= 21 THEN
+  (*管力M500：控制上料*)
+  R500_GuanLi(CLK := INT_TO_BOOL(M.ENABLE[500]));
+  IF R500_GuanLi.Q THEN
+    g_dLoadNum :=M.PARAMETER_P[500];
+    g_bForwardAngleM := TRUE;
+    g_nCurMCode := 500;
+    IF M.PARAMETER_H[501] = 0.0 THEN
+      M.ENABLE[501] := 0;
+    END_IF;
+  END_IF;
+
+  (*管力M502: 控制前卡移动*)
+  R502_GuanLi(CLK := INT_TO_BOOL(M.ENABLE[502]));
+   IF R502_GuanLi.Q THEN
+    IF g_bM502Flag THEN
+    g_bGuanliAvoidM := TRUE;
+    g_dGuanliNum := M.PARAMETER_P[502];
+    g_dGuanliForward := M.PARAMETER_Q[502];
+    ELSE
+      M.ENABLE[502] := 0;
+    END_IF;
+    g_nCurMCode :=502;
+    IF M.PARAMETER_H[502] = 0.0 THEN
+      M.ENABLE[502] := 0;
+    END_IF;
+   END_IF;
+END_IF;
+IF ProcessStartTon.Q THEN
+   g_bOProcessStart := FALSE;
+   ProcessStartTon(IN := FALSE);
+END_IF;
+(*如果重启了HMI会下发这个标志获取一下主控的时间*)
+IF bGetSystemTime THEN
+  nSystemTime := GET_SYSTEM_TIME(0);
+  bGetSystemTime := FALSE;
+  bFirstGetSystemTime := FALSE;
+END_IF;
+(*这里要一直刷新,因为时间是累加的*)
+IF NOT bFirstGetSystemTime THEN
+  UpdateSystemTime := GET_SYSTEM_TIME(0);
+END_IF;
+
+
+IF g_bPlcResetBuffer THEN 
+  FOR nCycle := 100 TO 599 BY 1 DO
+  M.ENABLE[nCycle] := 0;
+  END_FOR;
+  
+  (*复位将所有触发的M代码进行重置操作*)
+  g_bPlcStartM := FALSE;(*M150:程序开始*)
+  g_bPlcEndM := FALSE;(*M151:程序结束*)
+  g_bLayerStartM := FALSE;(*M153：轮廓开始*)
+  g_bLayerStartM1 := FALSE;
+  g_bLayerEndM := FALSE;(*M154：轮廓结束*)
+  g_bZCalibrateEnableM := FALSE;(*M155：标定*)
+  g_bZFollowExecuteM := FALSE;(*M156：开随动*)
+  g_bZFollowExecuteM1 := FALSE;
+  g_bZFollowCloseM := FALSE;(*M157：关随动*)
+  g_bZLiftExecuteM := FALSE;(*M158：z轴上抬*)
+  g_bZLiftCloseM := FALSE;(*M159:Z轴上抬关闭*)
+  g_bZJogEnableM := FALSE;(*M160:Z轴匀速运动*)
+  g_bZJogCloseM := FALSE;(*M161:Z轴匀速运动关闭*)
+  g_bAutoParalleEnableM := FALSE;(*M162:开启探边*)
+  g_bAutoParalleCloseM := FALSE;(*M163:关闭探边*)
+  g_bZRelExecuteM := FALSE;(*M164:开启Z轴相对运动*)
+  g_bZRelCloseM := FALSE;(*M165:关闭Z轴相对运动*)
+  g_bMarkPointM := FALSE;(*M166:校水平时用来记录两个点的X和Z坐标*)
+  g_bBeamCenterM := FALSE;(*M167:横梁中心X坐标*)
+  g_bConcentricityEnableM := FALSE;(*M168:开启四面分中*)
+  g_bConcentricityCloseM := FALSE;(*M169:关闭四面分中*)
+  g_bFlatNumEnableM := FALSE;(*M170:四面分中记录点坐标*)
+  g_bStartRunOpenGasM := FALSE;(*M171:首点吹气*)
+  g_bLaserExportEnableM := FALSE;(*M172:触发开光*)
+  g_bCloseLaserEnableM := FALSE; (*M173:触发关光*)
+  g_bHighLowSurfaceCloseM := FALSE;(*M175:关闭高地面识别*)
+  g_bFourSideUpLiftM := FALSE;(*M176:四面分中两面分中上抬*)
+  g_bSustainUpDownM := FALSE;(*M177:支撑控制*)
+  g_bWeldCheckEnableM := FALSE;(*M178:触发焊缝检测*)
+  g_bWeldCheckDisenableM := FALSE;(*M179:焊缝结束或2次检测*)
+  g_bNextComponentM := FALSE;(*M180:零件号传入plc*)
+  g_bLaserOnCornerM := FALSE;(*M181:进拐角*)
+  g_bLaserOnCornerM1 := FALSE;
+  g_bLaserOnCornerM2 := FALSE;
+  g_bLaserOutCornerM := FALSE;(*M182:出拐角*)
+  g_bLaserOutCornerM1 := FALSE;
+  g_bLaserOutCornerM2 := FALSE;
+  g_bLoadCyl0DownOpenM := FALSE;(*M183:上料机气缸控制*)(*控制气缸0,即第一组气缸*)
+  g_bLoadCyl1DownOpenM := FALSE;
+  g_bLoadCyl2DownOpenM := FALSE;
+  g_bLoadCyl3DownOpenM := FALSE;
+  g_bLoadCyl4DownOpenM := FALSE;
+  g_bLoadCyl5DownOpenM := FALSE;
+  g_bLoadCyl6DownOpenM := FALSE;
+  g_bLoadCyl7DownOpenM := FALSE;
+  g_bLoadCyl8DownOpenM := FALSE;
+  g_bLoadCyl9DownOpenM := FALSE;
+  g_bLoadCyl10DownOpenM := FALSE;
+  g_bLoadCyl0DownCloseM := FALSE;(*M184:上料气缸到位信号清零*)
+  g_bLoadCyl1DownCloseM := FALSE;
+  g_bLoadCyl2DownCloseM := FALSE;
+  g_bLoadCyl3DownCloseM := FALSE;
+  g_bLoadCyl4DownCloseM := FALSE;
+  g_bLoadCyl5DownCloseM := FALSE;
+  g_bLoadCyl6DownCloseM := FALSE;
+  g_bLoadCyl7DownCloseM := FALSE;
+  g_bLoadCyl8DownCloseM := FALSE;
+  g_bLoadCyl9DownCloseM := FALSE;
+  g_bLoadCyl10DownCloseM := FALSE;
+  g_bSustainFollowCloseM := FALSE;(*M193:支撑配置开启/关闭浮动*)
+  g_bSustainFollowExecuteM := FALSE;
+  g_bSustainUpDownDoneM := FALSE;(*M195:关闭支撑到位信号*)
+  g_bNoPipeM := FALSE;(*M196:通知plc报警*)
+  g_bClaw1EnableM := FALSE;(*M197:卡盘控制*)
+  g_bClaw1EnableOffM := FALSE;
+  g_bClaw2EnableM := FALSE;
+  g_bClaw2EnableOffM := FALSE;
+  g_bClaw3EnableM := FALSE;
+  g_bClaw3EnableOffM := FALSE;
+  g_bM200AutoTrigPause := FALSE;(*清除触发了M200的标志位*)
+  g_bDustAxisAbsCloseM := FALSE;(*M201：抽尘轴控制 M201 P1 Q1 H1*)
+  g_bDustAxisAbsOpenM := FALSE;
+  g_bDefineOutputEnableOutOFF16M := FALSE;(*M204：自定义IO口输出 M204 P16 Q1*)
+  g_bDefineOutputEnableOut16M := FALSE;
+  g_bBlankingCyl0DownCloseM := FALSE;(*M206：下料机气缸控制 M206 P1 Q1 I0 H1*)(*下料机气缸到位信号清零*)
+  g_bBlankingCyl1DownCloseM := FALSE;
+  g_bBlankingCyl2DownCloseM := FALSE;
+  g_bBlankingCyl3DownCloseM := FALSE;
+  g_bBlankingCyl4DownCloseM := FALSE;  
+  g_bBlankingCyl0DownOpenM := FALSE;(*下料机气缸控制*)
+  g_bBlankingCyl1DownOpenM := FALSE;
+  g_bBlankingCyl2DownOpenM := FALSE;
+  g_bBlankingCyl3DownOpenM := FALSE;
+  g_bBlankingCyl4DownOpenM := FALSE;
+  g_bPartCountM := FALSE;(*M216：零件数加1 M216*)
+  g_bGeneralDustCylinder1CloseM := FALSE;(*抽尘气缸下降*)
+  g_bGeneralDustCylinder1OpenM := FALSE;(*抽尘气缸上升*)
+  g_bDiscernHeightUpLiftM := FALSE;(*M221：高低面 上抬 M221 H1*)
+  g_bFrontSustainFollowExecuteM := FALSE;(*M222：前浮动支撑浮动控制 M222 P1 H1*)
+  g_bFrontSustainUpDownDoneM := FALSE;(*M223：前浮动支撑控制 M223 P1 Q1 H1*)
+  g_bFrontSustainUpDownM := FALSE;
+  g_b2ClawAvoidCheckM := FALSE;(*M225：两卡盘避让检测M225*)
+  g_bTurnUpDownCloseM := FALSE;(*M226：翻转气缸控制*)
+  g_bTurnUpDownOpenM := FALSE;
+  g_bDustGasValveCloseM := FALSE;	(*M227：抽尘气阀控制*)
+  g_bDustGasValveOpenM := FALSE;
+  g_bProfileStartM := FALSE;(*M230：微连接*)
+  g_bCleanFourSideHalValueM := FALSE;(*M231：四面分中补偿值的开启关闭*)
+  g_bCleanFourSideHalValueM1 := FALSE;
+  g_bUseFourSideHalValueM := FALSE;
+  g_bUseFourSideHalValueM1 := FALSE;
+  g_bCleanSingleSideHalValueM := FALSE;
+  g_bUseSingleSideHalValueM := FALSE;
+  g_bChunkAvoidStartM := FALSE;(*M233：卡盘避让监测触发*)
+  g_bBeamCenterFlatNumEnableM := FALSE;(*M234：获取卡盘中心Z轴坐标*)
+  g_bAngleIronEnableM := FALSE;(*M235：两面分中开始*)
+  g_bAngleIronCloseM := FALSE;(*M236：两面分中结束*)
+  g_bLinearActuatorEnablM := FALSE;(*M237：电动推杆控制*)
+  g_bContinueCutNoUseDisSurfaceEnableM := FALSE;(*M244:续切不执行高低面的动作*)
+  g_bAutoSigleSideFlag := FALSE;
+  g_bTwoSidesCenterOpenM := FALSE;
+  g_bTwoSidesCenterCloseM := FALSE;
+  g_bFourSidesCenterOpenM := FALSE;
+  g_bFourSidesCenterCloseM := FALSE;
+  g_bFivePointsCenterEnable := FALSE;
+  g_bLevelAndSideCenterCloseM := FALSE;
+  g_bLevelAndSideCenterEnableM := FALSE;
+  (************非标 500+ **********)
+  g_bDDDelayOpenM := FALSE;(*鼎点 M500: 等鼎点夹好信号时间*)
+  g_bY2Y3AvoidCheckM := FALSE;  
+  g_bYMoveDoneM := FALSE;
+  g_bLayerEndUpliftM := FALSE; 
+  g_bClaw3OneKeyEnableM := FALSE; (*迅镭三卡盘 M504: 一键移动*)
+  g_bY2Y3StartM := FALSE;
+  g_bClaw3UpLiftM := FALSE;  
+  g_bMiddleClawCheckM := FALSE;
+	g_bClaw3ImformUpdateM := FALSE; 
+  g_bAutoSigleSideFlag := FALSE;
+  g_nEdgeCode := 0;
+  g_bRealTimeDynamicOPen := FALSE;
+  g_bRealTimeDynamicClose := TRUE;
+  g_bAutoParaDoneEnable := FALSE;
+  g_boCustomOutPut1 := FALSE;
+  g_boCustomOutPut2 := FALSE;
+  g_boCustomOutPut3 := FALSE;
+  g_boCustomOutPut4 := FALSE;
+  g_boCustomOutPut5 := FALSE;
+  g_boCustomOutPut6:= FALSE;
+  g_boCustomOutPut7 := FALSE;
+  g_boCustomOutPut8 := FALSE;
+  g_boCustomOutPut9 := FALSE;
+  g_boCustomOutPut10 := FALSE;
+  g_bGuanliAvoidM := FALSE;
+  g_bForwardAngleM := FALSE;
+  g_bIsCanClickForwarnOrBackwardState := FALSE;
+  g_bM266ExecuteM := FALSE;
+  g_bProcessEndM := FALSE;
+  g_bGeneral1ABSOpenM := FALSE;
+  g_bGeneral2ABSOpenM := FALSE;
+  g_bGeneral3ABSOpenM := FALSE;
+  g_bCheckCutRangeM := FALSE;
+  g_bCheckSensorIsClampPipeM := FALSE;
+  g_bWholeTubeCountM := FALSE;
+  g_bM300ExecuteFlag := FALSE;
+  g_boIsExecuteAvoidFlag := FALSE;
+  FOR UserDefineIndex := 0 TO 79 BY 1 DO
+    g_UserDefineProcessState[UserDefineIndex]^ := FALSE; 
+  END_FOR;
+  dPreNotePos := 0.0;
+ IF  g_bRealTimeUpdateParallePLCExecuteFlag  THEN
+		IF g_nRealTimeUpdateParallePLCIndex <> 1 THEN
+          g_bParallePLC1Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 2 THEN
+          g_bParallePLC2Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 3 THEN
+          g_bParallePLC3Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 4 THEN
+          g_bParallePLC4Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 5 THEN
+          g_bParallePLC5Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 6 THEN
+          g_bParallePLC6Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 7 THEN
+          g_bParallePLC7Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 8 THEN
+          g_bParallePLC8Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 9 THEN
+          g_bParallePLC9Start := FALSE;
+        END_IF;
+        IF g_nRealTimeUpdateParallePLCIndex <> 10 THEN
+          g_bParallePLC10Start := FALSE;
+        END_IF;  
+  ELSE
+	  g_bParallePLC1Start := FALSE;
+	  g_bParallePLC2Start := FALSE;
+	  g_bParallePLC3Start := FALSE;
+	  g_bParallePLC4Start := FALSE;
+	  g_bParallePLC5Start := FALSE;
+	  g_bParallePLC6Start := FALSE;
+	  g_bParallePLC7Start := FALSE;
+	  g_bParallePLC8Start := FALSE;
+	  g_bParallePLC9Start := FALSE;
+	  g_bParallePLC10Start := FALSE;
+  END_IF;
+  bR308Trigger := FALSE;
+  g_bExecuteFinishedM177 := FALSE;
+  g_bExecuteFinishedM183 := FALSE;
+  g_bExecuteFinishedM193 := FALSE;
+  g_bExecuteFinishedM197 := FALSE;
+  g_bExecuteFinishedM206 := FALSE;
+  g_bExecuteFinishedM222 := FALSE;
+  g_bExecuteFinishedM223 := FALSE;
+  g_bExecuteFinishedM264 := FALSE;
+  g_bExecuteFinishedM267 := FALSE;
+  g_bExecuteFinishedM268 := FALSE;
+  g_bExecuteFinishedM269 := FALSE;
+  g_bExecuteFinishedM270 := FALSE;
+  g_bExecuteFinishedM273 := FALSE;
+  g_bExecuteFinishedM274 := FALSE;
+  g_bExecuteFinishedM277 := FALSE;
+  g_bExecuteFinishedM301 := FALSE;
+  g_bExecuteFinishedM302 := FALSE;
+  g_bExecuteFinishedM304 := FALSE;
+  g_bExecuteFinishedM305 := FALSE;
+  g_bExecuteFinishedM306 := FALSE;
+  g_bExecuteFinishedM308 := FALSE;
+  g_dM178PassedPValue := 0.0;
+  g_bAvoidCylAndAxisMoveControlM := FALSE;
+  g_bAllClawCylControlFlagM := FALSE;
+  g_bM312FTrigger := TRUE;
+  g_bSupportCylinder1IsAvoidFlag := FALSE;
+  g_bSupportCylinder2IsAvoidFlag := FALSE;
+  g_bSupportCylinder3IsAvoidFlag := FALSE;
+  g_bSupportCylinder4IsAvoidFlag := FALSE;
+  g_bSupportCylinder5IsAvoidFlag := FALSE;
+  g_bSupportCylinder6IsAvoidFlag := FALSE;
+  g_bSupportCylinder7IsAvoidFlag := FALSE;
+  g_bSupportCylinder8IsAvoidFlag := FALSE;
+  g_bSupportPendingFlag := FALSE;
+  g_bSupportPendingControlM := FALSE;
+  g_bFrontSupportPendingControlM := FALSE;
+  g_bFrontSupportPendingFlag := FALSE;
+  g_bRecordRatoteAngleBeforeCenteringM := FALSE;
+  g_bRecordRatoteAngleBeforCuttingM := FALSE;
+  g_bNextPosExceedAvoidPosAlarm := FALSE;
+   g_bCylinderMoveAvoidAlarm := FALSE;
+  g_bThreeSidesCenterOpenM := FALSE;
+  g_bThreeSidesCenterCloseM := FALSE;
+  g_bCheckPipeSizeBeforeCuttingStartM := FALSE;
+  g_bCloseGasInAdvance := FALSE;
+  g_bMiddleAvoidAxis1GearInM := FALSE;
+  g_bMiddleAvoidAxis1GearOutM := FALSE;
+  g_bMiddleAvoidAxis2GearInM := FALSE;
+  g_bMiddleAvoidAxis2GearOutM := FALSE;
+  g_bMiddleAvoidAxis1AbsM := FALSE;
+  g_bMiddleAvoidAxis2AbsM := FALSE;
+  g_bLastPartCutEndCloseSlowEnable := FALSE;
+  g_bModbusNotificateHMIGetValueFlag := FALSE;
+  g_bNotifyHMIToAcquireValue := FALSE;
+  g_bSustainAxisMControlTrigged := FALSE;
+END_IF;  
+(*获取正在执行的M代码*)
+g_doMCodeEnable := 0.0;
+FOR nCycle := 100 TO 599 BY 1 DO
+  IF M.ENABLE[nCycle] <> 0 THEN
+    g_doMCodeEnable := INT_TO_LREAL(nCycle);
+  END_IF;
+END_FOR;
+
+(*保存执行过的M代码清单*)
+ParallelMCode[0].nM := g_nCurMCode;
+ParallelMCode[0].nP := M.PARAMETER_P[g_nCurMCode];
+ParallelMCode[0].nQ := M.PARAMETER_Q[g_nCurMCode];
+ParallelMCode[0].nI := M.PARAMETER_I[g_nCurMCode];
+ParallelMCode[0].nJ := M.PARAMETER_J[g_nCurMCode];
+ParallelMCode[0].nK := M.PARAMETER_K[g_nCurMCode];
+ParallelMCode[0].nH := M.PARAMETER_H[g_nCurMCode];
+
+FOR nParallelindex := 0 TO 11 BY 1 DO
+	SaveMCodeParallelExecute[nParallelindex](
+		SaveFlag := ParallelMCode[nParallelindex].bExecute,
+		Index := g_nSaveMControlTotalNumber,
+		MCode := ParallelMCode[nParallelindex].nM,
+		MP := ParallelMCode[nParallelindex].nP,
+		MQ := ParallelMCode[nParallelindex].nQ,
+		MI := ParallelMCode[nParallelindex].nI,
+		MJ := ParallelMCode[nParallelindex].nJ,
+		MK := ParallelMCode[nParallelindex].nK,
+		MH := ParallelMCode[nParallelindex].nH,
+		LogTime := UpdateSystemTime
+		);
+	Rtring_MCodeParallelExecute[nParallelindex](CLK := ParallelMCode[nParallelindex].bExecute);
+	IF Rtring_MCodeParallelExecute[nParallelindex].Q THEN
+		g_nSaveMControlTotalNumber := g_nSaveMControlTotalNumber + 1;
+		IF g_nSaveMControlTotalNumber >= 10 THEN
+			g_nSaveMControlTotalNumber := 0;
+		END_IF;
+		ParallelMCode[nParallelindex].bExecute := FALSE;
+	END_IF;
+END_FOR;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[M代码控制]]></xhtml:p>
+  </documentation>
+</pou>

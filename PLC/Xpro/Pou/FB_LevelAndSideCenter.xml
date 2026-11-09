@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_LevelAndSideCenter" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger0">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bMunalAlterCompensation">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[补偿值取反]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bPlcEnd">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[程序结束]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nSwitchState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCompensationOffsetA">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[手动补偿值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCompensationOffsetB">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCompensationOffsetC">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCompensationOffsetD">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dZAxisCurPos1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dZAxisCurPos2">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dZAxisCurPos3">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dZAxisCurPos4">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dCompensate1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录高度插值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCompensate2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录高度插值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bConcenDir">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[分中值取反]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger(CLK := g_bLevelAndSideCenterEnableM);
+R_Trigger0(CLK := g_bFlatNumEnableM);
+R_Trigger1(CLK := g_bLevelAndSideCenterCloseM);
+R_Trigger3(CLK := g_bPlcEndM);
+R_Trigger4(CLK := bMunalAlterCompensation);
+
+(*进行四面分中*)
+IF R_Trigger.Q THEN
+  g_bLevelAndSideCenterEnableM := FALSE;
+  nSwitchState := 1;
+  g_dUseSideCenterType := 6.0;
+  g_bExecuteSingeSideOnAFace := FALSE;
+  g_bExecuteSingeSideOnBFace := FALSE;
+  g_bExecuteSingeSideOnCFace := FALSE;
+  g_bExecuteSingeSideOnDFace := FALSE;
+END_IF;
+
+IF R_Trigger1.Q THEN
+  nSwitchState := 2;
+  g_bLevelAndSideCenterCloseM := FALSE;
+END_IF;
+
+IF R_Trigger3.Q THEN
+  bPlcEnd := true;
+END_IF;
+
+IF R_Trigger4.Q THEN
+  nSwitchState := 30;
+  bMunalAlterCompensation :=FALSE;
+END_IF;
+
+(*当管型为方管并且最近一次使用四面分中时，引脚输出为四面分中的补偿值*)
+g_dLevelAndSideCompensationValueA := g_dLevelAndSideCenterCompensationA;
+g_dLevelAndSideCompensationValueB := g_dLevelAndSideCenterCompensationB;
+g_dLevelAndSideCompensationValueC := g_dLevelAndSideCenterCompensationC;
+g_dLevelAndSideCompensationValueD := g_dLevelAndSideCenterCompensationD;
+CASE nSwitchState OF
+  0:
+  nSwitchState := 0;
+  1:
+    IF R_Trigger0.Q THEN
+      IF LREAL_TO_INT(g_fFlatNumM) = 1 THEN
+        dZAxisCurPos1 := g_fZCoordinate;
+      ELSIF LREAL_TO_INT(g_fFlatNumM) = 2 THEN
+        dZAxisCurPos2 := g_fZCoordinate;
+      ELSIF LREAL_TO_INT(g_fFlatNumM) = 3 THEN
+        dZAxisCurPos3 := g_fZCoordinate;
+      ELSIF LREAL_TO_INT(g_fFlatNumM) = 4 THEN
+        dZAxisCurPos4 := g_fZCoordinate;
+      END_IF;
+      g_bFlatNumEnableM := FALSE;
+    END_IF;
+    
+    IF g_bPlcPauseBuffer THEN
+      nSwitchState := 10;
+    END_IF;
+  2:
+  dCompensate1 := (dZAxisCurPos3 - dZAxisCurPos1)/2.0;
+  dCompensate2 := (dZAxisCurPos4 - dZAxisCurPos2)/2.0;
+  (*拿到的补偿值默认取反*)
+  dCompensate1 := dCompensate1*(-1.0);
+  dCompensate2 := dCompensate2*(-1.0);
+  IF bConcenDir THEN(*界面取反相当于取正*)
+    dCompensate1 := dCompensate1*(-1.0);
+    dCompensate2 := dCompensate2*(-1.0);
+  END_IF;
+  g_dLevelAndSideCenterCompensationA := dCompensate2;
+  g_dLevelAndSideCenterCompensationC := dCompensate2*(-1.0);
+  g_dLevelAndSideCenterCompensationB := dCompensate1*(-1.0); 
+  g_dLevelAndSideCenterCompensationD := dCompensate1;
+  g_dInformHmiUpdateValue := 7.0;
+  nSwitchState := 0;
+  IF ABS(dCompensate1)>g_dCompensationThreshold OR ABS(dCompensate2) > g_dCompensationThreshold THEN
+    g_bExcessiveDeviationOfCentringCompensationAlarm := TRUE;
+  END_IF;
+  10:
+  IF g_bPlcStartBuffer THEN
+    nSwitchState := 1;
+  END_IF;
+  
+  30:(*手动修改四面分中各个面补偿值参数*)(*目前用于清零*)
+    g_dInformHmiUpdateValue := 7.0;
+    nSwitchState := 0;
+END_CASE;
+
+IF g_bPlcResetBuffer OR bPlcEnd THEN
+  bPlcEnd := false;
+  nSwitchState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

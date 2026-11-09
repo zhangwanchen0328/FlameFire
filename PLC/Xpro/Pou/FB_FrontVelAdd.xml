@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FrontVelAdd" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="fSetPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dLastCoord">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[fSetPos := g_fSustainTargetPos;
+
+
+g_Sustain4VelAdd.ENABLE := g_bFrontAxis1VelAddEnable AND NOT g_bFrontSupportPendingFlag AND NOT g_bFrontSustainAxis1CloseVelAdd;
+g_Sustain4VelAdd.VELADDITIVEMODE := 1;
+g_Sustain4VelAdd.DISTANCE := -(fSetPos - dLastCoord);
+
+
+
+g_Sustain5VelAdd.ENABLE := g_bFrontAxis2VelAddEnable AND NOT g_bFrontSupportPendingFlag AND NOT g_bFrontSustainAxis2CloseVelAdd; 
+g_Sustain5VelAdd.VELADDITIVEMODE := 1;
+g_Sustain5VelAdd.DISTANCE := -(fSetPos - dLastCoord);
+
+g_Sustain6VelAdd.ENABLE := g_bFrontAxis3VelAddEnable AND NOT g_bFrontSupportPendingFlag AND NOT g_bFrontSustainAxis3CloseVelAdd;
+g_Sustain6VelAdd.VELADDITIVEMODE := 1;
+g_Sustain6VelAdd.DISTANCE := -(fSetPos - dLastCoord);
+
+g_FrontSustain4VelAdd.ENABLE := g_bFrontAxis4VelAddEnable AND NOT g_bFrontSupportPendingFlag AND NOT g_bFrontSustainAxis4CloseVelAdd;
+g_FrontSustain4VelAdd.VELADDITIVEMODE := 1;
+g_FrontSustain4VelAdd.DISTANCE := -(fSetPos - dLastCoord);
+
+
+
+
+dLastCoord := fSetPos;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

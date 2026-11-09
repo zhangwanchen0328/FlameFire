@@ -1,0 +1,600 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <globalVars>
+    <variable name="g_biBSKECutTemper" address="%IW16.299">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头切割温度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_niTTATemper" address="%IW16.300">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[06CatTTA温度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_niAheadHeart" address="%ID16.301">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[06Cat切割头心跳]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_niCATFocusMotorErrorCode" address="%ID16.302">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[CAT头的电机错误字 和BS系列的区别是数据类型]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_niTopProtectWindowAmbientTemper" address="%IW16.303">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[06Cat下保护镜镜环境温度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_niBottomProtectWindowAmbientTemper" address="%IW16.304">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[06Cat下保护镜镜环境温度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_niFocusLensAmbientTemper" address="%IW16.305">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[06Cat聚焦镜环境温度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_niDewPointTemper" address="%IW16.306">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[06Cat露点温度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ni30KEPerforatedSensor1" address="%IW16.307">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[过程监控传感器1]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ni30KEPerforatedSensor2" address="%IW16.308">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[（可见光）穿孔检测传感器2]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ni30KEPerforatedSensor3" address="%IW16.309">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[过程监控传感器3]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ni30KEPerforatedSensor4" address="%IW16.310">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[（可见光）穿孔检测传感器4]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ni30KEPerforatedSensor5" address="%IW16.311">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[过程监控传感器5]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ni30KEPerforatedSensor6" address="%IW16.312">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[（可见光）穿孔检测传感器6]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ni30KEPerforatedSensor7" address="%IW16.313">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[过程监控传感器7]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ni30KEPerforatedSensor8" address="%IW16.314">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[（可见光）穿孔检测传感器8]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ni30KEStrayLightSensor1" address="%IW16.315">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[准直镜杂散光传感器1（预留）]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ni30KEStrayLightSensor2" address="%IW16.316">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[（上保护镜）杂散光传感器2]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ni30KEStrayLightSensor3" address="%IW16.317">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[（聚焦镜）杂散光传感器3]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ni30KEStrayLightSensor4" address="%IW16.318">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[（下保护镜）杂散光传感器4]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boAheadLED1_1" address="%QX16.319">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头指示灯LED1]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boAheadLED1_2" address="%QX16.320">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头指示灯LED1]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boAheadLED1_3" address="%QX16.321">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头指示灯LED1]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boAheadLED2_1" address="%QX16.322">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头指示灯LED2]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boAheadLED2_2" address="%QX16.323">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头指示灯LED2]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boAheadLED2_3" address="%QX16.324">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头指示灯LED2]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boAheadLED3_1" address="%QX16.325">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头指示灯LED3]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boAheadLED3_2" address="%QX16.326">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头指示灯LED3]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boAheadLED3_3" address="%QX16.327">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头指示灯LED3]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boAheadLED4_1" address="%QX16.328">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头指示灯LED3]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boAheadLED4_2" address="%QX16.329">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头指示灯LED3]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boAheadLED4_3" address="%QX16.330">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头指示灯LED3]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nProtectiveWindowTipsTemperHMI">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[BS03KE保护镜温度提示阀值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bBSKEProtectLensTemperAlarmEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[启用BSKE款保护镜温度报警功能 0：关闭 1开启]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nCavityTipsTemperHMI">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[BS03KE腔体温度提示阀值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nProtectiveWindowAlarmTemperHMI">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[BS03KE保护镜温度报警阀值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nCavityAlarmTemperHMI">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[BS03KE腔体温度报警阀值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nProtectiveWindowTemperAlarmRiseHMI">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[BS03KE温升报警阀值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nProtectiveWindowTemperTipsRiseHMI">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[BS03KE温升提示阀值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bDewPointOffsetHMI">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[露点报警偏执值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bDewPointAlarmEnableHMI">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[露点报警0关1开]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dStrayLightAlarmSet" address="%QL16.331">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[杂散光报警阈值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dStrayLightBaseValue" address="%QL16.332">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[杂散光基础阈值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nCutAheadPID">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[智能头PID信息]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dStrayLightTipsSet" address="%QL16.333">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[杂散光提示阈值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bStrayLightDetectionEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[杂散光检测开启]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bStrayLightCalEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[HMI杂散光标定开始]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dStaryLightRecord1161">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[杂散光报警时显示到报警内容后面的值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dStaryLightRecord1162">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[杂散光报警时显示到报警内容后面的值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dStaryLightRecord1163">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[杂散光报警时显示到报警内容后面的值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dStaryLightRecord1164">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[杂散光报警时显示到报警内容后面的值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dStaryLightRecord1165">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[杂散光报警时显示到报警内容后面的值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dStaryLightRecord1166">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[杂散光报警时显示到报警内容后面的值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nFAxisControl">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[F轴控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nCatheadHardVer">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[CAT智能头的固件版本]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nCatheadFPGAVer">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[CAT智能头的FPGA版本]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nCatheadOpticalRatioType">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[CAT智能头的光学配比]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bBaroceptorEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[启用气压传感器]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_OpenGasDeviation">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[开气允许偏差]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ProcessAllowableDeviation">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[开气过程允许偏差]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_OpenGasDeviationTime">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[开气超时时间]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_DurationDeviationTime">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[并且持续时间]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dNoAOGasAlarmPressure">
+      <type>
+        <LREAL/>
+      </type>
+      <initialValue>
+        <simpleValue value="0.3"/>
+      </initialValue>
+      <documentation>
+        <xhtml:p><![CDATA[无比例阀气压报警阈值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAirAOEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[启用空气比例阀]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bOxygenAOEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[启用氧气比例阀]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bNirtogenAOEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[启用氮气比例阀]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nAheadCutGasPressureSet">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头设置的切割气压 不带气体倍率]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dAheadCutGasPressureSetCur">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头设置的切割气压 带气体倍率]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bBaroceptorAlarm1">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头切割气压传感器检测到开气气压超时报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bBaroceptorAlarm2">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头切割气压传感器检测到气压低于报警阈值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bBaroceptorAlarm3">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头切割气压传感器检测到出光时气压低于报报警阈值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bgasPressuerQualified">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[气压达到设置气压]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFilterAnalogCutAheadAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[气压达到设置气压]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_biAnalogCutAheadAlarm" address="%IX16.334">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[模拟量调焦头报警输入信号]]></xhtml:p>
+      </documentation>
+    </variable>
+  </globalVars>
+</root>

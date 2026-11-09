@@ -1,0 +1,226 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BKFixedLenAixsAbs" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="FixedLen_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="FixedLenAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="FixedLen_Stop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trriger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nSwitchState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biFixedLenAbsOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFixedLenAbsClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFixedLenAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fiFixedLenAxisType">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dFixedLenBackDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dPartFixedLenDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTailFixedLenDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nPartNum">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dBKTailLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dBKheadLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dBKPartLength">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dPipeRemainTailLen">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_noRemainPartCount">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dSafeDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nBKCuttingState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trriger1(CLK := g_biFixedLenAbsOpen);
+R_Trriger2(CLK := g_biFixedLenAbsClose);
+
+IF R_Trriger1.Q THEN
+  g_boFixedLenAbsDone := FALSE;
+  nSwitchState := 1;
+END_IF;
+
+IF R_Trriger2.Q THEN
+  g_boFixedLenAbsDone := FALSE;
+END_IF;
+
+
+CASE nSwitchState OF
+  0:
+  nSwitchState := 0;
+  1:
+  FixedLenAbs.Execute := FALSE;
+  IF LREAL_TO_INT(g_fiFixedLenAxisType) = 0 THEN
+    dSafeDis := dPartFixedLenDis - g_dBKheadLength;
+    IF dSafeDis <= 5.0 THEN
+      FixedLenAbs.Position := 5.0;
+    ELSE
+      FixedLenAbs.Position := dSafeDis;
+    END_IF;
+    g_nBKCuttingState := 1;
+  ELSIF LREAL_TO_INT(g_fiFixedLenAxisType) = 1 THEN
+    FixedLenAbs.Position := dPartFixedLenDis - g_dBKPartLength;
+    g_nBKCuttingState := 13;
+  ELSIF LREAL_TO_INT(g_fiFixedLenAxisType) = 2 THEN
+    nPartNum := TRUNC(g_noRemainPartCount);
+    dTailFixedLenDis := g_dPipeRemainTailLen - INT_TO_LREAL(nPartNum)*g_dBKPartLength;
+    FixedLenAbs.Position := dPartFixedLenDis - dTailFixedLenDis - 30.0;
+    g_nBKCuttingState := 23;
+  END_IF;
+  nSwitchState := 2;
+  2:
+  FixedLenAbs.Execute := TRUE;
+  FixedLenAbs.Velocity := dVelocity;
+  
+  IF FixedLenAbs.Done THEN
+    FixedLenAbs.Execute := FALSE;
+    g_boFixedLenAbsDone := TRUE;
+    g_nBKCuttingState := 2;
+    nSwitchState := 0;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer THEN
+    nSwitchState := 10;
+  END_IF;
+  IF FixedLenAbs.CommandAborted OR FixedLenAbs.Error THEN
+    g_boFixedLenAbsDone := FALSE;
+    FixedLenAbs.Execute := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  10:
+  FixedLenAbs.Execute := FALSE;
+  FixedLen_Stop.Execute := TRUE;
+  IF FixedLen_Stop.Done AND g_bPlcStartBuffer THEN
+    FixedLen_Stop.Execute := FALSE;
+    nSwitchState := 1;
+  END_IF;
+  
+  IF FixedLen_Stop.CommandAborted OR FixedLen_Stop.Error THEN
+    FixedLen_Stop.Execute := FALSE;
+    nSwitchState := 0;
+  END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  FixedLenAbs.Execute := FALSE;
+  FixedLen_Stop.Execute := FALSE;
+  nSwitchState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

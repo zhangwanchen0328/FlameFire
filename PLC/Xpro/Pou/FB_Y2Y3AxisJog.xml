@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Y2Y3AxisJog" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_Y3MoveJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bY3JogForwardEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动前进]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bY3JogBackwardEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点后退]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bY3JogFast">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_Y2MoveJog">
+        <type>
+          <derived name="MC_JOG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动运动模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bY2JogForwardEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动前进]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bY2JogBackwardEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点后退]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bY2JogFast">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[点动快速开关 0：关 1：开]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bAvoidOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAvoidDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nY2State">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nY3State">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="F_Trigger2">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="F_Trigger4">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger1(CLK := bY3JogForwardEnable OR bY3JogBackwardEnable);
+F_Trigger2(CLK := bY3JogForwardEnable OR bY3JogBackwardEnable);
+R_Trigger3(CLK := bY2JogForwardEnable OR bY2JogBackwardEnable);
+F_Trigger4(CLK := bY2JogForwardEnable OR bY2JogBackwardEnable);
+
+IF R_Trigger1.Q THEN
+  nY3State := 1;
+END_IF;
+IF F_Trigger2.Q THEN
+  nY3State := 0;
+END_IF;
+
+IF bY3JogFast THEN
+  g_Y3MoveJog.Mode := 1;
+ELSE
+  g_Y3MoveJog.Mode := 0;
+END_IF;
+
+CASE nY3State OF 
+  0:
+    g_Y3MoveJog.JogForward := FALSE;
+    g_Y3MoveJog.JogBackwards := FALSE;
+    nY3State := 0;
+  1:
+    g_bAvoidOpen := TRUE;
+    nY3State := 10;
+  10:
+    IF g_bAvoidDone THEN
+      nY3State := 20;
+    END_IF;
+  20:
+    g_Y3MoveJog.JogForward := bY3JogForwardEnable;
+    g_Y3MoveJog.JogBackwards := bY3JogBackwardEnable;
+END_CASE;
+
+IF R_Trigger3.Q THEN
+  nY2State := 1;
+END_IF;
+IF F_Trigger4.Q THEN
+  nY2State := 0;
+END_IF;
+
+IF bY2JogFast THEN
+  g_Y2MoveJog.Mode := 1;
+ELSE
+  g_Y2MoveJog.Mode := 0;
+END_IF;
+
+CASE nY2State OF 
+  0:
+    g_Y2MoveJog.JogForward := FALSE;
+    g_Y2MoveJog.JogBackwards := FALSE;
+    nY2State := 0;
+  1:
+    g_bAvoidOpen := TRUE;
+    nY2State := 10;
+  10:
+    IF g_bAvoidDone THEN
+      nY2State := 20;
+    END_IF;
+  20:
+    g_Y2MoveJog.JogForward := bY2JogForwardEnable;
+    g_Y2MoveJog.JogBackwards := bY2JogBackwardEnable;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  bY2JogForwardEnable := FALSE;
+  bY2JogBackwardEnable := FALSE;
+  bY3JogForwardEnable := FALSE;
+  bY3JogBackwardEnable := FALSE;
+END_IF;  
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[Y2Y3轴寸动模块]]></xhtml:p>
+  </documentation>
+</pou>

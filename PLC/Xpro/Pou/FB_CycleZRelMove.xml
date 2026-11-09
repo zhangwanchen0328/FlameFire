@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CycleZRelMove" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="nstate">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[状态机]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCycleZStartPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[记录开始时候Z轴的位置，暂停后就回到这个位置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTringCycleZRelMove">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTringCycleZRelMoveEnable">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RTringCycleZRelMove(CLK := g_bCycleZRelMoveEnableM);
+RTringCycleZRelMoveEnable(CLK := g_bZCycleZRelEnable);
+IF RTringCycleZRelMove.Q THEN
+  g_bCycleZRelMoveEnableM := FALSE;
+  g_ZMoveRel.EXECUTE := FALSE;
+  g_ZMoveAbs.EXECUTE := FALSE;
+  g_ZMoveStop.EXECUTE := FALSE;
+  dCycleZStartPos := g_fZCoordinate;
+  nstate := 10;
+END_IF;
+CASE nstate OF
+  0:
+    nstate := 0;
+  10:
+    g_ZMoveRel.EXECUTE := TRUE;
+    g_ZMoveRel.VELOCITY := g_dCycleZRelMoveVelM;
+    g_ZMoveRel.DISTANCE := g_dCycleZRelMoveDisM;
+    IF g_ZMoveRel.DONE THEN
+      g_ZMoveRel.EXECUTE := FALSE;
+      nstate := 50;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+       g_ZMoveRel.EXECUTE := FALSE;    
+       g_ZMoveAbs.EXECUTE:= FALSE;
+       g_ZMoveStop.EXECUTE := FALSE;
+       nstate := 100;
+    END_IF;
+  50:
+    g_ZMoveRel.EXECUTE := TRUE;
+    g_ZMoveRel.VELOCITY := g_dCycleZRelMoveVelM;
+    g_ZMoveRel.DISTANCE := -g_dCycleZRelMoveDisM;
+    IF g_ZMoveRel.DONE THEN
+      g_ZMoveRel.EXECUTE := FALSE;
+      nstate := 10;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      g_ZMoveRel.EXECUTE := FALSE;
+      g_ZMoveAbs.EXECUTE := FALSE;
+      g_ZMoveStop.EXECUTE := FALSE;
+      nstate := 100;
+    END_IF;
+  100:
+    g_ZMoveStop.EXECUTE := TRUE;
+    IF g_ZMoveStop.DONE THEN
+      g_ZMoveStop.EXECUTE := FALSE;
+      nstate := 150;
+    END_IF;
+    IF g_ZMoveStop.COMMANDABORTED OR g_ZMoveStop.ERROR THEN
+      g_ZMoveStop.EXECUTE := FALSE;
+      nstate := 0;
+    END_IF;
+  150:
+    IF g_bPlcStartBuffer THEN
+      g_ZMoveRel.EXECUTE := FALSE;
+      g_ZMoveAbs.EXECUTE := FALSE;
+      nstate := 200;
+    END_IF;
+  200:
+    g_ZMoveAbs.EXECUTE := TRUE;
+    g_ZMoveAbs.VELOCITY := g_dCycleZRelMoveVelM;
+    g_ZMoveAbs.POSITION := dCycleZStartPos;
+    IF g_ZMoveAbs.DONE THEN
+      g_ZMoveAbs.EXECUTE := FALSE;
+      nstate := 10;
+    END_IF;
+END_CASE;
+IF g_bPlcResetBuffer OR RTringCycleZRelMoveEnable.Q THEN
+  nstate := 0;
+  g_ZMoveRel.EXECUTE := FALSE;
+  g_ZMoveAbs.EXECUTE := FALSE;
+  g_ZMoveStop.EXECUTE := FALSE;
+  g_bZCycleZRelEnable := FALSE;
+END_IF;
+  ]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[机床测试Z轴移动]]></xhtml:p>
+  </documentation>
+</pou>

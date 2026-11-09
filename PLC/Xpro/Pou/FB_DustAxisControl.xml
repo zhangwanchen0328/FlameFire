@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DustAxisControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBDustAxisPower">
+        <type>
+          <derived name="FB_DustAxisPower"/>
+        </type>
+      </variable>
+      <variable name="FBDustAxisHome">
+        <type>
+          <derived name="FB_DustAxisHome"/>
+        </type>
+      </variable>
+      <variable name="FBDustAxisJog">
+        <type>
+          <derived name="FB_DustAxisJog"/>
+        </type>
+      </variable>
+      <variable name="FBDustAxisRel">
+        <type>
+          <derived name="FB_DusAxisRel"/>
+        </type>
+      </variable>
+      <variable name="FBDustAxisAbs">
+        <type>
+          <derived name="FB_DustAxisAbs"/>
+        </type>
+      </variable>
+      <variable name="FBDustAxisAct">
+        <type>
+          <derived name="FB_DustAxisAct"/>
+        </type>
+      </variable>
+      <variable name="FBDustChange">
+        <type>
+          <derived name="FB_DustAxisChangeControl"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="DustAxis_Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="FBDustAxisGear">
+        <type>
+          <derived name="FB_DustAxisGear"/>
+        </type>
+      </variable>
+      <variable name="FBDustExtractionValue">
+        <type>
+          <derived name="FB_DustExtractionValue"/>
+        </type>
+      </variable>
+      <variable name="FBDustCycleRelMove">
+        <type>
+          <derived name="FB_DustCycleRelMove"/>
+        </type>
+      </variable>
+      <variable name="bAxis1ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxis2ErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBDustAxisPower();
+FBDustAxisHome();
+FBDustAxisJog();
+FBDustAxisRel();
+FBDustAxisAbs();
+FBDustAxisGear();
+FBDustAxisAct();
+FBDustChange();
+IF g_bDustCycleRelMoveEnbale THEN
+  FBDustCycleRelMove();
+END_IF;
+g_doDustAxisCoordinate :=g_DustAxisCoordinate;
+
+bAxis1ErrorAlarm :=  D_Axis.NCTOPLC.POWERPOSWARN OR D_Axis.NCTOPLC.POWERNEGWARN 
+     OR D_Axis.NCTOPLC.ERRORCODE <>0;
+     
+bAxis2ErrorAlarm :=  AntiRejection3.NCTOPLC.POWERPOSWARN OR AntiRejection3.NCTOPLC.POWERNEGWARN 
+     OR AntiRejection3.NCTOPLC.ERRORCODE <>0;
+
+
+
+IF bAxis1ErrorAlarm AND g_bPlcResetBuffer THEN
+  DustAxis_Reset.Execute := TRUE;
+ELSE
+  DustAxis_Reset.Execute := FALSE;   
+END_IF;
+
+
+IF bAxis2ErrorAlarm AND g_bPlcResetBuffer THEN
+  g_AntiRejection3Reset.Execute := TRUE;
+ELSE
+  g_AntiRejection3Reset.Execute := FALSE;   
+END_IF;
+
+
+
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

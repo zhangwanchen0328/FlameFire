@@ -1,0 +1,624 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_TurnUpDownNew" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bTurnCylinder1Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder2Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder3Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder4Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder5Open">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder1Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder2Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder3Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder4Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinder5Close">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnState1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnState2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnState3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnState4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnState5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnCylinderEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnUpDownOpenM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnUpDownCloseM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boTurnUpDownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnUpDownOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bTurnUpDownDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nTurnTypeM">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_nTurnType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nTurnCylNum">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_bClaw3CylForbid">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bCheckFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nTurnState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nTurnType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="dDynamicCoordTemp">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bTurnCylFloatDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="TonDelayedShutdown1">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonDelayedShutdown2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonDelayedShutdown3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonDelayedShutdown4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonDelayedShutdown5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nDelayedShutdownTime1">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nDelayedShutdownTime2">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nDelayedShutdownTime3">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nDelayedShutdownTime4">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nDelayedShutdownTime5">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="bTurnUpDownOpen1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurnUpDownOpen2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurnUpDownOpen3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurnUpDownOpen4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurnUpDownOpen5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAllTurnUpDownOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurnUpDownClose1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurnUpDownClose2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurnUpDownClose3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurnUpDownClose4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTurnUpDownClose5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAllTurnUpDownClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger1(CLK := g_bTurnUpDownOpenM OR g_bTurnUpDownOpen);
+R_Trigger2(CLK := g_bTurnUpDownCloseM);
+R_Trigger3(CLK := bAllTurnUpDownOpen);
+R_Trigger4(CLK := bAllTurnUpDownClose);
+
+IF R_Trigger1.Q THEN
+  IF g_bTurnUpDownOpenM THEN
+    nTurnType := LREAL_TO_INT(g_nTurnTypeM);
+    g_bTurnUpDownOpenM := FALSE;
+  ELSIF g_bTurnUpDownOpen THEN
+    nTurnType := g_nTurnType;
+  END_IF;
+  g_boTurnUpDownDone := FALSE;
+  g_bTurnUpDownDone := FALSE;
+  g_bTurnUpDownOpen := FALSE;
+  nTurnState := 1;
+  dDynamicCoordTemp := g_diYMachineCoordinate;
+END_IF;
+
+IF R_Trigger2.Q THEN
+  g_boTurnUpDownDone := FALSE;
+  g_bTurnUpDownDone := FALSE;
+  g_bTurnUpDownCloseM := FALSE;
+  nTurnState := 0;
+END_IF;
+
+IF R_Trigger3.Q THEN
+  bAllTurnUpDownOpen := FALSE;
+  IF bTurnUpDownOpen1 THEN
+	g_boTurnCyl01Up := TRUE;
+    g_boTurnCyl01Down := FALSE;
+    bTurnUpDownOpen1 := FALSE;
+    g_bTurnState1:= TRUE;
+  END_IF;
+  IF bTurnUpDownOpen2 THEN
+	g_boTurnCyl11Up := TRUE;
+    g_boTurnCyl11Down := FALSE;
+    bTurnUpDownOpen2 := FALSE;
+    g_bTurnState2:= TRUE;
+  END_IF;
+  IF bTurnUpDownOpen3 THEN
+	g_boTurnCyl21Up := TRUE;
+    g_boTurnCyl21Down := FALSE;
+    bTurnUpDownOpen3 := FALSE;
+    g_bTurnState3:= TRUE;
+  END_IF;
+  IF bTurnUpDownOpen4 THEN
+	g_boTurnCyl31Up := TRUE;
+    g_boTurnCyl31Down := FALSE;
+    bTurnUpDownOpen4 := FALSE;
+    g_bTurnState4:= TRUE;
+  END_IF;
+  IF bTurnUpDownOpen5 THEN
+	g_boTurnCyl41Up := TRUE;
+    g_boTurnCyl41Down := FALSE;
+    bTurnUpDownOpen5 := FALSE;
+    g_bTurnState5:= TRUE;
+  END_IF;
+END_IF;
+
+IF R_Trigger4.Q THEN
+  bAllTurnUpDownClose := FALSE;
+  IF bTurnUpDownClose1 THEN
+	g_boTurnCyl01Up := FALSE;
+    g_boTurnCyl01Down := TRUE;
+    bTurnUpDownClose1 := FALSE;
+    g_bTurnState1:= FALSE;
+  END_IF;
+  IF bTurnUpDownClose2 THEN
+	g_boTurnCyl11Up := FALSE;
+    g_boTurnCyl11Down := TRUE;
+    bTurnUpDownClose2 := FALSE;
+    g_bTurnState2:= FALSE;
+  END_IF;
+  IF bTurnUpDownClose3 THEN
+	g_boTurnCyl21Up := FALSE;
+    g_boTurnCyl21Down := TRUE;
+    bTurnUpDownClose3 := FALSE;
+    g_bTurnState3:= FALSE;
+  END_IF;
+  IF bTurnUpDownClose4 THEN
+	g_boTurnCyl31Up := FALSE;
+    g_boTurnCyl31Down := TRUE;
+    bTurnUpDownClose4 := FALSE;
+    g_bTurnState4:= FALSE;
+  END_IF;
+  IF bTurnUpDownClose5 THEN
+	g_boTurnCyl41Up := FALSE;
+    g_boTurnCyl41Down := TRUE;
+    bTurnUpDownClose5 := FALSE;
+    g_bTurnState5:= FALSE;
+  END_IF;
+END_IF;
+
+IF g_bClaw3CylForbid THEN
+  g_boTurnUpDownDone := TRUE;
+  g_bTurnUpDownDone := TRUE;
+  M.ENABLE[226] := 0;
+  nTurnState := 0;
+ELSIF g_bTurnCylinderEnable THEN
+  CASE nTurnState OF
+    0:
+      nTurnState := 0;
+    1:
+      IF nTurnType = 0 THEN
+        nTurnState := 10;
+      ELSIF nTurnType = 1 THEN
+        nTurnState := 20;
+      ELSIF nTurnType = 2 THEN
+        nTurnState := 100;
+      END_IF;
+    10:
+      IF g_nTurnCylNum >= 1 THEN
+        g_bTurnState1:= FALSE;
+        g_boTurnCyl01Up := FALSE;
+        g_boTurnCyl01Down := TRUE;
+      END_IF;
+      IF g_nTurnCylNum >= 2 THEN
+        g_bTurnState2:= FALSE;
+        g_boTurnCyl11Up := FALSE;
+        g_boTurnCyl11Down := TRUE;
+      END_IF;
+      IF g_nTurnCylNum >= 3 THEN
+        g_bTurnState3:= FALSE;
+        g_boTurnCyl21Up := FALSE;
+        g_boTurnCyl21Down := TRUE;
+      END_IF;
+      IF g_nTurnCylNum >= 4 THEN
+        g_bTurnState4:= FALSE;
+        g_boTurnCyl31Up := FALSE;
+        g_boTurnCyl31Down := TRUE;
+      END_IF;
+      IF g_nTurnCylNum >= 5 THEN
+        g_bTurnState5:= FALSE;
+        g_boTurnCyl41Up := FALSE;
+        g_boTurnCyl41Down := TRUE;
+      END_IF;
+      nTurnState := 11;
+    11:
+      bCheckFlag := TRUE;
+      IF g_nTurnCylNum >= 1 AND g_bTurnState1 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 2 AND g_bTurnState2 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 3 AND g_bTurnState3 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 4 AND g_bTurnState4 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 5 AND g_bTurnState5 THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF bCheckFlag THEN
+        nTurnState := 30;
+      END_IF;
+    20:
+      IF g_nTurnCylNum >= 1 THEN
+        g_bTurnState1:= TRUE;
+        g_boTurnCyl01Up := TRUE;
+        g_boTurnCyl01Down := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 2 THEN
+        g_bTurnState2:= TRUE;
+        g_boTurnCyl11Up := TRUE;
+        g_boTurnCyl11Down := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 3 THEN
+        g_bTurnState3:= TRUE;
+        g_boTurnCyl21Up := TRUE;
+        g_boTurnCyl21Down := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 4 THEN
+        g_bTurnState4:= TRUE;
+        g_boTurnCyl31Up := TRUE;
+        g_boTurnCyl31Down := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 5 THEN
+        g_bTurnState5:= TRUE;
+        g_boTurnCyl41Up := TRUE;
+        g_boTurnCyl41Down := FALSE;
+      END_IF;
+      nTurnState := 21;
+    21:
+      bCheckFlag := TRUE;
+      IF g_nTurnCylNum >= 1 AND (NOT g_bTurnState1) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 2 AND (NOT g_bTurnState2) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 3 AND (NOT g_bTurnState3) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 4 AND (NOT g_bTurnState4) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 5 AND (NOT g_bTurnState5) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF bCheckFlag THEN
+        nTurnState := 50;
+      END_IF;
+    30:
+      TonDelayedShutdown1(IN :=FALSE);
+      TonDelayedShutdown2(IN :=FALSE);
+      TonDelayedShutdown3(IN :=FALSE);
+      TonDelayedShutdown4(IN :=FALSE);
+      TonDelayedShutdown5(IN :=FALSE);
+      bTurnCylFloatDone := FALSE;
+      g_boTurnUpDownDone := TRUE;
+      g_bTurnUpDownDone := TRUE;
+      g_bTurnState1:= FALSE;
+      g_boTurnCyl01Up := FALSE;
+      g_boTurnCyl01Down := TRUE;
+      g_bTurnState2:= FALSE;
+      g_boTurnCyl11Up := FALSE;
+      g_boTurnCyl11Down := TRUE;
+      g_bTurnState3:= FALSE;
+      g_boTurnCyl21Up := FALSE;
+      g_boTurnCyl21Down := TRUE;
+      g_bTurnState4:= FALSE;
+      g_boTurnCyl31Up := FALSE;
+      g_boTurnCyl31Down := TRUE;
+      g_bTurnState5:= FALSE;
+      g_boTurnCyl41Up := FALSE;
+      g_boTurnCyl41Down := TRUE;
+      nTurnState := 0;
+      M.ENABLE[226] := 0;
+    50:(*延时关闭*)
+      TonDelayedShutdown1(IN :=FALSE);
+      TonDelayedShutdown2(IN :=FALSE);
+      TonDelayedShutdown3(IN :=FALSE);
+      TonDelayedShutdown4(IN :=FALSE);
+      TonDelayedShutdown5(IN :=FALSE);
+      nTurnState := 51;
+    51:
+      IF g_nTurnCylNum >= 1 THEN
+        TonDelayedShutdown1(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayedShutdownTime1)));
+      END_IF;
+      IF g_nTurnCylNum >= 2 THEN
+        TonDelayedShutdown2(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayedShutdownTime2)));
+      END_IF;
+      IF g_nTurnCylNum >= 3 THEN
+        TonDelayedShutdown3(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayedShutdownTime3)));
+      END_IF;
+      IF g_nTurnCylNum >= 4 THEN
+        TonDelayedShutdown4(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayedShutdownTime4)));
+      END_IF;
+      IF g_nTurnCylNum >= 5 THEN
+        TonDelayedShutdown5(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nDelayedShutdownTime5)));
+      END_IF;
+      bCheckFlag := TRUE;
+      IF g_nTurnCylNum >= 1 AND (NOT TonDelayedShutdown1.Q) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 2 AND (NOT TonDelayedShutdown2.Q) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 3 AND (NOT TonDelayedShutdown3.Q) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 4 AND (NOT TonDelayedShutdown4.Q) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF g_nTurnCylNum >= 5 AND (NOT TonDelayedShutdown5.Q) THEN
+        bCheckFlag := FALSE;
+      END_IF;
+      IF bCheckFlag THEN
+        nTurnState := 30;
+      END_IF;
+    100:
+      M.ENABLE[226] := 0;
+      bTurnCylFloatDone := TRUE;
+      IF g_nTurnCylNum >= 1 THEN
+        nTurnState := 110;
+      ELSE
+        nTurnState := 0;
+      END_IF;  
+    110:
+      IF g_nMotionMode = 2 THEN
+        IF g_diYMachineCoordinate - dDynamicCoordTemp >= g_dTurnCyl1FloatDistance THEN
+          g_bTurnCylinder1Open := TRUE;
+          g_bTurnCylinder1Close := FALSE;
+        END_IF;
+        IF g_diYMachineCoordinate - dDynamicCoordTemp >= g_dTurnCyl2FloatDistance THEN
+          g_bTurnCylinder2Open := TRUE;
+          g_bTurnCylinder2Close := FALSE;
+        END_IF;
+        IF g_diYMachineCoordinate - dDynamicCoordTemp >= g_dTurnCyl3FloatDistance THEN
+          g_bTurnCylinder3Open := TRUE;
+          g_bTurnCylinder3Close := FALSE;
+        END_IF;
+        IF g_diYMachineCoordinate - dDynamicCoordTemp >= g_dTurnCyl4FloatDistance THEN
+          g_bTurnCylinder4Open := TRUE;
+          g_bTurnCylinder4Close := FALSE;
+        END_IF;
+        IF g_diYMachineCoordinate - dDynamicCoordTemp >= g_dTurnCyl5FloatDistance THEN
+          g_bTurnCylinder5Open := TRUE;
+          g_bTurnCylinder5Close := FALSE;
+        END_IF;
+     END_IF;   
+  END_CASE;
+ELSE
+  g_boTurnUpDownDone := TRUE;
+  g_bTurnUpDownDone := TRUE;
+  nTurnState := 0;
+  M.ENABLE[226] := 0;
+END_IF;
+
+IF g_bPlcResetBuffer OR g_bPlcEndM THEN
+  bTurnCylFloatDone := FALSE;
+  g_bTurnCylinder1Open := FALSE;
+  g_bTurnCylinder2Open := FALSE;
+  g_bTurnCylinder3Open := FALSE;
+  g_bTurnCylinder4Open := FALSE;
+  g_bTurnCylinder5Open := FALSE;
+  g_bTurnCylinder1Close := FALSE;
+  g_bTurnCylinder2Close := FALSE;
+  g_bTurnCylinder3Close := FALSE;
+  g_bTurnCylinder4Close := FALSE;
+  g_bTurnCylinder5Close := FALSE;
+  TonDelayedShutdown1(IN :=FALSE);
+  TonDelayedShutdown2(IN :=FALSE);
+  TonDelayedShutdown3(IN :=FALSE);
+  TonDelayedShutdown4(IN :=FALSE);
+  TonDelayedShutdown5(IN :=FALSE);
+  nTurnState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

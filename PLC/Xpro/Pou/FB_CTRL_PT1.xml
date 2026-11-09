@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CTRL_PT1" pouType="functionBlock">
+  <interface>
+    <inputVars>
+      <variable name="tCtrlCycleTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="tT1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fIn">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </inputVars>
+    <outputVars>
+      <variable name="fOut">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </outputVars>
+    <localVars>
+      <variable name="a">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="b">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="c">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bFirst">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="fInLast">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="fOutLast">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[a := tCtrlCycleTime / (tCtrlCycleTime + 2.0 * tT1);
+b := a;
+c := (2.0 * tT1 - tCtrlCycleTime) / (2.0 * tT1 + tCtrlCycleTime);
+IF NOT bFirst THEN
+  bFirst := TRUE;
+  fOut := fIn;
+ELSE
+  fOut := a * fIn + b * fInLast + c * fOutLast;
+END_IF;
+
+fInLast := fIn;
+fOutLast := fOut;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

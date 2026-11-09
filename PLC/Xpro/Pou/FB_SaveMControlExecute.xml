@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SaveMControlExecute" pouType="functionBlock">
+  <interface>
+    <inputVars>
+      <variable name="SaveFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Index">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="MCode">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="MP">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MQ">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MI">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MJ">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MK">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MH">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="LogTime">
+        <type>
+          <ULINT/>
+        </type>
+      </variable>
+    </inputVars>
+    <localVars>
+      <variable name="Rtring_Q">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="number">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring_Q(CLK :=SaveFlag);
+IF Rtring_Q.Q THEN
+  g_SaveAllMControlExecute[Index].MCode :=INT_TO_LREAL(MCode);
+  g_SaveAllMControlExecute[Index].MP := MP;
+  g_SaveAllMControlExecute[Index].MQ := MQ;
+  g_SaveAllMControlExecute[Index].MI := MI;
+  g_SaveAllMControlExecute[Index].MJ := MJ;
+  g_SaveAllMControlExecute[Index].MK := MK;
+  g_SaveAllMControlExecute[Index].MH := MH;
+  g_SaveAllMControlExecute[Index].MTime := LogTime;
+  
+	IF Index >= 9 THEN
+		FOR number :=0 TO 9 BY 1 DO
+			g_PreSaveAllMControlExecute[number].MCode := g_SaveAllMControlExecute[number].MCode;
+		    g_PreSaveAllMControlExecute[number].MP :=g_SaveAllMControlExecute[number].MP;
+		    g_PreSaveAllMControlExecute[number].MQ := g_SaveAllMControlExecute[number].MQ;
+		    g_PreSaveAllMControlExecute[number].MI := g_SaveAllMControlExecute[number].MI;
+		    g_PreSaveAllMControlExecute[number].MJ := g_SaveAllMControlExecute[number].MJ;
+		    g_PreSaveAllMControlExecute[number].MK := g_SaveAllMControlExecute[number].MK;
+		    g_PreSaveAllMControlExecute[number].MH :=  g_SaveAllMControlExecute[number].MH;
+            g_PreSaveAllMControlExecute[number].MTime := g_SaveAllMControlExecute[number].MTime;
+            (*清空*)
+            g_SaveAllMControlExecute[number].MCode := 0.0;
+		    g_SaveAllMControlExecute[number].MP :=0.0;
+		    g_SaveAllMControlExecute[number].MQ :=0.0;
+		    g_SaveAllMControlExecute[number].MI := 0.0;
+		    g_SaveAllMControlExecute[number].MJ := 0.0;
+		    g_SaveAllMControlExecute[number].MH :=  0.0;
+             g_SaveAllMControlExecute[number].MTime := 0;
+        END_FOR;
+		g_bNotifyHMIToAcquireValue := TRUE;
+	END_IF;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[保存M代码触发时的标号和参数]]></xhtml:p>
+  </documentation>
+</pou>

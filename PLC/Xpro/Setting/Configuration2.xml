@@ -1,0 +1,3537 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <globalVars>
+    <variable name="g_bCapacitorCheckStart">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bCapacitorCheckEnd">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSetAuxiliaryAxisSpeed">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M326:是否设置辅助轴速度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bM328AutoTrigStop">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M328触发停止]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bM329AutoTrrigerToBreakMode">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M328触发停止进断点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bM327ControlTriggered">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M327检测G38.2停止指令]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nAuxiliaryAxisSpeed">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[辅助轴速度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dYStartCutPosition">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Y轴移动到待切割位的坐标值，用来重置横梁移动避让]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAvoidResetIsMoveXAxis">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[避让归位指令是否需要移动横梁X轴到停靠位]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nFollowState">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[当前随动状态在哪个条件下触发]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nFollowStateToHmi">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[当前随动状态给到HMI]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nZErrorIDToHmi">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[z轴报警ID给到界面状态去刷]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCheckPipeSizeBeforeCuttingStartM">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[加工开始前检测管材尺寸]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCheckPipeSizeBeforeCuttingEndM">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[加工开始前检测管材尺寸]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCheckPipeSizeBeforeCuttingAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[加工开始前检测管材尺寸]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCloseGasInAdvance">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[用于关闭提前吹气 ]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="ArrayConfigOutputNumber">
+      <type>
+        <array>
+          <dimension lower="0" upper="300"/>
+          <baseType>
+            <BOOL/>
+          </baseType>
+        </array>
+      </type>
+    </variable>
+    <variable name="g_nTurnCylControlMode">
+      <type>
+        <DINT/>
+      </type>
+    </variable>
+    <variable name="g_fXAxisEncoderDirection">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[X主轴的编码器方向 正向1.0  负向-1.0]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_fiXAxisPosCmd" address="%IL4.0">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[x轴的位置命令 输入引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_foXAxisPosCmd" address="%QL4.0">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[x轴的位置命令 输出引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_fiXAxisPosFb" address="%IL3.9">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[x轴的位置反馈引脚 输入引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_foXAxisPosFb" address="%QL3.9">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[x轴的位置反馈引脚 输出引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_fiXAxisSlavePosFb" address="%IL4.7">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[x轴从轴的位置反馈引脚 输入引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_foXAxisSlavePosCmd" address="%QL4.7">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[x轴从轴的位置命令 输出引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dXGantryAxisJointErr">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[X的龙门跟随误差HMI显示用]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_foXAxisMasterPosFbError" address="%QL4.8">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[X的主轴跟随误差]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_foXAxisSlavePosFbError" address="%QL4.9">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[X的从轴跟随误差]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bXGantryCalEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[x轴龙门轴的开启]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dXGantryAxisJointErrorSet">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门x轴的跟随误差值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_diAaxisPosCmd" address="%IL4.2">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[A轴的位置命令 输入引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_doAaxisPosCmd" address="%QL4.2">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[A轴的位置命令 输出引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_diAaxisPosFb" address="%IL4.1">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[A轴的位置反馈 输入引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_doAaxisPosFb" address="%QL4.1">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[A轴的位置反馈 输出引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_diBaxisPosCmd" address="%IL4.4">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[B轴的位置命令 输入引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_doBaxisPosCmd" address="%QL4.4">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[B轴的位置命令 输出引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_diBaxisPosFb" address="%IL4.3">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[B轴的位置反馈 输入引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_doBaxisPosFb" address="%QL4.3">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[B轴的位置反馈 输出引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_diUaxisPosCmd" address="%IL4.6">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[U轴的位置命令 输入引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_doUaxisPosCmd" address="%QL4.6">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[U轴的位置命令 输出引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_diUaxisPosFb" address="%IL4.5">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[U轴的位置反馈 输入引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_doUaxisPosFb" address="%QL4.5">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[U轴的位置反馈 输出引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSustainAxisAbsInFollowAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴在浮动状态下绝对相对运动报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFrontSustainAxisAbsInFollowAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[托料轴在浮动状态下绝对相对运动报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFrontSustainAxisFloatControlM">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[托料轴在流程编辑中的一键加耦或解耦]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dFrontSustainAxisFloatControlIValueM">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[托料轴在流程编辑中的一键加耦或解耦]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bOpenZeroTailCutMode">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[开启了零尾料切割模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bOpenZeroTailPosSoftLimit">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[开启了零尾料轴限位]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dZeroTailPosSoftLimit">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零尾料轴正向限位]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCurrentContourCannotCutAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[当前切割轮廓存在机械干涉报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bChangeCutToolNumberM">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[当前切割轮廓存在机械干涉报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAxisStopFlag_1">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[轴停止指令并行触发标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAxisStopFlag_2">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[轴停止指令并行触发标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAxisStopFlag_3">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[轴停止指令并行触发标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAxisStopFlag_4">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[轴停止指令并行触发标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAxisStopFlag_5">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[轴停止指令并行触发标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAxisStopFlag_6">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[轴停止指令并行触发标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAxisStopFlag_7">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[轴停止指令并行触发标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAxisStopFlag_8">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[轴停止指令并行触发标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAxisStopFlag_9">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[轴停止指令并行触发标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAxisStopFlag_10">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[轴停止指令并行触发标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAxisStopFlag_11">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[轴停止指令并行触发标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAxisStopFlag_12">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[轴停止指令并行触发标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAxisStopFlag_13">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[轴停止指令并行触发标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAxisStopFlag_14">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[轴停止指令并行触发标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAxisStopFlag_15">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[轴停止指令并行触发标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bBuzzerControlEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[蜂鸣器开关]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bBuzzerSparkleEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[蜂鸣器闪烁开关]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nBuzzerSparkleStartTime">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[蜂鸣器闪烁开关]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nBuzzerSparkleStopTime">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[蜂鸣器闪烁开关]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boBuzzerControlOpen" address="%QX16.299">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[ 蜂鸣器输出引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFrontSustainAxis1CloseVelAdd">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴1关闭浮动]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFrontSustainAxis2CloseVelAdd">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴2关闭浮动]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFrontSustainAxis3CloseVelAdd">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴3关闭浮动]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFrontSustainAxis4CloseVelAdd">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴4关闭浮动]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nUHomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[U2轴回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nZHomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Z轴回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nS1HomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴1回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nS2HomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴2回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nS3HomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴3回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nS4HomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴4回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nS5HomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴5回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nS6HomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴6回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nZ1HomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴1回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nZ2HomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴2回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nZ3HomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴3回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nZ4HomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴4回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nT1HomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴1回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nT2HomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴2回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nT3HomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴3回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nDHomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[抽尘轴回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nD2HomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[抽尘轴2回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nFHomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[F轴回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nAvoidAxisHomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[避让轴回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nMiddleCardMoveAxisHomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[中卡移动轴回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nZeroTailBackAxisHomeMode">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零尾料主卡轴回原模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="ListenBoardInputConfig">
+      <type>
+        <array>
+          <dimension lower="0" upper="9999"/>
+          <baseType>
+            <BOOL/>
+          </baseType>
+        </array>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[板卡输入信号监控]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupCyl2Up4">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4上升控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupCyl2Down4">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4下降控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupCyl2Up_UseINPOS4">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4使用上升到位信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupCyl2Down_UseINPOS4">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4使用上升到位信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupCyl2Up_NONC4">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4到位信号逻辑]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupCyl2Down_NONC4">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4到位信号逻辑]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boSupCyl2Up_Done4" address="%QX16.300">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4上升到位信号输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boSupCyl2Down_Done4" address="%QX16.301">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4上升到位信号输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_biSupCyl2Up_INPOS4" address="%IX16.302">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4上升到位信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_biSupCyl2Down_INPOS4" address="%IX16.303">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4下降到位信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_fSupCyl2Up_DelayTime4">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4上升到位延时]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_fSupCyl2Down_DelayTime4">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4上升到位延时]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_noSupCyl2Switch4">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4控制状态机]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nDownCmdCount4">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4命令状态次数监控]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bUseSup2Cyl4">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[是否使用了该气缸]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSenF_SupportIsAvoid4">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[是否该气缸避让了]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupCyl2Up_INPOS4">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上升到位]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupCyl2Down_INPOS4">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[下降到位]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bUseSup2CylState4">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[状态灯]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bLoadSupportCyl4DownNoSignalAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[到位报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSenFeng_SupUp4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bSenFeng_SupDown4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_fSup2Cy1InYCoor4">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4避让坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_fSup2CylDownDis4">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4避让坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_fSup2CylSafeDis4">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4避让坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boSupCyl2Up4" address="%QX16.304">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4上升输出引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boSupCyl2Down4" address="%QX16.305">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料支撑气缸4下降输出引脚]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCentringCyl2Up4">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[对中气缸4上升指令]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCentringCyl2Down4">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[对中气缸4下降指令]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boCentringCyl2Up4" address="%QX16.306">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_boCentringCyl2Down4" address="%QX16.307">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_boCentringCyl2Up_Done4" address="%QX16.308">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_boCentringCyl2Down_Done4" address="%QX16.309">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bUseSup2Centring4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_noCentringCyl2Switch4">
+      <type>
+        <INT/>
+      </type>
+    </variable>
+    <variable name="g_bCenterCyl4DownNoSignalAlarm">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_fCentringCyl2Up_DelayTime4">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_fCentringCyl2Down_DelayTime4">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_bCentringCyl2Up_UseINPOS4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bCentringCyl2Down_UseINPOS4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bCentringCyl2State4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bCentringCyl2Up_INPOS4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bCentringCyl2Down_INPOS4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bCentringCyl2Up_NONC4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_bCentringCyl2Down_NONC4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biCentringCyl2Up_INPOS4" address="%IX16.310">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_biCentringCyl2Down_INPOS4" address="%IX16.311">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_fSenFeng_SupCylType4">
+      <type>
+        <LREAL/>
+      </type>
+    </variable>
+    <variable name="g_boSenFeng_SupDownDone4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_boSenFeng_SupUpDone4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_noSupCentringSwitch4">
+      <type>
+        <INT/>
+      </type>
+    </variable>
+    <variable name="g_bSenFeng_SupCentringNoWait4">
+      <type>
+        <BOOL/>
+      </type>
+    </variable>
+    <variable name="g_fYSlaveEncoderDirection">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门Y轴编码器取反标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_fYMasterEncoderDirection">
+      <type>
+        <LREAL/>
+      </type>
+      <initialValue>
+        <simpleValue value="1.0"/>
+      </initialValue>
+      <documentation>
+        <xhtml:p><![CDATA[龙门Y轴主轴编码器取反标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_fXSlaveEncoderDirection">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门X轴编码器取反标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_fXMasterEncoderDirection">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门X主轴编码器取反标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dYAllowGantryFollowErrorTime">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门Y轴跟随误差持续时间]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dXAllowGantryFollowErrorTime">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门X轴跟随误差持续时间]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_MasterServoError">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门主轴误差]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_XMasterServoError">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门主轴误差]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_SlaveServoError">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门从轴误差]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_XSlaveServoError">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门从轴误差]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_SlaveFollowError">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门从轴跟随误差]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_XSlaveFollowError">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门从轴跟随误差]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bYAxisStopPosErrorAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门主轴Y静止时跟随误差过大报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bY1AxisStopPosErrorAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门从轴Y1静止时跟随误差过大报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bXAxisStopPosErrorAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门主轴X静止时跟随误差过大报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bX1AxisStopPosErrorAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门从轴X1静止时跟随误差过大报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bYY1FollowErrorAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门YY1同步跟随误差过大报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bXX1FollowErrorAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门XX1同步跟随误差过大报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dYY1AxisStopPosErrorSet">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门YY1静止时跟随误差设置值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dXX1AxisStopPosErrorSet">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[龙门XX1静止时跟随误差设置值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dTotalFeedPipeLengthSetValue">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上料参数设置中的管长]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bModbusNotificateHMIGetValueFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通知HMI从modubus寄存器中取值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportCylinder1ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑气缸1屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportCylinder2ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑气缸2屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportCylinder3ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑气缸3屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportCylinder4ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑气缸4屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportCylinder5ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑气缸5屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportCylinder6ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑气缸6屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportCylinder7ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑气缸7屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportCylinder8ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑气缸8屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportCylinder9ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑气缸9屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportCylinder10ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑气缸10屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportCylinder11ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑气缸11屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportCylinder12ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑气缸12屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportAxis1ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴1屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportAxis2ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴2屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportAxis3ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴3屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportAxis4ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴4屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportAxis5ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴5屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportAxis6ShieldFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴6屏蔽避让和报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bMiddleMoveAxisRelEnableM">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[中卡移动轴相对运动触发]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bMiddleMoveAxisDone">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[中卡移动轴运动完成标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dMiddleMoveAxisRelVel">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[中卡移动轴相对运动速度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bGeneralAxis1AutoMoveControlM">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴控制根据图纸宽度和高度自动移动到指定位置]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dGeneralAxis1AutoMoveDistance">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴控制根据图纸宽度和高度自动移动到指定位置]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dGeneralAxis1AutoMoveType">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴控制根据图纸宽度和高度自动移动到指定位置]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bGeneralAxis2AutoMoveControlM">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴控制根据图纸宽度和高度自动移动到指定位置]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dGeneralAxis2AutoMoveDistance">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴控制根据图纸宽度和高度自动移动到指定位置]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dGeneralAxis2AutoMoveType">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴控制根据图纸宽度和高度自动移动到指定位置]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bGeneralAxis3AutoMoveControlM">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴控制根据图纸宽度和高度自动移动到指定位置]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dGeneralAxis3AutoMoveDistance">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴控制根据图纸宽度和高度自动移动到指定位置]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dGeneralAxis3AutoMoveType">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴控制根据图纸宽度和高度自动移动到指定位置]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bMiddleFeedAxisSelfTuningDone">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[避让进给轴自整定完成]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dMiddleFeedAxisSelfSelfTuningCF">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[避让进给轴自整定结果]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dTailMaterialLength">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[尾料长度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionOpen1M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸1M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionOpen2M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸2M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionOpen3M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸3M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionOpen4M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸4M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionOpen5M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸5M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionOpen6M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸6M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionOpen7M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸7M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionOpen8M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸8M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionOpen9M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸9M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionOpen10M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸10M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionOpen11M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸11M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionOpen12M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸12M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionClose1M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸1M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionClose2M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸2M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionClose3M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸3M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionClose4M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸4M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionClose5M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸5M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionClose6M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸6M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionClose7M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸7M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionClose8M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸8M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionClose9M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸9M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionClose10M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸10M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionClose11M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸11M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCylAntiRejectionClose12M">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑对中气缸12M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nM335PValue">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M335 P 1-100 1001-1100]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nM335QValue">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M335 Q 0开始 1结束]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dM335KValue">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M335 K100：PLC自定义打印日志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dM335IValue">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M335 I：通知界面打印日志的index]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nM335Triggered">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M335触发]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bIsFristCycle">
+      <type>
+        <BOOL/>
+      </type>
+      <initialValue>
+        <simpleValue value="False"/>
+      </initialValue>
+      <documentation>
+        <xhtml:p><![CDATA[循环加工第一次执行]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAntiRejection2HomeSignal">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴4回原信号触发]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFrontAxis4RelMoveEnableM">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴4M代码触发相对对运动]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dFrontSustainAxis7ChuckDist">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴4设置的卡盘中心高度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dFrontSustainAxis7DownPos">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴4设置的卡盘中心高度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dDynamicfollowZ4Dis">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴4设置的卡盘中心高度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFrontAxis4VelAddEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴4设置的卡盘中心高度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFrontAxis4AbsMoveEnableM">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[零件托举轴4设置的卡盘中心高度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter1UpState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸1上升状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter2UpState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸2上升状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter3UpState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸3上升状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter4UpState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸4上升状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter5UpState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸5上升状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter6UpState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸6上升状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter7UpState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸7上升状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter8UpState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸8上升状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter9UpState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸9上升状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter10UpState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸10上升状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter11UpState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸11上升状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter12UpState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸12上升状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter1DownState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸1下降状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter2DownState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸2下降状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter3DownState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸3下降状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter4DownState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸4下降状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter5DownState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸5下降状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter6DownState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸6下降状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter7DownState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸7下降状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter8DownState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸8下降状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter9DownState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸9下降状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter10DownState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸10下降状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter11DownState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸11下降状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bKeepCenter12DownState">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支架对中气缸12下降状态]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportForceLimitM">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[强制降速触发]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bPreFocusEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[强制降速触发]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCheckFocusDA">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[强制降速触发]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCloseCutAheadAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[屏蔽切割头报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dFocusHomeTime">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[调焦回零时间]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dFocusEnableTime">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[调焦使能时间]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dFocusAoTime">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[调焦电压稳定时间]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bUseVoltageArrivalSignal">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[是否配了焦点反馈信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="BoardOutPutArray">
+      <type>
+        <derived name="PlcDataToHmi"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[输出口判断]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bInterferenceProtectionDetection">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[干涉防护检测]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bPLCParaExecuteOutTimeAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[并行执行超时报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAvoidCylinderCloseOutputAfterDone">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[中卡避让气缸到位关闭输出]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAvoidMiddleAxisNewAbsMoveCmdFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[中卡避让轴归位时检测主轴坐标是否小于避让坐标标志位]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_UserDefineProcessState">
+      <type>
+        <array>
+          <dimension lower="0" upper="79"/>
+          <baseType>
+            <derived name="REF_TO BOOL"/>
+          </baseType>
+        </array>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[自定义过程的状态标志位]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bLimitRotateSpeedEnbale">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[避让后是否开启限制旋转速度（全州限制）]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dLimitRotateRatio">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[避让后开启限制旋转速度比例]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bIsSetSlowCutEnableFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[是否已经在限速中]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dM197SetKValue">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M197的K值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverU2DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverDustDatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverDust2DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverS1DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverS2DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverS3DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverS4DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverS5DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverS6DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverZ1DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverZ2DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverZ3DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverZ4DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverT1DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverT2DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverT3DatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverAvoidAxisDatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverMiddleAxisDatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRecoverMainChuckAxisDatumMark">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dU2DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dDustDatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dDust2DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dS1DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dS2DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dS3DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dS4DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dS5DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dS6DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dZ1DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dZ2DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dZ3DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dZ4DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dT1DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dT2DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dT3DatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dAvoidAxisDatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dMiddleAxisDatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dMainChuckAxisDatumMark">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[伺服断电恢复基准点坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dPowerOffMoveToTargetPosSpeed">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[断电重启后的一键移动到目标位置的速度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dPowerOffMoveRotateSpeed">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[断电重启后的一键移动到目标位置的速度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bPowerOffMoveToTargetPosSetSpeedFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[断电重启后的一键移动到目标位置的速度设置标志位，不会影响之前的逻辑]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dM202KValue">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M202的K值，用来检测是否是程序的刚开始标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRealTimeUpdateParallePLC">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[是否开启实时刷新并行PLC]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRealTimeUpdateParallePLCExecuteFlag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[开启实时刷新并行PLC指令执行标志，只有主动点了停止才能结束]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nRealTimeUpdateParallePLCIndex">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[实时刷新并行PLC的编号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bLastPartCutEndCloseSlowEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割结束关闭限速]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bZAxisIsOpenSoftWareLimit">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Z轴是否开启软限位]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dZAxisNegSoftWareValue">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Z轴负软限位的值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_NCMoveData">
+      <type>
+        <derived name="ST_NewAxisData"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[后续新增轴数据结构]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSpecialMachineCenter">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[启用特殊机械校正参数]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dSpecialAngle">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[特殊机械水平角度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dPreAngleTemp">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[机械水平角度中间值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dSpecialBeamCenterPos">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[特殊机械横梁中心]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dPreBeamCenterPosTemp">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[机械横梁中心中间值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dSpecialChuckCenterInZPos">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[特殊机械卡盘中心]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dPreChuckCenterInZPosTemp">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[机械卡盘中心中间值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_StAirCal">
+      <type>
+        <derived name="ST_GasPressureCal"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[空气标定数组]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_StOxygenCal">
+      <type>
+        <derived name="ST_GasPressureCal"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[氧气标定数组]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_StNirtogenCal">
+      <type>
+        <derived name="ST_GasPressureCal"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[氮气标定数组]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAirCalExecute">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[空气气压标定命令HMI]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAirCalDone">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[空气气压标定结束]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bO2CalExecute">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[氧气气压标定命令HMI]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bO2CalDone">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[氧气气压标定结束]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bN2CalExecute">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[氮气气压标定命令HMI]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bN2CalDone">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[氮气气压标定结束]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bGasCalStop">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[气压标定停止]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nGasCalDelayTime">
+      <type>
+        <DINT/>
+      </type>
+      <initialValue>
+        <simpleValue value="500"/>
+      </initialValue>
+      <documentation>
+        <xhtml:p><![CDATA[气压标定出气后延时时间后采集]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="FBCutGasPressure10Date">
+      <type>
+        <derived name="FB_10DateSave"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割气压数据处理功能块]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_STCutPre10Date">
+      <type>
+        <array>
+          <dimension lower="0" upper="9"/>
+          <baseType>
+            <LREAL/>
+          </baseType>
+        </array>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[每隔100ms采集10个切割气压数组]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_CutPreAverage">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割气压平均值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_CutPreSum">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割气压和]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_CutPreVariance">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割气压方差]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_CutPreStandarDeviation">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割气压均方差]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_STAirDiagnosis">
+      <type>
+        <array>
+          <dimension lower="1" upper="16"/>
+          <baseType>
+            <derived name="ST_GasDiagnosis"/>
+          </baseType>
+        </array>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[空气诊断数组]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_STN2Diagnosis">
+      <type>
+        <array>
+          <dimension lower="1" upper="16"/>
+          <baseType>
+            <derived name="ST_GasDiagnosis"/>
+          </baseType>
+        </array>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[氮气诊断数组]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_STO2Diagnosis">
+      <type>
+        <array>
+          <dimension lower="1" upper="16"/>
+          <baseType>
+            <derived name="ST_GasDiagnosis"/>
+          </baseType>
+        </array>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[氧气诊断数组]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bGasDiagnosisStart">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[开始气路诊断]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bGasDiagnosisStop">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[停止气路诊断]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bGasDiagnosisType">
+      <type>
+        <UINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[气路诊断类型 0空气 1氧气  2氮气]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dGasDiagnosisPressure">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[气路诊断气压]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSupportRealTimeFloatDuringCutting">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[支撑轴切割过程中实时跟随，开启后切割旋转角度超18 0度先下降旋转完成后再上升]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFrontSupportRealTimeFloatDuringCutting">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[前支撑（零件托举）轴切割过程中实时跟随，开启后切割旋转角度超18 0度先下降旋转完成后再上升]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bInterference_UserDefineAxis_Flag">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[干涉检测：用户自定义过程轴运动：有效标识]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_SAvoidNodeStart">
+      <type>
+        <string/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁避让/************新增参数*************/]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAvoidAxisGearInM">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁避让轴耦合M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAvoidAxisGearOutM">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁避让轴解耦M代码控制]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dAvoidAxisNodeYPosGearInState">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁避让轴触发耦合指令时记录的Y轴坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dAvoidAxisModeChuckThickness">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁避让全行程主卡厚度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAvoidAxisFullTravelCutEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁避让是否开启全行程切割]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFullTravelChuckWillInterferenceAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[全行程状态下个轮廓切割卡盘干涉报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dFullTravelShortPartLengthLimit">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[全行程切换的最小零件长度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bIsFullTravelCutModeNeedChange">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[是否需要切换到全行程切割检测模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bIsFullTravelCutModeChangeDone">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[全行程切割模式成功]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dFullTravelModePartYPos">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[全行程模式记录到的零件开始时的Y轴坐标，方便计算以后的轮廓是否会超过避让移动相对距离]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dAvoidRelDistances">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[避让移动相对距离]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bM340CheckStartM">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M340全行程避让模式检测开始]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dAvoidFarthestPos">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[全行程避让模式下判断是否需要横梁轴移动的最远切割位置]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dFullTravelNodePartYCoord">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[全行程避让模式下记录的零件开始Y轴坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bBeamAvoidZeroTailEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁移动避让零尾料模式]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dBeamAvoidZeroTailChangeMainAxisPos">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁移动避让即将切换零尾料模式时主卡轴的坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dBeamAvoidZeroTailBackSafeDistance">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁移动避让零尾料主卡回退允许切割的安全距离]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bBeamAvoidZeroTailCloseSoftWareEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁移动避让零尾料屏蔽Y轴限位]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dBeamAvoidAxisPosSoftLimit">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁移动避让轴正限位]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bBeamAvoidAxisOverPosSoftLimitAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁移动避让轴将超正限位报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bBeamAvoidAxisNeedToChangeZeroTailMode">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁移动避让开始前检测是否会进零尾料]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bBeamAvoidAxisZeroScrapCutCannotPerformedAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁移动避让不能切换零尾料报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bBeamAvoidAxisChangeedCheck">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁移动避让不能切换零尾料报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bBeamAvoidAxisCheckClampStateAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁移动避让进零尾料时中卡状态无法继续]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_SAvoidNodeEnd">
+      <type>
+        <string/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁避让/**********新增参数结束*******/]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_LogDateCount">
+      <type>
+        <UDINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[日志数组计数]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_BeamAvoidAxisSelfTuning">
+      <type>
+        <derived name="MC_MOVESELFTUNING2"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁避让轴整定模块]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dBeamAvoidAxisSelfTuningCF">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁避让轴整定伺服延时]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bBeamAvoidAxisSelfTuningDone">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁避让轴整定完成]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_MiddleAvoidAxisSelfTuning">
+      <type>
+        <derived name="MC_MOVESELFTUNING2"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[中卡避让轴整定模块]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dMiddleAvoidAxisSelfTuningCF">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[中卡避让轴整定伺服延时]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bMiddleAvoidAxisSelfTuningDone">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[中卡避让轴整定完成]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bChangeSecondFlyAndPowerCutCommunicationCycle">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[需要切换飞切和系统延时]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boCutHeadCool" address="%QX17.062">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割头冷却气]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_boMainChuckBlowing" address="%QX17.063">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[主卡吹气]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bShortPartNotCrossSpanCut">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[短零件不执行避让只打开中卡]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bModbusSignal1">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Modbus信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bModbusSignal2">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Modbus信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bModbusSignal3">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Modbus信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bModbusSignal4">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Modbus信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bModbusSignal5">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Modbus信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bModbusSignal6">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Modbus信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bModbusSignal7">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Modbus信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bModbusSignal8">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Modbus信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bModbusSignal9">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Modbus信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bModbusSignal10">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[Modbus信号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bRapidContinue">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[快速继续]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bFollowPosErrorAlarmEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <initialValue>
+        <simpleValue value="True"/>
+      </initialValue>
+      <documentation>
+        <xhtml:p><![CDATA[随动跟随误差超设定值20ms报警开关]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dFollowPosErrorAlarmValue">
+      <type>
+        <LREAL/>
+      </type>
+      <initialValue>
+        <simpleValue value="5.0"/>
+      </initialValue>
+      <documentation>
+        <xhtml:p><![CDATA[随动跟随误差报警设定值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dNoCrossSpanCutLimit">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[中卡避让不越位切割设置的Y轴限位]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dLastPartLength">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[最后一个零件的长度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bNotLastPartNeedAvoidAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[非最后一个零件触发避让报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nM341P">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M341 P1-10 地址]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nM341Q">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M341 Q置位1复位0]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nM342P">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M342 P1-10 地址]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nM342Q">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M342 Q有效1无效0]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nM342I">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M341 I超时报警1超时继续0]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nM342J">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M341 J超时时间]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAvoidAxisOverAvoidLimitPosAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[横梁避让全行程未进全行程切割是否超避让极限位报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_fCuttingType">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[切割类型0：随动1：定高]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dNextToolNum">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[下一个轮廓的刀具号]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nSaveMControlTotalNumber">
+      <type>
+        <INT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[保存M代码执行标志的计数标志]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bNotifyHMIToAcquireValue">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通知界面去获取保存的执行过的M代码的顺序]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_SaveAllMControlExecute">
+      <type>
+        <array>
+          <dimension lower="0" upper="9"/>
+          <baseType>
+            <derived name="ST_MControl"/>
+          </baseType>
+        </array>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[当前保存的执行过的M代码]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_PreSaveAllMControlExecute">
+      <type>
+        <array>
+          <dimension lower="0" upper="9"/>
+          <baseType>
+            <derived name="ST_MControl"/>
+          </baseType>
+        </array>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[上一次保存的执行过的M代码]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_ParallelCMDData">
+      <type>
+        <array>
+          <dimension lower="0" upper="10"/>
+          <baseType>
+            <derived name="ST_DataParallel"/>
+          </baseType>
+        </array>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[并行过程执行参数和结束标志管理]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="BoardInputSignalLogic">
+      <type>
+        <array>
+          <dimension lower="0" upper="95"/>
+          <baseType>
+            <LREAL/>
+          </baseType>
+        </array>
+      </type>
+    </variable>
+    <variable name="g_niFllowStatusFromCNC" address="%IW17.064">
+      <type>
+        <INT/>
+      </type>
+    </variable>
+    <variable name="g_bOpenGetZMaxPosM">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[开启探边时取z轴最大值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bCloseGetZMaxPosM">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[关闭探边时取z轴最大值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_nNeedRotatoAngle">
+      <type>
+        <DINT/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[焊缝识别相机识别内壁结束后需要旋转的角度]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dM153LayserStartPValue">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[M153开始出光传递的P值]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bAxisIsMoveAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[轴在运动中又来了运动指令报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bIsImportTubeDrawing">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[是否导入图纸]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bIsNotImportTubeDrawingAlarm">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[未导入图纸执行某个动作报警]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bSendControlPanelStrat">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[界面发送面板开始]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dCheckAxisIsMovingSpeedSet">
+      <type>
+        <LREAL/>
+      </type>
+      <initialValue>
+        <simpleValue value="0.5"/>
+      </initialValue>
+      <documentation>
+        <xhtml:p><![CDATA[界面发送面板开始]]></xhtml:p>
+      </documentation>
+    </variable>
+  </globalVars>
+</root>

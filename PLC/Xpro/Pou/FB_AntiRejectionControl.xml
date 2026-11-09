@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AntiRejectionControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBAntiRejectionCyl">
+        <type>
+          <derived name="FB_AntiRejectionCyl"/>
+        </type>
+      </variable>
+      <variable name="FBAutoAntiRejection">
+        <type>
+          <derived name="FB_AutoAntiRejection"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nAntiRejectionFun">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[左右防甩功能总开关 0为关 1为气缸 2为轴]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+IF g_nAntiRejectionFun=1 THEN
+  FBAntiRejectionCyl();(*CYL*)
+ELSIF g_nAntiRejectionFun=2 THEN
+  (*AXIS*)
+   FBAntiRejectionCyl();(*CYL*)
+END_IF;
+
+FBAutoAntiRejection();
+
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[左右防甩总控]]></xhtml:p>
+  </documentation>
+</pou>

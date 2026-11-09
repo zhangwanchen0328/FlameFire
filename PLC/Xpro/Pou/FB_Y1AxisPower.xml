@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Y1AxisPower" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Axis_Y1">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_Y1Power">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bY1PowerEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bY1MovePosEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bY1MoveNegEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bY1AxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bY1AxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="F_PowerOff">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[F_PowerOff(CLK := g_bDriveEnable);
+IF F_PowerOff.Q THEN
+  bY1PowerEnable := FALSE;
+END_IF;
+g_Y1Power.ENABLE := bY1PowerEnable;
+g_Y1Power.ENABLEPOSITION := NOT g_bY1AxisPosLimit;
+g_Y1Power.ENABLENEGATIVE := NOT g_bY1AxisNegLimit;
+
+IF g_Y1Power.Error THEN
+  g_Y1Power.Enable := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_GasDAOutPut" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="DAOutputVol">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="1.0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[输入电压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="DAOutputVolAna">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[转换后电压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDAOutputVolEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[HMI输出，下一个]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDAOutputVolCloseEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[关闭输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="gas_type">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[气体类型 0: 不出气， 1: 氧气， 2: 氮气]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boMasterValve">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主阀输出使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boOxygenValve">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主阀输出使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boNirtogenValve">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主阀输出使能]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_uoMasterPressureOut">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[主阀输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_uoOxygenPressureOut">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氧气阀输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_uoNirtogenPressureOut">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[氮气阀输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_uoSharePressureOut">
+        <type>
+          <UINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[共用比例阀阀输出]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="RTrigge">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RTrigge2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*电压转为UNIT输出*)
+RTrigge(CLK := bDAOutputVolEnable);
+RTrigge2(CLK := bDAOutputVolCloseEnable);
+IF RTrigge.Q THEN
+  bDAOutputVolEnable := FALSE;
+  g_bDAOutputVolEnable:=TRUE;
+  DAOutputVolAna := LREAL_TO_UINT((32767.0 / 10.0) * DAOutputVol);
+  
+  g_boMasterValve := TRUE;
+  g_uoSharePressureOut := DAOutputVolAna;
+  g_uoMasterPressureOut := DAOutputVolAna;
+  CASE gas_type OF
+    0:
+      g_boAirValve:= TRUE;
+      g_boOxygenValve := FALSE;
+      g_boNirtogenValve := FALSE;
+      g_uoAirPressureOut := DAOutputVolAna;
+      g_uoNirtogenPressureOut := 0;
+      g_uoOxygenPressureOut := 0;
+      
+    1:
+      g_boOxygenValve := TRUE;
+      g_boAirValve:= FALSE;
+      g_boNirtogenValve := FALSE;
+      g_uoOxygenPressureOut := DAOutputVolAna;
+      g_uoAirPressureOut := 0;
+      g_uoNirtogenPressureOut := 0;
+    2:
+      g_boOxygenValve := FALSE;
+      g_boNirtogenValve := TRUE;
+      g_boAirValve:= FALSE;
+      g_uoOxygenPressureOut := 0;
+      g_uoAirPressureOut := 0;
+      g_uoNirtogenPressureOut := DAOutputVolAna;
+  END_CASE;
+END_IF;
+
+IF RTrigge2.Q THEN
+  bDAOutputVolCloseEnable :=FALSE;
+  g_boMasterValve := FALSE;
+  g_boOxygenValve := FALSE;
+  g_boOxygenValve := FALSE;
+  g_boNirtogenValve := FALSE;
+  g_uoMasterPressureOut := 0;
+  g_uoAirPressureOut := 0;
+  g_uoOxygenPressureOut := 0;
+  g_uoNirtogenPressureOut := 0;
+  g_uoSharePressureOut := 0;    
+  g_bDAOutputVolEnable:=FALSE;
+END_IF;
+IF g_bPlcResetBuffer THEN
+  g_bDAOutputVolEnable:=FALSE;
+  gas_type :=-1;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

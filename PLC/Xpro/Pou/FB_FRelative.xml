@@ -1,0 +1,245 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_FRelative" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_FAxis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_biRelativeEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biRelativeClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boRelativeDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fiRelativeDis">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_FRelative">
+        <type>
+          <derived name="MC_MOVERELATIVE"/>
+        </type>
+      </variable>
+      <variable name="g_FPause">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_FReset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bFRelEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dFRelDistance">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dFRelTarget">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bFReltiveDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="F_Trigger">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nFRelSwitch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bFixedRelExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bFixedRelDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_dFixedRelPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bCloseFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dTargetVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fiRelVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dRelVelocity">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dFAxisSlowVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[手动慢速]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dFAxisFastVel">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[手动快速]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger(CLK := bFRelEnable OR g_biRelativeEnable OR g_bFixedRelExecute);
+F_Trigger(CLK := bFRelEnable OR g_biRelativeClose OR g_bFixedRelExecute);
+
+IF R_Trigger.Q THEN
+  bFReltiveDone := FALSE;
+  g_bFixedRelDone := FALSE;
+  g_boRelativeDone := FALSE;
+  IF g_biRelativeEnable THEN
+    dFRelTarget := g_FAxis.NCTOPLC.ActPos + g_fiRelativeDis;
+    dTargetVel := g_fiRelVelocity;
+  ElSIF bFRelEnable THEN
+    dFRelTarget := g_FAxis.NCTOPLC.ActPos + dFRelDistance;
+    IF g_bFastInch=0 THEN
+      dTargetVel := dFAxisSlowVel;
+    ELSE
+      dTargetVel := dFAxisFastVel;
+    END_IF;
+  ELSIF g_bFixedRelExecute THEN
+    dFRelTarget := g_FAxis.NCTOPLC.ActPos + g_dFixedRelPos;
+    dTargetVel := g_dRelVelocity;
+  END_IF;
+  
+  IF dTargetVel = 0.0 THEN
+    dTargetVel := g_dRelVelocity;
+  END_IF;
+  nFRelSwitch := 1;
+  bCloseFlag := FALSE;
+  bFRelEnable := FALSE;
+END_IF;
+
+IF F_Trigger.Q THEN
+  bCloseFlag := TRUE;
+END_IF;
+
+IF bCloseFlag THEN
+  bFReltiveDone := FALSE;
+  g_bFixedRelDone := FALSE;
+  g_boRelativeDone := FALSE;
+  bCloseFlag := FALSE;
+END_IF;
+
+CASE nFRelSwitch OF
+  0:
+  nFRelSwitch := 0;
+  1:
+  g_FRelative.Execute := true;
+  g_FRelative.Distance := dFRelTarget - g_FAxis.NCTOPLC.ActPos;
+  g_FRelative.Velocity := dTargetVel;
+  IF g_FRelative.Done THEN
+    g_FRelative.Execute := false;
+    bFReltiveDone := true;
+    g_bFixedRelDone := true;
+    g_boRelativeDone := true;
+    nFRelSwitch := 0;
+  END_IF;
+  
+  IF g_FRelative.CommandAborted OR g_FRelative.Error THEN
+    g_FRelative.Execute := false;
+    nFRelSwitch := 0;
+  END_IF;
+  
+  IF g_bPlcPauseBuffer THEN
+    nFRelSwitch := 10;
+  END_IF;
+  10:
+  g_FRelative.Execute := false;
+  g_FPause.Execute := true;
+  IF g_FPause.Done AND g_bPlcStartBuffer THEN
+    g_FPause.Execute := false;
+    nFRelSwitch := 1;
+  END_IF;
+  
+  IF g_FPause.CommandAborted OR g_FPause.Error THEN
+    g_FPause.Execute := false;
+    nFRelSwitch := 0;
+  END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nFRelSwitch := 0;
+  g_FPause.Execute := false;
+  g_FRelative.Execute := false;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

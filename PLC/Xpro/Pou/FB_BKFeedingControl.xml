@@ -1,0 +1,636 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BKFeedingControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_biAutoFeedingOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biAutoFeedingClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biDischargeRack1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biDischargeRack2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biDischargeRack3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boForward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boBackward">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biPushMaterialLimit1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biPushMaterialLimit2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trriger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trriger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bPromptFeeding">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAlreadyLoad">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boFeedingFinish">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[自动上料完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boCylinderY2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boCylinderY3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boMaterialCylinder">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nFeedingSwitch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="Ton_Delay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="dMaterialTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFeedTroughSignal">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_Alarm">
+        <type>
+          <derived name="DT_ALARM"/>
+        </type>
+      </variable>
+      <variable name="g_nofeedState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger4">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger5">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bTrigger3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTrigger4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bTrigger5">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Ton_Trigger3">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Trigger4">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Trigger5">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="bDischargeRack1">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDischargeRack2">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bDischargeRack3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bHMIConfirmFeeding">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="dDischargeRackTime1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料架检测管材的传感器1]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDischargeRackTime2">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料架检测管材的传感器2]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dDischargeRackTime3">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上料架检测管材的传感器3]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dForwardTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[正转时间，时间到立即反转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dBackwardTime">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[反转时间，时间到立即停止反转]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="Ton_Forward">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Ton_Backward">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_nBKFeedingState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[用于查看当前处于什么运行状态]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nSwitchState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_nofeedState3">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fiAutoFeedingType">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_biPushMaterialLimit4">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biPushMaterialLimit3">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger5(CLK := g_biDischargeRack1);
+R_Trigger3(CLK := g_biDischargeRack2);
+R_Trigger4(CLK := g_biDischargeRack3);
+
+IF R_Trigger3.Q THEN
+  bTrigger3 := TRUE;
+END_IF;
+IF bTrigger3 AND g_biDischargeRack2 THEN
+  Ton_Trigger3(IN := TRUE,PT := LREAL_TO_TIME(dDischargeRackTime2/1000.0));
+  IF Ton_Trigger3.Q THEN
+    bTrigger3 := FALSE;
+    bDischargeRack2 := TRUE;
+  END_IF;
+ELSE
+  Ton_Trigger3(IN := FALSE);
+  IF NOT g_biDischargeRack2 THEN
+    bDischargeRack2 := FALSE;
+  END_IF;
+END_IF;
+
+IF R_Trigger4.Q THEN
+  bTrigger4 := TRUE;
+END_IF;
+IF bTrigger4 AND g_biDischargeRack3 THEN
+  Ton_Trigger4(IN := TRUE,PT := LREAL_TO_TIME(dDischargeRackTime3/1000.0));
+  IF Ton_Trigger4.Q THEN
+    bTrigger4 := FALSE;
+    bDischargeRack3 := TRUE;
+  END_IF;
+ELSE
+  Ton_Trigger4(IN := FALSE);
+  IF NOT g_biDischargeRack3 THEN
+    bDischargeRack3 := FALSE;
+  END_IF;
+END_IF;
+
+IF R_Trigger5.Q THEN
+  bTrigger5 := TRUE;
+END_IF;
+IF bTrigger5 AND g_biDischargeRack1 THEN
+  Ton_Trigger5(IN := TRUE,PT := LREAL_TO_TIME(dDischargeRackTime1/1000.0));
+  IF Ton_Trigger5.Q THEN
+    bTrigger5 := FALSE;
+    bDischargeRack1 := TRUE;
+  END_IF;
+ELSE
+  Ton_Trigger5(IN := FALSE);
+  IF NOT g_biDischargeRack1 THEN
+    bDischargeRack1 := FALSE;
+  END_IF;
+END_IF;
+
+
+(*自动上料*)
+R_Trriger1(CLK := g_biAutoFeedingOpen);
+R_Trriger2(CLK := g_biAutoFeedingClose);
+
+IF R_Trriger1.Q THEN
+  g_boMaterialCylinder := FALSE;
+  g_boFeedingFinish := FALSE;
+  g_boForward := FALSE;
+  g_boBackward := FALSE;
+  IF LREAL_TO_INT(g_fiAutoFeedingType) = 0 THEN
+    nFeedingSwitch := 1;
+    nSwitchState := 0;
+  ELSIF LREAL_TO_INT(g_fiAutoFeedingType) = 1 THEN
+    nSwitchState := 1;
+    nFeedingSwitch := 0;
+  END_IF;
+END_IF;
+
+IF R_Trriger2.Q THEN
+  g_boMaterialCylinder := FALSE;
+  g_boFeedingFinish := FALSE;
+END_IF;
+
+(*IF g_boForward THEN
+  Ton_Forward(IN := TRUE,PT := LREAL_TO_TIME(dForwardTime/1000.0));
+ELSIF g_boBackward THEN
+  Ton_Backward(IN := TRUE,PT := LREAL_TO_TIME(dBackwardTime/1000.0));
+END_IF;*)
+
+CASE nFeedingSwitch OF
+  0:
+  nFeedingSwitch := 0;
+  1:
+  IF (NOT bDischargeRack1) OR (NOT bDischargeRack2) OR (NOT bDischargeRack3) THEN
+    IF NOT bDischargeRack1 THEN
+      nFeedingSwitch := 2;
+    ELSE
+      nFeedingSwitch := 6;
+    END_IF;
+  ELSIF bDischargeRack1 THEN
+    g_boMaterialCylinder := TRUE;
+    nFeedingSwitch := 4;
+  END_IF;
+  2:
+    (*M1正转*)
+    g_nBKFeedingState := 1;
+    g_boForward := TRUE;
+    g_boFeedingFinish := FALSE;
+    IF bDischargeRack1 OR (NOT g_biPushMaterialLimit2) OR (NOT g_biPushMaterialLimit4) THEN
+      (*OR (Ton_Forward.Q AND g_biPushMaterialLimit2) OR (Ton_Forward.Q AND g_biPushMaterialLimit4) THEN*)
+      
+      IF (NOT g_biPushMaterialLimit2) OR (NOT g_biPushMaterialLimit4) THEN
+        (*OR (Ton_Forward.Q AND g_biPushMaterialLimit2)
+        OR (Ton_Forward.Q AND g_biPushMaterialLimit4) THEN*)
+        g_boForward := FALSE;
+        (*Ton_Forward(IN := FALSE);*)
+        IF bDischargeRack1 THEN
+          g_boMaterialCylinder := TRUE;
+          nFeedingSwitch := 21;
+        ELSE
+          g_nBKFeedingState := 2;
+          nFeedingSwitch := 5;
+        END_IF;
+      ELSIF bDischargeRack1 THEN
+        g_boMaterialCylinder := TRUE;
+        nFeedingSwitch := 20;
+      END_IF;
+    END_IF;
+    
+    IF g_bPlcPauseBuffer THEN
+      g_boForward := FALSE;
+      nFeedingSwitch := 12;
+    END_IF;
+  3:
+  g_boBackward := TRUE;
+  (*界面提示无料，M1反转*)
+  IF (NOT g_biPushMaterialLimit1) OR (NOT g_biPushMaterialLimit3) THEN
+    (*OR (Ton_Backward.Q AND g_biPushMaterialLimit1)
+    OR (Ton_Backward.Q AND g_biPushMaterialLimit3) THEN*)
+    g_boBackward := FALSE;
+    Ton_Backward(IN := FALSE);
+    g_nBKFeedingState := 4;
+    nFeedingSwitch := 30;
+  END_IF;
+  4:
+  Ton_Delay(IN := TRUE,PT := LREAL_TO_TIME(dMaterialTime/1000.0));
+  IF Ton_Delay.Q THEN
+    Ton_Delay(IN := FALSE);
+    g_boFeedingFinish := TRUE;
+    g_boMaterialCylinder := FALSE;
+    IF (NOT g_biPushMaterialLimit2) OR (NOT g_biPushMaterialLimit4) THEN
+      nFeedingSwitch := 5;
+    ELSE
+      nFeedingSwitch := 0;
+    END_IF;
+  END_IF;
+  5:
+  (*提示上料*)
+  bPromptFeeding := TRUE;
+  nFeedingSwitch := 3;
+  6:
+  g_boMaterialCylinder := TRUE;
+  nFeedingSwitch := 7;
+  7:
+  Ton_Delay(IN := TRUE,PT := LREAL_TO_TIME(dMaterialTime/1000.0));
+  IF Ton_Delay.Q THEN
+    Ton_Delay(IN := FALSE);
+    g_boFeedingFinish := TRUE;
+    g_boMaterialCylinder := FALSE;
+    nFeedingSwitch := 8;
+  END_IF;
+  8:
+  (*M1正转*)
+  g_nBKFeedingState := 1;
+  g_boForward := TRUE;
+  IF (bDischargeRack1 AND bDischargeRack2 AND bDischargeRack3) OR (NOT g_biPushMaterialLimit2) OR (NOT g_biPushMaterialLimit4) THEN
+    (*OR (Ton_Forward.Q AND g_biPushMaterialLimit2) OR (Ton_Forward.Q AND g_biPushMaterialLimit4) THEN*)
+    g_boForward := FALSE;
+    (*Ton_Forward(IN := FALSE);*)
+    IF (NOT g_biPushMaterialLimit2) OR (NOT g_biPushMaterialLimit4) THEN
+      (*OR (Ton_Forward.Q AND g_biPushMaterialLimit2)
+      OR (Ton_Forward.Q AND g_biPushMaterialLimit4) THEN*)
+      IF (NOT bDischargeRack1) OR (NOT bDischargeRack2) OR (NOT bDischargeRack3) THEN
+        g_nBKFeedingState := 2;
+        nFeedingSwitch := 9;
+      END_IF;
+    ELSIF bDischargeRack1 AND bDischargeRack2 AND bDischargeRack3 THEN
+      g_nBKFeedingState := 3;
+      nFeedingSwitch := 22;
+    END_IF;
+  END_IF;
+    
+  IF g_bPlcPauseBuffer THEN
+    g_boForward := FALSE;
+    nFeedingSwitch := 11;
+  END_IF;
+  9:
+  (*提示上料*)
+  bPromptFeeding := TRUE;
+  nFeedingSwitch := 3;
+  10:
+  IF g_bPlcStartBuffer THEN
+    nFeedingSwitch := 9;
+  END_IF;
+  11:
+  IF g_bPlcStartBuffer THEN
+    nFeedingSwitch := 8;
+  END_IF;
+  12:
+  IF g_bPlcStartBuffer THEN
+    nFeedingSwitch := 2;
+  END_IF;
+  20:
+  Ton_Delay(IN := TRUE,PT := LREAL_TO_TIME(dMaterialTime/1000.0));
+  IF Ton_Delay.Q THEN
+    Ton_Delay(IN := FALSE);
+    g_boFeedingFinish := TRUE;
+    g_boMaterialCylinder := FALSE;
+    nFeedingSwitch := 8;
+  END_IF;
+  21:
+  Ton_Delay(IN := TRUE,PT := LREAL_TO_TIME(dMaterialTime/1000.0));
+  IF Ton_Delay.Q THEN
+    Ton_Delay(IN := FALSE);
+    g_boFeedingFinish := TRUE;
+    g_boMaterialCylinder := FALSE;
+    nFeedingSwitch := 5;
+  END_IF;
+  22:
+  g_boBackward := TRUE;
+  (*界面提示无料，M1反转*)
+  IF (NOT g_biPushMaterialLimit1) OR (NOT g_biPushMaterialLimit3) THEN
+    (*OR (Ton_Backward.Q AND g_biPushMaterialLimit1)
+    OR (Ton_Backward.Q AND g_biPushMaterialLimit3) THEN*)
+    g_boBackward := FALSE;
+    Ton_Backward(IN := FALSE);
+    g_nBKFeedingState := 4;
+    nFeedingSwitch := 0;
+  END_IF;
+  30:
+  g_nBKFeedingState := 6;
+  IF bHMIConfirmFeeding THEN
+    bPromptFeeding := FALSE;
+    bHMIConfirmFeeding := FALSE;
+    nFeedingSwitch := 8;
+  END_IF;
+END_CASE;
+
+
+(*程序开始，自动上料，顶料气缸不动作*)
+CASE nSwitchState OF
+  0:
+  nSwitchState := 0;
+  1:
+  IF (NOT bDischargeRack1) OR (NOT bDischargeRack2) OR (NOT bDischargeRack3) THEN
+    nSwitchState := 2;
+  ELSIF bDischargeRack1 AND bDischargeRack2 AND bDischargeRack3 THEN
+    IF (NOT g_biPushMaterialLimit2) OR (NOT g_biPushMaterialLimit4) THEN
+      g_nBKFeedingState := 3;
+      nSwitchState := 40;
+    ELSE
+      nSwitchState := 0;
+    END_IF;
+  END_IF;
+  g_boFeedingFinish := TRUE;
+  2:
+  (*M1正转*)
+  g_nBKFeedingState := 1;
+  g_boForward := TRUE;
+  IF (bDischargeRack1 AND bDischargeRack2 AND bDischargeRack3) OR (NOT g_biPushMaterialLimit2) OR (NOT g_biPushMaterialLimit4) THEN
+    g_boForward := FALSE;
+    IF (NOT g_biPushMaterialLimit2) OR (NOT g_biPushMaterialLimit4) THEN
+      IF (NOT bDischargeRack1) OR (NOT bDischargeRack2) OR (NOT bDischargeRack3) THEN
+        g_nBKFeedingState := 2;
+        nSwitchState := 3;
+      END_IF;
+    ELSIF (bDischargeRack1 AND bDischargeRack2 AND bDischargeRack3) THEN
+      g_nBKFeedingState := 3;
+      nSwitchState := 40;
+    END_IF;
+  END_IF;
+    
+  IF g_bPlcPauseBuffer THEN
+    g_boForward := FALSE;
+    nSwitchState := 10;
+  END_IF;
+  3:
+  (*提示上料*)
+  bPromptFeeding := TRUE;
+  nSwitchState := 4;
+  4:
+  g_boBackward := TRUE;
+  (*界面提示无料，M1反转*)
+  IF (NOT g_biPushMaterialLimit1) OR (NOT g_biPushMaterialLimit3) THEN
+    g_boBackward := FALSE;
+    g_nBKFeedingState := 4;
+    nSwitchState := 30;
+  END_IF;
+  10:
+  IF g_bPlcStartBuffer THEN
+    nSwitchState := 2;
+  END_IF;
+  30:
+  g_nBKFeedingState := 6;
+  IF bHMIConfirmFeeding THEN
+    bPromptFeeding := FALSE;
+    bHMIConfirmFeeding := FALSE;
+    nSwitchState := 2;
+  END_IF;
+  40:
+  g_boBackward := TRUE;
+  (*界面提示无料，M1反转*)
+  IF (NOT g_biPushMaterialLimit1) OR (NOT g_biPushMaterialLimit3) THEN
+    g_boBackward := FALSE;
+    g_nBKFeedingState := 4;
+    nSwitchState := 0;
+  END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  g_boMaterialCylinder := FALSE;
+  g_boForward := FALSE;
+  g_boBackward := FALSE;
+  bPromptFeeding := FALSE;
+  Ton_Backward(IN := FALSE);
+  Ton_Forward(IN := FALSE);
+  nFeedingSwitch := 0;
+  nSwitchState := 0;
+  bHMIConfirmFeeding := FALSE;
+  g_nBKFeedingState := 0;
+END_IF;
+
+g_nofeedState := nFeedingSwitch;
+g_nofeedState3 := nSwitchState;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

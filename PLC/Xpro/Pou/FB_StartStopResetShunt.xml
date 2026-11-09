@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_StartStopResetShunt" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="RStart">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RPause">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="RReset">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Ton_Dealy">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="nDealyState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RStart(CLK := g_bPlcStartBuffer);
+RPause(CLK := g_bPlcPauseBuffer);
+RReset(CLK := g_bPlcResetBuffer);
+
+IF RStart.Q THEN
+  g_boCustomStart:=TRUE;
+  g_boCustomPause:=FALSE;
+  g_boCustomReset:=FALSE;
+  nDealyState := 10;
+END_IF;
+IF RPause.Q THEN
+  g_boCustomStart:=FALSE;
+  g_boCustomPause:=TRUE;
+  g_boCustomReset:=FALSE;
+  nDealyState := 10;
+END_IF;
+IF RReset.Q THEN
+  g_boCustomStart:=FALSE;
+  g_boCustomPause:=FALSE;
+  g_boCustomReset:=TRUE;
+  nDealyState := 10;
+END_IF;
+
+CASE nDealyState OF
+  0:
+    nDealyState := 0;
+    Ton_Dealy(IN :=FALSE);
+  10:
+    Ton_Dealy(IN :=TRUE, PT:= LREAL_TO_TIME(FUN_MStoS(300)));
+    IF Ton_Dealy.Q THEN
+      g_boCustomStart:=FALSE;
+      g_boCustomPause:=FALSE;
+      g_boCustomReset:=FALSE;
+      nDealyState := 0;
+    END_IF;
+  
+END_CASE;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[开始暂停复位分流到外部PLC处理]]></xhtml:p>
+  </documentation>
+</pou>

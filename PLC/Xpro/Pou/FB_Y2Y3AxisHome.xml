@@ -1,0 +1,525 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_Y2Y3AxisHome" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC开始全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC暂停全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[PLC复位全局变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_biY3HomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boY3HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY3AxisZero">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零零位信号引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3Home">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3MoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y3MoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bY3HomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始，一般被HMI控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bY3HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="1"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bY3HomeError">
+        <type>
+          <USINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零错误]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nY3HomeState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零状态机变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nY3HomingMode">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY3HomePosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后位置偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY3HomeOffset">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dY3HomeVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="RY3Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_biY2HomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_boY2HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成引脚输出]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bY2AxisZero">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零零位信号引脚输入]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y2Home">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y2MoveStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[停止模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y2Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[复位模块]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_Y2MoveAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bY2HomeEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零开始，一般被HMI控制]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bY2HomeDone">
+        <type>
+          <BOOL/>
+        </type>
+        <initialValue>
+          <simpleValue value="1"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bY2HomeError">
+        <type>
+          <USINT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零错误]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nY2HomeState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零状态机变量]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nY2HomingMode">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零模式]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY2HomePosition">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[回零完成后位置偏置]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dY2HomeOffset">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dY2HomeVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="RY2Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bChangeHomeMode">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nChangeHomeModeState">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nChangeModeAxis">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升沿函数]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[RY3Trigger(CLK := g_biY3HomeEnable OR bY3HomeEnable);
+
+IF RY3Trigger.Q THEN
+    nY3HomeState := 1;
+    g_boY3HomeDone := FALSE;
+    bY3HomeDone := FALSE;
+END_IF;
+
+CASE nY3HomeState OF
+  0:
+    nY3HomeState := 0;
+  1:
+    g_Y3Home.Execute := TRUE;
+    IF nY3HomingMode = 0 THEN
+      g_Y3Home.HomingMode := 0;
+      g_Y3Home.Position := dY3HomePosition;
+    ELSIF nY3HomingMode = 1 THEN
+      g_Y3Home.HomingMode := 5;
+      g_Y3Home.Position := 0.0;
+    ELSIF nY3HomingMode = 3 THEN
+      g_Y3Home.HomingMode := 1;
+    END_IF;
+    
+    g_Y3Home.bCalibrationCam := g_bY3AxisZero;
+    IF g_Y3Home.Done THEN
+      g_Y3Home.Execute := FALSE;
+
+      IF nY3HomingMode = 3 THEN
+        nY3HomeState := 0;
+      ELSE
+        nY3HomeState := 2;
+      END_IF;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nY3HomeState := 20;
+    END_IF;
+    IF g_Y3Home.CommandAborted OR g_Y3Home.Error THEN
+      g_Y3Home.Execute := FALSE;
+      nY3HomeState := 0;
+    END_IF;
+  2:
+    g_Y3MoveAbs.Execute := TRUE;
+    g_Y3MoveAbs.Position := dY3HomeOffset;
+    g_Y3MoveAbs.Velocity := dY3HomeVel;
+    IF g_Y3MoveAbs.Done THEN
+      g_Y3MoveAbs.Execute := FALSE;
+      bY3HomeDone := TRUE;
+      g_boY3HomeDone := TRUE;
+      nY3HomeState := 0;
+    END_IF;
+     IF g_bPlcPauseBuffer THEN
+      nY3HomeState := 21;
+    END_IF;
+  20:
+    g_Y3Home.Execute := FALSE;
+    g_Y3MoveStop.Execute := TRUE;
+    IF g_Y3MoveStop.Done AND g_bPlcStartBuffer THEN
+      g_Y3MoveStop.Execute := FALSE;
+      nY3HomeState := 1;
+    END_IF;
+    IF g_Y3MoveStop.CommandAborted OR g_Y3MoveStop.Error THEN
+      g_Y3MoveStop.Execute := FALSE;
+      nY3HomeState := 0;
+    END_IF;
+  21:
+    g_Y3Home.Execute := FALSE;
+    g_Y3MoveStop.Execute := TRUE;
+    IF g_Y3MoveStop.Done AND g_bPlcStartBuffer THEN
+      g_Y3MoveStop.Execute := FALSE;
+      nY3HomeState := 2;
+    END_IF;
+    IF g_Y3MoveStop.CommandAborted OR g_Y3MoveStop.Error THEN
+      g_Y3MoveStop.Execute := FALSE;
+      nY3HomeState := 0;
+    END_IF;
+END_CASE;
+
+
+RY2Trigger(CLK := g_biY2HomeEnable OR bY2HomeEnable);
+
+IF RY2Trigger.Q THEN
+    nY2HomeState := 1;
+    g_boY2HomeDone := FALSE;
+    bY2HomeDone := FALSE;
+END_IF;
+
+CASE nY2HomeState OF
+  0:
+    nY2HomeState := 0;
+  1:
+    g_Y2Home.Execute := TRUE;
+    IF nY2HomingMode = 0 THEN
+      g_Y2Home.HomingMode := 0;
+      g_Y2Home.Position := dY2HomePosition;
+    ELSIF nY2HomingMode = 1 THEN
+      g_Y2Home.HomingMode := 5;
+      g_Y2Home.Position := 0.0;
+    ELSIF nY2HomingMode = 3 THEN
+      g_Y2Home.HomingMode := 1;
+    END_IF;
+    g_Y2Home.bCalibrationCam := g_bY2AxisZero;
+    IF g_Y2Home.Done THEN
+      g_Y2Home.Execute := FALSE;
+      IF nY2HomingMode = 3 THEN
+        nY2HomeState := 0;
+      ELSE
+        nY2HomeState := 2;
+      END_IF;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nY2HomeState := 20;
+    END_IF;
+    IF g_Y2Home.CommandAborted OR g_Y2Home.Error THEN
+      g_Y2Home.Execute := FALSE;
+      nY2HomeState := 0;
+    END_IF;
+  2:
+    g_Y2MoveAbs.Execute := TRUE;
+    g_Y2MoveAbs.Position := dY2HomeOffset;
+    g_Y2MoveAbs.Velocity := dY2HomeVel;
+    IF g_Y2MoveAbs.Done THEN
+      g_Y2MoveAbs.Execute := FALSE;
+      bY2HomeDone := TRUE;
+      g_boY2HomeDone := TRUE;
+      nY2HomeState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nY2HomeState := 21;
+    END_IF;
+  20:
+    g_Y2Home.Execute := FALSE;
+    g_Y2MoveStop.Execute := TRUE;
+    IF g_Y2MoveStop.Done AND g_bPlcStartBuffer THEN
+      g_Y2MoveStop.Execute := FALSE;
+      nY2HomeState := 1;
+    END_IF;
+    IF g_Y2MoveStop.CommandAborted OR g_Y2MoveStop.Error THEN
+      g_Y2MoveStop.Execute := FALSE;
+      nY2HomeState := 0;
+    END_IF;
+  21:
+    g_Y2Home.Execute := FALSE;
+    g_Y2MoveStop.Execute := TRUE;
+    IF g_Y2MoveStop.Done AND g_bPlcStartBuffer THEN
+      g_Y2MoveStop.Execute := FALSE;
+      nY2HomeState := 2;
+    END_IF;
+    IF g_Y2MoveStop.CommandAborted OR g_Y2MoveStop.Error THEN
+      g_Y2MoveStop.Execute := FALSE;
+      nY2HomeState := 0;
+    END_IF;
+END_CASE;
+
+IF bChangeHomeMode THEN
+  bChangeHomeMode := FALSE;
+  nChangeHomeModeState := nChangeModeAxis;
+END_IF;
+(*置零点功能*)
+CASE nChangeHomeModeState OF
+  0:
+    nChangeHomeModeState := 0;
+  1:
+    g_Y3Home.Execute := TRUE;
+    IF nY3HomingMode = 0 THEN
+      g_Y3Home.HomingMode := 0;
+    ELSIF nY3HomingMode = 1 THEN
+      g_Y3Home.HomingMode := 5;
+    ELSIF nY3HomingMode = 2 THEN
+      g_Y3Home.HomingMode := 4;
+    END_IF;
+    IF g_Y3Home.Done THEN
+      g_Y3Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+    IF g_Y3Home.CommandAborted OR g_Y3Home.Error THEN
+      g_Y3Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+   2:
+    g_Y2Home.Execute := TRUE;
+    IF nY2HomingMode = 0 THEN
+      g_Y2Home.HomingMode := 0;
+    ELSIF nY2HomingMode = 1 THEN
+      g_Y2Home.HomingMode := 5;
+    ELSIF nY2HomingMode = 2 THEN
+      g_Y2Home.HomingMode := 4;
+    END_IF;
+    IF g_Y2Home.Done THEN
+      g_Y2Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+    IF g_Y2Home.CommandAborted OR g_Y2Home.Error THEN
+      g_Y2Home.Execute := FALSE;
+      nChangeHomeModeState := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nY2HomeState := 0;
+  g_Y2MoveStop.Execute := FALSE;
+  g_Y2Home.Execute := FALSE;
+  g_boY2HomeDone := TRUE;
+  bY2HomeDone := TRUE;
+  
+  nY3HomeState := 0;
+  g_Y3MoveStop.Execute := FALSE;
+  g_Y3Home.Execute := FALSE;
+  g_boY3HomeDone := TRUE;
+  bY3HomeDone := TRUE;
+  
+  nChangeHomeModeState := 0;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[Y2Y3轴回零]]></xhtml:p>
+  </documentation>
+</pou>

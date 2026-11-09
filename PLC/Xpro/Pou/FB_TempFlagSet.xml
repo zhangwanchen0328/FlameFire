@@ -1,0 +1,1661 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_TempFlagSet" pouType="functionBlock">
+  <interface>
+    <inputVars>
+      <variable name="ConfigOutputIndex">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nDefineOutPutIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bTempFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nWaitIndex">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+    </inputVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF ConfigOutputIndex = 0.0 THEN
+  CASE nDefineOutPutIndex OF
+    1:
+      g_UserDefineOutputDo_1 := bTempFlag;
+    2:
+      g_UserDefineOutputDo_2 := bTempFlag;        
+    3:
+      g_UserDefineOutputDo_3 := bTempFlag;
+    4:
+      g_UserDefineOutputDo_4 := bTempFlag;
+    5:
+      g_UserDefineOutputDo_5 := bTempFlag;        
+    6:
+      g_UserDefineOutputDo_6 := bTempFlag; 
+    7:
+      g_UserDefineOutputDo_7 := bTempFlag;
+    8:
+      g_UserDefineOutputDo_8 := bTempFlag;        
+    9:
+      g_UserDefineOutputDo_9 := bTempFlag;
+    10:
+      g_UserDefineOutputDo_10 := bTempFlag;
+    11:
+      g_UserDefineOutputDo_11 := bTempFlag;        
+    12:
+      g_UserDefineOutputDo_12 := bTempFlag;
+    13:
+      g_UserDefineOutputDo_13 := bTempFlag;
+    14:
+      g_UserDefineOutputDo_14 := bTempFlag;        
+    15:
+      g_UserDefineOutputDo_15 := bTempFlag; 
+    16:
+      g_UserDefineOutputDo_16 := bTempFlag;
+    17:
+      g_UserDefineOutputDo_17 := bTempFlag;        
+    18:
+      g_UserDefineOutputDo_18 := bTempFlag; 
+    19:
+      g_UserDefineOutputDo_19 := bTempFlag;
+    20:
+      g_UserDefineOutputDo_20 := bTempFlag;        
+    21:
+      g_UserDefineOutputDo_21 := bTempFlag; 
+    22:
+      g_UserDefineOutputDo_22 := bTempFlag;
+    23:
+      g_UserDefineOutputDo_23 := bTempFlag;        
+    24:
+      g_UserDefineOutputDo_24 := bTempFlag; 
+    25:
+      g_UserDefineOutputDo_25 := bTempFlag;
+    26:
+      g_UserDefineOutputDo_26 := bTempFlag;        
+    27:
+      g_UserDefineOutputDo_27 := bTempFlag;
+    28:
+      g_UserDefineOutputDo_28 := bTempFlag;
+    29:
+      g_UserDefineOutputDo_29 := bTempFlag;        
+    30:
+      g_UserDefineOutputDo_30 := bTempFlag; 
+    31:
+      g_UserDefineOutputDo_31 := bTempFlag;
+    32:
+      g_UserDefineOutputDo_32 := bTempFlag;        
+    33:
+      g_UserDefineOutputDo_33 := bTempFlag;
+    34:
+      g_UserDefineOutputDo_34 := bTempFlag;
+    35:
+      g_UserDefineOutputDo_35 := bTempFlag;        
+    36:
+      g_UserDefineOutputDo_36 := bTempFlag;
+    37:
+      g_UserDefineOutputDo_37 := bTempFlag;
+    38:
+      g_UserDefineOutputDo_38 := bTempFlag;        
+    39:
+      g_UserDefineOutputDo_39 := bTempFlag; 
+    40:
+      g_UserDefineOutputDo_40 := bTempFlag;
+    41:
+      g_UserDefineOutputDo_41 := bTempFlag;        
+    42:
+      g_UserDefineOutputDo_42 := bTempFlag; 
+    43:
+      g_UserDefineOutputDo_43 := bTempFlag;
+    44:
+      g_UserDefineOutputDo_44 := bTempFlag;        
+    45:
+      g_UserDefineOutputDo_45 := bTempFlag; 
+    46:
+      g_UserDefineOutputDo_46 := bTempFlag;
+    47:
+      g_UserDefineOutputDo_47 := bTempFlag;        
+    48:
+      g_UserDefineOutputDo_48 := bTempFlag;
+    49:
+      g_UserDefineOutputDo_49 := bTempFlag;
+    50:
+      g_UserDefineOutputDo_50 := bTempFlag;        
+    51:
+      g_UserDefineOutputDo_51 := bTempFlag;
+    52:
+      g_UserDefineOutputDo_52 := bTempFlag;
+    53:
+      g_UserDefineOutputDo_53 := bTempFlag;        
+    54:
+      g_UserDefineOutputDo_54 := bTempFlag; 
+    55:
+      g_UserDefineOutputDo_55 := bTempFlag;
+    56:
+      g_UserDefineOutputDo_56 := bTempFlag;        
+    57:
+      g_UserDefineOutputDo_57 := bTempFlag;
+    58:
+      g_UserDefineOutputDo_58 := bTempFlag;
+    59:
+      g_UserDefineOutputDo_59 := bTempFlag;        
+    60:
+      g_UserDefineOutputDo_60 := bTempFlag;
+    61:
+      g_UserDefineOutputDo_61 := bTempFlag;
+    62:
+      g_UserDefineOutputDo_62 := bTempFlag;        
+    63:
+      g_UserDefineOutputDo_63 := bTempFlag; 
+    64:
+      g_UserDefineOutputDo_64 := bTempFlag; 
+  END_CASE; 
+END_IF;  
+IF ConfigOutputIndex = 1.0 THEN
+  g_boZaxisHoldBrake := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 2.0 THEN
+  g_boOxygenValve := bTempFlag;
+  g_bControlGasM := bTempFlag;
+  IF bTempFlag THEN
+    g_boNirtogenValve := FALSE;
+    g_boAirValve := FALSE;
+  END_IF;
+END_IF; 
+IF ConfigOutputIndex = 3.0 THEN
+  g_boNirtogenValve := bTempFlag;
+  g_bControlGasM := bTempFlag;
+  IF bTempFlag THEN
+    g_boOxygenValve := FALSE;
+    g_boAirValve := FALSE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 4.0 THEN
+  g_boAirValve := bTempFlag;
+  g_bControlGasM := bTempFlag;
+  IF bTempFlag THEN
+    g_boOxygenValve := FALSE;
+    g_boNirtogenValve := FALSE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 5.0 THEN
+  g_boAirProValvePower := bTempFlag;
+  IF bTempFlag THEN
+    g_boOxyProValvePower := FALSE;
+    g_boNirtoProValvePower := FALSE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 6.0 THEN
+  g_boOxyProValvePower := bTempFlag;
+  IF bTempFlag THEN
+      g_boAirProValvePower := FALSE;
+      g_boNirtoProValvePower := FALSE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 7.0 THEN
+  g_boNirtoProValvePower := bTempFlag;
+  IF bTempFlag THEN
+    g_boAirProValvePower := FALSE;
+    g_boOxyProValvePower := FALSE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 8.0 THEN
+  g_boOxyAirProValvePower := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 9.0 THEN
+  g_boOxyNirtoProValvePower := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 10.0 THEN
+  g_boAirNirtoProValvePower := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 11.0 THEN
+  g_boMasterProValvePower := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 12.0 THEN
+  g_boMasterValve := bTempFlag;
+  g_bControlGasM := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 13.0 THEN
+  g_boLaserEnable := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 14.0 THEN
+  g_bLaserRedLight := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 15.0 THEN
+  g_boLaserPowerOn := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 16.0 THEN
+  g_boMainsOn := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 17.0 THEN
+  g_boExtenIn := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 18.0 THEN
+  g_boLaserReset := bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 19.0 THEN
+  g_boVoltageEnable := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 20.0 THEN
+  g_boLubri_Output := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 21.0 THEN
+  g_boGrease_OutPut := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 22.0 THEN
+  g_boYellowLight := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 23.0 THEN
+  g_boGreenLight := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 24.0 THEN
+  g_boRedLight := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 25.0 THEN
+  g_boClaw1UpDownClampEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boClaw1UpDownLoosenEnable := FALSE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 26.0 THEN
+  g_boClaw1UpDownLoosenEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boClaw1UpDownClampEnable := FALSE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 27.0 THEN
+  g_boClaw1LiftRightClampEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boClaw1LiftRightLoosenEnable := FALSE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 28.0 THEN
+  g_boClaw1LiftRightLoosenEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boClaw1LiftRightClampEnable := FALSE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 29.0 THEN
+  g_boClaw2UpDownClampEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boClaw2UpDownLoosenEnable := FALSE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 30.0 THEN
+  g_boClaw2UpDownLoosenEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boClaw2UpDownClampEnable := FALSE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 31.0 THEN
+  g_boClaw2LiftRightClampEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boClaw2LiftRightLoosenEnable := FALSE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 32.0 THEN
+  g_boClaw2LiftRightLoosenEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boClaw2LiftRightClampEnable := FALSE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 33.0 THEN
+  g_boPresterRequest := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 34.0 THEN
+  g_boPresterCal := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 35.0 THEN
+  g_boPresterHome := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 36.0 THEN
+  g_boBlankingCyl01Up := bTempFlag;
+  IF g_boBlankingCyl01Down THEN
+    g_boBlankingCyl01Down := FALSE;
+    ArrayConfigOutputNumber[36] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 37.0 THEN
+  g_boBlankingCyl01Down := bTempFlag;
+  IF g_boBlankingCyl01Up THEN
+    g_boBlankingCyl01Up := FALSE;
+    ArrayConfigOutputNumber[37] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 38.0 THEN
+  g_boBlankingCyl11Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boBlankingCyl11Down := FALSE;
+    ArrayConfigOutputNumber[38] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 39.0 THEN
+  g_boBlankingCyl11Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boBlankingCyl11Up := FALSE;
+    ArrayConfigOutputNumber[39] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 40.0 THEN
+  g_boBlankingCyl21Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boBlankingCyl21Down := FALSE;
+    ArrayConfigOutputNumber[40] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 41.0 THEN
+  g_boBlankingCyl21Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boBlankingCyl21Up := FALSE;
+    ArrayConfigOutputNumber[41] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 42.0 THEN
+  g_boBlankingCyl31Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boBlankingCyl31Down := FALSE;
+    ArrayConfigOutputNumber[42] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 43.0 THEN
+  g_boBlankingCyl31Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boBlankingCyl31Up := FALSE;
+    ArrayConfigOutputNumber[43] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 44.0 THEN
+  g_boBlankingCyl41Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boBlankingCyl41Down := FALSE;
+    ArrayConfigOutputNumber[44] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 45.0 THEN
+  g_boBlankingCyl41Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boBlankingCyl41Up := FALSE;
+    ArrayConfigOutputNumber[45] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 46.0 THEN
+  g_boTurnCyl01Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boTurnCyl01Down := FALSE;
+    ArrayConfigOutputNumber[46] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 47.0 THEN
+  g_boTurnCyl01Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boTurnCyl01Up := FALSE;
+    ArrayConfigOutputNumber[47] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 48.0 THEN
+  g_boTurnCyl11Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boTurnCyl11Down := FALSE;
+    ArrayConfigOutputNumber[48] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 49.0 THEN
+  g_boTurnCyl11Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boTurnCyl11Up := FALSE;
+    ArrayConfigOutputNumber[49] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 50.0 THEN
+  g_boTurnCyl21Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boTurnCyl21Down := FALSE;
+    ArrayConfigOutputNumber[50] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 51.0 THEN
+  g_boTurnCyl21Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boTurnCyl21Up := FALSE;
+    ArrayConfigOutputNumber[51] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 52.0 THEN
+  g_boTurnCyl31Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boTurnCyl31Down := FALSE;
+    ArrayConfigOutputNumber[52] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 53.0 THEN
+  g_boTurnCyl31Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boTurnCyl31Up := FALSE;
+    ArrayConfigOutputNumber[53] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 54.0 THEN
+  g_boTurnCyl41Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boTurnCyl41Down := FALSE;
+    ArrayConfigOutputNumber[54] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 55.0 THEN
+  g_boTurnCyl41Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boTurnCyl41Up := FALSE;
+    ArrayConfigOutputNumber[55] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 56.0 THEN
+  g_boUnloadSupportCyl1Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boUnloadSupportCyl1Down := FALSE;
+    ArrayConfigOutputNumber[56] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 57.0 THEN
+  g_boUnloadSupportCyl1Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boUnloadSupportCyl1Up := FALSE;
+    ArrayConfigOutputNumber[57] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 58.0 THEN
+  g_boUnloadSupportCyl2Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boUnloadSupportCyl2Down := FALSE;
+    ArrayConfigOutputNumber[58] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 59.0 THEN
+  g_boUnloadSupportCyl2Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boUnloadSupportCyl2Up := FALSE;
+    ArrayConfigOutputNumber[59] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 60.0 THEN
+  g_boUnloadSupportCyl3Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boUnloadSupportCyl3Down := FALSE;
+    ArrayConfigOutputNumber[60] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 61.0 THEN
+  g_boUnloadSupportCyl3Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boUnloadSupportCyl3Up := FALSE;
+    ArrayConfigOutputNumber[61] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 62.0 THEN
+  g_boUnloadSupportCyl4Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boUnloadSupportCyl4Down := FALSE;
+    ArrayConfigOutputNumber[62] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 63.0 THEN
+  g_boUnloadSupportCyl4Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boUnloadSupportCyl4Up := FALSE;
+    ArrayConfigOutputNumber[63] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 64.0 THEN
+  g_boUnloadSupportCyl5Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boUnloadSupportCyl5Down := FALSE;
+    ArrayConfigOutputNumber[64] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 65.0 THEN
+  g_boUnloadSupportCyl5Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boUnloadSupportCyl5Up := FALSE;
+    ArrayConfigOutputNumber[65] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 66.0 THEN
+  g_boUnloadSupportCyl6Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boUnloadSupportCyl6Down := FALSE;
+    ArrayConfigOutputNumber[66] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 67.0 THEN
+  g_boUnloadSupportCyl6Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boUnloadSupportCyl6Up := FALSE;
+    ArrayConfigOutputNumber[67] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 68.0 THEN
+  g_boUnloadSupportCyl7Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boUnloadSupportCyl7Down := FALSE;
+    ArrayConfigOutputNumber[68] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 69.0 THEN
+  g_boUnloadSupportCyl7Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boUnloadSupportCyl7Up := FALSE;
+    ArrayConfigOutputNumber[69] :=TRUE;
+  END_IF;  
+END_IF;
+IF ConfigOutputIndex = 70.0 THEN
+  g_boUnloadSupportCyl8Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boUnloadSupportCyl8Down := FALSE;
+    ArrayConfigOutputNumber[70] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 71.0 THEN
+  g_boUnloadSupportCyl8Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boUnloadSupportCyl8Up := FALSE;
+    ArrayConfigOutputNumber[71] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 72.0 THEN
+  g_bDefineOutputEnableOut1M := bTempFlag;
+  g_bDefineOutputEnableOutOFF1M := NOT bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 73.0 THEN
+  g_bDefineOutputEnableOut2M := bTempFlag;
+  g_bDefineOutputEnableOutOFF2M := NOT bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 74.0 THEN
+  g_bDefineOutputEnableOut3M := bTempFlag;
+  g_bDefineOutputEnableOutOFF3M := NOT bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 75.0 THEN
+  g_bDefineOutputEnableOut4M := bTempFlag;
+  g_bDefineOutputEnableOutOFF4M := NOT bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 76.0 THEN
+  g_bDefineOutputEnableOut5M := bTempFlag;
+  g_bDefineOutputEnableOutOFF5M := NOT bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 77.0 THEN
+  g_bDefineOutputEnableOut6M := bTempFlag;
+  g_bDefineOutputEnableOutOFF6M := NOT bTempFlag;
+END_IF;    
+IF ConfigOutputIndex = 78.0 THEN
+  g_bDefineOutputEnableOut7M := bTempFlag;
+  g_bDefineOutputEnableOutOFF7M := NOT bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 79.0 THEN
+  g_bDefineOutputEnableOut8M := bTempFlag;
+  g_bDefineOutputEnableOutOFF8M := NOT bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 80.0 THEN
+  g_bDefineOutputEnableOut9M := bTempFlag;
+  g_bDefineOutputEnableOutOFF9M := NOT bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 81.0 THEN
+  g_bDefineOutputEnableOut10M := bTempFlag;
+  g_bDefineOutputEnableOutOFF10M := NOT bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 82.0 THEN
+  g_bDefineOutputEnableOut11M := bTempFlag;
+  g_bDefineOutputEnableOutOFF11M := NOT bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 83.0 THEN
+  g_bDefineOutputEnableOut12M := bTempFlag;
+  g_bDefineOutputEnableOutOFF12M := NOT bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 84.0 THEN
+  g_bDefineOutputEnableOut13M := bTempFlag;
+  g_bDefineOutputEnableOutOFF13M := NOT bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 85.0 THEN
+  g_bDefineOutputEnableOut14M := bTempFlag;
+  g_bDefineOutputEnableOutOFF14M := NOT bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 86.0 THEN
+  g_bDefineOutputEnableOut15M := bTempFlag;
+  g_bDefineOutputEnableOutOFF15M := NOT bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 87.0 THEN
+  g_bDefineOutputEnableOut16M := bTempFlag;
+  g_bDefineOutputEnableOutOFF16M := NOT bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 88.0 THEN
+  g_boUserDefineIoOut17 := bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 89.0 THEN
+  g_boUserDefineIoOut18 := bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 90.0 THEN
+  g_boUserDefineIoOut19 := bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 91.0 THEN
+  g_boUserDefineIoOut20 := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 92.0 THEN
+  g_boUserDefineIoOut21 := bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 93.0 THEN
+  g_boUserDefineIoOut22 := bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 94.0 THEN
+  g_boUserDefineIoOut23 := bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 95.0 THEN
+  g_boUserDefineIoOut24 := bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 96.0 THEN
+  g_boUserDefineIoOut25 := bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 97.0 THEN
+  g_boUserDefineIoOut26 := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 98.0 THEN
+  g_boUserDefineIoOut27 := bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 99.0 THEN
+  g_boUserDefineIoOut28 := bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 100.0 THEN
+  g_boUserDefineIoOut29 := bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 101.0 THEN
+  g_boUserDefineIoOut30 := bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 102.0 THEN
+  g_boUserDefineIoOut31 := bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 103.0 THEN
+  g_boUserDefineIoOut32 := bTempFlag;
+END_IF; 
+IF ConfigOutputIndex = 104.0 THEN
+  g_boClaw3UpDownClampEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boClaw3UpDownLoosenEnable := FALSE;
+  END_IF;
+END_IF; 
+IF ConfigOutputIndex = 105.0 THEN
+  g_boClaw3UpDownLoosenEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boClaw3UpDownClampEnable := FALSE;
+  END_IF;
+END_IF; 
+IF ConfigOutputIndex = 106.0 THEN
+  g_boClaw3LiftRightClampEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boClaw3LiftRightLoosenEnable := FALSE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 107.0 THEN
+  g_boClaw3LiftRightLoosenEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boClaw3LiftRightClampEnable := FALSE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 108.0 THEN
+  g_boSupportcyLinder1UpEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder1DownEnable := FALSE;
+    ArrayConfigOutputNumber[108] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 109.0 THEN
+  g_boSupportcyLinder2UpEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder2DownEnable := FALSE;
+    ArrayConfigOutputNumber[109] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 110.0 THEN
+  g_boSupportcyLinder3UpEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder3DownEnable := FALSE;
+    ArrayConfigOutputNumber[110] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 111.0 THEN
+  g_boSupportcyLinder4UpEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder4DownEnable := FALSE;
+    ArrayConfigOutputNumber[111] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 112.0 THEN
+  g_boSupportcyLinder5UpEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder5DownEnable := FALSE;
+    ArrayConfigOutputNumber[112] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 113.0 THEN
+  g_boSupportcyLinder6UpEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder6DownEnable := FALSE;
+    ArrayConfigOutputNumber[113] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 114.0 THEN
+  g_boSupportcyLinder7UpEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder7DownEnable := FALSE;
+    ArrayConfigOutputNumber[114] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 115.0 THEN
+  g_boSupportcyLinder8UpEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder8DownEnable := FALSE;
+    ArrayConfigOutputNumber[115] :=TRUE; 
+  END_IF;  
+END_IF;
+
+IF ConfigOutputIndex = 206.0 THEN
+  g_boSupportcyLinder9UpEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder9DownEnable := FALSE;
+    ArrayConfigOutputNumber[206] :=TRUE; 
+  END_IF;  
+END_IF;
+
+IF ConfigOutputIndex = 210.0 THEN
+  g_boSupportcyLinder10UpEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder10DownEnable := FALSE;
+    ArrayConfigOutputNumber[210] :=TRUE; 
+  END_IF;  
+END_IF;
+IF ConfigOutputIndex = 211.0 THEN
+  g_boSupportcyLinder11UpEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder11DownEnable := FALSE;
+    ArrayConfigOutputNumber[211] :=TRUE; 
+  END_IF;  
+END_IF;
+IF ConfigOutputIndex = 212.0 THEN
+  g_boSupportcyLinder12UpEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder12DownEnable := FALSE;
+    ArrayConfigOutputNumber[212] :=TRUE; 
+  END_IF;  
+END_IF;
+IF ConfigOutputIndex = 116.0 THEN
+  g_boSupportcyLinder1DownEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder1UpEnable := FALSE;
+    ArrayConfigOutputNumber[116] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 117.0 THEN
+  g_boSupportcyLinder2DownEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder2UpEnable := FALSE;
+    ArrayConfigOutputNumber[117] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 118.0 THEN
+  g_boSupportcyLinder3DownEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder3UpEnable := FALSE;
+    ArrayConfigOutputNumber[118] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 119.0 THEN
+  g_boSupportcyLinder4DownEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder4UpEnable := FALSE;
+    ArrayConfigOutputNumber[119] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 120.0 THEN
+  g_boSupportcyLinder5DownEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder5UpEnable := FALSE;
+    ArrayConfigOutputNumber[120] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 121.0 THEN
+  g_boSupportcyLinder6DownEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder6UpEnable := FALSE;
+    ArrayConfigOutputNumber[121] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 122.0 THEN
+  g_boSupportcyLinder7DownEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder7UpEnable := FALSE;
+    ArrayConfigOutputNumber[122] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 123.0 THEN
+  g_boSupportcyLinder8DownEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder8UpEnable := FALSE;
+    ArrayConfigOutputNumber[123] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 207.0 THEN
+  g_boSupportcyLinder9DownEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder9UpEnable := FALSE;
+    ArrayConfigOutputNumber[207] :=TRUE;
+  END_IF;
+END_IF;
+
+IF ConfigOutputIndex = 213.0 THEN
+  g_boSupportcyLinder10DownEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder10UpEnable := FALSE;
+    ArrayConfigOutputNumber[213] :=TRUE;
+  END_IF;
+END_IF;
+
+IF ConfigOutputIndex = 214.0 THEN
+  g_boSupportcyLinder11DownEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder11UpEnable := FALSE;
+    ArrayConfigOutputNumber[214] :=TRUE;
+  END_IF;
+END_IF;
+
+IF ConfigOutputIndex = 215.0 THEN
+  g_boSupportcyLinder12DownEnable := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupportcyLinder12UpEnable := FALSE;
+    ArrayConfigOutputNumber[215] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 124.0 THEN
+  g_boSupCyl2Up1 := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupCyl2Down1 := FALSE;
+    ArrayConfigOutputNumber[124] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 125.0 THEN
+  g_boSupCyl2Up2 := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupCyl2Down2 := FALSE;
+    ArrayConfigOutputNumber[125] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 126.0 THEN
+  g_boSupCyl2Up3 := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupCyl2Down3 := FALSE;
+    ArrayConfigOutputNumber[126] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 127.0 THEN
+  g_boSupCyl2Down1 := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupCyl2Up1 := FALSE;
+    ArrayConfigOutputNumber[127] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 128.0 THEN
+  g_boSupCyl2Down2 := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupCyl2Up2 := FALSE;
+    ArrayConfigOutputNumber[128] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 129.0 THEN
+  g_boSupCyl2Down3 := bTempFlag;
+  IF bTempFlag THEN
+    g_boSupCyl2Up3 := FALSE;
+    ArrayConfigOutputNumber[129] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 130.0 THEN
+  g_boCentringCyl2Up1 := bTempFlag;
+  IF bTempFlag THEN
+    g_boCentringCyl2Down1 := FALSE;
+    ArrayConfigOutputNumber[130] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 131.0 THEN
+  g_boCentringCyl2Up2 := bTempFlag;
+  IF bTempFlag THEN
+    g_boCentringCyl2Down2 := FALSE;
+    ArrayConfigOutputNumber[131] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 132.0 THEN
+  g_boCentringCyl2Up3 := bTempFlag;
+  IF bTempFlag THEN
+    g_boCentringCyl2Down3 := FALSE;
+    ArrayConfigOutputNumber[132] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 133.0 THEN
+  g_boCentringCyl2Down1 := bTempFlag;
+  IF bTempFlag THEN
+    g_boCentringCyl2Up1 := FALSE;
+    ArrayConfigOutputNumber[133] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 134.0 THEN
+  g_boCentringCyl2Down2 := bTempFlag;
+  IF bTempFlag THEN
+    g_boCentringCyl2Up2 := FALSE;
+  ArrayConfigOutputNumber[134] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 135.0 THEN
+  g_boCentringCyl2Down3 := bTempFlag;
+  IF bTempFlag THEN
+    g_boCentringCyl2Up3 := FALSE;
+    ArrayConfigOutputNumber[135] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 136.0 THEN
+  g_boDustGasValve := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 137.0 THEN
+  g_boGeneralDustCylinderUp := bTempFlag;
+  IF bTempFlag THEN
+    g_boGeneralDustCylinderDown := FALSE;
+    ArrayConfigOutputNumber[137] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 138.0 THEN
+  g_boGeneralDustCylinderDown := bTempFlag;
+  IF bTempFlag THEN
+    g_boGeneralDustCylinderUp := FALSE;
+    ArrayConfigOutputNumber[138] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 139.0 THEN
+  g_boDustCylinder1Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boDustCylinder1Down := FALSE;
+    ArrayConfigOutputNumber[139] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 140.0 THEN
+  g_boDustCylinder1Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boDustCylinder1Up := FALSE;
+    ArrayConfigOutputNumber[140] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 141.0 THEN
+  g_boDustCylinder2Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boDustCylinder2Down := FALSE;
+    ArrayConfigOutputNumber[141] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 142.0 THEN
+  g_boDustCylinder2Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boDustCylinder2Up := FALSE;
+    ArrayConfigOutputNumber[142] :=TRUE;
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 143.0 THEN
+  g_boLoadCyl01Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl01Down := FALSE;
+    ArrayConfigOutputNumber[143] :=TRUE; 
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 144.0 THEN
+  g_boLoadCyl11Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl11Down := FALSE;
+    ArrayConfigOutputNumber[144] :=TRUE; 
+  END_IF;   
+END_IF;
+IF ConfigOutputIndex = 145.0 THEN
+  g_boLoadCyl21Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl21Down := FALSE;
+  END_IF;
+  ArrayConfigOutputNumber[145] :=TRUE;  
+END_IF;
+IF ConfigOutputIndex = 146.0 THEN
+  g_boLoadCyl31Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl31Down := FALSE;
+  END_IF;
+  ArrayConfigOutputNumber[146] :=TRUE; 
+END_IF;
+IF ConfigOutputIndex = 147.0 THEN
+  g_boLoadCyl41Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl41Down := FALSE;
+  END_IF;
+  ArrayConfigOutputNumber[147] :=TRUE; 
+END_IF;
+IF ConfigOutputIndex = 148.0 THEN
+  g_boLoadCyl51Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl51Down := FALSE;
+  END_IF;
+  ArrayConfigOutputNumber[148] :=TRUE; 
+END_IF;
+IF ConfigOutputIndex = 149.0 THEN
+  g_boLoadCyl61Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl61Down := FALSE;
+    ArrayConfigOutputNumber[149] :=TRUE; 
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 150.0 THEN
+  g_boLoadCyl71Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl71Down := FALSE;
+    ArrayConfigOutputNumber[150] :=TRUE; 
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 151.0 THEN
+  g_boLoadCyl81Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl81Down := FALSE;
+    ArrayConfigOutputNumber[151] :=TRUE; 
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 152.0 THEN
+  g_boLoadCyl91Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl91Down := FALSE;
+    ArrayConfigOutputNumber[152] :=TRUE; 
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 153.0 THEN
+  g_boLoadCyl101Up := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl101Down := FALSE;
+    ArrayConfigOutputNumber[153] :=TRUE; 
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 154.0 THEN
+  g_boLoadCyl01Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl01Up := FALSE;
+    ArrayConfigOutputNumber[154] :=TRUE; 
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 155.0 THEN
+  g_boLoadCyl11Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl11Up := FALSE;
+    ArrayConfigOutputNumber[155] :=TRUE; 
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 156.0 THEN
+  g_boLoadCyl21Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl21Up := FALSE;
+    ArrayConfigOutputNumber[156] :=TRUE; 
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 157.0 THEN
+  g_boLoadCyl31Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl31Up := FALSE;
+    ArrayConfigOutputNumber[157] :=TRUE; 
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 158.0 THEN
+  g_boLoadCyl41Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl41Up := FALSE;
+    ArrayConfigOutputNumber[158] :=TRUE; 
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 159.0 THEN
+  g_boLoadCyl51Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl51Up := FALSE;
+    ArrayConfigOutputNumber[159] :=TRUE; 
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 160.0 THEN
+  g_boLoadCyl61Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl61Up := FALSE;
+    ArrayConfigOutputNumber[160] :=TRUE; 
+  END_IF; 
+END_IF;
+IF ConfigOutputIndex = 161.0 THEN
+  g_boLoadCyl71Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl71Up := FALSE;
+    ArrayConfigOutputNumber[161] :=TRUE; 
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 162.0 THEN
+  g_boLoadCyl81Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl81Up := FALSE;
+    ArrayConfigOutputNumber[162] :=TRUE; 
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 163.0 THEN
+  g_boLoadCyl91Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl91Up := FALSE;
+    ArrayConfigOutputNumber[163] :=TRUE; 
+  END_IF;  
+END_IF;
+IF ConfigOutputIndex = 164.0 THEN
+  g_boLoadCyl101Down := bTempFlag;
+  IF bTempFlag THEN
+    g_boLoadCyl101Up := FALSE;
+    ArrayConfigOutputNumber[164] :=TRUE; 
+  END_IF;
+END_IF;
+IF ConfigOutputIndex = 165.0 THEN
+  g_boLoadSinglePutOut1 := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 166.0 THEN
+  g_boLoadSinglePutOut2 := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 167.0 THEN
+  g_boLoadSinglePutOut3 := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 168.0 THEN
+  g_boLoadSinglePutOutCanReset1 := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 169.0 THEN
+  g_boLoadSinglePutOutCanReset2 := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 170.0 THEN
+  g_boLoadSinglePutOutCanReset3 := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 171.0 THEN
+  g_boMotor1Up := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 172.0 THEN
+  g_boMotor1Down := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 174.0 THEN
+	g_boAvoidCylinderUp := bTempFlag;
+	IF bTempFlag THEN
+		g_boAvoidCylinderDown := FALSE;
+		ArrayConfigOutputNumber[174] :=TRUE;
+	END_IF;
+END_IF;
+IF ConfigOutputIndex = 175.0 THEN
+	g_boAvoidCylinderDown:= bTempFlag;
+	IF bTempFlag THEN
+		g_boAvoidCylinderUp := FALSE;
+		ArrayConfigOutputNumber[175] :=TRUE;
+	END_IF;
+END_IF;
+IF ConfigOutputIndex = 176.0 THEN
+  g_boMotor2Up := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 177.0 THEN
+  g_boMotor2Down := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 178.0 THEN
+  g_boMotor3Up := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 179.0 THEN
+  g_boMotor3Down := bTempFlag;
+END_IF;
+IF ConfigOutputIndex = 182.0 THEN
+  g_boMiddleCylinderUp := bTempFlag;
+  IF bTempFlag THEN
+    g_boMiddleCylinderDown := FALSE;
+    ArrayConfigOutputNumber[182] :=TRUE; 
+  END_IF;  
+END_IF;
+IF ConfigOutputIndex = 183.0 THEN
+  g_boMiddleCylinderDown := bTempFlag;
+  IF bTempFlag THEN
+    g_boMiddleCylinderUp := FALSE;
+    ArrayConfigOutputNumber[183] :=TRUE; 
+  END_IF;
+END_IF;
+
+IF ConfigOutputIndex = 186.0 THEN
+	g_boSupCyl2Up4 := bTempFlag;
+	IF bTempFlag THEN
+		g_boSupCyl2Down4 := FALSE;
+		ArrayConfigOutputNumber[186] :=TRUE;
+	END_IF;
+END_IF;
+IF ConfigOutputIndex = 187.0 THEN
+	g_boSupCyl2Down4 := bTempFlag;
+	IF bTempFlag THEN
+		g_boSupCyl2Up4 := FALSE;
+		ArrayConfigOutputNumber[187] :=TRUE;
+	END_IF;
+END_IF;
+IF ConfigOutputIndex = 188.0 THEN
+	g_boCentringCyl2Up4 := bTempFlag;
+	IF bTempFlag THEN
+		g_boCentringCyl2Down4 := FALSE;
+		ArrayConfigOutputNumber[188] :=TRUE;
+	END_IF; 
+END_IF;
+IF ConfigOutputIndex = 189.0 THEN
+	g_boCentringCyl2Down4 := bTempFlag;
+	IF bTempFlag THEN
+		g_boCentringCyl2Up4 := FALSE;
+		ArrayConfigOutputNumber[189] :=TRUE;
+	END_IF; 
+END_IF;
+IF ConfigOutputIndex = 190.0 THEN
+         g_boAntiRejectionCylSingleCmd1:=bTempFlag;
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd1:=FALSE; 
+            g_bAntiRejectionCylLoosenDone1:=FALSE;
+            g_bAntiRejectionCylClampDone1:=TRUE; 
+            g_bKeepCenter1DownState := FALSE;
+            g_bKeepCenter1UpState := TRUE;
+          ELSE
+            g_bKeepCenter1UpState := FALSE;
+          END_IF; 
+      END_IF;
+      IF ConfigOutputIndex = 191.0 THEN
+         g_boAntiRejectionCylSingleCmd2:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd2:=FALSE; 
+            g_bAntiRejectionCylLoosenDone2:=FALSE;
+            g_bAntiRejectionCylClampDone2:=TRUE; 
+            g_bKeepCenter2DownState := FALSE;
+            g_bKeepCenter2UpState := TRUE;
+          ELSE
+            g_bKeepCenter2UpState := FALSE;
+          END_IF; 
+      END_IF;
+      IF ConfigOutputIndex = 192.0 THEN
+         g_boAntiRejectionCylSingleCmd3:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd3:=FALSE;
+            g_bAntiRejectionCylLoosenDone3:=FALSE;
+            g_bAntiRejectionCylClampDone3:=TRUE; 
+            g_bKeepCenter3DownState := FALSE;
+            g_bKeepCenter3UpState := TRUE;
+          ELSE
+            g_bKeepCenter3UpState := FALSE; 
+          END_IF; 
+      END_IF;
+      IF ConfigOutputIndex = 193.0 THEN
+         g_boAntiRejectionCylSingleCmd4:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd4:=FALSE;
+            g_bAntiRejectionCylLoosenDone4:=FALSE;
+            g_bAntiRejectionCylClampDone4:=TRUE; 
+            g_bKeepCenter4DownState := FALSE;
+            g_bKeepCenter4UpState := TRUE;
+          ELSE
+            g_bKeepCenter4UpState := FALSE; 
+          END_IF; 
+      END_IF;
+      IF ConfigOutputIndex= 194.0 THEN
+         g_boAntiRejectionCylSingleCmd5:=bTempFlag;
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd5:=FALSE; 
+            g_bAntiRejectionCylLoosenDone5:=FALSE;
+            g_bAntiRejectionCylClampDone5:=TRUE;
+            g_bKeepCenter5DownState := FALSE;
+            g_bKeepCenter5UpState := TRUE;
+          ELSE
+            g_bKeepCenter5UpState := FALSE; 
+          END_IF;  
+      END_IF;
+      IF ConfigOutputIndex = 195.0 THEN
+         g_boAntiRejectionCylSingleCmd6:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd6:=FALSE; 
+            g_bAntiRejectionCylLoosenDone6:=FALSE;
+            g_bAntiRejectionCylClampDone6:=TRUE;
+            g_bKeepCenter6DownState := FALSE;
+            g_bKeepCenter6UpState := TRUE;
+          ELSE
+            g_bKeepCenter6UpState := FALSE; 
+          END_IF; 
+      END_IF;
+      IF ConfigOutputIndex= 196.0 THEN
+         g_boAntiRejectionCylSingleCmd7:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd7:=FALSE; 
+            g_bAntiRejectionCylLoosenDone7:=FALSE;
+            g_bAntiRejectionCylClampDone7:=TRUE; 
+            g_bKeepCenter7DownState := FALSE;
+            g_bKeepCenter7UpState := TRUE;
+          ELSE
+            g_bKeepCenter7UpState := FALSE;
+          END_IF; 
+      END_IF;
+      IF ConfigOutputIndex = 197.0 THEN
+         g_boAntiRejectionCylSingleCmd8:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd8:=FALSE;
+            g_bAntiRejectionCylLoosenDone8:=FALSE;
+            g_bAntiRejectionCylClampDone8:=TRUE;
+            g_bKeepCenter8DownState := FALSE;
+            g_bKeepCenter8UpState := TRUE;
+          ELSE
+            g_bKeepCenter8UpState := FALSE; 
+          END_IF; 
+      END_IF;
+      IF ConfigOutputIndex = 208.0 THEN
+         g_boAntiRejectionCylSingleCmd9:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd9:=FALSE;
+            g_bAntiRejectionCylLoosenDone9:=FALSE;
+            g_bAntiRejectionCylClampDone9:=TRUE;
+            g_bKeepCenter9DownState := FALSE;
+            g_bKeepCenter9UpState := TRUE;
+          ELSE
+            g_bKeepCenter9UpState := FALSE; 
+          END_IF; 
+      END_IF;
+      
+      IF ConfigOutputIndex = 216.0 THEN
+         g_boAntiRejectionCylSingleCmd10:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd10:=FALSE;
+            g_bAntiRejectionCylLoosenDone10:=FALSE;
+            g_bAntiRejectionCylClampDone10:=TRUE;
+            g_bKeepCenter10DownState := FALSE;
+            g_bKeepCenter10UpState := TRUE;
+          ELSE
+            g_bKeepCenter10UpState := FALSE; 
+          END_IF; 
+      END_IF;
+      
+      IF ConfigOutputIndex = 217.0 THEN
+         g_boAntiRejectionCylSingleCmd11:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd11:=FALSE;
+            g_bAntiRejectionCylLoosenDone11:=FALSE;
+            g_bAntiRejectionCylClampDone11:=TRUE;
+            g_bKeepCenter11DownState := FALSE;
+            g_bKeepCenter11UpState := TRUE;
+          ELSE
+            g_bKeepCenter11UpState := FALSE; 
+          END_IF; 
+      END_IF;
+      
+      IF ConfigOutputIndex = 218.0 THEN
+         g_boAntiRejectionCylSingleCmd12:=bTempFlag; 
+         IF bTempFlag THEN
+			g_boAntiRejectionCylDoubleCmd12:=FALSE;
+            g_bAntiRejectionCylLoosenDone12:=FALSE;
+            g_bAntiRejectionCylClampDone12:=TRUE;
+            g_bKeepCenter12DownState := FALSE;
+            g_bKeepCenter12UpState := TRUE;
+          ELSE
+            g_bKeepCenter12UpState := FALSE; 
+          END_IF; 
+      END_IF;
+      IF ConfigOutputIndex = 198.0 THEN
+          g_boAntiRejectionCylDoubleCmd1:=bTempFlag; 
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd1:=FALSE; 
+            g_bAntiRejectionCylLoosenDone1:=TRUE;
+            g_bAntiRejectionCylClampDone1:=FALSE; 
+            g_bKeepCenter1DownState := TRUE;
+            g_bKeepCenter1UpState := FALSE;
+          ELSE
+            g_bKeepCenter1DownState := FALSE;
+          END_IF;  
+      END_IF;
+       IF ConfigOutputIndex = 199.0 THEN
+          g_boAntiRejectionCylDoubleCmd2:=bTempFlag; 
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd2:=FALSE;
+            g_bAntiRejectionCylLoosenDone2:=TRUE;
+            g_bAntiRejectionCylClampDone2:=FALSE;  
+            g_bKeepCenter2DownState := TRUE;
+            g_bKeepCenter2UpState := FALSE;
+          ELSE
+            g_bKeepCenter2DownState := FALSE; 
+          END_IF;  
+      END_IF;
+       IF ConfigOutputIndex = 200.0 THEN
+          g_boAntiRejectionCylDoubleCmd3:=bTempFlag;  
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd3:=FALSE;
+            g_bAntiRejectionCylLoosenDone3:=TRUE;
+            g_bAntiRejectionCylClampDone3:=FALSE; 
+            g_bKeepCenter3DownState := TRUE;
+            g_bKeepCenter3UpState := FALSE;
+          ELSE
+            g_bKeepCenter3DownState := FALSE;  
+          END_IF; 
+      END_IF;
+       IF ConfigOutputIndex = 201.0 THEN
+          g_boAntiRejectionCylDoubleCmd4:=bTempFlag;
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd4:=FALSE;
+            g_bAntiRejectionCylLoosenDone4:=TRUE;
+            g_bAntiRejectionCylClampDone4:=FALSE;  
+            g_bKeepCenter4DownState := TRUE;
+            g_bKeepCenter4UpState := FALSE;
+          ELSE
+            g_bKeepCenter4DownState := FALSE; 
+          END_IF;   
+      END_IF;
+       IF ConfigOutputIndex = 202.0 THEN
+          g_boAntiRejectionCylDoubleCmd5:=bTempFlag;
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd5:=FALSE; 
+            g_bAntiRejectionCylLoosenDone5:=TRUE;
+            g_bAntiRejectionCylClampDone5:=FALSE; 
+            g_bKeepCenter5DownState := TRUE;
+            g_bKeepCenter5UpState := FALSE;
+          ELSE
+            g_bKeepCenter5DownState := FALSE; 
+          END_IF;   
+      END_IF;
+       IF ConfigOutputIndex = 203.0 THEN
+          g_boAntiRejectionCylDoubleCmd6:=bTempFlag;  
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd6:=FALSE; 
+            g_bAntiRejectionCylLoosenDone6:=TRUE;
+            g_bAntiRejectionCylClampDone6:=FALSE;  
+            g_bKeepCenter6DownState := TRUE;
+            g_bKeepCenter6UpState := FALSE;
+          ELSE
+            g_bKeepCenter6DownState := FALSE;
+          END_IF; 
+      END_IF;
+       IF ConfigOutputIndex = 204.0 THEN
+          g_boAntiRejectionCylDoubleCmd7:=bTempFlag; 
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd7:=FALSE; 
+            g_bAntiRejectionCylLoosenDone7:=TRUE;
+            g_bAntiRejectionCylClampDone7:=FALSE;  
+            g_bKeepCenter7DownState := TRUE;
+            g_bKeepCenter7UpState := FALSE;
+          ELSE
+            g_bKeepCenter7DownState := FALSE;
+          END_IF;  
+      END_IF;
+       IF ConfigOutputIndex = 205.0 THEN
+          g_boAntiRejectionCylDoubleCmd8:=bTempFlag;
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd8:=FALSE;
+            g_bAntiRejectionCylLoosenDone8:=TRUE;
+            g_bAntiRejectionCylClampDone8:=FALSE;  
+            g_bKeepCenter8DownState := TRUE;
+            g_bKeepCenter8UpState := FALSE;
+          ELSE
+            g_bKeepCenter8DownState := FALSE; 
+          END_IF;   
+      END_IF;
+    IF ConfigOutputIndex = 209.0 THEN
+          g_boAntiRejectionCylDoubleCmd9:=bTempFlag;
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd9:=FALSE;
+            g_bAntiRejectionCylLoosenDone9:=TRUE;
+            g_bAntiRejectionCylClampDone9:=FALSE;  
+            g_bKeepCenter9DownState := TRUE;
+            g_bKeepCenter9UpState := FALSE;
+          ELSE
+            g_bKeepCenter9DownState := FALSE; 
+          END_IF;   
+      END_IF;
+    IF ConfigOutputIndex = 219.0 THEN
+          g_boAntiRejectionCylDoubleCmd10:=bTempFlag;
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd10:=FALSE;
+            g_bAntiRejectionCylLoosenDone10:=TRUE;
+            g_bAntiRejectionCylClampDone10:=FALSE;  
+            g_bKeepCenter10DownState := TRUE;
+            g_bKeepCenter10UpState := FALSE;
+          ELSE
+            g_bKeepCenter10DownState := FALSE; 
+          END_IF;   
+      END_IF;
+    IF ConfigOutputIndex = 220.0 THEN
+          g_boAntiRejectionCylDoubleCmd11:=bTempFlag;
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd11:=FALSE;
+            g_bAntiRejectionCylLoosenDone11:=TRUE;
+            g_bAntiRejectionCylClampDone11:=FALSE;  
+            g_bKeepCenter11DownState := TRUE;
+            g_bKeepCenter11UpState := FALSE;
+          ELSE
+            g_bKeepCenter11DownState := FALSE; 
+          END_IF;   
+      END_IF;
+    IF ConfigOutputIndex = 221.0 THEN
+          g_boAntiRejectionCylDoubleCmd12:=bTempFlag;
+          IF bTempFlag THEN
+			g_boAntiRejectionCylSingleCmd12:=FALSE;
+            g_bAntiRejectionCylLoosenDone12:=TRUE;
+            g_bAntiRejectionCylClampDone12:=FALSE;  
+            g_bKeepCenter12DownState := TRUE;
+            g_bKeepCenter12UpState := FALSE;
+          ELSE
+            g_bKeepCenter12DownState := FALSE; 
+          END_IF;   
+      END_IF;
+      
+      (*双工位卡盘*)
+      IF ConfigOutputIndex = 222.0 THEN
+          g_boDualStation1Chuck1ClampOutPut :=bTempFlag;
+          IF bTempFlag THEN
+			g_boDualStation1Chuck1LossenOutPut :=FALSE; 
+			g_bDualStation1Chuck1Status :=TRUE;
+            g_bDualStation1Chuck1ClampDone :=TRUE; 
+            g_bDualStation1Chuck1LossenDone := FALSE;
+          END_IF;   
+      END_IF;
+      
+      IF ConfigOutputIndex = 223.0 THEN
+          g_boDualStation1Chuck1LossenOutPut :=bTempFlag;
+          IF bTempFlag THEN
+			g_boDualStation1Chuck1ClampOutPut :=FALSE; 
+			g_bDualStation1Chuck1Status :=FALSE;
+            g_bDualStation1Chuck1ClampDone :=FALSE; 
+            g_bDualStation1Chuck1LossenDone := TRUE;
+          END_IF;   
+      END_IF;
+      
+      
+       IF ConfigOutputIndex = 224.0 THEN
+          g_boDualStation1Chuck2ClampOutPut :=bTempFlag;
+          IF bTempFlag THEN
+			g_boDualStation1Chuck2LossenOutPut :=FALSE; 
+			g_bDualStation1Chuck2Status :=TRUE;
+            g_bDualStation1Chuck2ClampDone :=TRUE; 
+            g_bDualStation1Chuck2LossenDone := FALSE;
+          END_IF;   
+      END_IF;
+      
+      IF ConfigOutputIndex = 225.0 THEN
+          g_boDualStation1Chuck2LossenOutPut :=bTempFlag;
+          IF bTempFlag THEN
+			g_boDualStation1Chuck2ClampOutPut :=FALSE; 
+			g_bDualStation1Chuck2Status :=FALSE;
+            g_bDualStation1Chuck2ClampDone :=FALSE; 
+            g_bDualStation1Chuck2LossenDone := TRUE;
+          END_IF;   
+      END_IF;
+      
+      IF ConfigOutputIndex = 226.0 THEN
+          g_boDualStation2Chuck1ClampOutPut :=bTempFlag;
+          IF bTempFlag THEN
+			g_boDualStation2Chuck1LossenOutPut :=FALSE; 
+			g_bDualStation2Chuck1Status :=TRUE;
+            g_bDualStation2Chuck1ClampDone :=TRUE; 
+            g_bDualStation2Chuck1LossenDone := FALSE;
+          END_IF;   
+      END_IF;
+      
+      IF ConfigOutputIndex = 227.0 THEN
+          g_boDualStation2Chuck1LossenOutPut :=bTempFlag;
+          IF bTempFlag THEN
+			g_boDualStation2Chuck1ClampOutPut :=FALSE; 
+			g_bDualStation2Chuck1Status :=FALSE;
+            g_bDualStation2Chuck1ClampDone :=FALSE; 
+            g_bDualStation2Chuck1LossenDone := TRUE;
+          END_IF;   
+      END_IF;
+      
+      
+       IF ConfigOutputIndex = 228.0 THEN
+          g_boDualStation2Chuck2ClampOutPut :=bTempFlag;
+          IF bTempFlag THEN
+			g_boDualStation2Chuck2LossenOutPut :=FALSE; 
+			g_bDualStation2Chuck2Status :=TRUE;
+            g_bDualStation2Chuck2ClampDone :=TRUE; 
+            g_bDualStation2Chuck2LossenDone := FALSE;
+          END_IF;   
+      END_IF;
+      
+      IF ConfigOutputIndex = 229.0 THEN
+          g_boDualStation2Chuck2LossenOutPut :=bTempFlag;
+          IF bTempFlag THEN
+			g_boDualStation2Chuck2ClampOutPut :=FALSE; 
+			g_bDualStation2Chuck2Status :=FALSE;
+            g_bDualStation2Chuck2ClampDone :=FALSE; 
+            g_bDualStation2Chuck2LossenDone := TRUE;
+          END_IF;   
+      END_IF;
+      
+      
+       IF ConfigOutputIndex = 230.0 THEN
+          g_boCutHeadCool :=bTempFlag; 
+      END_IF;
+      
+CASE nWaitIndex OF
+  1:
+  g_bFinishedM304_1 := FALSE;
+  2:
+  g_bFinishedM304_2 := FALSE;
+  3:
+  g_bFinishedM304_3 := FALSE;
+  4:
+  g_bFinishedM304_4 := FALSE;
+  5:
+  g_bFinishedM304_5 := FALSE;
+  6:
+  g_bFinishedM304_6 := FALSE;
+  7:
+  g_bFinishedM304_7 := FALSE;
+  8:
+  g_bFinishedM304_8 := FALSE;
+  9:
+  g_bFinishedM304_9 := FALSE;
+  10:
+  g_bFinishedM304_10 := FALSE;
+  11:
+  g_bFinishedM304_11 := FALSE;
+END_CASE;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_AvoidAxisControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="FBAxisPower">
+        <type>
+          <derived name="FB_AvoidAxisPower"/>
+        </type>
+      </variable>
+      <variable name="FBAxisHome">
+        <type>
+          <derived name="FB_AvoidAxisHome"/>
+        </type>
+      </variable>
+      <variable name="FBAxisJog">
+        <type>
+          <derived name="FB_AvoidAxisJog"/>
+        </type>
+      </variable>
+      <variable name="FBAxisAbs">
+        <type>
+          <derived name="FB_AvoidAxisAbs"/>
+        </type>
+      </variable>
+      <variable name="FBAxisRel">
+        <type>
+          <derived name="FB_AvoidAxisRel"/>
+        </type>
+      </variable>
+      <variable name="FBAxisAct">
+        <type>
+          <derived name="FB_AvoidAxis"/>
+        </type>
+      </variable>
+      <variable name="FBAxisGear">
+        <type>
+          <derived name="FB_AvoidAxisGear"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_AntiRejection6Reset">
+        <type>
+          <derived name="MC_RESET"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bAxisErrorAlarm">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="FBAvoidSlave">
+        <type>
+          <derived name="AvoidSlave"/>
+        </type>
+      </variable>
+      <variable name="FBAxisSelfTuning">
+        <type>
+          <derived name="FB_SelfTuning"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[FBAxisAct();
+FBAxisRel();
+FBAxisAbs();
+FBAxisJog();
+FBAxisHome();
+FBAxisPower();
+FBAxisGear();
+FBAvoidSlave();(*龙门从轴*)
+FBAxisSelfTuning();(*整定*)
+bAxisErrorAlarm :=  AntiRejection6.NCTOPLC.POWERPOSWARN OR AntiRejection6.NCTOPLC.POWERNEGWARN 
+     OR AntiRejection6.NCTOPLC.ERRORCODE <>0;
+
+
+IF bAxisErrorAlarm AND g_bPlcResetBuffer THEN
+  g_AntiRejection6Reset.Execute := TRUE;
+ELSE
+  g_AntiRejection6Reset.Execute := FALSE;   
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

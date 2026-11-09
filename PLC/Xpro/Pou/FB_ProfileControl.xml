@@ -1,0 +1,243 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_ProfileControl" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biProfileFollowOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biProfileFollowClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boProfileFollowDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZFollowExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZFollowDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZFollowClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZFollowOutDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fZFollowHeight">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_TechData">
+        <type>
+          <derived name="ST_MULTIL_TECGDATA"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nProfileState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nToolNum">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="dWorkCoordU_Mod">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[取余后的U轴工件坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dWorkCoordU_ModAbs">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[取余后的U轴工件坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dProfileHeight">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dProfileHeight1">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger1(CLK := g_biProfileFollowOpen);
+R_Trigger2(CLK := g_biProfileFollowClose);
+R_Trigger3(CLK := g_biProfileEnd);
+(*阶段1：随动定高并上抬到轮廓间上抬位置，获取切割高度的坐标*)
+(*阶段2：空移到板外*)
+(*阶段3：开光开气关随动到定位点*)
+(*阶段4：开光开气开随动切轮廓*)
+
+nToolNum := g_nToolNum;
+(*理论上板外切割随动Z轴坐标，目前先适配角钢，槽钢和H钢需要根据角度计算*)
+dWorkCoordU_Mod := FUN_FMOD(g_fUWorkCoordinate,FALSE);(*取余后的U轴工件坐标*)
+(*对正负360进行绝对值后计算*)
+dWorkCoordU_ModAbs := ABS(dWorkCoordU_Mod);
+ 
+IF (dWorkCoordU_ModAbs >= 45.0 AND dWorkCoordU_ModAbs <= 135.0) OR (dWorkCoordU_ModAbs >=225.0 AND dWorkCoordU_ModAbs <= 315.0) THEN(*能进来说明是角钢、槽钢或者H刚*)
+  dProfileHeight := g_dSquareLenght/2.0;(*BD面用宽*)(*90度面和270度面的+-45度*)
+ELSE
+  dProfileHeight := g_dSquareWidth/2.0;(*AC面用高*)
+END_IF;
+ 
+(*要不开随动达到管材上的切割坐标 ，理论定高的切割坐标 =卡盘中心Z轴坐标+管材高度+切割高度*)
+g_dProfileCuttingSimPos := g_dChuckCenterInZpos + dProfileHeight + g_TechData.multilTechData[g_nToolNum-1].DIRECUT_CUTTING.fCutting_Height;
+
+IF R_Trigger1.Q THEN(*开随动*)(*板外切割 profile_follow 表示该轮廓开始随动直到轮廓结束完成*)
+  g_boProfileFollowDone := FALSE;
+  g_bProfileFollowEnable := TRUE;(*开随动*)
+  IF g_bDryRunEnable OR g_bDebugMode THEN
+    g_boProfileFollowDone := TRUE;
+    g_bProfileEnable := FALSE;
+  ELSE
+    nProfileState := 10;
+  END_IF;
+END_IF;
+
+IF R_Trigger2.Q THEN(*关随动*)
+  g_boProfileFollowDone := FALSE;
+  g_bProfileFollowEnable := FALSE;(*关随动*)
+  IF g_bDryRunEnable OR g_bDebugMode THEN
+    g_boProfileFollowDone := TRUE;
+  ELSE
+    nProfileState := 200;
+  END_IF;
+END_IF;
+IF R_Trigger3.Q THEN
+  g_bProfileEndDone := FALSE;
+  IF g_bDryRunEnable OR g_bDebugMode THEN
+    nProfileState := 0;
+    g_bProfileFollowEnable := FALSE;(*关随动*)
+  ELSE
+    dProfileHeight1 := Axis_Z.NCTOPLC.ACTPOS;
+    nProfileState := 300;
+  END_IF;
+  
+END_IF;
+CASE nProfileState OF
+  0:
+    nProfileState := 0;
+  10:
+    g_fZFollowHeight := g_TechData.multilTechData[nToolNum-1].DIRECUT_CUTTING.fCutting_Height;
+    g_bZFollowExecute := TRUE;
+    nProfileState := 20;    
+  20:
+    g_nFollowState :=20; 
+    (*用于监控随动报警卡在哪个状态机*)
+    IF g_bZFollowDone THEN
+      nProfileState := 0;
+      g_boProfileFollowDone := TRUE;
+      g_bZFollowExecute := FALSE;
+      g_bProfileEnable := FALSE;
+    END_IF;
+  100:
+    IF g_bPlcStartBuffer THEN
+      nProfileState := 10;
+    END_IF;
+  200:
+    g_bZFollowClose := TRUE;
+    g_nFollowState :=110; 
+    IF g_bZFollowOutDone THEN
+      nProfileState := 0;
+      g_boProfileFollowDone := TRUE;
+      g_bZFollowClose := FALSE;
+    END_IF;  
+  300:
+    g_bZFollowClose := TRUE;
+    g_nFollowState :=111; 
+    IF g_bZFollowOutDone THEN
+      g_bZFollowClose := FALSE;
+      g_bProfileFollowEnable := FALSE;(*关随动*)
+      g_dProfileCuttingPos := dProfileHeight1;
+      (*g_dProfileAltimetricCompensation : 板外起刀补偿高度：这个补偿作用于在板外关随动情况下进来，避免撞头的问题，默认值0.1*)
+      IF g_dProfileCuttingPos = 0.0 THEN
+        g_fZAbsPosition := g_dProfileCuttingSimPos + g_dProfileAltimetricCompensation;
+      ELSE
+       
+        g_fZAbsPosition := dProfileHeight1 + g_dProfileAltimetricCompensation;
+      END_IF;
+      g_bZAbsExecute := TRUE;  
+       nProfileState := 320;
+    END_IF; 
+      
+  320:
+   IF g_bZAbsDone THEN
+      g_bZAbsExecute := FALSE;  
+      nProfileState := 0;
+      g_bProfileEndDone := TRUE;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  g_bZFollowExecute := FALSE;
+  g_bZFollowClose := FALSE;
+  g_boProfileFollowDone := FALSE;
+   g_bZAbsExecute := FALSE; 
+  nProfileState := 0;
+  g_bProfileEndDone := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[板外切割 光气随动的控制]]></xhtml:p>
+  </documentation>
+</pou>

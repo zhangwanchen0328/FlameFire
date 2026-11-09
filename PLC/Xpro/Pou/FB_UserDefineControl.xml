@@ -1,0 +1,232 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_UserDefineControl" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Rtring_trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nWaitState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBoardType">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[0:第一张板卡1：第二张2：第三张 最多支持三张]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nWaitInpueNum">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="Ton_time">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="Rtring_triggerM327">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nM327Input">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[M327检测输入口]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nM327CheckState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="Index">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="InputTimeOutCMD">
+        <type>
+          <array>
+            <dimension lower="0" upper="11"/>
+            <baseType>
+              <derived name="FB_WaitInputPortCMD"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="SaveMCodeExecute">
+        <type>
+          <derived name="FB_SaveMControlExecute"/>
+        </type>
+      </variable>
+      <variable name="Rtring_MCodeExecute">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[g_ConfigListenDO_1 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[0]);
+g_ConfigListenDO_2 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[1]);
+g_ConfigListenDO_3 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[2]);
+g_ConfigListenDO_4 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[3]);
+g_ConfigListenDO_5 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[4]);
+g_ConfigListenDO_6 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[5]);
+g_ConfigListenDO_7 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[6]);
+g_ConfigListenDO_8 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[7]);
+g_ConfigListenDO_9 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[8]);
+g_ConfigListenDO_10 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[9]);
+g_ConfigListenDO_11 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[10]);
+g_ConfigListenDO_12 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[11]);
+g_ConfigListenDO_13 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[12]);
+g_ConfigListenDO_14 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[13]);
+g_ConfigListenDO_15 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[14]);
+g_ConfigListenDO_16 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[15]);
+g_ConfigListenDO_17 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[16]);
+g_ConfigListenDO_18 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[17]);
+g_ConfigListenDO_19 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[18]);
+g_ConfigListenDO_20 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[19]);
+g_ConfigListenDO_21 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[20]);
+g_ConfigListenDO_22 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[21]);
+g_ConfigListenDO_23 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[22]);
+g_ConfigListenDO_24 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[23]);
+g_ConfigListenDO_25 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[24]);
+g_ConfigListenDO_26 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[25]);
+g_ConfigListenDO_27 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[26]);
+g_ConfigListenDO_28 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[27]);
+g_ConfigListenDO_29 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[28]);
+g_ConfigListenDO_30 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[29]);
+g_ConfigListenDO_31 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[30]);
+g_ConfigListenDO_32 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[31]);
+g_ConfigListenDO_33 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[32]);
+g_ConfigListenDO_34 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[33]);
+g_ConfigListenDO_35 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[34]);
+g_ConfigListenDO_36 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[35]);
+g_ConfigListenDO_37 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[36]);
+g_ConfigListenDO_38 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[37]);
+g_ConfigListenDO_39 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[38]);
+g_ConfigListenDO_40 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[39]);
+g_ConfigListenDO_41 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[40]);
+g_ConfigListenDO_42 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[41]);
+g_ConfigListenDO_43 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[42]);
+g_ConfigListenDO_44 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[43]);
+g_ConfigListenDO_45 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[44]);
+g_ConfigListenDO_46 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[45]);
+g_ConfigListenDO_47 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[46]);
+g_ConfigListenDO_48 := BOOL_TO_LREAL(BoardInPutArray.BoolArr[47]);
+
+InputTimeOutCMD[0](
+		WaitCheckEnable := g_bWaitInputPortM,
+		WaitInputPortAlarmTime :=g_nWaitInputPortAlarmTime,
+		WaitInputPortNumber := g_nWaitInputPortNumber,
+		WaitInputPortBoardType := g_nWaitInputPortBoardType,
+		WaitInputPortJudgeType := g_nWaitInputPortJudgeType,
+		WaitInputPortExecuteType := g_nWaitInputPortExecuteType,
+        WaitCheckMode := 0,
+        ChangeOutput := FALSE,
+        UpdateIndex :=0,
+		OutPut => M.ENABLE[302]);
+    
+FOR Index := 1 TO 11 BY 1 DO
+	InputTimeOutCMD[Index](
+		WaitCheckEnable := g_ParallelCMDData[Index-1].TriggerFlag,
+		WaitInputPortAlarmTime := g_ParallelCMDData[Index-1].Q,
+		WaitInputPortNumber := g_ParallelCMDData[Index-1].P,
+		WaitInputPortBoardType := g_ParallelCMDData[Index-1].J,
+		WaitInputPortJudgeType := g_ParallelCMDData[Index-1].I,
+		WaitInputPortExecuteType := g_ParallelCMDData[Index-1].K,
+        WaitCheckMode := 1,
+        ChangeOutput := g_ParallelCMDData[Index-1].ChangeFlag,
+        UpdateIndex :=Index,
+		OutPut => g_ParallelCMDData[Index-1].FinishFlag);
+  (*保存执行过的M代码清单*)
+	SaveMCodeExecute(
+	SaveFlag := g_ParallelCMDData[Index-1].TriggerFlag,
+	Index := g_nSaveMControlTotalNumber,
+	MCode := 302,
+	MP := g_ParallelCMDData[Index-1].P,
+	MQ := g_ParallelCMDData[Index-1].Q,
+	MI := g_ParallelCMDData[Index-1].I,
+	MJ := g_ParallelCMDData[Index-1].J,
+	MK := g_ParallelCMDData[Index-1].K,
+	MH := 1.0,
+	LogTime := GET_SYSTEM_TIME(0)
+	);
+	Rtring_MCodeExecute(CLK := g_ParallelCMDData[Index-1].TriggerFlag);
+	IF Rtring_MCodeExecute.Q THEN
+		g_nSaveMControlTotalNumber := g_nSaveMControlTotalNumber + 1;
+		IF g_nSaveMControlTotalNumber >= 10 THEN
+			g_nSaveMControlTotalNumber := 0;
+		END_IF;
+		g_ParallelCMDData[Index-1].TriggerFlag := FALSE;
+	END_IF;        
+  END_FOR;
+  
+ 
+(*关闭触发标志,只保留一个周期*)
+g_bWaitInputPortM := FALSE;
+
+
+ 
+(*检测M327的信号*)
+Rtring_triggerM327(CLK := g_bM327ControlTriggered);
+IF Rtring_triggerM327.Q THEN
+  nM327Input := LREAL_TO_INT(M.PARAMETER_P[327]);
+  g_bM327ControlTriggered := FALSE;
+  g_boFindEage := FALSE;
+  nM327CheckState := 10;
+  M.ENABLE[327] := 0;
+END_IF;
+
+
+CASE nM327CheckState OF
+  0:
+	nM327CheckState :=0;
+  10:
+	IF BoardInPutArray.BoolArr[nM327Input-1] THEN
+      g_boFindEage := true;(*给引脚赋true，让cnc收到寻边完成信号停止移动*)
+      nM327CheckState :=0;
+    END_IF;
+  
+END_CASE;
+IF g_bPlcResetBuffer THEN
+  g_bWaitInputPorTimeOutAlarm := FALSE;
+  g_bWaitInputPorTimeOutContinueAlarm:= FALSE;
+  nWaitState := 0;
+  g_bWaitInputPortM := FALSE;
+  g_bExecuteFinishedM302 := FALSE;
+  nM327CheckState :=0;
+  g_bM327ControlTriggered := FALSE;
+  (*如果开启了并行实时刷新的就不要关了,可能在实时刷新*)
+  FOR Index := 1 TO 11 BY 1 DO
+        IF g_bRealTimeUpdateParallePLC AND g_bRealTimeUpdateParallePLCExecuteFlag THEN
+			IF g_nRealTimeUpdateParallePLCIndex <> Index THEN
+				g_ParallelCMDData[Index-1].FinishFlag := 1; 
+				g_ParallelCMDData[Index-1].TriggerFlag := FALSE; 
+            END_IF;
+		ELSE
+			g_ParallelCMDData[Index-1].FinishFlag := 1; 
+			g_ParallelCMDData[Index-1].TriggerFlag := FALSE; 
+		END_IF;	
+  END_FOR;
+  
+  
+END_IF;
+
+
+
+]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

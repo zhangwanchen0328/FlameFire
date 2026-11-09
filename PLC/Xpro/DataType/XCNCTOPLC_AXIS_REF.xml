@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dataType xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="XCNCTOPLC_AXIS_REF">
+  <baseType>
+    <struct>
+      <variable name="ATHOME">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+      <variable name="AXISID">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="AXISPOSCMD">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="AXISPOSFB">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="BACKLASH">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="CARTEPOSCMD">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="CARTEPOSFB">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="DRIVE_ENABLE_STATUS">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="DRIVE_ERROR_ID">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="DRIVE_ERROR_STATUS">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="FERRORCURRENT">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="GANTRYAXISSYNCERROR">
+        <type>
+          <array>
+            <dimension lower="0" upper="4"/>
+            <baseType>
+              <DINT/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="GANTRYAXISSYNCERRORVALUE">
+        <type>
+          <array>
+            <dimension lower="0" upper="4"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="GANTRY_ENABLE_STATUS">
+        <type>
+          <array>
+            <dimension lower="0" upper="4"/>
+            <baseType>
+              <DINT/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="GANTRY_ERROR_ID">
+        <type>
+          <array>
+            <dimension lower="0" upper="4"/>
+            <baseType>
+              <DINT/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="GANTRY_ERROR_STATUS">
+        <type>
+          <array>
+            <dimension lower="0" upper="4"/>
+            <baseType>
+              <DINT/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="GANTRY_FERROR">
+        <type>
+          <array>
+            <dimension lower="0" upper="4"/>
+            <baseType>
+              <LREAL/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="HOMED">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+      <variable name="HOMEOFFSET">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="HOMING">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+      <variable name="INPOS">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+      <variable name="MAXFERROR">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MAXHARDLIMIT">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+      <variable name="MAXPOSITIONLIMIT">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MAXSOFTLIMIT">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+      <variable name="MINHARDLIMIT">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+      <variable name="MINPOSITIONLIMIT">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="MINSOFTLIMIT">
+        <type>
+          <USINT/>
+        </type>
+      </variable>
+      <variable name="STATE">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="VELOCITY">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </struct>
+  </baseType>
+</dataType>

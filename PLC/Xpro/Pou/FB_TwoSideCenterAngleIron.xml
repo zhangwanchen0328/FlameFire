@@ -1,0 +1,236 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_TwoSideCenterAngleIron" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bAngleIronEnableM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bAngleIronCloseM">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_TriggerOpen">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TriggerClose">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger0">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TriggerMunal">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nAngleIronSwitch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dZAxisCurPosA">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dZAxisCurPosB">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dTwoSideCompensationA">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_dTwoSideCompensationB">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dTwoSideCompensationOffsetA">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dTwoSideCompensationOffsetB">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dChuckCenterInZpos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡盘中心在Z轴上的坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dSquareLenght">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡盘中心在Z轴上的坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dSquareWidth">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡盘中心在Z轴上的坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCompensateA">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡盘中心在Z轴上的坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCompensateB">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[卡盘中心在Z轴上的坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bMunalAlterCompensation">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面开启两面分中]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bDiffEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[界面开启两面分中]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dInformHmiUpdateValue">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*进行两面分中*)
+R_TriggerOpen(CLK := g_bAngleIronEnableM);
+R_TriggerClose(CLK := g_bAngleIronCloseM);
+R_Trigger0(CLK := g_bFlatNumEnableM);(*第几个点数据获取*)
+R_TriggerMunal(CLK := bMunalAlterCompensation);
+
+IF R_TriggerOpen.Q THEN
+  nAngleIronSwitch := 1;
+  g_bAngleIronEnableM := FALSE;
+  g_dUseSideCenterType := 2.0;
+  g_bExecuteSingeSideOnAFace := FALSE;
+  g_bExecuteSingeSideOnBFace := FALSE;
+  g_bExecuteSingeSideOnCFace := FALSE;
+  g_bExecuteSingeSideOnDFace := FALSE;
+END_IF;
+IF R_TriggerClose.Q THEN
+  nAngleIronSwitch := 2;
+  g_bAngleIronCloseM:= FALSE;
+END_IF;
+IF R_TriggerMunal.Q THEN
+  g_dInformHmiUpdateValue := 2.0;(*计算出补偿值。通知引擎更新数据*)
+  bMunalAlterCompensation:=FALSE;
+END_IF;
+
+g_dTwoSideCompensationValueA := g_dTwoSideCompensationA;
+g_dTwoSideCompensationValueB := g_dTwoSideCompensationB;
+CASE nAngleIronSwitch OF
+  0:
+    nAngleIronSwitch:=0;
+  1:(*获取z点坐标*)
+    IF R_Trigger0.Q THEN
+      IF LREAL_TO_INT(g_fFlatNumM) = 1 THEN
+        dZAxisCurPosA := g_fZCoordinate;
+      ELSIF LREAL_TO_INT(g_fFlatNumM) = 2 THEN
+        dZAxisCurPosB := g_fZCoordinate;
+      END_IF;
+      g_bFlatNumEnableM := FALSE;
+    END_IF;
+    
+    IF g_bPlcPauseBuffer THEN
+      nAngleIronSwitch := 10;
+    END_IF;
+  2:(*取点结束：计算补偿*)
+    
+    IF g_nPipeType = 2 THEN
+      dSquareLenght:= g_dSquareWidth;
+      dSquareWidth:=g_dSquareLenght;
+    ELSIF g_nPipeType = 11 THEN
+      dSquareLenght:= g_dSquareLenght;
+      dSquareWidth:=g_dSquareWidth;
+    ELSIF g_nPipeType = 10 THEN
+      dSquareLenght:= g_dSquareLenght;
+      dSquareWidth:=g_dSquareLenght;
+    END_IF;
+    (*实际值：Z轴实际坐标-随动高度,默认为1,两面分中时随动高度改变此处需要修改*)
+    (*理论值：卡盘中心+高度或宽度的1/2*)
+    dCompensateA:= (dZAxisCurPosB-1.0) - (g_dChuckCenterInZpos+ (dSquareWidth/2.0));(*实际值 - 理论值*)
+    dCompensateB:= (dZAxisCurPosA-1.0) - (g_dChuckCenterInZpos+ (dSquareLenght/2.0));(*实际值 - 理论值*)
+  
+    (*拿到的补偿值默认取反*)
+    dCompensateA := dCompensateA*(-1.0);
+    dCompensateB := dCompensateB*(-1.0);
+    IF g_bTwoSideCenterCompensationInversion THEN
+      dCompensateB := dCompensateB*(-1.0);
+    END_IF;
+    
+    g_dTwoSideCompensationA:=dCompensateA;
+    g_dTwoSideCompensationB:=dCompensateB;
+    g_dInformHmiUpdateValue := 2.0;(*计算出补偿值。通知引擎更新数据*)
+    nAngleIronSwitch := 0;
+    IF ABS(dCompensateA)>g_dCompensationThreshold OR ABS(dCompensateB) > g_dCompensationThreshold THEN
+    g_bExcessiveDeviationOfCentringCompensationAlarm := TRUE;
+  END_IF;
+  10:
+    IF g_bPlcStartBuffer THEN
+      nAngleIronSwitch := 1;
+    END_IF;
+
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nAngleIronSwitch := 0;
+END_IF;
+]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[2面分中:角钢]]></xhtml:p>
+  </documentation>
+</pou>

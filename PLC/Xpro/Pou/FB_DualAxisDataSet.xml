@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DualAxisDataSet" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="nFilterTime">
+        <type>
+          <TIME/>
+        </type>
+      </variable>
+      <variable name="nFilterTime_Limit">
+        <type>
+          <DINT/>
+        </type>
+        <initialValue>
+          <simpleValue value="10"/>
+        </initialValue>
+      </variable>
+      <variable name="Index">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="Filter_PosLimit">
+        <type>
+          <array>
+            <dimension lower="0" upper="3"/>
+            <baseType>
+              <derived name="FB_Filter"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+      <variable name="Filter_NegLimit">
+        <type>
+          <array>
+            <dimension lower="0" upper="3"/>
+            <baseType>
+              <derived name="FB_Filter"/>
+            </baseType>
+          </array>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[
+nFilterTime :=LREAL_TO_TIME(FUN_MSTOS(nFilterTime_Limit));
+FOR Index := 0 TO 3 BY 1 DO
+	CASE Index Of
+		0:
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[0] := g_biDualAxis1PosLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[1] := g_biDualAxis1NegLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[2] := g_biDualAxis1ZeroSignal;
+		1:
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[0] := g_biDualAxis2PosLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[1] := g_biDualAxis2NegLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[2] := g_biDualAxis2ZeroSignal;
+		2:
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[0] := g_biDualAxis3PosLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[1] := g_biDualAxis3NegLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[2] := g_biDualAxis3ZeroSignal;
+		3:
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[0] := g_biDualAxis4PosLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[1] := g_biDualAxis4NegLimit;
+			g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[2] := g_biDualAxis4ZeroSignal;
+	END_CASE;
+    
+  (*对零位信号进行特殊处理：使用限位回零时，将限位转一道当成零位*)
+	IF g_NCMoveData.NCAXISDATA[Index].AxisHomeSignal = 0 THEN
+		g_NCMoveData.NCAXISDATA[Index].AxisZero := FUN_SingalLogic(g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[2],g_NCMoveData.NCAXISDATA[Index].AxisZeroSignalLogic);
+	ELSIF g_NCMoveData.NCAXISDATA[Index].AxisHomeSignal = 1 THEN
+		g_NCMoveData.NCAXISDATA[Index].AxisZero := FUN_SingalLogic(g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[0],g_NCMoveData.NCAXISDATA[Index].AxisPosLimitLogic);
+	ELSE
+		g_NCMoveData.NCAXISDATA[Index].AxisZero := FUN_SingalLogic(g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[1],g_NCMoveData.NCAXISDATA[Index].AxisNegLimitLogic);
+	END_IF;
+  Filter_PosLimit[Index](nFilterTime,g_NCMoveData.NCAXISDATA[Index].AxisPosLimitLogic,g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[0] ,g_NCMoveData.NCAXISDATA[Index].Filter_PosLimit); 
+  Filter_NegLimit[Index](nFilterTime,g_NCMoveData.NCAXISDATA[Index].AxisNegLimitLogic,g_NCMoveData.NCAXISDATA[Index].AxisSignalArr[1],g_NCMoveData.NCAXISDATA[Index].Filter_NegLimit);
+  
+  g_NCMoveData.NCAXISDATA[Index].AxisPosLimit := FUN_SingalLogic(g_NCMoveData.NCAXISDATA[Index].Filter_PosLimit ,g_NCMoveData.NCAXISDATA[Index].AxisPosLimitLogic);
+  g_NCMoveData.NCAXISDATA[Index].AxisNegLimit := FUN_SingalLogic(g_NCMoveData.NCAXISDATA[Index].Filter_NegLimit ,g_NCMoveData.NCAXISDATA[Index].AxisNegLimitLogic);
+END_FOR;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

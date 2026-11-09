@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_MiddleAvoidFeedAxisSelfTuning" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="nMoveSelfTuningState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="bMoveSelfTuningStart">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bMiddleAxisSelfTuningStart">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*主卡进给轴自整定*)
+CASE nMoveSelfTuningState OF 
+  0:
+    IF bMoveSelfTuningStart THEN
+      nMoveSelfTuningState := 10;
+      bMoveSelfTuningStart := FALSE;
+      g_bMiddleFeedAxisSelfTuningDone := FALSE;
+    END_IF;
+    IF bMiddleAxisSelfTuningStart THEN
+      nMoveSelfTuningState := 100;
+      bMiddleAxisSelfTuningStart := FALSE;
+      g_bMiddleAvoidAxisSelfTuningDone := FALSE;
+    END_IF;
+  10:
+    g_MiddleAvoidFeedAxisSelfTuning.EXECUTE := TRUE;
+    g_MiddleAvoidFeedAxisSelfTuning.DIRECTION :=1;
+    IF g_MiddleAvoidFeedAxisSelfTuning.DONE THEN
+      g_MiddleAvoidFeedAxisSelfTuning.EXECUTE := FALSE;
+      g_dMiddleFeedAxisSelfSelfTuningCF := g_MiddleAvoidFeedAxisSelfTuning.CF_POSITIVE;
+      nMoveSelfTuningState := 0;
+      g_bMiddleFeedAxisSelfTuningDone := TRUE;
+    END_IF;
+    IF g_MiddleAvoidFeedAxisSelfTuning.COMMANDABORTED OR g_MiddleAvoidFeedAxisSelfTuning.ERROR THEN
+      nMoveSelfTuningState := 20;
+      g_MiddleAvoidFeedAxisSelfTuning.EXECUTE := FALSE;
+    END_IF;
+    IF  g_bPlcResetBuffer THEN
+      nMoveSelfTuningState := 20;
+    END_IF;
+    
+  20:
+      g_AntiRejection4Stop.Execute := TRUE;
+      IF g_AntiRejection4Stop.Done  THEN
+        g_AntiRejection4Stop.Execute := FALSE;
+        nMoveSelfTuningState := 0;
+      END_IF;
+      IF g_AntiRejection4Stop.CommandAborted OR g_AntiRejection4Stop.Error THEN
+        g_AntiRejection4Stop.Execute := FALSE;
+        nMoveSelfTuningState := 0;
+      END_IF;
+    IF g_bPlcResetBuffer THEN
+      g_AntiRejection4Stop.Execute := FALSE;
+      nMoveSelfTuningState := 0;
+    END_IF;
+  100:(*中卡避让轴自整定*)
+    g_MiddleAvoidAxisSelfTuning.EXECUTE := TRUE;
+    g_MiddleAvoidAxisSelfTuning.DIRECTION :=1;
+    IF g_MiddleAvoidAxisSelfTuning.DONE THEN
+      g_MiddleAvoidAxisSelfTuning.EXECUTE := FALSE;
+      g_dMiddleAvoidAxisSelfTuningCF := g_MiddleAvoidAxisSelfTuning.CF_POSITIVE;
+      nMoveSelfTuningState := 0;
+      g_bMiddleAvoidAxisSelfTuningDone := TRUE;
+    END_IF;
+    IF g_MiddleAvoidAxisSelfTuning.COMMANDABORTED OR g_MiddleAvoidAxisSelfTuning.ERROR THEN
+      nMoveSelfTuningState := 200;
+      g_MiddleAvoidAxisSelfTuning.EXECUTE := FALSE;
+    END_IF;
+    IF  g_bPlcResetBuffer THEN
+      nMoveSelfTuningState := 200;
+    END_IF;
+    
+  200:
+      g_AntiRejection5Stop.Execute := TRUE;
+      IF g_AntiRejection5Stop.Done  THEN
+        g_AntiRejection5Stop.Execute := FALSE;
+        nMoveSelfTuningState := 0;
+      END_IF;
+      IF g_AntiRejection5Stop.CommandAborted OR g_AntiRejection5Stop.Error THEN
+        g_AntiRejection5Stop.Execute := FALSE;
+        nMoveSelfTuningState := 0;
+      END_IF;
+    IF g_bPlcResetBuffer THEN
+      g_AntiRejection5Stop.Execute := FALSE;
+      nMoveSelfTuningState := 0;
+    END_IF;
+END_CASE;
+
+
+
+
+
+
+
+
+IF g_bPlcResetBuffer THEN
+  g_MiddleAvoidFeedAxisSelfTuning.EXECUTE := FALSE;
+  g_bMiddleFeedAxisSelfTuningDone := FALSE;
+  g_bMiddleAvoidAxisSelfTuningDone := FALSE; 
+  g_AntiRejection5Stop.Execute := FALSE;
+  g_AntiRejection4Stop.Execute := FALSE;
+  nMoveSelfTuningState := 0;
+  bMoveSelfTuningStart := FALSE;
+  bMiddleAxisSelfTuningStart := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_DDAxisPower" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_DDAxisPower">
+        <type>
+          <derived name="MC_POWER"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[鼎点轴上电模块]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="DingDianPowerEnable">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[使能开始]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="DDAxis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[轴结构体]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bDDAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[允许正向运动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bDDAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[负向运动]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_bZAvoidStatus">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_nMachineType">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="g_dCurOverride">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_DDOverride">
+        <type>
+          <derived name="MC_SETOVERRIDE"/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="F_PowerOff">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="AxisPowerBrake">
+        <type>
+          <derived name="FB_AxisHoldBrake"/>
+        </type>
+      </variable>
+      <variable name="bAxisPosLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bAxisNegLimit">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[F_PowerOff(CLK := g_bDriveEnable);
+IF F_PowerOff.Q THEN
+  DingDianPowerEnable := FALSE;
+END_IF;
+
+
+IF g_nMachineType = 9 THEN
+  bAxisPosLimit := (NOT g_bDDAxisPosLimit AND g_bZAvoidStatus);
+  bAxisNegLimit:= (NOT g_bDDAxisNegLimit AND g_bZAvoidStatus);
+ELSE
+  bAxisPosLimit := NOT g_bDDAxisPosLimit;
+	bAxisNegLimit := NOT g_bDDAxisNegLimit;
+END_IF;
+
+
+IF g_DDAxisPower.error THEN
+  DingDianPowerEnable := FALSE;
+END_IF;
+
+AxisPowerBrake(
+	bPower := DingDianPowerEnable,
+    AxisRef := REF(DDAxis),
+    HomeSignal :=g_nWAxisHomeSignalType,
+    HomeMode := g_nT3HomeMode,
+    AxisPosLimit := bAxisPosLimit,
+    AxisNegLimit := bAxisNegLimit,
+    AxisPower := REF(g_DDAxisPower),
+    OutBrake => g_boGeneralAxis3HoldBrake);
+
+
+g_DDOverride.Enable := TRUE;
+g_DDOverride.VelFactor := g_dCurOverride;
+IF ABS(DDAxis.NCTOPLC.ACTPOS - DDAxis.NCTOPLC.SETPOS) > g_fT3AxisMaxPosError THEN
+  g_bT3AxisPosErrorAlarm := TRUE;
+ELSE
+  g_bT3AxisPosErrorAlarm := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

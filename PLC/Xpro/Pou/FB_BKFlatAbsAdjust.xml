@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BKFlatAbsAdjust" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_General1_Axis">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_biFlatAbsOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biFlatAbsClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boFlatAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fiFlatAbsDistance">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[旋转角度距离]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="g_fiFlatAbsType">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral1ABSOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral1ABSClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bGeneral1ABSDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fGeneral1ABSPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger0">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nSwitchState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="Delay_Ton">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="bTonMaterialCylinder">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_boTonMaterialCylinder">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger0(CLK := g_biFlatAbsOpen);
+R_Trigger1(CLK := g_biFlatAbsClose);
+
+IF R_Trigger0.Q THEN
+  g_boFlatAbsDone := FALSE;
+  nSwitchState := 1;
+END_IF;
+
+IF R_Trigger1.Q THEN
+  g_boFlatAbsDone := FALSE;
+  g_bGeneral1ABSClose := TRUE;
+  nSwitchState := 3;
+END_IF;
+
+CASE nSwitchState OF
+  0:
+  nSwitchState := 0;
+  1:
+  IF LREAL_TO_INT(g_fiFlatAbsType)=0 THEN
+    g_fGeneral1ABSPos := g_General1_Axis.NCTOPLC.SETPOS + g_fiFlatAbsDistance;
+  ELSIF LREAL_TO_INT(g_fiFlatAbsType)=1 THEN
+    g_fGeneral1ABSPos := g_fiFlatAbsDistance;
+  END_IF;
+  nSwitchState := 2;
+  2:
+  g_bGeneral1ABSOpen := TRUE;
+  
+  IF g_bGeneral1ABSDone THEN
+    g_boFlatAbsDone := TRUE;
+    g_bGeneral1ABSOpen := FALSE;
+    nSwitchState := 0;
+  END_IF;
+  3:
+  Delay_Ton(IN := TRUE,PT := T#10ms);
+  IF Delay_Ton.Q THEN
+    g_bGeneral1ABSClose := FALSE;
+    Delay_Ton(IN := FALSE);
+    nSwitchState := 0;
+  END_IF;
+END_CASE;
+
+IF bTonMaterialCylinder THEN
+  g_boTonMaterialCylinder := TRUE;
+ELSE
+  g_boTonMaterialCylinder := FALSE;
+END_IF;
+
+IF g_bPlcResetBuffer THEN
+  Delay_Ton(IN := FALSE);
+  g_bGeneral1ABSOpen := FALSE;
+  g_bGeneral1ABSClose := FALSE;
+  nSwitchState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

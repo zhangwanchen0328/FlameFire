@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_EdgeProtect" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="R_tringEdgeProtectStart">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="F_tringEdgeProtectEnd">
+        <type>
+          <derived name="F_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bOpenEdgeProtectionEnable">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bOpenEdgeProtectionFlag">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF Axis_Z.NcToPlc.AxisState = 9 THEN(*Z轴处于随动状态*)
+   IF g_niMotionType = 5  AND g_fZAxisHeight > (g_fParalleBorderHeightM+g_fParalleZFollowHeightM) AND (NOT bOpenEdgeProtectionFlag) THEN(*当前高度大于阶跃高度+随动设置高度（寻到边）*)
+     bOpenEdgeProtectionEnable := TRUE;
+     bOpenEdgeProtectionFlag := TRUE;
+    END_IF;
+ELSE
+  bOpenEdgeProtectionEnable := FALSE;
+  bOpenEdgeProtectionFlag := FALSE;
+END_IF;
+R_tringEdgeProtectStart(CLK := bOpenEdgeProtectionEnable);
+IF R_tringEdgeProtectStart.Q THEN
+  bOpenEdgeProtectionEnable := FALSE;
+  g_boCNCMoveDisable := TRUE;
+END_IF;
+
+F_tringEdgeProtectEnd(CLK := g_bZFollowClose);
+IF F_tringEdgeProtectEnd.Q THEN
+  g_boCNCMoveDisable := FALSE;
+END_IF;
+
+
+
+IF g_bPlcResetBuffer THEN
+  R_tringEdgeProtectStart(CLK := FALSE);
+  bOpenEdgeProtectionEnable := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[寻边防护]]></xhtml:p>
+  </documentation>
+</pou>

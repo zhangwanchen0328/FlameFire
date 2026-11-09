@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CombustibleGas" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="dmax_preesure_set">
+        <type>
+          <LREAL/>
+        </type>
+        <initialValue>
+          <simpleValue value="10.0"/>
+        </initialValue>
+        <documentation>
+          <xhtml:p><![CDATA[标准电压值宏定义（默认为10）]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCombustible_pressure">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[可燃气气压]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="RTrigge">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bCombustibleValveAlarmbooltemp">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中间booltemp]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="bCombustiblePressureTempAlarm">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[中间booltemp]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="TonCombustibleAlarmDelay">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonCombustibleAlarmDelay2">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="dDelayTime">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF g_bDAOutputVolEnable THEN
+  RETURN;  (*气压标定中*)
+END_IF;
+
+dCombustible_pressure := g_dCombustible_pressure;
+
+IF g_bCombustibleGas_enable = TRUE THEN
+  g_boCombustibleValve := TRUE;
+  IF g_bCheckCombustibleDA THEN
+    g_uoCombustiblePressureOut :=UINT_TO_DINT (FUN_Cailbration(g_DACombustibleOutputArr,g_DaCombustibleGroupNum,dCombustible_pressure));  
+  ELSE
+    g_uoCombustiblePressureOut := UINT_TO_DINT(FUN_pressureCovertAO(dCombustible_pressure,g_dCombustible_maxvalue,dmax_preesure_set));
+  END_IF;
+ELSE
+  g_boCombustibleValve := FALSE;
+  g_uoCombustiblePressureOut := 0;
+END_IF;
+
+
+(*气压DI报警信号*)
+bCombustibleValveAlarmbooltemp := FUN_SingalLogic(g_biCombustibleValveAlarm,g_bCombustibleValveAlarmLogic) AND g_boCombustibleValve;
+TonCombustibleAlarmDelay(IN :=bCombustibleValveAlarmbooltemp,PT := LREAL_TO_TIME(dDelayTime/1000.0));
+IF TonCombustibleAlarmDelay.Q THEN
+  g_bCombustiblePressureAlarm := TRUE;
+ELSIF bCombustibleValveAlarmbooltemp = FALSE THEN
+  g_bCombustiblePressureAlarm := FALSE;
+END_IF;
+
+
+(*气压AI反馈报警*)
+(*比例阀:电压型DC0～10V控制,反馈出DC1～5V*) 
+g_dCombustiblePressureFB := FUN_AITOPressure(g_uiCombustibleFeedPressure,g_dCombustibleMaxFbFromHMI,0.0,5.0,1.0);
+IF g_dCombustiblePressureFB <(g_dCombustible_pressure*g_dCombustible_maxfeedpercentance/100.0) THEN
+  bCombustiblePressureTempAlarm := true;
+ELSE
+  bCombustiblePressureTempAlarm := false;
+END_IF;
+TonCombustibleAlarmDelay2(IN :=bCombustiblePressureTempAlarm,PT := LREAL_TO_TIME(dDelayTime/1000.0));
+IF TonCombustibleAlarmDelay2.Q THEN
+  g_bCombustibleMaxPressureAlarm := true;
+ELSIF bCombustiblePressureTempAlarm = false THEN
+  g_bCombustibleMaxPressureAlarm := false;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

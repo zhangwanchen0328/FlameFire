@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_QRSensorAxisZero" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="Axis_Sensor">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_biSensorZeroOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_biSensorZeroClose">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_boSensorZeroDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_SensorAbs">
+        <type>
+          <derived name="MC_MOVEABSOLUTE"/>
+        </type>
+      </variable>
+      <variable name="g_SensorStop">
+        <type>
+          <derived name="MC_STOP"/>
+        </type>
+      </variable>
+      <variable name="g_SensorHome">
+        <type>
+          <derived name="MC_HOME"/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger1">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger2">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="nSensorState">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="dSensorZeroVel">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="bSensorHome">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="R_Trigger3">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger1(CLK := g_biSensorZeroOpen);
+R_Trigger2(CLK := g_biSensorZeroClose);
+R_Trigger3(CLK := bSensorHome);
+
+IF R_Trigger1.Q THEN
+  nSensorState := 1;
+  g_boSensorZeroDone := FALSE;
+END_IF;
+IF R_Trigger2.Q THEN
+  g_boSensorZeroDone := FALSE;
+END_IF;
+IF R_Trigger3.Q THEN
+  nSensorState := 3;
+END_IF;
+
+CASE nSensorState OF
+  0:
+    nSensorState := 0;
+  1:
+    g_SensorAbs.Execute := TRUE;
+    g_SensorAbs.Velocity := dSensorZeroVel;
+    g_SensorAbs.Position := 0.0;
+    IF g_SensorAbs.Done THEN
+      g_SensorAbs.Execute := FALSE;
+      g_boSensorZeroDone := TRUE;
+      nSensorState := 0;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nSensorState := 20;
+    END_IF;
+    IF g_SensorAbs.CommandAborted OR g_SensorAbs.Error THEN
+      g_SensorAbs.Execute := FALSE;
+      g_boSensorZeroDone := FALSE;
+      nSensorState := 0;
+    END_IF;
+  3:
+    g_SensorHome.Execute := TRUE;
+    g_SensorHome.HomingMode := 5;
+    IF g_SensorHome.Done THEN
+      g_SensorHome.Execute := FALSE;
+      nSensorState := 0;
+    END_IF;
+  20:
+    g_SensorAbs.Execute := FALSE;
+    g_SensorStop.Execute := TRUE;
+    IF g_SensorStop.Done AND g_bPlcStartBuffer THEN
+      g_SensorStop.Execute := FALSE;
+      nSensorState := 1;
+    END_IF;
+    IF g_SensorStop.CommandAborted OR g_SensorStop.Error THEN
+      g_SensorStop.Execute := FALSE;
+      nSensorState := 0;
+    END_IF;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nSensorState := 0;
+  g_SensorAbs.Execute := FALSE;
+  g_SensorStop.Execute := FALSE;
+  g_SensorHome.Execute := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

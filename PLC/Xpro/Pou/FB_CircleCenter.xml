@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_CircleCenter" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bBeamCenterM">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚输入，校横梁中心]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Circle360Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Circle360TriggerClose">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_CircleFindToperPoineTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_CircleFindToperTrigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_CircleFindTopM">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_NoFllowFindTop">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_NoFllowFindTopClose">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dBeamCenterPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[横梁中心点位置]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dZAxisCurPos1">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[横梁中心点位置]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_fBeamCenterXM">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[引脚输入，校横梁中心点位置]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="bBeamCenterDone">
+        <type>
+          <BOOL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[校横梁中心完成]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nBeamSwitchOn">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCircle360Switch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCircleToperSwitch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCircleTopSwitch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nBeamSwitchChuckCenter">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="nCircleTopNoFollowSwitch">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dZPosTop">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dZPosLow">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dZPosCurPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dXPosCurPos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dXNegativePos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dXPostivePos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dZNegativePos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dZPostivePos">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dXPosTop">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="dXPosLow">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="nF_TriggerCount">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[下降次数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="nR_TriggerCount">
+        <type>
+          <INT/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升次数]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dZPosLastPos">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[上升次数]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[(*第一阶段：确保圆管稳固同心且水平，转动360度，Z轴变化浮动不超过XX,则表示水平度较好*)
+(*第二阶段：高处关随动检测Z轴高度*)
+(*第三阶段：通过在最高点，获取卡盘中心Z轴的坐标*)
+
+
+(*第一阶段*)
+R_Circle360Trigger(CLK := g_bCircle360CenterM);
+R_Circle360TriggerClose(CLK := g_bCircle360CenterCloseM);
+IF R_Circle360Trigger.Q THEN
+  g_bCircle360CenterM := FALSE;
+  nCircle360Switch := 10;
+END_IF;
+IF R_Circle360TriggerClose.Q THEN
+  g_bCircle360CenterCloseM := FALSE;
+  IF nCircle360Switch=20 THEN(*开着的情况再去关*)
+    nCircle360Switch := 50;
+  END_IF;
+  
+END_IF;
+
+CASE nCircle360Switch OF
+  0:
+    nCircle360Switch := 0;
+  10:(*随动已开始，将数据同步*)
+    dZPosCurPos := g_fZCoordinate;
+    dZPosTop := g_fZCoordinate;
+    dZPosLow := g_fZCoordinate;
+    nCircle360Switch := 20;
+  20:(*随动已开始，实时记录下当前Z轴机械坐标*)
+    dZPosCurPos := g_fZCoordinate;
+    IF dZPosCurPos > dZPosTop THEN(*大于最大值，取最大值*)
+      dZPosTop := dZPosCurPos;
+    END_IF;
+    IF dZPosCurPos < dZPosLow THEN(*小于最小值，取最小值*)
+      dZPosLow := dZPosCurPos;
+    END_IF;
+  50:(*将最高点和最低点记录好并传出*)
+    g_foCurZPosOutPut1 := dZPosTop;
+    g_foCurZPosOutPut2 := dZPosLow;
+    nCircle360Switch := 0;
+END_CASE;
+
+
+(*第二阶段：高处关随动检测Z轴高度*)
+R_NoFllowFindTop(CLK := g_bCircleFindTopNoFollowM);
+R_NoFllowFindTopClose(CLK := g_bCircleFindTopNoFollowCloseM);
+
+IF R_NoFllowFindTop.Q THEN
+  g_bCircleFindTopNoFollowM := FALSE;
+  dZPosCurPos := g_fZCoordinate;
+  dZPosLastPos := g_fZCoordinate;
+  dZPosTop := g_fZCoordinate;
+  dZPosLow := g_fZCoordinate;
+  IF g_fCircleFindTopNoFollowModeM=0.0 THEN(*记录圆管Z轴坐标*)
+    nCircleTopNoFollowSwitch := 50;
+  ELSIF g_fCircleFindTopNoFollowModeM=1.0 THEN(*寻找Z最高点*)
+    nCircleTopNoFollowSwitch := 10;
+    g_foCircleFindTopDoneXPos := g_diXMachineCoordinate;
+  END_IF;
+END_IF;
+IF R_NoFllowFindTopClose.Q THEN
+  g_bCircleFindTopNoFollowCloseM := FALSE;
+  nCircleTopNoFollowSwitch := 0;
+END_IF;
+
+CASE nCircleTopNoFollowSwitch OF
+  0:
+    nCircleTopNoFollowSwitch := 0;
+  10:(*外部随动已完成，获取到Z轴最高点*)
+    dZPosCurPos := g_fZCoordinate;
+    (*检测随动后，Z轴坐标的最高点即为中心点*)(*参数过滤？*)
+    IF (dZPosCurPos > dZPosLastPos) AND (dZPosTop < dZPosCurPos) THEN
+      dZPosTop := dZPosCurPos;
+      dXPosTop := g_diXMachineCoordinate;
+      g_foCircleFindTopDoneXPos := dXPosTop;(*传出去*) 
+    END_IF;
+    dZPosLastPos := dZPosCurPos;
+  50:(*获取圆管中心*)
+     (*卡盘中心坐标 = 当前Z轴坐标 - 随动高度 - 管高半径*)
+      g_dChuckCenterInZpos:= g_fZCoordinate-1.0-(g_fLevelAndCenterHight/2.0);(*待优化，目前随动高度固定为1 *)
+      nCircleTopNoFollowSwitch := 0;
+END_CASE;
+
+g_doCricleCenterZPosCurPos := dZPosCurPos;
+g_doCricleCenterZPosLastPos := dZPosLastPos;
+g_doCricleCenterZPosTop := dZPosTop;
+g_noCircleTopNoFollowSwitch := nCircleTopNoFollowSwitch;]]></xhtml:p>
+    </ST>
+  </body>
+  <documentation>
+    <xhtml:p><![CDATA[圆管获取横梁中心]]></xhtml:p>
+  </documentation>
+</pou>

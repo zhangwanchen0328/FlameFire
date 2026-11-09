@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <globalVars>
+    <variable name="T1Slave">
+      <type>
+        <derived name="AXIS_REF"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴1的从轴]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="T2Slave">
+      <type>
+        <derived name="AXIS_REF"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴2的从轴]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="T3Slave">
+      <type>
+        <derived name="AXIS_REF"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴3的从轴]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="T1SlavePower">
+      <type>
+        <derived name="MC_POWER"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴1的从轴使能]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="T2SlavePower">
+      <type>
+        <derived name="MC_POWER"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴2的从轴使能]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="T3SlavePower">
+      <type>
+        <derived name="MC_POWER"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴3的从轴使能]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="T1SlaveReset">
+      <type>
+        <derived name="MC_RESET2"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴1的从轴复位]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="T2SlaveReset">
+      <type>
+        <derived name="MC_RESET2"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴2的从轴复位]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="T3SlaveReset">
+      <type>
+        <derived name="MC_RESET2"/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴3的从轴复位]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_fT1SlaveCoordinate">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴1的从轴坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_fT2SlaveCoordinate">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴2的从轴坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_fT3SlaveCoordinate">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[通用轴3的从轴坐标]]></xhtml:p>
+      </documentation>
+    </variable>
+  </globalVars>
+</root>

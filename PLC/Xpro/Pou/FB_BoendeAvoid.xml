@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_BoendeAvoid" pouType="functionBlock">
+  <interface>
+    <externalVars>
+      <variable name="g_bPlcResetBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcPauseBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bPlcStartBuffer">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZAbsExecute">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZAbsDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_fZAbsPosition">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_fLiftCoord">
+        <type>
+          <LREAL/>
+        </type>
+      </variable>
+      <variable name="g_bZAvoidStatus">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBoendeAvoidOpen">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bBoendeAvoidDone">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="g_bZAxisZero">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="Axis_Z">
+        <type>
+          <derived name="AXIS_REF"/>
+        </type>
+      </variable>
+      <variable name="g_bBoendeZWarn">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="nAvoidState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="R_Trigger">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[R_Trigger(CLK := g_bBoendeAvoidOpen);
+
+IF R_Trigger.Q THEN
+  g_bBoendeAvoidOpen := FALSE;
+  g_bBoendeAvoidDone := FALSE;
+  nAvoidState := 100;
+END_IF;
+
+IF Axis_Z.NCTOPLC.HOMINGSTATE AND g_bZAxisZero AND Axis_Z.NCTOPLC.ACTPOS >= g_fLiftCoord - 0.1 THEN
+  g_bZAvoidStatus := TRUE;
+ELSE
+  g_bZAvoidStatus := FALSE;
+END_IF;
+
+CASE nAvoidState OF
+  0:
+    nAvoidState := 0;
+  1:
+    IF g_bZAvoidStatus THEN
+      nAvoidState := 0;
+      g_bBoendeAvoidDone := TRUE;
+    ELSE
+      nAvoidState := 100;
+    END_IF;
+  100:
+    g_fZAbsPosition := g_fLiftCoord;
+    g_bZAbsExecute := TRUE;
+    nAvoidState := 110;
+  110:
+    IF g_bZAbsDone THEN
+      g_bZAbsExecute := FALSE;
+      nAvoidState := 140;
+    ELSIF g_bPlcPauseBuffer THEN
+      g_bZAbsExecute := FALSE;
+      nAvoidState := 120;
+    END_IF;
+  120:
+    IF g_bPlcStartBuffer THEN
+      IF Axis_Z.NCTOPLC.ACTPOS > g_fLiftCoord - 0.1 THEN
+        nAvoidState := 140;
+      ELSE
+        nAvoidState := 100;
+      END_IF;
+    END_IF;
+  140:
+    IF g_bZAvoidStatus THEN
+      g_bBoendeAvoidDone := TRUE;
+    ELSE
+      IF NOT g_bZAvoidStatus THEN
+        g_bBoendeZWarn := TRUE;
+      END_IF;
+    END_IF;
+    nAvoidState := 0;
+END_CASE;
+
+IF g_bPlcResetBuffer THEN
+  nAvoidState := 0;
+  g_bZAbsExecute := FALSE;
+  g_bBoendeAvoidOpen := FALSE;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

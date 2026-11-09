@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_HeadrtLightAndBuzzer" pouType="functionBlock">
+  <interface>
+    <inputVars>
+      <variable name="bInput">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="bSparkle">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nStartTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+      <variable name="nStopTime">
+        <type>
+          <DINT/>
+        </type>
+      </variable>
+    </inputVars>
+    <outputVars>
+      <variable name="bOutput">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+    </outputVars>
+    <localVars>
+      <variable name="nLightState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="TonLightOn">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+      <variable name="TonLightOFF">
+        <type>
+          <derived name="TON"/>
+        </type>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[IF bInput THEN
+  CASE nLightState OF
+    0:
+      IF bInput AND bSparkle THEN
+        nLightState := 5;
+      ELSIF bInput AND NOT bSparkle THEN
+        nLightState := 20;
+      END_IF;
+      TonLightOn(IN := FALSE);
+      TonLightOFF(IN := FALSE);
+    5:
+      bOutput := TRUE;
+      TonLightOn(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nStartTime)));
+      IF TonLightOn.Q THEN
+        TonLightOn(IN := FALSE);
+        nLightState := 10;
+      END_IF; 
+    10:
+      bOutput := FALSE;
+      TonLightOFF(IN := TRUE,PT := LREAL_TO_TIME(FUN_MStoS(nStopTime)));
+      IF TonLightOFF.Q THEN
+        TonLightOFF(IN := FALSE);
+        nLightState := 5;
+      END_IF;  
+    20:
+      bOutput := TRUE;  
+  END_CASE;
+ELSE
+  bOutput := FALSE;
+  nLightState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.plcopen.org/xml/tc6_0201">
+  <globalVars>
+    <variable name="g_bNotLiftForShortDistanceEnable">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[开启短距离不抬刀]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dNotLiftForShortDistance">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[短距离不抬刀距离]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_dGoneDist">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[收刀移动距离]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_bOpenFollowDownLimitVel">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[随动到位限速]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_biPerfectEndCutEnableM62P9" address="%IX18.102">
+      <type>
+        <BOOL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[触发收刀]]></xhtml:p>
+      </documentation>
+    </variable>
+    <variable name="g_foEndCutSpeed" address="%QL18.103">
+      <type>
+        <LREAL/>
+      </type>
+      <documentation>
+        <xhtml:p><![CDATA[触发速度]]></xhtml:p>
+      </documentation>
+    </variable>
+  </globalVars>
+</root>

@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pou xmlns="http://www.plcopen.org/xml/tc6_0201" xmlns:ns1="http://www.plcopen.org/xml/tc6_0201" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FB_SingleSideCenter" pouType="functionBlock">
+  <interface>
+    <localVars>
+      <variable name="Rtring_Open">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="Rtring_Close">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_Trigger0">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="R_TriggerManual">
+        <type>
+          <derived name="R_TRIG"/>
+        </type>
+      </variable>
+      <variable name="bManualAlterCompensation">
+        <type>
+          <BOOL/>
+        </type>
+      </variable>
+      <variable name="nSingleState">
+        <type>
+          <INT/>
+        </type>
+      </variable>
+      <variable name="dCompensateA">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[左边探到边的X值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dCompensateB">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[右边探到边的X值]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+    <externalVars>
+      <variable name="g_dSingleSideCompensation">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[补偿值]]></xhtml:p>
+        </documentation>
+      </variable>
+    </externalVars>
+    <localVars>
+      <variable name="dCompensateOffSetValue">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[手动补偿值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dManulPipeWidth">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[手动分中管子的宽度]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dPipeCenter">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[单面分中时实际的中心值]]></xhtml:p>
+        </documentation>
+      </variable>
+      <variable name="dUWordCoord">
+        <type>
+          <LREAL/>
+        </type>
+        <documentation>
+          <xhtml:p><![CDATA[U轴工件坐标]]></xhtml:p>
+        </documentation>
+      </variable>
+    </localVars>
+  </interface>
+  <body>
+    <ST>
+      <xhtml:p><![CDATA[Rtring_Open(CLK := g_bSingleSideOpenM);
+Rtring_Close(CLK := g_bSingleSideCloseM);
+R_Trigger0(CLK := g_bFlatNumEnableM);(*第几个点数据获取*)
+R_TriggerManual(CLK := bManualAlterCompensation);
+dUWordCoord := FUN_FMOD(g_fUWorkCoordinate,FALSE);
+IF dUWordCoord < 0.0 THEN
+  dUWordCoord := dUWordCoord + 360.0;
+END_IF;
+IF Rtring_Open.Q THEN
+  nSingleState := 1;
+  g_bSingleSideOpenM := FALSE;
+  g_dUseSideCenterType := 3.0;
+  (*对取余后的坐标值进行判断*)
+  IF (dUWordCoord >=0.0 AND dUWordCoord <= 0.5) OR (dUWordCoord >=359.5 AND dUWordCoord <= 360.5) THEN
+    g_noCurrentAngleOnSurface := 0.0;
+  ELSIF  (dUWordCoord >=89.5 AND dUWordCoord <= 90.5) THEN
+    g_noCurrentAngleOnSurface := 90.0;
+  ELSIF  (dUWordCoord >=179.5 AND dUWordCoord <= 180.5) THEN
+    g_noCurrentAngleOnSurface := 180.0; 
+  ELSIF  (dUWordCoord >=269.5 AND dUWordCoord <= 270.5) THEN
+    g_noCurrentAngleOnSurface := 270.0;
+  END_IF;
+END_IF;
+IF Rtring_Close.Q THEN
+  nSingleState := 2;
+  g_bSingleSideCloseM := FALSE;
+END_IF;
+IF R_TriggerManual.Q THEN
+  bManualAlterCompensation := FALSE;
+  g_dInformHmiUpdateValue := 3.0;(*计算出补偿值。通知引擎更新数据*)
+END_IF;
+
+g_dSingleSideCompensationValue := g_dSingleSideCompensation; 
+CASE nSingleState OF
+  0:
+    nSingleState := 0;
+  1:
+    IF R_Trigger0.Q THEN
+      IF LREAL_TO_INT(g_fFlatNumM) = 1 THEN
+        dCompensateA := g_diXMachineCoordinate;
+      ELSIF LREAL_TO_INT(g_fFlatNumM) = 2 THEN
+        dCompensateB := g_diXMachineCoordinate;
+      END_IF;
+      g_bFlatNumEnableM := FALSE;
+    END_IF;
+    IF g_bPlcPauseBuffer THEN
+      nSingleState := 10;
+    END_IF;
+  2:
+    dPipeCenter := g_dSquareWidth;
+    IF g_bSingleSideStatusFb THEN
+      dPipeCenter := dManulPipeWidth;
+    END_IF;
+    g_dSingleSideCompensation := (dCompensateA+dCompensateB)/2.0 - g_dBeamCenterPos;
+    IF g_noCurrentAngleOnSurface = 0.0 THEN
+      g_dSingleSideAngleAValue :=g_dSingleSideCompensation;
+      g_bExecuteSingeSideOnAFace := TRUE;
+    ELSIF g_noCurrentAngleOnSurface = 90.0 THEN
+      g_dSingleSideAngleBValue :=g_dSingleSideCompensation;
+      g_bExecuteSingeSideOnBFace := TRUE;
+    ELSIF g_noCurrentAngleOnSurface = 180.0 THEN
+      g_dSingleSideAngleCValue :=g_dSingleSideCompensation;
+      g_bExecuteSingeSideOnCFace := TRUE;
+    ELSIF g_noCurrentAngleOnSurface = 270.0 THEN
+      g_dSingleSideAngleDValue :=g_dSingleSideCompensation;
+      g_bExecuteSingeSideOnDFace := TRUE;
+    END_IF;
+    
+    
+    g_dInformHmiUpdateValue := 3.0;(*计算出补偿值。通知引擎更新数据*)
+    nSingleState := 0;
+    IF ABS(g_dSingleSideCompensation)>g_dCompensationThreshold THEN
+      g_bExcessiveDeviationOfCentringCompensationAlarm := TRUE;
+    END_IF;
+  10:
+    IF g_bPlcStartBuffer THEN
+      nSingleState := 1;
+    END_IF;
+END_CASE;
+IF g_bPlcResetBuffer OR g_bPlcEndM THEN
+  nSingleState := 0;
+END_IF;]]></xhtml:p>
+    </ST>
+  </body>
+</pou>
